@@ -1,0 +1,52 @@
+<form id="stAllocateForm" method="get" class="form-horizontal">
+	<div class="form-group">
+		<div class='col-sm-4'>
+			<label class="col-sm-3 control-label">名称<span style='color: red;'>*</span></label>
+			<div class="col-sm-9">
+				<input type="text" name="name" placeholder="" class="form-control" validateType="default" > 
+			</div>
+		</div>			
+		<div class='col-sm-4'>
+			<label class="col-sm-3 control-label">入库仓库<span style='color: red;'>*</span></label>
+           	<div class="col-sm-9">
+		    	<select class='form-control' name='inStoreId' id='storeIdSearchContainer2' validateType="default"></select>
+           	</div>
+		</div>
+	</div>    
+	<div class='form-group'>
+		<!--将隐藏域放在这里，不显示出来-->
+		<div style="display:none'">
+			<input type="hidden" id="id" name="id">
+			<input type="hidden" name="createBy">
+			<input type="hidden" name="createTime">
+			<input type="hidden" name="outId">
+			<input type="hidden" name="inId">
+			<input type="hidden" name="status">
+			<input type="hidden" name="outStoreId">
+		</div>
+	</div>
+</form>
+<div class='row'>
+    <div class='col-sm-12'>
+        <table class='table table-striped table-bordered'>
+            <thead id='allocateProductHeaderContainer'>
+              <tr>
+                <th width='15%'>名称</th>
+                <th width='10%'>sku编码</th>
+                <th width='10%'>规格</th>
+                <th width='10%'>库存总数</th>
+                <th width='8%'>锁定</th>
+                <th width='8%'>预留</th>
+                <th width='8%'>次品</th>
+                <th width='15%'>出库数量<span style='color: red;'>*</span></th>
+                <th width='8%'>仓位</th>
+                <th width='7%'>操作</th>
+              </tr>
+            </thead>
+            <tbody id='allocateProductContainer'>
+            </tbody>
+            <tfoot id="allocateProductFooterContainer"></tfoot>
+        </table>  
+    </div>
+</div>
+			

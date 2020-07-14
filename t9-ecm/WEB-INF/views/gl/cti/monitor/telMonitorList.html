@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>通话监控页面</title>
+	<#include "/common/common.html">
+	<script src="${ctx}/js/jt/gl/cti/monitor/telMonitorList${deploy_min!""}.js?v=${jsVersion}" ></script>
+</head>
+<style>
+		 .cardBox {
+		    height: 168px;
+                text-align: center;
+                float: left;
+                padding: 5px;
+                padding-bottom: 10px;
+                padding-top: 10px;
+                border-right: 15px solid transparent;
+            }
+
+            .headerBox {
+                color: #fff;
+                padding: 10px;
+                height: 40px;
+                font-size: 1vw;
+            }
+            .headerBox>span {
+                cursor: pointer; color:white;
+            }
+
+            .bodyBox {
+                padding: 10px;
+                font-size: 0.8vw;
+                border: 1px solid #ddd;
+		    display: inline-block;
+		    border-top: 0;
+		    width:100%;
+            }
+
+            .bodyBox p {
+                margin-left: 5px;
+            } 
+            .bodyBox > div{
+               	padding:0;
+               	padding-bottom: 10px;
+            }
+		@media screen and (max-width:1300px) {
+			#telMonitorList .col-sm-2 {
+			    width: 20%;
+			}
+		}
+		@media screen and (max-width:900px) {
+			.cardBox {
+			    border-right: 0;
+			}
+		}
+		#telMonitorList .telStatusList{
+			max-height: 510px;
+			overflow-y: auto;
+		}
+		#telMonitorList .cotentBody>div{
+			padding-right: 0;
+			padding-left: 0; 
+			padding-top: 10px;
+		}
+		#telMonitorList .cotentBody>div div{
+			padding:5px 0;
+		}
+		#telMonitorList .spanFloatRight{
+			float:right;
+		}
+		#telMonitorList .spanFloatLeft{
+			float:left;
+		}
+		#telMonitorList #callingDiv,#telMonitorList #idleStatusDiv,
+		#telMonitorList #handUpDiv,#telMonitorList #disturbDiv,
+		#telMonitorList #callEndDealDiv,#telMonitorList #ringingDiv{
+			display:none;
+		}
+		#telMonitorList .img-container{
+			border-radius: 50%;
+		}
+		#callingList .cardBoxBaseColor{
+			background-color: #5BC0DE;
+		}
+		#idleStatusList .cardBoxBaseColor{
+			background-color: #009688;
+		}
+		#handUpList .cardBoxBaseColor{
+			background-color: #ffc107;
+		}
+		#disturbList .cardBoxBaseColor{
+			background-color: #e91e63;
+		}
+		#ringingList .cardBoxBaseColor{
+			background-color: #dddddd;
+		}
+		#callEndDealList .cardBoxBaseColor{
+			background-color: #f8ac59;
+		}
+		.cardBoxBaseColor{
+			color: white;
+		}
+	</style>
+	<script type="text/javascript">
+		var refreshTime = "5";
+		<#if refreshTime??>
+			refreshTime = "${refreshTime}";
+		</#if>
+	</script>
+<body>
+<div class="wrapper animated fadeInRight">
+	<!-- list界面 -->
+	<div class="row list_wrapper">
+		<!-- 搜索条件开始-->
+		<div class="col-sm-12">
+			<div class="panel panel-default">
+			    <div class="panel-body">
+			       	<div class="form-group">
+			       		<div class="col-sm-3"> 
+							<button type='button' class="jt-btn acditemlist">排队列表</button>
+						</div>
+					</div>
+			    </div>
+			</div>
+		</div>
+		
+		<!-- 搜索条件结束 -->
+
+
+		<div class="col-sm-12" id="telMonitorList" >
+			<div class="col-sm-12" id="callingDiv">
+				<h2 style="color:red;">监听和强插步骤：拨打分机对应号码--->听到坐席响之后摘机--->点对应按钮</h2>
+				<div class="panel-heading jt-panel-heading">
+					<h3 class="panel-title">正在使用</h3>
+				</div>
+				<div id="callingList" class="telStatusList">
+					
+				</div>
+			</div>
+
+			<div class="col-sm-12" id="idleStatusDiv" >
+				<div class="panel-heading jt-panel-heading">
+					<h3 class="panel-title">空闲</h3>
+				</div>
+				<div id="idleStatusList" class="telStatusList">
+					
+				</div>
+			</div>
+
+			<div class="col-sm-12" id="handUpDiv" >
+				<div class="panel-heading jt-panel-heading">
+					<h3 class="panel-title">请挂机</h3>
+				</div>
+				<div id="handUpList" class="telStatusList">
+					
+				</div>
+			</div>
+
+			<div class="col-sm-12" id="disturbDiv">
+				<div class="panel-heading jt-panel-heading">
+					<h3 class="panel-title">免打扰</h3>
+				</div>
+				<div id="disturbList" class="telStatusList">
+					
+				</div>
+			</div>
+			<div class="col-sm-12" id="ringingDiv">
+				<div class="panel-heading jt-panel-heading">
+					<h3 class="panel-title">振铃中</h3>
+				</div>
+				<div id="ringingList" class="telStatusList">
+					
+				</div>
+			</div>
+			<div class="col-sm-12" id="callEndDealDiv">
+				<div class="panel-heading jt-panel-heading">
+					<h3 class="panel-title">话后处理</h3>
+				</div>
+				<div id="callEndDealList" class="telStatusList">
+					
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="acditemDiv" style="display: none;height: 100%;">
+	<div class="showAcdItemList" style="margin-left: 20px;">
+		
+	</div>
+</div>
+</body>
+</html>

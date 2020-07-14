@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>添加外呼号码</title>
+    <#include "/common/common.html" />
+    <#include "/common/ztree.html" />
+    <link href="${ctx}/css/plugins/chosen/chosen.css?v=${jsVersion}" rel="stylesheet" />
+    <script src="${ctx}/js/plugins/chosen/chosen.jquery.js?v=${jsVersion}"></script>
+    <script src="${ctx}/js/jt/common/utils/groupUtils${deploy_min!""}.js?v=${jsVersion}"></script>
+    <script type="text/javascript" src="${ctx}/js/jt/crm/ou/employeeSubJs/editBatch${deploy_min!""}.js?v=${jsVersion}"></script>
+    <script src='${ctx}/js/jt/common/utils/positionUtils${deploy_min!""}.js?v=${jsVersion}'></script>
+
+
+    <script type="text/javascript">
+    $(function() {
+        var editBatch = new EditBatch();
+        editBatch.init();
+    });
+    </script>
+</head>
+<style type="text/css">
+    .tlable{
+        min-width:90px;
+        padding-left: 10px !important;
+    }
+</style>
+<body style='background-color: #fff;' class="white-bg">
+    <div class="panel-body">
+        <form id="editBatchForm" >
+            <table class="table table-bordered">
+                <tr>
+                    <td width="10%" class="tlable"><input type="checkbox" id="checkPosition"></input>修改岗位</td>
+                    <td width="90%">
+                    <input type="hidden" name="positionBatch"></input>
+                     <input type="text"  data-placeholder="请选择岗位" class="form-control" name="positionBatchName"  id="positionBatchName" style="width:100%"></input>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td width="10%" class="tlable">
+                        <input type="checkbox"  id="checkRol"></input>修改角色
+                    </td>
+                    <td width="90%">
+                         <select style="width:90%" name="roleIds" id="roleSelect" multiple data-placeholder="请选择权限角色" class="chosen-select" tabindex="4"></select>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td width="10%" class="tlable"><input type="checkbox" ></input>状态</td>
+                    <td width="90%">
+                        <input type="radio" name="status" value="actived" checked="true">激活<input type="radio" value="inactive" name="status">注销
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td width="10%" class="tlable">
+                        <input type="checkbox"></input>移动部门
+                    </td>
+                    <td width="90%">
+                        <input type='text' readonly="readonly" id='orgName' name='orgName' class='form-control'>
+                        <input type="hidden" name="groupId">
+                    </td>
+                </tr>
+            </table>
+            <div class="form-group" style="color：red;">
+                <label class="col-sm-2 control-label" style="padding-right: 20px !important;color:red !important;">温馨提示</label>
+                <div class="col-sm-10" style="padding-top: 4px;color:red;">
+                    岗位设置】岗位代表所能看到的数据范围，空则只能看到自己的数据，选择某个部门则可看到某部门的数据，若普通员工，则岗位为空，若是某个部门的管理者，则给对应的部门岗位。
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>

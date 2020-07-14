@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>库存出入单据管理</title>
+	<#include "/common/common.html">
+	<script type="text/javascript">
+		var type = "${type}";
+	</script>
+	<script src="${ctx}/js/jt/common/service/selectProdService${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/ec/stock/storeUtils${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/ec/stock/stBill${deploy_min!""}.js?v=${jsVersion}" ></script>
+</head>
+
+<body class='white-bg'>
+	<div class="wrapper animated ">
+		<!-- list界面 -->
+		<div class="row list_wrapper">
+			<#include "/ec/stock/stBill/stBillToolbar.html">	  			
+			<div class='col-sm-12 jqGrid_wrapper'>			
+			    <table id="stBillGrid"></table>
+				<div id="stBillPager"></div>
+			</div>
+		</div>
+		<!-- 编辑界面 -->
+		<#include "/ec/stock/stBill/stBillEdit.html">	    
+	</div>
+</body>
+</html>

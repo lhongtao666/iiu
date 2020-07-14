@@ -1,0 +1,99 @@
+<form id="T9kmEntityForm" method="get" class="form-horizontal">
+	<div class="form-group">
+		<div class='col-sm-12'>
+			<label class="col-sm-1 control-label">标题<span style="color:red;">*</span></label>
+			<div class="col-sm-3">
+				<input type="text" name="question" class="form-control"
+					validateType="default">
+			</div>
+			<label class="col-sm-1 control-label">分类<span style="color: red;">*</span></label>
+			<div class="col-sm-2">
+				<input type="text" readonly="readonly" name="cateName" id="cateName" class="form-control" id="cateName" validateType="default">
+			</div>
+		</div>
+	</div>
+
+	<div class="form-group">
+		<div class='col-sm-12'>
+			<label class="col-sm-1 control-label">知识内容<span style="color:red;">*</span></label>
+			<div class="col-sm-9" id="richText" >
+				<textarea id="tinyMceContent" runat="server" name="elm1" rows="30" cols="80" style="width:100%"></textarea>
+			</div>
+		</div>
+	</div>
+
+
+	<div class='form-group'>
+		<!--将隐藏域放在这里，不显示出来-->
+		<div style="display: none'">
+			<input type="hidden" name="id">
+			<input type="hidden" name="cateId">
+			<input type="hidden" name="qaCateFirstId">
+			<input type="hidden" name="createBy"> 
+			<input type="hidden" name="createTime"> 
+	    		<input type="hidden" id="content" name="content">
+	    		<input type="hidden"  name="type">
+		</div>
+	</div>
+
+	<div class="form-group">
+		<div class='col-sm-12'>
+	        <label class="col-sm-1 control-label">附件</label>
+	        <div class="col-sm-9">
+	            <table class='table table-striped table-bordered'>
+	                <tr>
+	                    <td width='90%' id='kmFileDiv'>
+	                    </td>
+	                    <td width='10%'>
+	                        <button class='jt-btn kmFileAdd' type='button'>添加附件</button>
+	                    </td>
+	               </tr>
+	            </table>
+	        </div>
+	    </div>
+	</div>
+</form>
+
+
+<div class='row' id='detailForm' style='padding: 10px;'>
+	<!--标题-->
+	<div class='col-sm-12'>
+	    <h3 name="name" style="text-align:center; margin-bottom:10px;" class='titleDetail'></h3>
+	</div>
+
+	<!--作者-->
+	<div class='col-sm-12' style="text-align:center; margin-bottom:10px;">
+	    <small class='timeDetail'></small>&nbsp
+	    <small>作者:</small><small class='authorDetail'></small>&nbsp
+	</div>
+	
+	<!--内容-->
+	<div class='col-sm-12'  style="margin-bottom:20px;">
+	    <div class="contentDetail"></div>
+	</div>
+
+ 	
+ 	<!--评论-->
+ 	<div class='col-sm-12'>
+ 		<div class="tabs-container">
+	        <ul class="nav nav-tabs">
+	            <li class="active"><a data-toggle="tab" href="#tab-2" aria-expanded="true">附件</a>
+	            </li>
+	        </ul>
+	        <div class="tab-content">
+	            <div id="tab-2" class="tab-pane active">
+	                <div class="panel-body">
+	                    <div class='col-sm-12 filesDetail '>
+					        <table class='table table-striped table-bordered'>
+				                <tr>
+				                    <td id='kmFileDetailDiv'>
+				                    </td>
+				               </tr>
+				            </table>
+				        </div>
+	                </div>
+	            </div>
+	        </div>	
+ 		</div>
+    </div>
+</div>

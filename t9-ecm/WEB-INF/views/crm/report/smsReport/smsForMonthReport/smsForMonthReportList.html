@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>部门每月短信发送统计表</title>
+	<#include "/common/common.html">
+	<#include "/common/ztree.html">
+	<script src="${ctx}/js/plugins/echarts/3.1.7/theme/macarons.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/plugins/echarts/3.1.7/echarts.min.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/jt/common/plugins/report${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/crm/report/reportDateUtil${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/crm/report/sms/smsForMonthReport${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<style type="text/css">
+		.jt-grid-panel .ui-jqgrid {border: 1px solid transparent;}
+	</style>
+</head>
+<body class='white-bg'>
+		<div class="panel panel-default" style="height:100%;">
+			<div class="panel-heading" style="height:50px;">
+				<form role="form" class="form-horizontal">
+					<div class='form-group'>
+						<label class="control-label" style="float: left;padding: 0 10px;height: 33px;background: #e7eaec;line-height: 33px;margin-right: 7px;">时间</label>
+						<div class="col-sm-2 dayElement"> 
+							<div class="input-daterange input-group" id="datepicker">
+								<input id='beginDate' class='laydate-icon form-control layer-date' name="beginDate" validateType="default" style="cursor:pointer;">
+							</div>
+						</div>
+						<div class='col-sm-3'>
+							<button class="jt-form-select dayElement" id="thisMonth" type="button">本月</button>
+							<button class="jt-form-select dayElement" id="preMonth" type="button">上个月</button>
+						</div>
+						<div class='col-sm-4'>
+							<button class="jt-btn-search" type='button' id="searchBtn"><i class="fa fa-search"></i>&nbsp;搜索</button>
+							<button type='button' class='jt-btn-search exportExcel'><i class="fa fa-reply"></i>&nbsp;导出</button>	
+						</div>
+					</div>
+				</form>
+			</div>
+			<div class="panel-body jt-grid-panel" style="padding: 0;min-height: calc(100% - 50px);background-color: #fff;">
+				<table id="smsForMonthReportGrid"></table>
+				<div id='smsForMonthReportPager'></div>
+			</div>
+		</div>
+</body>
+</html>

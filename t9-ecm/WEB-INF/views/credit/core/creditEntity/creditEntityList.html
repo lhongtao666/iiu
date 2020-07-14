@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>授权信息管理</title>
+	<#include "/common/common.html">
+	<script src="${ctx}/js/jt/credit/core/creditEntity${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src='${ctx}/js/jt/common/service/employeesSelectLayer${deploy_min!""}.js?v=${jsVersion}'></script>
+	<script src="${ctx}/js/jt/gl/km/glHelpUtil${deploy_min!""}.js?v=${jsVersion}" ></script>
+</head>
+<style type="text/css">
+	.ui-jqgrid .ui-priority-secondary{ background: #f9f9f9;}
+</style>
+<body class='white-bg'>
+	<div class="wrapper animated ">
+		<!-- list界面 -->
+		<div class="row list_wrapper">
+			<#include "/credit/core/creditEntity/creditEntityToolbar.html">	 	   			
+			<div class='col-sm-12 jqGrid_wrapper'>			
+				<table id="creditEntityGrid"></table>
+				<div id="creditEntityPager"></div>
+			</div>
+		</div>
+		<!-- 编辑界面 -->
+		<#include "/credit/core/creditEntity/creditEntityAdd.html">
+		<!--预警编辑界面-->
+		<#include "/credit/core/creditEntity/creditNotifyAdd.html">
+	</div>
+	<#include "/credit/core/creditEntity/devResPassword.html">
+</body>
+</html>

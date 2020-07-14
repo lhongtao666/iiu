@@ -1,0 +1,91 @@
+<div class='row'>
+	<div class='col-sm-12'>
+		<form id="groupTargetForm" method="get" class="form-horizontal">
+			<div class="form-group ">	
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">部门</label>
+					  <div class="col-sm-9">
+                        <!--部门的相关数据-->
+                        <input type='hidden' name='orgId'>
+                        <input id='select-group' type='text' placeholder="请选择部门" readonly="readonly" name='orgName' class='form-control' validateType='default'>
+                    </div>
+				</div>
+			 </div>    
+
+			<div class='form-group'>		
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">目标时间</label>
+					<div class="col-sm-5">
+						<select name="period-year" class="form-control">
+						</select>
+					</div>
+					<div class="col-sm-4">
+						<select name="period-month" class="form-control">
+							<option value="01">1月</option>
+							<option value="02">2月</option>
+							<option value="03">3月</option>
+							<option value="04">4月</option>
+							<option value="05">5月</option>
+							<option value="06">6月</option>
+							<option value="07">7月</option>
+							<option value="08">8月</option>
+							<option value="09">9月</option>
+							<option value="10">10月</option>
+							<option value="11">11月</option>
+							<option value="12">12月</option>
+						</select>
+					</div>
+				</div>
+				<div class="col-sm-3 status-status">
+	                <input type="checkbox" value="n" name="use-count" class="js-switch" />启用销售数量目标
+	            </div>
+			 </div>    
+
+			<div class='form-group'>
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">目标(元)</label>
+					<div class="col-sm-9">
+						<input type="number" name="total" placeholder="" class="form-control" validateType="default" autocomplete="off"> 
+					</div>
+				</div>
+				<div class='col-sm-1'>
+					<button type="button" class="jt-btn" id="average-btn">&nbsp;平均分配</button>
+				</div>
+				<div class='col-sm-4 group-count'>
+					<label class="col-sm-3 control-label">目标(数量)</label>
+					<div class="col-sm-5">
+						<input type="number" name="countTarget" placeholder="" class="form-control" validateType="default" autocomplete='off'> 
+					</div>
+					<button type="button" class="btn btn-sm btn-primary" id="count-btn">设置数量</button>
+				</div>
+				
+            </div> 
+             
+
+			<div class='form-group'>
+				<!--将隐藏域放在这里，不显示出来-->
+				<div style="display:none'">
+					<input type="hidden" id="id" name="id">
+					<input type="hidden" name="createBy">
+					<input type="hidden" name="createTime">
+					<input type="hidden" name="period">
+				</div>
+			</div>
+		</form>
+		<div class='col-sm-12 form-horizontal'>
+			<div class='form-group'>
+	        	<label class="col-sm-1 control-label">个人目标</label>
+	        	<div class="col-sm-11" id="employee-target-container">
+	        		
+	        	</div>
+	        </div> 
+        </div>
+	</div>
+</div>
+<div class="row groupTargetShowOrgDiv">			
+	<div class='col-sm-12 jqGrid_wrapper'>
+	    <table id="groupTargetShowOrgGrid"></table>
+		<div id="groupTargetShowOrgPager"></div>
+	</div>
+</div>

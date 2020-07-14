@@ -1,0 +1,293 @@
+<link rel="stylesheet" type="text/css" href="${ctx}/css/plugins/webuploader/webuploader.css?v=${jsVersion}">
+<link rel="stylesheet" type="text/css" href="${ctx}/css/demo/webuploader-demo.css?v=${jsVersion}">
+<script type="text/javascript" src="${ctx}/js/plugins/webuploader/webuploader.js?v=${jsVersion}"></script>
+<script type="text/javascript" src="${ctx}/js/jt/common/service/JTWebUploader${deploy_min!""}.js?v=${jsVersion}"></script>
+<script src="${ctx}/js/jt/crm/cs/weiXin/weixinTextarea${deploy_min!""}.js?v=${jsVersion}"></script>
+<script src="${ctx}/js/plugins/clipboard/clipboard.min.js?v=${jsVersion}"></script>
+<script src="${ctx}/js/jt/crm/wx/wechatForm${deploy_min!""}.js?v=${jsVersion}"></script>
+<style>
+
+	.web_wechat_face {
+	    width: 30px;
+	    height: 30px;
+	    background: url(${ctx}/img/jt/wx/images/biaoqing.png) no-repeat;
+	    display: inline-block;
+    	vertical-align: middle;
+    	margin-top: 5px; 
+	}
+	.web_wechat_pic {
+	    width: 30px;
+	    height: 30px;
+	    background: url(${ctx}/img/jt/wx/images/tupian.png) no-repeat;
+	    display: inline-block;
+    	vertical-align: middle;
+    	margin-top: 5px; 
+	}
+
+	.web_wechat_common_lan{
+		width: 30px;
+	    height: 30px;
+	    background: url(${ctx}/img/jt/wx/images/huihua.png) no-repeat;
+	    display: inline-block;
+    	vertical-align: middle;
+    	margin-top: 5px; 
+	}
+	.web_wechat_noread {
+	    width: 11px;
+	    height: 11px;
+	    background: url(${ctx}/img/jt/wx/images/weixinother.png) no-repeat;
+	    background-position: -411px -304px;
+	    -webkit-background-size: 487px 462px;
+	    background-size: 487px 462px;
+	    float: right;
+   		margin: 7px;
+	}
+	.qqface {
+	    width: 28px;
+	    height: 28px;
+	    font-size: 0;
+	    text-indent: -999em;
+	    border-bottom: 1px solid #f0f0f0;
+	    border-right: 1px solid #f0f0f0;
+	    cursor: pointer;
+	    background: url(${ctx}/img/jt/wx/images/qqface.png) no-repeat;
+	    display: inline-block;
+    	vertical-align: middle;
+	}
+	.emoji{
+		width: 28px;
+	    height: 28px;
+	    font-size: 0;
+	    text-indent: -999em;
+	    cursor: pointer;
+	    background: url(${ctx}/img/jt/wx/images/weixinface.png) no-repeat;
+	    display: inline-block;
+    	vertical-align: middle;
+	}
+	.emoji_face a {
+	    float: left;
+	    width: 28px;
+	    height: 28px;
+	    font-size: 0;
+	    text-indent: -999em;
+	    border-bottom: 1px solid #f0f0f0;
+	    border-right: 1px solid #f0f0f0;
+	    cursor: pointer;
+	    background: url(${ctx}/img/jt/wx/images/weixinface.png) no-repeat;
+	}
+	.icon-unknown {
+	    background: url(${ctx}/img/jt/wx/images/weixinother.png) no-repeat;
+	    background-position: -346px -152px;
+	    -webkit-background-size: 487px 462px;
+	    background-size: 487px 462px;
+	    display: inline-block;
+	    vertical-align: middle;
+	    width: 76px;
+	    height: 76px;
+	}
+	.conten-face{
+		border:none;
+	}
+	.ico_fail {
+	    margin-right: 9px;
+	    cursor: pointer;
+	}
+	.web_wechat_message_fail {
+	    display: inline-block;
+	    vertical-align: middle;
+	    width: 22px;
+	    height: 22px;
+	    background: url(${ctx}/img/jt/wx/images/weixinother.png) no-repeat;
+	    background-position: -289px -432px;
+	    -webkit-background-size: 487px 462px;
+	    background-size: 487px 462px;
+	}
+	.is-overtime{
+	    color: red;
+	    font-size: 11px;
+	}
+	#cannot-send-msg-div{
+		text-align: center;
+	    display: none;
+	    line-height: 10pc;
+	    font-size: 20px;
+	    color: #999999;
+	}
+</style>
+<div class="main main-show">
+	<div style="padding-top:50%;padding-left:45%;color:#aaa"><i class="fa fa-wechat" style="color:#aaa;font-size: 50px;"></i>未选择聊天</div>
+</div>
+<div class="main main-hide jt-chat-div-for-change">
+	<input type="hidden" id="jt-reciver-msg">
+	<button type="button" class='btn btn-sm btn-default' id="jt-weixin-reciverBtn" style="display:none;">聊天</button>
+	<div style="text-align:center;" id="chat-person-div">
+		<div style="height:34px;" class="jt-wx-btn-div">
+			<span id="chat-person" style="line-height: 34px; vertical-align: middle;padding-right:20px;"></span>
+		</div>
+		<hr style=" margin-top: 0;margin-bottom: 0; border: 0;border-top: 1px solid #dedede;">
+		<div class="jt-wx-label-div" style="height:0px;overflow:hidden ;background-color:rgba(223, 239, 243, 0.81);">
+		</div>
+    </div>
+	<div class="m-message">
+		
+		<ul>
+		
+		</ul>
+		
+    </div>
+    <div class="m-detail">
+    </div>
+    <div class="m-text" style='text-align:center;padding-top:45px;' id="send-msg-btn-div">
+    	<button class='btn btn-lg  btn-primary jt-goto-send-msg'>发送消息</button>
+    	<button class='btn btn-lg  btn-primary jt-weixin-history' style="float:none;">消息记录</button>
+    </div>
+    <div class="m-text" id="cannot-send-msg-div">
+    	无法发送
+    </div>
+    <div class="m-text" id="send-msg-div">
+    	<div class="wx-history" style="padding-left:20px;">
+    		<div style="float:left;">
+    			<a class="web_wechat_face" href="javascript:;" title="表情"></a>
+    			<a class="web_wechat_common_lan " href="javascript:;"title="常用语"></a>
+    			<a class="web_wechat_pic " href="javascript:;"title="图片"></a>
+    			<div id="uploader" style="display:none;"></div>
+    		</div>
+    		<p  class='btn btn-sm  jt-weixin-history'></p>
+    	</div>
+    	<!-- <textarea class="textarea"  id="chat-textarea"></textarea> -->
+    	<div class="textarea note-editable" id="chat-textarea" contenteditable="true" style="margin-top:25px;overflow:auto; " ></div>
+    	<div class="send-p"><span style="padding-right:30px;">按 Ctrl + Enter 换行</span><button type="button" class='btn btn-sm btn-default jt-weixin-sendMsgBtn'>发送</button></div>
+    	<div id="jt-wx-common-lan-div" style="position: absolute;display:none;z-index:10001">
+			<div class="tabs-container exp_hd ">
+    			<ul class="nav nav-tabs ">
+					<li  id="myComLanTabLi" class="tabli active ">
+						<a href="#myComLandiv" data-toggle="tab">
+							我的常用语
+						</a>
+					</li>
+					<button class='btn btn-sm btn-primary  ' id="jt-edit-con-lan" style="margin:5px 8px;">编辑常用语</button>
+				</ul>
+				<div class="tab-content exp_bd">
+					<div id="myComLandiv" class="tab-pane active exp_cont" style="width:310px;" >
+					</div>
+				</div>
+			</div>
+    	</div>
+    	<div id="jt-wx-face-div" style="position: absolute;display:none;z-index:10001">
+    		<div class="tabs-container exp_hd ">
+					<div class="tab-content exp_bd">
+						<div id="qqfacediv" class="tab-pane active exp_cont" >
+							<div class="qq_face">
+			                    <a title="微笑" type="qq" class="face qqface qqface0">[微笑]</a>
+								<a title="撇嘴" type="qq" class="face qqface qqface1">[撇嘴]</a> 
+								<a title="色" type="qq" class="face qqface qqface2">[色]</a> 
+								<a title="发呆" type="qq" class="face qqface qqface3">[发呆]</a> 
+								<a title="得意" type="qq" class="face qqface qqface4">[得意]</a> 
+								<a title="流泪" type="qq" class="face qqface qqface5">[流泪]</a> 
+								<a title="害羞" type="qq" class="face qqface qqface6">[害羞]</a> 
+								<a title="闭嘴" type="qq" class="face qqface qqface7">[闭嘴]</a> 
+								<a title="睡" type="qq" class="face qqface qqface8">[睡]</a> 
+								<a title="大哭" type="qq" class="face qqface qqface9">[大哭]</a> 
+								<a title="尴尬" type="qq" class="face qqface qqface10">[尴尬]</a> 
+								<a title="发怒" type="qq" class="face qqface qqface11">[发怒]</a> 
+								<a title="调皮" type="qq" class="face qqface qqface12">[调皮]</a> 
+								<a title="呲牙" type="qq" class="face qqface qqface13">[呲牙]</a> 
+								<a title="惊讶" type="qq" class="face qqface qqface14">[惊讶]</a> 
+								<a title="难过" type="qq" class="face qqface qqface15">[难过]</a> 
+								<a title="酷" type="qq" class="face qqface qqface16">[酷]</a> 
+								<a title="冷汗" type="qq" class="face qqface qqface17">[冷汗]</a> 
+								<a title="抓狂" type="qq" class="face qqface qqface18">[抓狂]</a> 
+								<a title="吐" type="qq" class="face qqface qqface19">[吐]</a> 
+								<a title="偷笑" type="qq" class="face qqface qqface20">[偷笑]</a> 
+								<a title="愉快" type="qq" class="face qqface qqface21">[愉快]</a> 
+								<a title="白眼" type="qq" class="face qqface qqface22">[白眼]</a> 
+								<a title="傲慢" type="qq" class="face qqface qqface23">[傲慢]</a> 
+								<a title="饥饿" type="qq" class="face qqface qqface24">[饥饿]</a> 
+								<a title="困" type="qq" class="face qqface qqface25">[困]</a> 
+								<a title="惊恐" type="qq" class="face qqface qqface26">[惊恐]</a> 
+								<a title="流汗" type="qq" class="face qqface qqface27">[流汗]</a> 
+								<a title="憨笑" type="qq" class="face qqface qqface28">[憨笑]</a> 
+								<a title="悠闲" type="qq" class="face qqface qqface29">[悠闲]</a> 
+								<a title="奋斗" type="qq" class="face qqface qqface30">[奋斗]</a> 
+								<a title="咒骂" type="qq" class="face qqface qqface31">[咒骂]</a> 
+								<a title="疑问" type="qq" class="face qqface qqface32">[疑问]</a> 
+								<a title="嘘" type="qq" class="face qqface qqface33">[嘘]</a> 
+								<a title="晕" type="qq" class="face qqface qqface34">[晕]</a> 
+								<a title="疯了" type="qq" class="face qqface qqface35">[疯了]</a> 
+								<a title="衰" type="qq" class="face qqface qqface36">[衰]</a> 
+								<a title="骷髅" type="qq" class="face qqface qqface37">[骷髅]</a> 
+								<a title="敲打" type="qq" class="face qqface qqface38">[敲打]</a> 
+								<a title="再见" type="qq" class="face qqface qqface39">[再见]</a> 
+								<a title="擦汗" type="qq" class="face qqface qqface40">[擦汗]</a> 
+								<a title="抠鼻" type="qq" class="face qqface qqface41">[抠鼻]</a> 
+								<a title="鼓掌" type="qq" class="face qqface qqface42">[鼓掌]</a> 
+								<a title="糗大了" type="qq" class="face qqface qqface43">[糗大了]</a> 
+								<a title="坏笑" type="qq" class="face qqface qqface44">[坏笑]</a> 
+								<a title="左哼哼" type="qq" class="face qqface qqface45">[左哼哼]</a> 
+								<a title="右哼哼" type="qq" class="face qqface qqface46">[右哼哼]</a> 
+								<a title="哈欠" type="qq" class="face qqface qqface47">[哈欠]</a> 
+								<a title="鄙视" type="qq" class="face qqface qqface48">[鄙视]</a> 
+								<a title="委屈" type="qq" class="face qqface qqface49">[委屈]</a> 
+								<a title="快哭了" type="qq" class="face qqface qqface50">[快哭了]</a> 
+								<a title="阴险" type="qq" class="face qqface qqface51">[阴险]</a> 
+								<a title="亲亲" type="qq" class="face qqface qqface52">[亲亲]</a> 
+								<a title="吓" type="qq" class="face qqface qqface53">[吓]</a> 
+								<a title="可怜" type="qq" class="face qqface qqface54">[可怜]</a> 
+								<a title="菜刀" type="qq" class="face qqface qqface55">[菜刀]</a> 
+								<a title="西瓜" type="qq" class="face qqface qqface56">[西瓜]</a> 
+								<a title="啤酒" type="qq" class="face qqface qqface57">[啤酒]</a> 
+								<a title="篮球" type="qq" class="face qqface qqface58">[篮球]</a> 
+								<a title="乒乓" type="qq" class="face qqface qqface59">[乒乓]</a> 
+								<a title="咖啡" type="qq" class="face qqface qqface60">[咖啡]</a> 
+								<a title="饭" type="qq" class="face qqface qqface61">[饭]</a> 
+								<a title="猪头" type="qq" class="face qqface qqface62">[猪头]</a> 
+								<a title="玫瑰" type="qq" class="face qqface qqface63">[玫瑰]</a> 
+								<a title="凋谢" type="qq" class="face qqface qqface64">[凋谢]</a> 
+								<a title="嘴唇" type="qq" class="face qqface qqface65">[嘴唇]</a> 
+								<a title="爱心" type="qq" class="face qqface qqface66">[爱心]</a> 
+								<a title="心碎" type="qq" class="face qqface qqface67">[心碎]</a> 
+								<a title="蛋糕" type="qq" class="face qqface qqface68">[蛋糕]</a> 
+								<a title="闪电" type="qq" class="face qqface qqface69">[闪电]</a> 
+								<a title="炸弹" type="qq" class="face qqface qqface70">[炸弹]</a> 
+								<a title="刀" type="qq" class="face qqface qqface71">[刀]</a> 
+								<a title="足球" type="qq" class="face qqface qqface72">[足球]</a> 
+								<a title="瓢虫" type="qq" class="face qqface qqface73">[瓢虫]</a> 
+								<a title="便便" type="qq" class="face qqface qqface74">[便便]</a> 
+								<a title="月亮" type="qq" class="face qqface qqface75">[月亮]</a> 
+								<a title="太阳" type="qq" class="face qqface qqface76">[太阳]</a> 
+								<a title="礼物" type="qq" class="face qqface qqface77">[礼物]</a> 
+								<a title="拥抱" type="qq" class="face qqface qqface78">[拥抱]</a> 
+								<a title="强" type="qq" class="face qqface qqface79">[强]</a> 
+								<a title="弱" type="qq" class="face qqface qqface80">[弱]</a> 
+								<a title="握手" type="qq" class="face qqface qqface81">[握手]</a> 
+								<a title="胜利" type="qq" class="face qqface qqface82">[胜利]</a> 
+								<a title="抱拳" type="qq" class="face qqface qqface83">[抱拳]</a> 
+								<a title="勾引" type="qq" class="face qqface qqface84">[勾引]</a> 
+								<a title="拳头" type="qq" class="face qqface qqface85">[拳头]</a> 
+								<a title="差劲" type="qq" class="face qqface qqface86">[差劲]</a> 
+								<a title="爱你" type="qq" class="face qqface qqface87">[爱你]</a> 
+								<a title="NO" type="qq" class="face qqface qqface88">[NO]</a> 
+								<a title="OK" type="qq" class="face qqface qqface89">[OK]</a> 
+								<a title="爱情" type="qq" class="face qqface qqface90">[爱情]</a> 
+								<a title="飞吻" type="qq" class="face qqface qqface91">[飞吻]</a> 
+								<a title="跳跳" type="qq" class="face qqface qqface92">[跳跳]</a> 
+								<a title="发抖" type="qq" class="face qqface qqface93">[发抖]</a> 
+								<a title="怄火" type="qq" class="face qqface qqface94">[怄火]</a> 
+								<a title="转圈" type="qq" class="face qqface qqface95">[转圈]</a> 
+								<a title="磕头" type="qq" class="face qqface qqface96">[磕头]</a> 
+								<a title="回头" type="qq" class="face qqface qqface97">[回头]</a> 
+								<a title="跳绳" type="qq" class="face qqface qqface98">[跳绳]</a> 
+								<a title="投降" type="qq" class="face qqface qqface99">[投降]</a> 
+								<a title="激动" type="qq" class="face qqface qqface100">[激动]</a> 
+								<a title="乱舞" type="qq" class="face qqface qqface101">[乱舞]</a> 
+								<a title="献吻" type="qq" class="face qqface qqface102">[献吻]</a> 
+								<a title="左太极" type="qq" class="face qqface qqface103">[左太极]</a> 
+								<a title="右太极" type="qq" class="face qqface qqface104">[右太极]</a>
+			                </div>
+						</div>
+					</div>
+			</div>
+    	</div>
+    </div>
+</div>
+

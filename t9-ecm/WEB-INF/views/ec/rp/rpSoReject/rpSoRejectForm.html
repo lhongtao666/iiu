@@ -1,0 +1,75 @@
+<div class='row' style='border: 1px solid #ddd; margin-left: 15px; margin-right: 15px;padding:10px;'>
+	<div class='col-sm-12'>
+		<form id="rpSoRejectForm" method="get" class="form-horizontal">
+
+
+			<div class="form-group">
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">订单编号<@JTtip msg="订单编号" /></label>
+					<div class="col-sm-9">
+						<input type="text" name="soNo" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">拒收时间<@JTtip msg="拒收时间" /></label>
+					<div class="col-sm-9">
+						<input class='laydate-icon form-control layer-date' name="rejectTime" validateType="default"  placeholder="YYYY-MM-DD hh:mm:ss" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">
+					</div>
+				</div>
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">拒收类别<@JTtip msg="拒收类别" /></label>
+					<div class="col-sm-9">
+						<input type="text" name="rejectType" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+			</div>
+			<div class="form-group">
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">拒收原因<@JTtip msg="拒收原因" /></label>
+					<div class="col-sm-9">
+						<input type="text" name="rejectReason" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">快递公司<@JTtip msg="快递公司" /></label>
+					<div class="col-sm-9">
+						<input type="text" name="shipCompany" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">员工ID<@JTtip msg="员工ID" /></label>
+					<div class="col-sm-9">
+						<input type="text" name="employeeId" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+			</div>
+			<div class="form-group">
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">部门KEY<@JTtip msg="部门KEY" /></label>
+					<div class="col-sm-9">
+						<input type="text" name="groupKey" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+            </div>    
+
+
+
+			<div class='form-group'>
+				<!--将隐藏域放在这里，不显示出来-->
+				<div style="display:none'">
+					<input type="hidden" id="id" name="id">
+					<input type="hidden" name="createBy">
+					<input type="hidden" name="createTime">
+				</div>
+			</div>
+
+		</form>
+	</div>
+</div>

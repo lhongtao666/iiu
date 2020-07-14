@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>批量管理微信号</title>
+	<#include "/common/common.html">
+	<style>
+		li.active a{
+			color: #FFFFFF !important;	
+		}
+
+		.list-group-item{
+			border: 1px solid #337AB7 !important;
+			padding: 3px 15px;
+		}
+		#cateOptContainer .col-sm-6{
+			padding-left: 5px;	
+			padding-right: 5px;
+		}
+	</style>
+	<link rel="stylesheet" rev="stylesheet" type="text/css" media="all" href="${ctx}/css/jt/crm/cs/wx/weiXinChat.css?v=${jsVersion}">
+	<script src="${ctx}/js/jt/crm/cs/weiXin/weixinFriends${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script>
+	 	<#if employeeWeixin??>
+	    	var employeeWeixin  = "${employeeWeixin}";
+	    <#else>
+	        var employeeWeixin = "";
+	    </#if>
+		var isMultiple = "${isMultiple}";	//是否多选
+		var status = "${status}";	//状态
+		var type = "${type}";	//类型
+	</script>
+</head>
+
+<body>
+	<div class="wrapper animated">
+			<#if employeeWeixin??>
+		    	<div class="col-sm-12">
+						<div class="row list_wrapper">
+							<div class="col-sm-12">
+								<div class="panel panel-default">
+									<div class="panel-body">
+										<form id='weixinFriendsSearchForm' role="form" class="form-horizontal">
+											<div class='form-group'>
+												<#if type='android'>
+													<label class="col-sm-1 control-label">备注</label>
+													<div class="col-sm-2">
+														<input type="text" placeholder="请输入备注" name="Q__S__LK__wx.con_remark_"  class="form-control">
+													</div>
+												<#else>
+													<label class="col-sm-1 control-label">昵称</label>
+													<div class="col-sm-2">
+														<input type="text" placeholder="请输入昵称" name="Q__S__LK__wx.nick_name_"  class="form-control">
+													</div>
+												</#if>
+												 
+												<label class="col-sm-1 control-label">标签</label>
+												<div class="col-sm-2">
+													<select class="form-control wx-msg-target" name="Q__S__LK__ext.label_">
+													</select>
+												</div> 
+												<#if type='android'>
+													<label class="col-sm-1 control-label">微信标签</label>
+													<div class="col-sm-2">
+														<select class="form-control wx-msg-target" name="Q__S__LK__wx.wx_label_">
+														</select>
+													</div> 
+												</#if>
+												<div class="col-sm-2">
+													<button type='button' class="btn btn-sm   btn-primary weixinFriendsSearch"><i class='fa fa-search'></i>查询</button>
+												</div>
+											</div>
+										</form>
+									</div>
+								</div>
+							</div>	
+							<div class='col-sm-12 jqGrid_wrapper'>
+							    <table id="entryWxCodeGrid"></table>
+								<div id="entryWxCodePager"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+		    <#else>
+		     <div class='col-sm-2' style='margin-top: 5px;'>
+					<h3>微信号：</h3>
+					<ul class="folder-list" style='padding-left: 0px;'>
+					
+						<li class="list-group-item active activeWxCode" relate-flag="1" wxCode="" ><a href="javascript:void(0);">已关联</a></li>
+						<#list wxCodes as code>
+							<#if type='android'>
+								<li class="list-group-item " relate-flag="0" wxCode="${code.userName}" ><a href="javascript:void(0);">${code.nickName}:${code.alias}</a></li>
+							<#else>
+								<li class="list-group-item " relate-flag="0" wxCode="${code.weixin}" ><a href="javascript:void(0);">${code.nickName}:${code.weixin}</a></li>
+							</#if>
+						
+						</#list>
+			        </ul>	
+				</div>
+				<div class="col-sm-10">
+					
+						<div class="row list_wrapper">
+							<div class="col-sm-12">
+								<div class="panel panel-default">
+									<div class="panel-body">
+										<form id='weixinFriendsSearchForm' role="form" class="form-horizontal">
+											<div class='form-group'>
+												<#if type='android'>
+													<label class="col-sm-1 control-label">备注</label>
+													<div class="col-sm-2">
+														<input type="text" placeholder="请输入备注" name="Q__S__LK__wx.con_remark_"  class="form-control">
+													</div>
+												<#else>
+													<label class="col-sm-1 control-label">昵称</label>
+													<div class="col-sm-2">
+														<input type="text" placeholder="请输入昵称" name="Q__S__LK__wx.nick_name_"  class="form-control">
+													</div>
+												</#if> 
+												<label class="col-sm-1 control-label">标签</label>
+												<div class="col-sm-2">
+													<select class="form-control wx-msg-target" name="Q__S__LK__ext.label_">
+													</select>
+												</div> 
+												<#if type='android'>
+													<label class="col-sm-1 control-label">微信标签</label>
+													<div class="col-sm-2">
+														<select class="form-control wx-msg-target" name="Q__S__LK__wx.wx_label_">
+														</select>
+													</div> 
+												</#if> 
+												<div class="col-sm-2">
+													<button type='button' class="btn btn-sm   btn-primary weixinFriendsSearch"><i class='fa fa-search'></i>查询</button>
+												</div>
+											</div>
+										</form>
+									</div>
+								</div>
+							</div>	
+							<div class='col-sm-12 jqGrid_wrapper'>
+							    <table id="entryWxCodeGrid"></table>
+								<div id="entryWxCodePager"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+		    </#if>
+		
+</body>
+</html>

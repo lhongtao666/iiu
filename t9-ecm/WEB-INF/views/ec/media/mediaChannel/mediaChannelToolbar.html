@@ -1,0 +1,56 @@
+<div class="col-sm-12">
+	<div class="panel panel-default">
+	    <div class="panel-heading">
+	    	<button type='button' class='jt-btn mediaChannelAdd'><i class='fa fa-plus'>&nbsp;添加</i></button>
+			<button type='button' class='jt-btn mediaChannelEdit'><i class='fa fa-edit'>&nbsp;编辑</i></button>
+			<button type='button' class='jt-btn jt-btn-red mediaChannelDel'><i class='fa fa-remove'>&nbsp;删除</i></button>
+			<button type='button' class='jt-btn mediaChannelDetail'><i class='fa fa-list'>&nbsp;明细</i></button>
+			<button type='button' class='jt-btn mediaChannelActive'><i class='fa fa-toggle-on'>&nbsp;激活</i></button>
+			<button type='button' class='jt-btn mediaChannelUnactive'><i class='fa fa-toggle-off'>&nbsp;禁用</i></button>
+			<button type='button' class='jt-btn mediaChannelExport'><i class='fa fa-reply'></i>&nbsp;模板导出</button>
+            <button type='button' class='jt-btn mediaChannelImport'>&nbsp;渠道导入</button>
+			<label id="glHelpContainer"></label><!-- 帮助中心 -->
+	    </div>
+
+	    <div class="panel-body">
+	        <form id='mediaChannelSearchForm' role="form" class="form-horizontal">
+				<div class='form-group'>
+					<label class="col-sm-1 control-label">渠道名称</label>
+					<div class="col-sm-2"> 
+					    <input type="text" id='nameSearch' placeholder="请输入渠道名称" name="Q__S__LK__name_" class="form-control">
+				    </div>
+				    <label class="col-sm-1 control-label">类型</label>
+					<div class="col-sm-2"> 
+					   <select name="Q__S__EQ__type_" placeholder="" class="form-control typeSearch" validateType="default" > 
+					   </select>
+				    </div>
+				    <label class="col-sm-1 control-label">推广对象</label>
+					<div class="col-sm-2"> 
+					   <select name="Q__S__EQ__interst_" placeholder="" class="form-control interstSearch" validateType="default" > 
+					   </select>
+				    </div>
+				     <label class="col-sm-1 control-label">平台</label>
+					<div class="col-sm-2"> 
+					   <select name="Q__S__EQ__channel_" placeholder="" class="form-control channelSearch" validateType="default" > 
+					   </select>
+				    </div>
+				</div>
+				
+                <div class='form-group'>
+                	<label class="col-sm-1 control-label">状态</label>
+					<div class="col-sm-2"> 
+					   <select class="form-control" id="statusSearch"  name="Q__S__EQ__status_" >
+		                   <option value="">请选择状态</option>
+	                       <option value="actived">激活</option>
+	                       <option value="inactive">未激活</option>
+	                   </select>
+				    </div>
+				    <div class="col-sm-1"></div>
+	                <div class="col-sm-1"> 
+	                    <button type='button' class="btn jt-btn-search mediaChannelSearch"><i class="fa fa-search"></i>&nbsp;搜索</button>
+	                </div>
+	            </div>
+			</form>
+	    </div>
+	</div>
+</div>

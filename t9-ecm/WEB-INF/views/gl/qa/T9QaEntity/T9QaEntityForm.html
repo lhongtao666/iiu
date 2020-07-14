@@ -1,0 +1,81 @@
+<form id="T9QaEntityForm" method="get" class="form-horizontal" style="padding-top:10px;">
+	<div class="form-group" style="margin-top: 10px;">
+		<label class="col-sm-1 control-label left-label">问题</label>
+		<div class='col-sm-4'>
+			<input type="text" id="questionArea" name="questionArea"
+				autocomplete="off"
+				placeholder="请输入问题，字数限制128字以内" class="form-control"
+				validateType="default">
+		</div>
+		<div class='col-sm-4 qa-add-model'>
+			<label class="col-sm-3 control-label">分类</label>
+			<div class="col-sm-9">
+				<input type="text" id="qa-cate-select"
+				autocomplete="off" readonly="readonly"
+				placeholder="请选择分类..." class="form-control"
+				validateType="default">
+			</div>
+		</div>
+		<div  class='col-sm-2 qa-model-btn'>
+			<button type="button" class="jt-btn-search qa-search" ><i class='fa fa-search'></i><span>&nbsp;搜索</span></button>	
+		</div>
+		<div class='col-sm-5 qa-model-btn'>
+			<div style="float: left;">
+			<button type="button" class="jt-btn-search qa-import" ><i class="fa fa-share"></i><span>&nbsp;导入问答</span></button>
+			<button type="button" class="jt-btn-search qa-export" ><i class="fa fa-reply-all"></i><span>&nbsp;导出问答</span></button>
+			<button type="button" class="jt-btn-search qa-init-sqlAdd"><span>初始化</span></button>
+			<button type="button" class="jt-btn-search qa-export-template"><i class="fa fa-reply-all"></i><span>&nbsp;导出模板</span></button>
+			</div>
+		</div>
+	</div>
+	<div class="form-group qa-add-model">
+		<label class="col-sm-2 control-label left-label" >添加类型</label>
+		<div class="col-sm-4">
+			<select class='form-control' id="answerTypeSelect" validateType="default">
+				<option value="">请选择</option>
+				<option value="word">文档</option>
+				<option value="video">视频</option>
+			</select>
+		</div>
+		<label class="col-sm-1 control-label  qa-word" >文档链接</label>
+		<div class="col-sm-3 qa-word">
+			<input type="text" name="url" class="form-control">
+		</div>
+	</div>
+	<div class="form-group qa-add-model qa-video">
+		<label class="col-sm-1 control-label left-label" >视频链接</label>
+		<div class="col-sm-4">
+			<input type="text" name="videoUrl" class="form-control">
+		</div>
+		<label class="col-sm-1 control-label" >视频名称</label>
+		<div class="col-sm-3">
+			<input type="text" name="videoName" class="form-control">
+		</div>
+	</div>
+	<div class="form-group to-chg-qa">
+		<label class="col-sm-1 control-label left-label">回复</label>
+		<div class="col-sm-11">
+			<textarea id="answerArea" name="answerArea" validatetype="default" maxlength="1025" 
+				class="ui-autocomplete-input col-sm-12" style="min-height: 85px;width:100%;border-color: #ddd;resize: vertical;"></textarea>
+		</div>
+	</div>
+	<div class='form-group'>
+		<!--将隐藏域放在这里，不显示出来-->
+		<div style="display: none'">
+			<input type="hidden" id="id" name="id"> 
+			<input type="hidden" name="belong"> 
+			<input type="hidden" name="cateId" id="cateId"> 
+			<input type="hidden" name="qaCateFirstId"> 
+			<input type="hidden" name="answer"> 
+			<input type="hidden" name="question"> 
+			<input type="hidden" name="createBy" > 
+			<input type="hidden" name="createTime">
+			<input type="hidden" name="answerType">
+		</div>
+	</div>
+	<div class="qa-form-extrabtn">
+		<button type="button" class="btn btn-sm jt-btn-form saveQa" tabindex="-1" title=""><i class='fa fa-save'></i>&nbsp;保存<span>问答</span></button>
+		<button type="button" class="btn btn-sm jt-btn-form resetQa" tabindex="-1" title="清空"><i class='fa fa-repeat'></i><span>&nbsp;清空</span></button>
+	</div>
+	<div class="qa-form-slide" title="关闭编辑模式"><i class="fa fa-sort-up"></i><i class="fa fa-sort-down"></i></div>
+</form>

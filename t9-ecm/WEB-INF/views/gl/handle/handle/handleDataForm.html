@@ -1,0 +1,42 @@
+<form class="form-inline">
+	<div class="form-group" style="margin-left:20px">			
+		<button class="jt-btn" id="backUpData" type="button">备份</button>
+		<div class="checkbox checkbox-success checkbox-inline">
+			<input type="checkbox" name="downloadFlag" value="1">
+			<label for="downloadFlag">下载</label>
+		</div>
+		<button class="jt-btn jt-btn-red" id="deleteDataBtn" type="button" style='display:none;'>删除</button>		
+	</div>
+</form>
+</div>
+</div>
+
+<div class="panel panel-default jt-cs-follow-clean">
+	<div class="panel-heading">
+		恢复数据
+	</div>
+	<div class="panel-body">
+		<form  id="deleteFollowForm" class="form-horizontal">
+			<div class="form-group">
+				<div class='col-sm-2'>
+					<div class='fileDiv'></div>
+					<button class="jt-btn" id="selectFile" type="button">选择文件</button>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+
+<div class="panel panel-default">
+	<div class="panel-heading">
+		自动备份和清洗
+	</div>
+	<div class="panel-body">
+		<form class="form-inline">
+			<div class="form-group">
+				<label class="control-label">是否启用</label>
+				<input name='isActived' type='checkbox' value='n' class='js_switch_'>							
+			</div>
+		</form>
+	</div>
+</div>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>二维码处理</title>
+	<#include "/common/common.html">
+	<#include "/common/webuploader.html">
+	   <link href="${ctx}/css/plugins/blueimp/css/blueimp-gallery.min.css?v=${jsVersion}" rel="stylesheet">
+    <script src="${ctx}/js/plugins/blueimp/jquery.blueimp-gallery.min.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/plugins/simditor/jquery.qrcode.min.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/jt/gl/tool/qrcode${deploy_min!""}.js?v=${jsVersion}" ></script>
+	
+</head>
+
+<body class='white-bg'>
+	<div class="wrapper animated">
+		<div class="row">
+	        <div class="col-sm-12">
+	            <div class="ibox float-e-margins">
+	                <div class="ibox-title">
+	                    <h5>二维码</h5>
+	                    <div class="ibox-tools">
+	                        <a class="collapse-link">
+	                            <i class="fa fa-chevron-up"></i>
+	                        </a>
+	                    </div>
+	                </div>
+	                <div class="ibox-content">
+		                <div class="row">
+	                        <div class="col-sm-6">
+	                            <div class="panel panel-default">
+	                                <div class="panel-heading">生成二维码
+		                                <div class="ibox-tools"><i class="fa fa-save createQRCode"></i></div>
+				                    </div>
+	                                <div class="panel-body">
+		                                <form class='form-horizontal' id='createQrcodeForm'>
+		                                	<div class='form-group'>
+			                               		<div class='col-sm-12'>
+													<textarea rows="2" id='encoderContent' cols="10" maxlength="2048" name="encoderContent" multiline="true" class="form-control">https://www.baidu.com</textarea>
+			                               		</div>		                               		
+		                               		</div>
+		                               		<div class='form-group'>
+			                               		<div class='col-sm-12' id='code'>
+													<img id="encoderImgId" cache="false" src="/t9-ecm/img/jt/qrcodeDefault.png" width="235px" height="235px" />
+												</div>
+											</div>
+										</form>
+	                                </div>
+	                            </div>
+	                        </div>
+	                        <div class="col-sm-6">
+	                            <div class="panel panel-default">
+	                                <div class="panel-heading">解析二维码
+				                    </div>
+	                                <div class="panel-body">
+	                               	    <form class='form-horizontal' id='uploadQrcodeForm'>
+	                               	   		<div class="form-group">
+			                               		<div class='col-sm-12'>
+													<textarea rows="2" id='analyzeContent' cols="10" maxlength="2048" multiline="true" class="form-control"></textarea>											
+												</div>
+											</div>
+											<div class="form-group">
+												<div class='col-sm-12'>
+													 <div id="uploader" class="wu-example">
+						                                <div class="queueList">
+						                                    <div id="dndArea" class="placeholder">
+						                                        <div id="filePicker"></div>
+						                                    </div>
+						                                </div>
+						                                <div class="statusBar" style="display:none;">
+						                                    <div class="progress">
+						                                        <span class="text">0%</span>
+						                                        <span class="percentage"></span>
+						                                    </div>
+						                                    <div class="info"></div>
+						                                    <div class="btns">
+						                                        <div id="filePicker2"></div>
+						                                        <div class="uploadBtn">解析二维码</div>
+						                                    </div>
+						                                </div>
+						                            </div>
+				                            	</div>
+			                                </div>
+										</form>
+									</div>
+	                            </div>
+	                        </div>
+	                    </div>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+</body>
+</html>

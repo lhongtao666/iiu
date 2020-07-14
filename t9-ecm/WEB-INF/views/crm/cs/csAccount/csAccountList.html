@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>客户账户管理</title>
+	<#include "/common/common.html">
+	<script src="${ctx}/js/jt/crm/cs/csAccount${deploy_min!""}.js?v=${jsVersion}" ></script>
+</head>
+
+<body class='white-bg'>
+	<div class="wrapper animated ">
+		<!-- list界面 -->
+		<div class="row list_wrapper ibox-content">
+			<!-- 工具栏 -->
+			<#include "csAccountToolbar.html">	  			
+			<!-- jqgrid数据 -->
+			<div class='row jqGrid_wrapper'>			
+				<div class='col-sm-12'>
+				    <table id="csAccountGrid"></table>
+					<div id="csAccountPager"></div>
+				</div>
+			</div>
+		</div>
+		<!-- 编辑界面 -->
+		<#include "csAccountEdit.html">	    
+	</div>
+</body>
+
+</html>

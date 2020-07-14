@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>员工跟客户有效通话统计</title>
+	<#include "/common/common.html">
+	
+<script>
+	var startDate="${startDate}";
+	var endDate = "${endDate}";
+	var agentId = "${agentId}";
+</script>
+<script src="${ctx}/js/jt/ec/rp/rpCtiValidDetail${deploy_min!""}.js?v=${jsVersion}" ></script>
+
+</head>
+<body class='white-bg'>
+	<div class='wrapper'>
+		<div class='row list_wrapper'>
+			<div class="jqGrid_wrapper col-sm-12">
+				<table id="rpCtiValidDetailGrid"></table>
+			</div>	
+		</div>
+	</div>
+</body>
+</html>

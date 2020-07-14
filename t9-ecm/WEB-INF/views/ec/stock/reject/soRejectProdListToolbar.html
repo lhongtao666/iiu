@@ -1,0 +1,67 @@
+<div class="col-sm-12">
+	<div class="panel panel-default">
+	    <div class="panel-body">
+	        <form id='stStockSearchForm' role="form" class="form-horizontal">
+				<div class="form-group">
+					<label class='control-label col-sm-1'>名称</label> 
+						<div class='col-sm-2'>
+							<input type="text" id='nameSearch' placeholder="请输入商品名称" name="Q__S__LK__selectitem.prod_name_" class="form-control">
+					</div>
+					<label class='control-label col-sm-1'>sku编码</label> 
+					<div class='col-sm-2'>
+						<input type="text" id='nameSearch' placeholder="请输入sku编码" name="Q__S__LK__selectitem.sku_key_" class="form-control">
+					</div>
+					<label  class="col-sm-1 control-label">订单编号</label> 
+					<div class='col-sm-2'>
+						<input type="text" id='soNoSearch' placeholder="请输入订单编号" name="soNoSearch" class="form-control">
+					</div>
+					<label  class="col-sm-1 control-label">货款方式</label>
+					<div class='col-sm-2'>
+						<select class="form-control" name="Q__S__EQ__entity.cash_type_" >
+						    <option value="">全部</option>
+					        <option value="pay">款到发货</option>
+					        <option value="pay_sub">支付订金</option>
+					        <option value="cod">货到付款</option>
+					        <option value="free">免费已付</option>
+				            <option value="green">绿色通道</option>
+						</select>
+					</div>
+				</div>
+				<div class="form-group">
+					<label  class="col-sm-1 control-label">入库时间</label> 
+					<div class='col-sm-5'>
+						<div class="input-daterange input-group">
+                            <input class="laydate-icon form-control layer-date minPlaceTime" name="Q__D__BW__entity.inbound_time_" placeholder="起始时间" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">
+                            <span class="input-group-addon">到</span>
+                            <input class="laydate-icon form-control layer-date maxPlaceTime" name="Q__D__BW__entity.inbound_time_" placeholder="结束时间" onclick="laydate({istime: true, start: laydate.now(0, 'YYYY/MM/DD 23:59:59'),format: 'YYYY-MM-DD hh:mm:ss'})">
+                        </div>
+					</div>  
+					<label  class="col-sm-1 control-label">快递公司</label> 
+					<div class='col-sm-2'>
+						<select class="form-control scCodeQry" name="Q__S__EQ__ship.sc_code" >
+							<option value="">全部</option>
+						</select>
+					</div>  
+					<label class="col-sm-1 control-label">部门</label>
+					<div class="col-sm-2">
+						<input id='groupName2' readonly class='form-control selectBelongOgn'>
+						<input type='hidden' id='belongOgn2' name='belongOgn'>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class='col-sm-3'>
+
+					</div>
+					<label  class="col-sm-1 control-label">显示类型</label> 
+					<div class="col-sm-2">
+						<input type="radio" name="showType" value="total" checked="true"> 汇总
+						<input type="radio" name="showType" value="detail"> 明细
+					</div>
+					<div class='col-sm-6'>
+						<button type='button' class= "jt-btn-search stStockSearch"><i class="fa fa-search"></i>&nbsp;搜索</button>
+					</div>
+				</div>
+			</form>
+	    </div>
+	</div>
+</div>

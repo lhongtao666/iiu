@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>产品管理</title>
+    <#include "/common/common.html">
+    <script src="${ctx}/js/jt/ec/product/prodBrand${deploy_min!""}.js?v=${jsVersion}" ></script>
+    <script src="${ctx}/js/jt/gl/km/glHelpUtil${deploy_min!""}.js?v=${jsVersion}" ></script>
+</head>
+
+<body class='white-bg'>
+    <div class="wrapper animated ">
+        <div class='row'>
+            <div class='col-sm-12 config-panels' style='background: #ffffff; padding: 20px 50px 50px;'>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col-sm-12"><strong>商品品牌</strong>
+                                <button title="添加参数" cateid="4fb119886c404c7a8ecdd1d2abf58db9" class="btn btn-sm btn-primary jt-btn-normal add-config pull-right"><i class="fa fa-plus">添加</i></button>
+                                <!-- 帮助中心 -->
+                                <label id="glHelpContainer"></label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <table class="table table-stripped table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th width="5%">序号</th>
+                                    <th width="15%">名字</th>
+                                    <th width="15%">排序</th>
+                                    <th width="20%">显示/隐藏</th>
+                                    <th width="10%">操作</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tbody">
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

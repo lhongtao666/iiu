@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>资源管理</title> 
+<#include "/common/common.html">
+<#include "/common/ztree.html">
+
+<script>
+    var isMultiple = "${isMultiple}";
+    var checkStyle = isMultiple == 1?"checkbox": "radio";
+    
+    $(function(){
+    	var setting = {
+			edit: {
+				enable: true,
+				showRemoveBtn: false,
+				showRenameBtn: false,
+			},
+			view: {
+				dblClickExpand: false,
+				showLine: true,
+				selectedMulti: false
+			},
+			async: {
+				enable: true,
+				url: ctx + "/gl/cate/cate/loadCateTreeData.htm",
+				contentType: "application/json",
+				dataType: "json",
+				type: "get",
+				otherParam: {cateTypeKey: "product_catalog", rootKey: "category"},
+				autoParam:["id"]
+			},
+			check: {
+				enable: true,
+				chkStyle: checkStyle,
+				chkboxType: { "Y": "", "N": ""},
+				radioType:"all"
+			},
+			data: {
+				simpleData: {
+					enable:true,
+					idKey: "id",
+					pIdKey: "parentId"
+				}
+			},
+			callback: {
+				//点击每个分类，去到该分类下面的商品列表
+				onClick: function(event, treeId, treeNode){
+					var cateId = treeNode.id;
+					$("iframe[name='iframe0']").attr("src", ctx + "/ec/product/prodService/list.htm?cateId=" + cateId);
+					//计算window窗口高度
+					$("iframe[name='iframe0']").css("height", $(window).height() + "px");
+				}
+			}
+		};
+		$.fn.zTree.init($("#cateTree"), setting);
+	});
+</script>
+
+</head>
+
+<body>
+	<div class="wrapper animated ">
+		<div class='row'>
+		    <div class="col-sm-12">
+                <ul id="cateTree" class="ztree" style="overflow: auto;"></ul>
+            </div>
+		</div>
+	</div>
+</body>
+</html>

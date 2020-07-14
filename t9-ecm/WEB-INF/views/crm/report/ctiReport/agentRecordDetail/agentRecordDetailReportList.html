@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>坐席状态全称追踪明细表</title>
+	<#include "/common/common.html">
+	<script src="${ctx}/js/jt/crm/report/ctiReport/agentRecordDetail/agentRecordDetailReport${deploy_min!""}.js?v=${jsVersion}" ></script>
+    <style>
+      .panel .panel-heading .btn {
+		    margin-left: 0px;
+		}
+    </style>
+</head>
+<body  class="white-bg">
+	<div class="wrapper">
+	   <div class="row list_wrapper">
+		<!-- list界面 -->
+			<div class='col-sm-12'>
+					<div class="panel panel-default">
+						<div class="panel-heading report-content">	
+							<form role="form" class="form-horizontal" id="agentRecordDetailSearchForm">
+								<div class='form-group'>
+								    <label class='control-label col-sm-1'>时间</label>
+									<div class='col-sm-5'>
+										<div class="input-daterange input-group" id="datepicker">
+											<input class="laydate-icon form-control layer-date" name="startTime" validatetype="default" placeholder="开始时间" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">
+											<span class="input-group-addon">到</span>
+											<input class="laydate-icon form-control layer-date" name="endTime" validatetype="default" placeholder="结束时间" onclick="laydate({istime: true, start: laydate.now(0, 'YYYY/MM/DD 23:59:59'), format: 'YYYY-MM-DD hh:mm:ss'})">
+										</div>
+									</div>
+	                                <div class='col-sm-4'>
+									    <button class="jt-btn-search" id="searchBtn"   type="button"><i class="fa fa-search"></i>&nbsp;搜索</button>
+							        </div>
+						        </div>
+							</form>
+						</div>
+					</div>
+				</div>
+				<div class='jqGrid_wrapper col-sm-12'>
+				    <table id="agentRecordDetailReportGrid"></table>
+					<div id="agentRecordDetailReportPager"></div>
+				</div>
+			</div>  
+	</div>
+</body>
+</html>

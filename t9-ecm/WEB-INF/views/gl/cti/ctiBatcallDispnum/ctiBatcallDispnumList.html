@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>批量外呼外显号表管理</title>
+	<#include "/common/common.html">
+	<script src="${ctx}/js/jt/gl/cti/ctiBatcallDispnum${deploy_min!""}.js?v=${jsVersion}" ></script>
+</head>
+
+<body>
+	<div class="wrapper animated fadeInRight">
+		<!-- list界面 -->
+		<div class="row list_wrapper">
+			<#include "/gl/cti/ctiBatcallDispnum/ctiBatcallDispnumToolbar.html">	  			
+			<div class='col-sm-12 jqGrid_wrapper'>
+			    <table id="ctiBatcallDispnumGrid"></table>
+				<div id="ctiBatcallDispnumPager"></div>
+			</div>
+		</div>
+		<!-- 编辑界面 -->
+		<#include "/gl/cti/ctiBatcallDispnum/ctiBatcallDispnumEdit.html">	    
+	</div>
+
+	<div class="modal fade" id="addDispnumModel" tabindex="-1" role="dialog" aria-labelledby="addDispnumLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="addDispnumLabel">添加外显号</h4>
+            </div>
+            <div class="col-sm-9">
+				<input type="text" name="dispnums" placeholder="可填多个，以英文逗号隔开" class="form-control"> 
+			</div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary addDispnumCommit">提交</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+</body>
+</html>

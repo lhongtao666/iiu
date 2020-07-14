@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>销售商机管理</title> 
+<#include "/common.html" /> 
+<#include "/common/datatable.html" />
+<script src='${ctx}/js/jt/common/service/customerSelectLayer${deploy_min!""}.js?v=${jsVersion}'></script>
+<script src="${ctx}/js/jt/crm/oppo/oppoEntity${deploy_min!""}.js?v=${jsVersion}"></script>
+<script>
+	$(function(){
+		var coId= '${coId} ';
+		var customerName= '${customerName} ';
+		var oppoEntity = new OppoEntity();
+		oppoEntity.initAdd(coId, customerName);
+	});
+</script>
+
+</head>
+
+<body>
+	<div class="wrapper animated ">
+		<div  class="row form_wrapper">
+			<#include "/crm/oppo/oppoEntity/oppoEntityForm.html">
+		</div>
+	</div>
+</body>

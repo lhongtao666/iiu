@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>系统日志方案管理</title>
+	<#include "/common/common.html">
+	<script src="${ctx}/js/jt/gl/logschema/glLogSchema${deploy_min!""}.js?v=${jsVersion}" ></script>
+</head>
+
+<body class='white-bg'>
+	<div class="wrapper animated ">
+		<!-- list界面 -->
+		<div class="row list_wrapper ibox-content">
+			<!-- 工具栏 -->
+			<#include "/gl/logschema/glLogSchema/glLogSchemaToolbar.html">	  			
+			<!-- jqgrid数据 -->
+			<div class='row jqGrid_wrapper'>			
+				<div class='col-sm-12'>
+				    <table id="glLogSchemaGrid"></table>
+					<div id="glLogSchemaPager"></div>
+				</div>
+			</div>
+		</div>
+		<!-- 编辑界面 -->
+		<#include "/gl/logschema/glLogSchema/glLogSchemaEdit.html">	    
+	</div>
+</body>
+</html>

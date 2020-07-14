@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>退货单管理</title>
+	<#include "/common/common.html">
+	<style type="text/css">
+		.dragsort {list-style-type:none; margin:0px; }
+		.dragsort li {float:left; padding:5px;}
+		.test{padding-right:8px !important;}
+	</style>
+	<script src="${ctx}/js/plugins/suggest/bootstrap-suggest.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/plugins/dragsort/jquery.dragsort-0.5.2.min.js?v=${jsVersion}"></script>
+	<script>
+		var fromType = "";	//来源，首页选项卡:index，默认为空
+		<#if fromType??>fromType = "${fromType}";</#if>
+	</script>
+	<#include "/ec/ret/returnEntity/returnEntityToolbar.html">
+<script src='${ctx}/js/jt/ec/ret/returnEntity-site${deploy_min!""}.js?v=${jsVersion}' ></script>
+</head>
+
+<body class='white-bg'>
+	<div class="wrapper animated ">
+		<!-- list界面 -->
+		<div class="row list_wrapper">
+			<div class="col-sm-12">
+				<div class="tabs-container">
+					<ul class="nav nav-tabs">
+						<li id="comfirmTabLi" attr-type="comfirm" class="tabli listTabli active">
+							<a href="#comfirmTab" data-toggle="tab">
+								待审核(
+								<span id="returnEntityComfirmGrid_record">0</span>
+								)
+							</a>
+						</li>
+						<li id="receiveTabLi" attr-type="receive" class="tabli listTabli">
+							<a href="#receiveTab" data-toggle="tab">
+								待收货(
+								<span id="returnEntityReceiveGrid_record">0</span>
+								)
+							</a>
+						</li>
+						<li  id="refundTabLi" attr-type="refund" class="tabli listTabli">
+							<a href="#refundTab" data-toggle="tab">
+								待退款(
+								<span id="returnEntityRefundGrid_record">0</span>
+								)
+							</a>
+						</li>
+						<li  id="refundingTabLi" attr-type="refunding" class="tabli listTabli">
+							<a href="#refundingTab" data-toggle="tab">
+								退款中(
+								<span id="returnEntityRefundingGrid_record">0</span>
+								)
+							</a>
+						</li>
+						<li  id="completeTabLi" attr-type="complete" class="tabli listTabli">
+							<a href="#completeTab" data-toggle="tab">
+								已完成(
+								<span id="returnEntityCompleteGrid_record">0</span>
+								)
+							</a>
+						</li>
+						<li  id="rejectTabLi" attr-type="reject" class="tabli listTabli">
+							<a href="#rejectTab" data-toggle="tab">
+								审核不通过(
+								<span id="returnEntityRejectGrid_record">0</span>
+								)
+							</a>
+						</li>
+						<li  id="notReceiveTabLi" attr-type="notReceive" class="tabli listTabli">
+							<a href="#notReceiveTab" data-toggle="tab">
+								未收到货(
+								<span id="returnEntityNotReceiveGrid_record">0</span>
+								)
+							</a>
+						</li>
+					</ul>
+					<div class="tab-content">
+						<div id="comfirmTab" class="tab-pane listTabPane active">
+							<div class="panel-body">
+								<div class='row'>
+									<#include "returnEntityComfirm.html"></div>
+							</div>
+						</div>
+						<div id="receiveTab" class="tab-pane listTabPane">
+							<div class="panel-body">
+								<div class='row'>
+									<#include "returnEntityReceive.html"></div>
+							</div>
+						</div>
+						<div id="refundTab" class="tab-pane listTabPane">
+							<div class="panel-body">
+								<div class='row'>
+									<#include "returnEntityRefund.html"></div>
+							</div>
+						</div>
+						<div id="refundingTab" class="tab-pane listTabPane">
+							<div class="panel-body">
+								<div class='row'>
+									<#include "returnEntityRefunding.html"></div>
+							</div>
+						</div>
+						<div id="completeTab" class="tab-pane listTabPane">
+							<div class="panel-body">
+								<div class='row'>
+									<#include "returnEntityComplete.html"></div>
+							</div>
+						</div>
+						<div id="rejectTab" class="tab-pane listTabPane">
+							<div class="panel-body">
+								<div class='row'>
+									<#include "returnEntityReject.html"></div>
+							</div>
+						</div>
+						<div id="notReceiveTab" class="tab-pane listTabPane">
+							<div class="panel-body">
+								<div class='row'>
+									<#include "returnEntityNotReceive.html"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div style="display: none;" class="row form_wrapper">
+			<div class='col-sm-12'>
+				<div class='panel-heading'>
+					<span id="comfirmDiv" style="display : none">
+						<button type='button' id="comfirm" class="btn btn-sm   btn-primary">审核通过(等待退货)</button>
+						<button type='button' id="comfirm_direct" class="btn btn-sm   btn-primary">审核通过(无需退货)</button>
+						<button type='button' id="reject" class="btn btn-sm   btn-danger">审核不通过</button>
+					</span>
+					<span id="receiveDiv" style="display : none">
+						<button type='button' id="receive" class="btn btn-sm   btn-primary">已收货</button>
+						<button type='button' id="not_receive" class="btn btn-sm   btn-danger">未收到货</button>
+					</span>
+					<span id="refundDiv" style="display : none">
+						<button type='button' id="refund" class="btn btn-sm   btn-primary">生成退款单</button>
+					</span>
+					<span id="saveDiv" style="display : none">
+						<button type='button' id="save" class="btn btn-sm   btn-primary">保存</button>
+					</span>
+					<span id="viewBillDiv" style="display : none">
+						<button type='button' id="viewBill" class="btn btn-sm   btn-primary">查看财务单据</button>
+					</span>
+					<button type='button' id="prevBtn" class="btn btn-sm   btn-default">取消</button>
+				</div>
+			</div>
+
+			<div class='col-sm-12'>
+				<#include "returnEntityDetail.html"></div>
+		</div>
+	</div>
+
+	<!-- 备忘日志修改页面弹出层 -->
+	<div id="returnLogPage" style="display: none">
+		<#include "returnLogEdit.html"></div>
+
+	<!-- 填写退款单页面弹出层 -->
+	<div id="refundPage" style="display: none;">
+		<#include "refundAdd.html"></div>
+</body>
+</html>

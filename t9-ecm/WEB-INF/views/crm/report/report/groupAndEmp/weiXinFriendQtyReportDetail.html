@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>员工聊天明细报表</title>
+	<#include "/common/common.html">
+	<script src="${ctx}/js/jt/crm/report/weiXin/weiXinFriendQtyDetail${deploy_min!""}.js?v=${jsVersion}" ></script>
+
+	<script>
+	    var employeeAlias="";
+	    var beginTime="";
+	    var endTime="";
+	    var countType = "${countType}"
+
+	    <#if employeeAlias??>
+	    	employeeAlias = "${employeeAlias}"
+	    </#if>
+
+	    <#if beginTime??>
+	    	beginTime = "${beginTime}"
+	    </#if>
+
+	    <#if endTime??>
+	    	endTime = "${endTime}"
+	    </#if>
+
+	</script>
+</head>
+
+<body class="white-bg">
+	<div class='wrapper'>
+		<div class='row list_wrapper'>
+		    <div class='col-sm-12'>
+		   	    <div class="panel panel-default">
+		        </div>
+		    </div>
+			<div class="jqGrid_wrapper col-sm-12">
+				<table id='weixinFriendForEmpDetailGrid'></table>
+				<div id="weixinFriendForEmpDetailPager"></div>
+			</div>
+		</div>
+	</div>	
+</body>
+</html>

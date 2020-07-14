@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>销售订单详情</title>
+	<#include "/common/common.html">
+	<#include "/ec/salesorder/soEntity/soEntityCommJs.html">
+	<script type="text/javascript">
+		var csId = "";
+		var canShowScTrankNo ="cannot";
+		<#if csId??>
+			csId = "${csId}";
+		</#if>
+		<#if canShowScTrankNo??>
+			canShowScTrankNo = "${canShowScTrankNo}";
+		</#if>
+		var isPoint = false;
+		<#if isPoint??>
+			isPoint = "${isPoint}";
+		</#if>
+		var financeBillAttachPos = [];
+		<#if financeBillAttachPos??>
+			financeBillAttachPos = ${financeBillAttachPos};
+		</#if>
+		var isSelectStoreInShip = "n";
+	    <#if isSelectStoreInShip??>
+	       isSelectStoreInShip = "${isSelectStoreInShip}";
+       </#if>
+		var isDetialPage = "";
+		<#if isDetialPage??>
+			isDetialPage = "${isDetialPage}";
+		</#if>
+	</script>
+	<link href="${ctx}/css/jt/common/time-axis.css?v=${jsVersion}" rel="stylesheet">
+	<script src="${ctx}/js/plugins/zclip/jquery.zclip.js?v=${jsVersion}"></script>
+	<#include "/ec/salesorder/soEntity/soEntityRenderTmpl.html">
+<script src='${ctx}/js/jt/ec/salesorder/soEntityDetail-site${deploy_min!""}.js?v=${jsVersion}' ></script>
+</head>
+<body>
+	<div class="wrapper animated ">
+		<div class="row form_wrapper">
+			<div class='col-sm-12'>
+				<div class="panel panel-default">
+					<div class="panel-heading" style="position: fixed;z-index: 99999;width: 100%;top: 0px;">
+						<#if isIframe?? && isIframe == 'true'>
+						<#else>
+						<button type="button" class="jt-btn jt-dd-normal shipQryBtn">获取物流信息</button>						
+     					<button type='button' class="jt-btn jt-dd-normal preSoBtn" style="display:none;"><i class='fa fa-hand-o-left'></i>&nbsp;上一张</button>
+     					<button type='button' class="jt-btn jt-dd-normal nextSoBtn" style="display:none;"><i class='fa fa-hand-o-right'></i>&nbsp;下一张</button>
+						<span class="jt-span"></span>
+						<button type='button' class="jt-btn jt-btn-red prevBtn"><i class='fa fa-times'></i>&nbsp;关闭</button>
+						</#if>
+						<#include "/ec/salesorder/common/soEntityBaseTypeFlag.html" />
+					</div>
+					<div class="panel-body" style="margin-top: 44px;">
+						<#include "/ec/salesorder/soEntity/soEntityForm.html">
+					</div>
+				</div>	
+			</div>
+		</div>  
+	</div>
+	<div class="soEntityDetailShipInfo" style="display: none;height:100%;">
+		<#include "/ec/salesorder/soEntity/soEntityShipInfo.html">
+	</div>
+	<#include "/ec/salesorder/soEntity/soEntityIncludePane.html">
+	<#include "/ec/salesorder/soEntity/soEntityItemDamage.html">
+</body>
+</html>

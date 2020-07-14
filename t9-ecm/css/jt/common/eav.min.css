@@ -1,0 +1,3 @@
+@charset "utf-8";body,div,img,a,ul,li,p,h1,h2,h3,h4{padding:0;margin:0}.item-ft{position:relative;margin-top:2px;z-index:1;height:19px}
+.file-item{float:left;margin-left:30px;display:block;padding:0;width:102px;margin-bottom:20px}.file-image{width:102px;height:100px}.file-delete-icon{display:inline-block;cursor:pointer;width:20px;float:right}
+.file-info{width:100px;height:19px}.filename-item-span{display:inline-block;width:80px;overflow:hidden;float:left}

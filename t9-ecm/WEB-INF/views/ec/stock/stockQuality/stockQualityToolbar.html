@@ -1,0 +1,65 @@
+<div class="col-sm-12">
+	<div class="panel panel-default">
+	    <div class="panel-heading">
+	    	<button type='button' class='btn btn-sm   btn-primary stStockCheck'><i class='fa fa-edit'>盘点</i></button>
+	    	<button type='button' class='btn btn-sm   btn-primary stStockDetail'><i class='fa fa-list'>明细</i></button>
+	    </div>
+	    <div class="panel-body">
+	        <form id='stStockSearchForm' role="form" class="form-horizontal">
+				<div class="form-group">
+
+					<label class='control-label col-sm-1'>产品类型</label> 
+					<div class='col-sm-2'>
+						<select name="Q__S__EQ__prod_type_" id='prodTypeSearch' class='form-control'>
+							<option value='product'>普通产品</option>
+							<option value='point'>积分产品</option>
+						</select>	
+					</div>
+
+					<label class='control-label col-sm-1'>产品名称</label> 
+					<div class='col-sm-2'>
+						<input type="text" id='nameSearch' placeholder="请输入产品名称" name="Q__S__LK__prod_name_" class="form-control">
+					</div>
+
+					<label class='control-label col-sm-1'>产品编码</label> 
+					<div class='col-sm-2'>
+						<input type="text" id='nameSearch' placeholder="请输入产品编码" name="Q__S__LK__prod_code_" class="form-control">
+					</div>
+					<label class='control-label col-sm-1'>库存数量</label> 
+					<div class='col-sm-2'>
+						<select id='stockNumberSearch' name='stockNumber' class='form-control'>
+							<option value=''>请选择</option>
+							<option value='alertMax'>大于库存上限</option>
+							<option value='alertMin'>小于库存下限</option>
+						</select>
+					</div>
+				</div>
+					
+				<div class="form-group">
+					
+					<label class='control-label col-sm-1'>状态</label> 
+					<div class='col-sm-2'>
+						<select  name='Q__S__LK__quality_status_' class='form-control'>
+							<option value=''>请选择</option>
+							<option value='common'>正常</option>
+							<option value='notice'>常规</option>
+							<option value='important'>重要</option>
+							<option value='critical'>紧急</option>
+							<option value='expire'>逾期</option>
+							
+						</select>
+					</div>
+					<label class='control-label col-sm-1'>需盘点</label> 
+					<div class="col-sm-1">
+						<input checked="checked" type="checkbox" id="needCheck" style="zoom:130%;" name="needCheck" value="y"> 
+					</div>
+					<div class='col-sm-1'>
+						<button type='button' class="btn btn-sm   btn-primary stStockSearch"><i class='fa fa-search'></i>搜索</button>
+						<button type='button' class="btn btn-sm   btn-primary resetBtn">清空</button>
+					</div>
+				</div>				
+				
+			</form>
+	    </div>
+	</div>
+</div>

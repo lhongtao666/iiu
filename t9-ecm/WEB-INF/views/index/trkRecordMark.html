@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>添加通话标识</title>
+    <#include "/common/common.html" />
+    <script type="text/javascript">
+    $(function() {
+        CateUtils.getOptions({
+            typeKey: "system",
+            pKey: "trksheetrecordMarkType",
+            container: "markSelect",
+        });
+        $(document).on("change","#markSelect",function(){
+            var chooseMark = $(this).val();
+            if(!chooseMark){
+                $tr.find("#markDesSelect").empty();
+            }else{
+                CateUtils.getOptions({
+                    typeKey: "system",
+                    pKey: chooseMark,
+                    container: "markDesSelect"
+                });
+            }
+        });
+    });
+    </script>
+</head>
+
+<body>
+    <form id='trkRecordMarkForm' class='form-horizontal'>
+        <div class='form-group'>
+            <div class="col-sm-12">
+                <label class="col-sm-2 control-label">类 型<span style="color: red;">*</span></label>
+                <div class="col-sm-10">
+                    <select class='form-control' required="true" id="markSelect" name='mark' validateType="default">
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class='form-group'>
+            <div class="col-sm-12">
+                <label class="col-sm-2 control-label">描 述<span style="color: red;">*</span></label>
+                <div class="col-sm-10">
+                    <select name="markDes" required="true"  id="markDesSelect"  class="form-control" value="">
+                        <option >请选择</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class='form-group hide' style="display: none;">
+            <input name="recordId" type="hide" value="${ recordId}" />
+            <input name="adn" type="hide" value="${ adn}" />
+            <input name="phone" type="hide" value="${ phone}" />
+            <input name="agentId" type="hide" value="${ agentId}" />
+            <input name="direction" type="hide" value="${ direction}" />
+        </div>
+    </form>
+</body>
+
+</html>

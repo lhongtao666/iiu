@@ -1,0 +1,24 @@
+<script src="${ctx}/js/jt/gl/logger/glErrorLogRecord${deploy_min!""}.js?v=${jsVersion}" ></script>
+
+<div class="panel panel-default" style="margin-bottom:0px;">
+    <div class="panel-heading">
+        <h4 class="titleName">最新error列表</h4>
+    </div>
+    
+	<div class="panel-body" style="padding:5px;">
+		<table class='table table-striped table-bordered' id='glErrorListTable'>
+			<thead>
+				<tr>
+					<th>类全名称</th>
+					<th>日志信息</th>
+					<th>error生成时间</th>
+				</tr>
+			</thead>
+			<tbody id='errorLogRecordContainer'></tbody>
+		</table>
+	</div>
+	
+	<div style="text-align: right;padding-top: 5px;padding-right: 10px;">
+    	<span nameVal='日志查看' urlVal='/gl/logger/glLogRecord/showMoreTarget.htm' style="text-decoration: underline;color: blue;cursor: pointer;" class="showMore">查看更多</span>
+    </div>
+</div>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>客户分类统计明细</title>
+	<#include "/common/common.html">
+	<#include "/common/ztree.html">
+	<link href="${ctx}/css/plugins/select2/select2.min.css?v=${jsVersion}" rel="stylesheet">
+	<link href="${ctx}/css/plugins/chosen/chosen.css?v=${jsVersion}" rel="stylesheet">
+	<script src="${ctx}/js/plugins/echarts/echarts-all.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/jt/common/plugins/report${deploy_min!""}.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/plugins/select2/select2.min.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/plugins/chosen/chosen.jquery.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/jt/crm/report/reportDateUtil${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/common/utils/groupUtils${deploy_min!""}.js?v=${jsVersion}"></script>	
+	<script src="${ctx}/js/jt/crm/report/reportCsBizType${deploy_min!""}.js?v=${jsVersion}"></script>
+</head>
+
+<body>
+	<div class="wrapper animated fadeInRight">
+		<!-- list界面 -->
+		<div class="row list_wrapper">
+				<div class='col-sm-12 jqGrid_wrapper'>
+			    	<table id="reportCsBizTypeGrid"></table>
+			</div>
+		</div>	    
+	</div>
+</body>
+</html>

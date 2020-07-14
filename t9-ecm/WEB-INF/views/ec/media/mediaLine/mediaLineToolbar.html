@@ -1,0 +1,50 @@
+<div class="col-sm-12">
+	<div class="panel panel-default">
+		<div class="panel-heading">	
+			<button type='button' class='jt-btn batchPhone'>查看通话</button>
+			<button type='button' class='jt-btn mediaLineDetail'><i class="fa fa-list"></i>&nbsp;明细</button>
+			<!-- 帮助中心 -->
+            <label id="glHelpContainer">	
+            </label>
+		</div>
+		
+		<div class="panel-body">
+			<form id='mediaLineSearchForm' role="form" class="form-horizontal">
+				<!--默认生成一个搜索条件，需要的，用户自己添加-->
+				<div class="form-group">
+					<label class='col-sm-1 control-label'>渠道</label> 
+					<div class='col-sm-2'>
+						<select name="Q__S__EQ__period.channel_id_" id='channelSearch' class="form-control" validateType="default"></select>
+					</div>
+					<label class='col-sm-1 control-label'>推广天</label> 
+					<div class='col-sm-2'>
+						<input class="laydate-icon form-control layer-date" id='periodDay' name="Q__D__EQ__period.day_" placeholder="yyyy-mm-dd" onclick="laydate({istime: false, format: 'YYYY-MM-DD'})">
+					</div>
+					
+					<label class='col-sm-1 control-label'>时段</label> 
+					<div class='col-sm-2'>
+						<select name="periodSearch" class="form-control periodSearch" validateType="default">
+							
+						</select>
+					</div> 
+					
+					<label class='col-sm-1 control-label'>进线类型</label> 
+					<div class='col-sm-2'>
+						<div class='col-sm-8'>
+							<select name="Q__S__EQ__line.type_" class="form-control" validateType="default">
+								<option value=''>请选择</option>
+								<option value='msg'>表单留言</option>
+								<option value='400'>400电话</option>
+								<option value='weixin'>微信</option>
+								<option value='add'>人工添加</option>
+							</select>
+						</div>
+						<div class='col-sm-4'>
+							<button type='button' class="btn jt-btn-search mediaLineSearch"><i class="fa fa-search"></i>&nbsp;搜索</button>
+						</div>
+					</div>					
+				</div>
+			</form>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,66 @@
+<style>
+	.addCredit th{
+		text-align: right;
+		width:150px;
+	}
+	#creditEntityForm p{
+		margin:0;
+	}
+</style>
+<div class='col-sm-12'>
+	<div class="col-sm-3">
+	</div>
+	<div class="col-sm-6">
+		<form id="creditEntityForm" method="get" class="form-horizontal">
+			<!-- 统计信息 -->
+			<div class="panel panel-default editInfoDiv">
+			   <div class="panel-heading">
+			      <h3 class="panel-title">授权码录入</h3>
+			   </div>
+			   <div class="panel-body">
+			      	<table class="table addCredit">
+				      <tr>
+				      	<th>授权码<span style="color:red;">*</span>:</th>
+				      	<td>
+				      		<input type="text" name="creditCode"  id="creditCode" class="form-control" validateType="default" >
+				      	</td>
+				      	<td>
+				      		<button type='button' class='btn btn-info checkBtn'><i class='fa'>校验</i></button>
+				      	</td>
+				      </tr>
+				      <tr style="display: none;">
+				      	<th>授权码<span style="color:red;">*</span>:</th>
+				      	<td>
+				      		<input type="text" name="trueCreditCode"  id="trueCreditCode" class="form-control" validateType="default" >
+				      	</td>
+				      </tr>
+				      <tr>
+				      	<th>公司名:</th><td><p id="alias"></p></td>
+				      </tr>
+				      <tr>
+				      	<th>产品系统别名:</th><td ><p id="sysAlias"></p></td>
+				      </tr>
+				      <tr>
+				      	<th>授权类型:</th><td ><p id="type"></p></td>
+				      </tr>
+				       <tr>
+				      	<th>付费类型:</th><td ><p id="payType"></p></td>
+				      </tr>
+				       <tr>
+				      	<th>用户数:</th><td ><p id="users"></p></td>
+				      </tr>
+				       <tr>
+				      	<th>有效开始日期:</th><td ><p id="beginTime"></p></td>
+				      </tr>
+				       <tr>
+				      	<th>有效结束日期:</th><td ><p id="endTime"></p></td>
+				      </tr>
+				   </table>
+			   </div>
+			</div>
+
+		</form>
+	</div>
+	<div class="col-sm-3">
+	</div>
+</div>

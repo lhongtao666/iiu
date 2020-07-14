@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>销售监控</title>
+	<#include "/common/common.html">
+	<#include "/common/ztree.html">
+	<#include "/common/datatable.html"> 
+	<script src="${ctx}/js/jt/common/utils/groupUtils${deploy_min!""}.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/jt/ec/salesorder/saleMonitor/saleMonitor${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/gl/km/glHelpUtil${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<style>
+		.mySaleStatusIcon {
+			width: 19px;
+			height: 19px;
+			border-radius:50px;
+		}
+		.mySaleStatusDiv {
+			background-color: #1caf9a;
+			width: 120px;
+			padding-left: 5px;
+			margin: 20px;
+		}
+		.mySaleStatusLabel {
+			font-size: 14px;
+			line-height: 25px;
+			font-weight: 400;
+			color: #281f1f;
+			padding-left: 50px;
+			padding-top: 5px;
+		}
+		.dataTables_scrollHeadInner, .table-width{
+			width: 100%!important;
+		}
+		#saleMonitorTable .panel-title {height:30px;}
+		#saleMonitorTable .panel-body {padding: 0;}
+		.crumb-title-layer {
+			display: inline-block;
+		    background-image: linear-gradient(to right, #2f4050, #1caf9a);
+		}
+		.crumb-title-unit {
+			display: inline-block;
+			padding: 2.5px 10px 2.5px 25px;
+			border: 2px solid #fff;
+			position: relative;
+			float: left;
+			border-right: 0;
+			border-left: 0;
+			color: #fff;
+			cursor: pointer;
+			height: 28px;
+		}
+		.crumb-title-unit:before {
+		    content: "";
+		    width: 19px;
+		    height: 19px;
+		    border: 2px solid #fff;
+		    border-bottom: 0;
+		    border-left: 0;
+		    position: absolute;
+		    top: 3px;
+		    right: -10px;
+		    transform: rotate(45deg);
+		}
+		.crumb-title-unit:first-child {
+			padding-left: 15px;
+		}
+		.crumb-title-unit:last-child:before {
+    		background-image: linear-gradient(45deg,transparent 50%, #1caf9a 50%, #1caf9a 100%);
+		}
+		.sale-status-layer {
+			width: 80px;
+		    height: 75px;
+		    background: url(${ctx}/img/jt/cs/newHome/nobgs.png) no-repeat;
+		    background-size: 100%;
+		    padding-top: 2px;
+		}
+		.sale-img-layer {height:60px;width:60px;border-radius: 50%;background-color: #2f4050;position: relative;overflow:hidden;}
+		.sale-status-green {background-position: 0% 0%;}
+		.sale-status-green .sale-img-layer {border: 1px solid green;}
+		.sale-status-red {background-position: 0% 34%;}
+		.sale-status-red .sale-img-layer {border: 2px solid gold;}
+		.sale-status-yellow {background-position: 0% 68%;}
+		.sale-status-yellow .sale-img-layer {border: 2px solid #fba03d;}
+		.sale-status-gray {background-position: 0% 102%;}
+		.sale-status-gray .sale-img-layer {border: 2px solid #bfbfbf;filter: grayscale(100%);}
+		.jt-employee-img {width:100%;position: absolute;top: 0;left: 0;}
+
+		.openSaleStatusLayer {display: inline-block;margin-top: 10px;}
+		#saleMonitorContainer .modal-footer .btn {padding: 5px 10px;min-width: 88px;}
+		.sale-first-label {width:80px;float:left;}
+		.sale-first-label label {height: 28px;}
+		.sale-first-label label:last-child {position: absolute;bottom: 35px;}
+		.sale-other-layer {width:calc(100% - 80px);float:right;}
+		.btns-refresh {position: absolute;right: 5px;top: 0;width: auto;transition: all 0.25s linear;}
+		#saleMonitorTable > div:first-child {padding-top: 0 !important;}
+		.saleMonitoringForm {display: inline-block;width: 100%;position: relative;}
+		.jt-achieve-money {color: #f8ac59;font-style: normal;width: 1.2em;height: 1.2em;line-height: 1.2em;font-size: 1em;display: inline-block;text-align: center;background-color: rgba(255, 215, 0, .5);border-radius: 1.35em;border: 1px solid #f8ac59;}
+		@media screen and (max-width: 1200px) {
+			.btns-refresh {position: static;float:left;}
+		}
+	</style>
+</head>
+
+<body class='white-bg'>
+	<div class='wrapper'>
+		<div class='row list_wrapper'>
+			<div class='col-sm-12'>
+				<div class='panel panel-default'>
+					<div class='panel-body' style="padding: 15px;padding-bottom: 0;">
+						<#include "saleMonitorToolbar.html">
+					</div>
+
+				</div>	
+			</div>
+
+			<div class='col-sm-12 panel panel-default' id='saleMonitorTable'>
+
+			</div>
+		</div>
+	</div>
+
+	<!--点击头像时的modal弹窗-->
+	<div class="modal fade" id="saleMonitorContainer" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document" style="width:70%">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+					<h4 class="modal-title" id="myModalLabel" style="font-size:18px;">销售情况</h4>
+				</div>
+
+				<div class="modal-body">
+					<form id="saleMonitorForm" method="get" class="form-horizontal">
+						<div class="mySaleStatusLayer">
+							<div class="mySaleStatusDiv">
+								<label style="font-size: 15px;line-height: 33px;font-weight: 300;color: #281f1f;padding-left: 20px;padding-top: 5px;">通话数据</label>
+							</div>
+							<div class="col-sm-5">
+								<label class="mySaleStatusLabel"><span>通话时长：</span><span id="talkTime"></span></label><br>
+							</div>
+							<div class="col-sm-5">
+								<label class="mySaleStatusLabel"><span>有效通话：</span><span id="effectiveTalkTimeNum"></span> / <span></span><span id="effectiveTalkTime"></span></label>
+							</div>
+							<br><br>
+
+							<div class="mySaleStatusDiv">
+								<label style="font-size: 15px;line-height: 33px;font-weight: 300;color: #281f1f;padding-left: 10px;padding-top: 5px;">业绩数据</label>
+							</div>
+							<input type="hidden" value="" id="employeeId"></input>
+							<div style="width: 95%;padding-left: 20px;" id='saleOrderDiv'>
+							</div>
+						</div>
+					</form>  
+				</div>
+
+				<div class="modal-footer">
+					<button type="button" class="btn btn-sm btn-default" data-dismiss="modal">关闭</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

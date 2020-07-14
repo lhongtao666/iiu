@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>坐席状态监控报表</title>
+	<#include "/common/common.html">
+	<script src="${ctx}/js/jt/crm/report/ctiReport/agentStatus/agentStatusMonitorReport${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/plugins/echarts/3.1.7/theme/macarons.js?v=${jsVersion}"></script>
+    	<script src="${ctx}/js/plugins/echarts/3.1.7/echarts.min.js?v=${jsVersion}"></script>
+</head>
+	<style>
+		b a {
+    			color: black;
+		}
+	</style>
+	<script type="text/javascript">
+		var refreshTime = "10";
+		<#if refreshTime??>
+			refreshTime = "${refreshTime}";
+		</#if>
+	</script>
+<body>
+	<div class="wrapper animated fadeInRight">
+		<!-- list界面 -->
+		<div class="row list_wrapper">
+			<div class="panel-body">
+				<div class='row'>
+					<div class="col-sm-12" id="agentStatusMonitorEchart" style="height: 300px;">
+						
+					</div>
+					<#include "/crm/report/ctiReport/agentStatus/agentStatusMonitorReportToolbar.html">		
+					<div class='col-sm-12 jqGrid_wrapper'>
+					    <table id="agentStatusMonitorReportGrid"></table>
+						<div id="agentStatusMonitorReportPager"></div>
+					</div>
+				</div>
+			</div>
+		</div>   
+	</div>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<div class='col-sm-12'>
+	<div class="panel panel-default">
+	    <div class="panel-heading">
+	        <button type='button' class='btn btn-sm  btn-primary couponDefAdd'><i class='fa fa-plus'>添加</i></button>
+			<button type='button' class='btn btn-sm  btn-primary couponDefEdit'><i class='fa fa-edit'>编辑</i></button>
+			<button type='button' class='btn btn-sm  btn-danger couponDefDel'><i class='fa fa-remove'>删除</i></button>
+			<button type='button' class='btn btn-sm  btn-primary couponDefDetail'><i class='fa fa-th-list'>明细</i></button>
+	    </div>
+	    <div class="panel-body">
+	        <form role="form" class="form-inline">
+				<!--默认生成一个搜索条件，需要的，用户自己添加-->
+				<div class="form-group">
+					<label for="nameSearch" class="sr-only">名字</label> 
+					<input type="text" id='nameSearch' placeholder="请输入活动名称" name="Q__S__LK__name_" class="form-control">
+				</div>
+
+				<div class="form-group">
+					<label for="keySearch" class="sr-only">业务健</label> 
+					<input type="text" id='keySearch' placeholder="请输入业务健" name="Q__S__LK__key_" class="form-control">
+				</div>
+				
+				<div class="form-group">
+					<label for="belongTypeSearch" class="sr-only">归属范围</label> 
+					<select id='belongTypeSearch' name='Q__S__EQ__belong_type_' class='form-control'>					<option value=''>请选择状态</option>	
+						<option value='open'>公开</option>	
+						<option value='self'>私有</option>	
+					</select>
+				</div>
+
+				<div class="form-group">
+					<label for="statusSearch" class="sr-only">状态</label> 
+					<select id='statusSearch' name='Q__S__EQ__status_' class='form-control'>						<option value=''>请选择状态</option>	
+						<option value='inactive'>未激活</option>
+						<option value='actived'>激活</option>
+						<option value='invalid'>失效</option>
+					</select>
+				</div>
+				<button type='button' class="btn btn-sm   btn-primary couponDefSearch"><i class='fa fa-search'></i>搜索</button>
+			</form>
+	    </div>
+	</div>
+</div>

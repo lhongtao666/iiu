@@ -1,0 +1,112 @@
+<link rel="stylesheet" rev="stylesheet" type="text/css" media="all" href="${ctx}/css/bootstrap-select.css?v=${jsVersion}">
+<script src="${ctx}/js/bootstrap-select.min.js?v=${jsVersion}" ></script>
+<style type='text/css'>
+        .tree-layer,.main-layer {height:100%;padding: 0;}
+		.main-layer {border-left: 6px solid transparent;}
+		.tree-layer {background:#fff;}
+		.tree-div {width:100%;height:calc(100% - 40px);overflow: auto;}
+		.search-div {width:100%;height:40px;padding: 5px 10px;}
+		.tabs-container .tab-pane>div.panel-body {
+		    background: #F0F0F0;
+		    border-radius: 2px;
+		    padding: 5px;
+		    position: relative;
+		}
+		.chosen-div .bootstrap-select {
+			width:100% !important;
+		}
+		#agentEntityList + div button {
+		    background-color: #fff !important;
+		    color: #333;
+		    border-radius: 2.5px;
+		    height: 28px;
+		    line-height: 15px;
+		}
+</style>
+<div class="col-sm-2 tree-layer" style='height:800px;border: 1px solid #ddd;margin-top: -4px;'>
+		<div class="search-div">
+			<input type="text"  id="prodEntityCateTreeSearch" class="empty form-control" placeholder="Search..." style="text-indent: 10px;">  
+			<div style="position: absolute;right: 15px;top:5px">
+				<a id="clickUp" class="glyphicon glyphicon-menu-up"></a>  
+				<a id="clickDown" class="glyphicon glyphicon-menu-down" style="position: absolute;top: 14px;"></a> 
+				<label id="number" style="position: absolute; right: 50px;top: 5px;color:#999;"></label>   
+			</div>
+		</div> 
+		<div class="tree-div"  style="overflow: auto;">
+			<ul id="prodEntityCateTree" class="ztree"></ul>
+		</div>
+</div>
+<div class="col-sm-10 main-layer">
+     <div class='col-sm-12' id='agentWeihu'>
+        <div class="panel panel-default">
+	         <div class='form-group col-sm-12'>
+				    <label class="col-sm-1 control-label" style='min-width: 67px;'>代理商模板</label>
+				    <div  class='col-sm-4 chosen-div'>
+					      <select class='selectpicker' id='agentEntityList' title="请选择" data-live-search="true" data-live-search-placeholder="搜索" ></select>
+				    </div>
+				    <!--   multiple -->
+				    <div  class='col-sm-2'>
+				         <button type='button' class='jt-btn' id="enterSku">录入该代理商sku</button>
+				    </div>
+	         </div>
+             <div class="form-group col-sm-12">
+	        	<label class="col-sm-1 control-label" style='min-width: 67px;'>仓库</label>
+				<div class="col-sm-4">
+					<select class='form-control' name='storeIds' validateType="default">
+						<#if stStorePos?? && stStorePos?size gt 0>
+						<#list stStorePos as storePo>
+							<option value="${storePo.id}" <#if soInfoVo.storeId == storePo.id>selected</#if>>${storePo.name}</option>
+						</#list>
+						</#if>
+					</select>
+					<input type="hidden" name="realStoreId" value="${soInfoVo.storeId}">
+				</div>
+				<div class='col-sm-3'>
+					<div class="checkbox checkbox-success checkbox-inline">
+						<input checked="checked" type="checkbox" id="hasStock" value="y"> 
+						<label for="hasStock">只显示有货商品</label>
+					</div>
+				</div>
+			    
+			</div>
+            <div class = " form-group col-sm-12" style='margin-top: 6px;'>
+		    <label class="col-sm-1 control-label">产品编号</label>
+			<div class='col-sm-1'>
+					<select class='form-control' id="prod-price-type" validateType="default">
+						<option value='common'>正价</option>
+						<option value='special'>特价</option>
+						<option value='experience'>体验价</option>
+						<option value='gift'>赠品</option>
+						<option value='exchange'>换购</option>
+					</select>
+			</div>
+			<div class="col-sm-6">
+				<div class="input-group">
+					<input type="text" class="form-control" id="searchProd">
+					<div class="input-group-btn">
+						<button type="button" class="btn btn-white dropdown-toggle" data-toggle="dropdown">
+							<span class="caret"></span>
+						</button>
+						<ul class="dropdown-menu dropdown-menu-right" role="menu"></ul>
+					</div>
+				</div>
+			</div>
+			<div class='col-sm-2'>
+				<button type="button" class="btn jt-form-select" id='selectSkuBtn'>
+					<i class='fa fa-edit'></i>&nbsp;选择商品
+				</button>
+			</div>
+			<div class='col-sm-1'>
+				<button type="button" style='padding-top:4px;' class="btn btn-sm btn-primary jt-btn-normal" id='batchSaveAgentCost'>批量保存代理价
+				</button>
+			</div>
+		  </div>
+		</div>
+	</div>
+    <div class='panel panel-default'>
+       <div class='panel-body jt-grid-panel' style="overflow: hidden;">
+		    <table id="agentSkuGrid"></table>
+			<div id="agentSkuPager"></div>
+		</div>
+    </div>
+</div>

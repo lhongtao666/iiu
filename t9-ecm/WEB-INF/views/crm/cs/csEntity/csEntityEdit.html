@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<#include "/common/common.html">
+	<#include "/common/eav.html">
+	<#include "/common/datatable.html">
+	<#include "/common/ztree.html">
+
+	<title>我的客户</title>
+	<link href="${ctx}/css/plugins/chosen/chosen.css?v=${jsVersion}" rel="stylesheet">
+	<link href="${ctx}/css/plugins/switchery/switchery.css?v=${jsVersion}" rel="stylesheet">
+	<link href="${ctx}/css/jt/ec/salesorder/orderaddr${deploy_min!""}.css?v=${jsVersion}" rel="stylesheet">
+	<link href="${ctx}/css/plugins/select2/select2.min.css?v=${jsVersion}" rel="stylesheet">
+	<link rel="stylesheet" rev="stylesheet" type="text/css" media="all" href="${ctx}/css/jt/crm/cs/wx/weiXinChat.css?v=${jsVersion}">
+	<script src="${ctx}/js/plugins/select2/select2.min.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/plugins/chosen/chosen.jquery.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/plugins/hz2py/jQuery.Hz2Py-min.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/plugins/suggest/bootstrap-suggest.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/plugins/zclip/jquery.zclip.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/plugins/switchery/switchery.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/plugins/sparkline/jquery.sparkline.min.js?v=${jsVersion}"></script>
+	<link rel="stylesheet" type="text/css" href="${ctx}/css/plugins/webuploader/webuploader.css?v=${jsVersion}">
+	<link rel="stylesheet" type="text/css" href="${ctx}/css/demo/webuploader-demo2.css?v=${jsVersion}">
+	<script type="text/javascript" src="${ctx}/js/plugins/webuploader/webuploader.js?v=${jsVersion}"></script>
+	
+	<script type="text/javascript">
+		var type = "${type}";
+		var csId = "${csId}";
+		var editType = "${editType}";
+		var inNum = "${inNum}";
+		var outNum = "${outNum}";
+		var csPhone = "${csPhone}";
+		var isDefaultLast = 'n';
+		var isNewPage = false;
+		//====ssq====
+		var showCsCalledNum = "${showCsCalledNum!''}";
+		var outNumMedia400 = "${outNum!''}";
+		var srcNames = "${srcNames!''}";
+		var outNumNot400 = "${outNumNot400!''}";
+		var csEntityIsSub = "${csEntityIsSub!''}";
+	</script>
+	<#include "/gl/tag/tag/tagTmpl.html" >
+
+	<style>
+		.title{
+		  display:block;
+		  position:relative;
+		  top:-10px;
+		  text-align: center; 
+		  background: white;
+		  width:80px;
+		}
+		.icon img{
+             width: 100% !important;
+             height: 100% !important;
+		}
+	</style>
+<script src='${ctx}/js/jt/crm/cs/csEntityEdit-site${deploy_min!""}.js?v=${jsVersion}' ></script>
+</head>
+<body>
+	<body class='white-bg'>
+	<div class="wrapper animated ">
+		<div class="row">
+			<div class='col-sm-12'>
+			    <div class="panel panel-default">
+			    	<div class="panel-heading">
+			    		<button type='button' class="btn btn-sm  btn-primary jt-btn-normal saveBtn" id="saveBtn">保存</button>
+			    		<button type='button' class="btn btn-sm  btn-primary jt-btn-normal preCs">上一个</button>
+			    		<button type='button' class="btn btn-sm  btn-primary jt-btn-normal nextCs">下一个</button>
+			    		<button type='button' class="btn btn-sm  btn-primary jt-btn-normal placeOrder">下订单</button>
+			    		<button type='button' class="btn btn-sm  btn-primary jt-btn-normal bindWx" style="display:none;">绑定微信</button>
+			    		<div class="btn-group">
+			    			<button data-toggle="dropdown" class="btn btn-sm  btn-info dropdown-toggle moreBtn" aria-expanded="true">
+			    			更多<span class="caret"></span>
+			    			</button>
+			    			<ul class="dropdown-menu">
+			    				<li>
+			    					<a href="javascript:void(0)" class='placePointOrder btn btn-sm   btn-primary'>
+			    					下积分订单
+			    					</a>
+			    				</li>
+			    				<li>
+			    					<a href="javascript:void(0)" class='combineCs btn btn-sm   btn-primary'>
+			    						合并资料
+			    					</a>
+			    				</li>
+			    				<li>
+						 			<a href="javascript:void(0)" class='btn btn-sm   btn-primary createSubCsEntity' >
+						 				创建从客户
+						 			</a>
+				        		</li>
+			    				<li>
+				           			<a href="javascript:void(0)" class='btn btn-sm   btn-primary soAfterList'>
+						 			去退换货
+						 			</a>
+				        		 </li>
+				        		 <li>
+				           			<a href="javascript:void(0)" class='btn btn-sm   btn-primary  csReturnsByIds' style='display:none;'>
+						 				归还客户
+						 			</a>
+					 			 <li>
+						 			<a href="javascript:void(0)" class='btn btn-sm   btn-primary claimCsSea' style='display:none;'>
+						 				领取客户
+						 			</a>
+					 			</li>
+					 			<li>
+						 			<a href="javascript:void(0)" class='btn btn-sm   btn-primary csSeaChangeGroup' style='display:none;'>
+						 				转移部门
+						 			</a>
+				        		 </li>
+				        		
+			    			</ul>
+			    		</div>
+			    		<#if versionType?? && versionType == 'finance'>
+			    			<button class='btn btn-sm   btn-default fastLoginBtn' type='button'>傲融登录</button>
+			    		</#if>
+			    		<button class='btn btn-sm   btn-default closeBtn' type='button'>关闭</button>
+
+			    		<!-- 帮助中心 -->
+			    		<label id="glHelpContainer">	
+			    		</label>
+
+			    		<#if outNum??>
+			    			<#if outNumNot400??>
+			    			${outNum}( ${outNumNot400!''} )进线
+			    			<#else>
+			    			${outNum}进线
+			    			</#if>
+			    		</#if>
+
+			    		<#if (csEntityIsSub!"")=="y">
+			    			<label style="color:red">【从】</label>
+			    			<a href="javascript:void(0)" class="toLinkMainCs" mainCsCode="${mainCsCode!''}" mainCsId="${mainCsId!''}">（关联主客户：[${mainCsCode!''}]）</a>
+			    		</#if>
+			    		
+			    		<div style='padding-top:3px;'>
+							<span id="orderTip">
+					    	</span>
+			    		</div>
+			    	</div>
+
+			    	<div class="panel-body">
+			    		<!--编辑模式container-->
+			    		<div class='tabs-container'>
+			    			<ul class="nav nav-tabs">
+			    				<li class='active baseInfoDiv tabLi' attr-id='baseInfo'>
+			    					<a href="#csInfoTab" data-toggle="tab">基本信息</a>
+			    				</li>
+
+			    				<li class='csEntityEav tabLi' attr-id='eav'>
+			    					<a href="#csEntityEav" data-toggle="tab">客户画像</a>
+			    				</li>
+
+			    				<li class="tabLi" attr-id='complain'>
+			    					<a href="#complainTab" data-toggle="tab">投诉</a>
+			    				</li>
+			    				<li class="dropdown">
+			    					<a href="#" class="dropdown-toggle" data-toggle="dropdown">更多 <b class="caret"></b></a>
+			    					<ul class="dropdown-menu">
+			    						<li style="display:none;">
+			    							<a href="#accountTab" data-toggle="tab">账户</a>
+			    						</li>
+			    						<li class="tabLi" attr-id='levelChange'>
+			    							<a href="#levelchangeTab" data-toggle="tab">级别变更</a>
+			    						</li>
+			    						<li class="tabLi" attr-id='email'>
+			    							<a href="#mailHistoryTab" data-toggle="tab">邮件历史</a>
+			    						</li>
+			    						<li class="tabLi" attr-id='point'>
+			    							<a href="#pointLogTab" data-toggle="tab">积分历史</a>
+			    						</li>
+			    						<#if versionType?? && versionType == 'finance'>
+											<li class="tabLi" attr-id='limit'>
+				    							<a href="#limitTag" data-toggle="tab">授信额度</a>
+				    						</li>	
+										</#if>
+			    						<li style="display:none;">
+			    							<a href="#contractTab" data-toggle="tab">合同</a>
+			    						</li>
+			    						<li style="display:none;">
+			    							<a href="#oppoTag" data-toggle="tab">商机信息</a>
+			    						</li>		    						
+			    					</ul>
+			    				</li>
+			    			</ul>
+			    			<div id="myTabContent" class="tab-content">
+			    				<div id="csInfoTab" class="tab-pane fade in active">
+			    					<#include "/crm/cs/csEntity/csInfo.html" >
+			    				</div>
+
+			    				<div id="complainTab" class="tab-pane fade">
+			    					<div class="panel-body">
+			    						<button type='button' class='btn btn-sm   btn-primary addComplain'>添加投诉</button>
+			    						<div id="csComplainDiv"></div>
+			    					</div>
+			    				</div>
+
+			    				<div id="csEntityEav" class="tab-pane fade editFlag">
+			    					<div class='row'>
+			    						<div class='col-sm-12'>
+			    							<div class="panel panel-default">
+			    							    <div class="panel-heading">
+			    							        <h3 class="panel-title col-sm-10">客户档案</h3>
+			    							        <div class="btn-group">
+														<button type='button' class='btn btn-sm   btn-primary minBtn' disabled='disabled'>缩略视图</button>
+														<button type='button' class='btn btn-sm   btn-primary maxBtn'>表格视图</button>
+												    </div>
+			    							    </div>
+			    							    <div class="panel-body">
+			    									<div id='tagContainer'></div>
+			    									<div id='tagTableContainer'style='display:none;'> </div>
+			    							    </div>
+			    							</div>
+			    						</div>
+			    						<div class='col-sm-12'>
+			    							<!--客户统计-->
+			    							<#include "/crm/cs/csEntity/statisticInfoDiv.html">		
+			    						</div>
+
+			    						<div class='col-sm-12'>
+			    							<!--eav 扩展信息-->		
+			    							<div class="panel panel-default">
+			    							    <div class="panel-heading">
+			    							        <h3 class="panel-title">扩展信息</h3>
+			    							    </div>
+			    							    <div class="panel-body">
+			    									<div id='eavCommonContainer'></div>	
+			    							    </div>
+			    							</div>
+			    						</div>			    						
+			    					</div>
+			    				</div>
+
+
+			    				<!--
+			    				<div id="contractTab" class="tab-pane fade">
+			    					<div class="panel-body">
+			    						<#include "/crm/cs/csEntity/csContract.html" >
+			    					</div>
+			    				</div>
+			    				-->
+			    				<div id="accountTab" class="tab-pane fade">
+			    					<div class="panel-body">
+			    						<div id="csAccountDiv"></div>
+			    					</div>
+			    				</div>
+			    				<div id="oppoTag" class="tab-pane fade">
+			    					<div class="panel-body">
+			    						<#include "/crm/oppo/oppoInfo/oppoTableList.html" ></div>
+			    				</div>
+			    				<#if versionType?? && versionType == 'finance'>
+			    				<div id="limitTag" class="tab-pane fade">			    				
+									<!-- 添加界面 -->
+									<#include "/crm/limit/csLimit/csLimitAdd.html">	   
+			    					<div class="panel-body">
+			    						<div id="csLimitTagDiv"></div>
+		    						</div>
+			    				</div>
+			    				</#if>
+			    				<div id="levelchangeTab" class="tab-pane fade">
+			    					<div class="panel-body">
+			    						<div id="csLevelChangeDiv"></div>
+			    					</div>
+			    				</div>
+			    				<div id="mailHistoryTab" class="tab-pane fade">
+			    					<div class="panel-body">
+			    						<div id="mailHistoryDiv"></div>
+			    					</div>
+			    				</div>
+			    				<div id="pointLogTab" class="tab-pane fade">
+			    					<div class="panel-body">
+			    						<div id="pointLogDiv"></div>
+			    					</div>
+			    				</div>
+			    			</div>
+			    		</div>
+			    	</div>
+			    </div>
+			</div>
+		</div>
+	</div>
+	<div class="modal fade" id="changeGroupModalContainer" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	    <div class="modal-dialog" role="document">
+	    	<div class="modal-content">
+	      		<div class="modal-header">
+	        		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+	        		<h4 class="modal-title" id="myModalLabel">转移部门</h4>
+	      		</div>
+		
+		        <div class="modal-body">
+			        <form id="changeGroupForm" method="get" class="form-horizontal">
+			        	<div class="form-group">
+							<label class="col-sm-2 control-label">名称</label>
+							<div class="col-sm-10">
+								<input type="text" class='form-control' readonly id='groupName'>
+								<input type="hidden" name='groupId'>	
+								<input type="hidden" name='selectedIds'>
+							</div>
+						</div>
+			        </form>
+		        </div>
+		        <div class="modal-footer">
+		        	<button type="button" class="btn btn-sm   btn-default" data-dismiss="modal">关闭</button>
+		        	<button type="button" class="btn btn-sm   btn-primary" id='csSeaChangeGroupSave'>保存</button>
+		        </div>
+	        </div>
+        </div>
+    </div>
+	<#include "/crm/cs/csEntity/cs-include.html">
+	<#include "/gl/cti/tRKSheetRecord/record_operate.html">
+	<!--创建从客户modal-->
+	<#include "/crm/cs/csEntity/createForSubModal.html">
+</body>
+</html>

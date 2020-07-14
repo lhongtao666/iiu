@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>代理商订单管理</title>
+	<#include "/common/common.html">
+	<script src="${ctx}/js/jt/crm/agent/agentSo.js?v=1.0.0" ></script>
+</head>
+
+<body>
+	<div class="wrapper animated fadeInRight">
+		<!-- list界面 -->
+		<div class="row list_wrapper">
+			<#include "/crm/agent/agentSo/agentSoToolbar.html">	  			
+			<div class='col-sm-12 jqGrid_wrapper'>
+			    <table id="agentSoGrid"></table>
+				<div id="agentSoPager"></div>
+			</div>
+		</div>
+		<!-- 编辑界面 -->
+		<#include "/crm/agent/agentSo/agentSoEdit.html">	    
+	</div>
+</body>
+</html>

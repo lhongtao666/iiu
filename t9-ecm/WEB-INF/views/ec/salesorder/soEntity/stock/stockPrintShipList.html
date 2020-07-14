@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>快递单打印</title>
+	<#include "/common/common.html">
+	<script src="${ctx}/js/jt/ec/salesorder/stock/waitDeliver${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/ec/salesorder/stock/stockPrintShipList${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/plugins/gridReport/CreateControl.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/plugins/gridReport/GRUtility.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/jt/gl/tpl/tplPrint${deploy_min!""}.js?v=${jsVersion}"></script>
+	<script>
+	    var ctx = "${ctx}";
+	    var entityId="${entityId}";
+	    var entityType="${entityType}";
+	    var soInfos = ${soInfos};
+	    var proxyType = "${proxyType}";
+	    $(function(){
+		    var stockPrintShipList = new StockPrintShipList();
+		    stockPrintShipList._loadNextData(0);
+	    });
+	</script>
+</head>
+
+<body class="white-bg">
+	<div class="wrapper animated ">
+		<!-- list界面 -->
+		<div class="row list_wrapper">
+			<div class="col-sm-12">
+				<div class="panel panel-default">
+				    <div class="panel-body">
+						<form id="soEntityPrintShipForm" method="get" class="form-horizontal">		
+							<div class='form-group'>
+								<div class="col-sm-12">
+									<div class='col-sm-4'>
+										<label class='col-sm-3 control-label'>订单号</label>
+										<div class='col-sm-8'>
+											<input class='form-control' name="soNo" validateType="default" readonly="readonly">										
+										</div>
+										<div class='col-sm-1'>
+											<label class='control-label firstCount'>1</label>/
+											<label class='control-label totalCount'></label>
+										</div>
+									</div>
+									<div class='col-sm-4'>
+										<label class='col-sm-3 control-label'>客户名字</label>
+										<div class='col-sm-8'>
+											<input class='col-sm-9 form-control' name="csName" validateType="default" readonly="readonly">
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class='form-group'>
+								<div class="col-sm-12">
+									<div class='col-sm-4'>
+										<label class='col-sm-3 control-label'>快递公司</label>
+										<div class='col-sm-8'>
+											<input class='form-control' name="scName" validateType="default" readonly="readonly">
+										</div>
+									</div>
+									<div class='col-sm-4'>
+										<label class='col-sm-3 control-label'>快递单号</label>
+										<div class='col-sm-8'>
+											<input class='form-control' name="scTrackingNo" validateType="default"  >
+										</div>
+									</div>
+								</div>
+							</div>	
+							<div class='form-group'>
+							    <div class='col-sm-1'></div>
+								<div class='col-sm-6'>
+									<button type='button' class="btn btn-sm  btn-primary  saveAndNextBtn">保存并下一张</button>
+									<button type='button' class="btn btn-sm  btn-primary  prevShipBtn">上一张</button>
+									<button type='button' class="btn btn-sm  btn-primary  nextShipBtn">下一张</button>
+									<button type='button' class="btn btn-sm  btn-primary  printShip">打印快递单</button>
+									<button type='button' class="btn btn-sm  btn-primary  printOutSale">打印发货单</button>
+									<button type='button' class="btn btn-sm  btn-primary  soEntityReload">刷新</button>
+									<button type='button' class="btn btn-default prevBtn">返回列表</button>
+								</div>
+							</div>	
+							<div class='form-group'>
+								<!--将隐藏域放在这里，不显示出来-->
+								<div style="display: none'">
+									<input type="hidden" name="soId">		
+								</div>
+							</div>				
+						</form>
+					</div>
+				</div>
+				<div class="panel panel-default">
+					<div class="panel-body">
+						<iframe class="printShipIframe" name="iframe0" width="100%" height="670px" frameborder="0" seamless></iframe>
+					</div>
+				</div>
+			</div>	
+		</div> 
+	</div>
+</body>
+</html>
+
+
+

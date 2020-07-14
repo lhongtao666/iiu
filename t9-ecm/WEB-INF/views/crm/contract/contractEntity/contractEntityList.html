@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>合同管理</title>
+    <#include "/common/common.html" />
+    <#include "/common/eav.html" />
+    <#include "/common/summernote.html" />
+    <#include "/common/ztree.html" />
+    <#include "/common/fullcalendar.html" />
+    <script src="${ctx}/js/jt/gl/task/taskTableList${deploy_min!""}.js?v=${jsVersion}"></script>
+    <script src="${ctx}/js/jt/common/service/operateTask${deploy_min!""}.js?v=${jsVersion}"></script>
+    <script src="${ctx}/js/jt/common/utils/groupUtils${deploy_min!""}.js?v=${jsVersion}"></script>
+    <script src="${ctx}/js/jt/common/service/customerSelectLayer${deploy_min!""}.js?v=${jsVersion}"></script>
+    <script src="${ctx}/js/jt/common/service/selectProdService${deploy_min!""}.js?v=${jsVersion}"></script>
+    <script src="${ctx}/js/jt/common/service/employeesSelectLayer${deploy_min!""}.js?v=${jsVersion}"></script>
+    <script src="${ctx}/js/jt/crm/contract/contractEntity${deploy_min!""}.js?v=${jsVersion}"></script>
+    <script type="text/javascript">
+    $(function() {
+        var contractEntity = new ContractEntity();
+        contractEntity.init();
+    });
+    </script>
+</head>
+
+<body class='white-bg'>
+    <div class="wrapper animated ">
+        <div class="row list_wrapper">
+    	    <!-- 工具栏 -->
+    	    <#include "contractEntityToolbar.html" />
+	        <!-- jqgrid数据 -->
+	        <div class='col-sm-12 jqGrid_wrapper'>
+	            <table id="contractEntityGrid"></table>
+	            <div id="contractEntityPager"></div>
+	        </div>
+    	</div>
+    	<!-- 编辑界面 -->
+    	<#include "contractEntityEdit.html" /></div>
+    </div>
+</body>
+
+</html>

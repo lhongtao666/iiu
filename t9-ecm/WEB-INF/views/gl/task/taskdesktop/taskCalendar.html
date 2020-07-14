@@ -1,0 +1,134 @@
+<#include "/common/summernote.html" />
+<#include "/common/fullcalendar.html" />
+<#include "/common/timepicker.html" />
+<script src='${ctx}/js/jt/common/service/operateTask${deploy_min!""}.js?v=${jsVersion}'></script>
+<script src='${ctx}/js/jt/common/service/partyAddrSelectLayer${deploy_min!""}.js?v=${jsVersion}'></script>
+<script src="${ctx}/js/jt/common/service/employeesSelectLayer${deploy_min!""}.js?v=${jsVersion}"></script>
+<script type="text/javascript">
+    var choose = '${choose}';
+</script>
+
+<script type="text/javascript">
+$(function() {
+    var taskCalendarEntity = new TaskCalendarEntity();
+    taskCalendarEntity.init();
+});
+
+
+function TaskCalendarEntity() {
+    this.hadInit = false;
+};
+/**
+ * 该对象使用到的常量
+ * 放在一起，有利于后期的维护
+ */
+TaskCalendarEntity._CONS_ = {
+    EDIT_URL: ctx + "/gl/task/taskEntity/edit.htm", //编辑时，获取数据的url
+    DETAIL_URL: ctx + "/gl/task/taskEntity/detail.htm", //查看明细时，获取数据的url
+    DELETE_URL: ctx + "/gl/task/taskEntity/delete.htm", //删除url
+    SAVE_ADD_URL: ctx + "/gl/task/taskEntity/saveAdd.htm", //保存添加的url
+    SAVE_EDIT_URL: ctx + "/gl/task/taskEntity/saveEdit.htm", //保存编辑的url
+    LIST_DATA_URL: ctx + "/gl/task/taskEntity/listData.htm", //获取列表数据的url
+    UPDATE_TASK_STATUS: ctx + "/gl/task/taskEntity/updateTaskStatus.htm",
+    EDIT_FORM_ID: "taskEntityForm",
+    REVIEW_FORM_ID: "prodEntityFormDiv",
+    GRID: "#taskEntityGrid", //grid的id
+    PAGER: "#taskEntityPager" //grid pager的id   
+};
+TaskCalendarEntity.prototype = {
+    init: function(params) {
+        if (!this.hadInit) {
+            this.hadInit = true;
+            this._initCalendar();
+        }
+    },
+    //初始化日历组件
+    _initCalendar: function() {
+        var self = this;
+        $('#calendar').fullCalendar({
+            header: {
+                left: 'prev,next',
+                center: 'title',
+                right: 'month,agendaWeek,agendaDay'
+            },
+            editable: false,
+            droppable: false,
+            drop: function(date, allDay) {
+                var originalEventObject = $(this).data('eventObject');
+                var copiedEventObject = $.extend({}, originalEventObject);
+                copiedEventObject.start = date;
+                copiedEventObject.allDay = allDay;
+                $('#calendar').fullCalendar('renderEvent', copiedEventObject, true);
+                if ($('#drop-remove').is(':checked')) {
+                    $(this).remove();
+                }
+            },
+            events: function(start, end, callback) {
+                var startStr = DateUtils.format(start);
+                var endStr = DateUtils.format(end);
+                var sb = new StringBuffer();
+                sb.append('?Q__D__BW__create_time_');
+                sb.append("=");
+                sb.append("[" + startStr + "," + endStr + "]");
+                sb.append("&rows=").append('9999999');
+                sb.append('&page=').append('1');
+                var formId = "";
+                if (self.useCalendarSearch) {
+                    formId = "taskSearchForm";
+                } else {
+                    formId = "";
+                }
+                FormUtils.submitByFormId(TaskCalendarEntity._CONS_.LIST_DATA_URL + sb.toString(), formId, function(result) {
+                    var events = result.rows;
+                    var res = [];
+                    for (var i = 0; i < events.length; i++) {
+                        var eventColor = '';
+                        switch (events[i].status) {
+                            case 'collect':
+                                eventColor = '#DBDBDB';
+                                break;
+                            case 'awaiting':
+                                eventColor = '#F8CD9D';
+                                break;
+                            case 'processing':
+                                eventColor = '#6BB4E3';
+                                break;
+                            case 'done':
+                                eventColor = "#6FE2E3";
+                                break;
+                            case 'expired':
+                                eventColor = "#F199A3";
+                                break;
+                        }
+                        res.push({
+                            id: events[i].id,
+                            title: events[i].name,
+                            start: events[i].createTime,
+                            end:events[i].endTime,
+                            className:"ellipsis-class",
+                            color: eventColor
+                        });
+                    }
+                    callback(res);
+                }, null);
+            },
+            eventClick: function(calEvent, jsEvent, view) {
+                self._calendarEventClick(calEvent);
+            },
+        });
+    },
+    _calendarEventClick: function(calEvent) {
+        var self = this;
+        OperateTask.openDetailTaskDialog(calEvent.id, function() {
+            if (self.hadInitCalendar) {
+                $('#calendar').fullCalendar('refetchEvents');
+            }
+        });
+    },
+}
+</script>
+
+<div class="ibox">
+    <div class="ibox-content col-sm-10 col-sm-push-1" id="calendar">
+    </div>
+</div>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>API管理</title>
+	<#include "/common/common.html" />
+    <#include "/common/summernote.html" />
+    <#include "/common/ztree.html">
+    <#include "/common/fullcalendar.html" />
+	<script src="${ctx}/js/jt/gl/api/apiEntity${deploy_min!""}.js?v=${jsVersion}"></script>
+	<style type="text/css">
+       .apiLi{
+          position: relative;
+          border-bottom:1px solid rgb(204, 204, 204);
+          padding-top:15px;
+          text-align:center;
+          display: block;
+          background-color: #fff;
+          color: #697277;
+	      box-shadow: none;
+	      background-image: -webkit-linear-gradient(left top, rgb(28, 175, 154) 50%, transparent 50%);
+	      background-size: 0%;
+	      background-repeat: no-repeat;
+	      animation: jtbtnM 0.5s ease forwards;
+	      height:50px;
+	      font-size:15px;
+	      font-weight:bold
+       }
+       .apiUl{
+          position: relative;
+          display: block;
+          padding:0;
+          margin-left:-50%;
+          margin-right:-50%;
+          background-color:#fff;
+          min-width: 66px;
+       }
+        .apiLi.active{
+            color: rgb(255, 255, 255);
+		    background-color: rgb(28, 175, 154);
+		    min-width: 66px;
+		    box-shadow: none;
+		    background-image: -webkit-linear-gradient(left top, rgb(28, 175, 154) 50%, transparent 50%);
+		    background-size: 0%;
+		    border-color: rgb(28, 175, 154);
+		    background-repeat: no-repeat;
+		    animation: jtbtnM 0.5s ease forwards;
+       }
+       .apiLi:hover{
+            background-color: transparent;
+		    border-color: #1caf9a;
+		    color: #fff;
+		    -webkit-animation: .5s jtbtnL ease forwards;
+		    animation: .5s jtbtnL ease forwards;
+		    text-shadow: none;
+		    box-shadow: none;
+       }
+       #selfApiLi{
+         border-top:1px solid rgb(245, 245, 245);
+       }
+    </style>
+</head>
+
+<body class='white-bg'>
+    <div class="wrapper animated fadeInRight">
+        <div class="row list_wrapper">
+            <div class="col-sm-2">
+                  <ul class='apiUl' id="apiUl"> </ul>
+            </div>
+            <div class="col-sm-10 list_wrapper">
+                <div class="tabs-container">
+                    <div class="tab-content">
+                        <div id="tabUnfinish" class="tab-pane active">
+                            <div class="panel-body">
+                                <div class='row task-list'>
+                                    <#include "/gl/api/apiEntity/apiEntityToolbar.html">	
+                                    <div class='col-sm-12 jqGrid_wrapper'>
+                									    <table id="apiEntityGrid"></table>
+                										<div id="apiEntityPager"></div>
+                									</div>
+                                </div>
+                            </div>
+                        </div>
+           
+                    </div>
+                </div>
+            </div>
+        </div>
+       	 <!-- 编辑界面 -->
+		<#include "/gl/api/apiEntity/apiEntityEdit.html">
+    </div>
+     
+</body>
+</html>

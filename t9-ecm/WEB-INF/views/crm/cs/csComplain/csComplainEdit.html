@@ -1,0 +1,26 @@
+<div style="display: none;" class="row form_wrapper">
+	<div class='col-sm-12'>
+		<div class="panel panel-default">
+			<div class="panel-heading topToolbar">
+				<button type='button' class="btn btn-sm btn-primary jt-btn-normal saveBtn">保存</button>
+				<button type='button' class="btn btn-sm btn-primary jt-btn-normal saveAddBtn">保存</button>
+				<button type='button' class="btn btn-sm btn-primary jt-btn-normal applyDelay">申请延期</button>
+				<span class="jt-span"></span>
+				<button type='button' class="btn btn-sm btn-default jt-btn-close prevBtn">取消</button>
+			</div>
+			<div class="panel-body">
+				<div class='row'>
+					<!--左边区域-->
+			        <div class="col-sm-5" style='padding-right: 5px;'>
+						<#include "/crm/cs/csComplain/csComplainForm.html">
+						<#include "/crm/cs/csComplain/applyDelayDetail.html">
+					</div>
+					<!-- 右边区域 -->
+					<div class="col-sm-7" style='padding-left: 5px;' id='complainFollowListDiv'>
+						<#include "/crm/cs/csComplain/csComplainFollowList.html">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

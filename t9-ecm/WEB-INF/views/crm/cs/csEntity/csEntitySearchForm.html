@@ -1,0 +1,37 @@
+<form role="form" class="form-inline">
+    <div class="form-group">
+		<label for="codeSearch" class="sr-only">客户编号</label> 
+		<input type="text" placeholder="请输入客户编号" id="codeSearch" class="form-control">
+	</div>
+    <div class="form-group">
+		<label for="firstLtSearch" class="sr-only">字母</label> 
+		<input type="text" placeholder="请输入客户名称的拼音" id="firstLtSearch" class="form-control">
+		<div class="input-group-btn">
+              <button type="button" class="btn btn-white dropdown-toggle" data-toggle="dropdown">
+                  <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu dropdown-menu-right" role="menu"></ul>
+       </div>
+	</div>
+	<div class="form-group">
+	<label for="firstLtSearch" class="sr-only">字母</label> 
+                                <div class="col-lg-6">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" id="testNoBtn">
+                                        <div class="input-group-btn">
+                                            <button type="button" class="btn btn-white dropdown-toggle" data-toggle="dropdown">
+                                                <span class="caret"></span>
+                                            </button>
+                                            <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                                            </ul>
+                                        </div>
+                                        <!-- /btn-group -->
+                                    </div>
+                                </div>
+	<div class="form-group">
+		<label for="typeSearch" class="sr-only">客户类型</label> 
+		<input type="text" placeholder="请输入客户类型" id="typeSearch" class="form-control">
+	</div>
+	<#include "/common/advanceSearch.html">
+<button class="btn btn-default" id="searchBtn">搜索</button>
+</form>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>jt_weixin_common_lan管理</title>
+	<#include "/common/common.html">
+	<script src="${ctx}/js/jt/crm/cs/weixinCommonLan${deploy_min!""}.js?v=1.0.0" ></script>
+	<script src="${ctx}/js/jt/gl/km/glHelpUtil${deploy_min!""}.js?v=${jsVersion}" ></script>
+</head>
+
+<body>
+	<div class="wrapper animated fadeInRight">
+		<!-- list界面 -->
+		<div class="row list_wrapper">
+			<#include "/crm/cs/weixinCommonLan/weixinCommonLanToolbar.html">	  			
+			<div class='col-sm-12 jqGrid_wrapper'>
+			    <table id="weixinCommonLanGrid"></table>
+				<div id="weixinCommonLanPager"></div>
+			</div>
+		</div>
+		<!-- 编辑界面 -->
+		<#include "/crm/cs/weixinCommonLan/weixinCommonLanEdit.html">	    
+	</div>
+</body>
+</html>

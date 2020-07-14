@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>外线号码资源管理</title>
+	<#include "/common/common.html">
+	<link rel="stylesheet" type="text/css" href="${ctx}/css/plugins/webuploader/webuploader.css?v=${jsVersion}">
+	<link rel="stylesheet" type="text/css" href="${ctx}/css/demo/webuploader-demo.css?v=${jsVersion}">
+	<script type="text/javascript" src="${ctx}/js/plugins/webuploader/webuploader.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/jt/common/service/JTWebUploader${deploy_min!""}.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/jt/gl/phone/phone${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/gl/km/glHelpUtil${deploy_min!""}.js?v=${jsVersion}" ></script>
+</head>
+
+<body class='white-bg'>
+	<div class="wrapper animated ">
+		<!-- list界面 -->
+		<div class="row list_wrapper">
+			<#include "/gl/phone/phone/phoneToolbar.html">	  			
+			<div class='col-sm-12 jqGrid_wrapper'>
+			    <table id="phoneGrid"></table>
+				<div id="phonePager"></div>
+			</div>
+		</div>
+		<!-- 编辑界面 -->
+		<#include "/gl/phone/phone/phoneEdit.html">	  
+		<#include "/gl/phone/phone/PhoneImport.html">
+
+		<!--批量创建的modal-->
+		<div class="modal fade" id="batchAddPhoneModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		  <div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+		        <h4 class="modal-title" id="myModalLabel">批量创建</h4>
+		      </div>
+
+		      <div class="modal-body">
+		        <form id="batchAddPhoneForm" method="get" class="form-horizontal">
+					<div class="form-group">
+						<label class="col-sm-2 control-label">运营商<span style='color: red'>*</span></label>
+						<div class="col-sm-10">
+							<select name='type' class='form-control'>
+								<option value='1'>电信</option>
+								<option value='2'>联通</option>
+								<option value='3'>移动</option>
+							</select>
+						</div>
+					</div>	
+
+					<div class="form-group">
+						<label class="col-sm-2 control-label">中继开始号码<span style='color: red'>*</span></label>
+						<div class="col-sm-10">
+							<input name='startPhone' class='form-control' validateType='default'>
+						</div>
+					</div>	
+
+					<div class="form-group">
+						<label class="col-sm-2 control-label">中继结束号码<span style='color: red'>*</span></label>
+						<div class="col-sm-10">
+							<input name='endPhone' class='form-control' validateType='default'>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label class="col-sm-2 control-label">分机开始号码<span style='color: red'>*</span></label>
+						<div class="col-sm-10">
+							<input name='adnStart' class='form-control' validateType='default'>
+						</div>
+					</div>	
+				</form>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-sm   btn-default" data-dismiss="modal">关闭</button>
+		        <button type="button" class="btn btn-sm   btn-primary" id='savePhoneBtn'>创建</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>	  
+	</div>
+</body>
+</html>

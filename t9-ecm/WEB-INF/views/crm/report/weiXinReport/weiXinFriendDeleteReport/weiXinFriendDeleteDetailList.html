@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>微信删粉明细报表</title>
+	<#include "/common/common.html">
+	<script src="${ctx}/js/jt/crm/report/weiXin/weiXinFriendDeleteDetail${deploy_min!""}.js?v=${jsVersion}"></script>
+	
+<script>
+	var beginTime="";
+	var endTime = "";
+	var employeeUserName = "";
+	var friendForType = "";
+	var groupId = "";
+
+	<#if beginTime??>
+		beginTime = "${beginTime}";
+	</#if>
+
+	<#if endTime??>
+		endTime = "${endTime}";
+	</#if>
+	
+	<#if employeeUserName??>
+		employeeUserName = "${employeeUserName}";
+	</#if>
+
+	<#if friendForType??>
+		friendForType = "${friendForType}";
+	</#if>
+
+	<#if groupId??>
+		groupId = "${groupId}";
+	</#if>
+
+</script>
+
+</head>
+<body class='white-bg'>
+	<div class='wrapper'>
+		<div class='row list_wrapper'>
+			<div class="jqGrid_wrapper col-sm-12">
+				<table id="weiXinFriendDeleteDetailGrid"></table>
+			</div>	
+		</div>
+	</div>
+</body>
+</html>

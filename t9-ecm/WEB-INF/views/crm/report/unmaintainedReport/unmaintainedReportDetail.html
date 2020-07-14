@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>超期客户明细</title>
+	<#include "/common/common.html">
+	<script src="${ctx}/js/jt/crm/report/cs/unmaintainedReportDetail${deploy_min!""}.js?v=${jsVersion}"></script>
+	<script> 
+	    var employeeId="${employeeId}";
+	    var days="${days}";
+	</script>
+</head>
+<body class="white-bg">
+	<div class='wrapper'>
+		<div class='row list_wrapper'>
+		    <div class='col-sm-12'>
+		    </div>
+			<div class="jqGrid_wrapper col-sm-12">
+				<table id='unmaintainedReportDetailGrid'></table>
+				<div id="unmaintainedReportDetailPager"></div>
+			</div>
+		</div>
+	</div>	
+</body>
+</html>

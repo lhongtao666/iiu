@@ -1,0 +1,82 @@
+<div class='row'>
+	<div class='col-sm-12'>
+		<form id="groupTargetForm" method="get" class="form-horizontal">
+			<div class="form-group hidden-when-add">
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">归属类型</label>
+					<div class="col-sm-9">
+		              	 <input type='text' readonly="readonly" name='belongTypeName' class='form-control' validateType='default'>
+		              	 <input type="hidden" name="belongType">
+					</div>
+				</div>		
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">部门</label>
+					  <div class="col-sm-9">
+                        <!--部门的相关数据-->
+                        <input type='hidden' name='orgId'>
+                        <input type='text' readonly="readonly" name='orgName' class='form-control' validateType='default'>
+                    </div>
+				</div>	
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">状态</label>
+					<div class="col-sm-9">
+						<select class="form-control" name="status" validateType="default" >
+								<option value="publish">发布</option>
+								<option value="draft">草稿</option>
+			               		<option value="assign" class="hideWhenAdd" style="display: none;">已分配</option>
+		              	</select>
+		            </div>
+		        </div>
+			</div>
+			<div class="form-group">
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">目标名称<span style='color: red;'>*</span></label>
+					<div class="col-sm-9">
+						<input type="text" name="name" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>	
+				
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">目标时间<span style='color: red;'>*</span></label>
+					<div class="col-sm-9">
+					 	<input class="laydate-icon form-control layer-date" name="period" placeholder="yyyy-mm" validateType="default" onclick="laydate({istime: false, format: 'YYYY-MM'})">
+					</div>
+				</div>				
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">销售金额<span style='color: red;'>*</span></label>
+					<div class="col-sm-8">
+						<input type="text" name="total" placeholder="" class="form-control" validateType="default" > 
+					</div>
+					<label class="col-sm-1 control-label" style="text-align: left;">元</label>
+				</div>		
+			</div>
+
+			<div class="form-group">
+		        <div class='col-sm-4 hidden-when-add'>
+					<label class="col-sm-3 control-label">已分配金额</label>
+					<div class="col-sm-8">
+						<input type="text" name="assagined" placeholder="" class="form-control" validateType="default" > 
+					</div>
+					<label class="col-sm-1 control-label" style="text-align: left;">元</label>
+		        </div>
+            </div>    
+
+			<div class='form-group'>
+				<!--将隐藏域放在这里，不显示出来-->
+				<div style="display:none'">
+					<input type="hidden" id="id" name="id">
+					<input type="hidden" name="createBy">
+					<input type="hidden" name="createTime">
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+
+<div class="row orgTargetShowEmpDiv">			
+	<div class='col-sm-12 jqGrid_wrapper'>
+	    <table id="orgTargetShowEmpGrid"></table>
+		<div id="orgTargetShowEmpPager"></div>
+	</div>
+</div>

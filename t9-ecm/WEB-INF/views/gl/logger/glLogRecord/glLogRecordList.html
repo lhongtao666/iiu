@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>系统日志记录管理</title>
+	<#include "/common/common.html">
+	<script src="${ctx}/js/jt/gl/logger/glLogRecord${deploy_min!""}.js?v=${jsVersion}" ></script>
+</head>
+
+<body class='white-bg'>
+	<div class="wrapper animated ">
+		<div class="row list_wrapper">
+			<!-- 工具栏 -->
+			<#include "/gl/logger/glLogRecord/glLogRecordToolbar.html">	
+			<div class='col-sm-12 jqGrid_wrapper'>		
+			    <table id="glLogRecordGrid"></table>
+				<div id="glLogRecordPager"></div>
+			</div>
+		</div>
+		<!-- 日志详情页 -->
+		<#include "/gl/logger/glLogRecord/glLogRecordDetail.html">	    
+	</div>
+</body>
+</html>

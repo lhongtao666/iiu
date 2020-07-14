@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>jt_sms_config管理</title>
+    <#include "/common/common.html" />
+    <#include "/common/ztree.html" />
+    <script src="${ctx}/js/jt/common/utils/groupUtils${deploy_min!''}.js?v=${jsVersion}"></script>
+    <script src="${ctx}/js/jt/gl/sms/smsConfig${deploy_min!''}.js?v=${jsVersion}"></script>
+    <script src="${ctx}/js/jt/gl/km/glHelpUtil${deploy_min!""}.js?v=${jsVersion}" ></script>
+</head>
+
+<body>
+<div class='row' style="margin:0 -5px;">
+	<div class="col-sm-12">
+    <div class="panel panel-default" >
+        <div class="panel-heading">
+        	<div class="row">
+        	<div class="col-sm-12">
+        		<strong>短信猫配置</strong>
+                <label id="glHelpContainer"></label><!-- 帮助中心 -->
+        		<button title="添加" type="button" class="jt-btn addRow pull-right"  ><i class="fa fa-plus">&nbsp;添加</i></button>
+        	</div>
+        	</div>
+        </div>
+        <div class="panel-body" >
+            <table class="table table-stripped table-bordered table-hover">
+                <thead>
+                    <th width="3%">序号</th>
+                    <th width="7%">名称</th>
+                    <th width="10%">服务器或授权</th>                   
+                     <th width="6%">手机号码</th>
+                    <th width="6%">服务类型</th>
+                    <th width="14%" style='display:none;'>发送类型</th>
+                    <th width='9%'>每日上限</th>
+                    <th width="15%">部门</th>
+                    <th width='3%'>生效</th>
+                    <th width='4%'>预警余额</th>
+                    <th width='8%'>预警通知</th>
+                    <th width="10%">操作</th>
+                    <th width="12%">上次查询余额</th>
+                </thead>
+                <tbody id="dataTableBody">
+                </tbody>
+            </table>
+        </div>
+    </div>
+    </div>
+</div>
+    <div class="modal fade" id="sendMsgModalContainer" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    <h4 class="modal-title" id="myModalLabel">测试短信猫</h4>
+                </div>
+                <div class="modal-body">
+                    <form method="get" class="form-horizontal">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">手机号码<span style='color: red'>*</span></label>
+                            <div class="col-sm-10">
+                                <input type="text" name="sendTel" class="form-control" validateType='default'>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">描述</label>
+                            <div class="col-sm-10">
+                                <textarea name='sendContent' rows='7' validateType='default' class='form-control'></textarea>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-sm   btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-sm   btn-primary" id='sendBtn'>发送</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--添加部门，跟新部门modal-->
+    <div class="modal fade" id="smsConfigModalContainer" tabindex="-1" role="dialog" aria-labelledby="orgModalLabel" >
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    <h4 class="modal-title" id="orgModalLabel">编辑短信猫配置</h4>
+                </div>
+                <div class="modal-body">
+                    <form id="smsConfigForm" method="get" class="form-horizontal">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">名称<span style='color: red'>*</span></label>
+                            <div class="col-sm-9">
+                                <input type="text" name="name" placeholder="" class="form-control" validateType='default'>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">地址<span style='color: red'>*</span></label>
+                            <div class="col-sm-9">
+                                <input type="text" name="ip" placeholder="" class="form-control" validateType='default'>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">手机号码</label>
+                            <div class="col-sm-9">
+                                <input type="text" name="simNumber" placeholder="" class="form-control" validateType='default'>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">服务类型</label>
+                            <div class="col-sm-9">
+                                <select class="form-control" id="smsConfigFormServiceType" name="serviceType" validateType="default">
+                                    <option value="manual">短信猫</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">每日上限<span style='color: red'>*</span></label>
+                            <div class="col-sm-9">
+                                <input type="text" name="dayLimit" class="form-control" validateType='default'>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">限定部门</label>
+                            <div class="col-sm-9">
+                                <input type="text" name="addGroupNames" id="addGroupNames" class="form-control" validateType='default'>
+                                <input name="addGroupIds" id="addGroupIds" type="hidden">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">生效</label>
+                            <div class="col-sm-9">
+                                <select class="form-control" name="valid" validateType="default">
+                                    <option value="y">是</option>
+                                    <option value="n">否</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">预警余额</label>
+                            <div class="col-sm-9">
+                                <input type='number' maxlength='4'  class='form-control' validateType='default'  name='warmMoney'>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">预警通知</label>
+                            <div class="col-sm-9">
+                               <input type='text' placeholder='最多输入5个手机号，以"，"逗号隔开' class='form-control'  validateType='default' name='warnTo'>
+                            </div>
+                        </div>
+                        <div class='form-group' style="display: none;">
+                            <!--当前节点的信息-->
+                            <input type="hidden" name='id' />
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="jt-btn jt-btn-red" data-dismiss="modal"><i class="fa fa-remove" aria-hidden="true"></i>&nbsp;关闭</button>
+                    <button type="button" class="jt-btn" id='saveBtn'><i class="fa fa-floppy-o"></i>&nbsp;保存</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+
+
+

@@ -1,0 +1,96 @@
+<script src="${ctx}/js/plugins/morris/morris.min.js?v=${jsVersion}" ></script>
+<script src="${ctx}/js/plugins/morris/raphael-min.js?v=${jsVersion}" ></script>
+<script src="${ctx}/js/jt/gl/ou/seatPersonProfit${deploy_min!""}.js?v=${jsVersion}" ></script>
+<style> 
+	#seatPersonProfitChart{
+	    background-color: transparent !important;
+	}
+</style>
+<div class="ibox float-e-margins" style="height:100%">
+	<div class="ibox-title">
+		<h5>我的销售业绩</h5>
+		<div class="btn-group pull-right">
+			<button type="button" class="btn btn-sm btn-outline btn-primary today" disabled="disabled">今天</button>
+			<button type="button" class="btn btn-sm btn-outline btn-primary yesterday">昨天</button>
+			<button type="button" class="btn btn-sm btn-outline btn-primary beforeYesterday">前天</button>
+			<button type="button" class="btn btn-sm btn-outline btn-primary thisMonth">本月</button>
+			<button type="button" class="btn btn-sm btn-outline btn-primary prevMonth">上月</button>
+		</div>
+	</div>
+	<div class="ibox-content" style="height:100%">	
+		<div id="morris-line-example" style="height: 180px;"></div>
+
+		<!-- <table class="table">      	     
+		    <tr>
+		   		<td class='col-sm-4' style='padding:1px;border-top:0px;'>
+		      		<label class='col-sm-5 control-label' style='padding:0px;'>新进客户</label>
+		      		<span id="csCount">0</span>		      
+		      	</td>
+		      	<td class='col-sm-4' style='padding:1px;border-top:0px;'>
+		      		<label class='col-sm-5 control-label' style='padding:0px;'>加粉数</label>
+		      		<span id="weixinCount">0</span>
+		      	</td>
+		      	<td class='col-sm-4' style='padding:1px;border-top:0px;'>
+		      		<label class='col-sm-5 control-label' style='padding:0px;'>加粉率</label>
+		      		<span id="weixin">0</span>
+		      	</td>
+		    </tr>
+		    <tr>
+		   	    <td class='col-sm-4' style='padding:1px;'>
+		      		<label class='col-sm-5 control-label' style='padding:0px;'>下单数</label>
+		      		<span id="placeCount">0</span>	      
+		      	</td>
+		      	<td class='col-sm-4' style='padding:1px;'>
+		      		<label class='col-sm-5 control-label' style='padding:0px;'>下单金额</label>
+		      		<span id="placeAmount">0</span>		      
+		      	</td>
+		      	<td class='col-sm-4' style='padding:1px;'>
+		      		<label class='col-sm-5 control-label' style='padding:0px;'>成单率</label>
+		      		<span id="done">0</span>
+		      	</td>
+		    </tr>
+		    <tr>
+		    	<td class="col-sm-4" style='padding:1px;'>
+		      		<label class='col-sm-5 control-label' style='padding:0px;'>审单数</label>
+		      		<span id="auditCount">0</span>
+		      	</td>
+		      	<td class="col-sm-4" style='padding:1px;'>
+		      		<label class='col-sm-5 control-label' style='padding:0px;'>审单金额</label>
+		      		<span id="auditAmount">0</span>
+		      	</td>
+		      	<td class="col-sm-4" style='padding:1px;'>
+		      		<label class='col-sm-5 control-label' style='padding:0px;'>核单率</label>
+		      		<span id="check">0</span>
+		      	</td>
+		    </tr>
+		     <tr>
+		     	<td class="col-sm-4" style='padding:1px;'>
+		      		<label class='col-sm-5 control-label' style='padding:0px;'>发货数</label>
+		      		<span id="shipCount">0</span>
+		      	</td>
+		      	<td class="col-sm-4" style='padding:1px;'>
+		      		<label class='col-sm-5 control-label' style='padding:0px;'>发货金额</label>
+		      		<span id="shipAmount">0</span>
+		      	</td>		      	
+		      	<td class="col-sm-4" style='padding:1px;'>
+		      		<label class='col-sm-5 control-label' style='padding:0px;'>签收率</label>
+		      		<span id="sign">0</span>
+		      	</td>
+		    </tr>
+		    <tr>
+		      	<td class="col-sm-4" style='padding:1px;'>
+		      		<label class='col-sm-5 control-label' style='padding:0px;'>拒丢数</label>
+		      		<span id="rejectCount">0</span>
+		      	</td>
+		      	<td class="col-sm-4" style='padding:1px;'>
+		      		<label class='col-sm-5 control-label' style='padding:0px;'>拒丢金额</label>
+		      		<span id="rejectAmount">0</span>
+		      	</td>
+		      	<td class="col-sm-4" style='padding:1px;'>
+		      		<label class='col-sm-5 control-label' style='padding:0px;'>签收金额</label>
+		      		<span id="signAmount">0</span>
+		      	</td>
+		    </tr>
+	   </table> -->
+    </div>
+</div>

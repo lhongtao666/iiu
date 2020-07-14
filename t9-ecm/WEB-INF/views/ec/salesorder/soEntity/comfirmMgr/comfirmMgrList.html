@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>订单审核</title>
+	<#include "/common/common.html">
+	<#include "/common/ztree.html">
+	<script type="text/javascript">var curUserId = "${ONLINE_ENTITY.userId}";</script>
+	<link href="${ctx}/css/plugins/chosen/chosen.css?v=${jsVersion}" rel="stylesheet">
+	<link href="${ctx}/css/plugins/select2/select2.min.css?v=${jsVersion}" rel="stylesheet">
+	<script src="${ctx}/js/plugins/select2/select2.min.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/plugins/chosen/chosen.jquery.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/plugins/suggest/bootstrap-suggest.js?v=${jsVersion}"></script>
+	
+	
+	<style>
+		.test{
+			padding-right:8px !important;
+		}
+		.searchImg{
+		    width:24px;
+		    height:24px;
+		    margin:0 auto;
+		}
+		.skuSearchImg{
+		    border: 1px solid #e7eaec;
+		}
+
+		.skuSearchImg:hover{
+		    border: 1px solid #d2d2d2
+		}
+
+		.hideSearchParam{
+			display: none;
+		}
+		.popover{
+			z-index:2051;
+		}
+	</style>
+	<script type="text/javascript">
+		var simpleShowComment = "n";
+	   	var simpleShowLastFollow = "n";
+	   	var simpleShowProductSum = "n";	
+		var isUseReturnBack = "n";
+	   	<#if simpleShowComment??>
+           simpleShowComment = "${simpleShowComment}";
+       	</#if>
+       	<#if simpleShowLastFollow??>
+           simpleShowLastFollow = "${simpleShowLastFollow}";
+       	</#if>
+       	<#if simpleShowProductSum??>
+           simpleShowProductSum = "${simpleShowProductSum}";
+        </#if>
+        <#if isUseReturnBack??>
+           isUseReturnBack = "${isUseReturnBack}";
+        </#if>
+	</script>
+<script src='${ctx}/js/jt/ec/salesorder/comfirm/soEntityConfirmManager-site${deploy_min!""}.js?v=${jsVersion}' ></script>
+</head>
+
+<body>
+	<div style="display:none"  class="csFollowEdit" >
+		<div class="panel-body">
+			<form method="get" class="form-horizontal" id="csFollowForm">
+		   		<#include "/crm/cs/csEntity/csFollowEdit.html" >
+		   	</form>
+	   	</div>
+	</div>
+	<div style="display:none"  class="sendMessagePane" >
+	   	<#include "/crm/cs/csEntity/sendMessagePane.html" >
+	</div>
+	<div style="display:none"  class="soEntityClosePane" >
+	   	<#include "/ec/salesorder/soEntity/soEntityClose.html" >
+	</div>
+	<div style="display:none"  class="soEntityConfirmPane" >
+	   	<#include "/ec/salesorder/soEntity/soEntityConfirm.html" >
+	</div>
+	<div style="display:none"  class="soEntityTurnDownPane" >
+	   	<#include "/ec/salesorder/soEntity/soEntityTurnDown.html" >
+	</div>
+   	<#include "/ec/salesorder/soEntity/soEntitySplitSo.html" >
+	
+	<div class="wrapper animated ">
+		<button type="button" class="soEntityTabSpanSearch" style="display:none;"></button>
+		<!-- list界面 -->
+		<div class="row list_wrapper">
+			<div class="col-sm-12">
+				<div class="tabs-container">
+					<ul class="nav nav-tabs">
+						<li  id="soWaitComfirmTabLi" class="tabli active">
+							<a href="#tabSoWaitComfirm" data-toggle="tab">
+								待审核
+							</a>
+						</li>
+						<li  id="soDelayComfirmTabLi" class="tabli">
+							<a href="#tabSoDelayComfirm" data-toggle="tab">
+								延期审核
+							</a>
+						</li>
+						<li  id="soComfirmedTabLi" class="tabli"  >
+							<a href="#tabSoComfirmed" data-toggle="tab">
+								已审核
+							</a>
+						</li>
+						<li  id="soCloseTabLi" class="tabli"  >
+							<a href="#tabSoClose" data-toggle="tab">
+								已作废
+							</a>
+						</li>
+						<!-- 帮助中心 -->
+						<label id="glHelpContainer"></label>
+					</ul>
+
+					<div class="tab-content">
+						<div id="tabSoWaitComfirm" class="tab-pane active">
+							<div class="panel-body">
+								<div class='row'>
+									<#include "/ec/salesorder/soEntity/comfirm/soEntityWaitComfirm.html">		
+								</div>
+							</div>
+						</div>
+						<div id="tabSoDelayComfirm" class="tab-pane">
+							<div class="panel-body">
+								<div class='row'>
+									<#include "/ec/salesorder/soEntity/comfirm/soEntityDelayComfirm.html">		
+								</div>
+							</div>
+						</div>
+						<div id="tabSoComfirmed" class="tab-pane">
+							<div class="panel-body">
+								<div class='row'>
+									<#include "/ec/salesorder/soEntity/comfirm/soEntityComfirmedSim.html">		
+								</div>
+							</div>
+						</div>
+						<div id="tabSoClose" class="tab-pane">
+							<div class="panel-body">
+								<div class='row'>
+									<#include "/ec/salesorder/soEntity/comfirm/soEntityCloseSim.html">
+								</div>	
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<#include "/common/listTitleEdit.html">
+	</div>
+	<#include "/ec/salesorder/soEntity/soEntityEdit.html">
+</body>
+
+</html>

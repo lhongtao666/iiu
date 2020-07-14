@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>jt_wap_banner管理</title>
+    <#include "/common/common.html" />
+
+    <link href="${ctx}/css/plugins/chosen/chosen.css?v=${jsVersion}" rel="stylesheet" />
+    <link href="${ctx}/css/plugins/iCheck/custom.css?v=${jsVersion}" rel="stylesheet" />
+    <link href="${ctx}/css/plugins/select2/select2.min.css?v=${jsVersion}" rel="stylesheet">
+    <script src="${ctx}/js/plugins/select2/select2.min.js?v=${jsVersion}"></script>
+    <script src="${ctx}/js/plugins/iCheck/icheck.min.js?v=${jsVersion}"></script>
+    <script src="${ctx}/js/plugins/chosen/chosen.jquery.js?v=${jsVersion}"></script>
+    <script src="${ctx}/js/jt/common/service/selectProdService${deploy_min!''}.js?v=${jsVersion}"></script>
+    <script src="${ctx}/js/jt/gl/wap/wapBanner${deploy_min!''}.js?v=1.0.0"></script>
+    <script id='bannerLiTmpl' type="text/x-jsrender">
+        <li idVal="{{:id}}" class="sticker-item" style="width: 230px;height: 197px;"  sort='{{:sort}}' >
+            <div class="liDiv" >
+                <form method="get" class="form-horizontal">
+                    <div class="form-group">
+                        <div class="col-sm-12">
+                            <div class="col-sm-3">
+                            </div>
+                            <div class="col-sm-1"></div>
+                            <div class="col-sm-7">
+                                <!-- style="display: inline; height:100px;width:100px;" -->
+                                <div>
+                                    <span style="display: block; cursor: pointer; position: absolute; right: 0px; width:40px; height:40px;" class="operation-span pull-right">
+                                    	<i idVal="{{:id}}" class="fa fa-edit text-info editBanner" style=""></i>
+                                    	<i idVal="{{:id}}" class="fa fa-trash text-danger deleteBanner" style="margin-left:7px;"></i>
+                                    </span> {{if bannerUrl}}
+                                    <img style="display: inline; width:100%;height:100px;" src="{{:~getBannerUrl(bannerUrl)}}"> {{else}}
+                                    <img style="display: inline; width:100%;height:100px;" src="${ctx}/img/jt/nophoto.png"> {{/if}}
+                                </div>
+                            </div>
+                            <div class="col-sm-1"></div>
+                        </div>
+                    </div>
+                    <div class="form-group" style="margin-top:20px;">
+                        <div class="col-sm-12">
+                            <label class="col-sm-3 control-label">高度</label>
+                            <div class="col-sm-1"></div>
+                            <div class="col-sm-7">
+                                <input originVal="{{:height}}" idVal="{{:id}}" type="number" name="height" value="{{:height}}" class="form-control wapBannerHeight wapBannerInput" validatetype="default">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group" style="margin-top:20px;">
+                        <label class="col-sm-3 control-label">生效</label>
+                        <div class="col-sm-1"></div>
+                        <div class="col-sm-7">
+                            <input  idVal="{{:id}}" type="checkbox" {{if status=='active' }}checked='checked' {{/if}} value="active" class="js-switch wapBannerStatus wapBannerInput">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </li>
+    </script>
+    <style type="text/css">
+    	ul {
+            float: left;
+            margin: 0px;
+            overflow: hidden;
+            display: block;
+            width: auto;
+        }
+        
+        ul li {
+            list-style: none;
+            margin: 1em;
+            float: left;
+        }
+        .hight-light {
+            padding: 1em;
+            text-decoration: none;
+            color: #000;
+            background: #ffc;
+            display: block;
+            padding: 1em;
+            background: orange;
+            width: 230px;
+            height: 197px;
+        }
+        
+    </style>
+</head>
+
+<body class=''>
+    <div>
+        <div class="ibox">
+            <div class="ibox-title">
+                <h5>参数设置</h5>
+            </div>
+            <div class="ibox-content">
+                <form id="configForm" method="get" class="form-horizontal">
+                	 <#list configPos as configPo>   
+		               <div class="form-group">
+	                        <div class='col-sm-4'>
+	                            <label class="col-sm-3 control-label">${configPo.name}:</label>
+	                            <div class="col-sm-9">
+	                                <input idVal="${configPo.id}" type="text" name="configValue"  value="${configPo.value}" class="form-control configInput" validateType="default">
+	                            </div>
+	                        </div>
+	                    </div> 
+		            </#list>   
+                </form>
+            </div>
+        </div>
+        <!-- =============================================================== -->
+        <div class="ibox">
+            <div class="ibox-title">
+                <h5>首页广告图</h5>
+            </div>
+            <div class="ibox-content">
+                <div class="wrapper">
+                    <div class="row">
+                        <ul class="ui-sortable list-group " id="bannerLiContainer" style="list-style-type:none">
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="editModalContainer" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    <h4 class="modal-title" id="myModalLabel">编辑</h4>
+                </div>
+                <div class="modal-body">
+                    <form id="wapBannerForm" onsubmit="return false;" method="get" class="form-horizontal">
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                            	<input type="hidden" name="id" />
+                            	<input type="hidden" name="sort" />
+                                <label class="col-sm-2 control-label">图片</label>
+                                <!-- <div class="col-sm-6">
+                                <input type="text" name="bannerUrl" placeholder="" class="form-control" validatetype="default">
+                            </div> -->
+                                <div class="col-sm-8">
+                                    <div id="imageConatiner"></div>
+                                </div>
+                                <button type="button" id='selectDefaultImageBtn' class="btn btn-sm   btn-primary">选择图片</button>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <label class="col-sm-2 control-label">商品</label>
+                                <div class="col-sm-2">
+                                    <img class="targetProdPathImg" style="margin-left:8px;display: inline; height:35px;" src="${ctx}/img/jt/nophoto.png?dm=_mm">
+                                </div>
+                                <div class="col-sm-6">
+                                    <input type="text" readonly="readonly" name="targetProdName" placeholder="" class="form-control" validatetype="default">
+                                </div>
+                                <input type="hidden" name="targetProdId" />
+                                <button type="button" id="selectSkuBtn" class="btn btn-sm   btn-primary" style="display: block;">选择商品</button>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <label class="col-sm-2 control-label">当前图片URL</label>
+                                <!-- <div class="col-sm-6">
+                                <input type="text" name="bannerUrl" placeholder="" class="form-control" validatetype="default">
+                            </div> -->
+                                <div class="col-sm-10">
+                                    <input type="text" name="bannerUrl" placeholder="" class="form-control" validatetype="default">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <label class="col-sm-2 control-label">当前商品URL</label>
+                                <div class="col-sm-10">
+                                    <input type="text" name="targetUrl" placeholder="" class="form-control" validatetype="default">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-6">
+                                <label class="col-sm-4 control-label">高度</label>
+                                <div class="col-sm-6">
+                                    <input type="number" name="height" placeholder="" class="form-control" validatetype="default">
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <label class="col-sm-2 control-label">状态</label>
+                                <div class="col-sm-9" id="statusDiv">
+                                    <input type="checkbox" name="status" value="active" class="status-js-switch">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-sm   btn-default" data-dismiss="modal">取消</button>
+                    <button type="button" class="btn btn-sm   btn-primary" id='saveWapBannerBtn'>保存</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script type="text/javascript">
+</script>
+
+</html>

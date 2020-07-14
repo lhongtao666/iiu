@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>日常任务管理</title>
+    <#include "/common/common.html" />
+    <style type="text/css">
+    .margin-class {
+        margin-bottom: 20px;
+    }
+    </style>
+    <!-- aaaaaaaa -->
+    <script src="${ctx}/js/jt/common/utils/taskUtils${deploy_min!""}.js?v=${jsVersion}"></script>
+    <link href="${ctx}/css/plugins/timepicker/DateTimePicker.css?v=${jsVersion}" rel="stylesheet">
+    <script src="${ctx}/js/plugins/timepicker/DateTimePicker.js?v=${jsVersion}"></script>
+    <script src="${ctx}/js/plugins/timepicker/DatetimePicker-i18n-zh-CN.js?v=${jsVersion}"></script>
+    <!-- aaaaaaaaaa -->
+    <script type="text/javascript">
+    var id = "${id } ";
+    $(function() {
+        var currentTime = new Date();
+        currentTime.setMinutes(currentTime.getMinutes() + 10);
+        $("#dtBox").DateTimePicker({
+            language: 'zh-CN',
+            isPopup: false,
+            defaultDate: currentTime,
+            minDateTime: DateUtils.format(currentTime, DateUtils._CONS_.DEFAULT_DATE_TIME_PATTERN),
+        });
+        $("#selectCommonImageBtn").on("click", function() {
+            FileUtils.selectFile(1, function(files) {
+                if (files && files.length > 0) {
+                    $("#commonImageContainer").append(FileUtils.createFileDivStr(files));
+                }
+            });
+        });
+        $("body").on("click","a.openLink",function(e){
+            var type = $(this).attr("type");
+            var entityId = $(this).attr("entityId");
+            var contentLink = '';
+            switch (type) {
+                case 'jt_so_entity':
+                     var soNo = $(this).attr("entityName");
+                     var showNo = soNo;
+                     if (soNo.length > 4) {
+                         showNo = "*" + soNo.substring(soNo.length - 3, soNo.length);
+                     }
+                     conentLink = ctx + "/ec/salesorder/soEntity/detail.htm" + "?soNo=" + soNo;
+                     JTTabUtils.addOrRefreshTab(ctx + "/ec/salesorder/soEntity/detail.htm" + "?soNo=" + soNo, "订单[" + showNo + "]明细");
+                     e.stopPropagation();
+                    return;
+            }
+        });
+        TaskUtils._bindEventHandler();
+        FormUtils.loadData(ctx + "/gl/task/taskEntity/edit.htm" + "?id=" + id, function(data) {
+            if(!data){
+                DateUtils.error(msgCode.ERROR,"任务不存在或已被删除");
+                return;
+            }
+            $("[name=notifyTime]").val(data.notifyTime);
+            if(data.type!="simple"){
+                var taskNameLabel = new StringBuffer();
+                taskNameLabel.append('<label class="control-label" style="padding-top:0px;padding:5px; ">');
+                taskNameLabel.append(TaskUtils.dealTaskName(data));
+                taskNameLabel.append('</label>');
+                $("[name=name]").replaceWith(taskNameLabel.toString());
+                $(".isCsTaskEntity").show();
+                $("[name=csId]").val(data.entityId);
+                var nameArr = data.name.split(";");
+                if(nameArr && nameArr.length>0){
+                    $("[name=csEntityName]").val(nameArr[0]);
+                }
+            }else{
+                $(".isCsTaskEntity").hide();
+                $("[name=name]").val(data.name);
+            }
+            $("[name=endTime]").val(data.endTime);
+            $(".status-div").show();
+            $(".status-label").text(data.statusNameStr); //status
+            if("simple"!=data.type){
+                $(".entity-div").show();
+                var sb = new StringBuffer();
+                sb.append(data.typeName);
+                if(data.entityName){
+                    sb.append(" <a  entityName='"+data.entityName+"' entityId='" + data.entityId + "' class='openLink' type='" + data.type + "' href='javascript:void(0)'> ");
+                    sb.append('(');
+                    sb.append(data.entityName);
+                    sb.append(')');
+                    sb.append('</a>');
+                }
+                $(".entity-label").append(sb.toString());
+            }
+            $("[name=desc]").val(data.desc);
+            if (data.taskAttachPos) {
+                $("#commonImageContainer").append(FileUtils.createFileDivStr(data.taskAttachPos));
+            }
+
+            $("[name=id]").val(data.id);
+            $("[name=type]").val(data.type);
+            $("[name=entityId]").val(data.entityId);
+            $("[name=entityName]").val(data.partyId);
+            $("[name=notifyCount]").val(data.notifyCount);
+            $("[name=status]").val(data.status);
+            $("[name=partyId]").val(data.partyId);
+            $("[name=partyName]").val(data.partyAid+":"+data.partyName);
+            $(".deleteFile").hide();
+            $("#selectCommonImageBtn").attr("disabled",true);
+        });
+        FormUtils.disableForm("taskEntityForm");
+        $("#chooseTaskPartyBtn").attr("disabled",true);
+    });
+    </script>
+</head>
+
+<body >
+    <div class="panel-body" style="padding:10px;">
+        <#include "/gl/task/taskEntity/taskEntityForm.html" />
+    </div>
+</body>
+
+</html>

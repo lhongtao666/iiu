@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>任务调度计划管理</title>
+	<#include "/common/common.html">
+	<link href="${ctx}/css/plugins/chosen/chosen.css?v=${jsVersion}" rel="stylesheet" />
+	<script src="${ctx}/js/plugins/chosen/chosen.jquery.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/jt/gl/job/jobPlan${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script type="text/javascript">
+		var Q__S__EQ__job_id_ = '${Q__S__EQ__job_id_}';
+		$(function(){
+			var jobPlan = new JobPlan();
+			console.log("job-id:---->"+Q__S__EQ__job_id_);
+			var param = {
+				Q__S__EQ__job_id_:Q__S__EQ__job_id_,
+			}
+			jobPlan.init(param);
+		});
+	</script>
+</head>
+
+<body>
+	<div class="wrapper animated ">
+		<!-- list界面 -->
+		<div class="row list_wrapper">
+			<#include "/gl/job/jobPlan/jobPlanToolbar.html">	  			
+			<div class='col-sm-12 jqGrid_wrapper'>
+			    <table id="jobPlanGrid"></table>
+				<div id="jobPlanPager"></div>
+			</div>
+		</div>
+		<!-- 编辑界面 -->
+		<#include "/gl/job/jobPlan/jobPlanEdit.html">	    
+	</div>
+</body>
+</html>

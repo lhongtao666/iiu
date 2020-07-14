@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>个人业绩报表</title>
+	<#include "/common/common.html">
+	<script src="${ctx}/js/plugins/suggest/bootstrap-suggest.js?v=${jsVersion}"></script>	
+	<script src="${ctx}/js/plugins/echarts/3.1.7/theme/macarons.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/plugins/echarts/3.1.7/echarts.min.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/jt/common/plugins/report${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/crm/report/reportDateUtil${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/crm/report/profit/personProfitReport${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/common/service/findChannelSelect${deploy_min!""}.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/jt/common/utils/channelUtils${deploy_min!""}.js?v=${jsVersion}"></script>
+	<script type="text/javascript">
+       var curUserId = "${ONLINE_ENTITY.userId}";
+	</script>
+	<link rel="stylesheet" rev="stylesheet" type="text/css" media="all" href="${ctx}/css/bootstrap-select.css?v=${jsVersion}">
+	<script src="${ctx}/js/bootstrap-select.min.js?v=${jsVersion}" ></script>
+	<style> 
+		.panel .panel-heading .btn {
+		    margin-left: 0px;
+		}
+	   .channel-chosen-div .bootstrap-select {
+			width:100% !important;
+		}
+		#channelQry + div button {
+		    background-color: #fff !important;
+		    color: #333;
+		    border-radius: 2.5px;
+		    height: 28px;
+		    line-height: 15px;
+		}
+	</style>
+</head>
+<body class="white-bg">
+	<div class='wrapper'>
+		<div class='row list_wrapper'>
+			<div class='col-sm-12'>
+				<div class="panel panel-default">
+					<div class="panel-heading report-content">	
+						<form role="form" id='personProfitForm' class="form-horizontal  infoSearchFrom">
+							<div class='form-group'>
+								<label class="control-label col-sm-1">周期</label>	
+								<div class="col-sm-2">
+									<select name="timeTypeSearch" id="timeTypeSearch" placeholder=""
+										class="form-control" validateType="default">
+										<option value="day">按天</option>
+										<option value="month">按月</option>
+										<option value="quarter">按季度</option>
+										<option value="year">按年</option>
+									</select>
+								</div>
+								<div class="col-sm-2 yearElement">
+									<select name="yearSearch" id="yearSearch" placeholder=""
+										class="form-control" validateType="default">
+									</select>
+								</div>
+
+								<div class="col-sm-1 quarterElement">
+									<select name="quarterSearch" id="quarterSearch" placeholder=""
+										class="form-control" validateType="default">
+										<option value="1">1季度</option>
+										<option value="2">2季度</option>
+										<option value="3">3季度</option>
+										<option value="4">4季度</option>
+									</select>
+								</div>	
+
+								<div class="col-sm-1 monthElement">
+									<select name="monthSearch" id="monthSearch" placeholder=""
+										class="form-control" validateType="default">
+										<option value="1">1月</option>
+										<option value="2">2月</option>
+										<option value="3">3月</option>
+										<option value="4">4月</option>
+										<option value="5">5月</option>
+										<option value="6">6月</option>
+										<option value="7">7月</option>
+										<option value="8">8月</option>
+										<option value="9">9月</option>
+										<option value="10">10月</option>
+										<option value="11">11月</option>
+										<option value="12">12月</option>
+									</select>
+								</div>
+								<div class='col-sm-3'>
+									<button class="jt-form-select dayElement" id="prevBtn" type="button">前一天</button>
+									<button class="jt-form-select dayElement" id="nextBtn" type="button">后一天</button>	
+								</div>
+								
+								<div class="col-sm-4 dayElement"> 
+					                <div class="input-daterange input-group" id="datepicker">
+			                        	<input class='laydate-icon form-control layer-date' id="beginDate" name="beginDate" validateType="default" placeholder="起始时间" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">
+			                            <span class="input-group-addon">到</span>
+			                            <input class='laydate-icon form-control layer-date' id="endDate" name="endDate" validateType="default" placeholder="结束时间" onclick="laydate({istime: true, start: laydate.now(0, 'YYYY/MM/DD 23:59:59'), format: 'YYYY-MM-DD hh:mm:ss'})">
+			                        </div>
+					            </div>
+				            </div>
+				            <div class='form-group'>
+				            	<label class='control-label col-sm-1'>签收时间</label>	
+								<div class='col-sm-4'>
+									<div class="input-daterange input-group">
+										<input class="laydate-icon form-control layer-date completeStartTime" name="Q__D__BW__complete_time_" placeholder="起始时间" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">
+										<span class="input-group-addon">到</span>
+										<input class="laydate-icon form-control layer-date completeEndTime" name="Q__D__BW__complete_time_" placeholder="结束时间" onclick="laydate({istime: true, start: laydate.now(0, 'YYYY/MM/DD 23:59:59'), format: 'YYYY-MM-DD hh:mm:ss'})">
+									</div>
+								</div>
+								<label class='control-label col-sm-1'>拒收时间</label>	
+								<div class='col-sm-4'>
+									<div class="input-daterange input-group">
+										<input class="laydate-icon form-control layer-date rejectStartTime" name="Q__D__BW__reject_time_" placeholder="起始时间" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">
+										<span class="input-group-addon">到</span>
+										<input class="laydate-icon form-control layer-date rejectEndTime" name="Q__D__BW__reject_time_" placeholder="结束时间" onclick="laydate({istime: true, start: laydate.now(0, 'YYYY/MM/DD 23:59:59'), format: 'YYYY-MM-DD hh:mm:ss'})">
+									</div>
+								</div>
+				            </div>
+				            <div class='form-group'>
+				            	<label class="col-sm-1 control-label">客户意向</label>
+								<div class="col-sm-2"> 
+								    <select name="Q__S__EQ__interests_" placeholder="" class="form-control interstSearch" validateType="default" > 
+						               <option value="">请选择</option>
+								    </select>
+							    </div>
+							    <label class="control-label col-sm-1">渠道</label>
+							    <div class='col-sm-2 channel-chosen-div'>
+									<select class="selectpicker" id="channelQry" title="请选择" multiple data-live-search="true" data-live-search-placeholder="搜索"></select>
+								</div>
+								<label class="control-label col-sm-1">进线方式</label>
+								<div class='col-sm-2'>
+									<select name="Q__S__EQ__cs_entry_" class="form-control csEntrySearch" validateType="default"></select>
+								</div>
+								<div class='col-sm-3'>
+									<label class="col-sm-4 control-label" style='min-width: 67px;'>产品意向</label>
+									<div class="col-sm-8">
+										<div class="input-group">
+											<input type="text" class="form-control" name="Q__S__EQ__product_name_" id="searchProd">
+											<div class="input-group-btn">
+												<button type="button" class="btn btn-white dropdown-toggle" data-toggle="dropdown">
+													<span class="caret"></span>
+												</button>
+												<ul class="dropdown-menu dropdown-menu-right" role="menu"></ul>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+				            <div class='form-group'>
+				          	    <label class="control-label col-sm-1">计算类型</label>
+				           		<div class='col-sm-2'>
+									<select name="countType" id='countType' class="form-control" validateType="default">
+										<option value='count'>按下单数计算</option>
+										<option value='money'>按金额计算</option>
+									</select>
+								</div>
+				                <div class='col-sm-4'>
+							    	<button class="jt-quick-search opterate" type="button" >以操作时间统计</button>
+							    	<button type='button' class='jt-quick-search place' value="1">以下单时间统计</button>
+							    </div>
+							   
+					            <div class='col-sm-3'>
+					            	<button class="jt-btn-search" id="searchBtn"   type="button"><i class="fa fa-search"></i>&nbsp;搜索</button>
+					            	<button type='button' class='jt-btn-empty clearSearchFormBtn'><i class="fa fa-trash-o"></i>&nbsp;清空</button>
+						    		<button type='button' class='jt-btn-search exportExcel'><i class="fa fa-reply"></i>&nbsp;导出</button>
+									<input type="hidden"  name="reportKey"  value="${reportKey}">
+					  	    	</div>
+				  	    	</div>
+				  	    	<div class='form-group'>
+						    	<span>说明：以操作时间统计是指发货数以发货时间，签收数以签收时间，退货数以退货时间统计；以下单时间统计是指发货，签收，退货都以下单时间统计，而不管何时签收退货。</span>
+						    	<p class='notAddNewOther'>成单率公式：订单数 / （新进客户 + 新进会员）。</p>
+  						    	<p class='addNewOther' style='display:none;'>成单率公式：订单数 / （新进客户 + 新进会员 + 新进其它）</p>
+						    </div>
+						</form>
+					</div>
+				</div>
+			</div>
+
+			<div class="jqGrid_wrapper col-sm-12" >
+				<table id='performanceForMeReportGrid'></table>
+				<div id='performanceForMeReportPager'></div>
+			</div>
+		</div>	
+	</div>	
+</body>
+</html>

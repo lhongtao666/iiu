@@ -1,0 +1,39 @@
+<div class="col-sm-12">
+	<div class="panel panel-default">
+	    <div class="panel-heading">
+	    	<button type='button' class='btn btn-sm   btn-primary batchComplete'><i>完成</i></button>
+			<button type='button' class='btn btn-sm   btn-primary pointOrderDetail'><i>明细</i></button>
+			<button type='button' class='btn btn-sm   btn-primary pointOrderPrint'><i>打印快递单</i></button>
+			<button type='button' class='btn btn-sm   btn-primary pointOrderShip'><i>发货</i></button>
+	    </div>
+	    
+	    <div class="panel-body">
+	        <form id='pointOrderForm' role="form" class="form-horizontal">
+			<div class="form-group ">
+				<label  class="col-sm-1 control-label">下单时间</label> 
+				<div class='col-sm-5'>
+					<div class="input-daterange input-group">
+						<input class="laydate-icon form-control layer-date minPlaceTime" name="Q__D__BW__place_time_" placeholder="yyyy-mm-dd hh:mm:ss" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">
+						<span class="input-group-addon">到</span>
+						<input class="laydate-icon form-control layer-date maxPlaceTime" name="Q__D__BW__place_time_" placeholder="yyyy-mm-dd hh:mm:ss" onclick="laydate({istime: true, start: laydate.now(0, 'YYYY/MM/DD 23:59:59'), format: 'YYYY-MM-DD hh:mm:ss'})">
+					</div>
+				</div>
+				<label  class="col-sm-1 control-label">订单编号</label> 
+				<div class='col-sm-2'>
+					<input type="text" id='soNoSearch' placeholder="请输入订单编号" name="Q__D__EQ__so_no_" class="form-control">
+				</div>
+				<label  class="col-sm-1 control-label">客户</label> 
+				<div class='col-sm-2'>
+					<input type="text" id='soNoSearch' placeholder="请输入客户编号" name="Q__D__EQ__cs_code_" class="form-control">
+				</div>
+			</div>
+			<div class='form-group'> 
+				<div class='col-sm-4'></div>
+				<div class='col-sm-8'>
+					<button type='button' class="btn btn-sm   btn-primary pointOrderSearch">搜索</button>
+				</div>
+			</div>
+		</form>
+	    </div>
+	</div>
+</div>

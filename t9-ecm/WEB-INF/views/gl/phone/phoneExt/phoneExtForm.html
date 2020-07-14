@@ -1,0 +1,55 @@
+<div class="col-sm-12 needHidden" style="padding-top: 20px;">
+	<div class="panel panel-default">
+	   <div class="panel-heading">
+	      <h3 class="panel-title">生成分机号</h3>
+	   </div>
+	   <div class="panel-body">
+		   <form  method="get" class="form-horizontal">
+				<div class='form-group'>
+					<div class='col-sm-2'>
+						<label class="col-sm-6 control-label">开始分机</label>
+						<div class="col-sm-6">
+							<input type="text" id="extBegin" placeholder="" class="form-control" validateType="default" > 
+						</div>
+					</div>
+
+					<div class='col-sm-2'>
+						<label class="col-sm-6 control-label">结束分机</label>
+						<div class="col-sm-6">
+							 <input type="text" id="extEnd" placeholder="" class="form-control" validateType="default" > 
+						</div>
+					</div>
+			     	 <div class='col-sm-2'>	
+						<button type='button' class="btn btn-sm   btn-primary produceBtn">生成</button>
+					</div>
+				</div>
+			</form>
+	   </div>
+	</div>
+	<div class="row list_wrapper">
+			<div class="col-sm-12">
+		        <div class="tabs-container">
+			        <ul class="nav nav-tabs">
+			            <li  id="phoneTabLi" class="tabli active">
+	                        <a href="#relatedPhone" data-toggle="tab">关联号码</a>
+			            </li>
+			            <li  id="ctiTabLi" class="tabli">
+	                        <a href="#relatedCTI" data-toggle="tab">关联CTI</a>
+			            </li>
+			         </ul>
+			         
+			         <div class="tab-content">
+			            <div id="relatedPhone" class="tab-pane active">
+	                        <div class="panel-body">
+	                        </div>
+			            </div>
+			            <div id="relatedCTI" class="tab-pane">
+	                        <div class="panel-body">
+	                            
+	                        </div>
+			            </div>
+			         </div>
+			      </div>
+				</div>
+	</div>
+</div>

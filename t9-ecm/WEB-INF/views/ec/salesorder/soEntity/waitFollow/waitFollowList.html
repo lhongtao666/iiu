@@ -1,0 +1,28 @@
+<script type="text/javascript">
+   var curUserId = "${ONLINE_ENTITY.userId}";
+   var empType="${empType}";
+</script>
+
+<script src="${ctx}/js/jt/ec/salesorder/waitFollow/soEntityFollow${deploy_min!""}.js?v=${jsVersion}" ></script>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+       <h4 class="titleName"></h4>
+    </div>
+    <div class="panel-body">
+	    <table class='table table-bordered table-stripped'>
+	    	<thead>
+	    		<th>订单编号</th>
+	    		<th>客户</th>
+	    		<th>订单类型</th>
+	    		<th>订单状态</th>
+	    		<th>付款方式</th>
+	    		<th>金额(元)</th>
+	    		<th>下单时间</th>
+	    	</thead>
+	    	<tbody id='waitFollowContainer'>
+	    		
+	    	</tbody>
+	    </table>
+    </div>
+</div>

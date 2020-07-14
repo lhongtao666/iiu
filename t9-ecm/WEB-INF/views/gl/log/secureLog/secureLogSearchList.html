@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>客户相关安全日志管理</title>
+	<#include "/common/common.html">
+	<script src="${ctx}/js/jt/gl/log/secureLogSearch${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script>
+		var logType = "";
+		<#if logType??>
+			logType = "${logType}";
+		</#if>
+		var beginDate = "";
+		<#if beginDate??>
+			beginDate = "${beginDate}";
+		</#if>
+		var endDate = "";
+		<#if endDate??>
+			endDate = "${endDate}";
+		</#if>
+		var searchValue = "";
+		<#if searchValue??>
+			searchValue = "${searchValue}";
+		</#if>
+	</script>
+</head>
+
+<body>
+	<div class="wrapper animated fadeInRight">
+		<!-- list界面 -->
+		<div class="col-sm-12">
+			<div class="panel panel-default">
+				<div class="panel-body">
+					<form id='secureLogDetailSearchForm' role="form" class="form-horizontal" style=>
+						<label class="col-sm-1 control-label">创建时间</label>
+						<div class='col-sm-4'>
+							<div class="input-daterange input-group">
+								<input class="laydate-icon form-control layer-date" name="beginDate" placeholder="yyyy-mm-dd hh:mm:ss" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">
+								<span class="input-group-addon">到</span>
+								<input class="laydate-icon form-control layer-date" name="endDate" placeholder="yyyy-mm-dd hh:mm:ss" onclick="laydate({istime: true, start: laydate.now(0, 'YYYY/MM/DD 23:59:59'), format: 'YYYY-MM-DD hh:mm:ss'})">
+							</div>
+						</div>
+						<div class='col-sm-1'>
+							<button type='button' class="btn btn-sm jt-btn-normal  btn-primary secureOperLogDetailSearch">搜索</button>                       
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		<div class="row list_wrapper"> 			
+			<div class='col-sm-12 jqGrid_wrapper'>
+				<table id="secureLogGrid"></table>
+				<div id="secureLogPager"></div>
+			</div>
+		</div>
+
+		<!-- 编辑界面 -->
+		<#include "/gl/log/secureLog/secureLogEdit.html">	    
+	</div>
+</body>
+</html>

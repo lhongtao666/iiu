@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>促销活动管理</title>
+	<#include "/common/common.html">
+	<#include "/common/ztree.html">
+	<script src="${ctx}/js/jt/common/service/selectProd${deploy_min!""}.js?v=${jsVersion}"></script>
+	
+	<script src="${ctx}/js/jt/ec/rule/selectCouponUtils${deploy_min!""}.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/jt/ec/rule/ruleDef${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/ec/rule/promoDef${deploy_min!""}.js?v=${jsVersion}" ></script>
+</head>
+
+<body class='white-bg'>
+	<div class="wrapper animated ">
+		<div class="row list_wrapper">
+			<#include "promoDefToolbar.html">	  			
+			<div class='col-sm-12 jqGrid_wrapper'>
+			    <table id="promoDefGrid"></table>
+				<div id="promoDefPager"></div>
+			</div>
+			<#include "promoDefEdit.html">	    
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<div class="col-sm-12">
+	<div class="panel panel-default">
+	    <div class="panel-heading">
+			<button type='button' class='btn btn-sm btn-primary jt-btn-normal employeeCompleteDetail'><i class='fa fa-list'>明细</i></button>
+	    </div>
+	    <div class="panel-body">
+	        <form role="form" class="form-horizontal">
+				<!--默认生成一个搜索条件，需要的，用户自己添加-->
+				<div class="form-group">
+					<label class="col-sm-1 control-label">员工</label>
+					<div class="col-sm-2">
+						<select name='Q__S__EQ__target.employee_id_' id='belongEmployeeSearch' class='form-control' style='width: 100%;'></select>			
+		            </div>
+					<label class='control-label col-sm-1'>目标时间</label> 
+					<div class="col-sm-2">
+						<input class="laydate-icon form-control layer-date" name="Q__S__EQ__period_" placeholder="yyyy-mm" validateType="default" onclick="laydate({istime: false, format: 'YYYY-MM'})">
+					</div>
+					<label class='control-label col-sm-1'>是否达成</label> 
+					<div class='col-sm-2'>
+						<select  name="isComplete"  class="form-control">
+							<option value="">请选择</option>
+		               		<option value="y">达成</option>
+		               	    <option value="n">未达成</option>
+						</select>
+					</div>				
+				</div>		
+				<div class="form-group" >
+					<label class='control-label col-sm-1'>排序</label> 
+					<div class="radio radio-info radio-inline">
+						<input type="radio" id="searchComplete" value="complete" name="searchSort">
+						<label for="complete">完成度</label>
+					</div>
+					<div class="radio radio-info radio-inline">
+						<input type="radio" id="searchMoney" value="money" name="searchSort">
+						<label for="money">业绩金额</label>
+					</div>
+					<button type='button' class="btn btn-sm btn-primary jt-btn-normal employeeCompleteSearch">搜索</button>
+				</div>				
+			</form>
+	    </div>
+	</div>
+</div>

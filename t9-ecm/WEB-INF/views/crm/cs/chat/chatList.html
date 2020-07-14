@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>客户账户管理</title>
+</head>
+<style>
+	.sender{clear:both}
+	.sender div:nth-of-type(1){float:left}
+	.sender div:nth-of-type(2){background-color:#7fffd4;float:left;margin:0 20px 10px 15px;padding:10px 10px 10px 0;border-radius:7px}
+	.sender div:nth-of-type(2):before{
+		    display: block;
+		    content: " ";
+		    float: right;
+		    width: 0;
+		    height: 0;
+		    border-color: transparent;
+		    border-style: solid;
+		    border-width: 8px 8px 8px 0;
+		    border-right-color: #7fffd4;
+		    margin-top: 5px;
+		    border-left-color: #7fffd4;
+	}
+	.receiver div:first-child img,.sender div:first-child img{width:50px;height:50px}
+	.receiver{clear:both}.receiver div:nth-child(1){float:right}
+	.receiver div:nth-of-type(2){float:right;background-color:gold;margin:0 10px 10px 20px;padding:10px 0 10px 10px;border-radius:7px}
+	.left_triangle{height:0;width:0;border-width:8px;border-style:solid;border-color:transparent #7fffd4 transparent transparent;position:relative;left:-16px;top:3px}
+	.right_triangle{height:0;width:0;border-width:8px;border-style:solid;border-color:transparent transparent transparent gold;position:relative;right:-16px;top:3px}
+</style>
+<body class='white-bg'>
+	<div style="margin:0 auto;width:50%;border:1px solid;height:500px;">
+		<div class="sender">
+	      <div>
+	          <img src="${ctx}/img/jt/logos/t9.png">
+	      </div>
+		  <div>
+		      <span> hello, man! </span>
+		   </div>
+	  </div>
+	  <div class="receiver">
+	      <div>
+	          <img src="${ctx}/img/jt/logos/t9.png">
+	      </div>
+	   <div>
+	        <span> hello world </span>
+	   </div>
+	  </div> 
+  </div>
+</body>
+
+</html>

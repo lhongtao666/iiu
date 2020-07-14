@@ -1,0 +1,36 @@
+<div class="col-sm-12">
+	<div class="panel panel-default">
+	    <div class="panel-heading">
+	   		<button type='button' class='jt-btn jt-dd-normal toExportStatExcel'><i class='fa fa-reply'></i>&nbsp;导出统计</button>		   
+			<button type='button' class='jt-btn jt-dd-normal toExportExcel'><i class='fa fa-reply'></i>&nbsp;导出明细</button>
+	    </div>
+	    <div class="panel-body">
+		    <form id='soShipmentStatSearchForm' role="form" class="form-horizontal">
+				<div class="form-group jt-form-group jt-form-normal">
+					<div class='col-sm-6 jt-date-param'>
+						<label class="col-sm-2 control-label">下单时间</label>
+						<div class='col-sm-10'>
+						    <div class="input-daterange input-group">
+	                        	 <input type="text" id='placeTimeStatStartSearch' placeholder="起始时间" name="Q__D__BW__entity.create_time_" class='laydate-icon form-control layer-date timeStartSearch' 
+	                        	 onclick="laydate({ istime: true, format: 'YYYY-MM-DD hh:mm:ss'})" style="cursor:pointer;">   
+	                            <span class="input-group-addon">到</span>
+	                            <input type="text" placeholder='结束时间' name="Q__D__BW__entity.create_time_"  class='laydate-icon form-control layer-date timeEndSearch' 
+	                            onclick="laydate({istime: true, start: laydate.now(0, 'YYYY/MM/DD 23:59:59'), format: 'YYYY-MM-DD hh:mm:ss'})" style="cursor:pointer;">                        
+	                        </div>
+		                </div>
+					</div>
+					<div class="col-sm-3">
+						<label class="col-sm-4 control-label">快递公司</label>
+						<div class="col-sm-8"> 
+							<select name="Q__S__EQ__ship.sc_code" id="scNameStatSearch" class="form-control" validateType="default">
+						    </select>
+						</div>
+					</div>
+					<div class='col-sm-3 jt-form-btn'>
+						<button type='button' class="btn jt-btn-search soShipmentStatSearch">搜索</button>
+					</div>
+		    	</div>
+   			</form>
+	    </div>
+	</div>
+</div>

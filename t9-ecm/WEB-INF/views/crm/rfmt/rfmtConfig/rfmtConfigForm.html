@@ -1,0 +1,62 @@
+<div class='row' style='border: 1px solid #ddd; margin-left: 15px; margin-right: 15px;padding:10px;'>
+	<div class='col-sm-12'>
+		<form id="rfmtConfigForm" method="get" class="form-horizontal">
+
+
+			<div class="form-group">
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">MT价值<@JTtip msg="MT价值" /></label>
+					<div class="col-sm-9">
+						<select name="mt" placeholder="" class="form-control">
+							<option value="未消费">未消费</option>
+							<option value="一般">一般</option>
+							<option value="常规">常规</option>
+							<option value="重要">重要</option>
+							<option value="核心">核心</option>
+						</select>
+					</div>
+				</div>		
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">RF价值<@JTtip msg="RF价值" /></label>
+					<div class="col-sm-9">
+						<select name="rf" placeholder="" class="form-control">
+							<option value="未成交">未成交</option>
+							<option value="激活">激活</option>
+							<option value="挽留">挽留</option>
+							<option value="发展">发展</option>
+							<option value="保持">保持</option>
+						</select>
+					</div>
+				</div>		
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">排序<@JTtip msg="排序" /></label>
+					<div class="col-sm-9">
+						<input type="text" name="sort" placeholder=""  validateType="default"  class="digits form-control"> 
+					</div>
+				</div>
+
+			</div>
+			<div class="form-group">
+				<div class='col-sm-12'>
+					<label class="col-sm-1 control-label">营销建议<@JTtip msg="营销建议" /></label>
+					<div class="col-sm-11">
+						<textarea  name="suggest" placeholder="" class="form-control" validateType="default" > 
+						</textarea>
+					</div>
+				</div>
+			</div>
+
+
+			<div class='form-group'>
+				<!--将隐藏域放在这里，不显示出来-->
+				<div style="display:none'">
+					<input type="hidden" id="id" name="id">
+					<input type="hidden" name="createBy">
+					<input type="hidden" name="createTime">
+					<input type="hidden" name="name">
+				</div>
+			</div>
+
+		</form>
+	</div>
+</div>

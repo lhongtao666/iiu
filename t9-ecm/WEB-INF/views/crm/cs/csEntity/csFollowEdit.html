@@ -1,0 +1,81 @@
+<div style="display:none" class="csFollowEdit" style='overflow-y:hidden'>
+	<div class="panel-body" style="padding:2px;">
+		<form id='csFollowForm' class='form-horizontal'>
+			<div class='form-group'>
+			    <div class="col-sm-6">
+					<label class="col-sm-4 control-label">跟进标签</label>
+					<div class="col-sm-8">
+						<select class='form-control' id="followType" name='type' validateType="default">
+						</select>
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<label class="col-sm-8 control-label">待办设置</label>
+					<div class="col-sm-4" id="hasTaskDiv">
+					</div>
+				</div>
+				<div class="col-sm-3" style="display:none;" id="isSmsDivContainer">
+					<label class="col-sm-5 control-label">短信</label>
+					<div class="col-sm-4" id="isSmsDiv">
+					</div>
+				</div>
+			</div>
+				
+			<div class='form-group' id='followEmployeeDiv' style="display:none">
+				<div class="col-sm-6">
+					<label class="control-label col-sm-4">待办人</label>
+					<div class="col-sm-5">
+						<input type="hidden" name="partyId" >
+						<input type="hidden" name="employeeAid" >
+						<div class="input-group">
+							<input type="text" name='partyShow' class="form-control" placeholder="请输入工号或者姓名" validateType="default" />
+							<div class="input-group-btn">
+								<ul class="dropdown-menu dropdown-menu-right" role="menu">
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<button type="button" class="btn btn-sm   btn-primary  selectEmployee">选择员工</button>
+					</div>
+				</div>
+				<div class="col-sm-6">
+					<label class="control-label col-sm-4">待办时间</label>
+					<div class="col-sm-6" >
+						<input class='laydate-icon form-control layer-date' id="followTaskTime" name="taskTime" placeholder="YYYY-MM-DD hh:mm" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm'})">
+					</div>
+				</div>
+			</div>
+				
+			<div class='form-group'>
+				<div class="col-sm-12">
+					<label class="col-sm-2 control-label">待办内容</label>
+					<style>
+						.followContentDiv .tooltip {
+							position: fixed;
+							top: auto !important;
+							left: auto !important;
+						}
+					</style>
+					<div class="col-sm-9 followContentDiv">
+						<textarea rows="5" id="followContent" name="content" class="form-control" validateType="default" maxlength="1024"></textarea>
+					</div>
+				</div>
+			</div>
+			<div class='form-group' id='smsContentDiv' style="display:none">
+				<div class="col-sm-12">
+					<label class="col-sm-2 control-label">短信内容</label>
+					<div class="col-sm-9">
+						<textarea rows="5" id="smsContent" name="smsContent" class="form-control" validateType="default"></textarea>
+					</div>
+				</div>
+			</div>
+			<button type="button" class="saveAddFollow" style="display:none;">保存跟进</button>
+			<input type="hidden" name="csFollowPhone"/>
+			<input type="hidden" name="csFollowId"/>
+			<input type="hidden" name="csId"/>
+			<input type="hidden" name="csCode">
+			<input type="hidden" name="contentExt">
+		</form>
+	</div>
+</div>

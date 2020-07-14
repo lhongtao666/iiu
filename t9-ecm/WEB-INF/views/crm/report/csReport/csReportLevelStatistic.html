@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>客户级别统计报表</title>
+	<#include "/common/common.html">
+	<#include "/common/ztree.html">
+	<script src="${ctx}/js/plugins/echarts/3.1.7/theme/macarons.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/plugins/echarts/3.1.7/echarts.min.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/jt/common/plugins/report${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/crm/report/reportDateUtil${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/crm/report/cs/csLevelStatistic${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/common/utils/groupUtils${deploy_min!""}.js?v=${jsVersion}"></script>
+	<script src='${ctx}/js/jt/common/service/employeesSelectLayer${deploy_min!""}.js?v=${jsVersion}'></script>
+
+	<style>
+		.searchImg{
+		    width:24px;
+		    height:24px;
+		    margin:0 auto;
+		}
+		.partySearchImg{
+		    border: 1px solid #e7eaec;
+		}
+
+		.partySearchImg:hover{
+		    border: 1px solid #d2d2d2
+		}
+
+	</style>
+</head>
+
+<body class="white-bg">
+	<div class='wrapper'>
+		<div class='row list_wrapper'>
+			<div class='col-sm-12'>
+				<div class="panel panel-default">
+					<div class="panel-heading report-content">	
+						<form role="form" class="form-horizontal  statisticsSearchFrom">
+							<div class='form-group'>
+								<label class="control-label col-sm-1">周期</label>	
+								<div class="col-sm-2">
+									<select name="timeTypeSearch" id="timeTypeSearch" placeholder=""
+										class="form-control" validateType="default">
+										<option value="day">按天</option>
+										<option value="month">按月</option>
+										<option value="quarter">按季度</option>
+										<option value="year">按年</option>
+									</select>
+								</div>
+
+								<div class="col-sm-2 yearElement">
+									<select name="yearSearch" id="yearSearch" placeholder=""
+										class="form-control" validateType="default">
+									</select>
+								</div>
+
+								<div class="col-sm-1 quarterElement">
+									<select name="quarterSearch" id="quarterSearch" placeholder=""
+										class="form-control" validateType="default">
+										<option value="1">1季度</option>
+										<option value="2">2季度</option>
+										<option value="3">3季度</option>
+										<option value="4">4季度</option>
+									</select>
+								</div>	
+
+								<div class="col-sm-1 monthElement">
+									<select name="monthSearch" id="monthSearch" placeholder=""
+										class="form-control" validateType="default">
+										<option value="1">1月</option>
+										<option value="2">2月</option>
+										<option value="3">3月</option>
+										<option value="4">4月</option>
+										<option value="5">5月</option>
+										<option value="6">6月</option>
+										<option value="7">7月</option>
+										<option value="8">8月</option>
+										<option value="9">9月</option>
+										<option value="10">10月</option>
+										<option value="11">11月</option>
+										<option value="12">12月</option>
+									</select>
+								</div>
+								
+								<div class='col-sm-2'>
+									<button class="btn btn-sm   btn-primary dayElement" id="prevBtn" type="button">前一天</button>
+									<button class="btn btn-sm   btn-primary dayElement" id="nextBtn" type="button">后一天</button>	
+								</div>
+								
+								<div class="col-sm-4 dayElement"> 
+					                <div class="input-daterange input-group" id="datepicker">
+						            	<input class='laydate-icon form-control layer-date' id="beginDate" name="beginDate" validateType="default" placeholder="开始时间" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">
+			                            <span class="input-group-addon">到</span>
+			                            <input class='laydate-icon form-control layer-date' id="endDate" name="endDate" validateType="default" placeholder="结束时间" onclick="laydate({istime: true, start: laydate.now(0, 'YYYY/MM/DD 23:59:59'), format: 'YYYY-MM-DD hh:mm:ss'})">
+			                        </div>
+					            </div>
+							</div>
+							
+							<div class='form-group'>
+								<div class='col-sm-1' style='text-align:right;'><label class='control-label con-sm-1'>部门</label></div>	
+							    <div class='col-sm-2'>
+							     	<input id='groupName' class='form-control' readonly>
+							     	<input type='hidden' id='authPartyName' name='authPartyName'>
+							    </div>
+							    <label class="control-label col-sm-1">员工</label>
+								<div class='col-sm-2'>
+									<select name="authEmpName" id='authEmpName' class="form-control" validateType="default"></select>
+								</div>
+							    <div class="col-sm-2">	
+					    			<div class='checkbox checkbox-success checkbox-inline' style='margin-right:0'>
+							    		<input type='checkbox' checked class='isDefaultMember' value="">
+							    		<label>是否统计默认会员</label>
+						    		</div>
+					    		</div>
+							    <div class='col-sm-2'>
+							    	<button class="btn btn-sm   btn-primary" id="searchBtn"   type="button">搜索</button>
+							    	<button type='button' class='btn btn-sm   btn-primary exportExcel' >导出</button>
+							    	<input type="hidden"  name="reportKey"  value="${reportKey}">
+							    </div>
+						    </div>
+						    <div class='form-group'>
+						    	<span>说明：统计各部门或员工的会员级别数量。</span>
+						    </div>
+						</form>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-12">
+				<table class='table table-bordered table-stripped' id='levelStatisticTable'>
+			    	<thead id='levelStatisticThead' style='background-color: #6293BA; color:white;'>
+			    		<th width='20%' style="border-right: 2px solid rgb(242, 242, 242); border-bottom: 1px solid rgb(242, 242, 242);text-align: center;">部门</th>
+			    		<th width='10%' style='text-align: center;'>员工</th>
+			    		<th width='9%' class='defaultLevel' style='text-align: center;'>默认会员</th>
+			    		<th width='9%' style='text-align: center;'>普通会员</th>
+			    		<th width='9%' style='text-align: center;'>铜卡会员</th>
+			    		<th width='9%' style='text-align: center;'>银卡会员</th>
+			    		<th width='9%' style='text-align: center;'>金卡会员</th>
+			    		<th width='9%' style='text-align: center;'>白金卡会员</th>
+			    		<th width='9%' style='text-align: center;'>钻卡会员</th>
+			    		<th width='7%' style='text-align: center;'>小计</th>
+			    	</thead>
+			    	<tbody id='levelStatisticTbody' style='text-align: center;'></tbody>
+		   		</table>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>

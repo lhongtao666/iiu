@@ -1,0 +1,66 @@
+<div class='row' style='border: 1px solid #ddd; margin-left: 15px; margin-right: 15px;padding:10px;'>
+	<div class='col-sm-12'>
+		<form id="weixinSubscribeForm" method="get" class="form-horizontal">
+
+
+			<div class="form-group">
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">open_id_<@JTtip msg="open_id_" /></label>
+					<div class="col-sm-9">
+						<input type="text" name="openId" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">wechat_alias_<@JTtip msg="wechat_alias_" /></label>
+					<div class="col-sm-9">
+						<input type="text" name="wechatAlias" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">nick_name_<@JTtip msg="nick_name_" /></label>
+					<div class="col-sm-9">
+						<input type="text" name="nickName" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+			</div>
+			<div class="form-group">
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">head_img_url_<@JTtip msg="head_img_url_" /></label>
+					<div class="col-sm-9">
+						<input type="text" name="headImgUrl" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">subscribe_<@JTtip msg="subscribe_" /></label>
+					<div class="col-sm-9">
+						<input type="text" name="subscribe" placeholder=""  validateType="default"  class="digits form-control"> 
+					</div>
+				</div>
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">subscribe_time_<@JTtip msg="subscribe_time_" /></label>
+					<div class="col-sm-9">
+						<input class='laydate-icon form-control layer-date' name="subscribeTime" validateType="default"  placeholder="YYYY-MM-DD hh:mm:ss" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">
+					</div>
+				</div>
+
+			</div>
+
+
+
+			<div class='form-group'>
+				<!--将隐藏域放在这里，不显示出来-->
+				<div style="display:none'">
+					<input type="hidden" id="id" name="id">
+					<input type="hidden" name="createBy">
+					<input type="hidden" name="createTime">
+				</div>
+			</div>
+
+		</form>
+	</div>
+</div>

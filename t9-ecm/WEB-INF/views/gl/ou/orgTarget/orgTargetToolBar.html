@@ -1,0 +1,37 @@
+<div class="col-sm-12">
+	<div class="panel panel-default">
+	    <div class="panel-heading">
+	    	<button type='button' class='btn btn-sm  btn-primary jt-btn-normal groupTargetToGroup'><i class='fa fa-edit'>分配给部门</i></button>
+			<button type='button' class='btn btn-sm   btn-primary jt-btn-normal orgTargetToEmployee'><i class='fa fa-edit'>分摊给员工</i></button>
+			<button type='button' class='btn btn-sm   btn-primary jt-btn-normal orgTargetDetail'><i class='fa fa-list'>明细</i></button>
+	    </div>
+	    <div class="panel-body">
+	        <form id="orgTargetSearchForm" role="form" class="form-horizontal">		      
+				<div class="form-group" >
+					<label class="col-sm-1 control-label">状态</label>
+					<div class="col-sm-2">
+						<select class="form-control" name="Q__S__EQ__status_" validateType="default" >
+							<option value="">请选择</option>
+							<option value="draft">草稿</option>
+		               	    <option value="publish">发布</option>
+		               		<option value="assign">已分配</option>
+		              	</select>
+		            </div>
+					<label class='control-label col-sm-1'>目标时间</label> 
+					<div class="col-sm-2">
+						<input class="laydate-icon form-control layer-date" name="Q__S__EQ__period_" placeholder="yyyy-mm" validateType="default" onclick="laydate({istime: false, format: 'YYYY-MM'})">
+					</div>
+					<label class='control-label col-sm-1'>是否达成</label> 
+					<div class='col-sm-2'>
+						<select  name="isComplete" class="form-control">
+							<option value="">请选择</option>
+		               	    <option value="y">达成</option>
+		               	    <option value="n">未达成</option>
+						</select>
+					</div>
+					<button type='button' class="btn btn-sm btn-primary jt-btn-normal groupTargetSearch">搜索</button>
+				</div>
+			</form>
+	    </div>
+	</div>
+</div>

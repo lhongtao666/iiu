@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>物流费公式管理</title>
+	<#include "/common/common.html">
+	<script src="${ctx}/js/jt/ec/ship/shipFeeFormula.js?v=1.0.0" ></script>
+</head>
+
+<body>
+	<div class="wrapper animated fadeInRight">
+		<!-- list界面 -->
+		<div class="row list_wrapper">
+			<#include "/ec/ship/shipFeeFormula/shipFeeFormulaToolbar.html">	  			
+			<div class='col-sm-12 jqGrid_wrapper'>
+			    <table id="shipFeeFormulaGrid"></table>
+				<div id="shipFeeFormulaPager"></div>
+			</div>
+		</div>
+		<!-- 编辑界面 -->
+		<#include "/ec/ship/shipFeeFormula/shipFeeFormulaEdit.html">	    
+	</div>
+</body>
+</html>

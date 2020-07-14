@@ -1,0 +1,174 @@
+<style>
+  #batchUpdateModalLabel {
+        color: #fff;
+        font-weight: 500;
+    }
+    #batchUpdateModalLabel > span {
+        color: #f5f5f5;
+        font-size: 12px;
+    }
+    #batchUpdateModalLabel > span > font {
+        color: gold;
+    }
+
+</style>
+<div class="modal fade" tabindex="-1" id="batchUpdateContainer" role="dialog" aria-labelledby="batchUpdateModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color: #1caf9a;padding: 10px;">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span style="color: black" aria-hidden="true">&times;</span></button>
+                <h3 class="modal-title" id="batchUpdateModalLabel"></h3>
+            </div>
+
+            <div class="modal-body" style='padding:10px 10px 0 10px;'>
+				<form id="csBatchUpdateForm" >
+			        <table class="table table-bordered">
+			        	<tr>
+			                <td width="30%" class="tlable">
+			                	<div class="checkbox checkbox-success checkbox-inline">
+			                		<input type="checkbox" class="columnCheckBox" id="checkName" value="checkName">
+			                		<label for="checkName">客户姓名</label>
+			               		</div>
+			                </td>
+			                <td width="70%">
+			 					<div class='col-sm-6'>
+			               			<input type="text"  name='batchUpdateName' class='form-control'></input>
+			               		</div>
+			               		<div class='col-sm-6'>
+									<select class='form-control' id='nameType' validateType="default">
+										<option value='behind'>后缀</option>
+										<option value='front'>前缀</option>						
+									</select>   
+								</div>
+				            </td>
+			            </tr>
+			            <tr>
+			                <td width="30%" class="tlable">
+			               		<div class="checkbox checkbox-success checkbox-inline">
+			                		<input type="checkbox" class="columnCheckBox" id="checkDesc" value="checkDesc">
+			                		<label for="checkDesc">客户备注</label>
+			               		</div>
+			                </td>
+			                <td width="70%">
+			                    <div class='col-sm-6'>
+			               			<input type="text"  name='batchUpdateDesc' class='form-control'></input>
+			               		</div>
+			               		<div class='col-sm-6'>
+									<select class='form-control col-sm-6' id='descType' validateType="default">
+										<option value='behind'>后缀</option>
+										<option value='front'>前缀</option>						
+									</select>  
+								</div> 
+				            </td>
+			            </tr>
+			        	<tr class='batchUpdateAidTr'>
+			                <td width="30%" class="tlable">
+			               		<div class="checkbox checkbox-success checkbox-inline">
+			                		<input type="checkbox" class="columnCheckBox" id="checkAid" value="checkAid">
+			                		<label for="checkAid">归属工号</label>
+			               		</div>
+			               	</td>
+			                <td width="70%">
+			                   <div class="col-sm-8">
+			                       <select name='employeeIdSearch' class='form-control' style='width: 100%;'></select>			
+			                    </div>
+			                </td>
+			            </tr>
+			            <tr>
+			                <td width="30%" class="tlable">
+			               	    <div class="checkbox checkbox-success checkbox-inline">
+			                		<input type="checkbox" class="columnCheckBox" id="checkBizType" value="checkBizType">
+			                		<label for="checkBizType">客户分类</label>
+			               		</div>
+			               	</td>
+			                <td width="70%">
+			                <select class='form-control' id='batchUpdateBizType'
+									validateType="default"></select>
+			                </td>
+			            </tr>
+			
+			            <tr>
+			                <td width="30%" class="tlable">
+			                	<div class="checkbox checkbox-success checkbox-inline">
+			                		<input type="checkbox" class="columnCheckBox" id="checkSrc" value="checkSrc">
+			                		<label for="checkSrc">渠道来源</label>
+			               		</div>
+			                </td>
+			                <td width="70%">
+				                <div class="input-group">
+									<input type="hidden" class='batchUpdateSrcVal'>
+									<input type="text" class="form-control" id="batchUpdateSrc">
+									<div class="input-group-btn">
+										<button type="button" class="btn btn-white dropdown-toggle" data-toggle="dropdown">
+											<span class="caret"></span>
+										</button>
+										<ul class="dropdown-menu dropdown-menu-right" role="menu"></ul>
+									</div>
+								</div>
+				            </td>
+			            </tr>
+			            
+			            <tr>
+			                <td width="30%" class="tlable">
+			               		<div class="checkbox checkbox-success checkbox-inline">
+			                		<input type="checkbox" class="columnCheckBox" id="checkInterest" value="checkInterest">
+			                		<label for="checkInterest">客户意向</label>
+			               		</div>
+			                </td>
+			                <td width="70%">
+								<select class='form-control' id='batchUpdateInterest' validateType="default"></select>   
+				            </td>
+			            </tr>
+			            
+			            <tr>
+			              <td width="30%" class="tlable">
+			                <div class="checkbox checkbox-success checkbox-inline">
+			                  <input type="checkbox" class="columnCheckBox" id="checkTag" value="checkTag">
+			                  <label for="checkTag">客户标签</label>
+			                </div>
+			              </td>
+			              <td width="70%">
+			                <select multiple id='batchUpdateTag' data-placeholder='请选择标签' class='chosen-select form-control' ></select>
+			              </td>
+			            </tr>
+			            <tr>
+			              <td width="30%" class="tlable">
+			                <div class="checkbox checkbox-success checkbox-inline">
+			                  <input type="checkbox" class="columnCheckBox" id="checkEntry" value="checkEntry">
+			                  <label for="checkEntry">进线方式</label>
+			                </div>
+			              </td>
+			              <td width="70%">
+			                <select id='batchUpdateEntry' class='form-control' validateType="default"></select>
+			              </td>
+			            </tr>
+			
+			            <tr>
+			              <td width="30%" class="tlable">
+			                <div class="checkbox checkbox-success checkbox-inline">
+			                  <input type="checkbox" class="columnCheckBox" id="checkProductName" value="checkProductName">
+			                  <label for="checkProductName">产品意向</label>
+			                </div>
+			              </td>
+			              <td width="70%">
+			                <div class="input-group col-sm-8">
+			                  <input type="text" class="form-control searchProd" id="batchUpdateProd">
+			                  <div class="input-group-btn">
+			                    <button type="button" class="btn btn-white dropdown-toggle" data-toggle="dropdown">
+			                      <span class="caret"></span>
+			                    </button>
+			                    <ul class="dropdown-menu dropdown-menu-right" role="menu"></ul>
+			                  </div>
+			                </div>
+			              </td>
+			            </tr>			
+			        </table>
+			    </form>
+		    </div>
+		    <div class="modal-footer" style="padding: 10px 20px 10px;margin-top: 0px;">
+                <button type="button" class="btn btn-sm btn-default" data-dismiss="modal" id='batchUpdateCancel'>取消</button>
+                <button type="button" class="btn btn-sm   btn-primary" id='batchUpdateSave'>保存</button>
+            </div>
+	    </div>
+    </div>
+</div>

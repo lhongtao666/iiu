@@ -1,0 +1,28 @@
+<div class="col-sm-12">
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<button type='button' class='jt-btn apiEntityAdd'><i class='fa fa-plus'>&nbsp;添加</i></button>
+			<button type='button' class='jt-btn apiEntityEdit'><i class='fa fa-edit'>&nbsp;编辑</i></button>
+			<button type='button' class='jt-btn apiEntityDetail'><i class='fa fa-th-list'>&nbsp;明细</i></button>
+			<button type='button' class='jt-btn jt-btn-red apiEntityDel'><i class="fa fa-remove">&nbsp;删除</i></button>
+		</div>
+
+		<div class="panel-body">
+			<form id='apiEntitySearchForm' role="form" class="form-horizontal">
+				<!--默认生成一个搜索条件，需要的，用户自己添加-->
+				<div class="form-group">
+					<div class='col-sm-12'> 
+						<label class='col-sm-1 control-label'>API业务类型</label> 
+						<div class='col-sm-2'>
+							<select id='nameSearch' data-placeholder='请选择分组' name="Q__S__LK__type_" class="chosen-select  form-control">
+							</select>
+						</div>
+						<div class='col-sm-1'>
+						    <button type='button' id="apiEntitySearch"  class="jt-btn-search apiEntitySearch"><i class='fa fa-search'></i>&nbsp;搜索</button>
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>

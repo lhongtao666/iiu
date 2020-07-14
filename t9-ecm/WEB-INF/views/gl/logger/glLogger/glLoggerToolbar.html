@@ -1,0 +1,85 @@
+<div class="row">
+	<div class='toolbar-panel'>
+		<div class="toolbar-box">
+			<div class="toolbar-head clearfix">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<button type='button' class='jt-btn glLoggerSave'><i class="fa fa-floppy-o"></i>&nbsp;保存</button>
+						<button type='button' class='jt-btn glLoggerAdd'><i class='fa fa-plus'></i>&nbsp;添加</button>
+						<button type='button' class='jt-btn glLoggerSavePlan'>保存方案</button>
+						<button type='button' class='jt-btn glLoggerChoosePlan'>方案选择</button>
+						<button type='button' class='jt-btn glLoggerbatchUpdate'>批量修改日志级别</button>
+					</div>
+				</div>
+				
+				<!-- 方案列表 -->
+				<div id="selectPlanDiv" style="display:none">
+					<div style="text-align:center;margin-top:20px">
+						请选择方案：
+						<select class="selectPlan" name="selectPlan" style="width:150px;">
+							<option value="">请选择</option>
+						</select>
+					</div>
+				</div>
+				
+				<!-- 批量修改日志级别 -->
+				<div id="batchUpdateDiv" style="display:none">
+					<div style="text-align:center;margin-top:20px">
+						日志级别：
+						<span>
+							<select class="batchUpdate" name="batchUpdate" style="width:150px;">
+								<option value="DEBUG">DEBUG</option>
+								<option value="INFO">INFO</option>
+								<option value="WARN">WARN</option>
+								<option value="ERROR">ERROR</option>
+								<option value="INFO,stdout">INFO,stdout</option>
+							</select>
+						</span>
+					</div>
+				</div>
+				
+			</div>
+			
+			<div class="toolbar-body" style="display: none;">
+				<form role="form" class="form-inline">
+					<!--默认生成一个搜索条件，需要的，用户自己添加-->
+					<div class="form-group">
+						<label for="nameSearch" class="sr-only">名称</label> 
+						<input type="text" id='nameSearch' placeholder="请输入资源名称" name="Q__S__LK__name_" class="form-control">
+					</div>
+					<button type='button' class="jt-btn jt-btn-search glLoggerSearch">搜索</button>
+					<#include "/common/advanceSearch.html">
+				</form>
+			</div>
+			
+			<table id="hiddenTable" style="display:none">
+				<tr>
+					<td>包名：<input type="text"></td>
+					<td>
+						<span>
+							日志级别：
+						</span>
+						<select name="level" style="width:150px">
+							<option value="DEBUG">DEBUG</option>
+							<option value="INFO">INFO</option>
+							<option value="WARN">WARN</option>
+							<option value="ERROR">ERROR</option>
+							<option value="INFO,stdout">INFO,stdout</option>
+						</select>
+					</td>
+					<td>
+						<button type='button' class='jt-btn glLoggerConfirm'>确定</button>
+						<button type='button' class='jt-btn btn-warning glLoggerCancel'>取消</button>
+					</td>
+			  </tr>			
+		  </table>
+		  
+		  <div id="loggerPlanDiv" style="display:none">
+		  	<div style="text-align:center;margin-top:20px">
+			  	请输入方案名称：<input class="loggerPlanInput" type="text"/>
+		  	</div>
+		  </div>
+		
+		</div>
+	</div>
+</div>

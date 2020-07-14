@@ -1,0 +1,47 @@
+<div style="display: none;" class="row form_wrapper">
+
+	<div class="col-sm-12">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<button type='button' class='jt-btn toLogRecordList'>
+					<i class='fa'>返回</i>
+				</button>
+				
+				<button type='button' class='jt-btn logRecordExport'>
+					<i class='fa'>日志导出</i>
+				</button>
+				
+				<div class="col-sm-2">
+					<input type="text" id='findTextValue' placeholder="请输入页面查找内容" name="findTextValue" class="form-control">
+				</div>
+				<div class="col-sm-1"> 
+                    <button type="button" class="jt-btn findValue">开始查找</button>
+                </div>
+			</div>
+			<div class="panel-body">
+				<div class="wrapper wrapper-content animated article">
+				        <div class="row">
+				            <div class="col-lg-10 col-lg-offset-1">
+				                <div class="ibox">
+				                    <div id="logRecordDetatailList" class="ibox-content">
+				                    </div>
+				                </div>
+				            </div>
+				       </div>
+				</div>
+			</div>
+		</div>
+	</div>	
+
+</div>
+
+<div style="display:none" id="divDisplayNone">
+	<div class="pull-right">
+	    <button class="btn btn-white btn-xs showTime" type="button" style="font-size:13px"></button>
+	 	<button class="btn btn-white btn-xs showLevel" type="button" style="font-size:13px"></button>
+	 	<button class="btn btn-white btn-xs showMethod" type="button" style="font-size:13px"></button>
+ 	</div>
+</div>
+
+<form id="downLoadLogRecord" action="" method="post">
+</form>

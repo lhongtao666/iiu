@@ -1,0 +1,961 @@
+<style>
+	/*body {
+        background: url("${ctx}/img/jt/backgroud/4.jpg") no-repeat;
+        background-size: 100% 100%;
+    }*/
+	#desktopConfigContainer {height: 100%;border: 10px solid transparent;border-top:0;border-bottom: 0;}
+    #desktopConfigContainer > div,#desktopConfigContainer > div > div,#desktopConfigContainer > div > div > div {
+        height:100%;
+        padding: 0;
+        margin: 0;
+    } 
+    .jt-calendar {
+        width: 100%;
+        height: 100%;
+        /*border: 5px solid rgba(255, 152, 0, 0.25);*/
+        margin: auto;
+        color: #fff;
+        padding-top: 10px;
+        border-radius: 10px;
+        position: relative;
+        z-index: 3;
+    }
+    .blink {
+        font-weight: 500 !important;
+        animation: blink 1s linear infinite;
+        -webkit-animation: blink 1s linear infinite;
+        -moz-animation: blink 1s linear infinite;
+        -ms-animation: blink 1s linear infinite;
+        -o-animation: blink 1s linear infinite;
+        color: #fff;
+    }
+    @keyframes blink {
+        0% {opacity: 1;}
+        50% {opacity: 1;}
+        50.01% {opacity: 0;}
+        100% {opacity: 0;}
+    }
+    @-webkit-keyframes blink {
+        0% {opacity: 1;}
+        50% {opacity: 1;}
+        50.01% {opacity: 0;}
+        100% {opacity: 0;}
+    }
+	.ld-msg-layer,.ld-table-layer {
+		width:100%;
+	}
+	.ld-msg-layer > div,.ld-table-layer > div {
+		float:left;
+		border: 5px solid transparent;
+		background: #fff;
+	}
+	.ld-msg-layer > div {
+		width:25%;
+		height:150px;
+	}
+	.ld-table-layer > div {
+		width:50%;
+		height:300px;
+	}
+	.newest-order-bg-layer {
+		position: absolute;
+	    width: 100%;
+	    height: 100%;
+	    top: 0;
+	    z-index: 1;
+	    opacity: 0.35;
+	}
+	.nobl-left,.nobl-right {
+		width:88px;
+		height:90px;
+	}
+	.nobl-left {
+		float:left;
+		background: url("${ctx}/img/jt/cs/newHome/nob.png") no-repeat;
+		background-position: 0% 0%;
+	}
+	.nobl-right {
+		float: right;
+		background: url("${ctx}/img/jt/cs/newHome/nob.png") no-repeat;
+		background-position: 100% 0%;
+	}
+	.nobl-center {
+		width:calc(100% - 176px);
+		height:90px;
+		float:left;
+	}
+	.nobl-center > div {
+		width:100%;
+		height:9px;
+		background: #6daee4; /*#ed5565;*/
+		margin-top:79px;
+	}
+	.newest-order-list {list-style-type: none;margin: 0;padding: 0;}
+	.yj-lbg-layer {
+		left:2.5%;
+		background:url("${ctx}/img/jt/cs/newHome/ms.png") no-repeat;
+		background-size: auto 80%;
+		background-position: 0% 0%;
+	}
+	.yj-rbg-layer {
+		right:2.5%;
+		background:url("${ctx}/img/jt/cs/newHome/ms.png") no-repeat;
+		background-size: auto 80%;
+		background-position: 100% 0%;
+	}
+	.yj-lbg2-layer {
+		left:2.5%;
+		background:url("${ctx}/img/jt/cs/newHome/ms2.png") no-repeat;
+		background-size: auto 80%;
+		background-position: 0% 0%;
+		filter: none !important;
+    	opacity: 0.75 !important;
+	}
+	.yj-rbg2-layer {
+		right:2.5%;
+		background:url("${ctx}/img/jt/cs/newHome/ms2.png") no-repeat;
+		background-size: auto 80%;
+		background-position: 100% 0%;
+		filter: none !important;
+    	opacity: 0.75 !important;
+	}
+	.sdjp {
+		height: 55px;
+	    width: 55px;
+	    position: absolute;
+	    top: 0;
+	    z-index: 1;
+	    transform: scale(0.8);
+	}
+	.sd-num-1 .sdjp,.sd-num-2 .sdjp,.sd-num-3 .sdjp {
+		background: url("${ctx}/img/jt/cs/newHome/jp1.png") no-repeat;
+	    background-size: 100%;
+	}
+	.ranking-desc-list .sd-num-1 .sdjp, .ranking-desc-list .sd-num-2 .sdjp, .ranking-desc-list .sd-num-3 .sdjp {
+		background: transparent;
+	}
+	.sd-num-1 .sdn-data {color: #f5a34a;}
+	.sd-num-2 .sdjp {
+	    background-position: 0 49%;
+	}
+	.sd-num-2 .sdn-data {color: #bdbdbd;}
+	.sd-num-3 .sdjp {
+	    background-position: 0 99%;
+	}
+	.sd-num-3 .sdn-data {color: #d85d0e;}
+	.ranking-desc-list .sd-pi-1 {
+	    border-color: #e6eef4;
+	}
+	/*.sd-profile-1 {
+	    background: url("${ctx}/img/jt/cs/newHome/hg.png") no-repeat;
+	    background-size: 100% auto;
+	    background-position: 0 94%;
+	}
+	.sd-profile-2 {
+		background:url("${ctx}/img/jt/cs/newHome/hg.png") no-repeat;
+		background-size: 100% auto;
+	    background-position: 0 46%;
+	}
+	.sd-profile-3 {
+		background:url("${ctx}/img/jt/cs/newHome/hg.png") no-repeat;
+		background-size: 100% auto;
+	    background-position: 0 0%;
+	}*/
+	.sd-profile {
+		width:100px;
+		position: relative;
+	}
+	.sdpb .sd-profile {
+		background-image: url(${ctx}/img/jt/cs/newHome/nobg.png);
+		background-repeat: no-repeat;background-size: 80%;
+		background-position: 52% -20%;
+	}
+	.sdpb.ranking-desc-list .sd-profile {
+		background-image: url(${ctx}/img/jt/cs/newHome/phds-nobg.png);
+		background-repeat: no-repeat;background-size: 80%;
+		background-position: 52% -20%;
+	}
+	.mto-items-empty {
+		background: url("${ctx}/img/jt/cs/newHome/empty.png") no-repeat;
+		background-size: 35%;
+    	background-position: 50% 50%;
+	}
+	.newest-order-layer .main-container {
+		padding: 0;
+		overflow: hidden;
+	}
+	.nol-profile-bg {
+		width: 90px;
+    	height: 90px;
+    	position: absolute;
+    	top: 8px;
+    	left:10px;
+    	background:url(${ctx}/img/jt/cs/newHome/nobg.png) no-repeat;
+    	background-size:100%;
+	}
+	.nol-profile,.nol-message {float:left;height:100%;}
+	.nol-profile {
+		width: 70px;
+	    height: 70px;
+	    overflow: hidden;
+	    border-radius: 35px;
+	    margin: 15px 5px 15px 15px;
+	    border: 3px solid #ecf3f7;
+	    box-shadow: 0 0 0px 6px rgba(236, 243, 247, .25);
+	    background-color: #fff;
+	    background-image: linear-gradient(to bottom,#1b2c56 30%, #cc795f);
+	    z-index: 2;
+    	position: relative;
+	}
+	.nol-message {
+		width: calc(100% - 90px);
+		line-height: 2rem;
+		padding: 10px;
+		overflow: hidden;
+		/*background-image: url(${ctx}/img/jt/cs/newHome/lws.png);
+	    background-size: 50%;
+	    background-position: 125% 60%;
+	    background-repeat: no-repeat;*/
+	}
+	.nol-message:before, .nol-message:after {
+		content: "";
+	    width: 9px;
+	    height: 100%;
+	    position: absolute;
+	    /*background-color: rgb(236, 243, 247);*/
+	}
+	.nol-message .nol-blank-title {
+		display: none;
+	}
+	.nol-message-blank {
+
+	}
+	.nol-message:before {
+	    transform: rotate(135deg);
+	    transform-origin: 0 0;
+	    top: 45px;
+    	left: 57px;
+	}
+	.nol-message:after {
+	    transform: rotate(45deg);
+	    transform-origin: 0 0;
+	    top: 45px;
+    	left: 53px;
+	}
+	.nol-message-blank > div {
+		display: none;
+	}
+	.nol-message-blank .nol-blank-title {
+		display: block;
+		font-size: 1.6em;
+    	color: #795548;
+    	line-height: 82px;
+    	white-space: nowrap;
+    	text-indent: 20px;
+	}
+	.nol-message p {margin:0;}
+	.nol-p-roll {-webkit-animation: .5s pRollAnimation ease;animation: .5s pRollAnimation ease;}
+	@keyframes pRollAnimation{
+	    0%{opacity:0;-webkit-transform:translate(-50%,0) scaleX(0);-ms-transform:translate(-50%,0) scaleX(0);transform:translate(-50%,0) scaleX(0);width:0;}
+	    100%{opacity:1;-webkit-transform:translate(0,0) scaleX(1);-ms-transform:translate(0,0) scaleX(1);transform:translate(0,0) scaleX(1);}
+	}
+
+	@-webkit-keyframes pRollAnimation{
+	    0%{opacity:0;-webkit-transform:translate(-50%,0) scaleX(0);-ms-transform:translate(-50%,0) scaleX(0);transform:translate(-50%,0) scaleX(0);width:0;}
+	    100%{opacity:1;-webkit-transform:translate(0,0) scaleX(1);-ms-transform:translate(0,0) scaleX(1);transform:translate(0,0) scaleX(1);}
+	}
+	.nol-msg-title {
+		margin:0;
+		color: #607D8B;
+		letter-spacing: 2px;
+		float: left;
+    }
+    .abcd {
+    	text-overflow: ellipsis;
+	    width: 100%;
+	    max-width: 200px;
+	    height: 20px;
+	    overflow: hidden;
+	    white-space: nowrap;
+    }
+    .nol-msg-content {
+		color: rgba(27, 44, 86, 0.8);
+		float: left;
+		width: 100%;
+		height: 100%;
+		position: relative;
+		overflow: hidden;
+    }
+	.nol-carousel-box {
+		width: 100%;
+		height: 100%;
+		overflow: hidden;
+		position: relative;
+	}
+	.nol-carousel-list {
+		height: 100%;
+		width: 100%;
+		position: relative;
+	}
+	.nol-carousel-items {
+		width: 100%;
+		height: 100%;
+		float: left;
+		float: right;
+		transition: all 0.25s ease;
+    	opacity: 0;
+    	transform: scale(2);
+    	display: none;
+    	background-color: rgba(236, 243, 247, 0);
+    	padding-left: 10px;
+    	position: absolute;
+    	box-shadow: inset 0 0 20px 12px rgba(255, 255, 255, 0.1);
+	}
+    /*.nol-message-bg {
+    	width: 130px;
+	    height: 66px;
+	    position: absolute;
+	    top: 17px;
+	    right: 1rem;
+    	background:url(${ctx}/img/jt/cs/newHome/gx.png) no-repeat;
+    	background-size:100%;
+    	opacity: 0;
+    } */
+    .nol-mbg-active {
+    	-webkit-animation: .5s gx ease ;
+    	animation: .5s gx ease;
+    	animation-fill-mode: forwards;
+    }
+    @keyframes gx {
+		0% {transform: scale(120);opacity: 0.8;}
+		100% {transform: scale(1);opacity: 0.8;}
+	}
+	@-webkit-keyframes gx {
+		0% {transform: scale(120);opacity: 0.8;}
+		100% {transform: scale(1);opacity: 0.8;}
+	}
+
+
+	.jt-icon {width: 25px;height: 25px;position: absolute;left: 5px;top: 5px;opacity: 0.6;}
+	.newest-deal-layer .jt-icon {background: url("${ctx}/img/jt/cs/newHome/nhdb.png") no-repeat;background-size: 18px;}
+	.newest-news-layer .jt-icon {background: url("${ctx}/img/jt/cs/newHome/nhxx.png") no-repeat;background-size: 18px;}
+	.newest-log-layer .jt-icon {background: url("${ctx}/img/jt/cs/newHome/nhcz.png") no-repeat;background-size: 18px;}
+	.newhome-ranking-layer .jt-icon {background: url("${ctx}/img/jt/cs/newHome/nhrk.png") no-repeat;background-size: 22px;position: relative;}
+
+	.ranking-asc,.ranking-desc,.ranking-phone {float: right;cursor: pointer;color: rgba(96, 125, 139, 0.25);font-size: 0.9em;height:31px;line-height: 33px;padding-right: 9px;animation: all 0.5s ease;}
+	.ranking-asc .ranking-icon,.ranking-desc .ranking-icon,.ranking-phone .ranking-icon {
+		position: relative;margin-right: 5px;height:100%;float: left;font-size: 1.2em;width: 20px;text-align: right;
+	}
+	.ranking-screen {    
+		float: right;
+	    margin-right: 10px;
+	    cursor: pointer;
+	    line-height: 30px;
+	    color: rgba(96, 125, 139, .5);
+	}
+	.ranking-screen i {font-size: 0.9em;}
+	.ranking-screen:hover {color: #607D8B;}
+	.ranking-asc .jt-icon {
+		-webkit-filter: grayscale(100%);
+	    -moz-filter: grayscale(100%);
+	    -ms-filter: grayscale(100%);
+	    -o-filter: grayscale(100%);
+	    filter: grayscale(100%);
+	    filter: gray;
+	    opacity: 0.3;
+	}
+	.ranking-asc:hover,.ranking-desc:hover,.ranking-phone:hover {color: rgba(96, 125, 139, 0.75);}
+	.ranking-asc:hover .jt-icon {
+		-webkit-filter: none;-moz-filter: none;-ms-filter: none;-o-filter: none;filter: none;
+	    opacity: 0.45;
+	}
+	.ranking-active {color: #676a6c !important;float: left;border-right: 2px solid #ecf3f7;background-color: #fff;line-height: 35px;}
+	.ranking-active i {color: #7db3de !important;}
+	.ranking-active .jt-icon {
+		-webkit-filter: none;-moz-filter: none;-ms-filter: none;-o-filter: none;filter: none;
+	    opacity: 0.6;
+	}
+	.sd-content-layer:before {content: "";width: 100%;height: 100%;position: absolute;opacity: 0.35;background: url(${ctx}/img/jt/cs/newHome/kbbg.png);}
+
+	/*特殊处理*/
+
+	/*我的待办*/
+	.panel-grid .ibox {margin-bottom: 0;}
+	.panel-grid .ibox-content {padding: 0;}
+	.panel-grid .ibox-content .m-t {margin-top: 0;}
+	.panel-grid .ibox-content .todo-list > li {background: transparent; border-left: 0;border-right: 0;border-radius: 0;margin-bottom: 0;border-bottom: 1px solid #f1f1f1;}
+	.panel-grid .ibox-content .todo-list > li:nth-child(even) {background-color: rgba(255, 255, 255, 0.25);}
+	.panel-grid .ibox-content .todo-list > li:hover {background: rgba(98, 147, 186, 0.1);}
+	.panel-grid .ibox-content > .pull-right {display: none;}
+	.task-loadmore {float:right;color: #ccc;font-size: 1rem;margin-top: 2.5px;padding-right: 5px;cursor: pointer;display: none;}
+	.task-loadmore:hover {color: #FF9800;}
+	.panel-grid .ibox-content .todo-list > li .checkbox {padding-left: 0;}
+	.panel-grid .ibox-content .todo-list > li .checkbox label::before {display: none;}
+	.panel-grid .ibox-content .todo-list > li small {margin-left: 0;    font-weight: 500;background-color: rgba(33, 150, 243, .1);color: #607D8B;}
+	.panel-grid .ibox-content .todo-list > li .taskNameLabel {font-size: 1.25rem !important;color:#607D8B;}
+	.panel-grid .ibox-content .todo-list > li > div {width:100%;}
+	.panel-grid .ibox-content .todo-list > li > div > label.taskNameLabel {width:calc(100% - 100px);}
+	.panel-grid .ibox-content .todo-list > li > div > label.taskNameLabel > div.taskEntityEdit {width: 100% !important;}
+
+	/*我的今日操作*/
+	.panel-grid .ibox-content .operLogEntity > label {font-weight: 500;font-size: 1.25rem !important;color:#536575;}
+
+	/*我的业绩*/
+	.task-date {float:right;color: #ad8e5f;font-size: 1rem;margin-top: 2.5px;padding-right: 5px;cursor: pointer;transition: all 0.5s linear;}
+	.task-date:hover {color:#39b5a9;}
+	.task-date-active {color:#39b5a9;}
+
+	/*最新消息*/
+	.panel-grid .ibox-content .timeline-item {padding-bottom: 10px;transition: all 0.25s linear;position: relative;border-bottom: 1px solid #f1f1f1;}
+	.panel-grid .ibox-content .timeline-item:nth-child(even) {background-color: rgba(255, 255, 255, 0.25);}
+	.panel-grid .ibox-content .timeline-item .row {margin-left: 0;margin-right: 0;}
+	.panel-grid .ibox-content .timeline-item .date {text-align: center;width: 8.333333333%;padding-top: 0;display: none;}
+	.panel-grid .ibox-content .timeline-item .date i {top: 9px;}
+	.panel-grid .ibox-content .timeline-item .content {width: 92%;font-size: 0.9em;border: 0 !important;color: #607d8b;}
+	.panel-grid .ibox-content .timeline-item .content strong {color:#337ab7;}
+	.panel-grid .ibox-content .timeline-item .content:hover {background: transparent;cursor: pointer;}
+	.panel-grid .ibox-content .timeline-item .deleteMsg {display: none;margin-top: 9px;}
+	.panel-grid .ibox-content .timeline-item:hover {background: rgba(98, 147, 186, 0.1);}
+	.panel-grid .ibox-content .timeline-item:hover .deleteMsg {display: block;}
+	.panel-grid .ibox-content .timeline-item .col-xs-1:last-child {position: absolute;right: 0;}
+
+
+	/*通用*/
+	.no-data-layer {
+		color: rgba(96, 125, 139, 0.5);
+	    text-align: center;
+	    height: 100px;
+	    width: 200px;
+	    margin: 10px auto;
+	    line-height: 200px;
+	    margin-top: 20px;
+	}
+
+	/*新版*/
+	.white-flex-layer .main-container {
+		background-color: #fff;
+	}
+	.white-flex-layer .data-flexer-1, .white-flex-layer .data-flexer-2, .white-flex-layer .data-flexer-3, .panel-main, .newest-order-layer .main-container {
+		    box-shadow: 0px 4px 10px 0px rgba(96, 125, 139, 0.1);
+	}
+	.data-flexer-2 > div {
+		height: 100%;
+	    width: 25%;
+	    float: left;
+	    position: relative;
+	}
+	.cs-data-icon {
+		width: 35px;
+	    height: 40px;
+	    border: 2px solid #eee;
+	    position: absolute;
+	    top: 50px;
+	    left: 15px;
+	    text-align: center;
+	    color: #eee;
+	}
+	.cs-data-icon:after {
+	    content: "";
+	    width: 20px;
+	    height: 20px;
+	    position: absolute;
+	    background-color: #fff;
+	    bottom: 0;
+	    right: 0;
+	    z-index: 0;
+	}
+	.cs-data-icon > i:first-child {
+		z-index: 1;
+	    font-size: 22px;
+	    margin-top: 2px;
+	}
+	.cs-data-icon > i:last-child {
+		color: rgba(33, 150, 243, .65);
+	    position: absolute;
+	    bottom: 0;
+	    right: 0;
+	    font-size: 18px;
+	    z-index: 1;
+	}
+	.data-flexer-2 > div.cs-data-new, .data-flexer-2 > div.cs-data-today {
+
+	}
+	.mix-cs-title {
+		position: absolute;
+	    top: 75px;
+	    left: 65px;
+	    color: rgba(93, 103, 128, 0.75);
+	    white-space: nowrap;
+	    font-size: 12px;
+	}
+	.mix-cs-data {
+		position: absolute;
+	    top: 45px;
+	    color: #607D8B;
+	    left: 65px;
+	    width: auto;
+	    font-size: 21px;
+	    font-weight: 600;
+	    text-align: left;
+	    white-space: nowrap;
+	}
+	.mixed-layer > div.data-flexer-mix {
+		width: 100%;
+	}
+	.mix1-title.mix-cs-title {
+		top: 45px;
+    	font-size: 12px;
+	}
+	.mix1-data.mix-cs-data {
+		font-size: 21px;
+    	top: 15px;
+	}
+	.mix2-title.mix-cs-title {
+		top: 90px;
+    	font-size: 12px;
+	}
+	.mix2-data.mix-cs-data {
+		font-size: 21px;
+		font-size: 1.5em;
+    	top: 60px;
+	}
+	.cs-unit {
+		font-size: 12px;
+		color: rgba(96, 125, 139, 0.25);
+	}
+	.cs-fa-money {
+		position: absolute;
+	    bottom: 0;
+	    right: -5px;
+	    z-index: 1;
+	    width: 24px;
+	    height: 24px;
+	    overflow: hidden;
+	    background-color: #fff;
+	}
+	.cs-fa-money > img{
+		width: 100%;
+	    filter: drop-shadow(0 -33px 0 gold);
+	    margin-top: 35px;
+	    color: rgba(255, 152, 0, .65);
+	}
+	.jt-calendar-layer {
+		overflow: hidden;
+	}
+	.jt-calendar-layer:before {
+	    content: "";
+	    position: absolute;
+	    width: 150px;
+	    height: 150px;
+	    border-radius: 75px;
+	    background: #FF9800;
+	    top: -15px;
+	    left: calc(50% - 75px);
+	    z-index: 2;
+	}
+	.jt-calendar-layer:after {
+	    content: "";
+	    position: absolute;
+	    width: 175px;
+	    height: 175px;
+	    border-radius: 88px;
+	    background: rgba(255, 152, 0, .25);
+	    top: -27px;
+	    left: calc(50% - 88px);
+	    z-index: 2;
+	}
+	body.white-bg {
+        /*background-image: url(${ctx}/img/jt/cs/newHome/fx.jpg);
+        background-size: cover;
+        background-position: center top;*/
+    }
+    .nol-order-layer {
+    	margin-top: 3px;
+    }
+    .gold-icon {
+	    border-radius: 20px;
+	    padding: 0 2px;
+	    color: #FF5722;
+	    border: 1px solid #FF9800;
+	    font-size: 12px;
+	    opacity: 0.75;
+	    background-color: #FFEB3B;
+    }
+    .nol-detail-data {
+    	white-space: nowrap;
+    	color: #441b0d;
+    	padding-left: 7px;
+    	text-shadow: 0 0 2px rgba(255, 255, 255, 0.75);
+    }
+    .nol-layer {
+    	background-image: url(${ctx}/img/jt/cs/newHome/nol.gif);
+    	background-size: cover;
+    	background-repeat: no-repeat;
+    }
+    .nol-detail-title {
+    	color: #807983;
+	    font-size: 0.9em;
+	    letter-spacing: 0.1em;
+	    background-color: rgba(255, 255, 255, 0.25);
+	    padding: 1px 5px;
+	    margin-right: 5px;
+    }
+</style>
+
+<div class="flex-layer white-flex-layer">
+	<div class="private-layer">
+		<!-- 个人数据区域 -->
+		<div class="newest-order-layer">
+			<div class="main-container nol-layer">
+				<!-- <div class="nol-profile-bg"></div> -->
+				<div class="nol-profile"><img src="${ctx}/img/jt/cs/newHome/t9-newhome.png" height="100%"></div>
+				<div class="nol-message nol-message-blank">
+					<div class="nol-blank-title">${welcome}</div>
+					<div class="nol-msg-title" style="display: none;">
+						<p>成单工号</p>
+						<p>订单金额</p>
+						<p>订单号</p>
+					</div>
+					<div class="nol-msg-content">
+						<div class="nol-carousel-list">
+							<!-- <div class="nol-carousel-items">
+								<div class="nol-order-layer">
+									<span class="nol-detail-title">订单编号&nbsp;</span>
+									<span class="nol-detail-data nol-order-number">2019101416231</span>
+								</div>
+								<div class="nol-detail-layer">
+									<span class="nol-detail-title">订单金额&nbsp;</span>
+									<span class="nol-detail-data">
+										￥200.00
+									</span>
+									<br/>
+									<span class="nol-detail-title">成单工号&nbsp;</span>
+									<span class="nol-detail-data">wangzq : wangzq</span>
+								</div>
+							</div>
+							<div class="nol-carousel-items">2</div>
+							<div class="nol-carousel-items">3</div>
+							<div class="nol-carousel-items">4</div> -->
+						</div>
+					</div>
+				</div>
+				<!-- <div class="nol-message-bg"></div> -->
+				<!-- <div class="newest-order-bg"> 
+					<div class="nob-left"><div></div></div>
+					<div class="nob-data">
+						<div class="nob-current">
+							<div class="nobc-left"></div>
+							<div class="nobc-data">
+								<div class="txtScroll-top" style="height:24px;width: calc(100% + 90px);margin-left: -45px;">
+				                    <div class="bd">
+				                        <ul class="infoList newest-order-list"></ul>
+				                    </div>
+				                </div>
+							</div>
+							<div class="nobc-right"></div>
+						</div>
+						<div class="nob-newest">
+							<div class="nobc-left"></div>
+							<div class="nobc-data unselected">最新下单公告</div>
+							<div class="nobc-right"></div>
+						</div>
+					</div>
+					<div class="nob-right"><div></div></div>
+				</div>
+				<div class="newest-order-bg-layer">
+					<div class="nobl-left"></div>
+					<div class="nobl-center"><div></div></div>
+					<div class="nobl-right"></div>
+				</div> -->
+			</div>
+		</div>
+		<div class="tb-layer">
+			<div class="newest-deal-layer">
+				<div class="panel panel-default panel-main panel-grid">
+					<div class="panel-heading unselected">
+					<div class="jt-icon"></div>我的待办 
+					<div class="task-loadmore">查看更多
+					</div></div>
+					<div class="panel-body">
+						<div class="ibox float-e-margins" style="height:100%">
+							<div class="ibox-content" style="height:100%" id='taskPanel'>	
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="newest-news-layer">
+				<div class="panel panel-default panel-main panel-grid">
+					<div class="panel-heading unselected"><div class="jt-icon"></div>最新消息</div>
+					<div class="panel-body">
+						<div class="ibox-content" style="height:100%;" id='msgDiv'>
+							
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="newest-log-layer">
+				<div class="panel panel-default panel-main panel-grid">
+					<div class="panel-heading unselected">
+					<div class="jt-icon"></div>我的业绩
+					<div class="task-date" id="profitPrevWeek">&nbsp;上周</div>
+					<div class="task-date" id="profitWeek">&nbsp;本周</div>
+					<div class="task-date" id="profitYesterday">&nbsp;昨日</div>
+					<div class="task-date task-date-active" id="profitToday">&nbsp;今日</div>
+					</div>
+					<div class="panel-body"  style="">
+					
+							<div class="ibox float-e-margins" style="height:100%;min-height: 200px;">
+								<div id="profitLineChart" style="height:100%">	
+
+								</div>
+							</div>
+						
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="public-layer">
+		<!-- 公共数据区域 -->
+		<div class="mixed-layer">
+			<div>
+				<div class="main-container data-flexer-1" style="text-align: center;">
+					<div class="data-layer">
+						<div class="yj-lbg-layer"></div>
+						<div class="yj-rbg-layer"></div>
+					    <div class="data-left-layer">
+					    	<span class="yjing timer">0</span>
+					    	<div class="title-left-layer unselected">本月已完成业绩</div>
+					    </div>
+					    <div class="data-divide-layer"></div>
+					    <div class="data-right-layer">
+					    	<div class="title-right-layer unselected">本月目标业绩</div>
+					    	<span class="yjed timer">0</span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div>
+				<div class="main-container jt-calendar-layer">
+					<div class="jt-calendar-light"></div>
+					<div class="jt-calendar"></div>
+				</div>
+			</div>
+			<div class="data-flexer-mix">
+				<div class="main-container data-flexer-2">
+					<div class="cs-data-new">
+						<div class="cs-data-icon">
+							<i class="fa fa-navicon"></i>
+							<i class="fa fa-user-plus" style="right: -2px;color: rgba(255, 87, 36, 0.65);"></i>
+						</div>
+						<div class="new-cs-title mix-cs-title unselected">新进客户</div>
+						<div class="new-cs-data mix-cs-data timer">0</div>
+					</div>
+					<div class="cs-data-today">
+						<div class="cs-data-icon">
+							<i class="fa fa-navicon"></i>
+							<i class="fa fa-send" style="right: 2px;"></i>
+						</div>
+						<div class="today-cs-title mix-cs-title unselected">今日跟进客户</div>
+						<div class="today-cs-data mix-cs-data timer">0</div>
+					</div>
+					<div class="sd-cs-num">
+						<div class="cs-data-icon">
+							<i class="fa fa-navicon"></i>
+							<div class="cs-fa-money">
+								<img src="${ctx}/img/jt/cs/money.png">
+							</div>
+						</div>
+						<div class="mix-cs-title mix1-title unselected">审单数量</div>
+						<div class="mix-cs-data mix1-data">
+							<span class="sd-cs-num-data timer">0</span>
+							<span class="cs-unit">单</span>
+						</div>
+						<div class="mix-cs-title mix2-title unselected">审单金额</div>
+						<div class="mix-cs-data mix2-data">
+							<span class="sdcm timer">0.00</span>
+							<span class="cs-unit">元</span>
+						</div>
+					</div>
+					<!-- <div class="sd-cs-money">
+						<div class="cs-data-icon">
+							<i class="fa fa-navicon"></i>
+							<i class="fa fa-send"></i>
+						</div>
+						<div class="mix-cs-title unselected">审单金额</div>
+						<div class="mix-cs-data">￥<span class="sdcm timer">0.00</span></div>
+					</div> -->
+					<div class="th-cs-counter">
+						<div class="cs-data-icon">
+							<i class="fa fa-navicon"></i>
+							<i class="fa fa-clock-o" style="color: rgba(26, 179, 148, .65);"></i>
+						</div>
+						<div class="mix-cs-title mix1-title unselected">通话有效次数</div>
+						<div class="mix-cs-data mix1-data">
+							<span class="th-cs-counter-data timer">0</span>
+							<span class="cs-unit">次</span>
+						</div>
+						<div class="mix-cs-title mix2-title unselected">通话总时长</div>
+						<div class="mix-cs-data mix2-data">
+							<span class="thct timer">0</span>
+							<span class="cs-unit">分钟</span>
+						</div>
+					</div>
+					<!-- <div class="th-cs-total">
+						<div class="cs-data-icon">
+							<i class="fa fa-navicon"></i>
+							<i class="fa fa-send"></i>
+						</div>
+						<div class="mix-cs-title unselected">通话总时长</div>
+						<div class="mix-cs-data"><span class="thct timer">0</span> 分钟</div>
+					</div> -->
+				</div>
+			</div>
+		</div>
+		<div class="list-layer">
+			<div>
+				<div class="main-container">
+					<div class="panel panel-default panel-main mto-panel">
+						<div class="panel-heading">
+							<div class="mto-title unselected">我的今日订单</div>
+						</div>
+						<div class="panel-body">
+							<div class="mto-list">
+								<div class="mto-items-layer mto-items-empty">
+									<!-- <div class="mto-items">
+										<div class="mto-orderId">订单号&emsp;<span>212k1j2k12h12jk1</span></div>
+										<div class="mto-createTime">生成时间&emsp;<span>2019-01-16 15:57:27</span></div>
+										<div class="mto-content"><p>无糖木糖醇</p><p>正宗四会沙糖桔</p></div>
+										<div class="mto-total">合计&emsp;<span>￥666</span></div>
+										<div class="mto-number">1</div>
+									</div> -->
+								</div>
+								<div class="mto-items-layer mto-items-empty mto-bottom">
+									<!-- <div class="mto-items">
+										<div class="mto-orderId">订单号&emsp;<span>212k1j2k12h12jk1</span></div>
+										<div class="mto-createTime">生成时间&emsp;<span>2019-01-16 15:57:27</span></div>
+										<div class="mto-content"><p>无糖木糖醇</p><p>正宗四会沙糖桔</p></div>
+										<div class="mto-total">合计&emsp;<span>￥666</span></div>
+										<div class="mto-number">2</div>
+									</div> -->
+								</div>
+								<div class="mto-items-layer mto-items-empty">
+									<!-- <div class="mto-items">
+										<div class="mto-orderId">订单号&emsp;<span>212k1j2k12h12jk1</span></div>
+										<div class="mto-createTime">生成时间&emsp;<span>2019-01-16 15:57:27</span></div>
+										<div class="mto-content"><p>无糖木糖醇</p><p>正宗四会沙糖桔</p></div>
+										<div class="mto-total">合计&emsp;<span>￥666</span></div>
+										<div class="mto-number">3</div>
+									</div> -->
+								</div>
+								<div class="mto-items-layer mto-items-empty mto-bottom">
+									<!-- <div class="mto-items">
+										<div class="mto-orderId">订单号&emsp;<span>212k1j2k12h12jk1</span></div>
+										<div class="mto-createTime">生成时间&emsp;<span>2019-01-16 15:57:27</span></div>
+										<div class="mto-content"><p>无糖木糖醇</p><p>正宗四会沙糖桔</p></div>
+										<div class="mto-total">合计&emsp;<span>￥666</span></div>
+										<div class="mto-number">4</div>
+									</div> -->
+								</div>
+								<div class="mto-items-layer mto-items-empty mto-bottom">
+									<!-- <div class="mto-items">
+										<div class="mto-orderId">订单号&emsp;<span>212k1j2k12h12jk1</span></div>
+										<div class="mto-createTime">生成时间&emsp;<span>2019-01-16 15:57:27</span></div>
+										<div class="mto-content"><p>无糖木糖醇</p><p>正宗四会沙糖桔</p></div>
+										<div class="mto-total">合计&emsp;<span>￥666</span></div>
+										<div class="mto-number">5</div>
+									</div> -->
+								</div>
+								<div class="mto-items-layer mto-items-empty mto-bottom">
+									<!-- <div class="mto-items">
+										<div class="mto-orderId">订单号&emsp;<span>212k1j2k12h12jk1</span></div>
+										<div class="mto-createTime">生成时间&emsp;<span>2019-01-16 15:57:27</span></div>
+										<div class="mto-content"><p>无糖木糖醇</p><p>正宗四会沙糖桔</p></div>
+										<div class="mto-total">合计&emsp;<span>￥666</span></div>
+										<div class="mto-number">6</div>
+									</div> -->
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div>
+				<div class="main-container newhome-ranking-layer">
+					<div class="panel panel-default panel-main">
+						<div class="panel-heading unselected"  style="height:30px;padding: 0;border-bottom: 2px solid #ecf3f7;">
+							<div style="display: inline-block;height: 100%;">
+								<div class="ranking-asc ranking-active">
+									<div class="ranking-icon">
+										<div class="jt-icon"></div>
+									</div>
+									&nbsp; 今日过审金额排行榜（Top <span id="descTop">10</span>）
+								</div>
+								<div class="ranking-phone">
+									<div class="ranking-icon">
+										<i class="fa fa-users"></i>
+									</div>
+									&nbsp; 今日通话时长排行榜（Top <span id="phoneTop">12</span>)
+								</div>
+								<div class="ranking-desc">
+									<div class="ranking-icon">
+										<i class="fa fa-frown-o"></i>
+									</div>
+									倒数榜（Top <span id="ascTop">5</span>)
+								</div>
+							</div>
+							<div class="ranking-screen"><span>排行榜大屏&nbsp;</span><i class="fa fa-desktop"></i></div>
+						</div>
+						<div class="panel-body sdpb">
+							
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- <div class="ld-msg-layer">
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+</div>
+<div class="ld-table-layer">
+	<div></div>
+	<div></div>
+</div>
+<div class="ld-table-layer">
+	<div></div>
+	<div></div>
+</div> -->
+<script type="text/javascript">
+$(function(){
+	//初始化日历
+	var jtCalendar = new JTCalendar();
+	jtCalendar.init();
+	//其他数据初始化
+	var newHome = new NewHome();
+	newHome.init();
+	//console.log(currentAccount);	//当前登陆的工号，对当前工号在排行榜中的排名进行判定
+
+	//跟进/通话/审单详情（模块右上角的？图标）
+	$(".helper i").hover(function(){
+		$(this).closest(".main-container").find(".helper-tips-layer").stop().show("fast");
+
+	},function(){
+		$(this).closest(".main-container").find(".helper-tips-layer").stop().hide("fast").removeAttr("style");
+	});
+
+	//校正头像
+    $('.sdpi').each(function(i,e){
+        $(this).load(function(){
+            //console.log($(this)[0].naturalHeight);
+            $(this).attr('style',imgStyle($(this)[0].naturalWidth,$(this)[0].naturalHeight,65));
+        });
+    });
+
+});
+</script>

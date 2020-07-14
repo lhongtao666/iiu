@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>意向统计</title>
+	<#include "/common/common.html">
+	<#include "/common/ztree.html">
+	<script src="${ctx}/js/plugins/echarts/3.1.7/theme/macarons.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/plugins/echarts/3.1.7/echarts.min.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/jt/common/plugins/report${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/crm/report/reportDateUtil${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/crm/report/report/profit/interestStatisticsReport${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script type="text/javascript">
+		var beginDate ='${beginDate}';
+		var endDate ='${endDate}';
+	</script>
+	<style type="text/css">
+		#showInterestListType,.showMoreInfo{
+			float: right;
+		}
+	</style>
+</head>
+<body class='white-bg'>
+	<div class='row list_wrapper'>
+		<div class='col-sm-12'>
+			<div class="panel panel-default">
+				<form role="form" class="form-horizontal" >
+					<div class="panel-heading report-content">	
+					<span style="font-size:18px;">意向统计</span>
+					<button type='button' class='btn btn-sm   btn-info showMoreInfo'>查看更多</button>
+					<select id="showInterestListType" class="form-control" style="width:100px;" validateType="default">
+						<option value="newCsCount" selected="selected">新进客户</option>						
+						<option value="placeAmount">下单</option>						
+						<option value="auditAmount">审单</option>						
+						<option value="shipAmount">发货</option>						
+						<option value="signAmount">签收</option>						
+					</select>
+					</div> 
+				</form>
+				<div class="panel-body">
+					
+				<div id="interestStatisticsReportChart" style="height:350px;"></div>
+				
+				</div>
+			</div>
+		</div>
+	</div>		
+</body>
+</html>

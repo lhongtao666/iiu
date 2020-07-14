@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>t_acd_config管理</title>
+	<#include "/common/common.html">
+	<script src="${ctx}/js/jt/gl/cti/acdConfig.js?v=1.0.0" ></script>
+</head>
+
+<body>
+	<div class="wrapper animated fadeInRight">
+		<!-- list界面 -->
+		<div class="row list_wrapper">
+			<#include "/gl/cti/acdConfig/acdConfigToolbar.html">	  			
+			<div class='col-sm-12 jqGrid_wrapper'>
+			    <table id="acdConfigGrid"></table>
+				<div id="acdConfigPager"></div>
+			</div>
+		</div>
+		<!-- 编辑界面 -->
+		<#include "/gl/cti/acdConfig/acdConfigEdit.html">	    
+	</div>
+</body>
+</html>

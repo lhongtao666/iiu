@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>设置提成</title>
+    <#include "/common/common.html" />
+    <script type="text/javascript" src="${ctx}/js/jt/crm/ou/employeePercentage${deploy_min!""}.js?v=${jsVersion}"></script>
+    <script type="text/javascript">
+    $(function() {
+
+        var employeeId = "${employeeId }";
+        var periodType = "${periodType }";
+        var params = {
+            Q__S__EQ__employee_id_: employeeId,
+            Q__S__EQ__period_type_: periodType,
+        };
+        var employeePercentage = new EmployeePercentage();
+
+        employeePercentage.init(params);
+
+    });
+    </script>
+</head>
+
+<body class="white-bg">
+    <div class="panel panel-default employeePercentagePanel" style="margin-bottom:0px;height:100%;">
+        <div class="panel-heading">
+            <form class="form-inline">
+                <div class="container">
+                    <div class="row">
+                        <div class="form-group">
+                            <select class="form-control" id="yearSelect">
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <select class="form-control" id="monthSelect">
+                                <option value="01">1月</option>
+                                <option value="02">2月</option>
+                                <option value="03">3月</option>
+                                <option value="04">4月</option>
+                                <option value="05">5月</option>
+                                <option value="06">6月</option>
+                                <option value="07">7月</option>
+                                <option value="08">8月</option>
+                                <option value="09">9月</option>
+                                <option value="10">10月</option>
+                                <option value="11">11月</option>
+                                <option value="12">12月</option>
+                            </select>
+                        </div>
+                        <div class="form-group" style="margin-left:20px;">
+                            <span id="yearMonthStr" style="color:red;"></span>
+                            <span style="margin-left:10px;">业绩/预估提成：</span>
+                        </div>
+                        <div class="form-group" style="margin-left:5px;">
+                            <stong class="performanceAndMoney" style="color:red;" percentage="0">0/0</stong>
+                        </div>
+                        <div class="form-group" style="margin-left:30px;">
+                            <button title="生成记录" type="button" class="btn btn-sm   btn-primary btn-xs generate-record">生成记录</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="panel-body" style="padding:10px;">
+            <form id="employeePercentageForm">
+                <table class="table table-stripped table-bordered  table-hover data-table">
+                    <thead>
+                        <th class="col-sm-3">年份</th>
+                        <th class="col-sm-3">月份</th>
+                        <th class="col-sm-4">提成金额(元)</th>
+                        <th class="col-sm-2">操作
+                            <button title="添加提成" type="button" style="margin-right:2.5%;float:right;color: #ffffff;  background-color: #1ab394;border-color:#1ab394;" class="btn btn-sm   btn-primary btn-xs addPercentageRow"><i class="fa fa-plus"></i></button>
+                        </th>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>

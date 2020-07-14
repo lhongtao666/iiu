@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>换货单管理</title>
+	<#include "/common/common.html">
+	<style type="text/css">
+		.dragsort {list-style-type:none; margin:0px; }
+		.dragsort li {float:left; padding:5px;}
+	</style>
+	<link href="${ctx}/css/jt/ec/salesorder/orderaddr${deploy_min!""}.css?v=${jsVersion}" rel="stylesheet">
+	<script src="${ctx}/js/plugins/suggest/bootstrap-suggest.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/plugins/dragsort/jquery.dragsort-0.5.2.min.js?v=${jsVersion}"></script>
+	<script>
+		var fromType = "";	//来源，首页选项卡:index，默认为空
+		<#if fromType??>fromType = "${fromType}";</#if>
+	</script>
+	<#include "/ec/ret/exchangeEntity/exchangeEntityToolbar.html"></head>
+
+<body class='white-bg'>
+	<div class="wrapper animated ">
+		<!-- list界面 -->
+		<div class="row list_wrapper exchangeListDiv">
+			<#include "exchangeEntityToolbar.html">
+			<div class="col-sm-12">
+				<div class="tabs-container">
+					<ul class="nav nav-tabs">
+						<li  id="comfirmTabLi" attr-type="comfirm" class="tabli listTabli active">
+							<a href="#comfirmTab" data-toggle="tab">
+								待审核(
+								<span id="exchangeEntityComfirmGrid_record">0</span>
+								)
+							</a>
+						</li>
+						<li  id="receiveTabLi" attr-type="receive" class="tabli listTabli">
+							<a href="#receiveTab" data-toggle="tab">
+								待收货(
+								<span id="exchangeEntityReceiveGrid_record">0</span>
+								)
+							</a>
+						</li>
+						<li  id="exchangeTabLi" attr-type="exchange" class="tabli listTabli">
+							<a href="#exchangeTab" data-toggle="tab">
+								待换货(
+								<span id="exchangeEntityExchangeGrid_record">0</span>
+								)
+							</a>
+						</li>
+						<li  id="exchangeingTabLi" attr-type="exchangeing" class="tabli listTabli">
+							<a href="#exchangeingTab" data-toggle="tab">
+								换货中(
+								<span id="exchangeEntityExchangeingGrid_record">0</span>
+								)
+							</a>
+						</li>
+						<li  id="completeTabLi" attr-type="complete" class="tabli listTabli">
+							<a href="#completeTab" data-toggle="tab">
+								已完成(
+								<span id="exchangeEntityCompleteGrid_record">0</span>
+								)
+							</a>
+						</li>
+						<li  id="rejectTabLi" attr-type="reject" class="tabli listTabli">
+							<a href="#rejectTab" data-toggle="tab">
+								审核不通过(
+								<span id="exchangeEntityRejectGrid_record">0</span>
+								)
+							</a>
+						</li>
+						<li  id="notReceiveTabLi" attr-type="notReceive" class="tabli listTabli">
+							<a href="#notReceiveTab" data-toggle="tab">
+								未收到货(
+								<span id="exchangeEntityNotReceiveGrid_record">0</span>
+								)
+							</a>
+						</li>
+					</ul>
+					<div class="tab-content">
+						<div id="comfirmTab" class="tab-pane listTabPane active">
+							<div class="panel-body">
+								<div class='row'>
+									<#include "exchangeEntityComfirm.html"></div>
+							</div>
+						</div>
+						<div id="receiveTab" class="tab-pane listTabPane">
+							<div class="panel-body">
+								<div class='row'>
+									<#include "exchangeEntityReceive.html"></div>
+							</div>
+						</div>
+						<div id="exchangeTab" class="tab-pane listTabPane">
+							<div class="panel-body">
+								<div class='row'>
+									<#include "exchangeEntityExchange.html"></div>
+							</div>
+						</div>
+						<div id="exchangeingTab" class="tab-pane listTabPane">
+							<div class="panel-body">
+								<div class='row'>
+									<#include "exchangeEntityExchangeing.html"></div>
+							</div>
+						</div>
+						<div id="completeTab" class="tab-pane listTabPane">
+							<div class="panel-body">
+								<div class='row'>
+									<#include "exchangeEntityComplete.html"></div>
+							</div>
+						</div>
+						<div id="rejectTab" class="tab-pane listTabPane">
+							<div class="panel-body">
+								<div class='row'>
+									<#include "exchangeEntityReject.html"></div>
+							</div>
+						</div>
+						<div id="notReceiveTab" class="tab-pane listTabPane">
+							<div class="panel-body">
+								<div class='row'>
+									<#include "exchangeEntityNotReceive.html"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div style="display: none;" class="row form_wrapper exchangeDetailDiv">
+			<div class='col-sm-12'>
+				<div class="panel panel-default">
+					<div class='panel-heading'>
+						<span id="comfirmDiv" style="display: none">
+							<button type='button' id="comfirm" class="btn btn-sm   btn-primary">审核通过(等待退货)</button>
+							<button type='button' id="comfirm_direct" class="btn btn-sm   btn-primary">审核通过(无需退货)</button>
+							<button type='button' id="reject" class="btn btn-sm   btn-danger">审核不通过</button>
+						</span>
+						<span id="receiveDiv" style="display : none">
+							<button type='button' id="receive" class="btn btn-sm   btn-primary">已收货</button>
+							<button type='button' id="not_receive" class="btn btn-sm   btn-danger">未收到货</button>
+						</span>
+						<span id="exchangeDiv" style="display : none">
+							<button type='button' id="exchange" class="btn btn-sm   btn-primary">生成换货单</button>
+						</span>
+						<span id="saveDiv" style="display : none">
+							<button type='button' id="save" class="btn btn-sm   btn-primary">保存</button>
+						</span>
+						<button type='button' id="prevBtn" class="btn btn-sm   btn-default">取消</button>
+					</div>
+
+					<div class="panel-body">
+						<div class="tabs-container">
+							<ul class="nav nav-tabs">
+								<li  id="detailTabLi" class="tabli active">
+									<a href="#detailTab" data-toggle="tab">换货详情</a>
+								</li>
+								<li  id="exchangeBillTabLi" class="tabli" style="display : none" >
+									<a href="#exchangeBillTab" data-toggle="tab">换货单据</a>
+								</li>
+								<li  id="logTabLi" class="tabli">
+									<a href="#logTab" data-toggle="tab">备注历史</a>
+								</li>
+								<li id="shipTabLi" class="tabli  shipScInfo">
+									<a href="#shipInfoTab" data-toggle="tab">物流信息</a>
+								</li>
+							</ul>
+							<div class="tab-content">
+								<div id="detailTab" class="tab-pane active">
+									<div class="panel-body">
+										<#include "exchangeEntityForm.html"></div>
+								</div>
+								<div id="exchangeBillTab" class="tab-pane">
+									<div class="panel-body">
+										<#include "exchangeBill.html"></div>
+								</div>
+								<div id="logTab" class="tab-pane">
+									<div class="panel-body">
+										<#include "exchangeLogList.html"></div>
+								</div>
+								<div id="shipInfoTab" class="tab-pane">
+									<div class="panel-body">
+										<#include "/ec/ret/returnEntity/shipInfoTab.html"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div style="display: none;" class="row panel panel-default exchangeAddDiv">
+			<div class="panel-heading">
+				<button type='button' id="submitExchange" class="btn btn-sm   btn-primary">保存</button>
+				<button type='button' id="cancelSubmit" class="btn btn-sm   btn-default">取消</button>
+			</div>
+			<div class="panel-body">
+				<#include "exchangeAdd.html"></div>
+		</div>
+	</div>
+
+	<!--客户地址-->
+	<div  style="display:none"  class="partyAddrEdidddddtForm">
+		<#include "/crm/ou/party/partyAddrEditForm.html" ></div>
+
+	<!-- 备忘日志修改页面弹出层 -->
+	<div id="exchangeLogPage" style="display : none">
+		<#include "exchangeLogEdit.html"></div>
+<script src='${ctx}/js/jt/ec/ret/exchangeEntity-site${deploy_min!""}.js?v=${jsVersion}' ></script>
+</body>
+</html>

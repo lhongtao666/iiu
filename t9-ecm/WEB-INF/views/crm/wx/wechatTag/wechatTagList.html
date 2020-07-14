@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>jt_wechat_tag管理</title>
+	<#include "/common/common.html">
+	<script src="${ctx}/js/jt/crm/wx/wechatTag${deploy_min!""}.js?v=${jsVersion}" ></script>
+</head>
+<style type="text/css">
+	.wechat-alias-li,.user-alias-li{
+		height: 60px;
+	    padding: 5px 10px;
+	    cursor: pointer;
+	    list-style: none;
+	    color:#000;
+	    overflow:hidden;
+	}
+	.wechat-alias-li.on{
+		background-color: #1caf9a1c; 
+		color: #1ab394;
+		font-weight: 600;
+	}
+	.wechat-alias-li:hover{
+	    background-color: #1caf9a0d; 
+	    color: #1ab394;
+	}
+	.wechat-alias-li>img{width:50px;float:left;height: auto;margin-right:10px;}
+	.rows-title,.rows-search,.rows-content {width:100%;padding:0;margin:0;color:#1caf9a;}
+	.rows-title {font-weight:bold;padding-left:2.5%;height:35px;} 
+	.rows-title>font {display:block;border-bottom:3px solid #1caf9a;height:31px;word-wrap:break-word;font-size:1.3em;}
+	#wechat-alias-list {background-color:#fff;width:95%;border-radius:7px;border:1px solid #cecaca;margin:0 auto;overflow:auto;}
+	#wechat-alias-list::-webkit-scrollbar {width:6px;}
+	#wechat-alias-list::-webkit-scrollbar-thumb {background-color:rgba(39, 58, 74,0.5);}
+</style>
+<body>
+	<div class="wrapper animated fadeInRight">
+		<!-- list界面 -->
+		<div class="col-sm-2 col-sm-jt" style="border-left:1px solid transparent;padding-left:0">
+			<div class="col-sm-12 rows-title">
+				<font style="width:5.2em;float:left;">公众号</font>
+			</div>
+			<div class="col-sm-12 rows-content">
+				<div class='rows-wechat-list'>
+					<div id="wechat-alias-list"></div>
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-10">
+			<div class="row list_wrapper">
+				<#include "/crm/wx/wechatTag/wechatTagToolbar.html">	  			
+				<div class='col-sm-12 jqGrid_wrapper'>
+				    <table id="wechatTagGrid"></table>
+					<div id="wechatTagPager"></div>
+				</div>
+			</div>
+			<!-- 编辑界面 -->
+			<#include "/crm/wx/wechatTag/wechatTagEdit.html">	
+		</div>
+		    
+	</div>
+	<div class="jt-select-wechat" style="display: none;">
+		<div class='col-sm-12'>
+			<select class="form-control" id="jt-select-wechat">
+			</select>
+		</div>
+	</div>
+</body>
+</html>

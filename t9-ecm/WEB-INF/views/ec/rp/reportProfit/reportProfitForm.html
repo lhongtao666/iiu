@@ -1,0 +1,127 @@
+<div class='row' style='border: 1px solid #ddd; margin-left: 15px; margin-right: 15px;padding:10px;'>
+	<div class='col-sm-12'>
+		<form id="reportProfitForm" method="get" class="form-horizontal">
+
+
+			<div class="form-group">
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">业务类型。新进客户、下单、审单、发货、据丢、签收、分享<@JTtip msg="业务类型。新进客户、下单、审单、发货、据丢、签收、分享" /></label>
+					<div class="col-sm-9">
+						<select class="form-control" name="type" validateType="default" >
+		               		<option value="">请选择</option>
+		               		<option value="1">选项 1</option>
+		               	    <option value="2">选项 2</option>
+		               		<option value="3">选项 3</option>
+		               		<option value="4">选项 4</option>
+		              	</select>
+		            </div>
+		        </div>
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">订单编号<@JTtip msg="订单编号" /></label>
+					<div class="col-sm-9">
+						<input type="text" name="soNo" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">员工 ID<@JTtip msg="员工 ID" /></label>
+					<div class="col-sm-9">
+						<input type="text" name="employeeId" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+			</div>
+			<div class="form-group">
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">员工工号<@JTtip msg="员工工号" /></label>
+					<div class="col-sm-9">
+						<input type="text" name="adn" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">员工姓名<@JTtip msg="员工姓名" /></label>
+					<div class="col-sm-9">
+						<input type="text" name="name" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">部门 ID<@JTtip msg="部门 ID" /></label>
+					<div class="col-sm-9">
+						<input type="text" name="groupId" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+			</div>
+			<div class="form-group">
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">部门路径<@JTtip msg="部门路径" /></label>
+					<div class="col-sm-9">
+						<input type="text" name="groupPath" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">渠道 ID<@JTtip msg="渠道 ID" /></label>
+					<div class="col-sm-9">
+						<input type="text" name="channelId" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">意向，1~N个，逗号分隔。<@JTtip msg="意向，1~N个，逗号分隔。" /></label>
+					<div class="col-sm-9">
+						<input type="text" name="interests" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+			</div>
+			<div class="form-group">
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">下单时间<@JTtip msg="下单时间" /></label>
+					<div class="col-sm-9">
+						<input class='laydate-icon form-control layer-date' name="placeTime" validateType="default"  placeholder="YYYY-MM-DD hh:mm:ss" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">
+					</div>
+				</div>
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">操作时间<@JTtip msg="操作时间" /></label>
+					<div class="col-sm-9">
+						<input class='laydate-icon form-control layer-date' name="shipTime" validateType="default"  placeholder="YYYY-MM-DD hh:mm:ss" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">
+					</div>
+				</div>
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">对于新进客户可以是大于0或小于0，对于其它业务类型，肯定是1<@JTtip msg="对于新进客户可以是大于0或小于0，对于其它业务类型，肯定是1" /></label>
+					<div class="col-sm-9">
+						<input type="text" name="count" placeholder=""  validateType="default"  class="digits form-control"> 
+					</div>
+				</div>
+
+			</div>
+			<div class="form-group">
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">金额<@JTtip msg="金额" /></label>
+					<div class="col-sm-9">
+						<input type="text" name="money" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+            </div>    
+
+
+
+			<div class='form-group'>
+				<!--将隐藏域放在这里，不显示出来-->
+				<div style="display:none'">
+					<input type="hidden" id="id" name="id">
+					<input type="hidden" name="createBy">
+					<input type="hidden" name="createTime">
+				</div>
+			</div>
+
+		</form>
+	</div>
+</div>

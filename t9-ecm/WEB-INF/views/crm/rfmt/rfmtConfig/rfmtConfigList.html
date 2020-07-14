@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>RFMT设置管理</title>
+	<#include "/common/common.html">
+	<script src="${ctx}/js/jt/crm/rfmt/rfmtConfig${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/gl/km/glHelpUtil${deploy_min!""}.js?v=${jsVersion}" ></script>
+</head>
+
+<body>
+	<div class="wrapper animated fadeInRight">
+		<!-- list界面 -->
+		<div class="row list_wrapper">
+			<#include "/crm/rfmt/rfmtConfig/rfmtConfigToolbar.html">	  			
+			<div class='col-sm-12 jqGrid_wrapper'>
+			    <table id="rfmtConfigGrid"></table>
+				<div id="rfmtConfigPager"></div>
+			</div>
+		</div>
+		<!-- 编辑界面 -->
+		<#include "/crm/rfmt/rfmtConfig/rfmtConfigEdit.html">	    
+	</div>
+</body>
+</html>

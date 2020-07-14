@@ -1,0 +1,218 @@
+<style type="text/css">
+    .rows-title>font {
+        border-bottom: 3px solid #1caf9a;
+        height: 31px;
+        word-wrap: break-word;
+        font-size: 1.1em;
+        width: 4.5em;
+        text-align: center;
+    }
+    .rows-title {
+        font-weight: bold;
+        padding-left: 2.5%;
+        height: 24px;
+        width: 100%;
+        padding: 0;
+        margin: 0;
+        color: #1caf9a;
+        border-bottom: 1px solid #ddd;
+    }
+    .blue{
+        color: #0e89f3; 
+    }
+    .red{
+        color: red;
+    }
+    .emp{
+        border: 1px solid #1ab394;
+        border-radius: 10px;
+        padding: 3px 8px;
+        float: left;
+        margin-bottom: 4px;
+        margin-left: 10px;
+    }
+    .deleteEmployeeBtn{
+        color: red;
+        font-size: 15px;
+        cursor: pointer;
+    }
+    .btn-jt{
+        color: #000;
+        font-weight: 600;
+        background-color: #f5f5f5;
+        border-color: #ccc !important;
+        border-radius: 4px;
+    }
+    .btn-jt:hover{
+        color: #fff;
+        font-weight: 600;
+        background-color: #6293BA;
+    }
+    .samll-scrollbar::-webkit-scrollbar {/*滚动条整体样式*/
+        width: 10px;     /*高宽分别对应横竖滚动条的尺寸*/
+        height: 1px;
+    }
+    .samll-scrollbar::-webkit-scrollbar-thumb {/*滚动条里面小方块*/
+        border-radius: 10px;
+         -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+        background: #ccc;
+    }
+    #select-employee-table tr:hover{
+        background-color: #ddd;
+    }
+    #csAssignResultContainer tr:hover{
+        background-color: #ddd;
+    }
+
+</style>
+
+<div class="modal fade report-content" id="profitPkContainer" tabindex="-1" role="dialog" style='width:75%;margin:0 auto;'>
+    <div class="modal-dialog" role="document" style='position: fixed;top: 0;'>
+        <div class="modal-content">
+            <div class="modal-header" style="background-color:#2ac1ac;padding: 10px;">
+                <button type="button" class="close employProfitPkClose" data-dismiss="modal" aria-label="Close"><span style="color: black" aria-hidden="true">&times;</span></button>
+                <h3 style="color: white" class="modal-title">业绩PK</h3>
+            </div>
+
+            <div class="modal-body" style="overflow-y: scroll;padding:10px 20px;">		
+			    <div class="col-sm-12" id="profitPkEmployeeContainer" >
+					<div class="col-sm-12 rows-title">
+			            <font>员工</font>
+			        </div>
+			        <div class="col-sm-12" style='padding-top: 10px;'>
+			            <div class="col-md-6 col-sm-7">
+			                <input placeholder="请选择员工,可多选" class="form-control" style="cursor: pointer;float: left;" id="select-employee">
+			                <div  class="col-md-11 col-sm-11" style="display: none;position: absolute;background-color: #fff;z-index: 100;margin: 27px 0px 0px 0px; border: 1px solid #ccc;" id="select-employee-container">
+			                 	<div style="width: 100%;overflow: auto;border-top: 1px solid #ccc;
+			                         border-bottom: 1px solid #ccc;">
+			                        <table class="table" id="select-employee-table">
+			                        </table> 
+			                    </div>
+			                </div>
+			            </div>
+			            <div class="col-md-4 col-sm-4" style="float: left;">
+			                 <button class="btn btn-sm  btn-primary" id="selectEmployeeBtn"> 选择员工</button>
+			                 <button style="margin-left: 20px;" class="btn btn-sm  btn-danger" id="reset-emp-Btn">清空</button>
+			            </div>
+			            <div class="col-sm-12 samll-scrollbar" id="selected-emp-container" style='padding-top: 10px;max-height:  105px;overflow:  auto;'>
+		      			</div>
+			        </div>
+		        </div>
+		        <div class="col-sm-12" id="profitPkSearchContainer">
+			        <div class="col-sm-12 rows-title">
+			            <font>查询</font>
+			        </div>
+			        <div class="col-sm-12" style='padding-top: 10px;'>
+						<form id="employeeProfitPkForm" method="get" class="form-horizontal" >
+							<div class='form-group'>
+								<label class="control-label col-sm-1">周期</label>	
+								<div class="col-sm-2">
+									<select name="timeTypeSearch" id="timeTypeSearch" placeholder=""
+										class="form-control" validateType="default">
+										<option value="day">按天</option>
+										<option value="month">按月</option>
+										<option value="quarter">按季度</option>
+										<option value="year">按年</option>
+									</select>
+								</div>
+			
+								<div class="col-sm-2 yearElement">
+									<select name="yearSearch" id="yearSearch" placeholder=""
+										class="form-control" validateType="default">
+									</select>
+								</div>
+			
+								<div class="col-sm-1 quarterElement">
+									<select name="quarterSearch" id="quarterSearch" placeholder=""
+										class="form-control" validateType="default">
+										<option value="1">1季度</option>
+										<option value="2">2季度</option>
+										<option value="3">3季度</option>
+										<option value="4">4季度</option>
+									</select>
+								</div>	
+			
+								<div class="col-sm-1 monthElement">
+									<select name="monthSearch" id="monthSearch" placeholder=""
+										class="form-control" validateType="default">
+										<option value="1">1月</option>
+										<option value="2">2月</option>
+										<option value="3">3月</option>
+										<option value="4">4月</option>
+										<option value="5">5月</option>
+										<option value="6">6月</option>
+										<option value="7">7月</option>
+										<option value="8">8月</option>
+										<option value="9">9月</option>
+										<option value="10">10月</option>
+										<option value="11">11月</option>
+										<option value="12">12月</option>
+									</select>
+								</div>
+								
+								<div class='col-sm-3'>
+									<button class="btn btn-sm   btn-primary dayElement" id="prevBtn" type="button">前一天</button>
+									<button class="btn btn-sm   btn-primary dayElement" id="nextBtn" type="button">后一天</button>	
+								</div>
+								
+								<div class="col-sm-6 dayElement"> 
+					                <div class="input-daterange input-group" id="datepicker">
+			                        	<input class='laydate-icon form-control layer-date' id="beginDate" validateType="default" placeholder="开始时间" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">
+			                            <span class="input-group-addon">到</span>
+			                            <input class='laydate-icon form-control layer-date' id="endDate" validateType="default" placeholder="结束时间" onclick="laydate({istime: true, start: laydate.now(0, 'YYYY/MM/DD 23:59:59'), format: 'YYYY-MM-DD hh:mm:ss'})">
+			                        </div>
+					            </div>
+				              
+							</div>
+							<div class='form-group'>				
+								<div class='col-sm-6'>
+									<label class="col-sm-2 control-label" style="margin-right:10%">PK类型</label>
+				                	<div class="radio radio-success radio-inline" style="margin-right:10%">
+										<input type="radio" value="ship" id="profitPKShip" name="Q__S__EQ__type_" checked="checked">
+										<label for="profitPKShip">发货</label>
+									</div>
+									<div class="radio radio-success radio-inline">
+										<input type="radio" value="confirm" id="profitPKConfirm" name="Q__S__EQ__type_">
+										<label for="profitPKConfirm">审单</label>
+									</div>
+								</div>
+							    <div class='col-sm-2'>
+							    	<button class="btn btn-sm btn-primary profitPKSearch"   type="button">查询</button>
+							    	<button type='button' class='btn btn-sm btn-primary profitPKExportExcel' >导出</button>
+							    </div>
+							</div>				
+						</form>
+					</div>
+				</div>
+				<div class="col-sm-12">
+			        <div class="col-sm-12 rows-title">
+			            <font>列表</font>
+			        </div>
+			        <div class="col-sm-12"  style='padding-top: 10px;padding-left: 0px;padding-right: 0px;'>
+			            <div class="col-sm-12" style="padding: 0;">
+			                <table class="table" style="margin-bottom: 0px;">
+			                    <thead>
+			                        <tr>
+			                            <th style="width: 20%">排名</th>
+			                            <th style="width: 25%">工号</th>
+			                            <th style="width: 25%">姓名</th>
+			                            <th style="width: 30%">业绩金额</th>
+			                        </tr>
+			                    </thead>
+			                </table>
+			            </div>
+			            <div class="col-sm-12 samll-scrollbar" id="profitPKResultDiv" style="overflow: auto;background-color: #eee;min-height: 130px;padding: 0;">
+			                <form id="tableForm" method="get" class="form-horizontal" novalidate="novalidate">
+			                    <table class="table" id="profitPKTableContainer">
+			                    </table>
+			                </form>
+			            </div>
+			        </div>
+		        </div>
+	        </div>
+	          <div class="modal-footer" style="padding: 10px 20px 10px;margin-top: 0px;">
+                <button type="button" class="btn btn-sm btn-default employProfitPkClose" data-dismiss="modal">关闭</button>
+            </div>
+		</div>
+	</div>
+</div>

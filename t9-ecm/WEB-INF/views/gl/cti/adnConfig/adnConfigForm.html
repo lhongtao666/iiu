@@ -1,0 +1,43 @@
+<div class='row' style='border: 1px solid #ddd; margin-left: 15px; margin-right: 15px;padding:10px;'>
+	<div class='col-sm-12'>
+		<form id="adnConfigForm" method="get" class="form-horizontal">
+
+
+			<div class="form-group">
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">number_<@JTtip msg="number_" /></label>
+					<div class="col-sm-9">
+						<input type="text" name="number" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">dids<@JTtip msg="dids" /></label>
+					<div class="col-sm-9">
+						<input type="text" name="dids" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">acd_config_id_<@JTtip msg="acd_config_id_" /></label>
+					<div class="col-sm-9">
+						<input type="text" name="acdConfigId" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+			</div>
+
+
+
+			<div class='form-group'>
+				<!--将隐藏域放在这里，不显示出来-->
+				<div style="display:none'">
+					<input type="hidden" id="id" name="id">
+					<input type="hidden" name="createBy">
+					<input type="hidden" name="createTime">
+				</div>
+			</div>
+
+		</form>
+	</div>
+</div>

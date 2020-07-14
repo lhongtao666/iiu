@@ -1,0 +1,814 @@
+﻿Object Report
+	Version='6.0.1.0'
+	Title='圆通热敏(代收)'
+	Object Font
+		Name='宋体'
+		Size=90000,0
+		Weight=400
+		Charset=134
+	End
+	BackImagePreview=T
+	Object Printer
+		Size=256
+		Width=10
+		Height=18
+		LeftMargin=0
+		TopMargin=0
+		RightMargin=0
+		BottomMargin=0
+	End
+	Object DetailGrid
+		CenterView=T
+		PageColumnSpacing=0.2
+		Object Border
+			Styles=[]
+		End
+		Object RowLine
+			Width=0
+		End
+		Object Recordset
+			Items Field
+				Item
+					Name='订单编号'
+					DBFieldName='soNo'
+				End
+				Item
+					Name='金额小写'
+					DBFieldName='proxyAmount'
+				End
+				Item
+					Name='客户姓名'
+					DBFieldName='csName'
+				End
+				Item
+					Name='客户手机'
+					DBFieldName='mobile'
+				End
+				Item
+					Name='地区'
+					DBFieldName='area'
+				End
+				Item
+					Name='详细地址'
+					DBFieldName='address'
+				End
+				Item
+					Name='邮编'
+					DBFieldName='zip'
+				End
+				Item
+					Name='邮寄时间'
+					DBFieldName='curtime'
+				End
+				Item
+					Name='金额大写(套票)'
+					DBFieldName='amount_str1'
+				End
+				Item
+					Name='产品款号'
+					DBFieldName='pidlist'
+				End
+				Item
+					Name='产品名称'
+					DBFieldName='pnamelist'
+				End
+				Item
+					Name='快递单号'
+					DBFieldName='expressno'
+				End
+				Item
+					Name='原寄地'
+					DBFieldName='origincode'
+				End
+				Item
+					Name='目的地'
+					DBFieldName='destcode'
+				End
+				Item
+					Name='COD'
+					DBFieldName='cod'
+				End
+				Item
+					Name='寄方地址'
+					DBFieldName='jAddress'
+				End
+				Item
+					Name='寄方电话'
+					DBFieldName='jTel'
+				End
+				Item
+					Name='寄方联系人'
+					DBFieldName='jContact'
+				End
+				Item
+					Name='托运产品'
+					DBFieldName='proName'
+				End
+				Item
+					Name='月结卡号'
+					DBFieldName='custid'
+				End
+				Item
+					Name='业务类型'
+					DBFieldName='expressTypeName'
+				End
+				Item
+					Name='E'
+					DBFieldName='e'
+				End
+			End
+		End
+		Items Column
+			Item
+				Name='OnlyOne'
+				Width=22.9658
+			End
+		End
+		Object ColumnContent
+			Height=17.8065
+			AdjustRowHeight=F
+			Items ColumnContentCell
+				Item
+					Column='OnlyOne'
+					FreeCell=T
+					Items Control
+						Item
+							Type=FieldBox
+							Name='FieldBox1'
+							Left=4
+							Top=3.55
+							Width=6.01
+							Height=0.68
+							Object Font
+								Name='黑体'
+								Bold=T
+								Charset=134
+							End
+							WordWrap=T
+							DataField='客户手机'
+						End
+						Item
+							Type=FieldBox
+							Name='FieldBox2'
+							Left=1.01
+							Top=3.6
+							Width=2.98979
+							Height=0.582083
+							Object Font
+								Name='黑体'
+								Bold=T
+								Charset=134
+							End
+							DataField='客户姓名'
+						End
+						Item
+							Type=FieldBox
+							Name='FieldBox4'
+							Left=1
+							Top=4.1
+							Width=8.78417
+							Height=0.608542
+							Object Font
+								Name='黑体'
+								Bold=T
+								Charset=134
+							End
+							CanGrow=T
+							WordWrap=T
+							TextAlign=TopLeft
+							DataField='地区'
+						End
+						Item
+							Type=Barcode
+							Name='Barcode1'
+							Left=6.40292
+							Top=2.59292
+							Width=3
+							Height=0.61
+							BarcodeType=Code128A
+							CaptionPosition=None
+							Text='[#目的地#]'
+							Object Font
+								Name='宋体'
+								Size=142500,0
+								Weight=400
+								Charset=134
+							End
+						End
+						Item
+							Type=FieldBox
+							Name='FieldBox26'
+							Left=1
+							Top=5.4
+							Width=8.99583
+							Height=0.582083
+							Object Font
+								Name='黑体'
+								Size=82500,0
+								Weight=400
+								Charset=134
+							End
+							WordWrap=T
+							DataField='寄方地址'
+						End
+						Item
+							Type=Barcode
+							Name='Barcode2'
+							Left=2.01083
+							Top=6.40292
+							Width=6.58
+							Height=1.45
+							BarcodeType=Code128A
+							CaptionPosition=None
+							Text='[#快递单号#]'
+							Object Font
+								Name='宋体'
+								Size=142500,0
+								Bold=T
+								Charset=134
+							End
+						End
+						Item
+							Type=Line
+							Name='Line6'
+							Left=-0.15
+							Top=5
+							Width=10.25
+						End
+						Item
+							Type=Line
+							Name='Line7'
+							Left=-0.15
+							Top=11.01
+							Width=10.25
+							Object Pen
+								Width=3
+							End
+						End
+						Item
+							Type=Line
+							Name='Line9'
+							Left=-0.15
+							Top=3.5
+							Width=10.25
+						End
+						Item
+							Type=Line
+							Name='Line10'
+							Left=-0.15
+							Top=1.01
+							Width=10.25
+						End
+						Item
+							Type=Line
+							Name='Line23'
+							Left=-0.15
+							Top=6.2
+							Width=10.25
+						End
+						Item
+							Type=FieldBox
+							Name='FieldBox38'
+							Left=3.2
+							Top=7.95
+							Width=3.38667
+							Height=0.396875
+							Object Font
+								Name='黑体'
+								Size=90000,0
+								Weight=400
+								Charset=134
+							End
+							DataField='快递单号'
+						End
+						Item
+							Type=Line
+							Name='Line27'
+							Left=-0.15
+							Top=12.3
+							Width=10.25
+						End
+						Item
+							Type=Line
+							Name='Line28'
+							Left=-0.15
+							Top=13.8
+							Width=10.25
+						End
+						Item
+							Type=FieldBox
+							Name='FieldBox39'
+							Left=1
+							Top=5.1
+							Width=2.40771
+							Height=0.396875
+							Object Font
+								Name='黑体'
+								Size=82500,0
+								Weight=400
+								Charset=134
+							End
+							DataField='寄方联系人'
+						End
+						Item
+							Type=Line
+							Name='Line31'
+							Left=-0.15
+							Top=15.1
+							Width=10.25
+						End
+						Item
+							Type=FieldBox
+							Name='FieldBox42'
+							Left=1.00542
+							Top=13.9965
+							Width=2.59292
+							Height=0.396875
+							Object Font
+								Name='黑体'
+								Size=90000,0
+								Weight=400
+								Charset=134
+							End
+							DataField='寄方联系人'
+						End
+						Item
+							Type=FieldBox
+							Name='FieldBox43'
+							Left=3.41313
+							Top=13.9965
+							Width=3.38667
+							Height=0.396875
+							Object Font
+								Name='黑体'
+								Size=90000,0
+								Weight=400
+								Charset=134
+							End
+							DataField='寄方电话'
+						End
+						Item
+							Type=FieldBox
+							Name='FieldBox46'
+							Left=1.00542
+							Top=14.3933
+							Width=8.59896
+							Height=0.396875
+							Object Font
+								Name='黑体'
+								Size=90000,0
+								Weight=400
+								Charset=134
+							End
+							CanGrow=T
+							WordWrap=T
+							TextAlign=TopLeft
+							DataField='寄方地址'
+						End
+						Item
+							Type=StaticBox
+							Name='StaticBox44'
+							Left=0.3
+							Top=14
+							Width=0.4
+							Height=0.79375
+							Object Font
+								Name='黑体'
+								Size=105000,0
+								Weight=400
+								Charset=134
+							End
+							TextOrientation=U2DL2R0
+							Text='寄'
+						End
+						Item
+							Type=FieldBox
+							Name='FieldBox48'
+							Left=1.19
+							Top=12.409
+							Width=2.61938
+							Height=0.582083
+							Object Font
+								Name='黑体'
+								Size=90000,0
+								Bold=T
+								Charset=134
+							End
+							DataField='客户姓名'
+						End
+						Item
+							Type=FieldBox
+							Name='FieldBox49'
+							Left=3.41313
+							Top=12.409
+							Width=6.58813
+							Height=0.582083
+							Object Font
+								Name='黑体'
+								Size=90000,0
+								Bold=T
+								Charset=134
+							End
+							WordWrap=T
+							DataField='客户手机'
+						End
+						Item
+							Type=FieldBox
+							Name='FieldBox50'
+							Left=1.19
+							Top=12.89
+							Width=9.2075
+							Height=0.608542
+							Object Font
+								Name='黑体'
+								Size=90000,0
+								Bold=T
+								Charset=134
+							End
+							WordWrap=T
+							DataField='地区'
+						End
+						Item
+							Type=MemoBox
+							Name='MemoBox11'
+							Left=0.211667
+							Top=15.3988
+							Width=1.19063
+							Height=0.396875
+							Object Font
+								Name='黑体'
+								Size=90000,0
+								Weight=400
+								Charset=134
+							End
+							ShrinkFontToFit=T
+							WordWrap=T
+							Text='礼品'
+						End
+						Item
+							Type=Line
+							Name='Line39'
+							Left=-0.15
+							Top=2.5
+							Width=10.25
+						End
+						Item
+							Type=StaticBox
+							Name='StaticBox58'
+							Left=0.3
+							Top=5.21
+							Width=0.608542
+							Height=0.79375
+							Object Font
+								Name='黑体'
+								Size=105000,0
+								Weight=400
+								Charset=134
+							End
+							TextOrientation=U2DL2R0
+							Text='寄'
+						End
+						Item
+							Type=Line
+							Name='Line40'
+							Left=-0.15
+							Top=8.38729
+							Width=10.25
+						End
+						Item
+							Type=FieldBox
+							Name='FieldBox54'
+							Left=0.211667
+							Top=8.81062
+							Width=1.79917
+							Height=0.396875
+							Object Font
+								Name='黑体'
+								Size=82500,0
+								Weight=400
+								Charset=134
+							End
+							WordWrap=T
+							DataField='邮寄时间'
+						End
+						Item
+							Type=StaticBox
+							Name='StaticBox59'
+							Left=0.79375
+							Top=10.2129
+							Width=1.21708
+							Height=0.396875
+							Object Font
+								Name='黑体'
+								Size=67500,0
+								Weight=400
+								Charset=134
+							End
+							CanShrink=T
+							Text='打印时间'
+						End
+						Item
+							Type=Line
+							Name='Line41'
+							Left=2.01083
+							Top=8.38729
+							Height=2.61938
+						End
+						Item
+							Type=StaticBox
+							Name='StaticBox61'
+							Left=2.1
+							Top=8.59896
+							Width=6.11188
+							Height=1.01
+							Object Font
+								Name='黑体'
+								Size=67500,0
+								Weight=400
+								Charset=134
+							End
+							CanGrow=T
+							WordWrap=T
+							Text='快递描述收件人地址，收件人或者寄件人允许签收，视为描述：您的签字代表您已验收包裹。并确认商品完好无损，没有划痕，没有破损等质量问题。'
+						End
+						Item
+							Type=StaticBox
+							Name='StaticBox62'
+							Left=6.40292
+							Top=10.2129
+							Width=1.40229
+							Height=0.396875
+							Object Font
+								Name='黑体'
+								Size=90000,0
+								Weight=400
+								Charset=134
+							End
+							CanShrink=T
+							Text='签收栏'
+						End
+						Item
+							Type=Line
+							Name='Line42'
+							Left=8.20208
+							Top=8.38729
+							Height=2.61938
+						End
+						Item
+							Type=Barcode
+							Name='Barcode3'
+							Left=5.21
+							Top=11.1919
+							Width=4.39
+							Height=0.608542
+							BarcodeType=Code128A
+							CaptionPosition=None
+							Text='[#快递单号#]'
+							Object Font
+								Name='宋体'
+								Size=142500,0
+								Bold=T
+								Charset=134
+							End
+						End
+						Item
+							Type=FieldBox
+							Name='FieldBox55'
+							Left=6.00604
+							Top=11.8004
+							Width=3.38667
+							Height=0.396875
+							Object Font
+								Name='黑体'
+								Size=90000,0
+								Weight=400
+								Charset=134
+							End
+							WordWrap=T
+							DataField='快递单号'
+						End
+						Item
+							Type=MemoBox
+							Name='MemoBox12'
+							Left=8.20208
+							Top=16.5894
+							Width=1.40229
+							Height=0.423333
+							Object Font
+								Name='黑体'
+								Size=105000,0
+								Weight=400
+								Charset=134
+							End
+							ShrinkFontToFit=T
+							WordWrap=T
+							Text='已验视'
+						End
+						Item
+							Type=FieldBox
+							Name='FieldBox56'
+							Left=1.19
+							Top=1.05
+							Width=7.62
+							Height=1.40229
+							Object Font
+								Name='微软雅黑'
+								Size=277500,0
+								Bold=T
+								Charset=134
+							End
+							TextAlign=MiddleCenter
+							DataField='原寄地'
+						End
+						Item
+							Type=FieldBox
+							Name='FieldBox57'
+							Left=6.69
+							Top=0.21
+							Width=1.61396
+							Height=0.396875
+							Object Font
+								Name='黑体'
+								Size=75000,0
+								Weight=400
+								Charset=134
+							End
+							DataField='金额小写'
+						End
+						Item
+							Type=StaticBox
+							Name='StaticBox63'
+							Left=5.1
+							Top=0.21
+							Width=1.79917
+							Height=0.396875
+							Object Font
+								Name='黑体'
+								Size=75000,0
+								Weight=400
+								Charset=134
+							End
+							Text='代收金额：￥'
+						End
+						Item
+							Type=Barcode
+							Name='Barcode17'
+							Left=8.25
+							Top=8.6
+							Width=1.7
+							Height=1.7
+							BarcodeType=QRCode
+							CaptionPosition=None
+							CheckSum=T
+							Text='[#原寄地#]-[#快递单号#]'
+							Object Font
+								Name='宋体'
+								Size=142500,0
+								Weight=400
+								Charset=134
+							End
+						End
+						Item
+							Type=FieldBox
+							Name='FieldBox58'
+							Left=6.58813
+							Top=3.20146
+							Width=2.80458
+							Height=0.396875
+							Object Font
+								Name='黑体'
+								Size=90000,0
+								Weight=400
+								Charset=134
+							End
+							DataField='目的地'
+						End
+						Item
+							Type=FieldBox
+							Name='FieldBox59'
+							Left=3.41
+							Top=5.1
+							Width=2.38125
+							Height=0.396875
+							Object Font
+								Name='黑体'
+								Size=82500,0
+								Weight=400
+								Charset=134
+							End
+							DataField='寄方电话'
+						End
+						Item
+							Type=PictureBox
+							Name='PictureBox1'
+							Left=0.211667
+							Top=3.59833
+							Width=0.79375
+							Height=1.19
+							Picture=-1902
+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
+						End
+						Item
+							Type=PictureBox
+							Name='PictureBox2'
+							Left=0.211667
+							Top=12.409
+							Width=0.79
+							Height=1.19
+							Picture=-1902
+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
+						End
+						Item
+							Type=PictureBox
+							Name='PictureBox3'
+							Left=7.40833
+							Top=10.2129
+							Width=0.79375
+							Height=0.396875
+							Picture=-1342
+iVBORw0KGgoAAAANSUhEUgAAADUAAAAzCAIAAAC43dc6AAAFBUlEQVRYCe2YySt/XxjHzbPMSUSkKEWGSBZsjAuJsjGkrESZNliYslEWhjIlMv0BRBmKhIUpLLCxo8wy
+Zcrwffs9/c736X7u/Xyuz+d+y8JdfHruec55ntfnOee8z73X/PPz0+wHXxY/mO0L7ZfPtAn6rd9v/UyrgGmjf/r6szLt7xkY/fb2JvTf2traQG8597/i+/j4aG5unpub
+u729RV47O7vk5OTy8nIfHx85DOU2/D/Nr6enp6amJt2cHh4ebW1tLy8v6jOaqe+qvmdtbS3Bubm5VVZW5ubmClZzc/PW1lb1oTTmQ22qq6uJJiUl5fz8nFBeX1+npqZC
+Q0PJ1dDQQEvTIKiWfIBraWkhAltb27W1tZubG05wdnYWEBBAHbq6urhLydaST1SOCOzt7YOCgjo7O3nu6+vrqKgo6jA/P89dsrY2fNgQNTU1lBW/rq6uwoZRUVHBc09P
+T5M3Ly+Pt8vaGvC9v7+L3YoVdnd3h0xYXv39/ZhlQikoKEA3QVBYWEjtokXJMJUPWbFDKRk2BKaPZ9rd3XVycoLXysqqpKREuCYnJ2nI4eGhaJQ1TOLjOhcTEyN2K2VC
+IUWdiKa+vp5cgq+7u1sWSzSaxCd0Ljo6+uHhQQSFgfnNyMggrIGBgcjISNg2NjbUR/DhH/JRuraRfJCSqqoqSo9pvbi44KEhK9nZ2fA6ODgMDg7CtbS0RGtxeHh4ZmbG
+09MT3pCQED5K1jaGj+scNsTV1RUP/fj4mJ+fj/Q4c9vb28mFPv7+/mi0tLTEoULoAOUDZW1j+ITOJSYm3t/f87iAS0tLQ3oLC4uRkRHuwgJFO10uLi5bW1vcq2R/j4/r
+XFJSEs4DSdyenh6UzdHRUbLwcb6Fh4cTnLu7O9afZKDS7Tf4ZHWOx+3o6AABZlAChz57e3skNFiFKysrfJR+Wy0fnueEzuFJTqJzyIGnEhxoSC+ZVriwzmjNoXLfgsNY
+VXxc55BDonOI0tfXBwXGbhUbAo10ra+v027FmlM/rf+PVscndA7TBw5oB1/dqBzmFC6SEhEaxsbGBqDhwi8fwvvotw3UT6JzeNIkFKTEFR8f7+vrCwPph4aGJJmEzuGx
+WY2USIbTrQG+k5MTb29vEAid297exs718vKCgnwx/nc1NjZKomND0JrDXjYaDjEN8B0cHBAB17nn5+fj4+OdnZ3R0VHyjo+Pc77FxUXarep1jg/ntgG+srIyEKCEfIyw
+cY4RH5RFNC4sLKC6aP+WzonhEsMAHw5+ZIqNjZUME7d0qqanp1PL/v6+s7MzhqB9eXlZdDPa0Md3enpK5SkqKlJKMDY2hj5hYWE42bjOra6uKg35Vrs+vomJCeLD65ZS
+UEgjFQyyTDqHh3sjdE4pvj6+uro64gsODtZTj5ycHOqGXwjN5uamUjIj2vXxSd6rS0tLZRNg8xIfdG52dla2j9GN+vjooVfUBgYQcRDzZNA57FO4TNQ5HpPb+vg4Gdn4
+ukOv3L29vfjYgz+glc5xJm4r8uFDji4fWgIDAyXtmFYNNwSHg63Il5mZKeHgt/jMg+dQ7Fx0wxkjCarhrfkXo86FlzHU6fLyUsdjlpWVFRcXFxERgQ5+fn40v7rdtGqR
+/z55dHQEvUUOvBHiGwo48KiSmpqakJCgVWKVcRT5iouL8QILLJxUoORPKypDa9JNfn41Ca1JkL/PcJqE0zzIL59pJf2tn2n1+wPiuqcmzO5W6gAAAABJRU5ErkJggg==
+						End
+						Item
+							Type=MemoBox
+							Name='MemoBox13'
+							Left=3.51
+							Top=0.21
+							Width=1.37583
+							Height=0.582083
+							Object Font
+								Name='微软雅黑'
+								Size=142500,0
+								Bold=T
+								Charset=134
+							End
+							ShrinkFontToFit=T
+							WordWrap=T
+							Text='代收'
+						End
+					End
+				End
+			End
+		End
+		Object ColumnTitle
+			Visible=F
+			Height=0
+			Items ColumnTitleCell
+				Item
+					GroupTitle=F
+					Column='OnlyOne'
+				End
+			End
+		End
+	End
+End

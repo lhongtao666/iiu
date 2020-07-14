@@ -1,0 +1,63 @@
+<div class='row' style='border: 1px solid #ddd; margin-left: 15px; margin-right: 15px;padding:10px;'>
+	<div class='col-sm-12'>
+		<form id="weixinLoginLogForm" method="get" class="form-horizontal">
+
+
+			<div class="form-group">		
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">员工</label>
+					<div class="col-sm-9">
+						<input type="text" name="employeeName" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">员工微信号</label>
+					<div class="col-sm-9">
+						<input type="text" name="weixinCode" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>	
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">昵称</label>
+					<div class="col-sm-9">
+						<input type="text" name="nickName" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+			</div>
+			<div class="form-group">
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">操作类型</label>
+					<div class="col-sm-9">
+						<input type="text" name="type" placeholder=""  validateType="default"  class="digits form-control"> 
+					</div>
+				</div>
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">ip地址</label>
+					<div class="col-sm-9">
+						<input type="text" name="ip" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>	
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">操作时间</label>
+					<div class="col-sm-9">
+						<input type="text" name="createTime" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>	
+			</div>
+
+
+
+			<div class='form-group'>
+				<!--将隐藏域放在这里，不显示出来-->
+				<div style="display:none'">
+					<input type="hidden" id="id" name="id">
+					<input type="hidden" name="createBy">
+					<input type="hidden" name="employeeId">
+					<input type="hidden" name="createTime">
+				</div>
+			</div>
+
+		</form>
+	</div>
+</div>

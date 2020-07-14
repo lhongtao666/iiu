@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>首页</title> 
+    <#include "/common/common.html">
+    <#include "/common/ztree.html">
+    <link href="${ctx}/css/plugins/chosen/chosen.css?v=${jsVersion}" rel="stylesheet">
+    <script src="${ctx}/js/plugins/suggest/bootstrap-suggest.js?v=${jsVersion}"></script>
+    <script src="${ctx}/js/plugins/chosen/chosen.jquery.js?v=${jsVersion}"></script>
+    <script src="${ctx}/js/plugins/echarts/3.1.7/theme/macarons.js?v=${jsVersion}"></script>
+    <script src="${ctx}/js/plugins/echarts/3.1.7/echarts.min.js?v=${jsVersion}"></script>
+
+    <style type='text/css'>
+        div.desktopTab{
+            margin-bottom: 5px;
+        }
+        .col-sm-6,.col-sm-3,.col-sm-4,.col-sm-8,.col-sm-2{
+            padding-left: 5px;
+            padding-right: 5px;
+        }
+
+        .col-sm-6:first-child,.col-sm-3:first-child,.col-sm-4:first-child,.col-sm-8:first-child,.col-sm-2:first-child{
+            padding-left: 15px;
+        }
+
+        .col-sm-6:last-child,.col-sm-3:last-child,.col-sm-4:last-child,.col-sm-8:last-child,.col-sm-2:last-child{
+            padding-right: 15px;
+        }
+        .table-condensed tr:hover{
+            background-color: blue;
+        }
+
+        .jt-full-print {
+            width: 100%;
+            height: 99%;
+            position: absolute;
+            background: transparent;
+            opacity: 0.5;
+            overflow: hidden;
+            display: none;
+            /*opacity: 0;
+            display: none;*/
+        }
+        /*#jt-prize-video {display: none;}*/
+        #jt-prize-video {height:auto !important;width:auto !important;}
+        .jt-full-print-active {
+            -webkit-animation: fp 1s linear; 
+            animation: fp 1s linear;
+            animation-fill-mode: forwards;
+        }
+        @keyframes fp {
+            0% {opacity: 0;}
+            100% {opacity: 0.5;}
+        }
+        @-webkit-keyframes fp {
+            0% {opacity: 0;}
+            100% {opacity: 0.75;}
+        }
+    </style>
+    <link href="${ctx}/css/jt/gl/desktop/NewHome.css?v=${jsVersion}" rel="stylesheet">
+
+<script src='${ctx}/js/jt/gl/main/main-site${deploy_min!""}.js?v=${jsVersion}' ></script>
+</head>
+
+<body class='white-bg' style="padding-top: 5px;">
+	<!-- <div class="selectPostionDesktop" style="padding: 5px 0 5px 20px;font-size: 15px;color:#1c84c6;
+    font-family:'Microsoft YaHei','微软雅黑';">
+	</div> -->
+    <div class="jt-full-print">
+        <video id="jt-prize-video" autoplay="autoplay" height="100%" width="100%" src="${ctx}/img/jt/cs/newHome/yh.mp4"></video>
+    </div>
+	<div class="animated " id="desktopConfigContainer">
+		
+	</div>
+</body>
+</html>

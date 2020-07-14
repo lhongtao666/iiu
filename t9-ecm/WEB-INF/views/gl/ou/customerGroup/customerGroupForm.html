@@ -1,0 +1,45 @@
+<div class='row' style='border: 1px solid #ddd; margin-left: 15px; margin-right: 15px;padding:10px;'>
+	<div class='col-sm-12'>
+		<form id="customerGroupForm" method="get" class="form-horizontal">
+
+
+			<div class="form-group">
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">名称</label>
+					<div class="col-sm-9">
+						<input type="text" name="name" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">公众号</label>
+					<div class="col-sm-9">
+						<select name="wechatAlias" class="form-control"  id="jt-wechatAlias" data-placeholder="请选择" >
+						</select> 
+					</div>
+				</div>		
+
+            </div>    
+			<div class='form-group' id="employee-container" style="display: none;">
+				<label class="col-sm-1 control-label">关联员工</label>
+				<div class="col-sm-11">
+					<ul class="tag-list" style="padding: 0">
+			
+					</ul>
+				</div>
+			</div>
+
+
+			<div class='form-group'>
+				<!--将隐藏域放在这里，不显示出来-->
+				<div style="display:none'">
+					<input type="hidden" id="id" name="id">
+					<input type="hidden" name="createBy">
+					<input type="hidden" name="createTime">
+				</div>
+			</div>
+
+		</form>
+
+	</div>
+</div>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>选择产品</title> 
+	<#include "/common/common.html">
+	<#include "/common/ztree.html">
+    <script type="text/javascript">
+        var storeId = "${storeId}";
+        var isMultiple = "${isMultiple}";
+        var type = "${type}";
+        var hasStock = "${hasStock}";
+        var canSale = "${canSale}";
+        var isSale = "${isSale}";
+        var hideCanSale = "${hideCanSale}";
+        var limitProdCate = "${limitProdCate}";
+        var priceType = "${priceType}";
+        var userId = "${userId}";
+        var showNotOnSale = "${showNotOnSale}";
+        var filterSeries = "${filterSeries}";
+        var agentId = "${agentId}";
+    </script>
+
+    <script type="text/javascript" src="${ctx}/js/jt/ec/product/selectSku${deploy_min!""}.js?v=${jsVersion}">
+    </script>
+</head>
+
+<body>
+	<div class="wrapper animated ">
+		<div class='row'>
+		    <div class="col-sm-2">
+                <ul id="prodEntityCateTree" class="ztree" style="overflow: auto;"></ul>
+            </div>
+		    
+            <div class='col-sm-10'>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <form role="form" class="form-horizontal" id='skuSearchForm'>
+                            <div class="form-group">
+                                <label class='control-label' style="float: left;">名称</label> 
+                                <div class='col-sm-2'>
+                                    <input type="text" id='nameSearch' placeholder="请输入名称" name="Q__S__LK__prod.name_" class="form-control">
+                                </div>
+                                
+                                <label class='col-sm-1 control-label'>sku</label> 
+                                <div class='col-sm-2'>
+                                    <input type="text" id='codeSearch' placeholder="请输入sku编码" name="Q__S__LK__sku.code_" class="form-control">
+                                </div>
+                                 <div class='col-sm-1'></div>
+                                <div class='col-sm-2'>
+                                    <div class="checkbox checkbox-success checkbox-inline">
+                                      <input checked="checked" name='hasStock' type="checkbox" id="hasStock" value="y">
+                                      <label for="hasStock">显示有货</label>
+                                    </div>
+                                </div>
+                                <div class='col-sm-1'>
+                                    <button type='button' class="jt-btn-search prodEntitySearch"><i class="fa fa-search"></i>&nbsp;搜索</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="panel-body">
+                        <table id="prodEntityGrid"></table>
+                        <div id="prodEntityPager"></div>
+                        <input id="selectedRowData" type="hidden">
+                    </div>
+                </div>     
+            </div> 
+        </div>
+	</div>
+</body>
+</html>

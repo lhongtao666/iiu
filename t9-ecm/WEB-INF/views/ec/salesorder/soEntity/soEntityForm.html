@@ -1,0 +1,994 @@
+	<style type="text/css">
+		@media screen and (max-width: 1400px) {
+		    .force-align-input {
+		    	width:calc(66.66% - 28px) !important;
+		    }
+		    .force-align-btn {
+		    	width:28px !important;
+		    }
+		    .force-align-input2 {
+		    	width:calc(66.66% - 40px) !important;
+		    }
+		    .force-align-btn2 {
+		    	width:40px !important;
+		    }
+		}
+		@media screen and (max-width: 1100px) {
+			.so-main-layer, .so-others-layer {
+				width: 100% !important;
+			}
+			.so-others-layer {
+				border: 0;
+			    border-top: 5px solid #e7eaec;
+			    border-bottom: 5px solid #e7eaec;
+			}
+			.so-others-layer > div.panel {
+				width: 50%;
+				float: left;
+			}
+			.so-others-layer > div.panel:first-child {
+				border-bottom:  none;
+			}
+			.so-others-layer > div.panel:last-child {
+				border-left: 5px solid #e7eaec;
+				border-bottom-left-radius: 0;
+				margin-bottom: 0;
+			}
+		}
+		#soItemTbody > tr > td,#soLogTbody > tr > td {
+		    padding: 10px 3px;
+		}
+	</style>
+	<form id="soEntityForm" method="get" class="form-horizontal">
+		<div class="panel panel-default panel-bb" id="csEntityDiv">
+			<div class="panel-heading jt-panel-heading">
+				<h3 class="panel-title">客户信息</h3>
+				<div style="margin-left:100px;margin-top: 5px;" id="csInfoRfmt"></div>
+			</div>
+			<div class="panel-body">
+				<div class=" form-group" <#if soInfoVo.id == '' || soInfoVo.id == null>style="display:none;"</#if>>
+					<div class='col-sm-3'>
+						<label class="col-sm-4 control-label" >订单编号</label>
+						<div class="col-sm-7 force-align-input2">
+							<input type="text" name="soNo" id="soCodeText" readonly="readonly"
+								class="form-control" value="${soInfoVo.soNo}" >
+						</div>
+						<div class="col-sm-1 force-align-btn2">
+							<button type="button" style="width: 100%;padding: 0px" class="btn btn-sm btn-primary jt-form-select copySoBtn">复制</button>
+						</div>
+					</div>
+					<div class='col-sm-3'>
+						<label class="col-sm-4 control-label" >订单状态</label>
+						<div class="col-sm-7">
+							<#if soInfoVo.status == 'awaiting_post'>
+							<input type="text" readonly="readonly" class="form-control" value="待提交">
+							<#elseif soInfoVo.status == 'awaiting_comfirm'>
+							<input type="text" readonly="readonly" class="form-control" value="待审核<#if soInfoVo.auditCount == '1'>(初审)</#if>">
+							<#elseif soInfoVo.status == 'awaiting_pay'>
+							<input type="text" readonly="readonly" class="form-control" value="待支付">
+							<#elseif soInfoVo.status == 'comfirm'>
+							<input type="text" readonly="readonly" class="form-control" value="待发货">
+							<#elseif soInfoVo.status == 'shipping'>
+							<input type="text" readonly="readonly" class="form-control" value="已发货">
+							<#elseif soInfoVo.status == 'complete'>
+							<input type="text" readonly="readonly" class="form-control" value="已签收">
+							<#elseif soInfoVo.status == 'close'>
+							<input type="text" readonly="readonly" class="form-control" value="已关闭">
+							<#elseif soInfoVo.status == 'close_reject'>
+							<input type="text" readonly="readonly" class="form-control" value="订单拒收<#if soInfoVo.backStatus == 'awaiting'>(需退回)</#if><#if soInfoVo.backStatus == 'none'>(无需退回)</#if>">
+							<#elseif soInfoVo.status == 'close_lost'>
+							<input type="text" readonly="readonly" class="form-control" value="包裹丢失">
+							</#if>
+							<input type="hidden" name="status" value="${soInfoVo.status}">
+						</div>
+					</div>
+					<#if soInfoVo.status=='awaiting_comfirm' && soInfoVo.auditorName??>
+						<div class='col-sm-3'>
+							<label class="col-sm-4 control-label" >审单人</label>
+							<div class="col-sm-7">
+								 <input type="text" value="${soInfoVo.auditorName}"  readonly="readonly" class="form-control"  id="auditorId">
+							</div>
+						</div>
+					</#if>
+					<div class=" form-group"<#if soInfoVo.status == 'awaiting_post' || soInfoVo.status == 'awaiting_comfirm' || soInfoVo.status == 'awaiting_pay'||
+					 soInfoVo.status == 'comfirm' || soInfoVo.soShipPo.maskScTrackingNo == '' || soInfoVo.soShipPo.maskScTrackingNo == null>style="display:none;"</#if>>
+						<div class='col-sm-3'>
+							<label class="col-sm-4 control-label" >快递单号</label>
+							<div class="col-sm-7">
+								<input type="text" readonly="readonly"
+									class="form-control" value="${soInfoVo.soShipPo.maskScTrackingNo}">
+							</div>
+						</div>
+						<button type="button" class="btn btn-sm btn-primary jt-form-select shipQryBtn">获取物流信息</button>
+					</div>
+					<div class='col-sm-6' <#if soInfoVo.turnDownForUpdateReason == '' || soInfoVo.turnDownForUpdateReason == null>style="display:none;"</#if>>
+						<label class="col-sm-2 control-label" >撤回理由</label>
+						<div class="col-sm-8" style="color:red;">
+							<input type="text" readonly="readonly"
+								class="form-control" value="${soInfoVo.turnDownForUpdateReason}">
+						</div>
+					</div>
+				</div>
+				<div class=" form-group">
+					<input type="hidden" name="csId" value="${csEntityPo.id}">
+					<input type="hidden" name="packStatus" value="${soInfoVo.packStatus}">
+					<input type="hidden" name="employeeAid" value="${csEntityPo.employeeAid}">
+					<input type="hidden" name="employeeId" value="${csEntityPo.employeeId}">
+					<input type="hidden" name="employeeName" value="${csEntityPo.employeeName}">
+					<input type="hidden" name="levelPercent" value="${csEntityPo.levelPercent}">
+					<div class="col-sm-3">
+						<label class="col-sm-4 control-label"  >客户编号</label>
+						<div class="col-sm-7 force-align-input2">
+							<input type="text" id="csCodeText" value="${csEntityPo.code}" name="csCode" readonly="readonly" class="form-control csCode" >
+						</div>
+						<div class="col-sm-1 force-align-btn2">
+							<button type="button" style="width: 100%;padding: 0px" class="btn btn-sm btn-primary jt-form-select copyCsBtn">复制</button>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<label class="col-sm-4 control-label" >客户名称</label>
+						<div class="col-sm-7">
+							<input type="text" value="${csEntityPo.name}" class="form-control csName" >
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<label class="col-sm-4 control-label" >客户归属</label>
+						<div class="col-sm-7">
+							<input type="text" value="${'${csEntityPo.employeeAid}:'}${csEntityPo.employeeName}" readonly="readonly" class="form-control" >
+						</div>
+						<div class="col-sm-1">
+							<button type="button" class="btn btn-sm btn-primary jt-form-select changeEmployee" style="display:none;">转</button>
+						</div>
+					</div>
+					<#if csEntityPo.csPhonePos?? && csEntityPo.csPhonePos?size gt 0>
+					<div class="col-sm-3"  id="callPhoneDiv" >
+						<div class="col-sm-6" >
+							<select class="form-control" name="phoneSelect" readonly>
+								<#list csEntityPo.csPhonePos as csPhonePo>
+								<option value="${csPhonePo.number}" attr-type="${csPhonePo.type}">${csPhonePo.maskPhone}</option>
+								</#list>
+							</select>
+						</div>
+						<div class="col-sm-6 callBtns" style="display: inline;">
+							<button type="button" title="本地号码" class="jt-form-select callPhone pull-left"><i class="fa fa-phone"></i></button>
+							<button type="button" title="外地号码加0" class="jt-form-select callPhoneAddZero pull-left"><i class="fa fa-phone-square"></i></button>
+							<button type="button" title="短信" class="jt-form-select sendMessage pull-left"><i class="fa fa-commenting-o"></i></button>
+						</div>
+					</div>
+					</#if>
+				</div>
+			</div>
+			<div class="panel-body">
+				<#if soInfoVo.id == '' || soInfoVo.id == null>
+					<div class="form-group defaultAddr" <#if csEntityPo.defaultAddrPo == null>style="display:none;"</#if>>
+						<input type="hidden" name="addrId" value="${csEntityPo.defaultAddrPo.id}">
+						<input type="hidden" name="coName" value="${csEntityPo.defaultAddrPo.coName}">
+						<input type="hidden" name="prName" value="${csEntityPo.defaultAddrPo.prName}">
+						<input type="hidden" name="ciName" value="${csEntityPo.defaultAddrPo.ciName}">
+						<input type="hidden" name="arName" value="${csEntityPo.defaultAddrPo.arName}">
+						<input type="hidden" name="addrDetail" value="${csEntityPo.defaultAddrPo.addr}">
+						<div class="col-sm-3">
+							<label class="col-sm-4 control-label" >收货人</label>
+							<div class="col-sm-7">
+								<input type="text" value="${csEntityPo.defaultAddrPo.name}" readonly="readonly" class="form-control addrName">
+							</div>
+						</div>
+						<div class="col-sm-3">
+							<label class="col-sm-4 control-label" >联系方式</label>
+							<div class="col-sm-7">
+								<input type="text" value="${csEntityPo.defaultAddrPo.maskMobile}" readonly="readonly" class="form-control addrMobile" >
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<label class="col-sm-2 control-label" >地址</label>
+							<div class="col-sm-7">
+								<input type="text" value=
+								"${csEntityPo.defaultAddrPo.coName}<#if csEntityPo.defaultAddrPo.coName != '' || csEntityPo.defaultAddrPo.coName != null>,</#if>${csEntityPo.defaultAddrPo.prName}<#if csEntityPo.defaultAddrPo.prName != '' || csEntityPo.defaultAddrPo.prName != null>,</#if>${csEntityPo.defaultAddrPo.ciName}<#if csEntityPo.defaultAddrPo.ciName != '' || csEntityPo.defaultAddrPo.ciName != null>,</#if>${csEntityPo.defaultAddrPo.arName}<#if csEntityPo.defaultAddrPo.arName != '' || csEntityPo.defaultAddrPo.arName != null>,</#if>${csEntityPo.defaultAddrPo.toName}${csEntityPo.defaultAddrPo.maskAddr}"
+								 readonly="readonly" class="form-control addrInfo" >
+							</div>
+							<div class="col-sm-3">
+								<button type="button" class="jt-form-select changeAddr pull-left">选择</button>
+								<button type="button" class="jt-form-select addAddr pull-left">新增</button>
+							</div>
+						</div>
+					</div>
+					<#if csEntityPo.defaultAddrPo == null>
+					<div class="form-group addAddrDiv">
+						<div class="col-sm-1"></div>
+						<div class="col-sm-3">
+							<button type="button" class="jt-form-select addAddr" ><i class="fa fa-plus"></i>&nbsp;新增地址</button>
+						</div>
+					</div>
+					</#if>
+				<#else>
+				<div class="form-group defaultAddr">
+					<input type="hidden" name="addrId" value="${soInfoVo.soShipPo.partyAddrPo.id}">
+					<input type="hidden" name="oldAddrId" value="${soInfoVo.soShipPo.partyAddrPo.id}">
+					<input type="hidden" name="coName" value="${soInfoVo.soShipPo.partyAddrPo.coName}">
+					<input type="hidden" name="prName" value="${soInfoVo.soShipPo.partyAddrPo.prName}">
+					<input type="hidden" name="ciName" value="${soInfoVo.soShipPo.partyAddrPo.ciName}">
+					<input type="hidden" name="arName" value="${soInfoVo.soShipPo.partyAddrPo.arName}">
+					<input type="hidden" name="addrDetail" value="${soInfoVo.soShipPo.partyAddrPo.addr}">
+					<div class="col-sm-3">
+						<label class="col-sm-4 control-label" >收货人</label>
+						<div class="col-sm-7">
+							<input type="text" value="${soInfoVo.soShipPo.partyAddrPo.name}" readonly="readonly" class="form-control addrName">
+						</div>
+					</div>
+					<div class="col-sm-3 addrDiv">
+						<label class="col-sm-4 control-label" >联系方式</label>
+						<div class="col-sm-7">
+							<input type="text" value="${soInfoVo.soShipPo.partyAddrPo.maskMobile}" readonly="readonly" class="form-control addrMobile" >
+						</div>
+						<div class="col-sm-1">
+							<a style="cursor:hand"><img style="width: 20px; height: 20px;" title="查看联系电话明文" src="/t9-ecm/img/jt/view.png" class="viewPhone" attr-masknum="${soInfoVo.soShipPo.partyAddrPo.maskMobile}" attr-num="${soInfoVo.soShipPo.partyAddrPo.mobile}"></a>
+						</div>
+					</div>
+					<div class="col-sm-6">
+						<label class="col-sm-2 control-label" >地址</label>
+						<div class="col-sm-7">
+							<input type="text" value=
+							"${csEntityPo.defaultAddrPo.coName}<#if csEntityPo.defaultAddrPo.coName != '' || csEntityPo.defaultAddrPo.coName != null>,</#if>${soInfoVo.soShipPo.partyAddrPo.prName}<#if soInfoVo.soShipPo.partyAddrPo.prName != '' || soInfoVo.soShipPo.partyAddrPo.prName != null>,</#if>${soInfoVo.soShipPo.partyAddrPo.ciName}<#if soInfoVo.soShipPo.partyAddrPo.ciName != '' || soInfoVo.soShipPo.partyAddrPo.ciName != null>,</#if>${soInfoVo.soShipPo.partyAddrPo.arName}<#if soInfoVo.soShipPo.partyAddrPo.arName != '' || soInfoVo.soShipPo.partyAddrPo.arName != null>,</#if>${soInfoVo.soShipPo.partyAddrPo.toName}${soInfoVo.soShipPo.partyAddrPo.addr}"
+							 readonly="readonly" class="form-control addrInfo" >
+						</div>
+						<div class="col-sm-3">
+							<button type="button" class="jt-form-select changeAddr" style="float:left;">选择</button>
+							<button type="button" class="jt-form-select addAddr" style="float:left;">新增</button>
+						</div>
+					</div>
+				</div>
+				</#if>
+				<!-- 隐藏的收货地址列表 -->
+				<#if csEntityPo.addrPos?? && csEntityPo.addrPos?size gt 0>
+				<#list csEntityPo.addrPos as addrPo>
+					<div class="form-group csAddrDiv" style="display:none;">
+						<div class="col-sm-3">
+							<label class="col-sm-4 control-label" >收货人</label>
+							<div class="col-sm-7">
+								<input type="text" value="${addrPo.name}" readonly="readonly" class="form-control addrName">
+							</div>
+						</div>
+						<div class="col-sm-3">
+							<label class="col-sm-4 control-label" >联系方式</label>
+							<div class="col-sm-7">
+								<input type="text" value="${addrPo.maskMobile}" readonly="readonly" class="form-control addrMobile" >
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<label class="col-sm-2 control-label" >地址</label>
+							<div class="col-sm-7">
+								<input type="text" value=
+								"${addrPo.coName}<#if addrPo.coName != '' || addrPo.coName != null>,</#if>${addrPo.prName}<#if addrPo.prName != '' || addrPo.prName != null>,</#if>${addrPo.ciName}<#if addrPo.ciName != '' || addrPo.ciName != null>,</#if>${addrPo.arName}<#if addrPo.arName != '' || addrPo.arName != null>,</#if>${addrPo.toName}${addrPo.maskAddr}"
+								 readonly="readonly" class="form-control addrInfo" >
+							</div>
+							<div class="col-sm-3">
+								<button type="button" class="btn jt-form-select editAddr" idVal="${addrPo.id}">改</button>
+								<div class="radio radio-success radio-inline">
+									<#if soInfoVo.id == '' || soInfoVo.id == null>
+									<input type="radio" name="chooseAddr" id="${addrPo.id}" value="${addrPo.id}" coName="${addrPo.coName}" prName="${addrPo.prName}" ciName="${addrPo.ciName}" arName="${addrPo.arName}" addrDetail="${addrPo.addr}" <#if csEntityPo.defaultAddrPo.id == addrPo.id>checked</#if>>
+									<#else>
+									<input type="radio" name="chooseAddr" id="${addrPo.id}" value="${addrPo.id}" coName="${addrPo.coName}" prName="${addrPo.prName}" ciName="${addrPo.ciName}" arName="${addrPo.arName}" addrDetail="${addrPo.addr}" <#if soInfoVo.soShipPo.partyAddrPo.id == addrPo.id>checked</#if>>
+									</#if>
+					                                                <label for="${addrPo.id}">
+									选中
+					                                                </label>
+				                                                </div>
+							</div>
+						</div>
+					</div>
+				</#list>
+				</#if>
+			</div>
+		</div>
+
+		<div class='col-sm-9  so-main-layer' style="padding: 0 !important;">
+			<div class="panel panel-default panel-bb" id="soInfoDiv">
+				<div class="panel-heading jt-panel-heading jt6-panel-heading itemDiv">
+					<h3 class="panel-title">商品订购信息</h3>
+				</div>
+				<div class="panel-body">
+					<div class="form-group">
+						<#if (isSelectStoreInShip?? && isSelectStoreInShip == 'n')  || soInfoVo.status == 'comfirm' || soInfoVo.status == 'shipping' || soInfoVo.status == 'complete' || soInfoVo.status == 'close_reject' || soInfoVo.status == 'close_lost'>
+							<label class="col-sm-1 control-label" style='min-width: 67px;'>仓库</label>
+							<div class="col-sm-4">
+								<select class='form-control' name='storeId' validateType="default">
+									<#if stStorePos?? && stStorePos?size gt 0>
+									<#list stStorePos as storePo>
+										<option value="${storePo.id}" <#if soInfoVo.storeId == storePo.id>selected</#if>>${storePo.name}</option>
+									</#list>
+									</#if>
+								</select> 
+								<input type="hidden" name="realStoreId" value="${soInfoVo.storeId}">
+							</div>
+						</#if>
+						
+						<#if isSelectStoreInShip?? && isSelectStoreInShip == 'n'>
+							<div class='col-sm-3'>
+								<div class="checkbox checkbox-success checkbox-inline">
+									<input checked="checked" type="checkbox" id="hasStock" value="y"> 
+									<label for="hasStock">只显示有货商品</label>
+								</div>
+							</div>
+						</#if>
+					</div>
+					<div class='form-group'>
+						<div class='col-sm-12'>
+							<label class="col-sm-1 control-label">产品编号</label>
+								<div class='col-sm-1'>
+									<select class='form-control' id="prod-price-type" validateType="default">
+										<option value='common'>正价</option>
+										<option value='special'>特价</option>
+										<option value='experience'>体验价</option>
+										<option value='gift'>赠品</option>
+										<option value='exchange'>换购</option>
+									</select>
+								</div>
+							<div class="col-sm-6">
+								<div class="input-group">
+									<input type="text" class="form-control" id="searchProd">
+									<div class="input-group-btn">
+										<button type="button" class="btn btn-white dropdown-toggle" data-toggle="dropdown">
+											<span class="caret"></span>
+										</button>
+										<ul class="dropdown-menu dropdown-menu-right" role="menu"></ul>
+									</div>
+								</div>
+							</div>
+							<div class='col-sm-4'>
+								<button type="button" class="jt-form-select" id='selectSkuBtn'>
+									<i class='fa fa-edit'></i>&nbsp;选择商品
+								</button>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-12">
+						<table class="table table-striped table-bordered" style='margin-bottom:10px;'>
+							<thead>
+								<tr>
+									<th width="28%">产品</th>
+									<th width="8%"><#if isPoint?? &&isPoint=='true'>原积分<#else>原价</#if></th>
+									<th width="8%"><#if isPoint?? &&isPoint=='true'>销售积分<#else>销售价</#if></th>
+									<th width="8%">库存</th>
+									<th width="5%">数量</th>
+									<th width="5%">单位</th>
+									<!-- <th width="8%">折扣</th>
+									<th width="10%">备注</th> -->
+									<th width="10%">小计</th>
+									<th width="8%">操作</th>
+								</tr>
+							</thead>
+							<tbody id="soItemTbody">
+								<#if soInfoVo.soItemVos?? && soInfoVo.soItemVos?size gt 0>
+								<#list soInfoVo.soItemVos as soItemPo>
+								<tr name="${soItemPo.id}">
+									<td>
+										<img style='display: inline; width:35px;' urlVal='${soItemPo.prodPic}' class="soItemPic" >
+										<a href='#' class='prodShow' value='${soItemPo.skuId}' nameValue='${soItemPo.prodName}'>${soItemPo.skuKey}:${soItemPo.prodName}</a>
+									</td>
+									<td ><span class="originPrice">${soItemPo.originPrice}</span></td>
+									<td><input type="number" class="form-control prodPrice" validateType="default" value="${soItemPo.salesPrice}"></td>
+									<td>${soItemPo.stockCount}</td>
+									<td><input type="number" class="form-control soItemCount" validateType="default" value="${soItemPo.count}"></td>
+									<td><span class="unit">${soItemPo.unit}</span></td>
+									<!-- <td><span class="spDiscout">${(soItemPo.spDiscout!0.00)?string('0.00')}</span></td>
+									<td><span class="spComment">${soItemPo.spComment}</span></td> -->
+									<td><span class="prodTotal">${((soItemPo.salesPrice-soItemPo.spDiscout!0.00)*soItemPo.count)?string('0.00')}</span></td>
+									<td>
+										<i class="fa fa-remove delSoItem" title="删除" style="color:red;cursor:pointer;" ></i>
+										<input type="hidden" class="soId" value="${soItemPo.soId}">
+										<input type="hidden" class="skuId" value="${soItemPo.skuId}">
+										<input type="hidden" class="skuKey" value="${soItemPo.skuKey}">
+										<input type="hidden" class="buyLimit" value="${soItemPo.buyLimit}">
+										<input type="hidden" class="skuPercentLimit" value="${soItemPo.skuPercentLimit}">
+										<input type="hidden" class="priceType" value="${soItemPo.priceType}">
+										<input type="hidden" class="damageCount" value="${soItemPo.damageCount}">
+										<input type="hidden" class="damageReason" value="${soItemPo.damageReason}">
+										<input type="hidden" class="damageType" value="${soItemPo.damageType}">
+										<button type="button" class="jt-btn-warn addSoItemDamage" 
+										<#if soInfoVo.status != 'shipping' && soInfoVo.status != 'complete' && soInfoVo.status != 'close_reject' >style="display:none;"</#if>
+										<#if isIframe?? && isIframe == 'true'>style="display:none;"</#if>
+										<#if soItemPo.damageCount gt 0>style="display:none;"</#if> itemIdVal="${soItemPo.id}" itemCount="${soItemPo.count}" damageCountVal="${soItemPo.damageCount}" 
+										damageReasonVal="${soItemPo.damageReason}" damageTypeVal="${soItemPo.damageType}" >破损</button>
+										<button type="button" class="jt-btn-error revokeDamage"
+										<#if soInfoVo.status != 'shipping' && soInfoVo.status != 'complete' && soInfoVo.status != 'close_reject'>style="display:none;"</#if> 
+										<#if isIframe?? && isIframe == 'true'>style="display:none;"</#if> <#if soItemPo.damageCount == 0>style="display:none;"</#if>itemIdVal="${soItemPo.id}" >撤销</button>
+									</td>
+								</tr>
+								</#list>
+								</#if>
+							</tbody>
+							 <tfoot id="soItemTfoot">
+								<tr id="soItemWarm">
+									<td>总计</td>
+									<td ><span id="itemOriginCount" style="display: none">0</span></td>
+									<td></td>
+									<td></td>
+									<td id="itemCountTotal">0</td>
+									<td></td>									
+									<td id="prodPriceTotal">0.00</td>
+									<td></td>
+								</tr>
+							</tfoot>
+						</table>
+					</div>
+				</div>
+			</div>
+			<div class="panel panel-default" style="padding: 0 10px;">
+				<div class="panel-heading jt-panel-heading">
+					<h3 class="panel-title">订单费用</h3>
+				</div>
+				<div class="panel-body ">
+					<#if isOpendPlatformSelect == 'y'>
+					<div class='form-group'>
+						<div class='col-sm-4'>
+							<label class="col-sm-4 control-label">平台订单</label>
+							<div class="col-sm-8">
+								<select name="isCloudWarehourse" id="isCloudWarehourse" class="form-control" validateType="default">
+									<option value="0" <#if soInfoVo.isCloudWarehourse == "0">selected</#if>>系统订单</option>
+									<option value="1" <#if soInfoVo.isCloudWarehourse == "1">selected</#if>>云仓订单</option>
+								</select>
+							</div>
+						</div>
+					</div>
+					</#if>
+					<div class='form-group'>
+						<div class='col-sm-4'>
+							<label class="col-sm-4 control-label">订单类型</label>
+							<div class="col-sm-8">
+								<select name="soType" class="form-control" validateType="default">
+									<#if catePos?? && catePos?size gt 0>
+									<#list catePos as catePo>
+										<#if isPoint?? &&isPoint=='true'>
+											<#if catePo.key=='point'>
+												
+												<option value="${catePo.key}" <#if soInfoVo.soType == "${catePo.key}">selected soTypeVal="${catePo.key}"</#if>>${catePo.name}</option>
+											
+											</#if>
+										<#else>
+											<#if catePo.key!='point'>
+												<option value="${catePo.key}" <#if soInfoVo.soType == "${catePo.key}">selected soTypeVal="${catePo.key}"</#if>>${catePo.name}</option>
+											</#if>
+										</#if>
+									</#list>
+									</#if>
+								
+								</select>
+							</div>
+						</div>
+						<div class='col-sm-4'>
+							<label class="col-sm-4 control-label">快递方式</label>
+							<div class="col-sm-8">
+								<select id="scCode" class="form-control" validateType="default">
+									<#if shipCompanyPos?? && shipCompanyPos?size gt 0>
+									<#list shipCompanyPos as shipCompany>
+									<option value="${shipCompany.id}" attr-mobile="${shipCompany.servicePhone}" hotvar="${shipCompany.isHot}" jdPayStyle="${shipCompany.jdPayStyle}" <#if soInfoVo.soShipPo.scCode == shipCompany.id>selected</#if>>${shipCompany.name}</option>
+									</#list>
+									</#if>
+								</select>
+								<input type="hidden" name="soShipPo.scCode" value="${soInfoVo.soShipPo.scCode}">
+								<input type="hidden" name="soShipPo.scName" value="${soInfoVo.soShipPo.scName}">
+							</div>
+						</div>
+						<div class='col-sm-4' <#if isPoint?? &&isPoint=='true'> style='display:none;'</#if>>
+							<button type="button" title="客服电话" id="servicePhoneBtn" style="margin:0px;" class="col-sm-1 jt-form-select"><i class="fa fa-phone"></i></button>
+							<label class="col-sm-3 control-label">运费(元)</label>
+							<div class="col-sm-8">
+								<#if soInfoVo.cashType == 'free'>
+									<input type="number" name="shippingAmount" placeholder="" class="form-control" validateType="default" readonly="true" value="0.00">
+								<#else>
+									<input type="number" name="shippingAmount" placeholder="" class="form-control" validateType="default" value="${((soInfoVo.shippingAmount)!0.00)?string('0.00')}">
+								</#if>
+							</div>
+						</div>
+					</div>
+					<div class='form-group'>
+						<div class='col-sm-4'>
+							<label class="col-sm-4 control-label">货款方式</label>
+							<div class="col-sm-8">
+								<select name="cashType" id="cashType" class="form-control" validateType="default">
+										<#if isPoint?? &&isPoint=='true'>
+											<option value="point"  cashTypeVal='point'>积分付款</option>
+										<#else>
+											<option value="cod" <#if soInfoVo.cashType == 'cod'>selected cashTypeVal='cod'</#if>>货到付款</option>
+											<option value="pay" <#if soInfoVo.cashType == 'pay'>selected cashTypeVal='pay'</#if>>款到发货</option>
+											<option value="pay_sub" <#if soInfoVo.cashType == 'pay_sub'>selected cashTypeVal='pay_sub'</#if>>支付订金</option>
+											<option value="green" <#if soInfoVo.cashType == 'green'>selected cashTypeVal='green'</#if>>绿色通道</option>
+											<option value="free" <#if soInfoVo.cashType == 'free'>selected cashTypeVal='free'</#if>>免费已付</option>
+										</#if>
+								</select>
+							</div>
+						</div>
+						<div class='col-sm-4'>
+							<label class="col-sm-4 control-label">支付方式</label>
+							<div class="col-sm-8">
+								<select name="payType" id="payType" class="form-control" validateType="default">
+										<#if isPoint?? &&isPoint=='true'>
+											<option value="point"  cashTypeVal='point'>积分支付</option>
+										<#else>
+											<option value="cash" <#if soInfoVo.payType == 'cash'>selected</#if>>现金支付</option>
+											<option value="QRCode" <#if soInfoVo.payType == 'QRCode'>selected</#if>>收款码支付</option>
+											<option value="alipay" <#if soInfoVo.payType == 'alipay'>selected</#if>>支付宝</option>
+											<option value="weixin" <#if soInfoVo.payType == 'weixin'>selected</#if>>微信支付</option>
+											<option value="bank" <#if soInfoVo.payType == 'bank'>selected</#if>>银行转账</option>
+											<option value="weixinhongbao" <#if soInfoVo.payType == 'weixinhongbao'>selected</#if>>微信红包</option>
+										</#if>
+									
+								</select>
+							</div>
+						</div>
+						<div class='col-sm-4'>
+							<div class="col-sm-4 control-label">公司账户</div>
+							<div class="col-sm-8">
+								<select name="account" class="form-control" id='account' validateType="default">
+									<option value="">请选择</option>
+									<#if financeAccountPos?? && financeAccountPos?size gt 0>
+									<#list financeAccountPos as accountPo>
+									<option value="${accountPo.account}" attr-type="${accountPo.accountType}" <#if accountPo.account == soInfoVo.account && soInfoVo.payType != 'cash'>selected</#if>>${accountPo.account}（${accountPo.name}）</option>
+									</#list>
+									</#if>
+								</select>
+							</div>
+						</div>
+					</div>
+					<div class='form-group'>
+						<div class='col-sm-4'>
+							<label class="col-sm-4 control-label">订金(元)</label>
+							<div class="col-sm-8">
+								<input type="number" name="subAmount" placeholder="" class="form-control" validateType="default" value="${((soInfoVo.subAmount)!0.00)?string('0.00')}"  readonly="true">
+							</div>
+						</div>
+						<div class='col-sm-4 myCs'>
+							<label class="col-sm-4 control-label" style="color: red;"><#if isPoint?? &&isPoint=='true'>总积分<#else>总金额(元)</#if></label>
+							<div class="col-sm-8">
+								<#if soInfoVo.cashType == 'free'>
+									<input type="number"  name="totalAmount" placeholder="" class="form-control myCsTotalAmount" validateType="default" readonly="true" value="0.00">
+								<#else>
+									<input type="number" name="totalAmount" placeholder="" class="form-control myCsTotalAmount" validateType="default" value="${((soInfoVo.totalAmount)!0.00)?string('0.00')}">
+								</#if>
+							</div>
+						</div>
+						<div class='col-sm-4 subCs' style="display: none;">
+							<label class="col-sm-4 control-label" style="color: red;"><#if isPoint?? &&isPoint=='true'>总积分<#else>总金额(元)</#if></label>
+							<div class="col-sm-8">
+								<#if soInfoVo.cashType == 'free'>
+								<input type="number" name="totalAmount" placeholder="" class="form-control subCsTotalAmount" validateType="default" readonly="true" value="0.00">
+								<#else>
+								<input type="number" name="totalAmount" placeholder="" class="form-control subCsTotalAmount" validateType="default" value="${((soInfoVo.totalAmount)!0.00)?string('0.00')}">
+								</#if>
+							</div>
+						</div>
+						<div class='col-sm-4'>
+							<label class="col-sm-4 control-label" style="color:red;"><#if isPoint?? &&isPoint=='true'>待扣积分<#else>待付(元)</#if></label>
+							<div class="col-sm-8">
+								<input type="text" name="waitPayAmount" placeholder="" readonly="readonly" class="form-control" validateType="default" value="0.00">
+							</div>
+						</div>
+					</div>
+					<#if cashHiPos?? && cashHiPos?size gt 0>
+						<div class='form-group'>
+							<div class='col-sm-4 cashSettingDiv'>
+								<label class="col-sm-4 control-label">关联现金券</label>
+								<div class="col-sm-8">
+									<select class="form-control" id='csCash' validateType="default">
+										<option value="">请选择</option>
+										<#list cashHiPos as cashHiPo>
+										<option value="${cashHiPo.code}">${cashHiPo.code}</option>
+										</#list>
+									</select>
+								</div>
+							</div>
+						</div>
+					</#if>
+					<div class='form-group'>
+						<div class='col-sm-4 cashSettingDiv'>
+							<label class="col-sm-4 control-label">使用现金券</label>
+							<div class="col-sm-8">
+								<input type='hidden' name='cashBenefit' value='${soInfoVo.cashBenefit}'>
+								<input type='hidden' name='cashId' value='${soInfoVo.cashId}'>
+								<input type="text" name="cashCode" placeholder="" class="form-control" validateType="default" value="${soInfoVo.cashCode}" >
+							</div>
+						</div>
+						<div class='col-sm-1 cashSettingDiv'>	
+							<button type="button" class="btn jt-form-select" id='userCashBtn'>使用</button>
+						</div>
+						<div class='col-sm-7 cashSettingInfoDiv' style='display:none;'>
+							<label class="col-sm-8 control-label cashSettingLable">现金券券码：${soInfoVo.cashCode}；冲抵金额：${soInfoVo.cashBenefit}</label>
+						</div>
+					</div>
+					<div class='form-group' id="receivePhoneDiv">
+						<div class='col-sm-4'>
+							<label class="col-sm-4 control-label" style="line-height:25px;">成交手机编号</label>
+							<div class="col-sm-8">
+							<#if soInfoVo.tranPhone == '' || soInfoVo.tranPhone == null>
+								<input type="text" name="tranPhone" placeholder="" class="form-control" validateType="default">
+							<#else>
+								<input type="text" name="tranPhone" class="form-control" validateType="default" value="${soInfoVo.tranPhone}">
+							</#if>
+							</div>
+						</div>
+						<div class='col-sm-4'>
+							<label class="col-sm-4 control-label" style="line-height:25px;">收款手机编号</label>
+							<div class="col-sm-8">
+							<#if soInfoVo.recPhone == '' || soInfoVo.recPhone == null>
+								<input type="text" name="recPhone" placeholder="" class="form-control" validateType="default">
+							<#else>
+								<input type="text" name="recPhone" value="${soInfoVo.recPhone}" class="form-control" validateType="default">
+							</#if>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+ 			<div class="panel panel-default othersDiv">
+				<div class="panel-heading">
+					<h3 class="panel-title">其它</h3>
+				</div>
+				<div class="panel-body ">
+					<div class="form-group">
+						<div class="col-sm-4" style="display: none;">
+							<label class="col-sm-4 control-label">是否延期审单</label>
+							<div  class='col-sm-8'> 
+								<input type="text" name="isDelay" id="isDelay" placeholder="" class="form-control" validateType="default">
+							</div>
+						</div>
+						<div class='col-sm-8'>
+							<label class="col-sm-2 control-label">延期审单时间</label>
+							<div class="col-sm-10">
+								<div class="col-sm-5 dayElement delayConfirmTime"> 
+									<div class="input-daterange input-group" id="datepicker">
+										<input disabled="disabled" class='laydate-icon form-control layer-date' id="delayConfirmTime"  value="${soInfoVo.lastDelayConfirmTimeStr}" name="delayConfirmTime" validateType="default" placeholder="延期时间" onclick="laydate({istime: false, istoday: false,min: laydate.now(1), format: 'YYYY-MM-DD'})">
+									</div>
+			                    </div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-sm-3 panel-bl so-others-layer" style="padding: 0 !important;">
+			<div class="panel panel-default panel-bb">
+				<div class="panel-heading jt-panel-heading">
+					<h3 class="panel-title">绩效分成<span id="soProfitTip" style="color:red;display:none;"></span></h3>
+				</div>
+				<div class="panel-body">
+					<div class='col-sm-12'>
+						<table class="table table-striped table-bordered">
+							<thead>
+								<tr>
+									<th width="27%">员工</th>
+									<th width="27%">部门</th>
+									<th width="29%">比例(%)</th>
+									<th width="17%">操作</th>
+								</tr>
+							</thead>
+							<tbody id="soProfitTbody">
+								<#if soInfoVo.soProfitPos?? && soInfoVo.soProfitPos?size gt 0>
+									<!-- 获取当前下单人的业绩，排在最上面 -->
+									<#list soInfoVo.soProfitPos as soProfitPo>
+										<#if soProfitPo.partyId == csEntityPo.employeeId>
+										<tr>
+											<td>
+												${soProfitPo.aid}:<div>${soProfitPo.employeeName}</div>
+												<input type="hidden" class="profitId" value="${soProfitPo.id}" />
+											</td>
+											<td>${soProfitPo.groupName}</td>
+											<td><input type="text" class="form-control soProfitPercent" value="${(soProfitPo.percent/100)?string('0.00')}" readonly="readonly"></td>
+											<td>
+												<input type="hidden" class="profitEmpId" value="${soProfitPo.partyId}" />
+												
+											</td>
+										</tr>
+										</#if>
+									</#list>
+									<!-- 获取非当前下单人的业绩，排在下单人下面 -->
+									<#list soInfoVo.soProfitPos as soProfitPo>
+										<#if soProfitPo.partyId != csEntityPo.employeeId>
+										<tr>
+											<td>
+												${soProfitPo.aid}:<div>${soProfitPo.employeeName}</div>
+												<input type="hidden" class="profitId" value="${soProfitPo.id}" />
+											</td>
+											<td>${soProfitPo.groupName}</td>
+											<td><input type="text" class="form-control soProfitPercent" validateType="default" value="${(soProfitPo.percent/100)?string('0.00')}"></td>
+											<td>
+												<i class="fa fa-remove delSoProfit" style="color:red;cursor:pointer;" title="删除"></i>
+												<input type="hidden" class="profitEmpId" value="${soProfitPo.partyId}" />
+											</td>
+										</tr>
+										</#if>
+									</#list>
+								<#else>
+									<tr>
+										<td>
+											${csEntityPo.employeeAid}:<div>${csEntityPo.employeeName}</div>
+										</td>
+										<td>${csEntityPo.groupName}</td>
+										<td><input type="text" class="form-control soProfitPercent" value="100.00" readonly="readonly"></td>
+										<td><input type="hidden" class="profitEmpId" value="${csEntityPo.employeeId}" /></td>
+									</tr>
+								</#if>
+							</tbody>
+						</table>
+					</div>
+					<div class=" col-sm-12">
+						<button type="button" class="btn jt-form-select pull-right" id='selectEmpBtn'>
+							<i class='fa fa-edit'></i>&nbsp;选择员工
+						</button>
+					</div>
+				</div>
+			</div>
+
+			<div class="panel panel-default" style="padding: 0 10px;">
+				<div class="panel-heading jt-panel-heading">
+					<h3 class="panel-title">订单备注</h3>
+				</div>
+				<div class="panel-body ">
+					<div class='form-group'>
+						<label class="col-sm-3 control-label">购买次数</label>
+						<div class="col-sm-7">
+							<input type="text" class="form-control" value="${csEntityPo.soComplete}" readonly="readonly">
+						</div>
+					</div>
+					<div class='form-group'>
+						<label class="col-sm-3 control-label" style="color: red;">是否加急</label>
+						<div class="col-sm-7">
+							<select name="isFast" id="fast" class="form-control" validateType="default">
+								<option value="n" <#if soInfoVo.isFast == 'n'>selected</#if>>否</option>
+								<option value="y" <#if soInfoVo.isFast == 'y'>selected</#if>>是</option>
+							</select>
+						</div>
+					</div>
+					<div class=" form-group">
+						<label class="col-sm-3 control-label" >发票类型</label>
+						<div class="col-sm-7">
+							<select name="billType" class="form-control"
+								validateType="default">
+								<option value="none" <#if soInfoVo.billType == 'none'>selected</#if>>无发票</option>
+								<option value="receipt" <#if soInfoVo.billType == 'receipt'>selected</#if>>收据</option>
+								<option value="common" <#if soInfoVo.billType == 'common'>selected</#if>>普通发票</option>
+								<option value="added" <#if soInfoVo.billType == 'added'>selected</#if>>增值发票</option>
+							</select>
+						</div>
+					</div>
+					<div class='form-group billAmountDiv' <#if soInfoVo.billType == 'none' || soInfoVo.billType == ''>style="display:none;"</#if>>
+						<label class="col-sm-3 control-label" >费用(元)</label>
+						<div class="col-sm-7">
+							<input type="text" name="billAmount" placeholder=""
+								class="form-control" validateType="default" value="${((soInfoVo.billAmount)!0.00)?string('0.00')}">
+						</div>
+					</div>
+					<div class='form-group billTitleDiv' <#if soInfoVo.billType == 'none' || soInfoVo.billType == ''>style="display:none;"</#if>>
+						<label class="col-sm-3 control-label" >发票抬头</label>
+						<div class="col-sm-7">
+							<textarea rows="2" name="billTitle" placeholder=""
+								class="form-control" validateType="default"
+								style="resize: none;">${soInfoVo.billTitle}</textarea>
+						</div>
+					</div>
+					<div class='form-group billContentDiv' <#if soInfoVo.billType == 'none' || soInfoVo.billType == ''>style="display:none;"</#if>>
+						<label class="col-sm-3 control-label" >发票内容</label>
+						<div class="col-sm-9">
+							<textarea rows="3" name="billContent" placeholder=""
+								class="form-control" validateType="default"
+								style="resize: none;">${soInfoVo.billContent}</textarea>
+						</div>
+					</div>
+					<div class='form-group'>
+						<label class="col-sm-3 control-label">店铺名称</label>
+						<div class="col-sm-7">
+							<input type="text" class="form-control" name='thirdStoreName' value="${soInfoVo.thirdStoreName}" readonly="readonly">
+						</div>
+					</div>
+					<div class='form-group'>
+						<label class="col-sm-3 control-label" >客服留言</label>
+						<div class="col-sm-9">
+							<textarea rows="6" name="comment" class="form-control" validateType="default" style="">${soInfoVo.comment}</textarea>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<#if soInfoVo.status == 'awaiting_pay' || soInfoVo.status == 'complete' || soInfoVo.status == 'shipping' 
+			|| soInfoVo.status == 'comfirm' || soInfoVo.status == 'close_reject'|| soInfoVo.status == 'close_lost'>
+			<div class="tabs-container col-sm-12 financeAttachDiv">		
+				<ul class="nav nav-tabs">
+					<li class="active"><a data-toggle="tab" href="#tab-finance" aria-expanded="false">收款附图</a></li>
+				</ul>
+				<div class="tab-content">
+					<div id="tab-finance" class="tab-pane active">	
+						<div class="panel-body">
+							<div class="form-group">
+								<div class='col-sm-3'>
+									<button type='button' class='btn jt-form-select uploadImage'><i class='fa fa-plus'></i></button>
+								</div>
+							</div>
+							<div class="form-group">
+								<div class='col-sm-12'>
+									<div id='imageContainer'></div>
+									<div id="uploader"></div>
+								</div>
+							</div>
+						</div>
+					</div>	
+				</div>
+			</div>
+		</#if>
+		
+		<div class="tabs-container col-sm-12 soEntityDetailSubTab">
+			<ul class="nav nav-tabs">
+				<#if soInfoVo.id == '' || soInfoVo.id == null>
+				<!-- <li class="active"><a data-toggle="tab" href="#tab-112" aria-expanded="false">推荐商品</a></li> -->
+				<#else>
+				<li class="tabLi active" attr-id="soEntityDetailSubTab-LogTab" ><a data-toggle="tab" href="#tab-113" aria-expanded="false">日志</a></li>
+					<#if soInfoVo.baseType == '' || soInfoVo.baseType == null || soInfoVo.baseType=='common'>
+					<li class="tabLi" attr-id="soEntityDetailSubTab-backOrExchangeTab" ><a data-toggle="tab" href="#tab-backOrExchange" aria-expanded="false">退换货</a></li>
+					</#if>
+				</#if>
+
+				
+			</ul>
+			<div class="tab-content">
+				<#if soInfoVo.id == '' || soInfoVo.id == null>
+				<div id="tab-112" class="tab-pane active">
+					<div class="panel-body">
+						<div class="panel panel-default" id='recomendProdsContainer'></div>
+					</div>
+				</div>
+				<#else>
+				<div id="tab-113" class="tab-pane active">
+					<div class="panel-body">
+						<div class="form-group">
+							<div class='col-sm-3'>
+								<button type='button' class='btn jt-form-select addFollow' id='addFollowBtn'>添加跟进记录</button>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class='col-sm-12'>
+								<table class="table table-striped table-bordered">
+									<thead id="soLogThead">
+										<tr>
+											<th>操作者</th>
+											<th>流水来源</th>
+											<th>类型</th>
+											<th>结果</th>
+											<th>时间</th>
+											<th>备注</th>
+											<th class='deleteSoLogTd' style='dislay:none;'>操作</th>
+										</tr>
+									</thead>
+									<tbody id="soLogTbody">
+										<#if soInfoVo.soLogPos?? && soInfoVo.soLogPos?size gt 0>
+										<#list soInfoVo.soLogPos as soLogPo>
+										<tr>
+											<td>${soLogPo.employeeAid}:${soLogPo.name}</td>
+											<td>
+												<#if soLogPo.srcType == 'flow_sys'>
+												订单状态变动生成
+												<#elseif soLogPo.srcType == 'option_sys'>
+												其他操作生成
+												<#elseif soLogPo.srcType == 'manual'>
+												人工
+												</#if>
+											</td>
+											<td>
+												<#if soLogPo.type == 'add'>
+												创建
+												<#elseif soLogPo.type == 'edit'>
+												修改
+												<#elseif soLogPo.type == 'paid_up'>
+												已支付
+												<#elseif soLogPo.type == 'pay'>
+												支付确认
+												<#elseif soLogPo.type == 'comfirm'>
+												审核
+												<#elseif soLogPo.type == 'pack'>
+												备货
+												<#elseif soLogPo.type == 'deliver'>
+												打包
+												<#elseif soLogPo.type == 'shipping'>
+												发货
+												<#elseif soLogPo.type == 'back_deliver'>
+												撤销发货
+												<#elseif soLogPo.type == 'shipped'>
+												订单跟进
+												<#elseif soLogPo.type == 'back_complete'>
+												撤销完成
+												<#elseif soLogPo.type == 'turndown'>
+												驳回
+												<#elseif soLogPo.type == 'close'>
+												关闭
+												<#elseif soLogPo.type == 'back'>
+												退回处理
+												<#elseif soLogPo.type == 'awaiting_refund'>
+												退款申请
+												<#elseif soLogPo.type == 'refund'>
+												退款完成
+												<#elseif soLogPo.type == 'other_oper'>
+												其他操作
+												<#elseif soLogPo.type == 'revisit'>
+												订单回访
+												<#elseif soLogPo.type == 'remark'>
+												人工备注
+												<#elseif soLogPo.type == 'task'>
+												跟进
+												<#elseif soLogPo.type == 'repeatComfirm'>
+												复审
+												</#if>
+											</td>
+											<td>${soLogPo.result}</td>
+											<td>${soLogPo.createTime?string("yyyy-MM-dd HH:mm:ss")}</td>
+											<td>${soLogPo.comment}</td>
+											<td class='deleteSoLogTd' style='dislay:none;'><i class='fa fa-remove deleteSoLog' title='删除' idVal='${soLogPo.id}' style='color: red; cursor: pointer;'></i></td>
+										</tr>
+										</#list>
+										</#if>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+						<#if soInfoVo.baseType == '' || soInfoVo.baseType == null || soInfoVo.baseType=='common'>
+							<div id="tab-backOrExchange" class="tab-pane">
+								<div class="panel-body">
+									<div class="panel panel-default" >
+										<table class="table table-striped table-bordered">
+		                                    <thead >
+		                                        <tr>
+		                                            <th>订单编号</th>
+		                                            <!-- <th>外部单号</th> -->
+		                                            <th>快递单号</th>
+		                                            <th>收件人</th>
+		                                            <th>收件地址</th>
+		                                            <th>收件号码</th>
+		                                            <th>订单金额</th>
+		                                            <!-- <th>店铺名称</th> -->
+		                                            <th>产品名称</th>
+		                                            <th>下单时间</th>
+		                                            <th>完成时间</th>
+		                                            <!-- <th>贷款方式</th> -->
+		                                            <!-- <th>拆分</th> -->
+		                                            <th>状态</th>
+		                                            <th>下单人</th>
+		                                            <th>业绩工号</th>
+		                                        </tr>
+		                                    </thead>
+		                                    <tbody id="tab-backOrExchange-tbody">
+		                                        
+		                                    </tbody>
+		                                </table>
+									</div>
+								</div>
+							</div>
+						</#if>
+
+				</#if>
+				
+			</div>
+		</div>
+
+		<div style="display: none'">
+			<input type="hidden" name="id" value="${soInfoVo.id}">
+			<input type="hidden" name="createTimeStr" value="${soInfoVo.createTimeStr}">
+			<input type="hidden" name="fromType" value="${soInfoVo.fromType!'admin'}"> 
+			<input type="hidden" name="payedAmount" value="${soInfoVo.payedAmount!0}"> 
+			<input type="hidden" name="prodQty" value="${soInfoVo.prodQty}"> 
+			<input type="hidden" name="prodAmount" value="${soInfoVo.prodAmount}"> 
+			<input type="hidden" name="payStatus" value="${soInfoVo.payStatus!'unpaid'}"> 
+			<input type="hidden" name="planId" value="${soInfoVo.planId}">
+			<input type="hidden" name="shipFollow" value="${soInfoVo.shipFollow}">
+			<input type="hidden" name="soStatus" value="${soInfoVo.status}"> 
+			<input type="hidden" name="rejectTypeName" value="${soInfoVo.rejectType}"> 
+			<input type="hidden" name="scTrackingNo" value="${soInfoVo.soShipPo.scTrackingNo}">
+			<input type="hidden" name="accountHide" value="${soInfoVo.account}"> 
+			<input type="hidden" name="isLock" value="${soInfoVo.isLock}"> 
+			<input type="hidden" name="auditCount" value="${soInfoVo.auditCount}"> 
+			<input type="hidden" class="csSoCompleteCount" value="${csEntityPo.soCount}">
+		</div>
+	</form>
+</div>

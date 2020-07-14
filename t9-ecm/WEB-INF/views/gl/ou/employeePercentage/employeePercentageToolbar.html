@@ -1,0 +1,21 @@
+<div class="col-sm-12">
+	<div class="panel panel-default">
+	    <div class="panel-heading">
+	    	<button type='button' class='btn-sm   btn btn-sm   btn-primary employeePercentageAdd'><i class='fa fa-plus'>添加</i></button>
+			<button type='button' class='btn-sm   btn btn-sm   btn-primary employeePercentageEdit'><i class='fa fa-edit'>编辑</i></button>
+			<button type='button' class='btn-sm   btn btn-sm   btn-danger employeePercentageDel'><i class='fa fa-remove'>删除</i></button>
+			<button type='button' class='btn-sm   btn btn-sm   btn-primary employeePercentageDetail'><i class='fa fa-list'>明细</i></button>
+	    </div>
+	    <div class="panel-body">
+	        <form role="form" class="form-inline">
+				<!--默认生成一个搜索条件，需要的，用户自己添加-->
+				<div class="form-group">
+					<label for="nameSearch" class="sr-only">名称</label> 
+					<input type="text" id='nameSearch' placeholder="请输入资源名称" name="Q__S__LK__name_" class="form-control">
+				</div>
+				<button type='button' class="btn btn-sm   btn-primary employeePercentageSearch">搜索</button>
+				<#include "/common/advanceSearch.html">
+			</form>
+	    </div>
+	</div>
+</div>

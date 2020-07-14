@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>jt_wechat_platform管理</title>
+	<#include "/common/common.html">
+	<script src="${ctx}/js/jt/crm/wx/wechatPlatform${deploy_min!""}.js?v=${jsVersion}" ></script>
+</head>
+
+<body>
+	<div class="wrapper animated fadeInRight">
+		<!-- list界面 -->
+		<div class="row list_wrapper">
+			<#include "/crm/wx/wechatPlatform/wechatPlatformToolbar.html">	  			
+			<div class='col-sm-12 jqGrid_wrapper'>
+			    <table id="wechatPlatformGrid"></table>
+				<div id="wechatPlatformPager"></div>
+			</div>
+		</div>
+		<!-- 编辑界面 -->
+		<#include "/crm/wx/wechatPlatform/wechatPlatformEdit.html">	    
+	</div>
+</body>
+</html>

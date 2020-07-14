@@ -1,0 +1,50 @@
+<form id="glHelpForm" method="get" class="form-horizontal">
+	<div class="form-group">
+		<div class='col-sm-12'>
+			<label class="col-sm-2 control-label">标题<span style="color:red;">*</span></label>
+			<div class="col-sm-9">
+				<input type="text" name="name" class="form-control"
+				validateType="default">
+			</div>
+		</div>
+	</div>
+
+	<div class="form-group ">
+		<div class='col-sm-12'>
+			<label class="col-sm-2 control-label">分类<span style="color: red;">*</span></label>
+			<div class="col-sm-4">
+				<input type="text" readonly="readonly" name="cateName" class="form-control" id="cateName" validateType="default">
+			</div>
+		</div>
+	</div>
+
+	<div class="form-group">	
+		<div class='col-sm-12'>
+			<label class="col-sm-2 control-label">链接<span style="color: red;">*</span></label>
+			<div class="col-sm-9">
+				<input type="text" name="url" placeholder="" class="form-control" validateType="default" > 
+			</div>
+		</div>		
+	</div>
+
+	<div class="form-group">
+		<div class='col-sm-12'>
+			<label class="col-sm-2 control-label">排序号<span style="color: red;">*</span></label>
+			<div class="col-sm-9">
+				<input type="text" name="sort" placeholder=""  validateType="default"  class="digits form-control"> 
+			</div>
+		</div>
+	</div>
+
+	<div class='form-group'>
+		<!--将隐藏域放在这里，不显示出来-->
+		<div style="display:none'">
+			<input type="hidden" id="id" name="id">
+			<input type="hidden" name="cateId">
+			<input type="hidden" name="cateKey">
+			<input type="hidden" name="code">
+			<input type="hidden" name="createTime">
+		</div>
+	</div>
+
+</form>

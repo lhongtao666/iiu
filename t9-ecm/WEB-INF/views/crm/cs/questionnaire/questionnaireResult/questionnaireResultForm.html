@@ -1,0 +1,72 @@
+<div class='row' style='border: 1px solid #ddd; margin-left: 15px; margin-right: 15px;padding:10px;'>
+	<div class='col-sm-12'>
+		<form id="questionnaireResultForm" method="get" class="form-horizontal">
+
+
+			<div class="form-group">
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">所属问卷 ID<@JTtip msg="所属问卷 ID" /></label>
+					<div class="col-sm-9">
+						<input type="text" name="qnId" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">客户 ID<@JTtip msg="客户 ID" /></label>
+					<div class="col-sm-9">
+						<input type="text" name="csId" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">问题 ID<@JTtip msg="问题 ID" /></label>
+					<div class="col-sm-9">
+						<input type="text" name="questionId" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+			</div>
+			<div class="form-group">
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">问题<@JTtip msg="问题" /></label>
+					<div class="col-sm-9">
+						<input type="text" name="question" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">类型。single=单选题；multi=多选题；bool=是否题；common=问答题<@JTtip msg="类型。single=单选题；multi=多选题；bool=是否题；common=问答题" /></label>
+					<div class="col-sm-9">
+						<select class="form-control" name="type" validateType="default" >
+		               		<option value="">请选择</option>
+		               		<option value="1">选项 1</option>
+		               	    <option value="2">选项 2</option>
+		               		<option value="3">选项 3</option>
+		               		<option value="4">选项 4</option>
+		              	</select>
+		            </div>
+		        </div>
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">选中串。选项之间用竖线划分。<@JTtip msg="选中串。选项之间用竖线划分。" /></label>
+					<div class="col-sm-9">
+						<input type="text" name="options" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+			</div>
+
+
+
+			<div class='form-group'>
+				<!--将隐藏域放在这里，不显示出来-->
+				<div style="display:none'">
+					<input type="hidden" id="id" name="id">
+					<input type="hidden" name="createBy">
+					<input type="hidden" name="createTime">
+				</div>
+			</div>
+
+		</form>
+	</div>
+</div>

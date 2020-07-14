@@ -1,0 +1,29 @@
+<div class="col-sm-12">
+	<div class="panel panel-default">
+	    <div class="panel-heading">
+	    	<button type='button' class='jt-btn weixinCommonLanAdd'><i class='fa fa-plus'></i>&nbsp;添加</button>
+	    	<button type='button' class='jt-btn weixinCommonLanEdit'><i class='fa fa-pencil'></i>&nbsp;编辑</button>
+	    	<button type='button' class='jt-btn jt-btn-red weixinCommonLanDel'><i class="fa fa-remove"></i>&nbsp;删除</button>
+	    	<button type='button' class='jt-btn weixinCommonLanDetail'><i class='fa fa-bars'></i>&nbsp;明细</button>
+	    	<!-- 帮助中心 -->
+	    	<label id="glHelpContainer"></label>
+	    </div>
+	    
+	    <div class="panel-body">
+	        <form id='weixinCommonLanSearchForm' role="form" class="form-horizontal">
+				<!--默认生成一个搜索条件，需要的，用户自己添加-->
+				<div class="form-group">
+					<label class='col-sm-1 control-label'>内容</label> 
+					<div class='col-sm-2'>
+						<input type="text" id='nameSearch' placeholder="请输入内容" name="Q__S__LK__content_" class="form-control">
+						<input type="text" style="display:none;">
+					</div>
+					<div class='col-sm-3'>
+						<button type='button' class="jt-btn-search weixinCommonLanSearch"><i class="fa fa-search"></i>&nbsp;搜索</button>
+						<button type='button' id="clearSearchBtn" class="jt-btn-empty"><i class='fa fa-trash-o'></i>&nbsp;清空</button>
+					</div>
+				</div>
+			</form>
+	    </div>
+	</div>
+</div>

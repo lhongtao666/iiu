@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>jt_check_item管理</title>
+	<#include "/common/common.html">
+	<script src="${ctx}/js/jt/crm/check/checkItem${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<style type="text/css">
+	.check-result{display: none;}
+	</style>
+</head>
+
+<body>
+	<div class="wrapper animated fadeInRight">
+		<!-- list界面 -->
+		<div class="row list_wrapper">
+			<#include "/crm/check/checkItem/checkItemToolbar.html">	  			
+			<div class='col-sm-12 jqGrid_wrapper'>
+			    <table id="checkItemGrid"></table>
+				<div id="checkItemPager"></div>
+			</div>
+		</div>
+		<!-- 编辑界面 -->
+		<#include "/crm/check/checkItem/checkItemEdit.html">	    
+	</div>
+</body>
+</html>

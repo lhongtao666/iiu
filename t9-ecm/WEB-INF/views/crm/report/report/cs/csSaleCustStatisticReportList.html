@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>客户金额消费报表</title>
+	<#include "/common/common.html">
+	<#include "/common/ztree.html">
+	<script src="${ctx}/js/jt/common/utils/groupUtils.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/plugins/echarts/3.1.7/theme/macarons.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/plugins/echarts/3.1.7/echarts.min.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/jt/common/plugins/report${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/crm/report/reportDateUtil${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/crm/report/report/cs/csSaleCustStatisticReport${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script type="text/javascript">
+		var beginDate ='${beginDate}';
+		var endDate ='${endDate}';
+	</script>
+	<style type="text/css">
+		.showMoreInfo{
+			float: right;
+		}
+	</style>
+</head>
+<body class='white-bg'>
+	<div class='row list_wrapper'>
+		<div class='col-sm-12'>
+			<div class="panel panel-default">
+				<form role="form" class="form-horizontal" id="csSaleCustStatisticReportForm">
+					<div class="panel-heading report-content" style="height:35px">	
+				    <font style="font-size:15px;">客户金额消费</font>
+				    <input id="groupName" class="groupId" readonly="" value="请选择" title="请选择部门" style="width:80px;height:28px;position:absolute;right:100px">
+                    <input id="groupId" name="groupId" type="hidden">
+					<button type='button' class='btn btn-sm   btn-info showMoreInfo'>查看更多</button>
+					</div> 
+				</form>
+				<div class="panel-body ">
+				<table id="csSaleCustStatisticGrid" class='table table-striped table-bordered' style="margin:auto;height:100%;border:0px">
+				  <thead>
+						<tr>
+							<th>部门</th>
+							<th>员工</th>
+							<th>客户ID</th>
+							<th>金额</th>
+						</tr>
+					</thead>
+					<tbody>
+					</tbody>
+				    <tfoot>
+				    </tfoot>
+				    </table>
+				</div>
+			</div>
+		</div>
+	</div>		
+</body>
+</html>

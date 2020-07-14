@@ -1,0 +1,159 @@
+<div class="row">
+  <div class='col-sm-12'>
+    
+    <h4 style="cursor: pointer;" id="partyAddrBut" name="partyAddrBut"
+      onclick="JTOtherUtils.freeAndshrinkDiv('partyAddrDetailDiv','partyAddrBut',40)">
+      联系方式编辑区<i style='font-size: 20px;' class='fa fa-angle-double-down'></i>
+    </h4>
+
+    <div id="partyAddrDetailDiv" style="display: none;">
+      <input type="hidden" name="partyAddrEditRowId" id="partyAddrEditRowId"> 
+      <input type="hidden" name="partyAddr_partyId" class="form-control" validateType="default">
+      <input type="hidden" name="partyAddr_isSnapshot" id="partyAddr_isSnapshot" placeholder="" value="n" class="form-control" validateType="default">
+
+      <div class="form-group">
+        <div class=' col-sm-4'>
+          <label class="col-sm-3 control-label">类型<span style='color: red;'>*</span></label>
+          <div class="col-sm-9">
+          <div class="checkbox-inline ">
+             <input type="checkbox" checked="checked" name="partyAddr_types" id="partyAddr_types" validateType="default" value="contact" >
+              联系地址
+           </div>
+           <div class="checkbox-inline ">
+            <input type="checkbox" checked="checked" name="partyAddr_types" 
+              id="partyAddr_typesdf" validateType="default" value="shipping">
+            收货地址
+           </div>
+          </div>
+        </div>
+        
+        <div class='col-sm-4'>
+          <label class="col-sm-3 control-label">默认地址</label>
+          <div class="col-sm-9">
+            <select id="partyAddr_isDefault" class="form-control"
+              name="partyAddr_isDefault" validateType="default">
+              <option value="y">是</option>
+              <option value="n">否</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class='col-sm-12' id='cateContainer'></div>
+      </div>
+      
+      <input type="hidden" name="partyAddr_coRid"> 
+      <input type="hidden" name="partyAddr_coName"> 
+      <input type="hidden" name="partyAddr_prRid"> 
+      <input type="hidden" name="partyAddr_prName" id="partyAddr_prName">
+      <input type="hidden" name="partyAddr_ciRid"> 
+      <input type="hidden" name="partyAddr_ciName" id="partyAddr_ciName">
+      <input type="hidden" name="partyAddr_arRid"> 
+      <input type="hidden" name="partyAddr_arName" id="partyAddr_arName">
+
+      <div class="form-group">
+        <label class="col-sm-1 control-label">地址<@JTtip msg="地址" /><span style='color: red;'>*</span></label>
+        <div class="col-sm-11">
+          <textarea name="partyAddr_addr" id="partyAddr_addr" placeholder=""
+            class="form-control" validateType="default" rows="3"> </textarea>
+        </div>
+      </div>
+      
+        
+      <div class="form-group">
+        <div class=' col-sm-4'>
+          <label class="col-sm-3 control-label">联系人<@JTtip msg="联系人"/><span style='color: red;'>*</span></label>
+          <div class="col-sm-9">
+            <input type="text" name="partyAddr_name" id="partyAddr_name"
+              placeholder="" class="form-control" validateType="default">
+          </div>
+        </div>
+        <div class=' col-sm-4'>
+          <label class="col-sm-3 control-label">称谓<span style='color: red;'>*</span></label>
+          <div class="col-sm-9">
+            <select type="text" name="partyAddr_title" id="partyAddr_title"
+              placeholder="" class="form-control" validateType="default">
+            </select>
+          </div>
+        </div>
+        <div class=' col-sm-4'>
+          <label class="col-sm-3 control-label">职务</label>
+          <div class="col-sm-9">
+            <input type="text" name="partyAddr_position"
+              id="partyAddr_position" placeholder="" class="form-control"
+              validateType="default">
+          </div>
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <div class=' col-sm-4'>
+          <label class="col-sm-3 control-label">手机<span style='color: red;'>*</span></label>
+          <div class="col-sm-9">
+            <input type="text" name="partyAddr_mobile" id="partyAddr_mobile"
+              placeholder="" class="form-control" validateType="default">
+          </div>
+        </div>
+        <div class=' col-sm-4'>
+          <label class="col-sm-3 control-label">联系邮箱</label>
+          <div class="col-sm-9">
+            <input type="text" name="partyAddr_email" id="partyAddr_email"
+              placeholder="" class="form-control" validateType="default">
+          </div>
+        </div>
+        <div class=' col-sm-4'>
+          <label class="col-sm-3 control-label">邮编<@JTtip msg="邮编"/></label>
+          <div class="col-sm-9">
+            <input type="text" name="partyAddr_zipcode"
+              id="partyAddr_zipcode" placeholder="" class="form-control"
+              validateType="default">
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class=' col-sm-4'>
+          <label class="col-sm-3 control-label">传真<@JTtip msg="传真"/></label>
+          <div class="col-sm-9">
+            <input type="text" name="partyAddr_fax" id="partyAddr_fax"
+              placeholder="" class="form-control" validateType="default">
+          </div>
+        </div>
+        <div class=' col-sm-4'>
+          <label class="col-sm-3 control-label">其他</label>
+          <div class="col-sm-9">
+            <input type="text" name="partyAddr_im" id="partyAddr_im"
+              placeholder="" class="form-control" validateType="default">
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <input type="hidden" name="partyAddr_createBy"> 
+        <input type="hidden" name="partyAddr_createTime"> 
+        <input type="hidden" name="partyAddr_updateBy"> 
+        <input type="hidden" name="partyAddr_updateTime">
+
+        <div class="col-sm-4 col-sm-offset-2">
+          <button id="partyAddrButtonId" name="partyAddrButtonId"
+            type="button" class="btn btn-sm   btn-primary"  >添加新联系方式</button>
+          <button id="partyAddrSaveButton" name="partyAddrSaveButton"
+            type="button" class="btn btn-sm   btn-primary free_shrink_save_button"
+            >确认更改</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<br>
+
+<div class='row'>
+  <div id="partyAddrDiv" class='col-sm-12'>
+    <table id="partyAddrGrid"></table>
+    <div id="partyAddrPager"></div>
+    <input type="hidden" id="partyAddrJSON" name="partyAddrJSON">
+  </div>
+</div>
+

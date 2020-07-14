@@ -1,0 +1,60 @@
+<div class='row' style='border: 1px solid #ddd; margin-left: 15px; margin-right: 15px;padding:10px;'>
+    <div class='col-sm-12'>
+        <form id="secureOperConfigForm" method="get" class="form-horizontal">
+            <div class="form-group">
+                <div class='col-sm-4'>
+                    <label class="col-sm-3 control-label">名称</label>
+                    <div class="col-sm-9">
+                        <input type="text" name="name" placeholder="" class="form-control" validateType="default">
+                    </div>
+                </div>
+                <div class='col-sm-4'>
+                    <label class="col-sm-3 control-label">类型</label>
+                    <div class="col-sm-9">
+                        <select name="type" placeholder="" class="form-control" validateType="default">
+                            <option value="operate_type">操作记录</option>
+                            <option value="secure_type">安全记录</option>
+                            <option value="all">两者</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class='col-sm-4'>
+                    <label class="col-sm-3 control-label">业务键</label>
+                    <div class="col-sm-9">
+                        <input type="text" name="key" placeholder="" class="form-control" validateType="default">
+                    </div>
+                </div>
+                <div class='col-sm-4'>
+                    <label class="col-sm-3 control-label">关联操作</label>
+                    <div class="col-sm-9">
+                        <input type="text" name="linkOperator" placeholder="" class="form-control" validateType="default">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class='col-sm-12'>
+                    <label class="col-sm-1 control-label">关联资源</label>
+                    <div class="col-sm-11">
+                        <div class="input-group">
+                            <input type="text" name="url" class="form-control" validateType="default">
+                            <div class="input-group-btn">
+                                <button type="button" class="btn btn-white dropdown-toggle" data-toggle="dropdown">
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-right" role="menu"></ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class='form-group'>
+                <!--将隐藏域放在这里，不显示出来-->
+                <div style="display:none'">
+                    <input type="hidden" id="id" name="id">
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

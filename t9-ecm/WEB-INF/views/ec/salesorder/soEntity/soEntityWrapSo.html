@@ -1,0 +1,67 @@
+<style type="text/css">
+	.layui-layer-page .layui-layer-content {
+		overflow:hidden;
+	}
+</style>
+<div id="wrapSoModalContainer" style="display: none; overflow-x: none;">
+	<form id="wrapSoForm" method="get" class="form-horizontal">
+		<input type='hidden' name='soNo'>
+		<input type='hidden' name='soId'>
+		<div class="form-group">
+			<div class="col-sm-12">
+		        <div class="panel panel-default">
+		            <div class="panel-body">
+		                <table class='table table-bordered'>
+		                    <tr>
+		                        <td width='6%'>
+		                            <b>员工</b>
+		                        </td>
+		                        <td width='40%'>
+		                            <div class="col-sm-8">
+		                                <div class="input-group">
+		                                    <input name='employeeSearch' id="employeeInput" type='text' class='form-control' placeholder="请输入工号或者姓名">
+		                                    <div class="input-group-btn">
+		                                        <button type="button" class="btn  btn-white dropdown-toggle" data-toggle="dropdown">
+		                                            <span class="caret"></span>
+		                                        </button>
+		                                        <ul class="dropdown-menu dropdown-menu-right" role="menu">
+		                                        </ul>
+		                                    </div>
+		                                </div>
+		                            </div>
+		                            <div class='col-sm-4'>
+		                                <button class='btn btn-sm btn-primary' id='selectEmployeeBtn' type='button'>选择员工</button>
+		                            </div>
+		                        </td>
+		                        <td width='26%'>
+		                        	<h4 style="color: red">PS:不选择，默认为当前登录员工为包装人</h4>
+		                        </td>
+		                    </tr>
+		                </table>
+		            </div>
+		        </div>
+	    	</div>
+		</div>
+	        <div class="panel panel-default">
+	            <div class="panel-body">
+	            	<div class="col-sm-12 form-group">
+		                <label class='control-label col-sm-2 col-md-1' style='padding-top:5px; margin-right:5%'>
+		                    重量
+		                </label>
+		                <div class='col-sm-3'>
+		                	<input type="number" name="weight" class="form-control" validateType="default">
+		                </div>
+	                </div>
+	                <div class="col-sm-12 form-group">
+		                 <label class='control-label col-sm-2 col-md-1' style='padding-top:5px; margin-right:5%'>
+	                    体积
+		                </label>
+		                <div class='col-sm-3'>
+		                	<input type="number" name="volume" class="form-control" validateType="default">
+		                </div>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	</form>
+</div>

@@ -1,0 +1,55 @@
+<div class="col-sm-12">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <form id='glUserLogForm' role="form" class="form-horizontal">
+
+                <div class="form-group">
+                    <label class="col-sm-1 control-label">员工</label>
+                    <div class="col-sm-2">
+                        <select id="searchByUserId" class="form-control" name="Q__S__EQ__user_id_">
+                        </select>
+                    </div>
+
+                        <label class="col-sm-1 control-label">类型</label>
+                        <div class="col-sm-2">
+                            <select id="isIgnoreSearch" class="form-control" name="Q__S__EQ__type_">
+                                <option value="">请选择</option>
+                                <option value="login">登录</option>
+                                <option value="logout">退出</option>
+                            </select>
+                        </div>
+
+                        <label class="col-sm-1 control-label">IP地址</label>
+                        <div class="col-sm-2">
+                            <input type="text" placeholder="请输入IP地址"  name="Q__S__LK__ip_" class="form-control">
+                        </div>
+
+                        <label class="col-sm-1 control-label">登录分机</label>
+                        <div class="col-sm-2">
+                           <input type="text" placeholder="请输入登录分机"  name="Q__S__LK__adn_" class="form-control">
+                        </div>
+
+                </div>
+
+                <div class="form-group">
+                        <label class="col-sm-1 control-label">时间</label>
+                        <div class='col-sm-5'>
+                            <div class="input-daterange input-group" id="datepicker">
+                                <input class="laydate-icon startCreateTime form-control layer-date minPlaceTime"  id="lowCreateTime" name="lowCreateTime" placeholder="yyyy-mm-dd hh:mm:ss" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">
+                                <span class="input-group-addon">到</span>
+                                <input class="laydate-icon startCreateTime form-control layer-date minPlaceTime"  id="highCreateTime"name="highCreateTime" placeholder="yyyy-mm-dd hh:mm:ss" onclick="laydate({istime: true,start: laydate.now(0, 'YYYY/MM/DD 23:59:59'), format: 'YYYY-MM-DD hh:mm:ss'})">
+                        </div>
+                    </div>
+
+                    <!-- 帮助中心 -->
+                    <div class="col-sm-1">
+                      <label id="glHelpContainer"></label>
+                      <button type='button' class="jt-btn jt-btn-search userLogSearch"><i class="fa fa-search"></i>&nbsp;搜索</button>
+                  </div>
+              </div>
+
+
+          </form>
+      </div>
+  </div>
+</div>

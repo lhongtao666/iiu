@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>财务单据管理</title>
+	<#include "/common/common.html">
+	<#include "/common/ztree.html">
+    <script type="text/javascript">
+        var soId="${soId}";
+    </script>
+    <script src="${ctx}/js/jt/ec/finance/financeBillShow${deploy_min!""}.js?v=${jsVersion}" ></script>
+    <script src="${ctx}/js/jt/ec/finance/financeItem${deploy_min!""}.js?v=${jsVersion}" ></script>
+    <script src="${ctx}/js/jt/ec/finance/financeBillAttach${deploy_min!""}.js?v=${jsVersion}" ></script>
+    <script src='${ctx}/js/jt/common/service/financeAccountSelect${deploy_min!""}.js?v=${jsVersion}'></script>
+    <script src="${ctx}/js/jt/ec/finance/financeBillBase${deploy_min!""}.js?v=${jsVersion}" ></script>
+</head>
+
+<body class='white-bg'>
+	<div class="wrapper animated ">
+		<!-- list界面 -->
+		<div class="row list_wrapper">
+			<!-- 工具栏 -->
+			<div class="col-sm-12">
+	             <div class="panel panel-default">
+	                <div class="panel-heading">
+	    	            <button type='button' class='btn btn-sm  btn-primary financeBillDetail'><i class='fa fa-detail'>明细</i></button>
+	                </div>
+	                <div class="panel-body"></div>
+	             </div>
+			</div>
+	
+			<!-- jqgrid数据 -->
+			<div class='col-sm-12 jqGrid_wrapper'>			
+				<table id="financeBillGrid"></table>
+				<div id="financeBillPager"></div>
+			</div>
+		</div>
+		<!-- 编辑界面 -->
+		<div style="display: none;" class="row form_wrapper">
+			<div class='col-sm-12'>
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<button type='button' class="btn btn-default prevBtn">取消</button>
+					</div>
+					<div class="panel-body"><#include "financeBillForm.html"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

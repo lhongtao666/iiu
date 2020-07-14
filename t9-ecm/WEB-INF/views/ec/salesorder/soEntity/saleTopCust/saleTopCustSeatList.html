@@ -1,0 +1,22 @@
+<#include "/common/datatable.html">
+<script src="${ctx}/js/jt/ec/salesorder/saleTopCust/saleTopCustSeat${deploy_min!""}.js?v=${jsVersion}" ></script>
+
+<div class="ibox float-e-margins" style="height:100%">
+	<div class="ibox-title">
+		<h5>客户消费排行榜</h5>
+		<div class="btn-group pull-right">
+			<button type="button" class="btn btn-sm btn-outline btn-primary thisButton" disabled="disabled">本月</button>
+			<button type="button" class="btn btn-sm btn-outline btn-primary preButton">上月</button>
+			<button type="button" class="btn btn-sm btn-outline btn-primary allButton">全部</button>
+		</div>
+	</div>
+	<div class="ibox-content" style="height:100%">
+		<div style="padding-right: 15px;padding-left: 15px;">
+			<div class="row">
+				
+			</div>
+			<div id='saleTopCustDiv'>
+      	  	</div>
+		</div>
+	</div>
+</div>

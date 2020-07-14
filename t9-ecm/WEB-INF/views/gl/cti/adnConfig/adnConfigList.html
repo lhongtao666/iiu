@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>t_adn_config管理</title>
+	<#include "/common/common.html">
+	<script src="${ctx}/js/jt/gl/cti/adnConfig.js?v=1.0.0" ></script>
+</head>
+
+<body>
+	<div class="wrapper animated fadeInRight">
+		<!-- list界面 -->
+		<div class="row list_wrapper">
+			<#include "/gl/cti/adnConfig/adnConfigToolbar.html">	  			
+			<div class='col-sm-12 jqGrid_wrapper'>
+			    <table id="adnConfigGrid"></table>
+				<div id="adnConfigPager"></div>
+			</div>
+		</div>
+		<!-- 编辑界面 -->
+		<#include "/gl/cti/adnConfig/adnConfigEdit.html">	    
+	</div>
+</body>
+</html>

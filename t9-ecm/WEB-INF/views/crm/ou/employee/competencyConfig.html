@@ -1,0 +1,175 @@
+
+<!--添加员工能力模型参数modal-->
+	<div class="modal fade" id="competencyConfigContainer" tabindex="-1" role="dialog" >
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+	        <h4 class="modal-title">员工能力模型参数</h4>
+	      </div>
+	      <div class="modal-body" style="height: 400px;">
+	      	<form class="form-horizontal" id="competencyConfigForm">
+	      		<div class="form-group">
+					<div class='col-sm-12'>
+	           			<label class='col-sm-3 control-label'>是否开通能力模型:</label>
+			           <div class="col-sm-3">
+			               <div class="radio radio-success radio-inline">
+			                   <input type="radio" name="allowCompetency" value="y" >
+			                   <label >是</label>
+			               </div>
+			               <div class="radio radio-success radio-inline">
+			                   <input type="radio" name="allowCompetency" value="n" checked="checked" >
+			                   <label>否</label>
+			               </div>
+			           </div>
+			             </div>
+			    </div>
+			    <div class="form-group">
+					<div class='col-sm-12'>
+			           <label class='col-sm-3 control-label'>开通通话时长参数:</label>
+			           <div class="col-sm-3">
+			               <div class="radio radio-success radio-inline">
+			                   <input type="radio" name="allowCallSc" value="y" >
+			                   <label >是</label>
+			               </div>
+			               <div class="radio radio-success radio-inline">
+			                   <input type="radio" name="allowCallSc" value="n" checked="checked">
+			                   <label>否</label>
+			               </div>
+			           </div>
+			        </div>
+			    </div>
+			    <div class="form-group">
+			    	<div class='col-sm-12'>
+			    		<label class='col-sm-3 control-label'>通话时长权重:</label>
+			            <div class="col-sm-3">
+			               <input type="number" name="callScPercent" class='form-control'></input>
+			            </div>
+			            <label class='col-sm-3 control-label'>通话时长中间值设置:</label>
+			            <div class="col-sm-3">
+			                <input type="number" name="callScMid" class='form-control'></input>
+			            </div>
+			    	</div>
+			    </div>
+			    <div class="form-group">
+					<div class='col-sm-12'>
+			           <label class='col-sm-3 control-label'>开通有效通话参数:</label>
+			           <div class="col-sm-3">
+			               <div class="radio radio-success radio-inline">
+			                   <input type="radio" name="allowCallLong" value="y" >
+			                   <label >是</label>
+			               </div>
+			               <div class="radio radio-success radio-inline">
+			                   <input type="radio" name="allowCallLong" value="n" checked="checked">
+			                   <label>否</label>
+			               </div>
+			           </div>
+			        </div>
+			    </div>
+			    <div class="form-group">
+			    	<div class='col-sm-12'>
+			    		<label class='col-sm-3 control-label'>有效通话权重:</label>
+			            <div class="col-sm-3">
+			               <input type="number" name="callLongPercent" class='form-control'></input>
+			            </div>
+			            <label class='col-sm-3 control-label'>有效通话中间值设置:</label>
+			            <div class="col-sm-3">
+			                <input type="number" name="callLongMid" class='form-control'></input>
+			            </div>
+			    	</div>
+			    </div>
+			     <div class="form-group">
+					<div class='col-sm-12'>
+			           <label class='col-sm-3 control-label'>开通微信发送客户数参数:</label>
+			           <div class="col-sm-3">
+			               <div class="radio radio-success radio-inline">
+			                   <input type="radio" name="allowWxToCs" value="y" >
+			                   <label >是</label>
+			               </div>
+			               <div class="radio radio-success radio-inline">
+			                   <input type="radio" name="allowWxToCs" value="n" checked="checked">
+			                   <label>否</label>
+			               </div>
+			           </div>
+			        </div>
+			    </div>
+			    <div class="form-group">
+			    	<div class='col-sm-12'>
+			    		<label class='col-sm-3 control-label'>微信发送客户数权重:</label>
+			            <div class="col-sm-3">
+			               <input type="number" name="wxToCsPercent" class='form-control'></input>
+			            </div>
+			            <label class='col-sm-3 control-label'>微信发送客户数中间值:</label>
+			            <div class="col-sm-3">
+			                <input type="number" name="wxToCsMid" class='form-control'></input>
+			            </div>
+			    	</div>
+			    </div>
+			    <div class="form-group">
+					<div class='col-sm-12'>
+			           <label class='col-sm-3 control-label'>开通微信客户发来数参数:</label>
+			           <div class="col-sm-3">
+			               <div class="radio radio-success radio-inline">
+			                   <input type="radio" name="allowWxCsTo" value="y" >
+			                   <label >是</label>
+			               </div>
+			               <div class="radio radio-success radio-inline">
+			                   <input type="radio" name="allowWxCsTo" value="n" checked="checked">
+			                   <label>否</label>
+			               </div>
+			           </div>
+			        </div>
+			    </div>
+			    <div class="form-group">
+			    	<div class='col-sm-12'>
+			    		<label class='col-sm-3 control-label'>微信客户发来数权重:</label>
+			            <div class="col-sm-3">
+			               <input type="number" name="wxCsToPercent" class='form-control'></input>
+			            </div>
+			            <label class='col-sm-3 control-label'>微信客户发来数中间值:</label>
+			            <div class="col-sm-3">
+			                <input type="number" name="wxCsToMid" class='form-control'></input>
+			            </div>
+			    	</div>
+			    </div>
+			     <div class="form-group">
+					<div class='col-sm-12'>
+			           <label class='col-sm-3 control-label'>开通填写跟进记录参数:</label>
+			           <div class="col-sm-3">
+			               <div class="radio radio-success radio-inline">
+			                   <input type="radio" name="allowCsFollows" value="y" >
+			                   <label >是</label>
+			               </div>
+			               <div class="radio radio-success radio-inline">
+			                   <input type="radio" name="allowCsFollows" value="n"  checked="checked">
+			                   <label>否</label>
+			               </div>
+			           </div>
+			        </div>
+			    </div>
+			    <div class="form-group">
+			    	<div class='col-sm-12'>
+			    		<label class='col-sm-3 control-label'>填写跟进记录权重:</label>
+			            <div class="col-sm-3">
+			               <input type="number" name="csFollowsPercent" class='form-control'></input>
+			            </div>
+			            <label class='col-sm-3 control-label'>填写跟进记录中间值:</label>
+			            <div class="col-sm-3">
+			                <input type="number" name="csFollowsMid" class='form-control'></input>
+			            </div>
+			    	</div>
+			    </div>
+			     <div class='form-group'>
+			        <div style="display:none'">
+			            <input type="hidden" name="groupId" />
+			        </div>
+			    </div>
+    		</form>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-sm btn-default" data-dismiss="modal">关闭</button>
+	        <button type="button" class="btn btn-sm   btn-primary" id='saveCompetencyConfigBtn'>保存</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>

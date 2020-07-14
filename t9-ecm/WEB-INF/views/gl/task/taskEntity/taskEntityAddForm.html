@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>日常任务管理</title>
+    <#include "/common/common.html" />
+    <#include "/common/timepicker.html" />
+    <style type="text/css">
+    .margin-class {
+        margin-top: 20px;
+    }
+    </style>
+    <script src='${ctx}/js/jt/common/service/partyAddrSelectLayer${deploy_min!""}.js?v=${jsVersion}'></script>
+    <script src="${ctx}/js/jt/common/service/employeesSelectLayer${deploy_min!""}.js?v=${jsVersion}"></script>
+    <script src="${ctx}/js/jt/common/utils/groupUtils${deploy_min!""}.js?v=${jsVersion}" ></script>
+    <script src="${ctx}/js/jt/gl/task/taskEntity${deploy_min!""}.js?v=${jsVersion}"></script>
+    <script type="text/javascript">
+    $(document).ready(function() {
+        var addTask = new TaskEntity();
+        $.log("type===" + "${type}");
+        $.log("typeName===" + "${typeName}");
+        $.log("entityId===" + "${entityId}");
+        $.log("entityName===" + "${entityName}");
+        var name = '${name}';
+        var desc = '${desc}';
+        if (name) {
+            $("[name=name]").val(name);
+        }
+        if (desc) {
+            $("[name=desc]").val(desc);
+        }
+        addTask.initAddTask('${type}', '${typeName}', '${entityId}', '${entityName}');
+    });
+    </script>
+</head>
+
+<body>
+    <#include "/gl/task/taskEntity/taskEntityEdit.html" />
+</body>
+</html>

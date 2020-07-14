@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>日常任务管理</title>
+    <#include "/common/common.html" />
+     <#include "/common/timepicker.html" />
+    <style type="text/css">
+    .margin-class {
+        margin-top: 20px;
+    }
+    </style>
+    <script type="text/javascript">
+    var curUserId = "${ONLINE_ENTITY.userId}";
+    var isDetailBtn = "${isDetailBtn}"; //是否由明细按钮触发
+    console.log("isDetailBtn:"+isDetailBtn);
+    $(document).ready(function() {
+        var taskDetail = new TaskEntity();
+        taskDetail.initDetailTask('${id}',isDetailBtn);
+    });
+    </script>
+    <script src='${ctx}/js/jt/common/service/partyAddrSelectLayer${deploy_min!""}.js?v=${jsVersion}'></script>
+    <script src="${ctx}/js/jt/common/service/employeesSelectLayer${deploy_min!""}.js?v=${jsVersion}"></script>
+    <script src="${ctx}/js/jt/common/utils/groupUtils${deploy_min!""}.js?v=${jsVersion}" ></script>
+    <script src="${ctx}/js/jt/gl/task/taskEntity${deploy_min!""}.js?v=${jsVersion}"></script>
+</head>
+
+<body>
+    <div class="wrapper animated ">
+        <div class="row">
+            <div class='col-sm-12'>
+                <div class="tabs-container">
+                    <ul class="nav nav-tabs">
+                        <li class="active">
+                            <a data-toggle="tab" href="#tab-baseInfo" aria-expanded="true">基本信息</a>
+                        </li>
+                        <li>
+                            <a data-toggle="tab" href="#tab-taskReviews" aria-expanded="false">评论信息</a>
+                        </li>
+                    </ul>
+                    
+                    <div class="tab-content">
+                        <div class="row form_wrapper tab-pane active" id="tab-baseInfo">
+                            <div class='col-sm-12'>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <button type='button' class="jt-btn editBtn col-sm-offset-1" style="display:none;"><i class="fa fa-pencil"></i>&nbsp;编辑</button>
+                                        <button type='button' class="jt-btn saveAndNextBtn col-sm-offset-1" style="display:none"><i class='fa fa-floppy-o'></i>&nbsp;保存至完成</button>
+                                        <button type='button' class="jt-btn saveBtn" style="display:none"><i class='fa fa-floppy-o'></i>&nbsp;保存</button>
+                                        <button id="taskForwordBtn" type='button' class="jt-btn taskForword" style="display:none"><i class="fa fa-retweet"></i>&nbsp;转工号</button>
+                                        <button type='button' class="col-sm-offset-1 jt-btn prevBtn closeDialog"><i class='fa fa-remove'></i>&nbsp;关闭</button>
+                                    </div>
+                                    <div class="panel-body">
+                                        <#include "/gl/task/taskEntity/taskEntityForm.html">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <#include "/gl/task/taskEntity/taskReviewEntityEdit.html">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

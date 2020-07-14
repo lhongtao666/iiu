@@ -1,0 +1,217 @@
+<style type='text/css'>
+.rows-title>font {
+    font-size: 1em;
+    border-bottom: 2px solid;
+	height: 31px;
+	word-wrap: break-word;
+	width: 4.5em;
+	text-align: center;
+}
+.rows-title {
+	font-weight: bold;
+	width: 100%;
+	padding: 0;
+	margin: 0;
+	color: #1caf9a;
+	border-bottom: 1px solid #ddd;
+}
+.jt-emp-info-top{
+    margin-top:8px;
+}
+.jt-emp-info{
+    margin:2px 0;
+}
+ legend{
+   font-weight:bold ! important;
+   padding:8px 0 8px 10px ! important;
+   border-bottom:0 ! important;
+   margin-bottom:0 ! important;
+ }
+ .form-horizontal .radio-inline {
+    padding-top: 5px;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+.form-horizontal .radio {
+  min-height:27px;
+  min-width:67px;
+}
+#addrContainer,.container{
+  padding-left:4px ! important;
+}
+#eavCommonContainer>form.form-horizontal .form-group {
+  margin-left:-3% ! important;
+} 
+.icon img{
+  width:100% ! important;
+  height:100% ! important;
+}
+</style>
+<form method="get" id="detailForm" class="form-horizontal">
+	<div class="col-sm-12 rows-title">
+		<font>基本信息</font> <span class="red"
+			style="font-weight: 500; font-size: 12px;"></span>
+	</div>
+	<div class='form-group' >
+		<div class='col-sm-3 not-batch-create jt-emp-info-top' style='margin-left:2% ! important'>
+			<label class="col-sm-2 control-label">姓名</label>
+			<div class="col-sm-9">
+				<input type="text" readonly="readonly" name="name" id="name" placeholder=""
+					class="form-control" validateType="default">
+			</div>
+		</div>
+		<div class='col-sm-3 jt-emp-info-top'>
+			<label class="col-sm-2 control-label">工号<span
+				style='color: red;'>*</span></label>
+			<div class="col-sm-9">
+				<input name='aid' readonly="readonly" validateType='default' class='form-control' />
+			</div>
+		</div>
+		<div class='col-sm-3 jt-emp-info-top'>
+			<label class="col-sm-2 control-label">部门 <span
+				style='color: red;'>*</span>
+			</label>
+			<div class="col-sm-9">
+				<input type="hidden" name="groupId"> <input type='text'
+					readonly="readonly" name='groupName' class='form-control'
+					id="groupName" validateType='default'>
+			</div>
+		</div>
+	</div>
+	<div class="form-group">
+		<div class='col-sm-3 dataGroup jt-emp-info' style="display: none;margin-left:2% ! important">
+			<label class="col-sm-2 control-label">手机 </label>
+			<div class="col-sm-9">
+				<input type="text" name="userPo.mobile" id="mobile" readonly="readonly"
+					placeholder="请输入手机" validateType="default" class="form-control">
+			</div>
+		</div>
+		<div class='col-sm-3 not-batch-create jt-emp-info'>
+			<label class='col-sm-2 control-label'>性别</label>
+			<div class="col-sm-9">
+				<div class="radio radio-success radio-inline">
+					<input type="radio" disabled="disabled" name="sex" value="man" id="titleInlineRadio1">
+					<label for="titleInlineRadio1">男士</label>
+				</div>
+				<div class="radio radio-success radio-inline">
+					<input type="radio" disabled="disabled" name="sex" value="woman" id="titleInlineRadio2">
+					<label for="titleInlineRadio2">女士</label>
+				</div>
+			</div>
+		</div>
+		<div class='col-sm-3 not-batch-create jt-emp-info'>
+            <label class="col-sm-3 control-label">有效截止时间</label>
+            <div class="col-sm-9">
+				<input class="laydate-icon form-control layer-date" disabled="disabled" name="activeTime" placeholder="yyyy-mm-dd hh:mm:ss" onclick="laydate({istime: true, start: laydate.now(0, 'YYYY/MM/DD 23:59:59'), format: 'YYYY-MM-DD hh:mm:ss'})">
+            </div>
+        </div>
+	</div>
+</form>
+<form id="partyForm" method="get" class="form-horizontal">
+<div class="col-sm-12 rows-title"><font>权限和安全控制</font> <span class="red" style="font-weight: 500;font-size: 12px;"></span></div>
+    <div class="form-group deletedHide ">
+        <div class='col-sm-3 jt-emp-info-top'>
+            <label class="col-sm-3 control-label">岗位</label>
+            <div class="col-sm-9">
+           		<input type="hidden" class="form-control" name="position"></input>
+                <input type="text" class="form-control" name="positionNames"></input>
+            </div>
+        </div>
+        <div class='col-sm-3 jt-emp-info-top'>
+            <label class="col-sm-4 control-label">权限(角色)</label>
+            <div class="col-sm-8">
+                <select name="userPo.roleIds" id="roleSelect" multiple data-placeholder="请选择权限角色" class="chosen-select form-control" tabindex="3"></select>
+            </div>
+        </div>
+        <div class='col-sm-3  jt-emp-info-top'>
+            <label class="col-sm-3 control-label">开始时间</label>
+            <div class="col-sm-9">
+                <input class="form-control" name="userPo.beginHm" placeholder="hh:mm" validateType="default">   
+            </div>
+        </div>
+        <div class='col-sm-3 jt-emp-info-top'>
+            <label class="col-sm-3 control-label">结束时间
+            </label>
+            <div class="col-sm-9">
+                <input class="form-control" name="userPo.endHm" placeholder="hh:mm" validateType="default">
+            </div>
+        </div>
+    </div>
+  <div class="col-sm-12 rows-title"><font>其他信息</font> <span class="red" style="font-weight: 500;font-size: 12px;"></span></div>
+	<div class="col-sm-9">
+		<div class="form-group">
+			<div class='col-sm-6 jt-emp-info-top'>
+				<label class="col-sm-2 control-label">邮箱</label>
+				<div class="col-sm-6">
+					<input style='width: 99%' type="email" name="userPo.email" id="email"
+						placeholder="请输入邮箱" validateType="default"
+						class="form-control email" validateType="default">
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class='col-sm-12 jt-emp-info' id='addrContainer'></div>
+		</div>
+		<div class="form-group">
+			<div class='col-sm-12 jt-emp-info'>
+				<label class="col-sm-1 control-label">详细地址</label>
+				<div class="col-sm-11">
+					<input name="addr" type="text" class="form-control" />
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class='col-sm-12 jt-emp-info dataGroup'>
+				<label class="col-sm-1 control-label">我的简介</label>
+				<div class="col-sm-11">
+					<textarea name="desc" id="desc" placeholder="" class="form-control"
+						validateType="default" rows="5"></textarea>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-sm-2 jt-emp-info-top">
+	     <div class="col-sm-2"></div>
+	     <div class="form-group col-sm-10" style='text-align:center;'>
+               <div id="imageConatiner"></div>
+               <button type="button"  id='selectDefaultImageBtn' class="btn btn-sm btn-primary jt-btn-normal">选择图片</button>
+         </div>
+	</div>
+ 	<div class="col-sm-12 rows-title dataGroup" style="display: none;"><font>统计信息</font> <span class="red" style="font-weight: 500;font-size: 12px;"></span></div>
+	<div class='dataGroup label-group form-group' style="display: none;">
+        <div class=' col-sm-5 dataGroup jt-emp-info-top' style='margin-left:-8px'>
+            <label class="col-sm-2 control-label" >已有客户</label>
+            <label  class="col-sm-9 control-label" style="text-align:left;" >
+              <span id="csCount" disabled="true" name='csCount' style="margin-left:20px;color: #1caf9a;font-weight: bold"></span>
+            </label>
+        </div>
+        <div class=' col-sm-5 jt-emp-info-top'>
+            <label class="col-sm-2 control-label" >分机</label>
+            <label class="col-sm-9 control-label" style="text-align:left;">
+              <span style="margin-left:20px;color: #1caf9a;font-weight: bold" name="adn"></span>
+            </label>
+        </div>
+    </div>
+    <div class='dataGroup label-group form-group' style="display: none;">
+        <div class=' col-sm-5 jt-emp-info' style='margin-left:-8px'>
+            <label class="col-sm-2 control-label" >最新登录</label>
+            <label class="col-sm-9 control-label" style="text-align:left;" >
+              <span name="lastLoginSys" style="margin-left:20px;"></span>
+            </label>
+        </div>
+        <div class=' col-sm-3 jt-emp-info-top'>
+            <label class="col-sm-4 control-label" >最新登录CTI</label>
+            <label class="col-sm-8 control-label" style="text-align:left;" >
+              <span style="margin-left:20px;" name="lastLoginCti"></span>
+            </label>
+        </div>
+    </div>
+    <div class='form-group'>
+        <div style="display:none'">
+            <input type="hidden" id="id" name="id" />
+            <input type="hidden" name="sys" />
+        </div>
+    </div>
+</form>
+<div class="col-sm-12 rows-title"><font>扩展属性</font> <span class="red" style="font-weight: 500;font-size: 12px;"></span></div>
+<div class='col-sm-12' id='eavCommonContainer'></div>

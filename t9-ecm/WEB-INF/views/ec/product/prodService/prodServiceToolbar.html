@@ -1,0 +1,38 @@
+<div class="col-sm-12">
+	<div class="panel panel-default">
+	    <div class="panel-heading">
+	   		<button type='button' class='btn btn-sm  btn-primary prodServiceAdd'><i class='fa fa-plus'>添加</i></button>
+			<button type='button' class='btn btn-sm  btn-primary prodServiceEdit'><i class='fa fa-edit'>编辑</i></button>
+			<button type='button' class='btn btn-sm  btn-danger prodServiceDel'><i class='fa fa-remove'>删除</i></button>
+			<button type='button' class='btn btn-sm  btn-primary prodServiceDetail'><i class='fa fa-detail'>明细</i></button>
+	    </div>
+	    <div class="panel-body">
+	        <form id='prodServiceSearchForm' role="form" class="form-horizontal">
+				<div class="form-group">
+					<label class='control-label col-sm-1'>名称</label>
+					<div class='col-sm-2'>
+						<input type="text" id='nameSearch' placeholder="请输入名称" name="Q__S__LK__name_" class="form-control">
+					</div> 
+
+					<label class='control-label col-sm-1'>编码</label> 
+					<div class='col-sm-2'>
+						<input type="text" id='keySearch' placeholder="请输入编码" name="Q__S__LK__key_" class="form-control">
+					</div>
+
+					<label class='control-label col-sm-1'>产品状态</label> 
+					<div class='col-sm-2'>
+						<select name='Q__S__EQ__status_' id='statusSearch' class='form-control'>
+						    <option value="">请选择产品状态</option>
+						    <option value="on_sale">上架</option>
+						    <option value="not_on_sale">下架</option>
+						</select>	
+					</div>
+					
+					<div class='col-sm-1'>
+						<button type='button' class="btn btn-sm   btn-primary prodEntitySearch"><i class='fa fa-search'></i>搜索</button>
+					</div>	
+				</div>
+			</form>
+	    </div>
+	</div>
+</div>

@@ -1,0 +1,17 @@
+<script src="${ctx}/js/jt/gl/logger/logReport${deploy_min!""}.js?v=${jsVersion}" ></script>
+<div class="panel panel-default" style="margin-bottom:0px;">
+    <div class="panel-heading">
+        <h4 class="titleName">日志报表</h4>
+    </div>
+    <div class="panel-body" style="padding:5px;">
+	    <form role="form" class="form-inline  statisticsSearchFrom">
+          <button type='button' class='btn btn-sm color dayBefore'><i class='fa fa-detail'>前天</i></button>
+          <button type='button' class='btn btn-sm color tomorrow'><i class='fa fa-detail'>昨天</i></button>
+          <button type='button' class='btn btn-sm btn-primary color today'><i class='fa fa-detail'>今天</i></button>
+	    </form>
+	     
+	    <div style="border: 1px solid #777;padding:5px;">
+	       <div id="logReport" style="height:340px;"></div>
+	    </div>
+    </div>
+</div>

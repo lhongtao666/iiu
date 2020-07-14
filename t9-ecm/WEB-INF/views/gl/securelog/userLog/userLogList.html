@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>用户登录历史管理</title>
+	<#include "/common/common.html">
+	<link href="${ctx}/css/plugins/select2/select2.min.css?v=${jsVersion}" rel="stylesheet">
+	<script src="${ctx}/js/plugins/select2/select2.min.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/plugins/echarts/3.1.7/theme/macarons.js?v=${jsVersion}"></script>
+    	<script src="${ctx}/js/plugins/echarts/3.1.7/echarts.min.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/jt/gl/securelog/userLog${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/gl/km/glHelpUtil${deploy_min!""}.js?v=${jsVersion}" ></script>
+</head>
+
+<body>
+	<div class="wrapper animated">
+		<!-- list界面 -->
+		<div class="row list_wrapper"> 
+			<div class='col-sm-12' >
+				<div class="tabs-container">
+					<ul class="nav nav-tabs">
+						<li  id="sysLoginLogTotalTabLi" class="homeTabli active">
+							<a href="#sysLoginLogTotal" data-toggle="tab">
+								系统登录统计
+							</a>
+						</li> 
+						<li  id="sysLoginLogDetailTabLi" class="homeTabli">
+							<a href="#sysLoginLogDetail" data-toggle="tab">
+								日志明细
+							</a>
+						</li>
+					</ul> 
+					<div class="tab-content">
+						<div id="sysLoginLogTotal" class="tab-pane active">
+							<div class="panel-body">
+								<div class='row'>								
+		           						<div class='col-sm-12 jqGrid_wrapper'>
+		           							<#include "/gl/secure/secureMonitorLog/userLogStat.html">
+		           						</div>
+								</div>
+							</div>
+						</div> 
+						<div id="sysLoginLogDetail" class="tab-pane">
+							<div class="panel-body">
+								<div class='row'>
+									<#include "/gl/securelog/userLog/userLogToolbar.html">	  			
+									<div class='col-sm-12 jqGrid_wrapper'>
+									    <table id="userLogGrid"></table>
+										<div id="userLogPager"></div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div> 
+			
+		</div>
+	</div>
+</body>
+</html>

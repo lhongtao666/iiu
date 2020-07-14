@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>开发授权明细管理</title>
+	<#include "/common/common.html">
+	<script src="${ctx}/js/jt/credit/core/creditDev${deploy_min!""}.js?v=${jsVersion}" ></script>
+</head>
+
+<body class='white-bg'>
+	<div class="wrapper animated ">
+		<!-- list界面 -->
+		<div class="row list_wrapper">
+			<#include "/credit/core/creditDev/creditDevToolbar.html">	  			
+			<div class='col-sm-12'>			
+			    <table id="creditDevGrid"></table>
+				<div id="creditDevPager"></div>
+			</div>
+		</div>
+		<!-- 编辑界面 -->
+		<#include "/credit/core/creditDev/creditDevEdit.html">	    
+	</div>
+</body>
+</html>

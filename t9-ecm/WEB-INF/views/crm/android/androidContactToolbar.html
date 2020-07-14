@@ -1,0 +1,91 @@
+
+<div class="col-sm-12">
+	<div class="panel panel-default jt-panel-flexed">
+		 <div class="panel-heading">
+		 	<button type='button' class='jt-btn batchChangeBtn' style="display:none"><i class='fa fa-tags'></i>&nbsp;打标签
+		 	</button>
+		 	<!-- 帮助中心 -->
+            <label id="glHelpContainer">	
+            </label>
+		 </div>
+		<div class="panel-body">
+			<form id='androidContactSearchForm' role="form" class="form-horizontal">
+				<div class='form-group jt-form-group jt-form-normal' id="listParam">
+					<div class='col-sm-4'>
+						<label class="col-sm-4 control-label">微信号</label>
+						<div class="col-sm-8">
+							<input type="text" placeholder="请输入微信号" name="Q__S__EQ__wx.alias_"  class="form-control">
+						</div> 
+					</div>
+					<div class='col-sm-4'>
+						<label class="col-sm-4 control-label">备注</label>
+						<div class="col-sm-8">
+							<input type="text" placeholder="请输入备注" name="Q__S__LK__wx.con_remark_"  class="form-control">
+						</div>
+					</div>
+					<div class='col-sm-4 jt-form-btn'>
+						<button type='button' class="jt-btn-search androidContactSearch"><i class='fa fa-search'></i>&nbsp;查询</button>
+						<button type='button' id="clearSearchBtn" class="jt-btn-empty"><i class='fa fa-trash-o'></i>&nbsp;清空</button>
+						<button type="button" id="seniorSearch" class="jt-btn-drop dropdown-toggle" data-toggle="dropdown" tabindex="-1">展开<span class="fa fa-sort-down"></span>
+						</button>
+					</div>
+				</div>
+				<div id="seniorSearchDiv">
+					<div class='form-group jt-form-group jt-form-normal' id="listParam">
+						<div class="col-sm-3">
+							<label class="col-sm-4 control-label">客户编号</label>
+							<div class="col-sm-8">
+								<input type="text" placeholder="请输入客户编号" name="Q__S__EQ__ext.friend_code_"  class="form-control">
+							</div>
+						</div>
+						<div class="col-sm-3">
+							<label class="col-sm-4 control-label">状态</label>
+							<div class="col-sm-8">
+								<select class="form-control" name="Q__S__EQ__employee.status_">
+									<option value="">请选择</option>
+									<option value="2">在线</option>
+									<option value="0">离线</option>
+								</select>
+							</div>
+						</div>
+						<div class="col-sm-3">
+							<label class="col-sm-4 control-label">是否重粉</label>
+							<div class="col-sm-8">
+								<select class="form-control" id="isRepeat" name="isRepeat">
+									<option value="">请选择</option>
+									<option value="y">是</option>
+									<option value="n">否</option>
+								</select>
+							</div>
+						</div>
+						<div class="col-sm-3">
+							<label class="col-sm-4 control-label">已标重粉</label>
+							<div class="col-sm-8">
+								<select class="form-control" id="extIsRepeat" name="Q__N__EQ__ext.is_repeat_">
+									<option value="">请选择</option>
+									<option value="1">是</option>
+								</select>
+							</div>
+						</div>
+					</div>
+					<div class='form-group jt-form-group jt-form-normal'>
+						<div class="col-sm-3">
+							<label class="col-sm-4 control-label">微信标签</label>
+							<div class="col-sm-8">
+								<select id="wx-label" id="wxLabel" class="form-control" name="Q__S__LK__wx.wx_label_">
+								</select>
+							</div> 
+						</div>
+						<div class="col-sm-3">
+							<label class="col-sm-4 control-label">系统标签</label>
+							<div class="col-sm-8">
+								<select id="wx-msg-target" class="form-control" name="Q__S__LK__ext.label_">
+								</select>
+							</div> 
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>

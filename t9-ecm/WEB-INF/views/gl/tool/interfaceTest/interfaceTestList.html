@@ -1,0 +1,73 @@
+<!DOCTYPE html >
+<html>
+
+<head>
+	<title>接口测试</title>
+	<#include "/common/common.html">
+	<script src="${ctx}/js/jt/gl/tool/interfaceTest${deploy_min!""}.js?v=${jsVersion}" ></script>
+</head>
+
+<body class='white-bg'>
+	<div class="page-content">
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="panel panel-default">
+					<div class="panel-heading">接口测试处理
+						<!-- <button class="btn btn-sm   btn-primary sendSever">请求</button>
+						<button class="btn btn-sm   btn-danger reSetForm">重置</button>	 -->
+					</div>	
+					<div class="panel-body">
+						<form id="interfaceForm" role="form" class="form-horizontal">
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right">接口类型：</label>
+								<div class="col-sm-2">
+									<div class="radio radio-success radio-inline">
+										<input type="radio" value="POST" name="reqMethod" checked='checked'>
+										<label for="POST">POST</label>
+									</div>
+									<div class="radio radio-success radio-inline">
+										<input type="radio" value="GET" name="reqMethod">
+										<label for="GET">GET</label>
+									</div>				
+								</div>
+								<div class="col-sm-2">
+									<button type='button' class="jt-btn sendSever">请求</button>
+									<button type='button' class="jt-btn jt-btn-red reSetForm">重置</button>
+								</div>
+							</div>
+							<hr>
+							<div class="form-group">
+								<label class="col-sm-3 control-label">请求url：<span style="color: red;">*</span></label>
+								<div class="col-sm-6">
+									<input name="serverUrl" type="text" class='form-control'>
+									<span style='color:gray;'>格式: http(s)://ip:端口/xxx</span>
+								</div>		
+							</div>
+							<hr>
+							<div class="form-group">
+								<label class="col-sm-3 control-label">参数：</label>
+								<div class="col-sm-6">
+									<input name="params" type="text" class='form-control'>
+									<span style='color:gray;'>格式: name1=value1&name2=value2, 如果是GET请求此处没用</span>
+								</div>		
+							</div>
+							<hr>
+							<div class="form-group">
+								<label class="col-sm-3 control-label">返回结果：</label>
+								<div class="col-sm-6">
+									<textarea rows="20" id='resContent' cols="10" maxlength="2048" multiline="true" class="form-control"></textarea>									
+								</div>		
+							</div>
+							<hr>
+							<div class="form-group">
+								<label class="col-sm-3 control-label">服务器响应：<font id="serverTime" color="red">-</font>毫秒 </label>
+								<label class="col-sm-3 control-label">客户端请求：<font id="clientTime" color="red">-</font>毫秒 </label>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

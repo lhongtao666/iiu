@@ -1,0 +1,111 @@
+<form id="eavAttrForm" method="get" class="form-horizontal" style="width: 99%;">
+	<div class="form-group">
+		<div class='col-sm-6'>
+			<label class="col-sm-3 control-label">名称<span style='color: red;'>*</span></label>
+			<div class="col-sm-9">
+				<input type="text" name="name" placeholder=""
+					class="form-control" validateType='default'>
+			</div>
+		</div>
+		<div class='col-sm-6 '>
+			<label class="col-sm-3  control-label">状态<span style='color: red;'>*</span></label>
+			<div class="col-sm-9">
+				<select class="form-control" name="status" validateType="default">
+					<option value="">请选择</option>
+					<option value="actived">激活</option>
+					<option value="inactive">未激活</option>
+				</select>
+			</div>
+		</div>
+	</div>
+
+	<div class="form-group">
+		<div class='col-sm-6'>
+			<label class="col-sm-3 control-label">数据类型<span style='color: red;'>*</span></label>
+			<div class="col-sm-9">
+				<select class="form-control" name="dataType" validateType='default'>
+					<option value="">请选择</option>
+					<option value="string">字符串</option>
+					<option value="integer">整数</option>
+					<option value="decimal">浮点数</option>
+					<option value="text">文本</option>
+					<option value="options">可选项</option>
+				</select>
+			</div>
+		</div>
+
+		<div id='inputTypeDiv' class='col-sm-6'>
+			<label class="col-sm-3 control-label">控件类型<span style='color: red;'>*</span></label>
+			<div class="col-sm-9">
+				<select class="form-control" name="inputType" validateType='default'>
+				</select>
+			</div>
+		</div>
+	</div>
+	<div class="form-group">
+		<div class='col-sm-6'>
+			<label class="col-sm-3  control-label">验证规则</label>
+			<div class="col-sm-9">
+				<select name='validateKey' class='form-control' validateType='default'>
+					<option value=''>请选择</option>
+					<optgroup label='非必填'>
+						<option value=''>字符串</option>
+						<option value='number'>数字</option>
+						<option value='digits'>整数</option>
+						<option value='date'>日期</option>
+						<option value='email'>邮件</option>
+						<option value='url'>链接</option>
+					</optgroup>
+
+					<optgroup label='必填'>
+						<option value='required'>字符串</option>
+						<option value='required,number'>数字</option>
+						<option value='required,digits'>整数</option>
+						<option value='required,date'>日期</option>
+						<option value='required,email'>邮件</option>
+						<option value='required,url'>链接</option>
+					</optgroup>
+				</select>
+			</div>
+		</div>
+	</div>
+
+	<div class='form-group' style='display: none;' id='optionValueContainer'>
+		<div class='col-sm-9'>
+			<label class='col-sm-2 control-label'>选项值<span style='color: red;'>*</span></label>
+			<div class='col-sm-10'>
+				<table class="table table-bordered">
+					<thead>
+						<tr>
+							<th width="70%">选项值列表</th>
+							<th width="30">添加选项值</th>
+						</tr>	
+					</thead>
+					
+					<tbody>
+						<tr>
+							<td width="70%">
+								<ul class="tag-list" style="padding: 0" id='optionValueUlContainer'>
+								</ul>
+							</td>
+							<td width="30%">
+							    <div class="col-sm-2">
+							    	<button class="btn btn-sm   btn-primary addNewAttrBtn" type="button"><i class="fa fa-plus"></i></button>
+							    </div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+
+	<div class='form-group'>
+		<div style="display: none'">
+			<input type="hidden" id="id" name="id"> 
+			<input type="hidden" name="createBy"> 
+			<input type="hidden" name="createTime">
+			<input type="hidden" name="sort">
+		</div>	
+	</div>
+</form>		

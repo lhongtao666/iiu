@@ -1,0 +1,66 @@
+
+<form id="prodStatForm" method="get" class="form-horizontal">
+
+
+	<div class="form-group">
+		<div class='col-sm-4'>
+			<label class="col-sm-3 control-label">统计类型。见分类类型 ProdManagerType，下面的分类ProdStatType<@JTtip msg="统计类型。见分类类型 ProdManagerType，下面的分类ProdStatType" /></label>
+			<div class="col-sm-9">
+				<select class="form-control" name="type" validateType="default" >
+               		<option value="">请选择</option>
+               		<option value="1">选项 1</option>
+               	    <option value="2">选项 2</option>
+               		<option value="3">选项 3</option>
+               		<option value="4">选项 4</option>
+              	</select>
+            </div>
+        </div>
+
+		<div class='col-sm-4'>
+			<label class="col-sm-3 control-label">产品 ID<@JTtip msg="产品 ID" /></label>
+			<div class="col-sm-9">
+				<input type="text" name="prodId" placeholder="" class="form-control" validateType="default" > 
+			</div>
+		</div>		
+
+		<div class='col-sm-4'>
+			<label class="col-sm-3 control-label">产品 SKU ID<@JTtip msg="产品 SKU ID" /></label>
+			<div class="col-sm-9">
+				<input type="text" name="skuId" placeholder="" class="form-control" validateType="default" > 
+			</div>
+		</div>		
+
+	</div>
+	<div class="form-group">
+		<div class='col-sm-4'>
+			<label class="col-sm-3 control-label">数据类型。int=整型；double=浮点<@JTtip msg="数据类型。int=整型；double=浮点" /></label>
+			<div class="col-sm-9">
+				<input type="text" name="dataType" placeholder="" class="form-control" validateType="default" > 
+			</div>
+		</div>		
+
+		<div class='col-sm-4'>
+			<label class="col-sm-3 control-label">统计整数<@JTtip msg="统计整数" /></label>
+			<div class="col-sm-9">
+				<input type="text" name="qty" placeholder=""  validateType="default"  class="digits form-control"> 
+			</div>
+		</div>
+
+		<div class='col-sm-4'>
+			<label class="col-sm-3 control-label">统计浮点数<@JTtip msg="统计浮点数" /></label>
+			<div class="col-sm-9">
+				<input type="text" name="total" placeholder="" class="form-control" validateType="default" > 
+			</div>
+		</div>		
+
+	</div>
+	<div class='form-group'>
+		<!--将隐藏域放在这里，不显示出来-->
+		<div style="display:none'">
+			<input type="hidden" id="id" name="id">
+			<input type="hidden" name="createBy">
+			<input type="hidden" name="createTime">
+		</div>
+	</div>
+
+</form>

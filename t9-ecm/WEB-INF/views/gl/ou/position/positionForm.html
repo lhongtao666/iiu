@@ -1,0 +1,53 @@
+<form id="positionForm" method="get" class="form-horizontal">
+    <div class="form-group">
+        <div class='col-sm-4'>
+            <label class="col-sm-3 control-label">名称<span style="color: red;">*</span></label>
+            <div class="col-sm-9">
+                <input type="text" name="name" placeholder="名称" class="form-control" validateType="default">
+            </div>
+        </div>
+        <div class='col-sm-4'>
+            <label class="col-sm-3 control-label">可见部门<span style="color: red;">*</span></label>
+            <div class="col-sm-9">
+                <select id="typeSelect" class="form-control" name="type" validateType="default">
+                    <option value="self">无</option>
+                    <option value="specify">指定部门</option>
+                </select>
+            </div>
+        </div>
+        <div class='col-sm-4 position-rel-group' style="display: none;">
+            <label class="col-sm-3 control-label">关联部门<span style="color: red;">*</span></label>
+            <div class="col-sm-9" id="relGroupDiv">
+                <input name="groupName" id="groupName" placeholder="" type="text" class="form-control" required readOnly="readOnly" validateType="default"/>
+                <input type="hidden" name="groupId">
+                <input type="hidden" name="groupKey">
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class='col-sm-12'>
+            <label class="col-sm-1 control-label">说明</label>
+            <div class="col-sm-11">
+                <textarea cols="1" id="desc" name='desc' rows="1" placeholder="" class="ui-autocomplete-input col-sm-12" autocomplete="off" validateType="default" placeholder="" class="form-control" style="height: 100px; margin: 0px; "></textarea>
+            </div>
+        </div>
+    </div>
+    <div class="form-group loadata-group">
+        <div class="col-sm-4">
+            <label class="col-sm-3 control-label">创建时间</label>
+            <span class="col-sm-9" style="padding-top:4px;"><strong name="createTime"></strong></span>
+        </div>
+        <div class="col-sm-4">
+            <label class="col-sm-3 control-label">更新时间</label>
+            <span class="col-sm-9" style="padding-top:4px;"><strong name="updateTime"></strong></span>
+        </div>
+    </div>
+    <div class='form-group'>
+        <!--将隐藏域放在这里，不显示出来-->
+        <div style="display:none'">
+            <input type="hidden" id="id" name="id">
+            <input type="hidden" name="createBy">
+            <input type="hidden" name="createTime">
+        </div>
+    </div>
+</form>

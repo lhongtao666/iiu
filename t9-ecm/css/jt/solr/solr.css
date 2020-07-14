@@ -1,0 +1,366 @@
+@CHARSET "UTF-8";
+
+.solr-layer-move {
+	width: 100%;
+	height: 100%;
+	background: transparent;
+}
+
+.solr-tag-box {
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+.solr-layer-close {
+	position: absolute;
+	top: 0;
+	right: 10px;
+	font-size: 1.5em;
+	color: #fff;
+}
+
+.solr-layer-close:hover {
+	color: red;
+	cursor: pointer;
+}
+
+.solr-tag-box>div {
+	width: 100px;
+	display: block;
+	float: left;
+	text-align: center;
+	cursor: pointer;
+	height: 30px;
+	line-height: 30px;
+	margin-top: 11px;
+	border-bottom: transparent;
+	margin-right: 3px;
+	background: #eeeeee;
+	position: relative;
+	background: #fff;
+}
+
+.solr-tag-box>div>i {
+	display: block;
+	width: 80px;
+	height: 25px;
+	margin: 0 auto;
+	background: url(bd_360_ss.png) no-repeat;
+	background-size: 70px;
+	margin-top: 5px;
+}
+
+.solr-tag-t9>i {
+	background-position: 0 100px !important;
+}
+
+.solr-tag-bd>i {
+	background-position: 0 2px !important;
+	margin-top: 0px !important;
+}
+
+.solr-tag-360>i {
+	background-position: 0 -25px !important;
+}
+
+.solr-tag-sg>i {
+	background-position: 0 -50px !important;
+}
+
+.solr-tag-sys {
+	color:#555;
+}
+
+.solr-tag-box>div>span {
+	position: absolute;
+	top: 0;
+	left: 0;
+	background-color: rgba(0, 0, 0, 0.7);
+	display: none;
+	width: 100%;
+	color: #eee;
+}
+
+.solr-tag-box .active {
+	background: #fff;
+	border-bottom: transparent;
+	height: 38px;
+	margin-top: 5px !important;
+	line-height: 43px;
+}
+
+.wx-solr-content {
+	width: 98%;
+	height: 545px;
+	margin: 5px 1%;
+	overflow: hidden;
+}
+
+.rows-content {
+	width: 100%;
+	min-height: 200px;
+	max-height: 515px;
+	color: #5a5656;
+	font-size: 15px;
+	overflow-x: hidden;
+	overflow-y: auto;
+}
+
+.rows-content::-webkit-scrollbar {
+	width: 6px;
+}
+
+.rows-content::-webkit-scrollbar-thumb {
+	background-color: rgba(39, 58, 74,0.3);
+}
+
+body .solr-layer {
+	background: transparent;
+}
+
+body .solr-layer .layui-layer-content {
+	height: 100% !important;
+	padding:0 !important;
+	overflow: hidden;
+}
+
+body .solr-layer .layui-layer-title {
+	padding: 0;
+}
+
+.solr-tab .solr-result-list {
+	width: 88%;
+	margin-left: 2%;
+	overflow-x: hidden;
+	overflow-y: auto;
+	margin-bottom: 20px;
+	padding: 0;
+}
+
+.solr-tab .solr-result-list li {
+	margin-bottom: 5px;
+	display: inline-block;
+	width: 100%;
+}
+
+.solr-tab .solr-result-list .question {
+	text-decoration: underline;
+	color: rgb(0, 0, 204);
+}
+
+.solr-tab .solr-result-list .question .solr-opt {
+	color: white;
+	display: inline-block;
+	margin-left: 10px;
+	font-size: 12px;
+	width: 40px;
+	border-radius: 5px;
+	text-align: center;
+}
+
+.solr-tab .solr-result-list .question .solr-score {    
+	display: inline-block;
+    margin-left: 10px;
+    font-size: 13px;
+    border-radius: 5px;
+    text-align: center;
+    color: #777;
+}
+
+.solr-tab .solr-result-list .question .solr-opt:hover {
+	cursor: pointer;
+}
+
+.solr-tab .solr-result-list .question .solr-opt-edit {
+	background: #6bc5b8;
+}
+
+.solr-tab .solr-result-list .question .solr-opt-edit:hover {
+	background: #1ba692;
+}
+
+.solr-tab .solr-result-list .question .solr-opt-add, .btn-solr-add {
+	background: #efb172;
+}
+
+.solr-tab .solr-result-list .question .solr-opt-add:hover, .btn-solr-add:hover
+	{
+	background: #f78306;
+}
+
+.solr-tab .solr-result-list .extra-message {
+	height: 25px;
+	width: 100%;
+	display: block;
+	font-size: 12px;
+	float: left;
+	margin-top: 5px;
+}
+
+.solr-tab .solr-result-list .extra-message em {
+	color: #4e9c62;
+	font-style: normal;
+}
+
+.solr-tab .solr-result-list li .highlight {
+	
+}
+
+.solr-tab .qa-result-box .firstCate-label .wx-firstcate {
+	border-left: transparent;
+	width: 100%;
+}
+
+.solr-edit-layer {
+	padding: 35px 0 20px 0;
+}
+
+.solr-edit-layer .rows {
+	display: inline-block;
+	margin-top: 10px;
+	width: 100%;
+	padding-left: 5%;
+}
+
+.solr-edit-layer .rows .col-sm-1 {
+	white-space: nowrap;
+	padding: 0;
+}
+
+.solr-edit-layer input, .solr-edit-layer textarea {
+	border-color: #ded9d9 !important;
+}
+
+.btn-solr-cancle, .btn-solr-add {
+	color: white;
+	display: inline-block;
+	margin-left: 10px;
+	font-size: 12px;
+	width: 40px;
+	border-radius: 5px;
+	text-align: center;
+	float: right;
+	height: 20px;
+	line-height: 20px;
+}
+
+.btn-solr-add {
+	width: 80px;
+}
+
+.btn-solr-cancle {
+	border: 1px solid #d0d0d0;
+	color: #d0d0d0;
+}
+
+.btn-solr-cancle:hover {
+	cursor: pointer;
+	color: #a5a4a4;
+}
+
+.btn-solr-add:hover {
+	cursor: pointer;
+}
+
+.firstCateValidate {
+	border-color: red;
+}
+
+.solr-next-page {
+	border-bottom: 1px solid #6cc5b8;
+	position: relative;
+}
+
+.solr-next-page:hover {
+	cursor: pointer;
+}
+
+.solr-next-page span {
+	background: #1caf9a;
+	color: #fff;
+	font-size: 14px;
+	display: inline-block;
+	float: left;
+	width: 20%;
+}
+
+.solr-next-page>div {
+	float: right;
+	font-size: 12px;
+	color: #d0d0d0;
+	position: absolute;
+	top: 2px;
+	right: 5px;
+}
+
+.solr-next-page>div>em {
+	font-style: normal;
+	color: #efb172;
+}
+
+.qa-result-box {
+	width: 100%;
+	height: 100%;
+	margin-top: 10px;
+}
+
+.sys-solr-cate {
+	margin: 7px 0;
+	width: 100%;
+	height: 30px;
+	padding-left: 2%;
+}
+
+.sys-solr-cate * {
+	height: 100%;
+}
+
+.sys-solr-cate div {
+	padding: 0;
+}
+
+.sys-solr-cate input {
+	width: 100%;
+}
+
+.sys-solr-cate button {
+	width: 100%;
+	border-radius: 0;
+}
+
+.question-label, .firstCate-label, .btn-label {
+	float: left;
+}
+
+.question-label {
+	width: 50%;
+	max-width: 450px;
+}
+
+.question-label>input {
+	padding-left: 5px;
+}
+
+.firstCate-label {
+	width: 15%;
+	display: none;
+	max-width: 110px;
+}
+
+.firstCateName {
+	width:100%;
+	height: 30px;
+	border: 1px solid #ded9d9;
+}
+
+.btn-label {
+	width: 13%;
+	max-width: 120px;
+	margin-left: 10px;
+}
+
+em.highlight {
+	color: #c00;
+	font-style:normal;
+}

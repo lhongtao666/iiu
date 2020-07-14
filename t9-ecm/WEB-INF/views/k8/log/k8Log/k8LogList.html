@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>jt_k8_log管理</title>
+	<#include "/common/common.html">
+	<script src="${ctx}/js/jt/k8/log/k8Log.js?v=${jsVersion}" ></script>
+</head>
+
+<body>
+	<div class="wrapper animated ">
+		<!-- list界面 -->
+		<div class="row list_wrapper">
+			<#include "/k8/log/k8Log/k8LogToolbar.html">	  			
+			<div class='col-sm-12 jqGrid_wrapper'>
+			    <table id="k8LogGrid"></table>
+				<div id="k8LogPager"></div>
+			</div>
+		</div>
+		<!-- 编辑界面 -->
+		<#include "/k8/log/k8Log/k8LogEdit.html">	    
+	</div>
+</body>
+</html>

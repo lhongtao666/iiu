@@ -1,0 +1,168 @@
+<style type="text/css">
+.rows-title>font {
+    border-bottom: 3px solid #1caf9a;
+    height: 31px;
+    word-wrap: break-word;
+    font-size: 1.1em;
+    width: 4.5em;
+    text-align: center;
+}
+
+.rows-title {
+    font-weight: bold;
+    padding-left: 2.5%;
+    height: 24px;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    color: #1caf9a;
+    border-bottom: 1px solid #ddd;
+}
+
+#createForSubContainer input::-ms-input-placeholder {
+    text-align: center;
+}
+
+#createForSubContainer input::-webkit-input-placeholder {
+    text-align: center;
+}
+
+
+.blue {
+    color: #0e89f3;
+}
+
+.red {
+    color: red;
+}
+
+.emp {
+    border: 1px solid #1ab394;
+    border-radius: 10px;
+    padding: 3px 8px;
+    float: left;
+    margin-bottom: 4px;
+    margin-left: 10px;
+}
+
+.deleteEmployeeBtn {
+    color: red;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.btn-jt {
+    color: #000;
+    font-weight: 600;
+    background-color: #f5f5f5;
+    border-color: #999;
+}
+
+.btn-jt:hover {
+    color: #fff;
+    font-weight: 600;
+    background-color: #6293BA;
+}
+
+.samll-scrollbar::-webkit-scrollbar {
+    /*滚动条整体样式*/
+    width: 10px;
+    /*高宽分别对应横竖滚动条的尺寸*/
+    height: 1px;
+}
+
+.samll-scrollbar::-webkit-scrollbar-thumb {
+    /*滚动条里面小方块*/
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+    background: #ccc;
+}
+
+#createForSub-select-employee-table tr:hover {
+    background-color: #ddd;
+}
+
+#csAssignResultContainer tr:hover {
+    background-color: #ddd;
+}
+</style>
+<script src="${ctx}/js/jt/ec/salesorder/backOrExchange/backEditModal${deploy_min!""}.js?v=${jsVersion}"></script>
+<script src="${ctx}/js/jt/common/utils/shipCompanyUtils${deploy_min!""}.js?v=${jsVersion}"></script>
+<div class="modal fade" id="backForSoContainer" tabindex="-1" role="dialog" aria-labelledby="assignModalLabel">
+    <div class="modal-dialog" role="document" style="width: 900px;">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color:#2ac1ac;padding: 10px;">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span style="color: black" aria-hidden="true">&times;</span></button>
+                <h3 style="color: white" class="modal-title" id="backForSoModalLabel">退货信息</h3>
+            </div>
+            <div class="modal-body" style="overflow-y: scroll;height: 250px;padding:10px 20px;">
+                <form id="backOrExchangeForm" method="get" class="form-horizontal" novalidate="novalidate">
+                    <div class="tabs-container">
+                        <div id="myTabContent" class="tab-content" style="padding-top:10px;">
+                            <div id="backExchangeInfoTab" class="tab-pane fade in active">
+                                <div class="form-group" style="padding-top:10px;">
+                                    <label class="col-sm-2 control-label">退款金额</label>
+                                    <div class="col-sm-4">
+                                        <input class="backCount form-control" validatetype="default" name="backAmount" required="true"  min="0" type="number">
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <select class="form-control" name="backWayType" validatetype="default">
+                                            <option value='normal'>退货退款</option>
+                                            <option value='onlyMoney'>仅退款</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group" >
+                                    <label class="col-sm-2 control-label">拒收原因</label>
+                                    <div class="col-sm-4">
+                                        <select class='form-control' id="rejectTypeOne" name="rejectTypeOne" validateType="default">
+                                            <option value='ship'>物流原因</option>
+                                            <option value='cs'>客户原因</option>
+                                            <option value='emp'>客服原因</option>
+                                            <option value='turn'>寄方要求退回</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <select class="form-control" id="rejectType" name="rejectType" validatetype="default">
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group" >
+                                    <label class="col-sm-2 control-label">快递公司</label>
+                                    <div class="col-sm-4">
+                                        <select class='form-control' class='shipCompany' name="shipCompany" validateType="default">
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <input class="form-control" validatetype="default" name="scTrackingNo" type="text" placeholder="快递单号">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">备注</label>
+                                    <div class="col-sm-8">
+                                        <!-- <textarea class="form-control" id="rejectComment" style="margin: 0px 0.5px 0px 0px; width: 684px; height: 130px;"></textarea> -->
+                                        <textarea class="form-control" name="rejectComment"  id="rejectComment"  style="height: 130px;"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="form-group" style="display: none;">
+                        <input type="hidden" name="id" value="1034735957506654208">
+                        <input type="hidden" name="parentId" value="47b4100bf5fd4eeca45d591d711143f2">
+                        <input type="hidden" name="path" value="47b4100bf5fd4eeca45d591d711143f2.1034735957506654208">
+                        <input type="hidden" name="sort" value="4">
+                        <input type="hidden" name="depth" value="2">
+                        <input type="hidden" name="createBy" value="">
+                        <input type="hidden" name="createTime" value="">
+                    </div> -->
+                </form>
+            </div>
+            <div class="modal-footer" style="padding: 10px 20px 10px;margin-top: 0px;">
+                <button type="button" class="btn btn-sm btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-sm   btn-primary submitBackBtn">确定退货</button>
+            </div>
+        </div>
+    </div>
+</div>

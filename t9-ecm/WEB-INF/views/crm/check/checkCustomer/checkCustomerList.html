@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>jt_check_customer管理</title>
+	<#include "/common/common.html">
+	<#include "/common/datatable.html">
+	<script src="${ctx}/js/jt/crm/check/checkCustomer${deploy_min!""}.js?v=${jsVersion}" ></script>
+</head>
+
+<body>
+	<div class="wrapper animated fadeInRight">
+		<!-- list界面 -->
+		<div class="row list_wrapper">
+			<#include "/crm/check/checkCustomer/checkCustomerToolbar.html">	  			
+			<div class='col-sm-12 jqGrid_wrapper'>
+			    <table id="checkCustomerGrid"></table>
+				<div id="checkCustomerPager"></div>
+			</div>
+		</div>
+		<!-- 编辑界面 -->
+		<#include "/crm/check/checkCustomer/checkCustomerEdit.html">
+		<#include "/crm/check/checkCustomerLog/checkCustomerLogForm.html">		    
+	</div>
+</body>
+</html>

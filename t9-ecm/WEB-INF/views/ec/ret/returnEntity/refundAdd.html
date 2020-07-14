@@ -1,0 +1,47 @@
+<div class="panel-body">
+	<form id="refundAddForm" method="get" class="form-horizontal">
+		<div class="form-group" id="billStatusDiv">
+			<label class="col-sm-3 control-label">单据状态：</label>
+			<div class="col-sm-7">
+				<input type="text" name="status" placeholder="" class="form-control" validateType="default" >
+			</div>
+		</div>
+		<br/>
+		<div class="form-group">
+			<label class="col-sm-3 control-label">结算方式 <span style="color: red;">*</span></label>
+			<div class="col-sm-7">
+				<select  name="payType" placeholder="" class="form-control" validateType="default" > 
+				    <option value="alipay">支付宝</option>
+					 <option value="weixin">微信支付</option>
+					 <option value="bank">银行转账</option>
+					 <option value="QRCode">收款码支付</option>
+				</select>
+			</div>
+		</div>
+		<br/>
+		<div class="form-group">
+			<label class="col-sm-3 control-label">退款金额(元) <span style="color: red;">*</span></label>
+			<div class="col-sm-7">
+				<input type="text" name="amount" placeholder="" class="form-control" validateType="default" value="0">
+			</div>
+		</div>
+		<br/>
+		<div class="form-group">
+			<label class="col-sm-3 control-label">收款账户 <span style="color: red;">*</span></label>
+			<div class="col-sm-7">
+				<div class="input-group" style="width:100%">
+					<input type="text" placeholder="请选择或输入账号" id="receiptAccount"  name="receiptAccount"  class="form-control">
+					<div class="input-group-btn">
+						<ul class="dropdown-menu dropdown-menu-right" role="menu"></ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-sm-4"></div>
+			<label class="col-sm-6 control-label" style="color:red" id="pointTip"></label>
+		</div>
+		<input type="hidden" id="canReturnMaxAmount" title="能退款的最大金额"/>
+	</form>
+</div>
+

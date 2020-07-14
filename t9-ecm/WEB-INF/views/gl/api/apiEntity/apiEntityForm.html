@@ -1,0 +1,242 @@
+<div class='row'>
+	<div class='col-sm-12'>
+		<form id="apiEntityForm" method="get" class="form-horizontal">
+			<div class="form-group">
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">分组<span style="color: red;">*</span></label>
+					<div class="col-sm-9">
+						<select id='selectApi' data-placeholder='请选择分组' name="group" class="chosen-select  form-control" validateType="default"></select>
+					</div>
+				</div>		
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">API业务类型<span style="color: red;">*</span></label>
+					<div class="col-sm-9">
+						<select id='selectType' data-placeholder='请选择分组' name="type" class="chosen-select  form-control" validateType="default"></select>
+					</div>
+				</div>
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">版本<span style="color: red;">*</span></label>
+					<div class="col-sm-9">
+						<input type="text" name="version" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+			</div>
+			<div class="form-group">
+				<div class='col-sm-12'>
+					<label class="col-sm-1 control-label">url<span style="color: red;">*</span></label>
+						<div class="col-sm-1">
+							<select name="urlType" class="chosen-select form-control" validateType="default">
+								<option value="POST" selected>POST</option>
+								<option value="GET">GET</option>
+							</select>
+						</div>
+					<div class="col-sm-8">
+						<input type="text" name="url" placeholder="格式: http(s)://ip:端口/xxx" class="form-control" validateType="default" > 
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class='col-sm-12'>
+					<label class="col-sm-1 control-label">文档路径</label>
+					<div class="col-sm-9">
+						<input type="text" name="doc" id="path" placeholder="" class="form-control" validateType="default" > 
+					</div>
+					<div class="col-sm-2 " id="clickShow">
+						<a href="" id="showDoc">点击查看</a>
+					</div>
+				</div>
+			</div>		
+			<div class="form-group">		
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">是否开放<span style="color: red;">*</span></label>
+					<div class="col-sm-9">
+						<select id="isOpenSelect" class="form-control" name="isOpen" validateType="default" >
+							<option value="">请选择</option>
+							<option value="y">是</option>
+							<option value="n">否</option>
+						</select>
+					</div>
+				</div>
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">开放起始时段</label>
+					<div class="col-sm-9">
+						<input type="text" name="startPeriod" placeholder="hh:mm" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">开放结束时段</label>
+					<div class="col-sm-9">
+						<input type="text" name="endPeriod" placeholder="hh:mm" class="form-control" validateType="default" > 
+					</div>
+				</div>
+
+			</div>
+			<div class="form-group">		
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">设置了白名单?<span style="color: red;">*</span></label>
+					<div class="col-sm-9">
+						<select id="hasWhiteSelect" class="form-control" name="hasWhite" validateType="default" >
+							<option value="">请选择</option>
+							<option value="y">是</option>
+							<option value="n">否</option>
+						</select>
+					</div>
+				</div>
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">设置了黑名单?<span style="color: red;">*</span></label>
+					<div class="col-sm-9">
+						<select id="hasBlackSelect" class="form-control" name="hasBlack" validateType="default" >
+							<option value="">请选择</option>
+							<option value="y">是</option>
+							<option value="n">否</option>
+						</select>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class='col-sm-12'>
+					<label class="col-sm-1 control-label">描述</label>
+					<div class="col-sm-11">
+						<textarea rows="3" name="desc" id="desc" placeholder="" class="form-control" validateType="default" > </textarea>
+					</div>
+				</div>
+
+			</div>
+
+
+
+			<div class='form-group'>
+				<!--将隐藏域放在这里，不显示出来-->
+				<div style="display:none'">
+					<input type="hidden" id="id" name="id">
+					<input type="hidden" name="createBy">
+					<input type="hidden" name="createTime">
+				</div>
+			</div>
+		</form>
+
+
+		<div class='col-sm-12 downDiv'>
+			<form id="visitListForm" method="get" class="form-horizontal">
+				<div class="tabs-container" id="visitTab">
+					<ul class="nav nav-tabs">
+						<li class="editInfoDiv testApiLi active tabLi" attr-id='testLi' id="testApi">
+							<a href="#testApiTab" data-toggle="tab" aria-expanded="true">接口测试</a>
+						</li>
+						<li class="editInfoDiv whiteListLi tabLi" attr-id='whiteLi' id="white">
+							<a href="#whiteListTab" data-toggle="tab" aria-expanded="true">白名单</a>
+						</li>
+						<li class="editInfoDiv blackListLi tabLi" attr-id='blackLi' id="black">
+							<a href="#blackListTab" data-toggle="tab" aria-expanded="true">黑名单</a>
+						</li>
+					</ul>
+					<div class="tab-content" id="visitDiv" style="padding-top: 5px;">
+						<div id="testApiTab" class="tab-pane active fade in">
+							<div class="panel-body">
+								<div class='col-sm-12' id="testApiDiv" >
+									<form id="interfaceForm" role="form" class="form-horizontal">
+										<div class="form-group">
+											<label class="col-sm-2 control-label no-padding-right">是否必填：</label>
+											<div class="col-sm-2" style="margin-left:5%">
+												<div class="radio radio-success radio-inline">
+													<input type="radio" value="y" name="isReq" checked='checked'>
+													<label for="y">是</label>
+												</div>
+												<div class="radio radio-success radio-inline">
+													<input type="radio" value="n" name="isReq">
+													<label for="n">否</label>
+												</div>				
+											</div>
+											<div class="col-sm-2">
+												<button type='button' class="jt-btn sendSever">执行</button>
+												<button type='button' class="jt-btn jt-btn-red reSetForm">重置</button>
+											</div>	
+										</div>
+										<hr>
+										<div class="form-group">
+											<label class="col-sm-2 control-label">参数：</label>
+											<div class="col-sm-1">
+												<select id="selectParamType" name="paramType" class="chosen-select form-control"></select>
+											</div>
+											<div class="col-sm-5">
+												<input name="name" placeholder="保存格式: param1,param2" id="paramName" type="text" class='form-control'>
+											</div>		
+											<div class="col-sm-4">
+												<span style='color:gray;'>测试格式: name1=value1&name2=value2, 如果是GET请求此处没用</span>
+											</div>
+										</div>
+										<hr>
+										<div class="form-group">
+											<label class="col-sm-2 control-label">说明：</label>
+											<div class="col-sm-6">
+												<textarea rows="6" id='testDesc' name="desc" cols="2" maxlength="2048" multiline="true" class="form-control"></textarea>									
+											</div>		
+										</div>
+										<hr>
+										<div class="form-group">
+											<label class="col-sm-2 control-label">示例：</label>
+											<div class="col-sm-6">
+												<textarea rows="6" id='example' name="example" cols="5" maxlength="2048" multiline="true" class="form-control"></textarea>									
+											</div>		
+										</div>
+										<hr>
+										<div class="form-group">
+											<label class="col-sm-2 control-label">返回结果：</label>
+											<div class="col-sm-6">
+												<textarea rows="20" id='resContent' cols="10" maxlength="2048" multiline="true" class="form-control"></textarea>									
+											</div>		
+										</div>
+										<hr>
+										<div class="form-group">
+											<label class="col-sm-3 control-label">服务器响应：<font id="serverTime" color="red">-</font>毫秒 </label>
+											<label class="col-sm-3 control-label">客户端请求：<font id="clientTime" color="red">-</font>毫秒 </label>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+						<div id="whiteListTab" class="tab-pane fade">
+							<div class="panel-body">
+								<div class='col-sm-12' id="whiteListDiv">
+									<button class='btn btn-sm   btn-primary createList' listType='white' name='createList'>添加白名单</button>
+									<table id='visitWhiteListTable' listType='white' class='table table-bordered table-stripped visitListTable'>
+										<thead>
+											<tr>
+												<th>IP地址</th>
+												<th>操作</th>
+											</tr>
+										</thead>
+										<tbody id='whiteVisitListContainer'>
+										</tbody>
+									</table>
+								</div>	
+							</div>
+						</div>
+						<div id="blackListTab" class="tab-pane fade">
+							<div class="panel-body">
+								<div class='col-sm-12' id="blackListDiv">
+									<button class='btn btn-sm   btn-primary createList' listType='black' name='createList'>添加黑名单</button>
+									<table id='visitBlackListTable' listType='black' class='table table-bordered table-stripped visitListTable'>
+										<thead>
+											<tr>
+												<th>IP地址</th>
+												<th>操作</th>
+											</tr>
+										</thead>
+										<tbody id='blackVisitListContainer'>
+										</tbody>
+									</table>
+								</div>	
+							</div>
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>

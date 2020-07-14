@@ -1,0 +1,124 @@
+<div class="tabs-container">
+	<ul id="tabHeaderUl" class="nav nav-tabs">
+		<li id="couponDef" class="active"><a data-toggle="tab"
+			href="#couponDefContainer" aria-expanded="true">优惠券</a></li>
+		<li id="ruleDef" class=""><a data-toggle="tab"
+			href="#ruleDefContainer" aria-expanded="false">促销规则</a></li>
+	</ul>
+
+	<div id="tabContentDiv" class="tab-content">
+		<div id="couponDefContainer" class="tab-pane active">
+			<div class='panel-body'>
+				<div class='col-sm-12'>
+					<form id="couponDefForm" method="get" class="form-horizontal">
+						<div class="form-group">
+							<div class='col-sm-4'>
+								<label class="col-sm-3 control-label">名称</label>
+								<div class="col-sm-9">
+									<input type="text" name="name" placeholder="" class="form-control" validateType="default" > 
+								</div>
+							</div>
+							
+							<div class='col-sm-4'>
+								<label class="col-sm-3 control-label">业务键</label>
+								<div class="col-sm-9">
+									<input type="text" name="key" placeholder="" class="form-control" validateType="default" >
+								</div>
+							</div>
+
+							<div class='col-sm-4'>
+								<label class="col-sm-3 control-label">生成方式</label>
+								<div class="col-sm-9">
+									<select name='genType' class='form-control' validateType='default'>
+										<option value=''>请选择</option>
+										<option value='manual'>人工</option>
+										<option value='get'>前端获取</option>
+										<option value='random'>随机生成</option>
+									</select>
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class='col-sm-4'>
+								<label class="col-sm-3 control-label">归属范围</label>
+								<div class="col-sm-9">
+									<select name='belongType' class='form-control' validateType='default'>
+										<option value=''>请选择</option>
+										<option value='open'>公开</option>
+										<option value='self'>私有</option>
+									</select>
+								</div>
+							</div>
+							
+							<div class='col-sm-4'>
+								<label class="col-sm-3 control-label">可发行数量<@JTtip msg="-1代表无限" /></label>
+								<div class="col-sm-9">
+									<input type="text" name="maxCount" placeholder=""  validateType="default"  class="form-control"> 
+								</div>
+							</div>
+
+							<div class='col-sm-4'>
+								<label class="col-sm-3 control-label">可用次数<@JTtip msg="-1代表无限" /></label>
+								<div class="col-sm-9">
+									<input type="text" name="usableCount" placeholder=""  validateType="default"  class="form-control"> 
+								</div>
+							</div>
+						</div>
+							
+						<div class="form-group">
+							<div class='col-sm-4'>
+								<label class="col-sm-3 control-label">持有数量<@JTtip msg="-1代表无限" /></label>
+								<div class="col-sm-9">
+									<input type="text" name="memberCount" placeholder="" validateType="default"  class="form-control"> 
+								</div>
+							</div>
+
+							<div class='col-sm-4'>
+								<label class="col-sm-3 control-label">起始时间</label>
+								<div class="col-sm-9">
+									<input class='laydate-icon form-control layer-date' name="usefulStart" validateType="default"  placeholder="YYYY-MM-DD hh:mm:ss" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">
+								</div>
+							</div>
+
+							<div class='col-sm-4'>
+								<label class="col-sm-3 control-label">结束时间</label>
+								<div class="col-sm-9">
+									<input class='laydate-icon form-control layer-date' name="usefulEnd" validateType="default"  placeholder="YYYY-MM-DD hh:mm:ss" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">
+								</div>
+							</div>
+						</div>
+
+						<div class='form-group'>
+							<div class='col-sm-4'>
+								<label class="col-sm-3 control-label">状态</label>
+								<div class="col-sm-9">
+									<select class="form-control" name="status" validateType="default" >
+					               		<option value="">请选择</option>
+					               	    <option value="inactive">未激活</option>
+					               		<option value="actived">激活</option>
+					               		<option value="invalid">失效</option>
+					              	</select>
+					            </div>
+					        </div>
+						</div>	
+
+						<div class='form-group'>
+							<label class='col-sm-1 control-label'>描述</label>
+							<div class="col-sm-11">
+								<textarea name='desc' class='form-control' rows='3'></textarea>
+				            </div>
+						</div>
+						
+						<!--将隐藏域放在这里，不显示出来-->
+						<div class='form-group' style="display:none'">
+							<input type="hidden" id="id" name="id">
+							<input type="hidden" name="createBy">
+							<input type="hidden" name="createTime">
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		<#include "/ec/rule/ruleDef/ruleDefForm.html">
+	</div>
+</div>

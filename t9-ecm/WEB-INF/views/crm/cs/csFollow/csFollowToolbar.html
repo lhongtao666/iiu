@@ -1,0 +1,99 @@
+<div class="col-sm-12">
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<button type='button' class='jt-btn importCsEntityFollow'><i class="fa fa-share"></i>&nbsp;导入客户跟进</button>
+			<button type='button' class='jt-btn exportCsEntityFollowTemplate'><i class="fa fa-reply"></i>&nbsp;导出跟进模板</button>
+			<!-- 帮助中心 -->
+			<label id="glHelpContainer"></label>
+		</div>
+		<div class="panel-body">
+			<form role="form" class="form-horizontal">
+				<div class='form-group jt-form-group jt-form-normal'>
+					<div class='col-sm-6 jt-date-param' style="padding-left: 0 !important">
+						<label style="opacity: 0;width: 0;"></label>
+						<div>
+							<div class="col-sm-2">
+								<select class='form-control suffix' name='suffix'>
+									<option value='active'>一年内的跟进</option>
+									<option value='yolds'>更早以前的跟进</option>
+								</select>
+							</div>
+							<div class='col-sm-10'>
+								<div class="input-daterange input-group">
+									<input class='laydate-icon form-control layer-date' id="beginCreateTime"   validateType="default"  placeholder="起始日期"  onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss',choose: function(datas){
+												$('input[id=beginCreateTime]').trigger('change');
+											} 
+										})" />  
+									<span class="input-group-addon">到</span>
+									<input class='laydate-icon form-control layer-date' id="endCreateTime"  validateType="default"  
+										placeholder="结束日期"  onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss', 		choose: function(datas){
+												$('input[id=endCreateTime]').trigger('change');
+											} 
+										})" />  
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-6">
+						<label class="control-label col-sm-4">安排人</label>
+						<div>
+							<div class="col-sm-6">
+								<input class='form-control' id='groupName'  value="请选择" readonly>
+								<input name='groupId' id='groupId' type='hidden'>
+							</div>
+							<div class="col-sm-6" id="createBySearch"></div>
+						</div>
+							
+					</div>
+				</div>
+				<div class="form-group jt-form-group jt-form-normal">
+					<div class="col-sm-3">
+						<label class="control-label col-sm-4">跟进人</label>
+						<div class="col-sm-8" id="followSearch">
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<label class="control-label col-sm-4">标签</label>
+						<div class="col-sm-8">
+							<select id="typeSearch" class="form-control" name="Q__S__EQ__type_">
+								<option value="">请选择</option>
+							</select>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<label class="col-sm-4 control-label">客户</label>
+						<div class="col-sm-8">
+							<input type="text" placeholder="请输入客户编号" id="csSearch"  name="Q__S__EQ__cs_code_"  class="form-control">
+						</div>
+					</div>
+					<div class='col-sm-3'>
+						<label class="col-sm-4 control-label">状态</label>
+						<div class="col-sm-8">
+							<select class="form-control" name="Q__S__EQ__status_">
+								<option value="">请选择</option>
+								<option value="new">未完成</option>
+								<option value="done">完成</option>
+								<option value="expired">过期</option>
+							</select>
+						</div>
+					</div>
+					
+					<div class='col-sm-3'>
+						<label class="col-sm-4 control-label">渠道来源</label>
+						<div class="col-sm-8">
+							<select id="srcSearch" class="form-control" name="srcs">
+	  							<option value="">请选择</option>
+	   						</select>
+						</div>
+					</div>
+					
+				</div>
+				<input type="hidden" name="isFirst" value="false">
+				<div class='form-group jt-form-btn' style="text-align: center;top: 10px;">
+					<button type='button' class="jt-btn-search csFollowSearch"><i class="fa fa-search"></i>&nbsp;搜索</button>
+					<button type='button' class="jt-btn-search csFollowExport"><i class="fa fa-reply"></i>&nbsp;导出</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>

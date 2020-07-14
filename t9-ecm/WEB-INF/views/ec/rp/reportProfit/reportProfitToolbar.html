@@ -1,0 +1,133 @@
+<div class="col-sm-12">
+	<div class="panel panel-default">
+		<div class="panel-heading" style="color: red;">
+			提示：校正业绩数据
+		</div>
+
+		<div class="panel-body">
+			<form id='reportProfitForm' role="form" class="form-horizontal">
+				<!--默认生成一个搜索条件，需要的，用户自己添加-->
+				<div class="form-group">
+					<label class='col-sm-1 control-label'>按订单重建</label> 
+					<div class='col-sm-2'>
+						<input type="text" id='soNoSearch' placeholder="请输入订单号" name="Q__S__EQ__so_no_" class="form-control">
+					</div>
+					<div class='col-sm-1'>
+						<button type='button' class="jt-btn reportProfitAdd">重建</button>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class='col-sm-1 control-label'>按操作时间重建</label> 
+					<div class='col-sm-5'>
+						<div class="input-daterange input-group">
+							<input class="laydate-icon form-control layer-date" id="startTime" placeholder="yyyy-mm-dd hh:mm:ss" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">
+							<span class="input-group-addon">到</span>
+							<input class="laydate-icon form-control layer-date" id="endTime" placeholder="yyyy-mm-dd hh:mm:ss" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">
+						</div>
+					</div>
+					<div class='col-sm-1'>
+						<button type='button' class="jt-btn reportProfitSearch">重建</button>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class='col-sm-1 control-label'>按操作时间重建新进客户</label> 
+					<div class='col-sm-5'>
+						<div class="input-daterange input-group">
+							<input class="laydate-icon form-control layer-date" id="csCreateStartTime" placeholder="yyyy-mm-dd hh:mm:ss" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">
+							<span class="input-group-addon">到</span>
+							<input class="laydate-icon form-control layer-date" id="csCreateEndTime" placeholder="yyyy-mm-dd hh:mm:ss" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">
+						</div>
+					</div>
+					<div class='col-sm-1'>
+						<button type='button' class="jt-btn checkNewCs">重建</button>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class='col-sm-1 control-label'>点击校正数据</label> 
+					<div class='col-sm-5'>
+						<div class="input-daterange input-group">
+							<input class="laydate-icon form-control layer-date" id="startCreate" placeholder="yyyy-mm-dd hh:mm:ss" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">
+							<span class="input-group-addon">到</span>
+							<input class="laydate-icon form-control layer-date" id="endCreate" placeholder="yyyy-mm-dd hh:mm:ss" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">
+						</div>
+					</div>
+					<div class='col-sm-1'>
+						<button type='button' class="jt-btn reviseCsMobile">校正客户号码</button>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class='col-sm-1 control-label'>支付成功但状态未改的校正</label> 
+					<div class='col-sm-1'>
+						<button type='button' class="jt-btn judgePayedSos">校正</button>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class='col-sm-1 control-label'>校正部门相关key值</label> 
+					<div class='col-sm-1'>
+						<button type='button' class="jt-btn checkAndCorretGroupKeyBtn">校正</button>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class='col-sm-1 control-label'>按下单时间校正订单业绩分成</label> 
+					<div class='col-sm-5'>
+						<div class="input-daterange input-group">
+							<input class="laydate-icon form-control layer-date" id="soStartTime" placeholder="yyyy-mm-dd hh:mm:ss" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">
+							<span class="input-group-addon">到</span>
+							<input class="laydate-icon form-control layer-date" id="soEndTime" placeholder="yyyy-mm-dd hh:mm:ss" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">
+						</div>
+					</div>
+					<div class='col-sm-1'>
+						<button type='button' class="jt-btn soProfitsCheck">校正</button>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class='col-sm-1 control-label'>校正客户最新拒收时间</label> 
+					<div class='col-sm-1'>
+						<button type='button' class="jt-btn csRejectTimeCheck">校正</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+	<div class="panel panel-default">
+		<div class="panel-heading" style="color: red;">
+			库存矫正
+		</div>
+
+		<div class="panel-body">
+			<form id='initAttrForm' role="form" class="form-horizontal">
+				<div class="form-group">
+					<div class='col-sm-1'>
+						<button type='button' class="jt-btn stockLockCheck">校正锁定库存</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+
+
+	<div class="panel panel-default">
+		<div class="panel-heading" style="color: red;">
+			提示：初始化相关值
+		</div>
+
+		<div class="panel-body">
+			<form id='initAttrForm' role="form" class="form-horizontal">
+				<div class="form-group">
+					<div class='col-sm-1'>
+						<button type='button' class="jt-btn initPinyinAttrForResTable">初始化所有资源的拼音值</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+	<div class="panel panel-default">
+		<div class="panel-heading" style="color: red;">
+			提示：网页微信切换到安卓微信
+		</div>
+		<div class="panel-body">
+			<button type='button' id="synchWebToAndroid" class="jt-btn">根据备注切换</button>
+		</div>
+	</div>
+</div>

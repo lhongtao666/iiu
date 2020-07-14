@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mailConfigs>
+	<mailConfig>
+		<name>default</name>		
+		<ip>smtp.mxhichina.com</ip>
+		<port>25</port>
+		<ssl>false</ssl>
+		<username>service@jtsoft.cc</username>
+		<password>73767A304451364F3542356F704E71317157676B77513D3D</password>
+		<from>service@jtsoft.cc</from>
+		<fromName>JTSOFT Service</fromName>
+		<status>actived</status>
+		<maxCount>3</maxCount>
+		<debug>true</debug>
+	</mailConfig>
+	<mailConfig>
+		<name>mail2</name>		
+		<ip>smtp.mxhichina.com</ip>
+		<port>25</port>
+		<ssl>false</ssl>
+		<username>service@jtsoft.cc</username>
+		<password>73767A304451364F3542356F704E71317157676B77513D3D</password>
+		<from>service@jtsoft.cc</from>
+		<fromName>JTSOFT Service</fromName>
+		<status>actived</status>
+		<maxCount>2</maxCount>
+		<debug>true</debug>
+	</mailConfig>	
+</mailConfigs>

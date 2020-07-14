@@ -1,0 +1,715 @@
+<style type="text/css">
+	.cs-head-div{
+		width: 100%;
+		height:150px;
+		text-align: center;
+		background: url(${ctx}/img/jt/cs/cs-bg.jpg) no-repeat;
+		box-shadow: 0 0 15px #e4e4e4 inset;
+		padding-top: 12px;
+		color: #555;
+	}
+	.cs-img-layer {
+		margin: 0 auto;
+		height:75px;
+		width:75px;
+		border-radius: 50%;
+		overflow: hidden;
+		cursor: pointer;
+		position: relative;
+		background-color: #fff;
+		border: 1px solid #ddd;
+    	box-shadow: 0 0 20px #fbfbfb;
+	}
+	.cs-head-img {		
+		width: 100%;
+		position: absolute;
+		left: 0;
+	}
+	.cs-head-name {
+	    padding: 3px;
+	    margin-top: 5px;
+	    font-weight: 600;
+	}
+	.cs-head-lv {
+	    height: 30px;
+    	line-height: 28px;
+    	/*background-color: rgba(47, 64, 80, 0.2);*/
+	}
+	.cs-head-lv-name{
+		font-size: 15px;
+		padding-right: 5px;
+	}
+	.cs-head-lv-img{
+		margin: 0 auto;
+		height:16px;
+		width:16px;
+		margin-top: -2px;
+		background-color: #a8a8a8;
+    	border-radius: 10px;
+	}
+	.cs-statistic-info{
+		padding-left: 10px;
+		background-color: #fafafa;
+		height: calc(100% - 150px);
+		display: none;
+		border: 1px solid #ebedef;
+    	border-top: 0;
+    	overflow-x: hidden;
+    	padding-bottom: 20px;
+	}
+	.cs-st-div{
+		padding-top: 7px;
+	}
+	.cs-st-fd {
+		margin: 5px 0;
+	}
+	.cs-st-img{
+		height:18px;width:18px;margin-top: -5px;
+	}
+	.cs-st-img.secend{
+		margin-left:15px;
+		filter: grayscale(0.5);
+	}
+	.cs-st-title{
+		padding: 0 10px;
+		font-size: 1em;   
+		
+	}
+	.cs-st-title.first{
+		background: transparent;
+	    color: rgba(47, 64, 80, 0.5);
+	    position: relative;
+	    padding-left: 15px;
+	}
+	.cs-st-title.first:before {
+		content: '';
+	    position: absolute;
+	    height: 7px;
+	    width: 7px;
+	    left: 0;
+	    bottom: 7px;
+	    background-color: #1ab394;
+	}
+	.cs-st-title.first:after {
+		content: '';
+	    position: absolute;
+	    height: 1px;
+	    width: 350%;
+	    left: 0;
+	    bottom: 0px;
+	    background: #e6e6e6;
+	}
+
+	.cs-st-title.secend{
+		font-weight: 400;
+		color: #555;
+	}
+	.cs-st-value{
+		font-weight: 400;
+		padding: 3px;
+		font-size: 1em;
+		float: right;
+		padding-right: 20px;
+		color: #ff5722;
+	}
+	.cs-st-time{
+		font-size: 0.95em;
+		color: #555;
+	}
+		.timeline:before {
+		    content: " ";
+		    position: absolute;
+		    width: 1px;
+		    background-color: #1ab394;
+		    height: 100%;
+		    left: 50%;
+		    margin-left: -3px;
+		}
+		.timeline.timeline-right:before {
+		    left: 100px;
+		}
+		.timeline {
+		    float: left;
+		    width: 100%;
+		    position: relative;
+		    padding: 0px;
+		    margin: 0px;
+		}
+		.timeline.timeline-right .timeline-item.timeline-main {
+		    width: 100px;
+		    padding-left: 0px;
+		}
+		.timeline .timeline-item {
+		    width: 50%;
+		    float: left;
+		    position: relative;
+		    clear: both;
+		    margin-bottom: 20px;
+		    z-index: 2;
+		}
+		.timeline .timeline-item.timeline-main {
+		    height: 40px;
+		    width: 50%;
+		}
+		.timeline .timeline-item .timeline-date {
+		    padding: 7px 10px;
+		    line-height: 20px;
+		    font-size: 14px;
+		    -moz-border-radius: 3px;
+		    -webkit-border-radius: 3px;
+		    border-radius: 3px;
+		    position: absolute;
+		    right: -45px;
+		    top: 0px;
+		    color: #555;
+		    background: #fff;
+		    text-align: center;
+		    border:1px solid #1ab394;
+		    width: 90px;
+		    box-shadow: 0px 1px 0px 0px rgba(0, 0, 0, 0.2);
+		}
+		.timeline.timeline-right .timeline-item {
+		    width: 100%;
+		    padding-left: 150px;
+		}
+		.timeline .timeline-item.timeline-item-right {
+		    float: right;
+		}
+		.timeline .timeline-item .timeline-item-info {
+		    position: absolute;
+		    left: 105%;
+		    font-size: 12px;
+		    padding: 3px 3px;
+		    line-height: 20px;
+		    width: 50px;
+		    text-align: center;
+		    background-color: #fff;
+		    border: 1px solid #e5e5e5;
+		    -moz-border-radius: 0px;
+		    -webkit-border-radius: 0px;
+		    border-radius: 5px;
+		    box-shadow: 0px 1px 0px 0px rgba(0, 0, 0, 0.2);
+		}
+		.timeline .timeline-item .timeline-item-info:before {
+			content: '';
+		    position: absolute;
+		    height: 0;
+		    width: 0;
+		    top: 5px;
+		    right: -10px;
+		    border-width: 5px 0 5px 10px;
+		    border-style: solid;
+		    border-color: transparent transparent transparent #e5e5e5;
+		    z-index: 1;
+		}
+		.timeline .timeline-item .timeline-item-info:after {
+			content: '';
+		    position: absolute;
+		    height: 0;
+		    width: 0;
+		    top: 5px;
+		    right: -7.5px;
+		    border-width: 5px 0 5px 10px;
+		    border-style: solid;
+		    border-color: transparent transparent transparent #fff;
+		    z-index: 2;
+		}
+		.timeline.timeline-right .timeline-item .timeline-item-info {
+		    left: 10px;
+		    right: auto;
+		}
+		.timeline.timeline-right .timeline-item .timeline-item-icon {
+		    left: 85px;
+		}
+		.timeline .timeline-item.timeline-item-right .timeline-item-icon {
+		    right: auto;
+		    left: -20px;
+		}
+		.timeline .timeline-item .timeline-item-icon {
+		    position: absolute;
+		    right: -20px;
+		    width: 25px;
+		    height: 25px;
+		    /*-moz-border-radius: 20%;
+		    -webkit-border-radius: 20%;
+		    border-radius: 20%;*/
+		   /* font-size: 20px;*/
+		   /* box-shadow: 0px 1px 0px 0px rgba(0, 0, 0, 0.2);*/
+		   /* line-height: 34px;*/
+		    text-align: center;
+		   /* border: 3px solid #FFF;
+		    background: #F5F5F5;
+		    color: #BBB;*/
+		    background: #fff;
+		    border: 1px solid #1caf9a;
+		}
+		.timeline .timeline-item .timeline-item-icon img {
+			margin-top:0;
+		}
+		.timeline .timeline-item .timeline-item-content {
+		    float: left;
+		    background-color: #fff;
+		    color: #999;
+		    -moz-border-radius: 0px;
+		    -webkit-border-radius: 0px;
+		    border-radius: 0px;
+		    max-width: 95%;
+		    padding: 9px 10px;
+		    box-shadow: 2px 2px 5px rgba(47, 64, 80, .1);
+    		border: 1px solid #e5e5e5;
+    		position: relative;
+    		border-radius: 5px;
+    		-webkit-animation: .75s cst ease;
+	    	animation: .75s cst ease;
+		}
+		.timeline .timeline-item .timeline-item-content b {font-weight: 500 !important;}
+		.timeline .timeline-item .timeline-item-content:before {
+			content: '';
+		    position: absolute;
+		    height: 0;
+		    width: 0;
+		    top: 5px;
+		    left: -10px;
+		    border-width: 5px 10px 5px 0;
+		    border-style: solid;
+		    border-color: transparent #e5e5e5 transparent transparent;
+		    z-index:1;
+		}
+		.timeline .timeline-item .timeline-item-content:after {
+			content: '';
+		    position: absolute;
+		    height: 0;
+		    width: 0;
+		    top: 5px;
+		    left: -8px;
+		    border-width: 5px 10px 5px 0;
+		    border-style: solid;
+		    border-color: transparent #fff transparent transparent;
+		    z-index: 2;
+		}
+		.timeline.timeline-right .timeline-item .timeline-item-icon {
+		    left: 87px;
+		}
+		.order-info {
+			width:25%;
+		    float: left;
+		    padding: 10px;
+		    max-width: 300px;
+		}
+		.order-info-container {
+			width:100%;
+		    background-color: #fff;
+		    border: 1px solid #ddd;
+		    border-radius: 5px;
+		    padding: 10px;
+		    text-align: center;
+		    color: #999;
+		}
+		#csOrderLine, .rfmt-trend-chart {
+			height: 300px;
+			width: 100% !important;
+			max-width:1200px;
+		}
+		@media screen and (max-width: 1024px) {
+			.order-info {
+				width: 50%;
+			}
+		}
+		.order-count{
+			color: #FF5722;
+		}
+		.addHeadImg{    
+			/*margin-bottom: -10px;
+		    border-radius: 10px;
+		    cursor: pointer;
+		    width: 35px;
+		    margin-left: 10px;
+		    display: none;*/
+		}
+		.order-date-line-title {
+			color: #009688;
+			font-size: 15px;
+			margin: 10px 0 20px 10px;
+		}
+		.order-info-icon {
+			margin: 10px;
+		}
+
+	/*2018-12-20*/
+	#statisticInfoDiv {
+		height:100%;
+		width:100%;
+		padding: 5px;
+		overflow: hidden;
+	}
+	.cs-left-layer,.cs-right-layer {height:100%;}
+	.cs-left-layer {
+		width:300px;
+		float:left;
+	}
+	.cs-right-layer {
+		width:calc(100% - 300px) !important;
+		float:left;
+		border-left: 5px solid transparent;
+		-webkit-animation: .25s lTor ease;animation: .25s lTor ease;
+		display: none;
+	}
+	.cs-right-navs {
+		margin:0 !important;
+		padding: 0;
+		width:100%;
+		height:35px;
+		background: #fff;
+    	border: 1px solid #ebedef;
+	}
+	.cs-right-navs li a {
+		/*transition: all 0.25s linear;*/
+		background-color: #fff;
+		font-weight: 500;
+	}
+	.cs-right-navs > li > a:hover, .cs-right-navs > li > a:focus {
+		border-bottom: 0 !important;
+		background-color: transparent;
+	}
+	.cs-right-navs > li.active > a, .cs-right-navs > li.active > a:hover, .cs-right-navs > li.active > a:focus {
+		border-bottom: 5px solid #fafafa !important;
+		background: #fafafa !important;
+		border: 1px solid #e5e5e5;
+    	border-top: 0;
+	}
+	.cs-right-navs > li:first-child > a {
+		padding: 5px 15px;
+		border-left: 0 !important;
+	}
+
+	@keyframes lTor {
+    	0%{opacity:0;-webkit-transform:translate(-50%,0) scaleX(0);-ms-transform:translate(-50%,0) scaleX(0);transform:translate(-50%,0) scaleX(0);width:0;}
+    	100%{opacity:1;-webkit-transform:translate(0,0) scaleX(1);-ms-transform:translate(0,0) scaleX(1);transform:translate(0,0) scaleX(1);}
+	}
+
+	@-webkit-keyframes lTor {
+    	0%{opacity:0;-webkit-transform:translate(-50%,0) scaleX(0);-ms-transform:translate(-50%,0) scaleX(0);transform:translate(-50%,0) scaleX(0);width:0;}
+    	100%{opacity:1;-webkit-transform:translate(0,0) scaleX(1);-ms-transform:translate(0,0) scaleX(1);transform:translate(0,0) scaleX(1);}
+	}
+	.cs-right-layer > .tabs-container > .tab-content::-webkit-scrollbar, .cs-statistic-info::-webkit-scrollbar {
+		width: 10px;
+		background-color: #F5F5F5;
+	}
+	.cs-right-layer > .tabs-container > .tab-content::-webkit-scrollbar-thumb, .cs-statistic-info::-webkit-scrollbar-thumb {
+		background-color: #ddd;
+    	border: 1px solid #e5e5e5;
+	}
+	.cs-right-layer > .tabs-container > .tab-content::-webkit-scrollbar-track, .cs-statistic-info::-webkit-scrollbar-track {
+		background-color: transparent;
+	}
+	.helper {
+        width: 15px;
+	    height: 15px;
+	    color: #1ab394;
+	    font-size: 18px;
+	    transition: all 0.5s linear;
+	    cursor: pointer;
+	}
+	#rfmt-helper {
+	    height: 150px;
+	    display: none;
+	    position: fixed;
+	    z-index: 10000000;
+	    background-color: #fff;
+	    border-radius: 5px;
+	    text-align: left;
+	    line-height: 30px;
+	    opacity: 0.9;
+	    padding: 10px;
+	    background-color: #fff;
+	    overflow: auto;
+	    border: 4px solid #1caf9a;
+	    box-shadow: 0 0 20px #273a4a;
+	    width: 450px;
+	    font-size: 0.95em;
+	}
+	.rfmtDescribe {
+		float: left;
+		width: calc(100% - 250px);
+		padding-left: 25px;
+		line-height: 28px;
+		margin-top: 130px;
+	}
+</style>
+<div id="statisticInfoDiv">
+   <div class="cs-left-layer">
+   		<div class="cs-head-div">
+   			<div class="cs-img-layer">
+	   			<img class="cs-head-img addHeadImg" src="${ctx}/img/jt/logos/t9-wihte.png" title="点击编辑">
+	   		</div>
+	   		<!-- <img class="addHeadImg" src="${ctx}/img/jt/cs/add.png" > -->
+	   		<p class="cs-head-name">123456:小乌龟</p>
+	   		<div class="cs-head-lv">
+	   			<span class="cs-head-lv-name">会员等级</span>
+	   			<img src="${ctx}/img/jt/cs/cslv2.png" class="cs-head-lv-img">
+	   			<img src="${ctx}/img/jt/cs/cslv1.png" class="cs-head-lv-img">
+	   			<img src="${ctx}/img/jt/cs/cslv1.png" class="cs-head-lv-img">
+	   		</div>
+   		</div>
+   		<div class="cs-statistic-info">
+   				<div class="cs-st-div cs-st-fd">
+   					<!-- <img class="cs-st-img" src="${ctx}/img/jt/cs/cart.png"> -->
+	   				<span class="cs-st-title first">购物统计</span>
+   				</div>
+   				<div class="cs-st-div">
+   					<img class="cs-st-img secend" src="${ctx}/img/jt/cs/money.png">
+   					<span class="cs-st-title secend">消费金额</span>
+   					<span class="cs-st-value cs-st-value-money">1264 RMB</span>
+   				</div>
+   				<div class="cs-st-div">
+   					<img src="${ctx}/img/jt/cs/rebuy.png" class="cs-st-img secend">
+   					<span class="cs-st-title secend">复购次数</span>
+   					<span class="cs-st-value cs-st-value-rebuy">3</span>
+   				</div>
+   				<div class="cs-st-div cs-st-fd">
+   					<!-- <img src="${ctx}/img/jt/cs/order.png"  class="cs-st-img img"> -->
+	   				<span class="cs-st-title first">订单统计</span>
+   				</div>
+   				<div class="cs-st-div">
+   					<img src="${ctx}/img/jt/cs/confirm.png" class="cs-st-img secend">
+   					<span class="cs-st-title secend">待审订单</span>
+   					<span class="cs-st-value cs-st-value-confirm">2</span>
+   				</div>
+   				<div class="cs-st-div">
+   					<img src="${ctx}/img/jt/cs/doing.png" class="cs-st-img secend">
+   					<span class="cs-st-title secend">处理中订单</span>
+   					<span class="cs-st-value cs-st-value-doing">1</span>
+   				</div>
+   				<div class="cs-st-div">
+   					<img src="${ctx}/img/jt/cs/complete.png" class="cs-st-img secend">
+   					<span class="cs-st-title secend">签收订单</span>
+   					<span class="cs-st-value cs-st-value-complete">2</span>
+   				</div>
+   				<div class="cs-st-div">
+   					<img src="${ctx}/img/jt/cs/reject.png" class="cs-st-img secend">
+   					<span class="cs-st-title secend">拒收订单</span>
+   					<span class="cs-st-value cs-st-value-reject">1</span>
+   				</div>
+   				<div class="cs-st-div">
+   					<img src="${ctx}/img/jt/cs/lost.png" class="cs-st-img secend">
+   					<span class="cs-st-title secend">丢失订单</span>
+   					<span class="cs-st-value cs-st-value-lost">0</span>
+   				</div>
+   			<!-- 	<div class="cs-st-div">
+   					<img src="${ctx}/img/jt/cs/pointCount.png" class="cs-st-img">
+	   				<span class="cs-st-title first">积分统计</span>
+   				</div> -->
+   				<!-- <div class="cs-st-div">
+   					<img src="${ctx}/img/jt/cs/pointLv.png" class="cs-st-img secend">
+   					<span class="cs-st-title secend">会员级别</span>
+   					<span class="cs-st-value cs-st-value-pointLv">钻卡会员</span>
+   				</div>
+   				<div class="cs-st-div">
+   					<img src="${ctx}/img/jt/cs/pointUseAble.png" class="cs-st-img secend">
+   					<span class="cs-st-title secend">可用积分</span>
+   					<span class="cs-st-value cs-st-value-pointUseAble">1064</span>
+   				</div>
+   				<div class="cs-st-div">
+   					<img src="${ctx}/img/jt/cs/pointTotal.png" class="cs-st-img secend">
+   					<span class="cs-st-title secend">总积分</span>
+   					<span class="cs-st-value cs-st-value-pointTotal">1264</span>
+   				</div> -->
+   				<div class="cs-st-div">
+   					<!-- <img src="${ctx}/img/jt/cs/timeCount.png" class="cs-st-img"> -->
+	   				<span class="cs-st-title first">时间统计</span>
+   				</div>
+   				<div class="cs-st-div">
+   					<img src="${ctx}/img/jt/cs/timeRegister.png" class="cs-st-img secend">
+   					<span class="cs-st-title secend">注册时间:</span>
+   					<span class="cs-st-time cs-st-value-timeRegister">2018-01-11 09:30</span>
+   				</div>
+   				<div class="cs-st-div">
+   					<img src="${ctx}/img/jt/cs/timeComplete.png" class="cs-st-img secend">
+   					<span class="cs-st-title secend">最近签收:</span>
+   					<span class="cs-st-time cs-st-value-timeComplete">2018-01-11 09:30</span>
+   				</div>
+   				<div class="cs-st-div">
+   					<img src="${ctx}/img/jt/cs/timeFollow.png" class="cs-st-img secend">
+   					<span class="cs-st-title secend">最新跟进:</span>
+   					<span class="cs-st-time cs-st-value-timeFollow">2018-01-11 09:30</span>
+   				</div>
+   				<div class="cs-st-div">
+   					<img src="${ctx}/img/jt/cs/timeLvUp.png" class="cs-st-img secend">
+   					<span class="cs-st-title secend">最新升级:</span>
+   					<span class="cs-st-time cs-st-value-timeLvUp">2018-01-11 09:30</span>
+   				</div>
+   			</p>
+   			</p>
+   		</div>
+   </div>
+   <div id="cs-dynamic-info" class="cs-right-layer">
+   		<div class='tabs-container' style="width:100%;height:100%;background-color: #fafafa;">
+			<ul class="nav nav-tabs cs-right-navs">
+				<#if isUseRfmt?? && isUseRfmt == 'true'>
+				<li class='tabLi active' id="csInfoRfmtLi">
+					<a href="#csInfoRfmtTab" data-toggle="tab">RFMT价值模型</a>
+				</li>
+				<li class='tabLi' id="csInfoDynamicLi">
+					<a href="#csInfoDynamicTab" data-toggle="tab">动态</a>
+				</li>
+				<#else>
+				<li class='active  tabLi' id="csInfoDynamicLi">
+					<a href="#csInfoDynamicTab" data-toggle="tab">动态</a>
+				</li>
+				</#if>
+				<li class='tabLi' id="csInfoOrderLi" attr-id="csInfoOrderLi">
+					<a href="#csInfoOrderTab" data-toggle="tab">订单</a>
+				</li>
+				<li class="tabLi" id="csInfoFollowLi" attr-id="csInfoFollowLi">
+					<a href="#csInfoFollowTab" data-toggle="tab">跟进</a>
+				</li>
+				<li class="tabLi" id="csInfoRecordLi" attr-id="csInfoRecordLi">
+					<a href="#csInfoRecordTab" data-toggle="tab">通话</a>
+				</li>
+			</ul>
+			<div  class="tab-content" style="height: calc(100% - 35px);padding: 10px;overflow-x: hidden;width: 100%;border: 1px solid #ebedef;border-top: 0;">
+				
+				<#if isUseRfmt?? && isUseRfmt == 'true'>
+				<div id="csInfoRfmtTab" class="tab-pane fade in active">
+					<div class="panel panel-default" style="background-color: transparent;margin-top: 25px;">
+						<div class="panel-body">
+							<div id="rfmtChart" style="height: 250px;width: 250px;float: left;"></div>
+							<div class="rfmtDescribe">
+								<div class="col-sm-12">
+									<div class="col-sm-2" style="max-width: 40px;">
+										<img src="${ctx}/img/jt/cs/zuanshi.png">
+									</div>
+									<div class="col-sm-10">
+										<div class="col-sm-12">
+											RFMT总评：<span class="rfmtRate"></span>分
+										</div>
+										<div class="col-sm-12">
+											RFMT分类：<span class="rfmt"></span>
+											<i class="fa fa-question-circle helper"></i>
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-12">
+									<div class="col-sm-2" style="max-width: 40px;">
+										<img src="${ctx}/img/jt/cs/shoushi.png">
+									</div>
+									<div class="col-sm-10">
+										<div class="col-sm-12">
+											营销分类：<span class="rfmtType"></span>
+										</div>
+										<div class="col-sm-12">
+											营销建议：<span class="rfmtSuggest"></span>
+										</div>
+									</div>
+								</div>
+								
+							</div>		
+						</div>
+					</div>
+					<div class="panel panel-default" style="background-color: transparent;margin-top: 35px;">
+						<div class="panel-body">
+							<div id="rfmtLineChart" class="rfmt-trend-chart" style="height: 300px;width:100%;max-width: 1200px;"></div>
+						</div>
+					</div>
+				</div>
+				<div id="rfmt-helper">
+					R（最近购买）：无交易得0，越小得分越高，按<span id="rfmt-r"></span>分档。<br />
+					F（购买频率，即次数）：无交易得0，越大得分越高，按<span id="rfmt-f"></span>分档。<br />
+					M（均价）：无交易得0，越大得分越高，按<span id="rfmt-m"></span>分档。<br />
+					T（最高价）：无交易得0，越大得分越高，按<span id="rfmt-t"></span>分档。
+				</div>
+				<div id="csInfoDynamicTab" class="tab-pane fade">
+					<div id="cs-dynamic-date-line" class="timeline timeline-right">
+                                 
+                    </div>
+				</div>
+				<#else>
+				<div id="csInfoDynamicTab" class="tab-pane fade in active">
+					<div id="cs-dynamic-date-line" class="timeline timeline-right">
+                                 
+                    </div>
+				</div>
+				</#if>
+				
+			
+				
+				<div id="csInfoOrderTab" class="tab-pane fade">
+					<div style="width: 100%;display: inline-block;">
+						 <div class="order-info">
+						 	<div class="order-info-container">
+						 		<img class="order-info-icon" src="${ctx}/img/jt/cs/timeCount.png">
+						 		<p>
+	    						 	<span class="order-count" id="confirm-order"></span>&nbsp;/
+	    						 	<span class="order-count" id="confirm-money"></span>
+							 	</p>
+							 	<p>已审核订单&nbsp;/&nbsp;金额</p>
+						 	</div>
+						 </div>
+						 <div class="order-info">
+						 	<div class="order-info-container">
+						 		<img class="order-info-icon" src="${ctx}/img/jt/cs/timeComplete.png">
+						 		<p>
+	    						 	<span class="order-count" id="complete-order">5</span>&nbsp;/
+	    						 	<span class="order-count" id="complete-money">4800</span>
+							 	</p>
+							 	<p>已签收&nbsp;/&nbsp;金额</p>
+						 	</div>
+						 </div>
+						 <div class="order-info">
+						 	<div class="order-info-container">
+						 		<img class="order-info-icon" src="${ctx}/img/jt/cs/csOrder.png">
+						 		<p>
+	    						 	<span class="order-count" id="last30-order">1</span>&nbsp;/
+	    						 	<span class="order-count" id="last30-money">800</span>
+							 	</p>
+							 	<p>最近30天订单&nbsp;/&nbsp;总金额</p>
+						 	</div>
+						 </div>
+						  <div class="order-info">
+						  	<div class="order-info-container">
+						  		<img class="order-info-icon" src="${ctx}/img/jt/cs/money.png">
+						  		<p>
+	    						 	<span class="order-count" id="max-amount">1200</span>&nbsp;/
+	    						 	<span class="order-count" id="min-amount">500</span>&nbsp;/
+	    						 	<span class="order-count" id="average-amount">960</span>
+							 	</p>
+							 	<p>最大&nbsp;/&nbsp;最小&nbsp;/&nbsp;平均金额</p>
+						  	</div>
+						</div>
+						</div>
+						<div style="width: 100%;">
+							<div id='csOrderLine'>
+							</div>
+						</div>
+						<div class="order-date-line-title">订单动态</div>
+						<div id="cs-order-date-line" class="timeline timeline-right">
+                                                        
+                        </div>
+				</div>
+				<div id="csInfoFollowTab" class="tab-pane fade">
+					<div id="cs-follow-date-line" class="timeline timeline-right">
+                                                         
+                    </div>
+				</div>
+				<div id="csInfoRecordTab" class="tab-pane fade">
+					<div id="cs-call-date-line" class="timeline timeline-right"> 
+                                               
+                    </div>  
+
+				</div>
+			</div>
+		</div>
+   </div>
+</div>
+<script type="text/javascript">
+	;$(function(){
+		$(".csEntityEav").on("click",function(){
+			setTimeout(function(){
+				$(".cs-statistic-info").slideDown("fast");
+			},500);
+			setTimeout(function(){
+				$(".cs-right-layer").show();
+			},750);
+		});
+	});
+</script>

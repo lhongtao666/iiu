@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>报表</title>
+	<#include "/common/common.html">
+    <script src="${ctx}/js/jt/crm/report/report/reportAnalysis${deploy_min!""}.js?v=${jsVersion}"></script>
+	<style type="text/css">
+		.obtain{
+			height: 45px;
+		    padding-top: 15px;
+		    font-size: 15px;
+		    cursor: pointer;
+		    font-weight: 600;
+		    color: #777;
+		    margin:0;
+		}
+		.obtain:hover{
+			background-color: #acd;
+		}
+		.secondary{
+			background-color: #1caf9a24;
+		}
+		.obtain i{
+			float: left;
+			padding-right: 10px;
+		}
+		.report-menu-li{
+			height: 45px;
+		    padding-top: 15px;
+		    font-size: 15px;
+		    cursor: pointer;
+		    font-weight: 500;
+		    color: #777;
+		    margin:0;
+		    padding-left: 30px
+		}
+		.report-menu-li:hover{
+			background-color: #1ab39470;
+		}
+		.span-div{
+			height: 40px;
+		    padding-top: 5px;
+		    font-size: 15px;
+		}
+		.time-select-span{
+			padding: 5px 5px;
+	    	cursor: pointer;
+	    	border-radius: 5px;
+		}
+		.time-select-span.on{
+			background-color: #1caf9a;
+		    color: #fff;
+		}
+		.nav li {
+		     text-align: left; 
+		     
+		}
+    </style>
+</head>
+
+<body class='fixed-sidebar full-height-layout"'>
+	<div class="wrapper animated   ">
+	    <div class="row">
+			<div class="col-sm-2" style='margin-top: 5px;'>
+			<div style="height: 50px;width:100%;background-color:#1caf9a;text-align: center;color: #fff;font-size: 18px;padding-top: 10px;">分类</div>
+			<ul class="nav" id="report-menu">
+				<li>
+					<h2 class="obtain">订单与业绩<i class="glyphicon glyphicon-chevron-down"></i></h2>
+                    <div class="secondary">
+                        <h3 class="report-menu-li">订单分析统计</h3>
+                        <h3 class="report-menu-li">订单统计</h3>
+                    </div>
+				</li>
+
+				<li>
+					<h2 class="obtain">客户<i class="glyphicon glyphicon-chevron-down"></i></h2>
+                    <div class="secondary">
+                        <h3 class="report-menu-li">客户分析</h3>
+                        <h3 class="report-menu-li csCommun" id="csCommun">客户沟通</h3>
+                    </div>
+				</li>
+				<li>
+					<h2 class="obtain">部门与员工<i class="glyphicon glyphicon-chevron-down"></i></h2>
+                    <div class="secondary">
+                        <h3 class="report-menu-li">微信报表</h3>
+                        <h3 class="report-menu-li">通话短信报表</h3>
+                    </div>
+				</li>
+				<li>
+					<h2 class="obtain">产品与物流<i class="glyphicon glyphicon-chevron-down"></i></h2>
+                    <div class="secondary">
+                        <h3 class="report-menu-li">产品销售统计</h3>
+                        <h3 class="report-menu-li">物流发货分析</h3>
+                    </div>
+				</li>
+			</ul>
+			</div>
+			<div class="col-sm-10"  style="padding-left:2px;">
+				<div class="panel panel-default">
+					<div class="panel-body">
+						<div class="span-div">
+							<div class='col-sm-5'>
+								统计时间：
+								<span value="1" class="time-select-span on">今日</span>
+								<span value="2" class="time-select-span">昨日</span>
+								<span value="3" class="time-select-span">本月</span>
+								<span value="4" class="time-select-span">上月</span>
+								<span value="5" class="time-select-span">其他时间</span>
+							</div>
+							<div class='col-sm-5'  id="auto-select-time" style="display: none;">
+								<div class="input-daterange input-group">
+									<input class="laydate-icon form-control layer-date beginDate" name="beginDate" placeholder="yyyy-mm-dd hh:mm:ss" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">
+									<span class="input-group-addon">到</span>
+									<input class="laydate-icon form-control layer-date endDate" name="endDate" placeholder="yyyy-mm-dd hh:mm:ss" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div id="report-container" style="max-height: 700px;overflow:auto; ">
+					
+				</div>
+				<div id="csCommunication-container" style="max-height: 1500px;overflow:auto;display:none">
+				   <div class='col-sm-12'>
+						<ul class="nav nav-tabs">
+							<li class='active'><a class="record" data-toggle="tab" id="interviewRecord" aria-expanded="true">面谈记录</a></li>
+							<li><a class="record" data-toggle="tab" id="ctiRecord" aria-expanded="true">通话记录</a></li>
+							<li><a class="record" data-toggle="tab" id="turnoverRecord" aria-expanded="true">交易记录</a></li>
+						</ul>
+					</div>
+					<div class="col-sm-12 csCommRecord"> 
+					
+					</div>
+				</div>
+			</div>
+		</div> 
+	</div>
+	 <div style="display:none"  class="time-select-pane" >
+    	<div class="panel-body">
+    		<div class="input-daterange input-group">
+				<input class="laydate-icon form-control layer-date select-beginDate" placeholder="yyyy-mm-dd hh:mm:ss" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">
+				<span class="input-group-addon">到</span>
+				<input class="laydate-icon form-control layer-date select-endDate"  placeholder="yyyy-mm-dd hh:mm:ss" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">
+			</div>
+    	</div>
+    </div>
+</body>
+</html>

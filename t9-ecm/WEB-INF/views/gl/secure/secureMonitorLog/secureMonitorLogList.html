@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>安全监控</title>
+    <#include "/common/common.html" />
+    <link href="${ctx}/css/plugins/select2/select2.min.css?v=${jsVersion}" rel="stylesheet">
+	<script src="${ctx}/js/plugins/select2/select2.min.js?v=${jsVersion}"></script>
+    <script src="${ctx}/js/jt/gl/secure/secureOperLogStat${deploy_min!""}.js?v=${jsVersion}" ></script>
+    <script src="${ctx}/js/jt/gl/km/glHelpUtil${deploy_min!""}.js?v=${jsVersion}" ></script>
+    <!--<script src="${ctx}/js/jt/gl/secure/secureOperLogHome${deploy_min!""}.js?v=${jsVersion}"></script> -->
+    
+    <#include "/gl/secure/secureMonitorLog/secureOperLogToolbar.html">
+</head>
+
+<body>
+	<div class="wrapper animated fadeInRight">
+		<!-- list界面 -->
+		<div class="row list_wrapper">
+			<div class='col-sm-12' >
+				<div class="tabs-container">
+					<ul class="nav nav-tabs">
+						<!-- <li  id="homeTabLi" class="homeTabli active">
+							<a href="#secureHome" data-toggle="tab">
+								安全首页
+							</a>
+						</li> -->
+						<li  id="secureTabLi" class="homeTabli active">
+							<a href="#secureLog" data-toggle="tab">
+								安全日志
+							</a>
+						</li>
+						<label id="glHelpContainer"></label><!-- 帮助中心 -->
+						<li style="float:right;" class='financeBillRefresh'>
+							<#include "/ec/salesorder/soEntity/soEntityRefreshTool.html">
+						</li>
+					</ul> 
+					<div class="tab-content">
+						<!-- <div id="secureHome" class="tab-pane active">
+							<div class="panel-body">
+								<div class='row'>								
+							           						<div class='col-sm-12 secureHomeContent'>
+							           							<#include "/gl/secure/secureMonitorLog/secureOperLogHome.html">
+							           						</div>
+								</div>
+							</div>
+						</div> -->
+						<div id="secureLog" class="tab-pane active">
+							<div class="panel-body">
+								<div class='row secureLogContent'>
+									<#include "/gl/secure/secureMonitorLog/secureOperLogStat.html">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div> 
+		</div>
+	</div>
+</body>
+
+</html>

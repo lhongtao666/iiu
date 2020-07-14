@@ -1,0 +1,140 @@
+
+<form id="stStockForm" method="get" class="form-horizontal">
+	<div class="form-group">
+        <div class='col-sm-4'>
+           	<label class="col-sm-3 control-label">产品SKU</label>
+           	<div class="col-sm-9">
+		    	 <input id='skuCode' readonly='readonly' class='form-control' disabled="disabled">
+           	</div>
+        </div>
+        <div class='col-sm-4'>
+            <label class="col-sm-3 control-label">单位</label>
+            <div class="col-sm-9">
+           <input type="text" name="unit" placeholder="" readonly="readonly" class="form-control" validateType="default" > 
+            </div>
+        </div>
+        <div class='col-sm-4'>
+           	<label class="col-sm-3 control-label">仓位</label>
+           	<div class="col-sm-9">
+		    	 <input type="text" readonly='readonly' name="position" placeholder="" class="form-control" validateType="default" > 
+           	</div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class='col-sm-4'>
+	        <label class="col-sm-3 control-label">总数</label>
+	        <div class="col-sm-9">
+		        <input type="text" readonly='readonly' name="total" placeholder=""  validateType="default"  class="digits form-control"> 
+	        </div>
+        </div>
+        <div class='col-sm-4'>
+	        <label class="col-sm-3 control-label">锁定</label>
+	        <div class="col-sm-9">
+		        <input type="text" name="lockQty"  readonly='readonly' placeholder=""  validateType="default"  class="digits form-control"> 
+	        </div>
+        </div>
+
+        <div class='col-sm-4'>
+	        <label class="col-sm-3 control-label">预留</label>
+	        <div class="col-sm-9">
+		        <input type="text" name="savedQty" id = "savedQty" placeholder=""  validateType="default"  class="digits form-control"> 
+	        </div>
+        </div>
+    </div>
+    
+    <div class="form-group">
+        <div class='col-sm-4'>
+	        <label class="col-sm-3 control-label">不良品数</label>
+	        <div class="col-sm-9">
+		        <input type="text" readonly='readonly' name="badQty" placeholder=""  validateType="default"  class="digits form-control"> 
+	        </div>
+        </div>
+
+        <div class='col-sm-4'>
+	        <label class="col-sm-3 control-label">安全库存上限</label>
+	        <div class="col-sm-9">
+		        <input type="text" name="alertMax" placeholder="" readonly='readonly' validateType="default"  class="digits form-control"> 
+	        </div>
+        </div>
+
+        <div class='col-sm-4'>
+	        <label class="col-sm-3 control-label">安全库存下限</label>
+	        <div class="col-sm-9">
+		        <input type="text" name="alertMin" placeholder=""   readonly='readonly' validateType="default"  class="digits form-control"> 
+	        </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        
+        <div class='col-sm-4'>
+           	<label class="col-sm-3 control-label">采购周期</label>
+           	<div class="col-sm-9">
+		    	 <input type="text" name="salesDays" placeholder=""  class="form-control" validateType="default" > 
+           	</div>
+        </div>
+        <div class='col-sm-4'>
+           	<label class="col-sm-3 control-label">每日平均销售</label>
+           	<div class="col-sm-9">
+		    	 <input type="text" name="salesAvg" placeholder="" readonly="readonly" class="form-control" validateType="default" > 
+           	</div>
+        </div>
+        <div class='col-sm-4'>
+           	<label class="col-sm-3 control-label">预估可支持天数</label>
+           	<div class="col-sm-9">
+		    	 <input type="text" name="salesSupport" placeholder="" readonly="readonly" class="form-control" validateType="default" > 
+           	</div>
+        </div>
+
+    </div>
+    <div class="form-group">
+        <!--将隐藏域放在这里，不显示出来-->
+        <div style="display:none'">
+        	  <input type="hidden" name="skuId"> 
+            <input type="hidden" id="id" name="id">
+   			    <input type="hidden" name="prodId">
+            <input type="hidden" name="salesAvg">
+            <input type="hidden" name="createBy">
+            <input type="hidden" name="createTime">
+        </div>
+    </div>
+</form>
+
+
+<div id='stockContainer' class="tabs-container">
+	<ul class="nav nav-tabs">
+		<li class="active">
+			<a data-toggle="tab" href="#stockLogTab" aria-expanded="true">出入明细</a>
+		</li>
+		<li>
+			<a data-toggle="tab" href="#stockBuyTab" aria-expanded="true">入库单据</a>
+		</li>
+		<li>
+			<a data-toggle="tab" href="#stockOutTab" aria-expanded="true">出库单据</a>
+		</li>
+	</ul>
+	
+	<div class="tab-content">
+		<div id="stockLogTab" class="tab-pane active">
+			<div class="panel-body">
+				<table id="stStockLogGrid"></table>
+				<div id="stStockLogPager"></div>
+			</div>
+		</div>
+
+		<div id="stockBuyTab" class="tab-pane">
+			<div class="panel-body">
+				<table id="stStockBillBuyGrid"></table>
+				<div id="stStockBillBuyPager"></div>
+			</div>
+		</div>
+
+		<div id="stockOutTab" class="tab-pane">
+			<div class="panel-body">
+				<table id="stStockBillOutGrid"></table>
+				<div id="stStockBillOutPager"></div>
+			</div>
+		</div>
+    </div>
+</div>

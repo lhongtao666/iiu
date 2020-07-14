@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="renderer" content="webkit">
+<title>九天软件 - 登录数超出授权错误</title>
+<link href="${ctx}/css/bootstrap.min.css?v=${jsVersion}" rel="stylesheet">
+<link href="${ctx}/css/font-awesome.css?v=${jsVersion}" rel="stylesheet">
+<link href="${ctx}/css/animate.css?v=${jsVersion}" rel="stylesheet">
+<link href="${ctx}/css/style.css?v=${jsVersion}" rel="stylesheet">
+<!-- 全局js -->
+<script src="${ctx}/js/jquery-2.1.1.min.js?v=${jsVersion}"></script>
+<script src="${ctx}/js/bootstrap.min.js?v=${jsVersion}"></script>
+<style type="text/css">
+	body {
+		background-color: #144c8a;
+	}
+	body:before {
+	    content: "";
+	    position: absolute;
+	    width: 880px;
+	    height: 880px;
+	    background-color: rgba(255, 255, 255, 0.15);
+	    border-radius: 880px;
+	    top: -440px;
+	    left: calc(50% - 440px);
+	}
+	body:after {
+	    content: "";
+	    position: absolute;
+	    width: 800px;
+	    height: 800px;
+	    background-color: #fff;
+	    border-radius: 800px;
+	    top: -400px;
+	    left: calc(50% - 400px);
+	}
+	.message-box {
+		position: relative;
+	}
+	.message-box > p {
+		font-size: 40px;
+    	color: #008cfb;
+	}
+	.message-box > h2 {
+		color: #9E9E9E;
+	}
+	.error-desc {
+		white-space: nowrap;
+	    font-size: 18px;
+	    margin-top: 20px;
+	    line-height: 30px;
+	}
+	.error-opt {
+		margin-top: 50px;
+	}
+	.error-opt > a {
+		background-color: transparent;
+	    color: #000;
+	    border: 1px solid #144c8a;
+	    border-radius: 0;
+	    font-size: 16px;
+	    padding: 5px 20px;
+	    margin-top: 25px;
+	}
+	.error-opt > a:hover {
+		color: #008cfb;
+	    border-color: #008cfb;
+	}
+</style>
+</head>
+<body>
+    <div class="middle-box text-center animated fadeInDown message-box">
+        <p>登录超出授权或已过期</p>
+        <h2>当前授权数：<span>${maxLoginUserCount}</span>&emsp;&emsp;当前登录数：<span>${loginUserCount}</span></h2>
+        <div class="error-desc">
+            登录数超过授权了，请购买更多数量或退出一个已登录用户账号！<br />您可以刷新或返回登录页重新试试 <br />
+        </div>
+        <div class="error-opt">
+        	<a href="${ctx}/login.html">返回登录页</a>
+        </div>
+    </div>
+</body>
+</html>

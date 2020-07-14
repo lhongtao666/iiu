@@ -1,0 +1,995 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>版本差异</title>
+</head>
+	<style>
+		body,div,ul, li, ol {
+		    list-style: none;
+		    margin:0;
+		    padding:0;
+		}
+		.module-line {
+		    width: 100%;
+		    text-align: center;
+		}
+		.module-line span {
+		    display: inline-block;
+		}
+		.module-line .arrow {
+		    width: 84px;
+		    height: 16px;
+		}
+		.module-line .left-arrow {
+    			background: url(/t9-ecm/img/jt/leftArrow.png);
+		}
+		.module-line .text {
+		    font-size: 26px;
+		    color: #4c4c4c;
+		    margin: 0 10px;
+		}
+		.module-line .right-arrow {
+		    background: url(/t9-ecm/img/jt/rightArrow.png);
+		}
+
+	
+
+		.module-privilege {
+		    width: 1100px;
+		    height: 300px;
+		    margin: 10px auto 40px;
+		    position: relative;
+		}
+		.module-privilege .privilege-ul {
+		    float: left;
+		    border: 1px solid #d3d1d0;
+		    background: #fff;
+		    width: 273px;
+		    position: absolute;
+		}
+
+		.module-privilege .privilege-ul .privilege-item a {
+		    color: #666;
+		    display: block;
+		    width: 100%;
+		    height: 100%;
+		    text-decoration: none;
+		}
+
+		.module-privilege .privilege-ul.svip-ul {
+		    color: #ca963b;
+		    box-shadow: 0 0 10px 2px rgba(0,0,0,.08);
+		}
+		.module-privilege .privilege-ul.name-ul {
+		    left: 0px;
+		}
+		.module-privilege .privilege-ul .privilege-item {
+		    text-align: center;
+		    height: 35px;
+		    line-height: 45px;
+		    font-size: 14px;
+		}
+		.module-privilege .privilege-ul .privilege-item.first-item {
+		    height: 65px;
+		    padding-top: 1px;
+		}
+
+		.module-privilege .privilege-ul.active .privilege-item.first-item {
+		    height: 69px;
+		}
+		.module-privilege .privilege-ul .privilege-item .icon {
+		    display: inline-block;
+		    width: 20px;
+		    height: 20px;
+		}
+		.module-privilege .privilege-ul .privilege-item .icon.right {
+			margin-top: 12px;
+			background:url(/t9-ecm/img/jt/right.png) no-repeat center;
+		}
+		.module-privilege .privilege-ul .privilege-item .icon.error {
+			margin-top: 12px;
+			background:url(/t9-ecm/img/jt/error.png) no-repeat center;
+		}
+
+		.module-privilege .privilege-ul.active {
+		    border-color: #f2ddaf;
+		    background-color: #fffaeb;
+		    margin-top: -4px;
+		    width: 285px;
+		    left: 269px;
+		    z-index: 10;
+		}
+		
+		.module-privilege .privilege-ul .privilege-item .title, .module-privilege .privilege-ul .privilege-item .svip-type {
+		    font-size: 20px;
+		}
+		.buy-btn-box {
+		    display: inline-block;
+		}
+		
+
+		.module-privilege .privilege-ul .privilege-item .title .vip-type-title, .module-privilege .privilege-ul .privilege-item .svip-type .vip-type-title,
+		.module-privilege .privilege-ul .privilege-item .vip-type .vip-type-title, .module-privilege .privilege-ul .privilege-item .no-vip-type .vip-type-title{
+		    height: 30px;
+		    line-height: 30px;
+		    display: inline-block;
+		    vertical-align: middle;
+		}
+		.module-privilege .privilege-ul .privilege-item .title .vip-type-icon, .module-privilege .privilege-ul .privilege-item .svip-type .vip-type-icon,
+		.module-privilege .privilege-ul .privilege-item .vip-type .vip-type-icon, .module-privilege .privilege-ul .privilege-item .no-vip-type .vip-type-icon {
+		    display: inline-block;
+		    vertical-align: middle;
+		    height: 30px;
+		}
+
+
+		.vip-icon {
+		    display: inline-block;
+		}
+		.icon-size-middle {
+		    width: 30px;
+		    height: 30px;
+		}
+		.vip-icon.svip-middle {
+		    background-image: url(/t9-ecm/img/jt/flagship.png);
+		    background-repeat: no-repeat;
+		}
+		.module-privilege .privilege-ul .privilege-item .vip-type, .module-privilege .privilege-ul .privilege-item .no-vip-type {
+		    font-size: 20px;
+		    margin-top: -4px;
+		}
+		.module-privilege .privilege-ul.vip-ul {
+		    left: 548px;
+		    border-right: 0;
+		}
+		.module-privilege .privilege-ul.no-vip-ul {
+		    left: 822px;
+		}
+
+	</style>
+<body>
+	<div  class="module-line" style="margin-top:40px; margin-bottom:40px">
+	    <span  class="arrow left-arrow"></span>
+	    <span class="text">版本对比</span>
+	    <span  class="arrow right-arrow"></span>
+	</div>
+	<!--客户-->
+	<div  class="module-privilege " style="height:300px;">
+		<ul  class="privilege-ul name-ul">
+			<li  class="privilege-item first-item">
+				<p  class="title">
+					<span>客户关系管理</span>
+				</p>
+			</li>
+			<li  class="privilege-item" style="background: #fbf9f8"><a   style="cursor: default">客户基本信息管理</a></li>
+			<li  class="privilege-item"><a style="cursor: default">客户资源管理</a></li>
+			<li  class="privilege-item" style="background: #fbf9f8"><a  style="cursor: default">客户档案管理</a></li>
+			<li  class="privilege-item"><a  style="cursor: default">客户画像</a></li>
+			<li  class="privilege-item" style="background: #fbf9f8"><a   style="cursor: default">客户跟进情况</a></li>
+			<li  class="privilege-item"><a  style="cursor: default">客户积分与等级</a></li>
+			<li  class="privilege-item"><a  style="cursor: default">客户价值分析</a></li>
+		</ul>
+		<ul  class="privilege-ul svip-ul active recommend">
+			<li  class="privilege-item first-item">
+				<div  class="svip-type">
+					<p  class="vip-type-icon">
+						<span  class="vip-icon svip-middle icon-size-middle" style=""></span>
+					</p>
+					<span  class="vip-type-title">旗舰版</span>
+				</div>
+			</li>
+			<li  class="privilege-item" style="background: #fbf4e4;"><span  class="icon right"></span></li>
+			<li  class="privilege-item"><span  class="icon right"></span></li>
+			<li  class="privilege-item" style="background: #fbf4e4;"><span  class="icon right"></span></li>
+			<li  class="privilege-item" ><span class="icon right"></span></li>
+			<li  class="privilege-item" style="background: #fbf4e4;"><span  class="icon right"></span></li>
+			<li  class="privilege-item"><span class="icon right"></span></li>
+			<li  class="privilege-item" style="background: #fbf4e4;"><span  class="icon right"></span></li>
+		</ul>
+
+		<ul  class="privilege-ul vip-ul ">
+			<li class="privilege-item first-item">
+				<div class="vip-type">
+					<p  class="vip-type-icon">
+						<span class="vip-icon vip-middle icon-size-middle" style="background:url(/t9-ecm/img/jt/profession.png) no-repeat center;"></span>
+					</p>
+					<span class="vip-type-title">专业版</span>
+				</div>
+			</li>
+			<li  class="privilege-item" style="background: #fbf9f8"><span  class="icon right"></span></li>
+			<li  class="privilege-item"><span  class="icon right"></span></li>
+			<li  class="privilege-item" style="background: #fbf9f8"><span  class="icon right"></span></li>
+			<li  class="privilege-item" ><span  class="icon right"></span></li>
+			<li  class="privilege-item" style="background: #fbf9f8"><span  class="icon right"></span></li>
+			<li  class="privilege-item"><span  class="icon right"></span></li>
+			<li  class="privilege-item" style="background: #fbf9f8"><span  class="icon error"></span></li>
+		</ul>
+		<ul class="privilege-ul no-vip-ul">
+			<li class="privilege-item first-item">
+				<div  class="no-vip-type">
+					<p  class="vip-type-icon">
+						<span class="vip-icon no-vip-middle icon-size-middle" style="background:url(/t9-ecm/img/jt/standard.png) no-repeat center;"></span>
+					</p>
+					<span  class="vip-type-title">标准版</span>
+				</div>
+			</li>
+			<li  class="privilege-item" style="background: #fbf9f8"><span  class="icon right"></span></li>
+			<li  class="privilege-item"><span  class="icon right"></span></li>
+			<li  class="privilege-item" style="background: #fbf9f8"><span  class="icon error"></span></li>
+			<li  class="privilege-item" ><span  class="icon error"></span></li>
+			<li  class="privilege-item" style="background: #fbf9f8"><span  class="icon right"></span></li>
+			<li  class="privilege-item"><span  class="icon error"></span></li>
+			<li  class="privilege-item" style="background: #fbf9f8"><span  class="icon error"></span></li>
+		</ul>
+	</div>
+
+
+	<!--订单-->
+	<div  class="module-privilege " style="height:300px;">
+		<ul  class="privilege-ul name-ul">
+			<li  class="privilege-item first-item">
+				<p  class="title">
+					<span>订单管理</span>
+				</p>
+			</li>
+			<li  class="privilege-item" style="background: #fbf9f8"><a   style="cursor: default">订单流程状态</a></li>
+			<li  class="privilege-item"><a style="cursor: default">订单条件搜索</a></li>
+			<li  class="privilege-item" style="background: #fbf9f8"><a  style="cursor: default">订单审核</a></li>
+			<li  class="privilege-item"><a  style="cursor: default">订单跟进</a></li>
+			<li  class="privilege-item" style="background: #fbf9f8"><a   style="cursor: default">订单回访</a></li>
+			<li  class="privilege-item"><a  style="cursor: default">订单收付款</a></li>
+			<li  class="privilege-item"><a  style="cursor: default">出货订单</a></li>
+		</ul>
+		<ul  class="privilege-ul svip-ul active recommend">
+			<li  class="privilege-item first-item">
+				<div  class="svip-type">
+					<p  class="vip-type-icon">
+						<span  class="vip-icon svip-middle icon-size-middle" style=""></span>
+					</p>
+					<span  class="vip-type-title">旗舰版</span>
+				</div>
+			</li>
+			<li  class="privilege-item" style="background: #fbf4e4;"><span  class="icon right"></span></li>
+			<li  class="privilege-item"><span  class="icon right"></span></li>
+			<li  class="privilege-item" style="background: #fbf4e4;"><span  class="icon right"></span></li>
+			<li  class="privilege-item" ><span class="icon right"></span></li>
+			<li  class="privilege-item" style="background: #fbf4e4;"><span  class="icon right"></span></li>
+			<li  class="privilege-item"><span class="icon right"></span></li>
+			<li  class="privilege-item" style="background: #fbf4e4;"><span  class="icon right"></span></li>
+		</ul>
+
+		<ul  class="privilege-ul vip-ul ">
+			<li class="privilege-item first-item">
+				<div class="vip-type">
+					<p  class="vip-type-icon">
+						<span class="vip-icon vip-middle icon-size-middle" style="background:url(/t9-ecm/img/jt/profession.png) no-repeat center;"></span>
+					</p>
+					<span class="vip-type-title">专业版</span>
+				</div>
+			</li>
+			<li  class="privilege-item" style="background: #fbf9f8"><span  class="icon right"></span></li>
+			<li  class="privilege-item"><span  class="icon right"></span></li>
+			<li  class="privilege-item" style="background: #fbf9f8"><span  class="icon right"></span></li>
+			<li  class="privilege-item" ><span  class="icon right"></span></li>
+			<li  class="privilege-item" style="background: #fbf9f8"><span  class="icon right"></span></li>
+			<li  class="privilege-item"><span  class="icon right"></span></li>
+			<li  class="privilege-item" style="background: #fbf9f8"><span  class="icon right"></span></li>
+		</ul>
+		<ul class="privilege-ul no-vip-ul">
+			<li class="privilege-item first-item">
+				<div  class="no-vip-type">
+					<p  class="vip-type-icon">
+						<span class="vip-icon no-vip-middle icon-size-middle" style="background:url(/t9-ecm/img/jt/standard.png) no-repeat center;"></span>
+					</p>
+					<span  class="vip-type-title">标准版</span>
+				</div>
+			</li>
+			<li  class="privilege-item" style="background: #fbf9f8"><span  class="icon right"></span></li>
+			<li  class="privilege-item"><span  class="icon right"></span></li>
+			<li  class="privilege-item" style="background: #fbf9f8"><span  class="icon right"></span></li>
+			<li  class="privilege-item" ><span  class="icon right"></span></li>
+			<li  class="privilege-item" style="background: #fbf9f8"><span  class="icon right"></span></li>
+			<li  class="privilege-item"><span  class="icon right"></span></li>
+			<li  class="privilege-item" style="background: #fbf9f8"><span  class="icon right"></span></li>
+		</ul>
+	</div>
+
+
+
+
+	<!--订单-->
+	<div  class="module-privilege " style="height:200px;">
+		<ul  class="privilege-ul name-ul">
+			<li  class="privilege-item first-item">
+				<p  class="title">
+					<span>商品管理</span>
+				</p>
+			</li>
+			<li  class="privilege-item" style="background: #fbf9f8"><a   style="cursor: default">商品基本信息 </a></li>
+			<li  class="privilege-item"><a style="cursor: default">商品回收</a></li>
+			<li  class="privilege-item" style="background: #fbf9f8"><a  style="cursor: default">积分商口</a></li>
+			<li  class="privilege-item"><a  style="cursor: default">商品属性及SKU定义</a></li>
+		</ul>
+		<ul  class="privilege-ul svip-ul active recommend">
+			<li  class="privilege-item first-item">
+				<div  class="svip-type">
+					<p  class="vip-type-icon">
+						<span  class="vip-icon svip-middle icon-size-middle" style=""></span>
+					</p>
+					<span  class="vip-type-title">旗舰版</span>
+				</div>
+			</li>
+			<li  class="privilege-item" style="background: #fbf4e4;"><span  class="icon right"></span></li>
+			<li  class="privilege-item"><span  class="icon right"></span></li>
+			<li  class="privilege-item" style="background: #fbf4e4;"><span  class="icon right"></span></li>
+			<li  class="privilege-item" ><span class="icon right"></span></li>
+		</ul>
+
+		<ul  class="privilege-ul vip-ul ">
+			<li class="privilege-item first-item">
+				<div class="vip-type">
+					<p  class="vip-type-icon">
+						<span class="vip-icon vip-middle icon-size-middle" style="background:url(/t9-ecm/img/jt/profession.png) no-repeat center;"></span>
+					</p>
+					<span class="vip-type-title">专业版</span>
+				</div>
+			</li>
+			<li  class="privilege-item" style="background: #fbf9f8"><span  class="icon right"></span></li>
+			<li  class="privilege-item"><span  class="icon right"></span></li>
+			<li  class="privilege-item" style="background: #fbf9f8"><span  class="icon right"></span></li>
+			<li  class="privilege-item" ><span  class="icon right"></span></li>
+		</ul>
+		<ul class="privilege-ul no-vip-ul">
+			<li class="privilege-item first-item">
+				<div  class="no-vip-type">
+					<p  class="vip-type-icon">
+						<span class="vip-icon no-vip-middle icon-size-middle" style="background:url(/t9-ecm/img/jt/standard.png) no-repeat center;"></span>
+					</p>
+					<span  class="vip-type-title">标准版</span>
+				</div>
+			</li>
+			<li  class="privilege-item" style="background: #fbf9f8"><span  class="icon right"></span></li>
+			<li  class="privilege-item"><span  class="icon right"></span></li>
+			<li  class="privilege-item" style="background: #fbf9f8"><span  class="icon right"></span></li>
+			<li  class="privilege-item" ><span  class="icon right"></span></li>
+		</ul>
+	</div>
+
+
+		<!--仓库-->
+	<div  class="module-privilege " style="height:300px;">
+		<ul  class="privilege-ul name-ul">
+			<li  class="privilege-item first-item">
+				<p  class="title">
+					<span>仓库管理</span>
+				</p>
+			</li>
+			<li  class="privilege-item" style="background: #fbf9f8"><a   style="cursor: default">多仓管理</a></li>
+			<li  class="privilege-item"><a style="cursor: default">订单发货</a></li>
+			<li  class="privilege-item" style="background: #fbf9f8"><a  style="cursor: default">物流结算</a></li>
+			<li  class="privilege-item"><a  style="cursor: default">产品库存管理</a></li>
+			<li  class="privilege-item" style="background: #fbf9f8"><a   style="cursor: default">采购入库</a></li>
+			<li  class="privilege-item"><a  style="cursor: default">退货入仓</a></li>
+			<li  class="privilege-item"><a  style="cursor: default">出库记录</a></li>
+		</ul>
+		<ul  class="privilege-ul svip-ul active recommend">
+			<li  class="privilege-item first-item">
+				<div  class="svip-type">
+					<p  class="vip-type-icon">
+						<span  class="vip-icon svip-middle icon-size-middle" style=""></span>
+					</p>
+					<span  class="vip-type-title">旗舰版</span>
+				</div>
+			</li>
+			<li  class="privilege-item" style="background: #fbf4e4;"><span  class="icon right"></span></li>
+			<li  class="privilege-item"><span  class="icon right"></span></li>
+			<li  class="privilege-item" style="background: #fbf4e4;"><span  class="icon right"></span></li>
+			<li  class="privilege-item" ><span class="icon right"></span></li>
+			<li  class="privilege-item" style="background: #fbf4e4;"><span  class="icon right"></span></li>
+			<li  class="privilege-item"><span class="icon right"></span></li>
+			<li  class="privilege-item" style="background: #fbf4e4;"><span  class="icon right"></span></li>
+		</ul>
+
+		<ul  class="privilege-ul vip-ul ">
+			<li class="privilege-item first-item">
+				<div class="vip-type">
+					<p  class="vip-type-icon">
+						<span class="vip-icon vip-middle icon-size-middle" style="background:url(/t9-ecm/img/jt/profession.png) no-repeat center;"></span>
+					</p>
+					<span class="vip-type-title">专业版</span>
+				</div>
+			</li>
+			<li  class="privilege-item" style="background: #fbf9f8"><span  class="icon right"></span></li>
+			<li  class="privilege-item"><span  class="icon right"></span></li>
+			<li  class="privilege-item" style="background: #fbf9f8"><span  class="icon right"></span></li>
+			<li  class="privilege-item" ><span  class="icon right"></span></li>
+			<li  class="privilege-item" style="background: #fbf9f8"><span  class="icon right"></span></li>
+			<li  class="privilege-item"><span  class="icon right"></span></li>
+			<li  class="privilege-item" style="background: #fbf9f8"><span  class="icon right"></span></li>
+		</ul>
+		<ul class="privilege-ul no-vip-ul">
+			<li class="privilege-item first-item">
+				<div  class="no-vip-type">
+					<p  class="vip-type-icon">
+						<span class="vip-icon no-vip-middle icon-size-middle" style="background:url(/t9-ecm/img/jt/standard.png) no-repeat center;"></span>
+					</p>
+					<span  class="vip-type-title">标准版</span>
+				</div>
+			</li>
+			<li  class="privilege-item" style="background: #fbf9f8"><span  class="icon right"></span></li>
+			<li  class="privilege-item"><span  class="icon right"></span></li>
+			<li  class="privilege-item" style="background: #fbf9f8"><span  class="icon right"></span></li>
+			<li  class="privilege-item" ><span  class="icon right"></span></li>
+			<li  class="privilege-item" style="background: #fbf9f8"><span  class="icon right"></span></li>
+			<li  class="privilege-item"><span  class="icon right"></span></li>
+			<li  class="privilege-item" style="background: #fbf9f8"><span  class="icon right"></span></li>
+		</ul>
+	</div>
+
+			<!--运营-->
+	<div  class="module-privilege " style="height:265px;">
+		<ul  class="privilege-ul name-ul">
+			<li  class="privilege-item first-item">
+				<p  class="title">
+					<span>运营管理</span>
+				</p>
+			</li>
+			<li  class="privilege-item" style="background: #fbf9f8"><a   style="cursor: default">公司目标管理</a></li>
+			<li  class="privilege-item"><a style="cursor: default">销售监控看板管理</a></li>
+			<li  class="privilege-item" style="background: #fbf9f8"><a  style="cursor: default">媒体渠道分析</a></li>
+			<li  class="privilege-item"><a  style="cursor: default">广告投放管理</a></li>
+			<li  class="privilege-item" style="background: #fbf9f8"><a   style="cursor: default">智能问答库</a></li>
+			<li  class="privilege-item"><a  style="cursor: default">IM即时通信</a></li>
+		</ul>
+		<ul  class="privilege-ul svip-ul active recommend">
+			<li  class="privilege-item first-item">
+				<div  class="svip-type">
+					<p  class="vip-type-icon">
+						<span  class="vip-icon svip-middle icon-size-middle" style=""></span>
+					</p>
+					<span  class="vip-type-title">旗舰版</span>
+				</div>
+			</li>
+			<li  class="privilege-item" style="background: #fbf4e4;"><span  class="icon right"></span></li>
+			<li  class="privilege-item"><span  class="icon right"></span></li>
+			<li  class="privilege-item" style="background: #fbf4e4;"><span  class="icon right"></span></li>
+			<li  class="privilege-item" ><span class="icon right"></span></li>
+			<li  class="privilege-item" style="background: #fbf4e4;"><span  class="icon right"></span></li>
+			<li  class="privilege-item"><span class="icon right"></span></li>
+		</ul>
+
+		<ul  class="privilege-ul vip-ul ">
+			<li class="privilege-item first-item">
+				<div class="vip-type">
+					<p  class="vip-type-icon">
+						<span class="vip-icon vip-middle icon-size-middle" style="background:url(/t9-ecm/img/jt/profession.png) no-repeat center;"></span>
+					</p>
+					<span class="vip-type-title">专业版</span>
+				</div>
+			</li>
+			<li  class="privilege-item" style="background: #fbf9f8"><span  class="icon error"></span></li>
+			<li  class="privilege-item"><span  class="icon error"></span></li>
+			<li  class="privilege-item" style="background: #fbf9f8"><span  class="icon right"></span></li>
+			<li  class="privilege-item" ><span  class="icon right"></span></li>
+			<li  class="privilege-item" style="background: #fbf9f8"><span  class="icon error"></span></li>
+			<li  class="privilege-item"><span  class="icon error"></span></li>
+		</ul>
+		<ul class="privilege-ul no-vip-ul">
+			<li class="privilege-item first-item">
+				<div  class="no-vip-type">
+					<p  class="vip-type-icon">
+						<span class="vip-icon no-vip-middle icon-size-middle" style="background:url(/t9-ecm/img/jt/standard.png) no-repeat center;"></span>
+					</p>
+					<span  class="vip-type-title">标准版</span>
+				</div>
+			</li>
+			<li  class="privilege-item" style="background: #fbf9f8"><span  class="icon error"></span></li>
+			<li  class="privilege-item"><span  class="icon error"></span></li>
+			<li  class="privilege-item" style="background: #fbf9f8"><span  class="icon right"></span></li>
+			<li  class="privilege-item" ><span  class="icon right"></span></li>
+			<li  class="privilege-item" style="background: #fbf9f8"><span  class="icon error"></span></li>
+			<li  class="privilege-item"><span  class="icon error"></span></li>
+		</ul>
+	</div>
+
+				<!--工具-->
+	<div  class="module-privilege " style="height:300px;">
+		<ul  class="privilege-ul name-ul">
+			<li  class="privilege-item first-item">
+				<p  class="title">
+					<span>工具管理</span>
+				</p>
+			</li>
+			<li  class="privilege-item" style="background: #fbf9f8"><a   style="cursor: default">知识库管理</a></li>
+			<li  class="privilege-item"><a style="cursor: default">发布公告</a></li>
+			<li  class="privilege-item" style="background: #fbf9f8"><a  style="cursor: default">待办管理</a></li>
+			<li  class="privilege-item"><a  style="cursor: default">便签备忘录管理</a></li>
+			<li  class="privilege-item" style="background: #fbf9f8"><a   style="cursor: default">我的文件管理</a></li>
+			<li  class="privilege-item"><a  style="cursor: default">安全监控</a></li>
+			<li  class="privilege-item" style="background: #fbf9f8"><a   style="cursor: default">首页配置</a></li>
+		</ul>
+		<ul  class="privilege-ul svip-ul active recommend">
+			<li  class="privilege-item first-item">
+				<div  class="svip-type">
+					<p  class="vip-type-icon">
+						<span  class="vip-icon svip-middle icon-size-middle" style=""></span>
+					</p>
+					<span  class="vip-type-title">旗舰版</span>
+				</div>
+			</li>
+			<li  class="privilege-item" style="background: #fbf4e4;"><span  class="icon right"></span></li>
+			<li  class="privilege-item"><span  class="icon right"></span></li>
+			<li  class="privilege-item" style="background: #fbf4e4;"><span  class="icon right"></span></li>
+			<li  class="privilege-item" ><span class="icon right"></span></li>
+			<li  class="privilege-item" style="background: #fbf4e4;"><span  class="icon right"></span></li>
+			<li  class="privilege-item"><span class="icon right"></span></li>
+			<li  class="privilege-item" style="background: #fbf4e4;"><span  class="icon right"></span></li>
+		</ul>
+
+		<ul  class="privilege-ul vip-ul ">
+			<li class="privilege-item first-item">
+				<div class="vip-type">
+					<p  class="vip-type-icon">
+						<span class="vip-icon vip-middle icon-size-middle" style="background:url(/t9-ecm/img/jt/profession.png) no-repeat center;"></span>
+					</p>
+					<span class="vip-type-title">专业版</span>
+				</div>
+			</li>
+			<li  class="privilege-item" style="background: #fbf9f8"><span  class="icon right"></span></li>
+			<li  class="privilege-item"><span  class="icon right"></span></li>
+			<li  class="privilege-item" style="background: #fbf9f8"><span  class="icon right"></span></li>
+			<li  class="privilege-item" ><span  class="icon right"></span></li>
+			<li  class="privilege-item" style="background: #fbf9f8"><span  class="icon right"></span></li>
+			<li  class="privilege-item"><span  class="icon right"></span></li>
+			<li  class="privilege-item" style="background: #fbf9f8"><span  class="icon right"></span></li>
+		</ul>
+		<ul class="privilege-ul no-vip-ul">
+			<li class="privilege-item first-item">
+				<div  class="no-vip-type">
+					<p  class="vip-type-icon">
+						<span class="vip-icon no-vip-middle icon-size-middle" style="background:url(/t9-ecm/img/jt/standard.png) no-repeat center;"></span>
+					</p>
+					<span  class="vip-type-title">标准版</span>
+				</div>
+			</li>
+			<li  class="privilege-item" style="background: #fbf9f8"><span  class="icon right"></span></li>
+			<li  class="privilege-item"><span  class="icon right"></span></li>
+			<li  class="privilege-item" style="background: #fbf9f8"><span  class="icon right"></span></li>
+			<li  class="privilege-item" ><span  class="icon right"></span></li>
+			<li  class="privilege-item" style="background: #fbf9f8"><span  class="icon right"></span></li>
+			<li  class="privilege-item"><span  class="icon right"></span></li>
+			<li  class="privilege-item" style="background: #fbf9f8"><span  class="icon right"></span></li>
+		</ul>
+	</div>
+
+
+				<!--报表及数据分析-->
+	<div  class="module-privilege " style="height:330px;">
+		<ul  class="privilege-ul name-ul">
+			<li  class="privilege-item first-item">
+				<p  class="title">
+					<span>报表及数据分析</span>
+				</p>
+			</li>
+			<li  class="privilege-item" style="background: #fbf9f8"><a   style="cursor: default">部门/员工报表</a></li>
+			<li  class="privilege-item"><a style="cursor: default">物流报表</a></li>
+			<li  class="privilege-item" style="background: #fbf9f8"><a  style="cursor: default">客户报表</a></li>
+			<li  class="privilege-item"><a  style="cursor: default">订单报表</a></li>
+			<li  class="privilege-item" style="background: #fbf9f8"><a   style="cursor: default">产品报表</a></li>
+			<li  class="privilege-item"><a  style="cursor: default">销售统计</a></li>
+			<li  class="privilege-item" style="background: #fbf9f8"><a   style="cursor: default">推广报表</a></li>
+			<li  class="privilege-item"><a  style="cursor: default">报表导出</a></li>
+		</ul>
+		<ul  class="privilege-ul svip-ul active recommend">
+			<li  class="privilege-item first-item">
+				<div  class="svip-type">
+					<p  class="vip-type-icon">
+						<span  class="vip-icon svip-middle icon-size-middle" style=""></span>
+					</p>
+					<span  class="vip-type-title">旗舰版</span>
+				</div>
+			</li>
+			<li  class="privilege-item" style="background: #fbf4e4;"><span  class="icon right"></span></li>
+			<li  class="privilege-item"><span  class="icon right"></span></li>
+			<li  class="privilege-item" style="background: #fbf4e4;"><span  class="icon right"></span></li>
+			<li  class="privilege-item" ><span class="icon right"></span></li>
+			<li  class="privilege-item" style="background: #fbf4e4;"><span  class="icon right"></span></li>
+			<li  class="privilege-item"><span class="icon right"></span></li>
+			<li  class="privilege-item" style="background: #fbf4e4;"><span  class="icon right"></span></li>
+			<li  class="privilege-item"><span class="icon right"></span></li>
+		</ul>
+
+		<ul  class="privilege-ul vip-ul ">
+			<li class="privilege-item first-item">
+				<div class="vip-type">
+					<p  class="vip-type-icon">
+						<span class="vip-icon vip-middle icon-size-middle" style="background:url(/t9-ecm/img/jt/profession.png) no-repeat center;"></span>
+					</p>
+					<span class="vip-type-title">专业版</span>
+				</div>
+			</li>
+			<li  class="privilege-item" style="background: #fbf9f8"><span  class="icon right"></span></li>
+			<li  class="privilege-item"><span  class="icon right"></span></li>
+			<li  class="privilege-item" style="background: #fbf9f8"><span  class="icon right"></span></li>
+			<li  class="privilege-item" ><span  class="icon right"></span></li>
+			<li  class="privilege-item" style="background: #fbf9f8"><span  class="icon right"></span></li>
+			<li  class="privilege-item"><span  class="icon right"></span></li>
+			<li  class="privilege-item" style="background: #fbf9f8"><span  class="icon right"></span></li>
+			<li  class="privilege-item"><span  class="icon right"></span></li>
+		</ul>
+		<ul class="privilege-ul no-vip-ul">
+			<li class="privilege-item first-item">
+				<div  class="no-vip-type">
+					<p  class="vip-type-icon">
+						<span class="vip-icon no-vip-middle icon-size-middle" style="background:url(/t9-ecm/img/jt/standard.png) no-repeat center;"></span>
+					</p>
+					<span  class="vip-type-title">标准版</span>
+				</div>
+			</li>
+			<li  class="privilege-item" style="background: #fbf9f8"><span  class="icon right"></span></li>
+			<li  class="privilege-item"><span  class="icon right"></span></li>
+			<li  class="privilege-item" style="background: #fbf9f8"><span  class="icon right"></span></li>
+			<li  class="privilege-item" ><span  class="icon right"></span></li>
+			<li  class="privilege-item" style="background: #fbf9f8"><span  class="icon right"></span></li>
+			<li  class="privilege-item"><span  class="icon right"></span></li>
+			<li  class="privilege-item" style="background: #fbf9f8"><span  class="icon right"></span></li>
+			<li  class="privilege-item"><span  class="icon right"></span></li>
+		</ul>
+	</div>
+
+
+
+				<!--短信管理-->
+	<div  class="module-privilege " style="height:225px;">
+		<ul  class="privilege-ul name-ul">
+			<li  class="privilege-item first-item">
+				<p  class="title">
+					<span>短信管理</span>
+				</p>
+			</li>
+			<li  class="privilege-item" style="background: #fbf9f8"><a   style="cursor: default">短信收发</a></li>
+			<li  class="privilege-item"><a style="cursor: default">短信群发</a></li>
+			<li  class="privilege-item" style="background: #fbf9f8"><a  style="cursor: default">物流短信</a></li>
+			<li  class="privilege-item"><a  style="cursor: default">客户关怀短信</a></li>
+			<li  class="privilege-item" style="background: #fbf9f8"><a   style="cursor: default">短信报表</a></li>
+		</ul>
+		<ul  class="privilege-ul svip-ul active recommend">
+			<li  class="privilege-item first-item">
+				<div  class="svip-type">
+					<p  class="vip-type-icon">
+						<span  class="vip-icon svip-middle icon-size-middle" style=""></span>
+					</p>
+					<span  class="vip-type-title">旗舰版</span>
+				</div>
+			</li>
+			<li  class="privilege-item" style="background: #fbf4e4;"><span  class="icon right"></span></li>
+			<li  class="privilege-item"><span  class="icon right"></span></li>
+			<li  class="privilege-item" style="background: #fbf4e4;"><span  class="icon right"></span></li>
+			<li  class="privilege-item" ><span class="icon error"></span></li>
+			<li  class="privilege-item" style="background: #fbf4e4;"><span  class="icon right"></span></li>
+		</ul>
+
+		<ul  class="privilege-ul vip-ul ">
+			<li class="privilege-item first-item">
+				<div class="vip-type">
+					<p  class="vip-type-icon">
+						<span class="vip-icon vip-middle icon-size-middle" style="background:url(/t9-ecm/img/jt/profession.png) no-repeat center;"></span>
+					</p>
+					<span class="vip-type-title">专业版</span>
+				</div>
+			</li>
+			<li  class="privilege-item" style="background: #fbf9f8"><span  class="icon right"></span></li>
+			<li  class="privilege-item"><span  class="icon right"></span></li>
+			<li  class="privilege-item" style="background: #fbf9f8"><span  class="icon right"></span></li>
+			<li  class="privilege-item" ><span  class="icon error"></span></li>
+			<li  class="privilege-item" style="background: #fbf9f8"><span  class="icon right"></span></li>
+		</ul>
+		<ul class="privilege-ul no-vip-ul">
+			<li class="privilege-item first-item">
+				<div  class="no-vip-type">
+					<p  class="vip-type-icon">
+						<span class="vip-icon no-vip-middle icon-size-middle" style="background:url(/t9-ecm/img/jt/standard.png) no-repeat center;"></span>
+					</p>
+					<span  class="vip-type-title">标准版</span>
+				</div>
+			</li>
+			<li  class="privilege-item" style="background: #fbf9f8"><span  class="icon right"></span></li>
+			<li  class="privilege-item"><span  class="icon right"></span></li>
+			<li  class="privilege-item" style="background: #fbf9f8"><span  class="icon right"></span></li>
+			<li  class="privilege-item" ><span  class="icon error"></span></li>
+			<li  class="privilege-item" style="background: #fbf9f8"><span  class="icon right"></span></li>
+		</ul>
+	</div>
+
+
+					<!--呼叫中心-->
+	<div  class="module-privilege " style="height:470px;">
+		<ul  class="privilege-ul name-ul">
+			<li  class="privilege-item first-item">
+				<p  class="title">
+					<span>呼叫中心</span>
+				</p>
+			</li>
+			<li  class="privilege-item" style="background: #fbf9f8"><a   style="cursor: default">隐藏电话号码拔号</a></li>
+			<li  class="privilege-item"><a style="cursor: default">通话录音</a></li>
+			<li  class="privilege-item" style="background: #fbf9f8"><a  style="cursor: default">来电弹屏</a></li>
+			<li  class="privilege-item"><a  style="cursor: default">客户满意度调查</a></li>
+			<li  class="privilege-item" style="background: #fbf9f8"><a   style="cursor: default">批量外呼</a></li>
+			<li  class="privilege-item"><a style="cursor: default">IVR流程自定义</a></li>
+			<li  class="privilege-item" style="background: #fbf9f8"><a  style="cursor: default">ACD智能排队</a></li>
+			<li  class="privilege-item"><a  style="cursor: default">呼损管理</a></li>
+			<li  class="privilege-item" style="background: #fbf9f8"><a   style="cursor: default">设备代接</a></li>
+			<li  class="privilege-item"><a  style="cursor: default">无条件转接</a></li>
+			<li  class="privilege-item" style="background: #fbf9f8"><a   style="cursor: default">录音质检</a></li>
+			<li  class="privilege-item"><a  style="cursor: default">录音分享并推荐</a></li>
+		</ul>
+		<ul  class="privilege-ul svip-ul active recommend">
+			<li  class="privilege-item first-item">
+				<div  class="svip-type">
+					<p  class="vip-type-icon">
+						<span  class="vip-icon svip-middle icon-size-middle" style=""></span>
+					</p>
+					<span  class="vip-type-title">旗舰版</span>
+				</div>
+			</li>
+			<li  class="privilege-item" style="background: #fbf4e4;"><span  class="icon right"></span></li>
+			<li  class="privilege-item"><span  class="icon right"></span></li>
+			<li  class="privilege-item" style="background: #fbf4e4;"><span  class="icon right"></span></li>
+			<li  class="privilege-item" ><span class="icon right"></span></li>
+			<li  class="privilege-item" style="background: #fbf4e4;"><span  class="icon right"></span></li>
+			<li  class="privilege-item"><span  class="icon right"></span></li>
+			<li  class="privilege-item" style="background: #fbf4e4;"><span  class="icon right"></span></li>
+			<li  class="privilege-item" ><span class="icon right"></span></li>
+			<li  class="privilege-item" style="background: #fbf4e4;"><span  class="icon right"></span></li>
+			<li  class="privilege-item"><span  class="icon right"></span></li>
+			<li  class="privilege-item" style="background: #fbf4e4;"><span  class="icon right"></span></li>
+			<li  class="privilege-item" ><span class="icon right"></span></li>
+		</ul>
+
+		<ul  class="privilege-ul vip-ul ">
+			<li class="privilege-item first-item">
+				<div class="vip-type">
+					<p  class="vip-type-icon">
+						<span class="vip-icon vip-middle icon-size-middle" style="background:url(/t9-ecm/img/jt/profession.png) no-repeat center;"></span>
+					</p>
+					<span class="vip-type-title">专业版</span>
+				</div>
+			</li>
+			<li  class="privilege-item" style="background: #fbf9f8"><span  class="icon right"></span></li>
+			<li  class="privilege-item"><span  class="icon right"></span></li>
+			<li  class="privilege-item" style="background: #fbf9f8"><span  class="icon right"></span></li>
+			<li  class="privilege-item" ><span  class="icon right"></span></li>
+			<li  class="privilege-item" style="background: #fbf9f8"><span  class="icon right"></span></li>
+			<li  class="privilege-item"><span  class="icon right"></span></li>
+			<li  class="privilege-item" style="background: #fbf9f8"><span  class="icon right"></span></li>
+			<li  class="privilege-item" ><span  class="icon right"></span></li>
+			<li  class="privilege-item" style="background: #fbf9f8"><span  class="icon right"></span></li>
+			<li  class="privilege-item"><span  class="icon right"></span></li>
+			<li  class="privilege-item" style="background: #fbf9f8"><span  class="icon right"></span></li>
+			<li  class="privilege-item" ><span  class="icon right"></span></li>
+		</ul>
+		<ul class="privilege-ul no-vip-ul">
+			<li class="privilege-item first-item">
+				<div  class="no-vip-type">
+					<p  class="vip-type-icon">
+						<span class="vip-icon no-vip-middle icon-size-middle" style="background:url(/t9-ecm/img/jt/standard.png) no-repeat center;"></span>
+					</p>
+					<span  class="vip-type-title">标准版</span>
+				</div>
+			</li>
+			<li  class="privilege-item" style="background: #fbf9f8"><span  class="icon right"></span></li>
+			<li  class="privilege-item"><span  class="icon right"></span></li>
+			<li  class="privilege-item" style="background: #fbf9f8"><span  class="icon right"></span></li>
+			<li  class="privilege-item" ><span  class="icon right"></span></li>
+			<li  class="privilege-item" style="background: #fbf9f8"><span  class="icon right"></span></li>
+			<li  class="privilege-item"><span  class="icon right"></span></li>
+			<li  class="privilege-item" style="background: #fbf9f8"><span  class="icon right"></span></li>
+			<li  class="privilege-item" ><span  class="icon right"></span></li>
+			<li  class="privilege-item" style="background: #fbf9f8"><span  class="icon right"></span></li>
+			<li  class="privilege-item"><span  class="icon right"></span></li>
+			<li  class="privilege-item" style="background: #fbf9f8"><span  class="icon right"></span></li>
+			<li  class="privilege-item" ><span  class="icon right"></span></li>
+		</ul>
+	</div>
+
+
+						<!--微信相关-->
+	<div  class="module-privilege " style="height:465px;">
+		<ul  class="privilege-ul name-ul">
+			<li  class="privilege-item first-item">
+				<p  class="title">
+					<span>微信相关</span>
+				</p>
+			</li>
+			<li  class="privilege-item" style="background: #fbf9f8"><a   style="cursor: default">多微信号聚合管理</a></li>
+			<li  class="privilege-item"><a style="cursor: default">微信客户管理</a></li>
+			<li  class="privilege-item" style="background: #fbf9f8"><a  style="cursor: default">微信聊天</a></li>
+			<li  class="privilege-item"><a  style="cursor: default">微信群管理/群发</a></li>
+			<li  class="privilege-item" style="background: #fbf9f8"><a   style="cursor: default">Solr智能机器人子系统</a></li>
+			<li  class="privilege-item"><a style="cursor: default">微信行为监控</a></li>
+			<li  class="privilege-item" style="background: #fbf9f8"><a  style="cursor: default">微信下单</a></li>
+			<li  class="privilege-item"><a  style="cursor: default">微信内容质检/关键字预警及禁发</a></li>
+			<li  class="privilege-item" style="background: #fbf9f8"><a   style="cursor: default">隐藏客户微信号</a></li>
+			<li  class="privilege-item"><a  style="cursor: default">分粉操作【可随意分配微信上的客户】</a></li>
+			<li  class="privilege-item" style="background: #fbf9f8"><a   style="cursor: default">精准加粉【隐藏号码添加客户微信】</a></li>
+			<li  class="privilege-item"><a  style="cursor: default">微信报表</a></li>
+		</ul>
+		<ul  class="privilege-ul svip-ul active recommend">
+			<li  class="privilege-item first-item">
+				<div  class="svip-type">
+					<p  class="vip-type-icon">
+						<span  class="vip-icon svip-middle icon-size-middle" style=""></span>
+					</p>
+					<span  class="vip-type-title">旗舰版</span>
+				</div>
+			</li>
+			<li  class="privilege-item" style="background: #fbf4e4;"><span  class="icon right"></span></li>
+			<li  class="privilege-item"><span  class="icon right"></span></li>
+			<li  class="privilege-item" style="background: #fbf4e4;"><span  class="icon right"></span></li>
+			<li  class="privilege-item" ><span class="icon right"></span></li>
+			<li  class="privilege-item" style="background: #fbf4e4;"><span  class="icon right"></span></li>
+			<li  class="privilege-item"><span  class="icon right"></span></li>
+			<li  class="privilege-item" style="background: #fbf4e4;"><span  class="icon right"></span></li>
+			<li  class="privilege-item" ><span class="icon right"></span></li>
+			<li  class="privilege-item" style="background: #fbf4e4;"><span  class="icon right"></span></li>
+			<li  class="privilege-item"><span  class="icon right"></span></li>
+			<li  class="privilege-item" style="background: #fbf4e4;"><span  class="icon right"></span></li>
+			<li  class="privilege-item" ><span class="icon error"></span></li>
+		</ul>
+
+		<ul  class="privilege-ul vip-ul ">
+			<li class="privilege-item first-item">
+				<div class="vip-type">
+					<p  class="vip-type-icon">
+						<span class="vip-icon vip-middle icon-size-middle" style="background:url(/t9-ecm/img/jt/profession.png) no-repeat center;"></span>
+					</p>
+					<span class="vip-type-title">专业版</span>
+				</div>
+			</li>
+			<li  class="privilege-item" style="background: #fbf9f8"><span  class="icon right"></span></li>
+			<li  class="privilege-item"><span  class="icon right"></span></li>
+			<li  class="privilege-item" style="background: #fbf9f8"><span  class="icon right"></span></li>
+			<li  class="privilege-item" ><span  class="icon right"></span></li>
+			<li  class="privilege-item" style="background: #fbf9f8"><span  class="icon error"></span></li>
+			<li  class="privilege-item"><span  class="icon right"></span></li>
+			<li  class="privilege-item" style="background: #fbf9f8"><span  class="icon right"></span></li>
+			<li  class="privilege-item" ><span  class="icon right"></span></li>
+			<li  class="privilege-item" style="background: #fbf9f8"><span  class="icon right"></span></li>
+			<li  class="privilege-item"><span  class="icon right"></span></li>
+			<li  class="privilege-item" style="background: #fbf9f8"><span  class="icon right"></span></li>
+			<li  class="privilege-item" ><span  class="icon error"></span></li>
+		</ul>
+		<ul class="privilege-ul no-vip-ul">
+			<li class="privilege-item first-item">
+				<div  class="no-vip-type">
+					<p  class="vip-type-icon">
+						<span class="vip-icon no-vip-middle icon-size-middle" style="background:url(/t9-ecm/img/jt/standard.png) no-repeat center;"></span>
+					</p>
+					<span  class="vip-type-title">标准版</span>
+				</div>
+			</li>
+			<li  class="privilege-item" style="background: #fbf9f8"><span  class="icon right"></span></li>
+			<li  class="privilege-item"><span  class="icon right"></span></li>
+			<li  class="privilege-item" style="background: #fbf9f8"><span  class="icon right"></span></li>
+			<li  class="privilege-item" ><span  class="icon right"></span></li>
+			<li  class="privilege-item" style="background: #fbf9f8"><span  class="icon error"></span></li>
+			<li  class="privilege-item"><span  class="icon right"></span></li>
+			<li  class="privilege-item" style="background: #fbf9f8"><span  class="icon right"></span></li>
+			<li  class="privilege-item" ><span  class="icon right"></span></li>
+			<li  class="privilege-item" style="background: #fbf9f8"><span  class="icon right"></span></li>
+			<li  class="privilege-item"><span  class="icon right"></span></li>
+			<li  class="privilege-item" style="background: #fbf9f8"><span  class="icon right"></span></li>
+			<li  class="privilege-item" ><span  class="icon error"></span></li>
+		</ul>
+	</div>
+
+
+	<!--IM和在线客服-->
+	<div  class="module-privilege " style="height:80px;">
+		<ul  class="privilege-ul name-ul">
+			<li  class="privilege-item first-item">
+				<p  class="title">
+					<span>IM和在线客服</span>
+				</p>
+			</li>
+			<li  class="privilege-item" style="background: #fbf9f8"><a   style="cursor: default">IM即时通讯</a></li>
+		</ul>
+		<ul  class="privilege-ul svip-ul active recommend">
+			<li  class="privilege-item first-item">
+				<div  class="svip-type">
+					<p  class="vip-type-icon">
+						<span  class="vip-icon svip-middle icon-size-middle" style=""></span>
+					</p>
+					<span  class="vip-type-title">旗舰版</span>
+				</div>
+			</li>
+			<li  class="privilege-item" style="background: #fbf4e4;"><span  class="icon right"></span></li>
+		</ul>
+
+		<ul  class="privilege-ul vip-ul ">
+			<li class="privilege-item first-item">
+				<div class="vip-type">
+					<p  class="vip-type-icon">
+						<span class="vip-icon vip-middle icon-size-middle" style="background:url(/t9-ecm/img/jt/profession.png) no-repeat center;"></span>
+					</p>
+					<span class="vip-type-title">专业版</span>
+				</div>
+			</li>
+			<li  class="privilege-item" style="background: #fbf9f8"><span  class="icon error"></span></li>
+		</ul>
+		<ul class="privilege-ul no-vip-ul">
+			<li class="privilege-item first-item">
+				<div  class="no-vip-type">
+					<p  class="vip-type-icon">
+						<span class="vip-icon no-vip-middle icon-size-middle" style="background:url(/t9-ecm/img/jt/standard.png) no-repeat center;"></span>
+					</p>
+					<span  class="vip-type-title">标准版</span>
+				</div>
+			</li>
+			<li  class="privilege-item" style="background: #fbf9f8"><span  class="icon error"></span></li>
+		</ul>
+	</div>
+
+
+
+
+	<!--移动app-->
+	<div  class="module-privilege " style="height:300px;">
+		<ul  class="privilege-ul name-ul">
+			<li  class="privilege-item first-item">
+				<p  class="title">
+					<span>移动app</span>
+				</p>
+			</li>
+			<li  class="privilege-item" style="background: #fbf9f8"><a   style="cursor: default">APP客户关系管理</a></li>
+			<li  class="privilege-item"><a style="cursor: default">APP微信聊天</a></li>
+			<li  class="privilege-item" style="background: #fbf9f8"><a  style="cursor: default">APP查看客户订单状态</a></li>
+			<li  class="privilege-item"><a  style="cursor: default">APP电话隐藏拔打</a></li>
+		</ul>
+		<ul  class="privilege-ul svip-ul active recommend">
+			<li  class="privilege-item first-item">
+				<div  class="svip-type">
+					<p  class="vip-type-icon">
+						<span  class="vip-icon svip-middle icon-size-middle" style=""></span>
+					</p>
+					<span  class="vip-type-title">旗舰版</span>
+				</div>
+			</li>
+			<li  class="privilege-item" style="background: #fbf4e4;"><span  class="icon right"></span></li>
+			<li  class="privilege-item"><span  class="icon right"></span></li>
+			<li  class="privilege-item" style="background: #fbf4e4;"><span  class="icon right"></span></li>
+			<li  class="privilege-item" ><span class="icon right"></span></li>
+		</ul>
+
+		<ul  class="privilege-ul vip-ul ">
+			<li class="privilege-item first-item">
+				<div class="vip-type">
+					<p  class="vip-type-icon">
+						<span class="vip-icon vip-middle icon-size-middle" style="background:url(/t9-ecm/img/jt/profession.png) no-repeat center;"></span>
+					</p>
+					<span class="vip-type-title">专业版</span>
+				</div>
+			</li>
+			<li  class="privilege-item" style="background: #fbf9f8"><span  class="icon right"></span></li>
+			<li  class="privilege-item"><span  class="icon right"></span></li>
+			<li  class="privilege-item" style="background: #fbf9f8"><span  class="icon right"></span></li>
+			<li  class="privilege-item" ><span  class="icon right"></span></li>
+		</ul>
+		<ul class="privilege-ul no-vip-ul">
+			<li class="privilege-item first-item">
+				<div  class="no-vip-type">
+					<p  class="vip-type-icon">
+						<span class="vip-icon no-vip-middle icon-size-middle" style="background:url(/t9-ecm/img/jt/standard.png) no-repeat center;"></span>
+					</p>
+					<span  class="vip-type-title">标准版</span>
+				</div>
+			</li>
+			<li  class="privilege-item" style="background: #fbf9f8"><span  class="icon right"></span></li>
+			<li  class="privilege-item"><span  class="icon right"></span></li>
+			<li  class="privilege-item" style="background: #fbf9f8"><span  class="icon right"></span></li>
+			<li  class="privilege-item" ><span  class="icon right"></span></li>
+		</ul>
+	</div>
+</body>
+</html>

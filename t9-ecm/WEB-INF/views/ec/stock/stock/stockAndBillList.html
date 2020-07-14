@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>jt_st_stock管理</title>
+	<#include "/common/common.html">
+	<#include "/common/ztree.html">
+	<link href="${ctx}/css/plugins/switchery/switchery.css?v=${jsVersion}" rel="stylesheet">
+	<script src='${ctx}/js/jt/common/service/employeesSelectLayer${deploy_min!""}.js?v=${jsVersion}'></script>
+	<script src="${ctx}/js/jt/ec/stock/stStockLog${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/ec/stock/stStockBill${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/ec/stock/storeUtils${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/common/service/prodTypeSelect${deploy_min!""}.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/jt/ec/stock/stockList${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/common/service/selectProdService${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/common/utils/excelUtil${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/common/service/seniorSearch${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/gl/km/glHelpUtil${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/plugins/suggest/bootstrap-suggest.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/plugins/switchery/switchery.js?v=${jsVersion}" ></script>
+	<script type="text/javascript" src="${ctx}/js/plugins/dragsort/jquery.dragsort-0.5.2.min.js?v=${jsVersion}"></script>
+
+	<style type="text/css">
+		.layui-layer-content {
+			padding:10px 20px;
+		}
+
+		.layui-layer-btn {
+			border-top: 1px solid #e5e5e5;
+		}
+		.helper {
+			width: 15px;
+			height: 15px;
+			color: rgba(18, 18, 19, 0.41);
+			font-size: 18px;
+			transition: all 0.5s linear;
+			cursor: pointer;
+		}
+		#stock-helper {
+			height: 200px;
+			display: none;
+			position: fixed;
+			z-index: 10000000;
+			background-color: #fff;
+			border-radius: 5px;
+			text-align: left;
+			line-height: 30px;
+			opacity: 0.9;
+			padding: 10px;
+			background-color: #fff;
+			overflow: auto;
+			border: 4px solid #1caf9a;
+			box-shadow: 0 0 20px #273a4a;
+			width: auto !important;
+		}
+		
+		body {overflow: hidden;}
+		.dragsort {list-style-type:none; margin:0px; }
+		.dragsort li {float:left; padding:5px;}
+		.tree-layer,.main-layer {height:100%;padding: 0;}
+		.main-layer {border-left: 6px solid transparent;}
+		.tree-layer {background:#fff;}
+		.search-div {width:100%;height:40px;padding: 5px 10px;}
+		.tree-div {width:100%;height:calc(900px - 40px);overflow: auto;}
+		.out-form-layer,.buy-form-layer,.allocate-form-layer,
+		.check-form-layer,.batchCheck-form-layer,.edit-form-layer {
+		    position: absolute;
+		    top: 0;
+		    left: 110%;
+		    height: 100%;
+		    width: 100%;
+		    background: #fff;
+		    opacity:0;
+		}
+	</style>
+</head>
+<body class='white-bg' style="position: fixed;left:0;top:0;width:100%;">
+		<div class="list_wrapper">
+			<div class="tabs-container">
+				<ul class="nav nav-tabs store">
+					<#if storeLists??>
+					    <#list storeLists as store>
+						    <li  id="${store.id}" store-name="${store.name}" class="tabli <#if store.isDefault=='y'>active</#if>">
+								<a href="#tabStockInfo" data-toggle="tab">
+									 ${store.name}
+								</a>
+							</li>
+						</#list>
+					</#if>
+				</ul>
+			</div>
+		</div>
+		<div id="stockListContainer" class="tab-pane active">
+			<div class="col-sm-2 tree-layer">
+				<div class="tabs-container">					
+					<div class="tree-div">
+						<ul id="prodEntityCateTree" class="ztree" style="overflow: auto;"></ul>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-10 main-layer" style="float: right;padding-right: 0px;padding-left: 5px;">
+				<#include "/ec/stock/stock/stStockList.html">	 
+			</div>
+		</div>
+</body>
+</html>

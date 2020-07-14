@@ -1,0 +1,307 @@
+<div class='row'>
+	<div class="col-sm-6" style='padding-right: 5px;padding-top: 5px;'>
+		<form id="csEntityForm" method="get" class="form-horizontal editFlag">
+			<div class='form-group'>
+				<div class="col-sm-6">
+					<label class="col-sm-4 control-label"> 姓名 </label>
+					<div class="col-sm-8">
+						<input type="text" name="name" class="form-control"
+							validateType="default">
+					</div>
+				</div>						
+				<div class='col-sm-6'>
+					<div class="col-sm-3"></div>
+	                <div class="radio radio-success radio-inline">
+						<input type="radio" value="男" id="genderMan" name="gender">
+						<label for="genderMan">男</label>
+					</div>
+					<div class="radio radio-success radio-inline">
+						<input type="radio" value="女" id="genderWomen" name="gender">
+						<label for="genderWomen">女</label>
+					</div>
+				</div>						
+			</div>
+			<div class='form-group'>	
+				<div class="col-sm-6">
+					<label class="col-sm-4 control-label"> 客户编号 </label>
+					<div class="col-sm-8">
+						<input type="text" name="csCode" class="form-control"
+							validateType="default" readonly="true">
+					</div>
+				</div>
+				<div class='col-sm-6'>
+					<label class="col-sm-4 control-label">微信号</label>
+					<div class="col-sm-8">
+						<div class="col-sm-8">
+							<input type="text" name="maskWeixin"
+									class="form-control maskWeixin" validateType="default">
+							<input type="hidden" name="weixin">
+						</div>
+						<div class="col-sm-4" style="display: inline;">
+							<a style="cursor:hand">
+								<img style="width:20px; height:20px;" src="/t9-ecm/img/jt/view.png" class="viewWeixin" >
+							</a>
+							<a style="cursor:hand">
+								<img style="width:20px; height:20px;display:none;" src="/t9-ecm/img/jt/weixin.png" class="weixinChatBtn">
+							</a>
+						</div>
+					</div>
+				</div>	
+			</div>
+			<div class='form-group'>
+			<div class='col-sm-6'>
+					<label class="col-sm-4 control-label"> 客户分类 </label>
+					<div class="col-sm-8">
+						<select class='form-control' name='bizType' id='bizType'
+							validateType="default"></select>
+					</div>
+				</div>						
+				<div class='col-sm-6'>
+					<label class="col-sm-4 control-label"> 进线方法 </label>
+					<div class="col-sm-8">
+						<select class='form-control' name='entry' id='entry'
+							validateType="default"></select>
+					</div>
+				</div>
+			</div>
+			<div class='form-group'>
+				<div class='col-sm-6'>
+				<label class="col-sm-4 control-label"> 渠道来源 </label>
+				<div class="col-sm-8">
+					<select class='form-control'  data-placeholder="请选择"
+						name='srcs' id='srcs' validateType="default"></select>
+				</div>
+				</div>
+				<div class='col-sm-6'>
+				<label class="col-sm-4 control-label"> 客户意向 </label>
+				<div class="col-sm-8">
+					<select id="interests" multiple data-placeholder="请选择"
+						class="chosen-select form-control" name="interests"
+						validateType="default"></select>
+				</div>
+				</div>
+			</div>
+			<div class='form-group'>
+				<div class='col-sm-6'>
+					<label class="col-sm-4 control-label"> 创建工号 </label>
+					<div class="col-sm-8">
+						<input type="text" name="createByInfo" class="form-control"
+							value="" readonly>
+					</div>
+				</div>					
+				<div class='col-sm-6'>
+					<label class="col-sm-4 control-label">归属工号</label>
+					<div class="col-sm-6">
+						<input type="text" name="employeeShow" class="form-control"
+							readonly> <input type="hidden" name="employeeId">
+					</div>
+					<div class="col-sm-2">
+						<button type="button"
+							class='btn btn-sm btn-primary jt-form-select changRelEmployee'>转</button>
+					</div>
+				</div>
+			</div>
+			<div class="form-group hideSearchParam" style="display:none">
+				<div class='col-sm-6'>
+					<label class="col-sm-4 control-label">邮 箱</label>
+					<div class="col-sm-6">
+						<input type="text" name="maskEmail" class="form-control maskEmail" validateType="default">
+						<input type="hidden" name="email" />
+					</div>
+					<div class="col-sm-2">
+						<button type="button" class='btn btn-sm btn-primary sendEmail'>发</button>
+					</div>
+				</div>
+
+				<div class='col-sm-6'>
+					<label class="col-sm-4 control-label">职业</label>
+					<div class="col-sm-8">
+						<select class='form-control' name='vocation' id="vocation">
+							<option value="">请选择</option>
+						</select>
+					</div>
+				</div>
+			</div>
+			<div class='form-group hideSearchParam' style="display:none">
+				<div class='col-sm-6'>
+					<label class="col-sm-4 control-label">身高(cm)</label>
+					<div class="col-sm-8">
+						<input type="text" name="height" class="form-control">
+					</div>
+				</div>
+
+				<div class='col-sm-6'>
+					<label class="col-sm-4 control-label">体重(kg)</label>
+					<div class="col-sm-8">
+						<input type="text" name="weight" class="form-control">
+					</div>
+				</div>
+			</div>
+
+			<div class='form-group hideSearchParam' style="display:none">
+				<div class='col-sm-6'>
+					<label class="col-sm-4 control-label">年收入</label>
+					<div class="col-sm-8">
+						<select class='form-control' name='income' id="income">
+							<option value="">请选择</option>
+						</select>
+					</div>
+				</div>
+
+				<div class='col-sm-6'>
+					<label class="col-sm-4 control-label">学 历</label>
+					<div class="col-sm-8">
+						<select class='form-control' name='degree' id="degree">
+							<option value="">请选择</option>
+						</select>
+					</div>
+				</div>
+			</div>
+
+			<div class='form-group hideSearchParam' style="display:none">
+				<div class='col-sm-12'>
+					<label class="col-sm-2 control-label">生 日</label>
+					<div class="col-sm-10">
+						<div class='col-sm-3'>
+							<select class='form-control' name='birthYear' id="birthYear">
+								<option value="">年</option>
+							</select>
+						</div>
+						<div class='col-sm-3'>
+							<select class='form-control' name='birthMonth' id="birthMonth">
+								<option value="">月</option>
+							</select>
+						</div>
+						<div class='col-sm-3'>
+							<select class='form-control' name='birthDay' id="birthDay">
+								<option value="">日</option>
+							</select>
+						</div>
+						<div class="col-sm-2">
+							<input type="number" name="age" id="age" class="form-control">
+						</div>
+						<div class='col-sm-1'>
+							<label class='control-label'>岁</label>
+						</div>
+					</div>
+				</div>
+				<div class='col-sm-3'></div>
+			</div>
+
+			<div class='form-group'>
+				<div class='col-sm-12'>
+					<label class="col-sm-2 control-label">备注</label>
+					<div class='col-sm-10'>
+						<textarea name="desc" class="form-control" rows="2"></textarea>
+					</div>
+				</div>
+			</div>
+			
+			<div class='form-group' id="csTag">
+				<!-- 根据div id动态插入标签下拉选择框 -->
+				<div class='col-sm-12'>
+					<label class='col-sm-2 control-label'>客户标签</label>
+				<div class='col-sm-10'>
+					<select name='systemTagVals' multiple id='systemTagSelect' data-placeholder='请选择标签' class='chosen-select form-control' >
+					</select>
+					<button type='button' class='btn btn-sm   btn-primary'  id='saveTagBtn'>保存标签</button>
+				</div>
+			</div> 
+			</div>
+
+			<!--将隐藏域放在这里，不显示出来-->
+			<div style="display: none'">
+				<input type="hidden" id="id" name="id">
+				<input type="hidden" id="isSub" name="isSub">
+				<input type="hidden" id="mainCsId" name="mainCsId">
+				<input type="hidden" id="preId" name="preId">
+				<input type="hidden" id="nextId" name="nextId">
+				<input type="hidden" id="isFollow">
+				<input type="hidden" id="permissionType">
+				<input type="hidden" id="descPhone">
+			</div>
+			<div class='form-group'>
+				<div class='col-sm-4'></div>
+				<div class='col-sm-7'>
+					<a class="showSearch" href="javascript:void(0);" >显示更多资料</a>
+					<a class="hideSearch" href="javascript:void(0);" style="display:none" >隐藏更多资料</a>
+				</div>
+			</div>
+		</form>
+	</div>
+	<!-- 地址，号码 -->
+	<form class="form-horizontal">
+		<div class='col-sm-6'>
+			<div class="col-sm-12">
+				<#include "/crm/cs/csEntity/csEntityForm.html">
+			</div>
+			<div class="col-sm-12">
+				<#include "/crm/cs/csEntity/csEntityAddrList.html">
+			</div>
+		</div>
+	</form>
+	
+	<div class='col-sm-12 downDiv'>
+		<div class="tabs-container">
+			<ul class="nav nav-tabs">
+				<li class="editInfoDiv followRecordLi active tabLi" attr-id='follow'><a href="#followRecordTab"
+					data-toggle="tab" aria-expanded="true">跟进历史</a></li>
+				<li class="editInfoDiv csOrderLi tabLi" attr-id='csOrder'><a href="#orderTab" data-toggle="tab">订单</a>
+				</li>
+				<li class="editInfoDiv csllRecordLi tabLi" attr-id='callRecord'><a href="#callRecordTab"
+					data-toggle="tab">通话记录</a></li>
+				<li class="editInfoDiv smsRecordLi tabLi" attr-id='smsRecord'><a href="#messageRecordTab"
+					data-toggle="tab">短信记录</a></li>
+				<li class="editInfoDiv cashRecordLi tabLi" attr-id='cashRecord'><a href="#cashRecordTab"
+			data-toggle="tab">现金券</a></li>
+			</ul>
+
+			<div class="tab-content">
+				<div id="followRecordTab" class="tab-pane fade active in">
+					<div class="panel-body">
+						<div class='row'>
+							<div class='col-sm-3'>
+								<button type='button' class='btn btn-sm btn-outline btn-info addFollow' id='addFollowBtn' >添加跟进记录</button>
+							</div>
+							<select class='pull-right col-sm-2' name='suffix'
+								style='margin-right: 15px;'>
+								<option value='active'>一年内的跟进</option>
+								<option value='all'>全部跟进</option>
+							</select>
+	
+							<div class='col-sm-12' id="csFollowDiv"></div>
+						</div>
+					</div>
+				</div>
+				<div id="orderTab" class="tab-pane fade">
+					<div class="panel-body">
+						<div class='row'>
+							<div class='col-sm-12' id="csOrderDiv"></div>	
+						</div>
+					</div>
+				</div>
+				<div id="callRecordTab" class="tab-pane fade">
+					<div class="panel-body">
+						<div class='row'>
+							<div class='col-sm-12' id="callRecordDiv"></div>	
+						</div>
+					</div>
+				</div>
+				<div id="messageRecordTab" class="tab-pane fade">
+					<div class="panel-body">
+						<div class='row'>
+							<div class='col-sm-12' id="smsRecordDiv"></div>	
+						</div>
+					</div>
+				</div>
+				<div id="cashRecordTab" class="tab-pane fade">
+					<div class="panel-body">
+						<div class='row'>
+							<div class='col-sm-12' id="cashRecordDiv"></div>	
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

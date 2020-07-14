@@ -1,0 +1,196 @@
+<style>
+.search-result-list {
+    list-style: none;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.search-result-list .search-item {
+    padding: 17px 25px;
+    background: #fff;
+}
+.search-result-list .search-item .item-left {
+    margin-right: 10px;
+    width: 45px;
+    height: 45px;
+    line-height: 45px;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    text-align: center;
+    position: relative;
+    float: left;
+    left: 0;
+}
+.search-result-list .search-item .item-right {
+    padding-left: 63px;
+    padding-top: 7px;
+}
+.search-result-list .search-item a {
+    color: #108EE9;
+    text-decoration: none;
+    font-size: 18px;
+}
+.search-result-list .search-item .content {
+    color: #727272;
+    font-size: 14px;
+    margin-top: 10px;
+}
+em.highlight {
+    color: #c00;
+    font-style: normal;
+}
+</style>
+<div class="">
+	<div class="col-lg-8 col-lg-offset-2">
+		<ul class="nav nav-tabs">
+			<li class="tabli active">					
+				<a href="#tabAll" data-toggle="tab">
+					全部
+				</a>
+			</li>
+			<li class="tabli">
+				<a href="#tabHelp" data-toggle="tab">
+					帮助文档
+				</a>
+			</li>
+			<li  class="tabli">
+				<a href="#tabVideo" data-toggle="tab">
+					操作视频
+				</a>
+			</li>
+			<li  class="tabli">
+     				<a href="#tabQuestion" data-toggle="tab">
+					常见问题
+     				</a>
+			</li>
+			<li  class="tabli">
+     				<a href="#tabKmEntity" data-toggle="tab">
+					专题知识
+     				</a>
+			</li>
+		</ul>
+		<div class="tab-content ">
+			<div id="tabAll" class="tab-pane active search-show-content">
+				<div class="panel-body">
+					<ul class="search-result-list" id="allUl">
+						<!-- <li class="search-item clearfix">
+							<div class="item-left cate-blog">
+								<img src="${ctx}/img/jt/glhelp/qavideo.png">
+							</div>
+							<div class="item-right">
+								<a class="title">
+									视频
+								</a>
+								<div class="content">
+									<a href="" class="answerUrl" target="_blanck">点击跳转播放视频>></a>
+								</div>
+							</div>
+						</li>
+						<li class="search-item clearfix">
+							<div class="item-left cate-blog">
+								<img src="${ctx}/img/jt/glhelp/qa.png">
+							</div>
+							<div class="item-right">
+								<a class="title">
+									问答
+								</a>
+								<div class="content">
+									文档
+								</div>
+							</div>
+						</li>
+						<li class="search-item clearfix">
+							<div class="item-left cate-blog">
+								<img src="${ctx}/img/jt/glhelp/qaword.png">
+							</div>
+							<div class="item-right">
+								<a class="title">
+									帮助文档
+								</a>
+								<div class="content">
+									<a href="" class="answerUrl" target="_blanck">点击跳转查看文档>></a>
+								</div>
+							</div>
+						</li> -->
+					</ul>
+				</div>
+			</div>
+			<div id="tabHelp" class="tab-pane search-show-content">
+				<div class="panel-body">
+					<ul class="search-result-list" id="wordUl">
+						<!-- <li class="search-item clearfix">
+							<div class="item-left cate-blog">
+								<img src="${ctx}/img/jt/glhelp/qaword.png">
+							</div>
+							<div class="item-right">
+								<a class="title">
+									帮助文档
+								</a>
+								<div class="content">
+									文档
+								</div>
+							</div>
+						</li> -->
+					</ul>
+				</div>
+			</div>
+			<div id="tabVideo" class="tab-pane search-show-content">
+				<div class="panel-body">
+					<ul class="search-result-list" id="videoUl">
+						<!-- <li class="search-item clearfix">
+							<div class="item-left cate-blog">
+								<img src="${ctx}/img/jt/glhelp/qavideo.png">
+							</div>
+							<div class="item-right">
+								<a class="title">
+									视频
+								</a>
+								<div class="content">
+									视频
+								</div>
+							</div>
+						</li> -->
+					</ul>
+				</div>
+			</div>
+			<div id="tabQuestion" class="tab-pane search-show-content">
+				<div class="panel-body">
+					<ul class="search-result-list" id="qaUl">
+						<!-- <li class="search-item clearfix">
+							<div class="item-left cate-blog">
+								<img src="${ctx}/img/jt/glhelp/qa.png">
+							</div>
+							<div class="item-right">
+								<a class="title">
+									问答
+								</a>
+								<div class="content">
+									文档
+								</div>
+							</div>
+						</li> -->
+					</ul>
+				</div>
+			</div>
+			<div id="tabKmEntity" class="tab-pane search-show-content">
+				<div class="panel-body">
+					<ul class="search-result-list" id="kmUl">
+						<!-- <li class="search-item clearfix">
+							<div class="item-left cate-blog">
+								<img src="${ctx}/img/jt/glhelp/qa.png">
+							</div>
+							<div class="item-right">
+								<a class="title">
+									问答
+								</a>
+							</div>
+						</li> -->
+					</ul>
+				</div>
+			</div>
+			<div class="search-detail-content" style="display: none;">
+				<#include "/gl/km/newGlHelp/detailContent.html">
+			</div>
+		</div>
+	</div>
+</div>

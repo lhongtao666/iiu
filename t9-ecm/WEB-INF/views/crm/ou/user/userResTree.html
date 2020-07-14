@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>用户资源信息树</title>
+<#include "/common/common.html">
+<link rel="stylesheet" href="${ctx}/js/zTree_v3/css/zTreeStyle/zTreeStyle.css?v=${jsVersion}" type="text/css">
+<script type="text/javascript" src="${ctx}/js/zTree_v3/js/jquery.ztree.core-3.5.js?v=${jsVersion}"></script>
+<script type="text/javascript" src="${ctx}/js/zTree_v3/js/jquery.ztree.excheck-3.5.js?v=${jsVersion}"></script>
+<style>	
+	/*不要半透明*/
+	.checkbox input[type="checkbox"]:disabled + label, .checkbox input[type="radio"]:disabled + label {
+	    opacity: 1;
+	}
+</style>	
+		
+<script>
+    var userId = "${userId}";
+    $(function(){
+		FormUtils.submit(ctx + "/gl/auth/res/listUserResTree.htm", {id: userId}, function(ress){
+			$('#userGrantResContainer').empty().append(ResUtils.createResTableStr(ress));
+		});
+	});
+</script>
+
+</head>
+
+<body class="white-bg">
+	<div class="wrapper wrapper-content  animated ">
+		<div class="row">
+			<div class="col-sm-12">
+				<table id='userGrantResContainer' class='table table-bordered table-stripped'></table>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

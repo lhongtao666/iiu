@@ -1,0 +1,80 @@
+
+<form id="stCheckForm" class="form-horizontal">
+    <div class="form-group">
+        <div class='col-sm-4'>
+           	<label class="col-sm-3 control-label">名称<span style='color: red;'>*</span></label>
+           	<div class="col-sm-9">
+		    	 <input type="text" name="name" placeholder="" class="form-control" validateType="default" > 
+           	</div>
+        </div>
+
+        <div class='col-sm-4'>
+           	<label class="col-sm-3 control-label">仓库<span style='color: red;'>*</span></label>
+           	<div class="col-sm-9">
+           		<select name='storeId' id='storeIdContainer' class='form-control' validateType="default">
+           		</select>
+           	</div>
+        </div>
+
+        <div class='col-sm-4'>
+           	<label class="col-sm-3 control-label">经手人</label>
+           	<div class="col-sm-9">
+		    	 <input type="hidden" name="operId"> 
+		    	 <input type="text" name="operName" class='form-control' readonly="readonly"> 
+           	</div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class='col-sm-4'>
+  	        <label class="col-sm-3 control-label">计划日期<span style='color: red;'>*</span></label>
+	        <div class="col-sm-9">
+                <input class='laydate-icon form-control layer-date' name="planTime" validateType="default"  placeholder="YYYY-MM-DD" onclick="laydate({istime: true, format: 'YYYY-MM-DD',choose: function(datas){$('input[name=planTime]').trigger('keyup');}})">
+	        </div>
+        </div>
+        <div class='col-sm-4 onlyShowDetail' >
+            <label class="col-sm-3 control-label">单据号</label>
+            <div class="col-sm-9">
+           <input type="text" name="code" placeholder="" readonly="readonly" class="form-control" validateType="default" > 
+            </div>
+        </div>
+        <div class='col-sm-4 confirmTimeContainer' style='display:none;'>
+  	        <label class="col-sm-3 control-label">盘点时间</label>
+	        <div class="col-sm-9">
+                <input class='laydate-icon form-control layer-date' name="checkTime" validateType="default"  placeholder="YYYY-MM-DD" onclick="laydate({istime: true, format: 'YYYY-MM-DD'})">
+	        </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+    	<div class='col-sm-12'>
+    		<label class="col-sm-1 control-label">备注</label>
+        	<div class='col-sm-11'>
+        		<textarea class='form-control' name="comment" rows='3'></textarea>
+        	</div>
+    	</div>
+    </div>
+
+    <div class="form-group">
+        <!--将隐藏域放在这里，不显示出来-->
+        <div style="display:none'">
+           <input type="hidden" id="id" name="id">
+           <input type="hidden" name='prodType'>
+           <input type="hidden" name="createBy">
+           <input type="hidden" name="createTime">
+           <input type="hidden" name="status">
+        </div>
+	</div>
+</form>
+			
+<div class='row'>
+	<div class='col-sm-12'>
+		<button class='btn btn-sm   btn-primary' id='selectProdBtn' type='button'>选择商品</button>
+	</div>
+</div>
+
+<div class='row' style='margin-top: 5px;'>
+	<div class='col-sm-12' id='stCheckContainer' style="max-height: 500px;overflow: auto;">
+		
+	</div>
+</div>

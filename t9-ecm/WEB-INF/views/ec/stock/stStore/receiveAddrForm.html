@@ -1,0 +1,71 @@
+<div class="wrapper" style="overflow-x:hidden">
+	<div  class="row form_wrapper">
+		<div class='col-sm-12' style="padding-bottom: 25px;">
+			<form id="receiveAddrForm" method="get" class="form-horizontal">
+	            <div class="form-group">
+	          	    <div class=' col-sm-4'>
+	                    <label class="col-sm-3 control-label">联系人</label>
+	                    <div class="col-sm-6">
+			            	<input type="text"   name="name"   placeholder="" class="form-control" validateType="default" > 
+	                	</div>
+	                	<div class='col-sm-3'>
+			              <button class='btn btn-sm   btn-primary' id='receiveAddrForm_selectMgr' type='button'>选择</button>
+			            </div>
+	            	</div>
+	            	<div class=' col-sm-4'>
+	                    <label class="col-sm-3 control-label">号码</label>
+	                    <div class="col-sm-9">
+			                <input type="text" name="mobile" class="form-control" validateType='default' >
+	                    </div>
+	            	</div>
+	            </div>
+			  	<!--省市区-->
+			  	<div class="form-group">
+		            <div class='col-sm-9' id="receiveAddrForm_cateContainer"></div>
+	            </div>
+
+			    <div class="form-group">
+	                <label class="col-sm-1 control-label">地址</label>
+	                <div class="col-sm-11">
+		         		<textarea name="addr" class="form-control" validateType="default"  rows="3" > </textarea>
+	                </div>
+			    </div>
+
+	            <div class="form-group">
+	                <div class=' col-sm-4'>
+		                <label class="col-sm-3 control-label">联系邮箱</label>
+		                <div class="col-sm-9">
+				        	 <input type="text" name="email" placeholder="" class="form-control" validateType="default">
+		                </div>
+	                </div>
+
+	                <div class=' col-sm-4'>
+		                <label class="col-sm-3 control-label">邮编</label>
+		                <div class="col-sm-9">
+				            <input type="text" name="zipcode"   id="receiveAddrForm_zipcode"  placeholder="" class="form-control" validateType="default" > 
+		                </div>
+	                </div>
+	            </div>	               
+	            <div class='form-group'>
+	            	<div style='display: none;'>
+			            <input type="hidden" name="coRid"> 
+			            <input type="hidden" name="coName">
+			            <input type="hidden" name="prRid"> 
+			            <input type="hidden" name="prName"> 
+			            <input type="hidden" name="ciRid"> 
+						<input type="hidden" name="ciName"> 
+			            <input type="hidden" name="arRid"> 
+			            <input type="hidden" name="partyId">
+			            <input type="hidden" name="isSnapshot" value="n"> 
+						<input type="hidden" name="arName"> 
+						<input type="hidden" name="types"  value="shipping">
+			            <input type="hidden" name="createBy">
+			            <input type="hidden" name="id">
+			            <input type="hidden" name="createTime">
+			            <input type="hidden" name="isDefault"  value="y">
+	            	</div>
+	            </div>
+			</form>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>问答库</title>
+	<#include "/common/common.html">
+	<#include "/common/webuploader.html">
+	<#include "/common/ztree.html">
+	<#include "/common/summernote.html">
+	<link href="${ctx}/css/plugins/switchery/switchery.css?v=${jsVersion}" rel="stylesheet">
+	<script src="${ctx}/js/plugins/switchery/switchery.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/gl/qa/t9/T9KmEntity${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/gl/km/kmFile${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/gl/qa/t9/T9QaEntity${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/common/utils/excelUtil${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<style>
+		.list_wrapper {background-color:transparent;}
+		.btn-trim {margin-top:2px;margin-left:10%;min-width:50px;}
+		.fg-trim {margin-top:15px;}
+		.left-label {width:5%;}
+		.qaHide {display:none;}
+		.qaValid {border:1px solid  #ED5565 !important;}
+		.note-list {list-style: none;padding: 0; margin: 0;overflow-y:auto;overflow-x: hidden;height:100%;}
+		.note-list>li {background-color:  #fff;padding: 3px 10px 10px 2.5%;height: auto;margin-bottom:7px;border:1px solid transparent;border-bottom-color: rgba(100, 152, 204, 0.15);position: relative;}
+		.note-list>li>.title>a {font-size: 1.25em;margin:0;display:  block;color: #0a5eff;}
+		.note-list>li>.title>.content {margin-bottom:10px;}
+		.note-list>li>.title>.content>img {margin-right:5px;width:100px;}
+		.note-list>li:hover {background-image: linear-gradient(to left,#e8f1f9 ,#fff);}
+		.note-list>li:hover .single-libtn-layer {right:2.5%;}
+		.note-list>li.qa-list-select .single-libtn-layer {right:2.5%;}
+		.note-list>li.load-more:hover {cursor: pointer;background-image: none;}
+		.note-list>li.no-data-li:hover {background-image: none;}
+		.note-list div.top-left-common{width: 35px;height: 35px;position: relative; top: -5px;left: -36px; line-height: 30px;font-size: 14px;color: #FFFFFF;text-align: center;font-weight: bold; border-bottom-right-radius: 100%;
+		}
+		.note-list div.divContentTag{background: #b6dae6; }
+		.note-list div.divQaTag{background: #33ccff63; }
+		.cateFirst-type {display:  block;float: left;margin-right:  10px;color: #1caf9a;border: 1px solid;border-radius: 4px;padding: 0 5px;}
+		.cate-type {display:  block;float: left;margin-right:  10px;color: #ed5565;border: 1px solid;border-radius: 4px;padding: 0 5px;}
+		.answer-type {margin:0 10px;}
+		.answer-type,.createBy {color:#c0c0c0;}
+		.jt-images,.jt-audio {cursor:pointer;} 
+		.jt-audio-box {height:45px;width:110px;padding:10px 0;}
+		.jt-audio {width:100px;height:25px;background-color:#f5f1f1;color:#9e9e9e;}
+		.jt-audio>i {margin-left:5px;width:18px;height:25px;display:inline-block;} 
+		.button-box {float:left;width:220px;height:152px;}
+		.button-box>.file {height:130px;background-color:transparent;border:2px dashed #f1f1f1;font-size:50px;color:#f1f1f1;}
+		.button-box>.file:hover {cursor:pointer;}
+		.button-box>.file>i {margin:40px 80px;}
+		.qa-list-select {background-color: rgba(255, 255, 255, 0.75) !important;background-image: none !important;box-shadow: 0 0 125px rgba(219, 241, 236, 0.75) inset;}
+		.qa-list-select>.title>.meta>.answer-type,.qa-list-select>.title>.meta>.createBy {color:#1b53847a;}
+		.audio_wrp {background-color:#e8e7e7;}
+		.jt-video:hover {opacity:0.75;}
+		.load-more {text-align:center;color:#1caf9a8a;line-height:25px;}
+		.load-more:hover {color:#1caf9a;}
+
+		/*2019-03-08 17:54:53*/
+		body {background-color:rgb(231, 234, 236);/*background-image: radial-gradient(circle, #fff 0%, #fff 30%, #e7eaec 100%);*/overflow:hidden;}
+		.qa-tree-layer,.qa-content-layer {height:100%;float: left;}
+		.qa-tree-layer {width:18%;min-width: 220px;border-right: 5px solid transparent;background:transparent;}
+		.qa-tree-container {width:100%;height:100%;background-color: #fff;padding-top: 10px;}
+		.qa-content-layer {width:82%;background:transparent;position: relative;max-width: calc(100% - 220px);overflow: hidden;transition: all 0.25s linear;}
+		#qaEntityCateTreeSearch {text-indent: 10px;width: calc(100% - 35px);margin-left: 18px;margin-bottom: 5px;}
+		#answer {width:100% !important;}
+		.qa-form-layer,.qa-list-layer {width:90%;}
+		.qa-form-layer {height:60px;position: absolute;top: 0;left: 0;z-index: 1;}
+		.qa-list-layer {height:calc(100% - 65px);background: rgba(255, 255, 255, .75);position: absolute;top: 65px;left: 0;}
+		.qa-form-extrabtn {position: absolute;right: 3.6%;top: 20px;width: 17%;text-align: center;}
+		.qa-form-extrabtn button {height:28px;margin-bottom: 5px;min-width: 35px !important;}
+		.qa-form-extrabtn button.saveQa {margin-left: 0.5em;float:right;}
+		.qa-form-extrabtn button.resetQa {float:right;}
+		.qa-form-extrabtn button.saveNoAnswer {display: none;}
+		.qa-form-slide {position: absolute;bottom: -25px;left: 50%;width: 55px;height: 25px;cursor: pointer;text-align: center;font-size: 1.5em;color: #f8ac59;line-height: 20px;transition: all 0.25s linear;}
+		.qa-form-slide:hover {color: #ed5565;}
+		.qa-form-slide:before {content: '';width:0;height:0;border-width: 25px 35px;border-style: solid;border-color: #ebf3f9 transparent transparent transparent;position: absolute;left: -5px;}
+		.qa-form-slide i {position: absolute;left:20px;}
+		.qa-form-slide i.fa-sort-down {color: rgba(127, 183, 239, 0.5);}
+		.no-data-li {color: #ddd;border-bottom: 0 !important;}
+		.qa-btn-layer {width: 10%;height: 100%;position: absolute;right: 0;top: 0;border-left: 5px solid transparent;}
+		.qa-status-layer {width:100%;height:59px;position: relative;overflow: hidden;box-shadow: 0 0 5px #ccc;border-bottom-left-radius: 10px;}
+		.qa-status-layer:before {content: "";width:0;height:0;border-width: 0 145px 59px 0;border-style: solid;border-color: transparent transparent;position: absolute;transition: all 0.25s linear;}
+		.qa-status-layer:hover:before {}
+		.qa-status-title {position:  absolute;z-index: 1;bottom: 5px;left: 5px;color: #999;cursor: pointer;height: 100%;width: 100%;min-width: 55px;border-bottom-left-radius: 10px;padding-top: 12px;padding-left: 5px;border: 1px solid rgba(100, 152, 204, 0.1);background-image: linear-gradient(30deg,#fff 10% ,rgba(255, 255, 255, 0) 60px);background-repeat: no-repeat;background-position: 0 100%;overflow: hidden;box-shadow: -5px 5px 5px #fff;}
+		.qa-unanswer-num {color: #fff;font-weight: 600;background: #f8ac59;border-radius: 10px;width: 1.4em;height: 1.4em;text-align: center;margin: 0 0 2px 5px;opacity: 0;}
+		.qa-btn-content {width:100%;height:calc(100% - 69px);margin-top: 5px;background-color:#fff;border-top-left-radius: 10px;}
+		.qa-normal-status {width: 100%;position: absolute;height: auto;min-height: 70px;margin: 5px 0 0 5px;border: 1px solid rgba(100, 152, 204, 0.1);border-top-left-radius: 10px;border-right: 0;border-bottom: 0;color: #ccc;padding: 5px;cursor: pointer;background-image: linear-gradient(160deg,#fff 10% ,rgba(255, 255, 255, 0) 60px);background-repeat: no-repeat;overflow: hidden;box-shadow: -5px -5px 5px #fff;}
+		.qa-status-title i,.qa-normal-status i {text-align:center;width:100%;position: absolute;top: 0;left:0;font-size: 4em;color: rgba(255, 255, 255, 0.51);z-index: -1;transition: all 0.25s linear;}
+		.qa-normal-status i { transform:scaleX(-1);}
+		.qa-normal-status:hover,.qa-status-title:hover {border-color: rgba(100, 152, 204, 0.3);}
+		.qa-normal-status:hover i,.qa-status-title:hover i {color: #dae0e4;}
+		.qa-status-title span,.qa-normal-status span {color: #6c859a;font-weight: bold;text-shadow: 0 0 5px #fff;}
+		.qa-status-active i {color:#dae0e4;}
+		.qa-status-active span {color: #1caf9a;}
+
+		.single-libtn-layer {width: auto;height: 25px;position: absolute;right: -250px;bottom: 10px;transition: all 0.25s linear;cursor: pointer;}
+		.single-libtn-layer > span {cursor: pointer;color:#999;transition: all 0.15s linear;}
+		.qa-detail-btn i {color:#f8ac59;}
+		.qa-edit-btn i {color: #1ab394;}
+		.qa-delete-btn i {color: #ed5565;}
+		.single-libtn-layer > span:hover {color: #555;}
+		.no-data-li {background:transparent !important;}
+		.qa-btn-list {text-align: center;padding-top: 20px;}
+		.qa-btn-list button {min-height: 35px;max-width: 100px;width: 80%;margin-bottom: 20px;background-color: rgba(255, 255, 255, .5);}
+		.qa-btn-list button span {display: none;}
+		.qa-list-heading {height:35px;background-color: rgba(100, 152, 204, 0.3);border: 1px solid rgba(173, 194, 210, 0.25);border-bottom: 0;border-top-left-radius: 10px;border-top-right-radius: 10px;}
+		.qa-list-body {height:calc(100% - 35px);}
+		.qa-li-expand,.qa-li-pickup {color: #1caf9a;cursor: pointer;}
+
+		.qa-ab-layer {width:100%;height:70px;}
+		.qa-lb-layer {width:100%;padding-top: 10px;}
+		.qa-da-layer {display: none;}
+
+		.to-chg-qa,.qa-ab-layer,.qa-add-model,.qa-form-extrabtn,.qa-form-slide {display: none;}
+
+		.qa-list-bar {margin-top: 9px;white-space: nowrap;margin-left: 1.5%;}
+		.qa-list-bar span {margin-left:9px;cursor: pointer;padding: 0 5px;transition: all 0.25s linear;color: #555;}
+		.qa-list-bar span:hover {color: #1c84c6;}
+		.qa-list-bar span.deleteAll:hover {color: #ed5565;}
+		.qa-list-bar span.disabledBtn {color: #fff;cursor: default;}
+		.qa-list-bar span.disabledBtn:hover {color: #fff;background-image: none;}
+
+		.qa-noanswer-layer {width: 80%;min-height: 10px;}
+		.qa-hasanswer {border-color:transparent;background-color:transparent;}
+		.qa-noanswer-textarea {width: 80%;height: 90px;border-color: rgb(221, 221, 221);resize: vertical;}
+
+		.qa-read-bg {background-image: url(${ctx}/img/jt/backgroud/bg002.jpg);background-size: 100% 100%;position: absolute;top: 0;z-index: -1;left: 0;width: 100%;height: 100%;}
+
+		.qa-model-entry {display: none;}
+		.qa-model-btn {text-align: left;}
+		.qa-model-btn button {height: 28px;}
+		.qa-model-btn button.qa-search {margin: 0 10px;width: 100px;}
+		
+		.qa-read-model .qa-tree-layer {box-shadow: -2px -2px 10px #ccc;}
+		.qa-read-model .qa-tree-layer .qa-tree-container {background-color: rgba(255, 255, 255, 0.5);}
+		.qa-read-model .qa-btn-content {background-color: rgba(255, 255, 255, 0);box-shadow: 0 0 5px #ccc;}
+		.qa-read-model #qaEntityForm{background-color: rgba(255, 255, 255, .75);border: 1px solid #ddd;border-radius: 10px;box-shadow: 0 -25px 200px rgba(42, 116, 187, 0.11) inset;border-top: 0;border-top-left-radius: 0;border-top-right-radius: 0;position: relative;}
+
+		.qa-detail-btn ,.qa-edit-btn ,.qa-delete-btn,.deleteAll ,.qaListFavoriteCancel ,.qaListFavorite{display: none;}
+		.res-delete .qa-delete-btn ,.res-edit .qa-edit-btn ,.res-detail .qa-detail-btn,.res-delete .deleteAll ,.qaListFavorite, .qaListFavoriteCancel {display: inline-block !important;}
+
+		.qa-answer-model .qa-noanswer-layer {width: 80%;min-height: 90px;border: 2px dashed #f5f5f5;background-color: #fff;cursor: pointer;}
+		.qa-answer-model .qa-detail-btn {display: none !important;}
+
+		@media screen and (min-width: 960px) and (max-width: 1180px) {
+			.qa-btn-list button i {display: none;}
+			.qa-form-extrabtn button.saveQa span {display: none;}
+		}
+		@media screen and (max-width: 960px) {
+			.qa-btn-list button {min-width: 50px !important;width: auto !important;}
+			.qa-btn-list button i {display: none;}
+			.qa-btn-list button span {display: contents;}
+			.qa-form-extrabtn button span {display: none;}
+		}
+	</style>
+</head>
+
+<body class='white-bg qa-read-model'>
+	<div class="qa-read-bg"></div>
+	<div class="qa-tree-layer">
+		<div class="qa-tree-container">
+			<input type="text" id="T9qaEntityCateTreeSearch" class="empty form-control" placeholder="请输入搜索关键字...">
+			<ul id="T9qaEntityCateTree" class="ztree"></ul>
+		</div>
+		
+	</div>
+	<div class="qa-content-layer">
+		<div class="qa-form-layer">
+			<#include "/gl/qa/T9QaEntity/T9QaEntityForm.html">
+		</div>
+		<div class="qa-list-layer">
+			<div class="qa-list-heading">
+				<div class="qa-list-bar unselect">
+					<span class="T9kmEntityAdd" ><i class="fa fa-plus"></i>&nbsp;添加知识</span>
+					<span class="addQaBtn"><i class="fa fa-plus"></i>&nbsp;添加问答</span>
+					<span class="checkAllBtn"><i class='fa fa-check'></i>&nbsp;全选</span>
+					<span class="checkReverseBtn"><i class='fa fa-adjust'></i>&nbsp;反选</span>
+					<span class="refrshBtn"><i class='fa fa-refresh'></i>&nbsp;刷新</span>
+					<span class="deleteAll"><i class='fa fa-trash-o'></i>&nbsp;批量删除</span>
+				</div>
+			</div>
+			<div class="qa-list-body">
+				<ul class="note-list" id="qaList"></ul>
+			</div>
+		</div>
+		<#include "/gl/qa/T9QaEntity/T9KmEntityEdit.html">
+	</div>
+	<#include "/common/cateForm.html">
+</body>
+</html>

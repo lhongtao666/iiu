@@ -1,0 +1,38 @@
+<div class="col-sm-12">
+	<div class="panel panel-default">
+	    <div class="panel-heading">
+	        <button type='button' class='jt-btn jt-btn-red checkHistoryDel'><i class="fa fa-remove">&nbsp;删除</i></button>
+	    </div>
+	    <div class="panel-body">
+	        <form id='checkHistorySearchForm' role="form" class="form-horizontal">
+				<!--默认生成一个搜索条件，需要的，用户自己添加-->
+				<div class="form-group">
+					<label class='col-sm-1 control-label'>名称</label> 
+					<div class='col-sm-2'>
+						<input type="text" id='nameSearch' placeholder="请输入名称" name="Q__S__LK__name_" class="form-control">
+					</div>
+					<label class='col-sm-1 control-label'>项目编码</label> 
+					<div class='col-sm-2'>
+						<input type="text"  placeholder="请输入项目编码" name="Q__S__LK__item_code_" class="form-control">
+					</div>
+					<label class='col-sm-1 control-label'>检测时间</label>
+					<div class='col-sm-5'>
+						<div class="input-daterange input-group">
+							<input class="laydate-icon form-control layer-date" name="Q__D__BW__check_time_" placeholder="yyyy-mm-dd hh:mm:ss" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">
+							<span class="input-group-addon">到</span>
+							<input class="laydate-icon form-control layer-date" name="Q__D__BW__check_time_" placeholder="yyyy-mm-dd hh:mm:ss" onclick="laydate({istime: true, start: laydate.now(0, 'YYYY/MM/DD 23:59:59'), format: 'YYYY-MM-DD hh:mm:ss'})"></div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class='col-sm-1 control-label'>客户编码</label> 
+					<div class='col-sm-2'>
+						<input type="text" id='nameSearch' placeholder="请输入客户编码" name="Q__S__LK__cs_code_" class="form-control">
+					</div>
+					<div class='col-sm-1'>
+				     	<button type='button' class="jt-btn-search " id="checkHistorySearch"><i class='fa fa-search'></i>&nbsp;搜索</button>
+					</div>
+				</div>
+			</form>
+	    </div>
+	</div>
+</div>

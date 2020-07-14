@@ -1,0 +1,63 @@
+<div class='row' style='border: 1px solid #ddd; margin-left: 15px; margin-right: 15px;padding:10px;'>
+	<div class='col-sm-12'>
+		<form id="moduleColumnForm" method="get" class="form-horizontal">
+			<div class="form-group">
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">归属模块</label>
+					<div class="col-sm-9">
+						<select class='form-control' name='module' validateType="default">
+							<option value="">请选择</option>
+							<option value="csEntity">客户</option>
+							<option value="soEntity">订单</option>
+							<option value="soShip">出货订单</option>
+							<option value="soStockIn">入仓订单</option>
+							<option value="ctiBatcall">批量外呼模块</option>
+							<option value="csFollow">客户跟进导入模块</option>
+							<option value="emp">员工导入模块</option>
+							<option value="media">渠道导入模块</option>
+							<option value="employeeWeixin">员工微信模块</option>
+							<option value="prod">商品模块</option>
+							<option value="qa">问答知识模块</option>
+						</select>
+					</div>
+				</div>
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">字段名称</label>
+					<div class="col-sm-9">
+						<input type="text" name="name" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">开发编码</label>
+					<div class="col-sm-9">
+						<input type="text" name="devCode" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">校验规则</label>
+					<div class="col-sm-9">
+						<input type="text" name="regex" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">导入规则类型</label>
+					<div class="col-sm-9">
+						<select class='form-control' name='ruleType' validateType="default">
+							<option value="">请选择</option>
+							<option value="single">单个</option>
+							<option value="list">多条</option>
+						</select>
+					</div>
+				</div>
+			</div>
+			<div class='form-group'>
+				<!--将隐藏域放在这里，不显示出来-->
+				<div style="display:none'">
+					<input type="hidden" id="id" name="id">
+				</div>
+			</div>
+		</form>
+	</div>
+</div>

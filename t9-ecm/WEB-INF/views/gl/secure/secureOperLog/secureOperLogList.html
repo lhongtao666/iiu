@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title></title> <#include "/common/common.html" />
+<link href="${ctx}/css/plugins/select2/select2.min.css?v=${jsVersion}"
+	rel="stylesheet">
+<script src="${ctx}/js/plugins/select2/select2.min.js?v=${jsVersion}"></script>
+<script src="${ctx}/js/jt/gl/secure/secureOperLog${deploy_min!"
+	"}.js?v=${jsVersion}" ></script>
+<script src="${ctx}/js/jt/gl/km/glHelpUtil${deploy_min!"
+	"}.js?v=${jsVersion}" ></script>
+<script src="${ctx}/js/jt/crm/report/reportDateUtil${deploy_min!"
+	"}.js?v=${jsVersion}" ></script>
+<#include "/gl/secure/secureMonitorLog/secureOperLogToolbar.html">
+<style>
+.logger.active {
+	color: rgb(255, 255, 255);
+	background-color: rgb(28, 175, 154);
+	min-width: 66px;
+	box-shadow: none;
+	background-image: -webkit-linear-gradient(left top, rgb(28, 175, 154)
+		50%, transparent 50%);
+	background-size: 0%;
+	border-color: rgb(28, 175, 154);
+	background-repeat: no-repeat;
+	animation: jtbtnM 0.5s ease forwards;
+}
+</style>
+<script>
+  var userId="${Q__S__EQ__operator_id_}"
+
+</script>
+</head>
+
+<body>
+	<div class="wrapper animated fadeInRight">
+		<!-- list界面 -->
+		<div class="row list_wrapper">
+			<div class="col-sm-12">
+				<div class="panel-body">
+					<div class="col-sm-12" style='margin-bottom: 10px;'>
+						<button type="button" class='jt-btn userLogger logger active'>登录日志</button>
+						<button type="button" class='jt-btn operLogger logger'>操作日志</button>
+					</div>
+					<form id='secureOperLogSearchForm' role="form"
+						class="form-horizontal" style="display: none;">
+						<!--默认生成一个搜索条件，需要的，用户自己添加-->
+						<div class="form-group">
+							<label class="col-sm-1 control-label">时间</label>
+							<div class='col-sm-5'>
+								<div class="input-daterange input-group ">
+									<input class="laydate-icon form-control layer-date"
+										name="Q__D__BW__create_time_"
+										placeholder="起始时间"
+										onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">
+									<span class="input-group-addon">到</span> <input
+										class="laydate-icon form-control layer-date"
+										name="Q__D__BW__create_time_"
+										placeholder="结束时间"
+										onclick="laydate({istime: true, start: laydate.now(0, 'YYYY/MM/DD 23:59:59'), format: 'YYYY-MM-DD hh:mm:ss'})">
+								</div>
+							</div>
+							<div class="col-sm-3">
+								<label class='col-sm-4 control-label'>关联</label>
+								<div class='col-sm-8'>
+									<input type='text' name='Q__S__LK__link_show_unique_'
+										class='form-control' placeholder="请输入关联" />
+								</div>
+							</div>
+							<div class="col-sm-3">
+								<label class='col-sm-4 control-label'>关联名称</label>
+								<div class='col-sm-8'>
+									<input type='text' name='Q__S__LK__link_names_'
+										class='form-control' placeholder="请输入关联名称" />
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-sm-3">
+								<label class='col-sm-4 control-label'>关联备注</label>
+								<div class='col-sm-8'>
+									<input type='text' name='Q__S__LK__link_contents_'
+										class='form-control' placeholder="请输入关联备注" />
+								</div>
+							</div>
+							<div class="col-sm-3">
+								<label class='col-sm-4 control-label'>操作名称</label>
+								<div class='col-sm-8'>
+									<select name='Q__S__LK__name_' id='configNameSelect'
+										class='form-control' style='width: 100%;'></select>
+								</div>
+							</div>
+							<div class="col-sm-3" id="operatorSearch">
+								<label class='col-sm-4 control-label'>操作人</label>
+								<div class='col-sm-8'>
+									<select name='Q__S__EQ__operator_id_' id='belongEmployeeSearch'
+										class='form-control' style='width: 100%;'></select>
+								</div>
+							</div>
+							<div class='col-sm-1'>
+								<button type='button' class="btn jt-btn-search secureOperLogSearch"><i class="fa fa-search"></i>&nbsp;搜索</button>
+							</div>
+						</div>
+					</form>
+
+					<!-- 该员工的登录日志信息Form  -->
+					<form id='userLogForm' role="form" class="form-horizontal">
+						<div class="form-group">
+							<label class="col-sm-1 control-label">时间</label>
+							<div class='col-sm-5'>
+								<div class="input-daterange input-group ">
+									<input
+										class="laydate-icon form-control layer-date minPlaceTime"
+										id="lowCreateTime" name="lowCreateTime"
+										placeholder="起始时间"
+										onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">
+									<span class="input-group-addon">到</span> <input
+										class="laydate-icon form-control layer-date minPlaceTime"
+										id="highCreateTime" name="highCreateTime"
+										placeholder="结束时间"
+										onclick="laydate({istime: true, start: laydate.now(0, 'YYYY/MM/DD 23:59:59'), format: 'YYYY-MM-DD hh:mm:ss'})">
+								</div>
+							</div>
+							<div class="col-sm-3">
+								<label class="col-sm-4 control-label">类型</label>
+								<div class="col-sm-8">
+									<select id="isIgnoreSearch" class="form-control"
+										name="Q__S__EQ__type_">
+										<option value="">请选择</option>
+										<option value="login">登录</option>
+										<option value="logout">退出</option>
+									</select>
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-1 control-label">IP地址</label>
+							<div class="col-sm-5">
+								<div class="col-sm-8">
+									<input type="text" placeholder="请输入IP地址" name="Q__S__LK__ip_"
+										class="form-control">
+								</div>
+							</div>
+
+							<div class="col-sm-3">
+								<label class="col-sm-4 control-label">登录分机</label>
+								<div class="col-sm-8">
+									<input type="text" placeholder="请输入登录分机" name="Q__S__LK__adn_"
+										class="form-control">
+								</div>
+							</div>
+							<div class="col-sm-1">
+								<button type='button' class="btn jt-btn-search userLogSearch"><i class="fa fa-search"></i>&nbsp;搜索</button>
+								<!-- 帮助中心 -->
+					            <label id="glHelpContainer">	
+					            </label>
+							</div>
+						</div>
+						<div class="form-group" style="display: none;">
+							<input type="text" id="currentLogUserId" class="form-control"
+								name="Q__S__EQ__user_id_">
+						</div>
+					</form>
+
+				</div>
+			</div>
+			<div class="panel panel-default">
+				<div class='col-sm-12 jqGrid_wrapper' id="operLoggerTable"
+					style="display: none;">
+					<table id="secureOperLogGrid"></table>
+					<div id="secureOperLogPager"></div>
+				</div>
+				<div class='col-sm-12 jqGrid_wrapper' id="userLoggerTable">
+					<table id="userLogGrid"></table>
+					<div id=userLogPager></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>

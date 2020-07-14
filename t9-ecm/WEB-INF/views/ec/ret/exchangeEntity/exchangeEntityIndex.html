@@ -1,0 +1,38 @@
+<script src="${ctx}/js/jt/ec/ret/exchangeEntityIndex${deploy_min!""}.js?v=${jsVersion}" ></script>
+<style type="text/css">
+tr:nth-child(2n) {
+    background-color: #eee;
+}
+tr:nth-child(2n+1) {
+    background-color: #fff;
+}
+th {
+    background-color: #E7EAEC;
+}
+</style>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <span class="panel-title">
+            <span   style="font-size:14px;">换货快递单收货跟进</span>
+        </span>
+    </div>
+    <div class="panel-body" style="padding:10px;">
+        <table class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th>单号</th>
+                    <th>物流单号</th>
+                    <th>物流状态</th>
+                    <th>物流说明</th>
+                    <th>创建时间</th>
+                </tr>
+            </thead>
+            <tbody id="exchangeBody">
+                
+            </tbody>
+        </table>
+    </div>
+    <div style="text-align: right;padding-top: 10px;padding-right: 10px;">
+        <span nameVal='售后换货' urlVal='/ec/ret/exchangeEntity/list.htm' style="text-decoration: underline;color: blue;cursor: pointer;" class="showMore">查看更多</span>
+    </div>
+</div>

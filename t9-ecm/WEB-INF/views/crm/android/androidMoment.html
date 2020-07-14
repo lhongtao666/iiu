@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>发朋友圈界面</title>
+	<#include "/common/common.html">
+	<link href="${ctx}/css/plugins/chosen/chosen.css?v=${jsVersion}" rel="stylesheet">
+	<script src="${ctx}/js/jt/crm/android/androidMoment${deploy_min!""}.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/plugins/chosen/chosen.jquery.js?v=${jsVersion}"></script>
+	<style type="text/css">
+		.link,.img,.video,.wx-label{
+			display: none;
+		}
+	</style>
+</head>
+<body>
+	<form id="androidMoment" method="get" class="form-horizontal" style="background-color:#fff;padding:10px 0;" novalidate="novalidate">
+		<div class="form-group">
+			<div class="col-sm-8">
+				<label class="col-sm-2 control-label left-label">微信</label>
+				<div class="col-sm-5">
+					<select name="employeeAlias" id="employeeAlias" class="form-control">
+						
+					</select>
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-sm-8">
+				<label class="col-sm-2 control-label" style="white-space: nowrap;">类型</label>
+				<div class="col-sm-5">
+					<select id="momentType" class="form-control" name="momentType" id="momentType">
+						<option value="1">文字</option>
+						<option value="2">图片</option>
+						<option value="3">视频</option>
+						<option value="4">链接</option>
+					</select>
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-sm-8">
+				<label class="col-sm-2 control-label left-label">内容</label>
+				<div class="col-sm-10">
+					<textarea id="momentTitle" name="momentTitle" class="form-control"></textarea>
+				</div>
+			</div>
+			
+		</div>
+		<div class="form-group img link">
+			<div class="col-sm-8">
+				<label class="col-sm-2 control-label left-label">图片</label>
+				<div class="col-sm-10">
+					<input id="imgPath" name="imgPath" class="form-control" />
+				</div>
+			</div>
+		</div>
+		<div class="form-group video">
+			<div class="col-sm-8">
+				<label class="col-sm-2 control-label left-label">视频</label>
+				<div class="col-sm-10">
+					<input id="videoPath" name="videoPath" class="form-control" />
+				</div>
+			</div>
+		</div>
+		<div class="form-group link">
+			<div class="col-sm-8">
+				<label class="col-sm-2 control-label left-label">连接</label>
+				<div class="col-sm-10">
+					<input id="KsnsuploadLink" name="KsnsuploadLink" class="form-control" />
+				</div>
+			</div>
+			<div class="col-sm-4">
+			</div>
+		</div>
+		<div class="form-group link">
+			<div class="col-sm-8">
+				<label class="col-sm-2 control-label left-label">链接语</label>
+				<div class="col-sm-10">
+					<input id="KsnsuploadTitle" name="KsnsuploadTitle" class="form-control" />
+				</div>
+			</div>
+			<div class="col-sm-4">
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-sm-8">
+				<label class="col-sm-2 control-label left-label">可见</label>
+				<div class="col-sm-10">
+					<input type="radio" name="publicMode" checked="checked" value="0">公开
+					<input type="radio" name="publicMode" value="1">私密
+					<input type="radio" name="publicMode" value="2">标签可见
+					<input type="radio" name="publicMode" value="3">标签不可见
+				</div>
+			</div>
+		</div>
+		<div class="form-group wx-label">
+			<div class="col-sm-8">
+				<label class="col-sm-2 control-label left-label">标签</label>
+				<div class="col-sm-10">
+					<select id="labelNames" data-placeholder="请选择" multiple class="chosen-select form-control" name="labelNames">
+					</select>
+				</div>
+				
+			</div>
+		</div>
+		
+		<div class="form-group">
+			<div class="col-sm-8">
+				<div class="col-sm-2">
+				</div>
+				<button class="btn btn-sm btn-primary jt-btn-normal" id="sendMoment" type="button">发送</button>
+			</div>
+		</div>
+	</form>
+</body>
+</html>

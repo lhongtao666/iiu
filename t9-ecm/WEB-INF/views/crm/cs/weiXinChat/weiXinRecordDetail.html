@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>客户微信记录表管理</title>
+	<#include "/common/common.html">
+	<#include "/common/ztree.html">
+	<link rel="stylesheet" rev="stylesheet" type="text/css" media="all" href="${ctx}/css/jt/crm/cs/wx/weiXinChatNew.css?v=${jsVersion}">
+	<link href="${ctx}/css/plugins/select2/select2.min.css?v=${jsVersion}" rel="stylesheet">
+	<script src="${ctx}/js/plugins/select2/select2.min.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/jt/crm/cs/weiXin/weiXinRecordDetail${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/crm/cs/weiXin/weiXinUtil${deploy_min!""}.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/jt/common/service/seniorSearch${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src='${ctx}/js/jt/crm/cs/csFollow${deploy_min!""}.js?v=${jsVersion}'></script>
+	<script src='${ctx}/js/jt/common/service/employeesSelectLayer${deploy_min!""}.js?v=${jsVersion}'></script>
+	<script src="${ctx}/js/plugins/suggest/bootstrap-suggest.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/jt/crm/cs/csEntityUtils${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script>
+		var code = "${code}";
+		var employeeWeixin = "${employeeWeixin}";
+		var userName = "${userName}";
+		var employeeAlias = "${employeeAlias}";
+		var startDate = "${startDate}";
+		var endDate = "${endDate}";
+		var partyType = "${partyType}";
+		var partyId = "${partyId}";
+		var friendCode = "${friendCode}";
+	</script>
+	<style>
+		.web_wechat_noread {
+		    width: 11px;
+		    height: 11px;
+		    background: url(${ctx}/img/jt/wx/images/weixinother.png) no-repeat;
+		    background-position: -411px -304px;
+		    -webkit-background-size: 487px 462px;
+		    background-size: 487px 462px;
+		    float: right;
+	   		margin: 7px;
+		}
+		.qqface {
+		    width: 28px;
+		    height: 28px;
+		    font-size: 0;
+		    text-indent: -999em;
+		    border-bottom: 1px solid #f0f0f0;
+		    border-right: 1px solid #f0f0f0;
+		    cursor: pointer;
+		    background: url(${ctx}/img/jt/wx/images/qqface.png) no-repeat;
+		    display: inline-block;
+	    	vertical-align: middle;
+		}
+		.emoji{
+			width: 28px;
+		    height: 28px;
+		    font-size: 0;
+		    text-indent: -999em;
+		    cursor: pointer;
+		    background: url(${ctx}/img/jt/wx/images/weixinface.png) no-repeat;
+		    display: inline-block;
+	    	vertical-align: middle;
+		}
+		.icon-unknown {
+		    background: url(${ctx}/img/jt/wx/images/weixinother.png) no-repeat;
+		    background-position: -346px -152px;
+		    -webkit-background-size: 487px 462px;
+		    background-size: 487px 462px;
+		    display: inline-block;
+		    vertical-align: middle;
+		    width: 76px;
+		    height: 76px;
+		}
+		.conten-face{
+			border:none;
+		}
+	</style>
+</head>
+<body>
+	<div class="wrapper animated fadeInRight">
+		<!-- list界面 -->
+		<div class="row list_wrapper">
+			<#include "/crm/cs/weiXinChat/weiXinRecordDetailToolbar.html">	  			
+			<div class='col-sm-12 jqGrid_wrapper'>
+			    <table id="weiXinRecordDetailGrid"></table>
+				<div id="weiXinRecordDetailPager"></div>
+			</div>
+		</div> 
+		<#include "/crm/cs/csEntity/csFollowEdit.html" >
+	</div>
+	<!-- 播放视频 -->
+	<div style="display:none"  class="jt-wx-play-video" >
+	   	<video id="jt-wx-video" style="height: 450px !important;" src ="" controls="controls" autoplay="autoplay"></video>
+		<div style="text-align: center;">
+		   		若无法播放，请下载再播放<a href="#" id="download-mp4" class="download-file" name-value="视频.mp4" url-value="">下载</a>
+		</div>
+	</div>
+</body>
+</html>

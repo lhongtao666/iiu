@@ -1,0 +1,31 @@
+<div class="row">
+	<div class='toolbar-panel'>
+		<div class="toolbar-box">
+			<div class="toolbar-head clearfix">
+				<div class="buttons">
+					<button type='button' class='btn-sm   btn btn-sm   btn-primary glLogSchemaAdd'><i class='fa fa-plus'>添加</i></button>
+					<button type='button' class='btn-sm   btn btn-sm   btn-primary glLogSchemaEdit'><i class='fa fa-edit'>编辑</i></button>
+					<button type='button' class='btn-sm   btn btn-sm   btn-danger glLogSchemaDel'><i class='fa fa-remove'>删除</i></button>
+					<button type='button' class='btn-sm   btn btn-sm   btn-primary glLogSchemaDetail'><i class='fa fa-list'>明细</i></button>
+				</div>
+				<div class="tools">
+					<a href="javascript:void(0);" class="collapse" title="收缩"> 
+					    <i class="slide-toggle-arrow bigger-180 fa fa-angle-double-up"></i>
+					</a>
+				</div>
+			</div>
+			
+			<div class="toolbar-body" style="display: block;">
+				<form role="form" class="form-inline">
+					<!--默认生成一个搜索条件，需要的，用户自己添加-->
+					<div class="form-group">
+						<label for="nameSearch" class="sr-only">名称</label> 
+						<input type="text" id='nameSearch' placeholder="请输入资源名称" name="Q__S__LK__name_" class="form-control">
+					</div>
+					<button type='button' class="btn btn-sm   btn-primary glLogSchemaSearch">搜索</button>
+					<#include "/common/advanceSearch.html">
+				</form>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,54 @@
+@charset "utf-8";
+body,div,img,a,ul,li,p,h1,h2,h3,h4{
+    padding:0;
+    margin:0;
+}
+.item-ft {
+	position: relative;
+	margin-top: 0px;
+	z-index: 1;
+}
+.item-ft > div {
+	text-align: center;
+    margin-top: 5px;
+}
+.photo-item-edit {
+	float: left;
+	margin-left: 30px;
+	display: inline-block;
+	border: 1px solid #ccc;
+	padding: 5px;
+	width: 112px;
+	height: 125px;
+	margin-bottom: 50px;
+	cursor: pointer;
+	overflow: hidden;
+}
+.photo-item-edit > div:first-child {
+	text-align: center;
+    margin-top: 10px;
+}
+.photo-item-edit > div:first-child > img {
+	width: auto !important;
+	height: auto !important;
+}
+.photo-item-shadow-red {
+	border-color: #03A9F4;
+    background-color: rgba(3, 169, 244, .1);
+}
+.photo-item-edit-default {
+}
+.photo-item-edit:hover {
+	-webkit-box-shadow: 5px 5px 5px 0px rgba(33, 150, 243, .25);
+	-moz-box-shadow: 5px 5px 5px 0px rgba(33, 150, 243, .25);
+	box-shadow: 5px 5px 5px 0px rgba(33, 150, 243, .25);
+}
+
+.fancybox img{
+	margin-bottom: 0px;
+}
+
+.image-name{
+	margin-left: 2px;
+	font-size:10px;
+}

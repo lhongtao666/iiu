@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.5" 
+	xmlns="http://java.sun.com/xml/ns/javaee" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+	http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+	<display-name>JT</display-name>
+	
+	<context-param>  
+    	<param-name>webAppRootKey</param-name>  
+    	<param-value>webapp.root</param-value>  
+ 	</context-param> 
+	
+	<!--设置Spring的配置文件启动路径 -->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>
+		classpath:conf/web-context.xml,
+		classpath:conf/datasource/jt-datasource-*.xml,
+		</param-value>
+	</context-param>
+	<!--设置Log4j的配置文件的路径 -->
+	<context-param>
+		<param-name>log4jConfigLocation</param-name>
+		<param-value>/WEB-INF/classes/conf/log4j.xml</param-value>
+	</context-param>
+	<!--Spring默认刷新Log4j配置文件的间隔,单位为millisecond-->
+	 <context-param>
+	      <param-name>log4jRefreshInterval</param-name>
+	      <param-value>5000</param-value>
+	 </context-param>
+
+	<!-- 拦截器 -->	
+   	<!-- 页面编码拦截器 -->
+	<filter>
+		<filter-name>encodingFilter</filter-name>
+		<filter-class> org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+		 <init-param>
+		   <param-name>forceEncoding</param-name>
+		   <param-value>true</param-value>
+		  </init-param>
+	</filter>	
+	<filter-mapping>
+		<filter-name>encodingFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>	
+	<filter-mapping>
+		<filter-name>encodingFilter</filter-name>
+		<url-pattern>*.htm</url-pattern>
+	</filter-mapping>
+				
+			
+	<!-- JT 的 Base-Web 统一过滤器-->	 	
+	<filter>
+		<filter-name>baseWebFilter</filter-name>
+		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+		<init-param>
+			<param-name>targetBeanName</param-name>
+			<param-value>baseWebFilter</param-value>
+		</init-param>
+		<init-param>
+			<param-name>targetFilterLifecycle</param-name>
+			<param-value>true</param-value>
+		</init-param>
+	</filter>	
+	<filter-mapping>
+		<filter-name>baseWebFilter</filter-name>
+        <url-pattern>*.htm</url-pattern> 		
+	</filter-mapping> 	
+	
+	<!-- 安全过滤器 -->
+	<filter>
+	    <filter-name>securityFilter</filter-name>
+	    <init-param>
+	        <!-- 系统url的配置文件，主要保存一些特殊的url -->
+	        <param-name>systemUrlMappingLocation</param-name>
+	        <param-value>classpath:/conf/system-url-mapping.xml</param-value>
+	    </init-param>
+	    <filter-class>com.jt.crm.common.filter.SecurityFilter</filter-class>
+	</filter>
+	<filter-mapping>
+	    <filter-name>securityFilter</filter-name>
+	    <url-pattern>*.htm</url-pattern>
+	</filter-mapping>
+	<filter>
+	    <filter-name>textFilter</filter-name>
+	    <filter-class>com.jt.crm.common.filter.TextFilter</filter-class>
+	</filter>
+	<filter-mapping>
+	    <filter-name>textFilter</filter-name>
+	    <url-pattern>*.htm</url-pattern>
+	</filter-mapping>
+	<filter>
+	    <filter-name>sqlSafeFilter</filter-name>
+	    <filter-class>com.jt.crm.common.filter.SqlSafeFilter</filter-class>
+	</filter>
+	<filter-mapping>
+	    <filter-name>sqlSafeFilter</filter-name>
+	    <url-pattern>*.htm</url-pattern>
+	</filter-mapping>
+	<!-- 文件下载过滤 -->	
+	<filter>
+	    <filter-name>DownloadFilter</filter-name>
+	    <filter-class>com.jt.crm.common.filter.DownloadFilter</filter-class>
+	</filter>
+	<filter-mapping>
+	    <filter-name>DownloadFilter</filter-name>
+	    <url-pattern>/crm/components/upload/download.htm</url-pattern>
+	</filter-mapping>
+	<!-- 文件上传Servlet -->	
+	<servlet>
+    	<servlet-name>UploadedFile</servlet-name>
+    	<servlet-class>com.jt.components.upload.mongodb.servlet.JTUploadedFileServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+    	<servlet-name>UploadedFile</servlet-name>
+    	<url-pattern>/UploadedFile/*</url-pattern>
+    <!-- 微信公众号servlet -->
+	</servlet-mapping>	
+		<servlet>
+    	<servlet-name>WechatplatformServlet</servlet-name>
+    	<servlet-class>com.jt.crm.wx.web.servlet.WeChatPlatformServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+    	<servlet-name>WechatplatformServlet</servlet-name>
+    	<url-pattern>/crm/wx/receiveMessage.htm</url-pattern>
+	</servlet-mapping>
+	<!-- SpringMvc Servlet-->
+	<servlet>
+		<servlet-name>springMvc</servlet-name>
+		<servlet-class>com.jt.base.web.servlet.JTSpringMvcServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>classpath:conf/web-controller.xml</param-value>
+		</init-param>
+		<load-on-startup>2</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>springMvc</servlet-name>
+		<url-pattern>*.htm</url-pattern>
+	</servlet-mapping>	
+	
+	<!-- FreeMarker模版Servlet -->
+	<servlet> 
+	    <servlet-name>freemarker</servlet-name> 
+	    <servlet-class> 
+	       com.jt.base.web.servlet.JTFreemarkerServlet
+	    </servlet-class>
+	    <!-- FreemarkerServlet settings: --> 
+	    <init-param> 
+	        <param-name>TemplatePath</param-name> 
+	        <param-value>/WEB-INF/views/</param-value> 
+	    </init-param> 
+	    <init-param> 
+	        <param-name>NoCache</param-name> 
+	        <param-value>true</param-value> 
+	    </init-param> 
+	    <init-param> 
+	        <param-name>ContentType</param-name> 
+	        <param-value>text/html; charset=UTF-8</param-value> 
+	        <!-- Forces UTF-8 output encoding! --> 
+	    </init-param>
+	    <init-param> 
+	        <param-name>template_update_delay</param-name> 
+	        <param-value>0</param-value><!-- 正式环境改一下提高效率 --> 
+	    </init-param> 
+	    <init-param> 
+	        <param-name>default_encoding</param-name> 
+	        <param-value>UTF-8</param-value><!-- The encoding of the template files. --> 
+	    </init-param> 
+	    <init-param> 
+	        <param-name>number_format</param-name> 
+	        <param-value>0.##########</param-value> 
+	    </init-param>
+	    <load-on-startup>1</load-on-startup> 
+	</servlet>		
+	<servlet-mapping> 
+	    <servlet-name>freemarker</servlet-name> 
+	    <url-pattern>*.html</url-pattern> 
+	</servlet-mapping>			
+	<!-- 采用Druid数据源监控 -->
+	<servlet>	
+		<servlet-name>DruidStatView</servlet-name>
+	    <servlet-class>com.alibaba.druid.support.http.StatViewServlet</servlet-class>
+		<init-param>
+			<param-name>resetEnable</param-name>
+			<param-value>true</param-value>
+		</init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>DruidStatView</servlet-name>
+	    <url-pattern>/druid/*</url-pattern>
+	</servlet-mapping>
+	<filter>
+		<filter-name>DruidWebStatFilter</filter-name>
+	    <filter-class>com.alibaba.druid.support.http.WebStatFilter</filter-class>
+	    <init-param>
+	        <param-name>exclusions</param-name>
+	        <param-value>*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*</param-value>
+	    </init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>DruidWebStatFilter</filter-name>
+	    <url-pattern>/*</url-pattern>
+	</filter-mapping>
+	<!-- 损耗性能 
+	<filter>
+	      <filter-name>monitoring</filter-name>
+	      <filter-class>net.bull.javamelody.MonitoringFilter</filter-class>
+	</filter>
+	<filter-mapping>
+	       <filter-name>monitoring</filter-name>
+	       <url-pattern>/*</url-pattern>
+	</filter-mapping>		
+	 -->	
+	<!-- Spring容器监听器 -->	
+	<!-- 应用启动时实现各种初始化处理 -->
+	<listener>
+		<listener-class>com.jt.crm.common.listener.AdminStartupListener</listener-class>
+	</listener>	
+	<!-- 定义LOG4J监听器 -->
+	<listener>
+   		<listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
+	</listener>	
+   <listener> 
+    	<listener-class>org.springframework.web.context.request.RequestContextListener</listener-class> 
+  	</listener> 	
+	<!-- 保证在web 应用关闭的时候释放与掉这个web 应用相关的class loader 和由它管理的类  -->
+	<listener>
+		<listener-class>org.springframework.web.util.IntrospectorCleanupListener</listener-class>
+	</listener>
+	<!-- JT的Session监听器 -->	
+	<listener>
+		<listener-class>com.jt.base.web.listener.JTSessionListener</listener-class>
+	</listener>	
+	<listener>
+	       <listener-class>net.bull.javamelody.SessionListener</listener-class>
+	</listener>		
+	<!-- 默认首页 -->
+  	<welcome-file-list>
+  		<welcome-file>/index.htm</welcome-file>				
+	</welcome-file-list>	
+
+	<!-- 404错误页面 -->
+	<error-page>
+		<error-code>404</error-code>
+		<location>/pub/404.html</location>
+	</error-page>
+	<!-- 500错误页面 -->
+	<error-page>
+		<error-code>500</error-code>
+		<location>/error.htm</location>
+	</error-page>	
+	<!-- 异常抛出时错误页面 -->
+	<error-page>
+		<exception-type>java.lang.Exception</exception-type>
+		<location>/error.htm</location>
+	</error-page>	
+	<!-- Session过期时间（分钟） -->
+	<session-config>  
+         <session-timeout>4</session-timeout>  
+    </session-config>  				
+</web-app>			

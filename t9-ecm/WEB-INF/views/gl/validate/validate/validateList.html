@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>验证规则管理</title>
+	<#include "/common/common.html">
+	<script src="${ctx}/js/jt/gl/validate/validate${deploy_min!""}.js?v=${jsVersion}"></script>
+</head>
+
+<body class='white-bg'>
+	<div class="wrapper animated ">
+	<div class="row list_wrapper">
+		    <#include "validateToolbar.html">
+		    <div class='col-sm-12 jqGrid_wrapper'>
+			  <table id="validateGrid"></table>
+			  <div id="validatePager"></div>
+		    </div>
+		</div>
+	    <#include "validateEdit.html">
+
+		<div style="display: none;" class="privateValidateEdit_wrapper">
+			<#include "validateOnlyEdit.html">
+		</div>
+		
+		<div style="display: none;" class="baseValidateList_wrapper">
+		  <div class='row toolbar-panel'>
+	         <div class='col-sm-12'  style='padding-top: 15px; padding-bottom: 15px;'>
+		        <button type='button' class="btn btn-default backToForm">返回</button>
+	        </div>
+          </div>
+			<table id="baseValidateGrid"></table>
+		</div>
+	</div>
+</body>
+</html>

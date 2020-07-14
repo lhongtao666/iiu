@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>定时工作定义管理</title>
+	<#include "/common/common.html">
+	<script src="${ctx}/js/jt/gl/job/jobDef${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<style>
+	.plan_table{width:100%;}
+	.plan_table tr{min-width:30px;}
+	.plan_table tr td{border:1px solid #E5E6E7;font-size:14px;;padding:6px 12px;}
+	.plan_td_head{width:10%;min-width:30px;font-size:14px;}
+	.plan_td{width:90%;}
+	
+	
+	.clear{clear:left;}
+	.plan_table_div{width:100%; border:1px solid #E5E6E7;}
+	.plan_table_div_tr{border-bottom:1px solid #E5E6E7;width:100%;}
+	.plan_table_div_td_head{border-right:1px solid #E5E6E7;width:12%;min-width:20px;float:left;min-height:45px;font-size:14px;text-align:right;padding:12px 10px;}
+	.plan_table_div_td{border-right:1px solid #E5E6E7;width:100%;min-height:45px;font-size:14px;}
+	.plan_table_div_td div{width:100%;}
+	.planselect{width:60px;position: relative;top:10px;margin-top:auto;margin-bottom:auto;display: inline;}
+	
+
+	</style>
+	<script>
+	    var ctx = "${ctx}";
+	</script>
+</head>
+
+<body class='white-bg' id="jobBody">
+	<div class="wrapper animated ">
+	    <div class="row list_wrapper">
+			<#include "jobDefToolbar.html">
+			<div class='col-sm-12 jqGrid_wrapper'>
+				<table id="jobDefGrid"></table>
+				<div id="jobDefPager"></div>
+			</div>
+	    </div>
+
+	    <#include "jobDefEdit.html">
+	  
+	    <div style="display: none;" class="log_wrapper">
+	        <div class='row toolbar-panel'>
+	            <div class='col-sm-12'  style='padding-top: 15px; padding-bottom: 15px;'>
+		           <button type='button'   id="mainDefBtn" class="btn btn-default ">返回</button>
+	            </div>
+        	</div>
+			
+			<div id="jobRunHiDiv" class='col-sm-12'>
+				<table id="jobRunHiGrid"></table>
+				<div id="jobRunHiPager"></div>
+			</div>
+			<input type="hidden"  id="show_fromId" name="show_fromId">
+	  	</div>
+	</div>
+</body>
+</html>

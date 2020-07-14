@@ -1,0 +1,72 @@
+<div class='row' style='border: 1px solid #ddd; margin-left: 15px; margin-right: 15px;padding:10px;'>
+	<div class='col-sm-12'>
+		<form id="rfmtMtlevelForm" method="get" class="form-horizontal">
+
+
+			<div class="form-group">
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">M分档<@JTtip msg="M分档" /></label>
+					<div class="col-sm-9"> 
+						<select name="MScore" placeholder="" class="form-control">
+							<option value="0">0</option>
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+							<option value="5">5</option>
+						</select>
+					</div>
+				</div>
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">T分档<@JTtip msg="T分档" /></label>
+					<div class="col-sm-9">
+						<select name="TScore" placeholder="" class="form-control">
+							<option value="0">0</option>
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+							<option value="5">5</option>
+						</select>
+					</div>
+				</div>
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">MT分类命名<@JTtip msg="MT分类命名" /></label>
+					<div class="col-sm-9">
+						<input type="text" name="mt" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+			</div>
+			<div class="form-group">
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">价值类型<@JTtip msg="type_" /></label>
+					<div class="col-sm-9">
+						<select name="type" placeholder="" class="form-control">
+							<option value="未消费">未消费</option>
+							<option value="一般">一般</option>
+							<option value="常规">常规</option>
+							<option value="重要">重要</option>
+							<option value="核心">核心</option>
+						</select>
+		            </div>
+		        </div>
+
+            </div>    
+
+
+
+			<div class='form-group'>
+				<!--将隐藏域放在这里，不显示出来-->
+				<div style="display:none'">
+					<input type="hidden" id="id" name="id">
+					<input type="hidden" name="createBy">
+					<input type="hidden" name="createTime">
+				</div>
+			</div>
+
+		</form>
+	</div>
+</div>

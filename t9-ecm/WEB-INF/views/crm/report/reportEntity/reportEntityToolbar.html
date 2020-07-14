@@ -1,0 +1,32 @@
+<div class="col-sm-12">
+	<div class="panel panel-default">
+	    <div class="panel-heading">
+	    	<button type='button' class='jt-btn reportEntityAdd'><i class='fa fa-plus'>&nbsp;添加</i></button>
+			<button type='button' class='jt-btn reportEntityEdit'><i class='fa fa-edit'>&nbsp;编辑</i></button>
+			<button type='button' class='jt-btn jt-btn-red reportEntityDel'><i class='fa fa-remove'>&nbsp;删除</i></button>
+			<button type='button' class='jt-btn reportEntityDetail'><i class='fa fa-th-list'>&nbsp;明细</i></button>
+	    </div>
+	    <div class="panel-body">
+	        <form  class="form-horizontal">
+				<!--默认生成一个搜索条件，需要的，用户自己添加-->
+				<div class="form-group">
+					<label  class="col-sm-1 control-label">名称</label> 
+					<div class='col-sm-2'>
+					    <input type="text" id='soNoSearch' placeholder="请输入名称" name="Q__S__LK__entity.name_" class="form-control">
+					</div>
+					<label  class="col-sm-1 control-label">创建时间</label> 
+					 <div class='col-sm-4'>
+						<div class="input-daterange input-group" id="datepicker">
+                            <input class="laydate-icon form-control layer-date" name="Q__D__BW__entity.create_time_" placeholder="" onclick="laydate({istime: true, format: 'YYYY-MM-DD'})">
+                            <span class="input-group-addon">到</span>
+                            <input class="laydate-icon form-control layer-date" name="Q__D__BW__entity.create_time_" placeholder="" onclick="laydate({istime: true, format: 'YYYY-MM-DD'})">
+                        </div>
+					</div>
+					<div class='col-sm-1'>
+						<button type='button' class="jt-btn reportEntitySearch"><i class='fa fa-search'></i>&nbsp;搜索</button>
+					</div>
+				</div>
+			</form>
+	    </div>
+	</div>
+</div>

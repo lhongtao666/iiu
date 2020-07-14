@@ -1,0 +1,211 @@
+<!-- 左侧菜单内容 -->
+<!-- <nav class="navbar-default navbar-static-side" role="navigation" style='background: #6AA6D6 url(${ctx}/img/jt/menu_bg.png) 0 0 repeat;'>
+	<div class="sidebar-collapse">
+		<ul class="nav" id="side-menu">
+			<li class="nav-header" style="padding: 0;">
+				<div class="dropdown profile-element">
+					<img href="javascript:void(0);" alt="image" class='mainLogo'
+						src="${ctx}/img/jt/logos/t9.png" />
+					<h4 class="mainLogoTitle" class='text-left'>ECM专业版</h4>
+					<a href="javascript:void(0);"
+						class="navbar-minimalize collapseArrow" href="#"> <i
+						class="fa fa-angle-left collapseOrOpenIcon"></i>
+					</a>
+					<div style="clear: both;"></div>
+				</div>
+				<div class="logo-element miniLogo">
+					<img src="${ctx}/img/jt/logos/t9.png" alt="logo">
+				</div>
+			</li>
+		</ul>
+	</div>
+</nav> -->
+
+<nav class="navbar-default navbar-static-side height100" role="navigation">
+	 <div class="navbar height100">  
+            <div class="navbar-inner height100">  
+                <ul class="nav nav-pills side-menu" id="side-menu" > 
+                	<li class="nav-header" style="padding: 0;margin-right:-1px;background: transparent;">
+						<!-- <div class="logo-element miniLogo profile-element miniLogo-version-<#if systemVersionName?? && systemVersionName == '旗舰版'>2<#elseif systemVersionName?? && systemVersionName == '标准版'>2<#elseif systemVersionName?? && systemVersionName == '专业版'>3</#if>" > -->
+						<div class="logo-element miniLogo profile-element" >
+							<#if versionType?? && versionType == 'finance'>
+							<img src="${ctx}/img/jt/logos/wodun/wodun_logo1.jpg" alt="logo">
+							<#elseif versionType?? && versionType == 'professional_qi'>
+		                    <img src="${ctx}/img/jt/logos/t9-qi.png" alt="logo">
+		                    <#else>
+							<!-- <img src="${ctx}/img/jt/logos/t9-wihte-<#if systemVersionName?? && systemVersionName == '旗舰版'>3<#elseif systemVersionName?? && systemVersionName == '标准版'>3<#elseif systemVersionName?? && systemVersionName == '专业版'>3</#if>.png" alt="logo">
+							<div class="logo-title-layer">${systemVersionName}</div> -->
+							<div class="t9-logo-container">
+								<img src="${ctx}/img/jt/logos/t9-wihte.png" alt="logo">
+							</div>
+							</#if>
+							
+						</div>
+					</li>
+                </ul>
+                <ul class="nav nav-pills side-menu jt-nav-footer"> 
+	         		<li  class="personalData jt-nav-footer-li">
+	         			<a style="padding: 6px 0;">
+		         			<img id="jt-employee-img" style="height:35px;width:35px;border-radius: 50%;" src="">
+		         			<span class="nav-label" id="jt-name-span"></span>
+	         			</a>
+	         		</li>
+	         		<li class='dropdown jt-nav-footer-li jt-help-li'>
+	         			<a class="jt-help jt_menuItem" href="javascript:;" data-url="/t9-ecm/gl/km/glHelp/list.htm" name="帮助中心" style="padding-left: 10px;">
+		         			<i class="glyphicon glyphicon-question-sign" title="帮助"></i>
+		         			<p hidden>帮助中心</p>
+	         			</a>
+	         		</li>
+	         		<li  class='dropdown jt-nav-footer-li'>
+	         			<a style="padding-left: 10px;">
+	         				<i class="glyphicon glyphicon-cog" title="设置"></i>
+	         			</a>
+	         			<ul class="dropdown-menu pull-left collapse">
+	         				<li class="protectEyes">
+			                      <a>
+			                      <i class="fa fa-sun-o"></i>灯光
+			                     </a>
+			                 </li>
+	         				<li class="highLight">
+			                      <a>
+			                      <i class="glyphicon glyphicon-eye-open"></i>亮点汇聚
+			                     </a>
+			                 </li>
+	         				<li class="historyVersion">
+			                      <a>
+			                      <i class="fa fa-history"></i>版本
+			                     </a>
+			                 </li>
+	         				<li class="lockScreen">
+	         					<a>
+			         				<i class="glyphicon glyphicon-lock"></i>锁屏
+			         			</a>
+	         				</li>
+	         				<li class="changePwIndex">
+	         					<a>
+			         				<i class="glyphicon glyphicon-pencil"></i>修改密码
+			         			</a>
+	         				</li>
+	         				<li class="exitBtn">
+	         					<a>
+			         				<i class="glyphicon glyphicon-off"></i>退出系统
+			         			</a>
+	         				</li>
+	         			</ul>
+	         		</li>
+	         		<!-- <li class='dropdown jt-nav-footer-li'>
+	         			<a style="padding:10px 0;"  class="jt-help">
+		         			<i class="glyphicon glyphicon-question-sign" title="帮助"></i>
+	         			</a>
+	         			<ul class="dropdown-menu pull-left collapse">
+	         				<li>
+	         					<a>
+			         				<i class="glyphicon glyphicon-question-sign"></i>帮助
+			         			</a>
+	         				</li>
+	         			</ul>
+	         		</li> -->
+	         	</ul>
+            </div>  
+        </div>  
+</nav>
+<style type="text/css">
+	.protect-eye-layer .layui-layer-title {
+	    color: #91ceff;
+	    background-color: #1b2c56;
+	}
+	.protect-eye-layer .layui-layer-setwin .layui-layer-close1 {
+		background-position: 2px -40px;
+		background-color: #FFC107;
+	}
+	.protect-eye-config {
+		display: none;
+		padding-top: 10px;
+		padding-bottom: 10px;
+	}
+	.protect-list {
+		width: 200px;
+	}
+	.protect-list > li {
+		padding: 10px;
+		display: inline-block;
+    	width: 100%;
+    	cursor: pointer;
+    	position: relative;
+    	border-bottom: 1px solid transparent;
+	}
+	.protect-list > li:hover {
+		background-color: #f7f9fa;
+	}
+	.protect-li.active {
+		border-bottom-color: #eee;
+	}
+	.protect-li.active:after {
+	    content: "\f058";
+	    display: inline-block;
+	    font: normal normal normal 14px/1 FontAwesome;
+	    font-size: inherit;
+	    text-rendering: auto;
+	    -webkit-font-smoothing: antialiased;
+	    -moz-osx-font-smoothing: grayscale;
+	    font-size: 1.1em;
+	    color: #2196F3;
+	    position: absolute;
+	    right: 20px;
+	}
+	.protect-list > li > div {
+		float: left;
+	}
+	.protect-color {
+		width: 24px;
+		height: 24px;
+		margin-left: 24px;
+		line-height: 24px;
+		text-align: center;
+	}
+	.eyes-default {
+		background-color: rgba(96, 125, 139, 0.1);
+	}
+	.eyes-cool {
+		background-color: rgba(33, 150, 243, 0.5);
+		color: #fff;
+	}
+	.eyes-fruit {
+		background-color: rgba(255, 253, 208, 1);
+		color: gold;
+		box-shadow: 0 0 0px 1px gold inset;
+	}
+	.eyes-glass {
+		background-color: rgba(136, 202, 143, 1);
+		color: #1ab394;
+	}
+</style>
+<div class="protect-eye-config">
+	<ul class="protect-list">
+		<li class="protect-li active" data-color="default">
+			<div>默认</div>
+			<div class="protect-color eyes-default">
+				<i class="fa fa-sun-o" aria-hidden="true"></i>
+			</div>
+		</li>
+		<li class="protect-li" data-color="cool">
+			<div>天蓝</div>
+			<div class="protect-color eyes-cool">
+				<i class="fa fa-cloud" aria-hidden="true"></i>
+			</div>
+		</li>
+		<li  class="protect-li" data-color="fruit">
+			<div>书黄</div>
+			<div class="protect-color eyes-fruit">
+				<i class="fa fa-lemon-o" aria-hidden="true"></i>
+			</div>
+		</li>
+		<li  class="protect-li" data-color="glass">
+			<div>草绿</div>
+			<div class="protect-color eyes-glass">
+				<i class="fa fa-tree" aria-hidden="true"></i>
+			</div>
+			
+		</li>
+	</ul>
+</div>

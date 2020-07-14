@@ -1,0 +1,56 @@
+<div class="col-sm-12">
+	<div class="panel panel-default">
+	    <div class="panel-heading">
+	   		<button type='button' class='jt-btn msgEntityAdd'><i class='fa fa-plus'></i>&nbsp;添加</button>
+			<button type='button' class='jt-btn msgEntityEdit'><i class='fa fa-edit'></i>&nbsp;编辑</button>
+			<button type='button' class='jt-btn  jt-btn-red msgEntityDel'><i class="fa fa-trash-o"></i>&nbsp;删除</button>
+			<button type='button' class='jt-btn msgEntityDetail'><i class='fa fa-list'></i>&nbsp;明细</button>
+			<label id="glHelpContainer"></label><!-- 帮助中心 -->
+	    </div>
+	    <div class="panel-body">
+	        <form id='msgEntitySearchForm' role="form" class="form-horizontal">
+				<div class="form-group">
+					<label class='control-label col-sm-1'>标题</label> 
+					<div class='col-sm-1'>
+						<input type="text" id='nameSearch' placeholder="请输入标题" name="Q__S__LK__title_" class="form-control">
+						<input type="text" style='display: none;'>
+					</div>
+
+					<label class='control-label col-sm-1'>等级</label>
+					<div class='col-sm-1'>
+						<select name='Q__S__EQ__level_' class='form-control' validateType='default'>
+					    	<option value=''>请选择</option>
+					    	<option value='0'>提示</option>
+					    	<option value='1'>普通</option>
+					    	<option value='2'>重要</option>
+					    	<option value='3'>非常重要</option>
+					    </select>
+					</div>
+
+					<label class='control-label col-sm-1'>状态</label> 
+					<div class='col-sm-1'>
+						<select name='Q__S__EQ__status_' class='form-control' id='statusSearch'>
+							<option value=''>请选择</option>
+							<option value='send'>已发送</option>
+							<option value='draft'>草稿</option>
+						</select>	
+					</div>
+					
+					<label class='control-label col-sm-1'>接收者类型</label> 
+					<div class='col-sm-1'>
+						<select name='Q__S__EQ__rec_type_' class='form-control' id='recTypeSearch'>
+							<option value=''>请选择</option>
+							<option value='admin'>全体用户</option>
+			    			<option value='users'>指定用户</option>
+			    			<option value='groups'>指定部门</option>
+						</select>	
+					</div>
+					<div class="col-sm-1"></div>
+					<div class='col-sm-1'>
+						<button type='button' class="btn jt-btn-search msgEntitySearch"><i class="fa fa-search"></i>&nbsp;搜索</button>
+					</div>
+				</div>
+			</form>
+	    </div>
+	</div>
+</div>

@@ -1,0 +1,80 @@
+<style>
+	.gl-helper-layer {
+		position: absolute;
+		right: 5px;
+		top: 10px;
+		color: #9E9E9E;
+		filter: grayscale(1);
+		padding-left: 24px;
+		transition: all 0.25s linear;
+	}
+	.gl-helper-layer > label {
+		position: absolute;
+	    left: 0;
+	    top: -1px;
+	    width: 100%;
+	    cursor: pointer;
+	}
+	.gl-helper-layer:hover {
+		filter: grayscale(0);
+		color: #03A9F4;
+	}
+</style>
+<div class="col-sm-12">
+	<div class="panel panel-default">
+		<div class="panel-body">
+			<form id='csEntitySearchForm' class="form-horizontal">
+				<div class='form-group'>
+					<div class="col-sm-12">
+						<div class='col-sm-4 jt-form-search'>
+							<input type="text" placeholder="请输入查询条件" id="searchValue"  name="searchValue"  class="form-control">
+							<div class="jt-btn-group">
+								<button type='button' class="csEntitySearch"><i class='fa fa-search' style="font-style: 15px;"></i>&nbsp;开始查询</button>
+							</div>
+						</div>
+						<div class="col-sm-8">
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<div class="radio radio-info radio-inline">
+								<input type="radio" id="csCode" value="csCode" name="searchParam" checked>
+								<label for="csCode">客户编码</label>
+							</div>
+							<div class="radio radio-info radio-inline">
+								<input type="radio" id="soNo" value="soNo" name="searchParam">
+								<label for="soNo">订单号</label>
+							</div>
+							<div class="radio radio-info radio-inline">
+								<input type="radio" id="shipNo" value="shipNo" name="searchParam">
+								<label for="shipNo">快递单号</label>
+							</div>
+							<div class="radio radio-info radio-inline">
+								<input type="radio" id="phone" value="phone" name="searchParam">
+								<label for="phone">电话</label>
+							</div>
+							<div class="radio radio-info radio-inline">
+								<input type="radio" id="email" value="email" name="searchParam">
+								<label for="email">Email</label>
+							</div>
+							<div class="radio radio-info radio-inline">
+								<input type="radio" id="csName" value="csName" name="searchParam">
+								<label for="csName">姓名</label>
+							</div>
+							<div class="radio radio-info radio-inline">
+								<input type="radio" id="weixin" value="weixin" name="searchParam">
+								<label for="weixin">微信号</label>
+							</div>
+							<div class="radio radio-info radio-inline">
+								<input type="radio" id="nickName" value="nickName" name="searchParam">
+								<label for="nickName">昵称</label>
+							</div>
+
+						</div>
+						<div class="gl-helper-layer">
+							<!-- 帮助中心 -->
+							<label id="glHelpContainer"></label>&nbsp;帮助中心
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>

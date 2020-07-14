@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>客户额度编辑界面</title>
+	<#include "/common/common.html">
+	<script src="${ctx}/js/jt/crm/limit/csLimitEdit${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/crm/limit/csLimitAttach${deploy_min!""}.js?v=${jsVersion}" ></script>
+    <script>
+    	var id = "";
+    	<#if id??>
+		id = "${id}";
+	</#if>
+    </script>
+</head>
+
+<body>
+	<div class="wrapper animated fadeInRight">
+		<!-- 编辑界面 -->
+		<div class="row form_wrapper">
+	   		<div class='col-sm-12'>
+		        <div class="panel panel-default">
+		            <div class="panel-heading">
+	            		<button type='button' class="btn btn-sm btn-primary jt-btn-normal saveBtn" style='display:none;'>保存</button>
+		            	<button type='button' class="btn btn-sm btn-primary jt-btn-normal acceptBtn" style='display:none;'>接受条款</button>
+		            	<button type='button' class="btn btn-sm btn-danger jt-btn-normal jt-bn-red trunDownBtn" style='display:none;'>驳回条款</button>
+		            	<button type='button' class="btn btn-sm btn-primary jt-btn-normal csLimitReturn" style='display:none;'>回访</button>
+						<button type='button' class="btn btn-sm btn-primary jt-btn-normal csLimitPost" style='display:none;'>提交资料</button>
+						<button type='button' class="btn btn-sm btn-primary jt-btn-normal csLimitAccept" style='display:none;'>接受额度</button>
+						<button type='button' class="btn btn-sm btn-primary jt-btn-normal csLimitReject" style='display:none;'>放弃额度</button>
+						<button type='button' class="btn btn-sm btn-default jt-btn-close prevBtn">取消</button>
+					</div>
+					<div class="panel-body">
+						<#include "/crm/limit/csLimit/csLimitForm.html">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

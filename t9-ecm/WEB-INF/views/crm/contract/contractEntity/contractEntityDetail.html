@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>合同管理</title>
+    <#include "/common/common.html" />
+    <#include "/common/eav.html" />
+    <#include "/common/summernote.html" />
+    <#include "/common/ztree.html" />
+    <#include "/common/fullcalendar.html" />
+    <script src="${ctx}/js/jt/gl/task/taskTableList${deploy_min!""}.js?v=${jsVersion}"></script>
+    <script src="${ctx}/js/jt/common/service/operateTask${deploy_min!""}.js?v=${jsVersion}"></script>
+    <script src="${ctx}/js/jt/common/utils/groupUtils${deploy_min!""}.js?v=${jsVersion}"></script>
+    <script src="${ctx}/js/jt/common/service/customerSelectLayer${deploy_min!""}.js?v=${jsVersion}"></script>
+    <script src="${ctx}/js/jt/common/service/selectProdService${deploy_min!""}.js?v=${jsVersion}"></script>
+    <script src="${ctx}/js/jt/common/service/employeesSelectLayer${deploy_min!""}.js?v=${jsVersion}"></script>
+    <script src="${ctx}/js/jt/crm/contract/contractEntity${deploy_min!""}.js?v=${jsVersion}"></script>
+    <script type="text/javascript">
+    var entityDetailId = "${id }";
+
+    function　 ContractEntityForm() {
+        this.hadInit = false;
+        this.contractEntity = new ContractEntity();
+    }
+    ContractEntityForm.prototype = {
+        init: function(id) {
+            if (!this.hadInit) {
+                this.hadInit = true;
+                this.contractEntity._bindFormValidation();
+                this.contractEntity._bindEventHander();
+                SummernoteUtils.init({}, "summernote");
+            }
+            this.contractEntity._detail(id);
+            //处理取消按钮.这里直接隐藏.要用的话取决是怎么显示该页面的.直接再绑定一个事件即可. 
+            $(".form_wrapper .panel-default .panel-heading .contractEntity-prevBtn").parent().hide();
+        }
+    }
+
+    $(function() {
+        var contractEntityForm = new ContractEntityForm();
+        contractEntityForm.init(entityDetailId);
+
+
+    });
+    </script>
+</head>
+
+<body>
+    <div class="wrapper animated ">
+        <div>
+            <!-- 编辑界面 -->
+            <#include "/crm/contract/contractEntity/contractEntityEdit.html" />
+        </div>
+    </div>
+</body>
+
+</html>

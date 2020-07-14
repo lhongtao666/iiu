@@ -1,0 +1,329 @@
+<!-- 存放当前登录用户的相关信息 -->
+<div class="row main-top-toolbar">
+    <!-- 剩余12-5=7的宽度 -->
+    <#include "/common/cti-page.html" />
+    <div class='col-sm-5' style="float:right !important;">
+        <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0;background-color:transparent;height: 40px;padding-top:6px;">
+            <ul class="nav navbar-top-links navbar-right" style="white-space: nowrap;">
+            
+                <li class="dropdown jt-scan-code-li">
+                    <a class="jt-scan-code" aria-expanded="false" title="扫码" alt="扫码">
+                        <i class="glyphicon glyphicon-qrcode"></i>扫码
+                         
+                    </a>
+                </li>
+                 <span class="divider-vertical jt-scan-code-li"></span>
+              	<li class="dropdown jt-weixin-msg-li">
+                    <a class="wx-record-toggle" aria-expanded="false" title="微信消息" alt="微信消息" id='wxMsgCountContainer'>
+                         <i class="fa fa-wechat"></i><span class="badge badge-primary" id="wxMsgCount">0</span>
+
+                    </a>
+                </li>
+                <span class="divider-vertical jt-weixin-msg-li"></span>
+                <li class="dropdown">
+                    <a class="open-tasks" aria-expanded="false" title="任务" alt="任务">
+                        <i class="fa fa-tasks"></i><span class="badge badge-primary" id="taskCount">0</span>
+                    </a>
+                </li>
+                <span class="divider-vertical"></span>
+                <li class="dropdown">
+                    <a class="right-sidebar-toggle" aria-expanded="false" title="消息" alt="消息" id='msgCountContainer'>
+                            <i class="fa fa-bell"></i><span class="badge badge-primary" id="msgCount">0</span>
+                    </a>
+                </li>
+
+                <!-- 当前销售状态 -->
+                <li class="dropdown" id='currentSaleStatus' style="margin-bottom: -10px;display: none;">
+                    <a title="我的销售状态">
+                       <div class="mySaleStatusIcon" style="background-color: red;"></div>
+                    </a>
+                </li>
+
+                <!-- <span class="divider-vertical"></span>
+                <li class="dropdown">
+                     <a class="right-sidebar-toggle-km" aria-expanded="false" title="知识库" alt="知识库" id='kmEntityContainer'>
+                     <i class="fa fa-book"></i>知识库
+                     </a>
+                 </li>  -->
+                <span class="divider-vertical"></span>
+                <li class="dropdown">
+                     <a class="right-sidebar-toggle-solr" aria-expanded="false" title="问答知识" alt="问答知识" id='solrContainer'>
+                     <i class="fa fa-search"></i>问答知识
+                	 </a>
+                 </li>
+                 <span class="divider-vertical"></span>
+                 <li class="dropdown fullScreen">
+        			<a title="全屏">
+         				<i class="fa fa-arrows-alt"></i>
+         			</a>
+       			</li>
+       <!--          <li class="dropdown">
+                    <a class="count-info" id="otherContainer" href="#" style='padding-top: 5px; padding-bottom: 5px;'>
+                        <span>更多</span>
+                        <i class="glyph-icon fa fa-chevron-down"></i>
+                    </a>
+                    <ul id="otherULContainer" class="dropdown-menu dropdown-alerts">                        
+                        <li class="divider"></li>
+                        <li >
+		                    <a class="open-stickers" aria-expanded="false" title="便签" alt="便签">
+		                        <span class="label label-warning"><i class="fa fa-file-o"></i><font id="stickerCount"></font></span>
+		                    </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li >
+                            <a class="historyVersion" aria-expanded="false" title="历史版本" alt="历史版本">
+		                        <span class="label label-default" class='historyVersion'>历史版本</span>
+		                    </a>
+                        </li>
+                    </ul>
+                </li> -->
+            </ul>
+        </nav>
+    </div>
+
+</div>
+
+<!--右侧边栏开始-->
+<div id="right-sidebar">
+    <div class='row'>
+        <div class='col-sm-12'>
+            <button id='closeMsgBtn' class='btn btn-sm btn-danger pull-right' type='button'>x</button>
+        </div>
+    </div>
+
+    <div class="sidebar-container" style='margin-top: 5px;'>
+        <div class="sidebar-container" style="width: auto; height: 100%;">
+            <ul class="nav nav-tabs navs-2 sidebar-container-msg">
+                <li class="active">
+                    <a data-toggle="tab" href="#tab-1"><i class="fa fa-gear"></i>系统公告</a>
+                </li>
+                <li >
+                    <a data-toggle="tab" href="#tab-2">通知&nbsp;&nbsp;&nbsp;&nbsp;<i title='删除全部通知' class='btn btn-xs btn-danger fa fa-times' style='display: none;' id='deleteAllNoticeBtn'></i></a>
+                </li>
+            </ul>
+            
+            <div class="tab-content">
+                <div id="tab-1" class="tab-pane active">
+                    <div class='row'>
+                        <div class='col-sm-12' id='noticeContainer'></div>
+                    </div>
+                </div>
+                
+                <div id="tab-2" class="tab-pane">
+                    <div class='row'>
+                        <div class='col-sm-12' id='remindContainer' >
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--右侧知识库边栏开始-->
+<style>
+    .min-km-layer .layui-layer-content {
+        padding: 0;
+        background-color: #fff;
+        z-index: 1;
+    }
+    .move-km-layer {
+        position: absolute !important;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 35px;
+        background: transparent;
+        z-index: 0 !important;
+    }
+    .min-km-layer:before {
+        content: "";
+        position: absolute;
+        width: calc(100% + 40px);
+        height: calc(100% + 40px);
+        top: -20px;
+        left: -20px;
+        z-index: 0;
+        border: 2px solid #fafafa;
+        background-color: rgba(39, 58, 74, 0.5);
+        border-radius: 10px;
+        box-shadow: 1px 1px 50px rgba(0,0,0,.3);
+    }
+    .min-km-layer .layui-layer-resize {
+        z-index: 2;
+    }
+    #right-sidebar-km {
+        width: 100%;
+        height: 100%;  
+        display:none;
+        overflow: hidden;
+    }
+    .km-tree-layer, .km-main-layer {
+        height: 100%;
+    }
+    .km-tree-layer {
+        padding: 0;
+        min-width: 200px;
+    }
+    #kmEntityCateTree {
+        padding: 10px;
+    }
+    .km-main-layer {
+        border-left: 4px solid #f1f1f1;
+        padding: 0;
+        max-width: calc(100% - 200px);
+    }
+    .sidebar-container-km {
+        height: 100%;
+    }
+    .sidebar-container-km > .nav > * {
+        position: relative;
+        z-index: 1;
+    }
+    .sidebar-container-km .nav {
+        height: 35px;
+        margin: 0;
+        background-color: #fafafa;
+    }
+    .sidebar-container-km .tab-content {
+        height: calc(100% - 35px);
+    }
+    .sidebar-container-km .tab-content > .tab-pane {
+        height: 100%;
+    }
+    .sidebar-container-km .nav li {
+        height: 100%;
+        line-height: 35px;
+    }
+    .sidebar-container-km .nav li a {
+        padding: 0 15px;
+        margin-right: 5px;
+        font-weight: 500;
+        background-color: #fafafa;
+        border: 1px solid #fafafa !important;
+        border-radius: 0;
+        cursor: pointer;
+        color: #b3b3b3;
+        height: 30px;
+        line-height: 30px;
+    }
+    .sidebar-container-km .nav li a:hover {
+        color: #aaa;
+    }
+    .sidebar-container-km .nav li#myKmEntity a {
+        margin-top: 3px;
+        height: 28px;
+        line-height: 28px;
+    }
+    .sidebar-container-km .nav > li.active > a {
+        background-color: #fff;
+        cursor: pointer;
+        color: #1ab394;
+        margin-top: 0 !important;
+        height: calc(100% + 2px) !important;
+        line-height: 35px;
+        border-left-color: #ddd !important;
+        border-right-color: #ddd !important;
+        border-top: 0 !important;
+    }
+    .sidebar-container-km .nav > li:first-child.active > a {
+        border-left-color: #fff !important;
+    }
+    .sidebar-container-km .nav > li.active > a, .sidebar-container-km .nav > li.active > a:hover, .sidebar-container-km .navs > li.active > a:focus {
+        outline: none !important;
+        border-bottom-color: #fff !important;
+
+    }
+    #kmHomeSearchForm {
+        float: right; 
+        max-width: 600px;
+        padding-right: 35px;
+        /*width: 55%;*/
+        width: 250px;
+        height: 100%;
+        padding-top: 3px;
+    }
+    #kmHomeSearchName, .kmHomeSearch {
+        height: 28px;
+        float:left;
+    }
+    .kmHomeSearch {
+        width: 33px;
+        line-height: 0;
+        padding-top: 5px;
+        background: #fff;
+        border: 1px solid #ebecec;
+        border-right: 0;
+        color: #999;
+        outline: none;
+        transition: all 0.25s linear;
+        border-bottom-left-radius: 30px;
+        border-top-left-radius: 30px;
+    }
+    .kmHomeSearch:hover,.kmHomeSearch:focus,.kmHomeSearch:active {
+        outline: none !important;
+        box-shadow: none;
+        background-color: #fff;
+        color: #1ab394;
+        border-color: #fff;
+        text-shadow: none;
+    }
+    #kmHomeSearchName {
+        width: calc(100% - 33px);
+        text-indent: 10px;
+        border-radius: 0 !important;
+        border-color: #ebecec !important;
+        border-left: 0;
+    }
+    .km-close-bar {
+        position:absolute;
+        top:4px;
+        right:4px;
+        z-index: 2;
+    }
+    #closeKmBtn {
+        width: 26px;
+        height: 26px;
+        outline: none;
+        box-shadow: none;
+    }
+</style>
+<div id="right-sidebar-km">
+	    <div class="col-sm-2 km-tree-layer">
+	        <ul id="kmEntityCateTree" class="ztree large gicon"></ul>
+	    </div>
+	    <div class="col-sm-10 km-main-layer">
+		    <div class="sidebar-container-km"> 
+	           <ul class="nav nav-tabs navs-2">
+                    <li class="active">
+                        <a data-toggle="tab" href="#tab-all">全部</a>
+                    </li>
+                    <li id="myKmEntity">
+                        <a data-toggle="tab" href="#tab-my">我的收藏</a>
+                    </li>
+                    <form class="form-horizontal" id="kmHomeSearchForm">
+                        <div class="search-group">
+                            <button type="button" class="btn btn-info kmHomeSearch"><span class="fa fa-search"></span></button>
+                            <input type="text" id="kmHomeSearchName"class="form-control" placeholder="在当前选中分类中搜索" name="Q__S__LK__content_">
+                            <input type="text" name="xxx" style="display: none;">
+                        </div>
+                    </form>
+                    <div class="move-km-layer"></div>
+	           </ul>
+	           <div class="tab-content">
+	               <div id="tab-1" class="tab-pane active">
+	                    <#include "/index/kmHome.html">
+	               </div>
+	               
+	               <div id="tab-2" class="tab-pane"">
+	                    
+	               </div>
+	           </div>
+			</div>
+		</div>
+		<div class="km-close-bar">
+			<button  id='closeKmBtn' class="btn btn-danger btn-sm pull-right" type="button" title="关闭知识库">
+            	<i class="fa fa-remove"></i>
+            </button>
+		</div>
+</div>

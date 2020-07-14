@@ -1,0 +1,243 @@
+<div class="col-sm-12">
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<button type='button' class='btn btn-sm  btn-primary csEntityAdd'> <i class='fa'>添加</i>
+			</button>
+			<button type='button' class='btn btn-sm  btn-primary csEntityEdit'> <i class='fa'>编辑</i>
+			</button>
+			<button type='button' class='btn btn-sm  btn-primary csEntityEmployee'>
+				<i class='fa'>分配客户资源</i>
+			</button>
+			<button type='button' class='btn btn-sm  btn-primary csEntitySoAdd'>
+				<i class='fa'>代下订单</i>
+			</button>
+			<div class="btn-group">
+       			<button data-toggle="dropdown" class="btn btn-sm  btn-info dropdown-toggle">更多操作 <span class="caret"></span></button>
+       			<ul class="dropdown-menu">
+            		<li>
+           				 <a href="javascript:void(0)"  class='btn btn-sm   btn-info csEntitySoPointAdd'>
+							代下积分订单
+            			</a>
+        			</li>
+        			<li>
+           				 <a href="javascript:void(0)"  class='btn btn-sm   btn-info csEntitySoList'>
+							查看订单
+            			</a>
+        			</li>
+        			<#-- <li>
+           				 <a href="javascript:void(0)" class='btn btn-sm   btn-info csEntitySoAfterList'>
+				 			去退换货
+				 		</a>
+        			</li> -->
+        			<li>
+           				 <a href="javascript:void(0)" class='btn btn-sm   btn-info toGenExcel'>
+							生成excle模板
+						</a>
+        			</li>
+        			<li>
+           				 <a href="javascript:void(0)" class='btn btn-sm   btn-info importExcel'>
+							导入客户资料
+            			</a>
+        			</li>
+        			<li>
+           				 <a href="javascript:void(0)" class='btn btn-sm   btn-info toExportExcel'>
+							导出客户资料
+            			</a>
+        			</li>
+        		</ul>
+            </div>
+		</div>
+		<div class="panel-body">
+			<form id='csEntitySearchForm' class="form-horizontal">
+				<div class='form-group'>
+					<div class="col-sm-2 col-sm-offset-1">
+						<div class="input-group">
+							<input type="text" placeholder="客户编号或姓名" id="searchParam"  name="searchParam"  class="form-control">
+							<div class="input-group-btn">
+								<button type="button" class="btn btn-white dropdown-toggle" data-toggle="dropdown">
+									<span class="caret"></span>
+								</button>
+								<ul class="dropdown-menu dropdown-menu-right" role="menu"></ul>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-1">
+						<div class="input-group-btn">
+							<button type="button" class="btn btn-sm   csEntitySearch" tabindex="-1"><i class='fa fa-search'></i></button>
+							<button type="button" id="seniorSearch" class="btn btn-sm   btn-info dropdown-toggle" data-toggle="dropdown" tabindex="-1">展开<span class="fa fa-sort-down"></span>
+							</button>
+						</div>
+					</div>
+
+					<#-- <div class="col-sm-1"></div>
+					<label class="col-sm-1 control-label" style="line-height:25px;">一键查询：</label>
+					<div class="col-sm-4">
+						<button type='button' class="btn btn-sm btn-primary newSearch">新分配客户</button>
+						<button type='button' class="btn btn-sm btn-primary notFollowSearch">7天内未跟进</button>
+						<button type='button' class="btn btn-sm btn-primary birthdaySearch">今天生日</button>
+						<button type='button' class="btn btn-sm btn-primary repeatBuySearch">复购并超过7天</button>
+					</div> -->
+				</div>
+
+				<div id="seniorSearchDiv" style="display:none;">
+					<div class='form-group'>
+						<label class="col-sm-1 control-label">客户意向</label>
+						<div class='col-sm-2'>
+							<select id="interestSearch" class="chosen-select form-control" multiple name="interests" data-placeholder="请选择"></select>
+						</div>
+						<label class="col-sm-1 control-label">跟进标签</label>
+						<div class='col-sm-2'>
+							<select id="followSearch" class="form-control" name="follow">
+								<option value="">请选择</option>
+							</select>
+						</div>
+						<label class="col-sm-1 control-label">最新跟进</label>
+						<div class='col-sm-5'>
+							<div class="input-daterange input-group">
+								<input class="laydate-icon form-control layer-date" name="lowFollowTime" placeholder="yyyy-mm-dd" onclick="laydate({istime: true, format: 'YYYY-MM-DD'})">
+								<span class="input-group-addon">到</span>
+								<input class="laydate-icon form-control layer-date" name="hightFollowTime" placeholder="yyyy-mm-dd" onclick="laydate({istime: true, format: 'YYYY-MM-DD'})"></div>
+						</div>
+					</div>
+					<div class='form-group'>
+						<label class="col-sm-1 control-label">客户电话</label>
+						<div class='col-sm-2'>
+							<input type="text" placeholder="客户电话" id="phone" name="phone"  class="form-control"></div>
+						<label class="col-sm-1 control-label">是否成交</label>
+						<div class="col-sm-2">
+							<select id="hasDealSearch" class="form-control" name="hasDeal">
+								<option value="">请选择</option>
+								<option value="y">已成交</option>
+								<option value="n">未成交</option>
+							</select>
+						</div>
+						<label class="col-sm-1 control-label">最新签收</label>
+						<div class='col-sm-5'>
+							<div class="input-daterange input-group">
+								<input class="laydate-icon form-control layer-date" name="lowCompleteTime" placeholder="yyyy-mm-dd" onclick="laydate({istime: true, format: 'YYYY-MM-DD'})">
+								<span class="input-group-addon">到</span>
+								<input class="laydate-icon form-control layer-date" name="hightCompleteTime" placeholder="yyyy-mm-dd" onclick="laydate({istime: true, format: 'YYYY-MM-DD'})"></div>
+						</div>
+					</div>
+					<div class='form-group'>
+						<label class="col-sm-1 control-label">一类等级</label>
+						<div class='col-sm-2'>
+							<select id="firstTypeSearch" class="form-control" name="firstType">
+								<option value="">请选择</option>
+							</select>
+						</div>
+						<label class="col-sm-1 control-label">注册时间</label>
+						<div class='col-sm-5'>
+							<div class="input-daterange input-group">
+								<input class="laydate-icon form-control layer-date" name="lowRegisterTime" placeholder="yyyy-mm-dd" onclick="laydate({istime: true, format: 'YYYY-MM-DD'})">
+								<span class="input-group-addon">到</span>
+								<input class="laydate-icon form-control layer-date" name="hightRegisterTime" placeholder="yyyy-mm-dd" onclick="laydate({istime: true, format: 'YYYY-MM-DD'})"></div>
+						</div>
+					</div>
+					<div class='form-group'>
+						<label class="col-sm-1 control-label">客户级别</label>
+						<div class='col-sm-2'>
+							<select id="levelSearch" class="form-control" name="level">
+								<option value="">请选择</option>
+							</select>
+						</div>
+						<label class="col-sm-1 control-label">复购次数</label>
+						<div class='col-sm-2'>
+							<select id="reBuySearch" class="form-control" name="reBuyCount" data-placeholder="请选择">
+								<option value="">请选择</option>
+								<option value="0">0次</option>
+								<option value="1">1次</option>
+								<option value="2">2次</option>
+								<option value="3">3次</option>
+								<option value="4">4次</option>
+								<option value="5">5次</option>
+								<option value="6">5次以上</option>
+							</select>
+						</div>
+						<label class="col-sm-1 control-label">最新转单</label>
+						<div class='col-sm-5'>
+							<div class="input-daterange input-group">
+								<input class="laydate-icon form-control layer-date" name="lowTurnTime" placeholder="yyyy-mm-dd" onclick="laydate({istime: true, format: 'YYYY-MM-DD'})">
+								<span class="input-group-addon">到</span>
+								<input class="laydate-icon form-control layer-date" name="hightTurnTime" placeholder="yyyy-mm-dd" onclick="laydate({istime: true, format: 'YYYY-MM-DD'})"></div>
+						</div>
+					</div>
+					<div class='form-group'>
+						<label class="col-sm-1 control-label">消费金额</label>
+						<div class='col-sm-2'>
+							<div class='col-sm-5'>
+								<input type="number" placeholder="" id="lowSoTotal" name="lowSoTotal"  class="form-control numberInput"></div>
+							<label class="col-sm-1 control-label">至 </label>
+							<div class='col-sm-5'>
+								<input type="number" placeholder="" id="highSoTotal" name="highSoTotal"  class="form-control numberInput"></div>
+						</div>
+						<label class="col-sm-1 control-label">渠道来源</label>
+						<div class='col-sm-2'>
+							<select id="srcSearch" class="form-control" name="srcs">
+								<option value="">请选择</option>
+							</select>
+						</div>
+						<label class="col-sm-1 control-label">性别</label>
+						<div class='col-sm-2'>
+							<select id="genderSearch" class="form-control" name="gender">
+								<option value="">请选择</option>
+							</select>
+						</div>
+						<label class="col-sm-1 control-label">生日</label>
+						<div class='col-sm-2'>
+							<input class="laydate-icon form-control layer-date" name="birthday" placeholder="yyyy-mm-dd" onclick="laydate({istime: true, format: 'YYYY-MM-DD'})"></div>
+					</div>
+					<div class='form-group'>
+						<label class="col-sm-1 control-label">进线方式</label>
+						<div class='col-sm-2'>
+							<select id="entrySearch" class="form-control" name="entry">
+								<option value="">请选择</option>
+							</select>
+						</div>
+						<label class="col-sm-1 control-label">微信号</label>
+						<div class='col-sm-2'>
+							<input type="text" placeholder="微信号" id="weixin" name="weixin"  class="form-control"></div>
+						<label class="col-sm-1 control-label">年收入</label>
+						<div class='col-sm-2'>
+							<select id="incomeSearch" class="form-control" name="income">
+								<option value="">请选择</option>
+							</select>
+						</div>
+					</div>
+					<div class='form-group'>
+						<label class="col-sm-1 control-label">归属工号</label>
+						<div class="col-sm-1">
+							<select id="belongOgnSearch" class="form-control" name="belongOgn">
+								<option value="">请选择</option>
+							</select>
+						</div>
+						<div class="col-sm-1">
+							<select id="belongEmployeeSearch" class="form-control" name="belongEmployee">
+								<option value="">请选择</option>
+							</select>
+						</div>
+						<label class="col-sm-1 control-label">客户档案</label>
+						<div class='col-sm-2'>
+							<select id="eavSearch" class="form-control" name="eavSearch"></select>
+						</div>
+						<label class="col-sm-1 control-label">客户地区</label>
+						<div class='col-sm-5' id="addrContainerSearch"></div>
+					
+							
+						
+					</div>
+					<div class='form-group'>
+						<div class='col-sm-4'></div>
+						<div class='col-sm-7'>
+							<button type='button' class="btn btn-sm  btn-primary jt-btn-normal csEntitySearch" style="min-width: 35px;">搜索</button>
+							<button type='button' class='btn btn-sm jt-btn-normal jt-bn-red' style="min-width: 45px;">清空</button>
+							<button type='button' id='seniorSearch2' class='btn btn-sm   btn-info seniorSearch'>
+								收起<i class='fa fa-sort-up'></i>
+							</button>
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,44 @@
+<style>
+  #myModalLabel {
+        color: #fff;
+        font-weight: 500;
+    }
+    #myModalLabel > span {
+        color: #f5f5f5;
+        font-size: 12px;
+    }
+    #sendMessageModalLabel > span > font {
+        color: gold;
+    }
+
+</style>
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="aliTemplateModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header" style="background-color: #1caf9a;padding: 10px;">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span style="color: black" aria-hidden="true">&times;</span></button>
+				<h3 class="modal-title" id="myModalLabel">
+					选择发送模板
+				</h3>
+			</div>
+			<div class="modal-body">
+				<input type="hidden" id="aliTemplateModalCsIds">
+				<div >
+					<select class="aliTemplateModalSelect col-sm-6" style="width:80%;"></select>
+				</div>	
+				<br/>
+				<br/>	
+				<div>
+					<div class="aliTemplateModalContent"></div>
+				</div>			
+			</div>
+			<div class="modal-footer" style="padding: 10px 20px 10px;margin-top: 0px;">
+				<button type="button" class="btn btn-sm btn-default" data-dismiss="modal">取消</button>
+				<button type="button" class="btn btn-sm btn-primary aliTemplateModalSend">
+					发送
+				</button>
+			</div>
+		</div>
+	</div>
+</div>

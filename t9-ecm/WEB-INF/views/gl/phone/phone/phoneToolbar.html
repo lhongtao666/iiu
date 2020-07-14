@@ -1,0 +1,47 @@
+<div class="col-sm-12">
+	<div class="panel panel-default">
+	    <div class="panel-heading">
+	    	<button type='button' class='jt-btn phoneAdd'><i class='fa fa-plus'>&nbsp;添加</i></button>
+	    	<button type='button' class='jt-btn phoneAddBatcn' data-toggle="modal" data-target='#batchAddPhoneModal'><i class='fa fa-plus'>&nbsp;批量创建</i></button>
+	    	<button type='button' class='jt-btn phoneEdit'><i class='fa fa-edit'>&nbsp;编辑</i></button>
+			<button type='button' class='jt-btn phoneActive'><i class='fa fa-edit'>&nbsp;激活</i></button>
+			<button type='button' class='jt-btn jt-btn-red  phoneInvalid'>&nbsp;作废</button>
+			<button type='button' class='jt-btn jt-btn-red  phoneDel'>&nbsp;删除</button>
+			<button type='button' class='jt-btn phoneDetail'><i class='fa fa-list'>&nbsp;明细</i></button>
+			<label id="glHelpContainer"></label><!-- 帮助中心 -->
+	    </div>
+
+	    <div class="panel-body">
+	        <form id="phoneSearchForm" role="form" class="form-horizontal">
+				<div class="form-group">
+					<label class="col-sm-1 control-label">运营商</label>
+					<div class="col-sm-2"> 
+					   <select name='Q__S__EQ__type_' class='form-control'>
+					   		<option value=''>请选择</option>
+					   		<option value='1'>电信</option>
+					   		<option value='2'>联通</option>
+					   		<option value='3'>移动</option>
+					   </select>
+				    </div>
+
+					<label class="col-sm-1 control-label">号码</label>
+					<div class="col-sm-2"> 
+					   <input type="text" id='nameSearch' placeholder="请输入号码" name="Q__S__LK__phone_" class="form-control">
+				    </div>
+				    
+				    <label class='control-label col-sm-1'>状态</label> 
+					<div class='col-sm-2'>
+						<select  name="Q__S__EQ__status_" class="form-control">
+							<option value="">请选择状态</option>
+							<option value="actived">激活</option>
+							<option value="invalid">作废</option>
+						</select>
+					</div>
+					<div class='col-sm-1'>
+						<button type='button' class="btn jt-btn-search phoneSearch"><i class="fa fa-search"></i>&nbsp;搜索</button>
+					</div>
+				</div>
+			</form>
+	    </div>
+	</div>
+</div>

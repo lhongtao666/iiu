@@ -1,0 +1,51 @@
+<div class="col-sm-12">
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<button type='button' class='jt-btn employeeWeiXinSelectEmployee'><i class='fa fa-plus'>选择员工</i></button>
+			<button type='button' class='jt-btn employeeWeiXinAdd'><i class='fa fa-plus'>&nbsp;新增</i></button>
+			<button type='button' class='jt-btn employeeWeiXinEdit'><i class='fa fa-edit'>&nbsp;编辑</i></button>
+			<button type='button' class='jt-btn employeeWeiXinLog'><i class='fa fa-eye'>&nbsp;查看日志</i></button>
+			<button type='button' class='jt-btn jt-btn-red  employeeWeiXinDel'><i class='fa fa-remove'>&nbsp;删除</i></button>
+			<label id="glHelpContainer"></label>
+		</div>
+
+		<div class="panel-body">
+			<form id='employeeWeiXinSearchForm' role="form" class="form-horizontal">
+				<!--默认生成一个搜索条件，需要的，用户自己添加-->
+				<div class="form-group groupSelect">
+					<!-- <label class="col-sm-1 control-label">部门</label>
+					<div class='col-sm-2'>
+						<input type="text" class='form-control' readonly id='groupName'>
+						<input type="hidden" name='belongOgn'>
+					</div>
+					
+					<label class="col-sm-1 control-label">员工</label>
+					<div class='col-sm-2'>
+						<select name='Q__S__EQ__employee.id_' id='belongEmployeeSearch' class='form-control' style='width: 100%;'></select>	
+					</div> -->
+					<label class='col-sm-1 control-label'>微信号</label> 
+					<div class='col-sm-2'>
+						<input type="text"  placeholder="请输入微信号" name="Q__S__LK__wx.alias_" class="form-control">
+					</div>
+					<label class='col-sm-1 control-label'>昵称</label> 
+					<div class='col-sm-2'>
+						<input type="text"  placeholder="请输入微信昵称" name="Q__S__LK__wx.nick_name_" class="form-control">
+					</div>
+					<label class='col-sm-1 control-label'>备注</label> 
+					<div class='col-sm-2'>
+						<input type="text"  placeholder="请输入微信昵称备注" name="Q__S__LK__wx.nick_name_remark_" class="form-control">
+					</div>
+					<div class='col-sm-3'>
+						<button type='button' class="jt-btn-search employeeWeiXinSearch"><i class="fa fa-search"></i>搜索</button>
+						<button type='button' id="clearSearchBtn" class="jt-btn-empty"><i class='fa fa-trash-o'></i>&nbsp;清空</button>
+					</div>
+				</div>
+
+	<!-- 			<div class="form-group groupSelect">
+		
+	</div> -->
+
+			</form>
+		</div>
+	</div>
+</div>

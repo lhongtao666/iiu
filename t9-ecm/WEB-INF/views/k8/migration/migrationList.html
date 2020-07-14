@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>k8迁移</title>
+    <#include "/common/common.html" />
+    <script src="${ctx}/js/jt/k8/migration/migration${deploy_min!""}.js?v=${jsVersion}"></script>
+</head>
+
+<body class='white-bg'>
+    <div class="wrapper animated fadeInRight">
+        <div class="row">
+            <div class="col-sm-2" style='background-color: #FFFFFF;'>
+                <ul id="organizationTree" class="ztree" style="width:260px; overflow:auto;">
+                    <li id="adminFenzu"><a href="javascript:void(0)">员工部门</a></li>
+                    <li id="product"><a href="javascript:void(0)">产品模块</a></li>
+                    <li id="userOpt"><a href="javascript:void(0)">客户选项</a></li>
+                    <li id="userInfo"><a href="javascript:void(0)">客户数据</a></li>
+                    <li id="order"><a href="javascript:void(0)">订单</a></li>
+                    <li id="userService"><a href="javascript:void(0)">客户跟进</a></li>
+                </ul>
+            </div>
+            <div class="col-sm-10">
+                <div class="row list_wrapper">
+                    <div class="col-sm-12">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <button type="button" class="btn btn-sm   btn-primary startRemove" id="label">开始迁移</button>
+                                 <button type="button" class="btn btn-sm   btn-primary timeLog">开启实时日志</button>
+                                 <button type="button" class="btn btn-sm   btn-primary stopLog">停止实时日志</button>
+                                <button type="button" class="btn btn-sm   btn-primary infoLog"><i class="fa fa-list">最近迁移日志</i></button>
+                                <button type="button" class="btn btn-sm   btn-primary migrationLog"><i class="fa fa-list">最近迁移结果</i></button>
+                                <button type="button" class="btn btn-sm   btn-primary pageModelInfo"><i class="fa fa-list">k8数据信息</i></button>
+                                <button type="button" class="btn btn-sm   btn-primary pageMigration"><i class="fa fa-list">分页迁移</i></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="logPanel" class='col-sm-12 jqGrid_wrapper'>
+                        <div class="panel-group" id="logText">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal fade" id="pageInfo" tabindex="-1" role="dialog" aria-labelledby="orgModalLabel" style="margin-top:7%;">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+	        <h4 class="modal-title">输入要迁移分页</h4>
+	      </div>
+	      <div class="modal-body">
+	        <form id="pageForm" method="get" class="form-horizontal">
+				<div class="form-group">
+					<label class="col-sm-3 control-label">起始页<span style='color: red'>*</span></label>
+					<div class="col-sm-9" >
+						<input type="text" required="true" digits="true" name="pageStart" placeholder="" class="form-control" validateType='default'>
+					</div>
+				</div>	
+				<div class="form-group">
+					<label class="col-sm-3 control-label">结束页<span style='color: red'>*</span></label>
+					<div class="col-sm-9" >
+						<input type="text" required="true" digits="true" name="pageEnd" placeholder="" class="form-control" validateType='default'>
+					</div>
+				</div>	
+			</form>		
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+	        <button type="button" class="btn btn-sm   btn-primary" id='savePage'>确定</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+</body>
+
+</html>

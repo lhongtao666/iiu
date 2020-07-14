@@ -1,0 +1,29 @@
+<div class="col-sm-12">
+	<style>
+		.padding-left0 > div {
+			padding-left: 0 !important;
+		}
+	</style>
+	<div class="panel panel-default padding-left0">
+	    <div class="panel-heading">
+	    	<button type='button' class='jt-btn rfmtRflevelAdd'><i class='fa fa-plus'></i>&nbsp;添加</button>
+			<button type='button' class='jt-btn rfmtRflevelEdit'><i class='fa fa-pencil'></i>&nbsp;编辑</button>
+			<button type='button' class='jt-btn rfmtRflevelDetail'><i class='fa fa-bars'></i>&nbsp;明细</button>
+			<button type='button' class='jt-btn jt-btn-red rfmtRflevelDel'><i class='fa fa-remove'></i>&nbsp;删除</button>
+	  		 <!-- 帮助中心 -->
+            <label id="glHelpContainer">	
+            </label>
+	    </div>
+	    <div class="panel-body">
+	        <form id='rfmtRflevelSearchForm' role="form" class="form-horizontal">
+				<!--默认生成一个搜索条件，需要的，用户自己添加-->
+				<div class="col-sm-4 jt-form-search">
+					<input type="text" id='nameSearch' placeholder="RF分类命名" name="Q__S__LK__name_" class="form-control">
+					<div class="jt-btn-group">
+						<button type="button" class="rfmtRflevelSearch" tabindex="-1"><i class="fa fa-search" style="font-style: 15px;"></i>&nbsp;搜索RF</button>
+					</div>
+				</div>
+			</form>
+	    </div>
+	</div>
+</div>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>安全日志配置表管理</title>
+	<#include "/common/common.html">
+	<script src="${ctx}/js/jt/gl/log/secureLogConfig.js?v=1.0.0" ></script>
+</head>
+
+<body>
+	<div class="wrapper animated fadeInRight">
+		<!-- list界面 -->
+		<div class="row list_wrapper">
+			<#include "/gl/log/secureLogConfig/secureLogConfigToolbar.html">	  			
+			<div class='col-sm-12 jqGrid_wrapper'>
+			    <table id="secureLogConfigGrid"></table>
+				<div id="secureLogConfigPager"></div>
+			</div>
+		</div>
+		<!-- 编辑界面 -->
+		<#include "/gl/log/secureLogConfig/secureLogConfigEdit.html">	    
+	</div>
+</body>
+</html>

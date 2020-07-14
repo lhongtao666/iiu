@@ -1,0 +1,46 @@
+<div class="col-sm-12">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <button type='button' class='btn btn-sm  btn-primary positionAdd'><i class='fa fa-plus'>添加</i></button>
+            <button type='button' class='btn btn-sm  btn-primary positionCopy'><i class='fa fa-plus'>复制</i></button>
+            <button type='button' class='btn btn-sm  btn-primary positionEdit'><i class='fa fa-edit'>编辑</i></button>
+            <button type='button' class='btn btn-sm  btn-danger positionDel'><i class='fa fa-remove'>删除</i></button>
+            <button type='button' class='btn btn-sm  btn-primary positionDetail'><i class='fa fa-list'>明细</i></button>
+            <label id="glHelpContainer"></label><!-- 帮助中心 -->
+        </div>
+        <div class="panel-body">
+            <form id='positionSearchForm' role="form" class="form-horizontal">
+                <!--默认生成一个搜索条件，需要的，用户自己添加-->
+                <div class="form-group">
+                    <div class="col-sm-3">
+                        <label class='col-sm-4 control-label'>名称</label>
+                        <div class='col-sm-8'>
+                            <input type="text" placeholder="请输入名称" name="Q__S__LK__name_" class="form-control">
+                        </div>
+                    </div>
+                   <!--  <div class="col-sm-3">
+                        <label class='col-sm-4 control-label'>类型</label>
+                        <div class='col-sm-8'>
+                            <select id="positionTypeSelect" placeholder="" name="Q__S__EQ__type_" class="form-control"></select>
+                        </div>
+                    </div> -->
+                    <div class="col-sm-3">
+                        <label class='col-sm-4 control-label'>部门</label>
+                        <div class='col-sm-8'>
+                            <input id='groupName1' class='form-control' readonly>
+                            <input type="hidden" name="Q__S__LK__group_ids_">
+                        </div>
+                    </div>
+                    <div class="col-sm-1">
+                        <div class="col-sm-6">
+                            <button type="button" class="btn btn-sm   btn-primary positionSearch">搜索</button>
+                        </div>
+                        <div class="col-sm-6">
+                            <button type="button" class="btn btn-sm   btn-primary positionClear">重置</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

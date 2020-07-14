@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>退货单明细</title>
+	<#include "/common/common.html">
+	<style type="text/css">
+		.dragsort {list-style-type:none; margin:0px; }
+		.dragsort li {float:left; padding:5px;}
+		.test{padding-right:8px !important;}
+	</style>
+	<script src="${ctx}/js/jt/ec/ret/returnDetail${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/plugins/suggest/bootstrap-suggest.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/plugins/dragsort/jquery.dragsort-0.5.2.min.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/jt/ec/ret/returnEntityBase${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/ec/ret/returnLog${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/ec/ret/soItemList${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/common/utils/shipCompanyUtils${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script>
+		var returnId = "";
+		var rno = "";
+		var isIframe = false;
+		<#if returnId??>returnId = "${returnId}";</#if>
+		<#if rno??>rno = "${rno}";</#if>
+		<#if isIframe??>isIframe = "${isIframe}";</#if>
+	</script>
+</head>
+
+<body class='white-bg'>
+	<div class="wrapper animated ">
+		<div class="row form_wrapper">
+			<div class='col-sm-12'>
+				<div class='panel-heading'>
+					<span id="viewBillDiv" style="display : none">
+						<button type='button' id="viewBill" class="btn btn-sm   btn-primary">查看财务单据</button>
+					</span>
+					<button type='button' id="closeBtn" class="btn btn-sm btn-danger">关闭</button>
+				</div>
+			</div>
+			<div class='col-sm-12'>
+				<#include "/ec/ret/returnEntity/returnEntityDetail.html">
+			</div>
+		</div>
+	</div>
+	<div id="returnLogPage" style="display: none">
+		<#include "/ec/ret/returnEntity/returnLogEdit.html">
+	</div>
+	<div id="refundPage" style="display: none;">
+		<#include "/ec/ret/returnEntity/refundAdd.html">
+	</div>
+</body>
+</html>

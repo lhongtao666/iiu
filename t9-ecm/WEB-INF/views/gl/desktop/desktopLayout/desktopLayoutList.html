@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>可选布局行管理</title>
+	<#include "/common/common.html">
+	<script src="${ctx}/js/jt/gl/desktop/desktopLayout${deploy_min!""}.js?v=${jsVersion}" ></script>
+</head>
+
+<body class='white-bg'>
+	<div class="wrapper animated ">
+		<!-- list界面 -->
+		<div class="row list_wrapper">
+			<#include "desktopLayoutToolbar.html">	  			
+			<div class='col-sm-12 jqGrid_wrapper'>
+			    <table id="desktopLayoutGrid"></table>
+				<div id="desktopLayoutPager"></div>
+			</div>
+		</div>
+		<!-- 编辑界面 -->
+		<#include "desktopLayoutEdit.html">	    
+	</div>
+</body>
+</html>

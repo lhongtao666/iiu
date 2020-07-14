@@ -1,0 +1,147 @@
+<div class="col-sm-12">
+	<div class="panel panel-default  end_wrapper">
+		<div class="panel-heading">
+			<button type='button' class='jt-btn jt-dd-normal soEntityReload'>
+				<i class="fa fa-refresh"></i>&nbsp;刷新
+			</button>
+			<button type='button' class='jt-btn jt-btn-red soEntityDelete'>
+				<i class='fa fa-remove'></i>&nbsp;删除
+			</button>
+		</div>
+		<div class="panel-body">
+			<form  class="form-horizontal">
+				<div class="form-group jt-form-group jt-form-normal">
+					<div class='col-sm-6 jt-date-param'>
+						<label  class="col-sm-2 control-label">下单时间</label>
+						<div class='col-sm-10'>
+							<div class="input-daterange input-group">
+								<input class="laydate-icon form-control layer-date minPlaceTime" name="Q__D__BW__entity.place_time_" placeholder="起始时间" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">
+								<span class="input-group-addon">到</span>
+								<input class="laydate-icon form-control layer-date maxPlaceTime" name="Q__D__BW__entity.place_time_" placeholder="结束时间" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<label  class="col-sm-4 control-label">订单编号</label>
+						<div class='col-sm-8'>
+							<input type="text" id='soNoSearch' placeholder="请输入订单编号" name="Q__S__EQ__entity.so_no_" class="form-control">
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<label  class="col-sm-4 control-label">客户编号</label>
+						<div class='col-sm-8'>
+							<input type="text" placeholder="请输入客户编号" id="csSearchParam"  name="csSearchParam"  class="form-control">
+						</div>
+					</div>
+				</div>
+
+				<div class="form-group hideSearchParam jt-form-group jt-form-normal">
+					<div class="col-sm-3">
+						<label  class="col-sm-4 control-label">快递公司</label>
+						<div class='col-sm-8'>
+							<select class="chosen-select form-control scCodeQry scCodeQryWait" data-placeholder="请选择" multiple>
+								<option value="">全部</option>
+							</select>
+						</div>
+					</div>
+					
+					<div class="col-sm-3">
+						<label  class="col-sm-4 control-label">是否加急</label>
+						<div class='col-sm-8'>
+							<select  name="Q__S__EQ__entity.is_fast_" class="form-control">
+								<option value="">不区分</option>
+								<option value="y">是</option>
+								<option value="n">否</option>
+							</select>
+						</div>
+					</div>
+					
+					<div class="col-sm-6">
+						<label  class="col-sm-1 control-label">归属工号</label>
+						<div>
+							<div class="col-sm-5">
+								<input type='text' id='belongOgnClose' class='form-control' readonly>
+								<input id='belongOgnIdClose' name='belongOgn' type='hidden'>
+							</div>
+							<div class="col-sm-6">
+								<select id='belongEmployeeClose' class="form-control" name="belongEmployee" style='width: 100%;'>
+									<option value="">请选择</option>
+								</select>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<label  class="col-sm-4 control-label">商品</label>
+						<div class='col-sm-8'>
+							<div class="input-group">
+								<input type="text" id='skuSearch' placeholder="请选择或输入" name="skuKeyQry" class="form-control">
+								<div class="input-group-btn skuSearchImg" >
+										<img class="searchImg"  src="${ctx}/img/jt/search.png"></img>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<label  class="col-sm-4 control-label">订单类型</label>
+						<div class='col-sm-8'>
+							<select  name="Q__S__EQ__entity.so_type_" class="form-control soTypeQry">
+								<option value="">全部</option>
+							</select>
+						</div>
+					</div>
+					
+					<div class="col-sm-3">
+						<label  class="col-sm-4 control-label">审单工号</label> 
+						<div class='col-sm-8'>
+							<input type="text" placeholder="请输入审单工号" name="auditorId" class="form-control">
+						</div>
+					</div>
+					
+					<div class="col-sm-3">
+						<label class="col-sm-4 control-label">店铺名称</label>
+						<div class='col-sm-8'>
+							<select name="Q__S__EQ__entity.third_store_name_" class="form-control storeNameSearch">
+							</select>
+						</div>
+					</div>
+						
+					<div class="col-sm-6">
+						<label  class="col-sm-1 control-label">下单人</label>
+						<div>
+							<div class="col-sm-2">
+								<input type='text' id='plaerClose'class='form-control' readonly>
+								<input id='plaerIdClose' name='belongOgnPlacer' type='hidden'>
+							</div>
+							<div class="col-sm-2">
+								<select id="planMan" class="form-control planMan" name="Q__S__EQ__entity.placer_id_" style='width: 100%;'>
+								</select>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<label  class="col-sm-4 control-label">现金券设置</label> 
+						<div class="col-sm-8">
+							<select class="form-control cashSearch" name="Q__S__EQ__entity.cash_id_">
+							</select>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<label  class="col-sm-4 control-label">现金券券码</label> 
+						<div class="col-sm-8">
+							<input  class='form-control' name="Q__S__EQ__entity.cash_code_">
+						</div>
+					</div>
+				</div>	
+				<div class='form-group'>
+					<div class='col-sm-5'></div>
+					<div class='col-sm-7'>
+						<button type='button' class="btn jt-btn-search soEntitySearch" style="min-width: 35px;"><i class='fa fa-search' style="font-style: 15px;"></i>&nbsp;搜索</button>
+						<button type='button' class="btn jt-btn-empty soEntityClearSearch" style="min-width: 45px;"><i class="fa fa-trash-o"></i>&nbsp;清空</button>
+						<button type='button' class="btn jt-btn-drop dropdown-toggle showSearch">展开<span class="fa fa-sort-down"></span></button>
+						<button type='button' class="btn jt-btn-drop hideSearch" style="display:none" >收起<span class="fa fa-sort-up"></span></button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>

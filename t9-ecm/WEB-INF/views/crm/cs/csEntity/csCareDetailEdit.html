@@ -1,0 +1,86 @@
+<form id="csCareForm" method="get" class="form-horizontal">
+  <div class="form-group">
+    <div class="col-sm-4"  >
+		<label class="col-sm-3 control-label">关怀方式</label>
+	   <div class='col-sm-9'   >
+	      <select class="form-control" name="status" validateType="default" >
+		          <option value="email">邮件</option>
+		          <option value="sms">短信</option>
+		          <option value="call">呼出电话</option>
+		          <option value="visit">外访</option>
+		  </select>
+	   </div>
+    </div>
+    <div class="col-sm-4"  >
+		<label class="col-sm-3 control-label">联系人</label>
+	   <div class='col-sm-6'   >
+	      <input type="text" name="addrName" placeholder=""  validateType="default"  class="digits form-control"> 
+	      <input type="hidden" name="addrId" > 
+	   </div>
+	   <div class='col-sm-3' >
+	       <input id="addAddrButtonId" type="button"   class="btn btn-sm   btn-primary"  value="选择执行人"  >
+	   </div>
+    </div>
+    <div class="col-sm-4"  >
+		<label class="col-sm-3 control-label">执行人</label>
+	   <div class='col-sm-6'   >
+	      <input type="text" name="partyName" placeholder=""  validateType="default"  class="digits form-control"> 
+	      <input type="hidden" name="partyId" > 
+	   </div>
+	   <div class='col-sm-3' >
+	       <input id="addEmployeesButtonId" type="button"   class="btn btn-sm   btn-primary"  value="选择执行人"  >
+	   </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-4" >
+		<label class="col-sm-3 control-label">状态</label>
+	   <div class='col-sm-9'   >
+	      <select class="form-control" name="status" validateType="default" >
+		          <option value="undo">未执行</option>
+		          <option value="done">已执行</option>
+		          <option value="follow">需后续跟进</option>
+		          <option value="follow_done">后续跟进完毕</option>
+		  </select>
+	   </div>
+    </div>
+    <div class="col-sm-4"  >
+		<label class="col-sm-3 control-label">关怀时间</label>
+	   <div class='col-sm-9'   >
+	       <input class='laydate-icon form-control layer-date' name="upgTime" validateType="default"  placeholder="YYYY-MM-DD hh:mm:ss" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})"> 
+	   </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-12"  >
+		<label class="col-sm-1 control-label">关怀内容</label>
+	   <div class='col-sm-11'   >
+	      <input type="text" name="pointUsable" placeholder=""  validateType="default"  class="digits form-control"> 
+	   </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-12" >
+		<label class="col-sm-1 control-label">客户反馈</label>
+	   <div class='col-sm-11'   >
+	      <input type="text" name="pointUsable" placeholder=""  validateType="default"  class="digits form-control"> 
+	   </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-12" >
+		<label class="col-sm-1 control-label">备注</label>
+	   <div class='col-sm-11'   >
+	      <input type="text" name="pointUsable" placeholder=""  validateType="default"  class="digits form-control"> 
+	   </div>
+    </div>
+  </div>
+  <br>
+  <div class="form-group">
+	<div class="col-sm-4 col-sm-offset-2">
+		<button id="prevBtn" class="btn btn-default jt-btn-close">返回</button>
+		<button id="saveBtn" class="btn btn-sm btn-primary jt-btn-normal">保存</button>
+		<button id="resetBtn" class="btn jt-btn-normal jt-bn-red">重置</button>
+	</div>
+  </div>
+</form>

@@ -1,0 +1,125 @@
+<form id="levelDefForm" method="get" class="form-horizontal">
+	<div class="form-group">
+		<div class='col-sm-4'>
+			<label class="col-sm-3 control-label">级别名称<span style="color:red;">*</span></label>
+			<div class="col-sm-9">
+				<input type="text" name="name" placeholder="" class="form-control" validateType="default" > 
+			</div>
+		</div>	
+		<div class='col-sm-4'>
+			<label class="col-sm-3 control-label">积分<span style="color:red;">*</span></label>
+			<div class="col-sm-9">
+				<input type="text" name="count" placeholder=""  validateType="default"  class="digits form-control"> 
+			</div>
+		</div>	
+		<div class='col-sm-4'>
+			<label class="col-sm-3 control-label">级别状态</label>
+			<div class="col-sm-9">
+				<select class="form-control" name="levelStatus" validateType="default" >
+               		<option value="actived">激活</option>
+               	    <option value="inactive">不激活</option>
+              	</select>
+            </div>
+        </div>
+	</div>
+	<div class="form-group">
+		<div class='col-sm-4'>
+			<label class="col-sm-3 control-label">申请条件</label>
+			<div class="col-sm-9">
+				<select class="form-control" name="levelUpgradeType" validateType="default" >
+               		<option value="count">积分数量</option>
+               	    <option value="completeFirst">完成首单</option>
+              	</select>
+            </div>
+        </div>
+		<div class='col-sm-4 gradeDiv'>
+			<label class="col-sm-3 control-label">级别<span style="color:red;">*</span></label>
+			<div class="col-sm-9">
+				<select class="form-control" name="level" id="levelSelect" validateType="default" >
+					<option value="0">0</option>
+               		<option value="1">1</option>
+               	    <option value="2">2</option>
+               	    <option value="3">3</option>
+               	    <option value="4">4</option>
+               	    <option value="5">5</option>
+               	    <option value="6">6</option>
+               	    <option value="7">7</option>
+              	</select>
+			</div>
+		</div>
+
+		<div class='col-sm-4'>
+			<label class="col-sm-3 control-label"><span style="color:red;">*</span>级别图标</label>
+			<div class="col-sm-9">
+				<div><img id ="image" src="" style="width:30px; height: 30px;margin-top:3px;"/></div>
+            </div>
+        </div>	
+    </div> 
+    <div class="form-group">     
+		<div class='col-sm-4'>
+			<label class="col-sm-3 control-label">会员折扣</label>
+			<div class="col-sm-9">
+				<input type="text" name="percent" placeholder="" class="form-control" validateType="default" > 
+			</div>
+		</div>	   
+		<!-- <div class='col-sm-4'>
+		     		<label class="col-sm-3 control-label">兑换区</label>
+		     		<div class="col-sm-9">
+		     			<select class="form-control exAreas" name="exAreas" validateType="default" >
+		     	              	</select>
+		     		</div>
+		     	</div>
+		     	
+		     	<div class='col-sm-4 exMonthDiv'>
+		     		<label class="col-sm-3 control-label">兑换次数</label>
+		     		<div class="col-sm-9">
+		     			<input type="number" name="exMonth" placeholder="" class="form-control" validateType="default" > 
+		     	            </div>
+		     	        </div>    	
+	</div>  -->  
+<!-- 	<div class="form-group countDiv">
+   <div class='col-sm-4'>
+		<label class="col-sm-3 control-label">兑换商品次数</label>
+		<div class="col-sm-9">
+			<input type="number" name="exCount" placeholder="" class="form-control" validateType="default" > 
+		</div>
+	</div>
+	<div class='col-sm-4'>
+		<label class="col-sm-3 control-label">健康管理次数</label>
+		<div class="col-sm-9">
+			<input type="number" name="yearHealth" placeholder="" class="form-control" validateType="default" > 
+		</div>
+	</div>
+
+	<div class='col-sm-4'>
+		<label class="col-sm-3 control-label">最低消费次数</label>
+		<div class="col-sm-9">
+			<input type="number" name="yearOrder" placeholder="" class="form-control" validateType="default" > 
+            </div>
+        </div> -->
+	</div> 
+	<div class="form-group"> 
+		<div class='col-sm-12'>
+			<div class="col-sm-1">
+				<label class="control-label" style="float: right;">描述</label>
+			</div>
+			<div class="col-sm-11">
+				<textarea name="desc" placeholder="" class="form-control" validateType="default" rows='6' ></textarea>
+			</div>
+		</div>	 
+    </div>
+	<div class='form-group'>
+		<!--将隐藏域放在这里，不显示出来-->
+		<div style="display:none'">
+			<input type="hidden" name="level">
+			<input type="hidden" name="status">
+			<input type="hidden" name="upgradeType">
+			<input type="hidden" id="id" name="id">
+			<input type="hidden" name="image">
+			<input type="hidden" name="imagePath">
+			<input type="hidden" name="createBy">
+			<input type="hidden" name="createTime">
+		</div>
+	</div>
+
+</form>

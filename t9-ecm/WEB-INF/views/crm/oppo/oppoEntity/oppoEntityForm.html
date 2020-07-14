@@ -1,0 +1,160 @@
+<div class='col-sm-12' style='border: 1px solid #ddd; padding:10px;'>
+    <div class='col-sm-12'>
+        <form id="oppoEntityForm" method="get" class="form-horizontal">
+            <div class="form-group">
+                <div class="col-sm-4">
+                    <label class="col-sm-3 control-label">编号</label>
+                    <div class="col-sm-1"></div>
+                    <div class="col-sm-8">
+                        <label class="control-label oppo-key"> (系统生成)</label>
+                    </div>
+                </div>
+                <div class='col-sm-4'>
+                    <label class="col-sm-3 control-label">名称<span style="color: red;">*</span></label>
+                    <div class="col-sm-9">
+                        <input type="text" name="name" placeholder="" class="form-control" validateType="default">
+                    </div>
+                </div>
+                <div class='col-sm-4'>
+                    <label class="col-sm-3 control-label">业务分类</label>
+                    <div class="col-sm-9">
+                        <select class="form-control" id="cateId" name="cateId" validatetype="default" aria-required="true" aria-describedby="">
+                            <option value="">请选择</option>
+                            <option value="oppo_old_cs" selected="selected">老客户机会</option>
+                            <option value="oppo_new_product">新客户产品推荐</option>
+                            <option value="oppo_new_cs_ad">新客户初步推荐</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-4">
+                    <label class="col-sm-3 control-label">目标客户<span style="color: red;">*</span></label>
+                    <div class="col-sm-6">
+                        <input type='text' name="customerName"  placeholder=""  class="form-control" readonly="readonly"  validateType="default">
+                    </div>
+                    <div class="col-sm-3">
+                        <button class="btn btn-sm   btn-primary selectCustomer" type="button">选择客户</button>
+                    </div>
+                </div>
+                <div class='col-sm-4'>
+                    <label class="col-sm-3 control-label">来源</label>
+                    <div class="col-sm-9">
+                        <select name="srcType" id="srcTypeSelect" class="form-control" validatetype="default" aria-required="true" aria-invalid="false" aria-describedby="">
+                            <option value="">请选择</option>
+                            <option value="wechart">微信</option>
+                            <option value="qq">qq</option>
+                            <option value="tel" selected="selected">电话</option>
+                            <option value="weibo">微博</option>
+                        </select>
+                    </div>
+                </div>
+                <div class='col-sm-4'>
+                    <label class="col-sm-3 control-label">兴趣大小</label>
+                    <div class="col-sm-9">
+                        <select name="interest" id="interestSelect" class="form-control">
+                            <option value="">请选择</option>
+                            <option value="1">很小</option>
+                            <option value="2" selected="selected">普通</option>
+                            <option value="3">较大</option>
+                            <option value="4">很大</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class='col-sm-4'>
+                    <label class="col-sm-3 control-label">阶段</label>
+                    <div class="col-sm-9">
+                        <select name="stage" id="stageSelect" class="form-control">
+                            <option value="">请选择</option>
+                            <option value="begin" selected="selected">挖掘商机</option>
+                            <option value="interest">确定客户意向</option>
+                            <option value="project">引导客户立项</option>
+                            <option value="agree">赢得客户认可</option>
+                            <option value="discuss">进行商务谈判</option>
+                            <option value="win">赢单</option>
+                            <option value="lost">丢单</option>
+                        </select>
+                    </div>
+                </div>
+                <div class='col-sm-4'>
+                    <label class="col-sm-3 control-label">预期成交范围(元)</label>
+                    <div class="col-sm-4">
+                        <input type="text" name="profitMin" placeholder="最小成交数" class="form-control" validateType="default">
+                    </div>
+                    <label class="col-sm-1 control-label" style="text-align:center;"> ~ </label>
+                    <div class="col-sm-4">
+                        <input type="text" name="profitMax" placeholder="最大成交数" class="form-control" validateType="default">
+                    </div>
+                </div>
+                <div class='col-sm-4'>
+                    <label class="col-sm-3 control-label">预期结束时间</label>
+                    <div class="col-sm-9">
+                        <input class='laydate-icon form-control layer-date' name="endTime" 
+                        onclick="
+                        laydate(
+                            {
+                                istime: false, 
+                                isclear: true,
+                                istoday: true,
+                                festival: true,
+                                format: 'YYYY-MM-DD',
+                                choose: function(){
+                                    $('input[name=endTime]').focus();
+                                    $('input[name=endTime]').blur();
+                                    $('input[name=endTime]').trigger('change');
+                                    $('input[name=endTime]').trigger('input');
+                                }
+                                
+                        })"
+                        />
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class='col-sm-4'>
+                    <label class="col-sm-3 control-label">成功概率</label>
+                    <div class="col-sm-9">
+                        <select name="rate" id="rateSelect" class="form-control">
+                                <option value="">请选择</option>
+                                <option value="1">很小</option>
+                                <option value="2" selected="selected">普通</option>
+                                <option value="3">较大</option>
+                                <option value="4">很大</option>
+                        </select>
+                    </div>
+
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-12">
+                    <label class="col-sm-1 control-label">说明</label>
+                    <div class="col-sm-11">
+                        <textarea name="desc" class="form-control" rows="4"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group" id='summary-form-group'>
+                <div class="col-sm-12">
+                    <label class="col-sm-1 control-label">最终总结</label>
+                    <div class="col-sm-11">
+                        <textarea readonly="readonly" disabled="disabled" name="summary" class="form-control" rows="4"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class='form-group'>
+                <!--将隐藏域放在这里，不显示出来-->
+                <div style="display:none'">
+                    <input type="hidden" id="id" name="id">
+                    <input type="hidden" name="createBy">
+                    <input type="hidden" name="createTime">
+                    <input type="hidden" name="entityType">
+                    <input type="hidden" name="entityId">
+                    <input type="hidden" name="coId">
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>cti参数配置</title>
+    <#include "/common/common.html" />
+    <link href="${ctx}/css/jt/gl/config/ctiConfig.css?v=${jsVersion}" rel="stylesheet">
+    <script src="${ctx}/js/jt/gl/config/ctiConfig${deploy_min!""}.js?v=${jsVersion}"></script>
+</head>
+<style type="text/css">
+   .task-item .glyphicon{
+        margin-right: 0px;
+        color:red;
+        font-size:18px;
+    }
+    .tabContent .ctiConfigAdd{
+        background: url(/t9-ecm/img/jt/ctiConfigAdd.png) no-repeat;
+        display: inline-block;
+        width: 67px;
+        height: 67px;
+        border-radius: 9px;
+    }
+    .layui-layer-title{
+        background-color: #1caf9a;
+        color:white;
+    }
+</style>
+
+<body class='white-bg'>
+    <div class="wrapper animated ">
+        <div class='row'>
+            <div id="wrapper">
+              <div id="left-side">
+                <ul> 
+                  <li class="adnLineTabLi tabLi active" data-value="adnLine">
+                     <div ><span class="glyphicon glyphicon-earphone " aria-hidden="true"></span>话机线路</div>
+                  </li>
+                  <li class="telDataTabLi tabLi " data-value="telData">
+                     <div ><span class="glyphicon glyphicon-tasks " aria-hidden="true"></span> 通话数据</div>
+                  </li>
+                  <li class="spreadConfigTabLi tabLi" data-value="spreadConfig">
+                    <div ><span class="glyphicon glyphicon-random " aria-hidden="true"></span>推广配置</div>
+                  </li>
+                  <li class="recordParamTabLi tabLi" data-value="recordParam">
+                    <div ><span class="glyphicon glyphicon-record" aria-hidden="true"></span>录音参数</div>
+                  </li>
+                  <li class="ctiTypeTabLi tabLi" data-value="ctiType">
+                   <div ><span class="glyphicon glyphicon-th" aria-hidden="true"></span>CTI类型</div>
+                  </li>
+                </ul>
+              </div>
+
+              <div id="border">
+                <div id="line"></div>
+              </div>
+
+            <div id="right-side">
+                <div id="adnLine" class="active tabContent" >
+                </div>
+
+                <div id="telData"  class="tabContent">
+                </div>
+
+                <div id="spreadConfig" class="tabContent">
+                </div>
+
+                <div id="recordParam" class="tabContent">
+                </div>
+                
+                <div id="ctiType" class="tabContent">
+                </div>
+
+              </div>
+            </div>
+        </div>
+    </div>
+    <div class="ctiConfigEditContent" style="display: none;margin-top: 20px;">
+      <div class='col-sm-12'>
+        <form id='ctiConfigForm' class='form-horizontal'>
+          <input type="hidden" name="typeKey" >
+          <div class="form-group">
+            <div class="col-sm-1">
+            </div>
+            <div class="col-sm-10">
+              <label class="col-sm-3 control-label">名称<span style='color: red;'>*</span></label>
+              <div class="col-sm-5">
+               <input type="text" validateType='default'  name="name" class="form-control">
+             </div>
+           </div>
+         </div>
+
+         <div class="form-group">
+          <div class="col-sm-1">
+          </div>
+          <div class="col-sm-10">
+            <label class="col-sm-3 control-label">描述</label>
+            <div class="col-sm-5">
+             <input type="text"  validateType='default' name="desc" class="form-control">
+           </div>
+         </div>
+       </div>
+
+       <div class="form-group">
+        <div class="col-sm-1">
+        </div>
+        <div class="col-sm-10">
+          <label class="col-sm-3 control-label">业务键<span style='color: red;'>*</span></label>
+          <div class="col-sm-5">
+           <input type="text" validateType='default'  name="key" class="form-control">
+         </div>
+       </div>
+     </div>
+
+     <div class="form-group">
+      <div class="col-sm-1">
+      </div>
+      <div class="col-sm-10">
+        <label class="col-sm-3 control-label">数据类型</label>
+        <div class="col-sm-5">
+         <select  name='dataType' validateType='default'  class='form-control'>
+          <option value='string' selected='selected'>字符串</option>
+          <option value='integer'>整数</option>
+          <option value='select'>选项型</option>
+          <option value='boolean'>布尔型</option>
+        </select>
+      </div>
+    </div>
+  </div>
+  
+  <div class="form-group">
+    <div class="col-sm-1">
+    </div>
+    <div class="col-sm-10">
+      <label class="col-sm-3 control-label">选项可选值，以逗号隔开（a,b,c）</label>
+      <div class="col-sm-5">
+       <input type="text" name="optionValue" class="form-control">
+     </div>
+   </div>
+ </div>
+    
+
+  <div class="form-group">
+    <div class="col-sm-1">
+    </div>
+    <div class="col-sm-10">
+      <label class="col-sm-3 control-label">参数值</label>
+      <div class="col-sm-5">
+       <input type="text" name="value" class="form-control">
+     </div>
+   </div>
+ </div>
+</form>
+</div>
+</div>
+</body>
+</html>

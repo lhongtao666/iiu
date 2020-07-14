@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>客户报表</title>
+	<#include "/common/common.html">
+	<script src="${ctx}/js/plugins/echarts/echarts-all.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/jt/common/plugins/report${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/crm/report/cs/csReport${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src='${ctx}/js/jt/common/service/common-cate${deploy_min!""}.js?v=${jsVersion}'></script>
+	<script>
+	    var ctx = "${ctx}";
+	</script>
+</head>
+
+<body class="white-bg">
+	<div class="wrapper animated ">
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="ibox ">
+					<div class="ibox-title">
+						<h5>客户管理</h5>
+					</div>
+					<div class="ibox-content">
+					    <#include "csReportSearchForm.html">
+						<hr  style="height:1px;border:none;border-top:1px solid #CACCC1;">
+							 <div id="searchShow" style="color:red;">查询条件： 客户业务类型=全部  客户状态=全部 客户来源=全部 行业类别=全部</div>
+							<br>
+							<div id="main" style="height:350px;"></div>
+							<br>
+							<div class="jqGrid_wrapper" >
+							   <div id="csReportGridDiv"><table id="csReportGrid"></table></div>
+							</div>
+							<br>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>我的客户</title>
+	<#include "/common/common.html">
+	<#include "/common/timepicker.html" />
+	<#include "/common/datatable.html">
+	<#include "/common/eav.html">
+
+	<script>
+		var type = "self";	//我的客户列表
+		var filterType = "";
+		var currentPositionId = "";
+		<#if filterType??>filterType = "${filterType}";</#if>
+	</script>
+	<style>
+		.hideSearchParam{
+			display: none;
+		}
+	</style>
+	<#include "/crm/cs/csEntity/cs-head.html">
+	<script src="${ctx}/js/jt/crm/cs/standard/csEntityStandard${deploy_min!""}.js?v=${jsVersion}" ></script>
+</head>
+
+<body class='white-bg'>
+	<div class="wrapper animated ">
+		<div class="row list_wrapper">
+			<#include "/crm/cs/csEntity/csEntityToolbar.html">
+			<div class='col-sm-12 jqGrid_wrapper'>
+				<table id="csEntityGrid"></table>
+				<div id="csEntityPager"></div>
+			</div>
+		</div>
+		<#include "/crm/cs/csEntity/csEntityExportExcel.html">
+		<#include "/crm/cs/csEntity/csEntityEdit.html">
+	</div>
+</body>
+</html>

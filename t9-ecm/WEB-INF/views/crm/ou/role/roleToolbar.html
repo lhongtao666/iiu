@@ -1,0 +1,67 @@
+<div class="col-sm-12">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <button type="button" class="jt-btn" id="addGroupBtn"><i class="fa fa-plus"></i>&nbsp;添加分组</button>
+            <button type="button" class="jt-btn" id="addRoleBtn" ><i class="fa fa-plus"></i>&nbsp;添加角色</button>
+            <button type="button" class='jt-btn' id='editRoleBtn'><i class="fa fa-pencil"></i>&nbsp;编辑</button>
+            <button type="button" class="jt-btn" style="display: none;" id="saveRoleBtn"><i class="fa fa-floppy-o"></i>&nbsp;保存</button>
+            <button type="button" class="jt-btn jt-btn-red" style="display: none;" id="cancelRoleBtn"><i class="fa fa-reply">&nbsp;</i>取消</button> 
+            <label id="glHelpContainer"></label><!-- 帮助中心 -->
+        </div>
+        <div class="panel-body">
+            <div class='col-sm-12'>
+                <form id="roleForm" method="get" class="form-horizontal">
+                    <div class="form-group">
+                        <label class="col-sm-1 control-label">名称<span style='color: red'>*</span></label>
+                        <div class="col-sm-2">
+                            <input type="text" validateType='default' name="name" placeholder="" class="form-control">
+                        </div>
+
+                        <label class="col-sm-1 control-label">分组<span style='color: red'>*</span></label>
+                        <div class="col-sm-2">
+                            <select class="form-control" name="cateId" id="cateIdContainer" validateType='default'>
+                            </select> 
+                        </div>
+                        <label class="col-sm-1 control-label">状态<span style='color: red'>*</span></label>
+                        <div class="col-sm-2">
+                            <select class="form-control" validateType='default' name="status">
+                                <option value=''>请选择</option>
+                                <option value="inactive">未激活</option>
+                                <option value="actived">激活</option>
+                            </select> 
+                        </div>
+                          <label class="col-sm-1 control-label">客户上限</label>
+                        <div class="col-sm-2">
+                            <input type="text" name="csLimit" validateType="default" class="form-control" />
+                        </div>
+                    </div>  
+                    <div class="form-group">
+                        <label class="col-sm-1 control-label">是否代理商角色<span style="color: red;">*</span></label>
+                        <div class="col-sm-2">
+                            <select name="isAgent" validateType="default" class="form-control" >
+                                <option value="n">否</option>
+                                <option value="y">是</option>
+                            </select>
+                        </div>
+                    </div>
+                    <!-- <div class="form-group">
+                        <label class="col-sm-1 control-label">描述</label>
+                        <div class="col-sm-11">
+                            <textarea name='desc' validateType='default' rows='2' validateType='default' class='form-control'></textarea>
+                        </div>
+                    </div> -->
+                    
+                    <div class='form-group'>
+                        <div style='display: none;'>
+                            <input type="hidden" name="id"> 
+                            <input type="hidden" name="createBy">
+                            <input type="hidden" name="createTime">
+                            <input type="hidden" name="sort">
+                            <input type="hidden" name="rootRes">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

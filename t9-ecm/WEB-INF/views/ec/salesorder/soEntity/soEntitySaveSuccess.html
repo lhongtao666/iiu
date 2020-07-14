@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>销售订单下单成功信息</title>
+	<#include "/common/common.html">
+	<link href="${ctx}/css/plugins/chosen/chosen.css?v=${jsVersion}" rel="stylesheet">
+	<script src="${ctx}/js/plugins/chosen/chosen.jquery.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/jt/ec/salesorder/soItem${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/ec/salesorder/soLog${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/ec/salesorder/soShip${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/common/utils/groupUtils${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src='${ctx}/js/jt/crm/cs/csFollow${deploy_min!""}.js?v=${jsVersion}'></script>
+	<script src="${ctx}/js/jt/ec/salesorder/soEntityBase${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/ec/salesorder/soEntitySaveSuccess${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src='${ctx}/js/jt/common/service/addressService${deploy_min!""}.js?v=${jsVersion}'></script>
+	<script src="${ctx}/js/jt/ec/salesorder/soProfit${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src='${ctx}/js/jt/common/service/financeAccountSelect${deploy_min!""}.js?v=${jsVersion}'></script>
+	<script src="${ctx}/js/jt/ec/stock/storeUtils${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/common/utils/maskPhoneNum${deploy_min!""}.js?v=${jsVersion}" ></script>   
+	<script src='${ctx}/js/jt/common/service/employeesSelectLayer${deploy_min!""}.js?v=${jsVersion}'></script>
+	<script src="${ctx}/js/jt/common/utils/shipCompanyUtils${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/crm/cs/csPhonePanel${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src='${ctx}/js/jt/common/service/sendMessage${deploy_min!""}.js?v=${jsVersion}'></script>
+	<script src='${ctx}/js/jt/gl/cate/cateOptService${deploy_min!""}.js?v=${jsVersion}'></script>
+	<script src="${ctx}/js/jt/ec/salesorder/export/soEntityExport${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/common/utils/excelUtil${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script type="text/javascript">
+	var curUserId = "${ONLINE_ENTITY.userId}";
+	var soId="${soId}";
+	var isPoint="${isPoint}";
+	</script>
+	<style>
+
+		.contact-box button{
+			background-color: transparent;
+			cursor: pointer;
+			border: 0px none;
+			display: none;
+			height: 24px;
+			width: 24px;
+			position: absolute;
+			top: 0px;
+		}
+
+		.edit-addr{
+		   right:0px;
+		}
+
+
+		.contact-box-selected{
+		  border-color:red;
+		}
+		.contact-box-selected b{
+		  display: block;
+		  position: absolute;
+		  right: 0px;
+		  bottom: 0px;
+		  width: 12px;
+		  height: 12px;
+		  overflow: hidden;
+		  
+		}
+		.addrLiDiv{
+			list-style: outside none none;
+			position:relative;
+			border:1px solid #DDD;
+			height:18px;
+			line-height:18px;
+			padding:5px 10px;
+			width:120px;
+			text-align:center;
+			cursor:pointer;
+			background-color:#FFF;
+		}
+
+	</style>
+</head>
+<body>
+<div >
+<div class="wrapper animated ">
+	<div class="row form_wrapper">
+       	<div class="panel panel-default">
+            <div class="panel-heading">
+                <button type='button' class="btn btn-sm   btn-primary submitBtn"  id="submitBtn">提交</button>
+			    <button type='button' class="btn btn-sm   btn-primary toEditPageBtn" id="toEditPageBtn">返回修改</button>
+            </div>
+            <div class="panel-body">
+            <input name="placeType"  value="${type}"   type="hidden">
+                <#include "/ec/salesorder/soEntity/soEntityInfoForm.html">   
+            </div>
+        </div>
+	</div>  
+</div></div>
+<div style="display:none"  class="csFollowEdit" >
+	<div class="panel-body">
+		<form method="get" class="form-horizontal" id="csFollowForm">
+	   		<#include "/crm/cs/csEntity/csFollowEdit.html" >
+	   	</form>
+   	</div>
+</div>
+<div style="display:none"  class="sendMessagePane" >
+   	<#include "/crm/cs/csEntity/sendMessagePane.html" >
+</div>
+</body>
+</html>

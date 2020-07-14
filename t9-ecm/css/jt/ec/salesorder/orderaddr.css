@@ -1,0 +1,91 @@
+.contact-box:hover{
+  border-color:red;
+}
+
+.contact-box button{
+  background-color: transparent;
+  cursor: pointer;
+  border: 0px none;
+  display: none;
+  height: 30px;
+  width: 30px;
+  position: absolute;
+  top: 0px;
+}
+
+.edit-addr{
+   right:2px;
+}
+.contact-box:hover button{
+  display: block;
+}
+
+.contact-box button:hover{
+  background-color: #DDD;
+}
+
+.contact-box-selected{
+  border-color:red !important;
+}
+.contact-box-selected b{
+  display: block;
+  position: absolute;
+  right: 8px;
+  bottom: 10px;
+  width: 12px;
+  height: 12px;
+  overflow: hidden;
+  
+}
+.addrLiDiv{
+  list-style: outside none none;
+  position:relative;
+  border:1px solid #DDD;
+  height:18px;
+  line-height:18px;
+  padding:5px 10px;
+  width:120px;
+  text-align:center;
+  cursor:pointer;
+  background-color:#FFF
+}
+
+.contact-box-line{
+  background-color: #ffffff;
+  border: 1px solid #CCC;
+  padding: 10px;
+  margin-bottom: 5px;
+}
+
+.contact-box-line:hover{
+  border-color:#999;
+}
+
+.contact-box-line button{
+  background-color: transparent;
+  cursor: pointer;
+  border: 0px none;
+  display: block;
+  height: 30px;
+  width: 30px;
+  position: absolute;
+  top: 1px;
+  right: 5px;
+}
+
+.contact-box-line:hover button{
+  display: block;
+}
+
+.contact-box-line button:hover{
+  background-color: #DDD;
+}
+
+.so-title{
+  display:block;
+  position:relative;
+  top:-10px;
+  text-align: center; 
+  background: white;
+  width:80px;
+}

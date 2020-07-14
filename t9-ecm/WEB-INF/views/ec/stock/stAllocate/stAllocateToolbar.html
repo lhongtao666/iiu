@@ -1,0 +1,83 @@
+<div class="col-sm-12">
+	<div class="panel panel-default">
+	    <div class="panel-heading">
+	    	
+			<button type='button' class='btn btn-sm   btn-primary stAllocateAdd'><i class='fa fa-plus'>添加</i></button>
+			
+			<button type='button' class='btn btn-sm   btn-primary stAllocateEdit'><i class='fa fa-edit'>编辑</i></button>
+			<button type='button' class='btn btn-sm   btn-primary stAllocateDone'><i class='fa fa-edit'>完成</i></button>
+			<div class="btn-group">
+       			<button data-toggle="dropdown" class="btn btn-sm   btn-primary dropdown-toggle">更多操作 <span class="caret"></span></button>
+       			<ul class="dropdown-menu">
+            		<li>
+           				 <a href="javascript:void(0)" class='btn btn-sm   btn-primary stAllocateDetail'>
+           				 	明细
+            			</a>
+            		</li>
+            		<li>
+           				 <a href="javascript:void(0)" class='btn btn-sm   btn-danger stAllocateDel'>
+           				 	删除
+            			</a>
+            		</li>
+            		<li>
+            			<a href="javascript:void(0)" class="btn btn-sm   btn-primary stAllocateExport">
+            				导出单据
+            			</a>
+            		</li>
+        			
+        		</ul>
+        	</div>
+			
+	    </div>
+	    <div class="panel-body">
+	        <form id='stAllocateSearchForm' role="form" class="form-horizontal">
+				<div class="form-group">
+					<label class='control-label col-sm-1'>名称</label> 
+					<div class='col-sm-2'>
+						<input type="text" id='nameSearch' placeholder="请输入资源名称" name="Q__S__LK__allocate.name_" class="form-control">	
+					</div>
+					
+					<label class='control-label col-sm-1'>单据号码</label> 	
+					<div class='col-sm-2'>
+						<input type="text" id='codeSearch' placeholder="请输入单据号码" name="Q__S__LK__key_" class="form-control">	
+					</div>
+					<label class='control-label col-sm-1'>出库仓库</label> 
+					<div class='col-sm-2'>
+						<select id='storeIdSearchContainer4' name="Q__S__EQ__outstore.id_" class='form-control'></select>
+					</div>
+					<label class='control-label col-sm-1'>入库仓库</label> 
+					<div class='col-sm-2'>
+						<select id='storeIdSearchContainer5' name="Q__S__EQ__instore.id_" class='form-control'></select>
+					</div>
+					
+				</div>
+				<div class="form-group">
+					<label class='control-label col-sm-1'>状态</label> 
+					<div class='col-sm-2'>
+						<select  name="Q__S__EQ__allocate.status_" class="form-control">
+							<option value="">请选择状态</option>
+							<option value="draft">草稿</option>
+							<option value="confirm">已审核</option>
+							<option value="done">完成</option>
+							<option value="invalid">作废</option>
+						</select>
+					</div>
+					<label class="col-sm-1 control-label">创建时间</label>
+	                 <div class="col-sm-3"> 
+		                 <div class="input-daterange input-group" id="datepicker">
+                        	<input id='startTimeSearch' class='laydate-icon form-control layer-date' 
+                        	name="Q__D__BW__allocate.create_time_" validateType="default" onclick="laydate({istime: true, format: 'YYYY-MM-DD'})" style="cursor:pointer;">
+                            <span class="input-group-addon">到</span>
+                            <input id='endTimeSearch' class='laydate-icon form-control layer-date' 
+                            name="Q__D__BW__allocate.create_time_" validateType="default" onclick="laydate({istime: true, format: 'YYYY-MM-DD'})" style="cursor:pointer;">
+                        </div>
+		             </div>
+					<div class='col-sm-1'>
+						<button type='button' class="btn btn-sm   btn-primary stAllocateSearch">搜索</button>
+						<button type='button' class="btn btn-sm   btn-primary resetBtn">清空</button>
+					</div>
+				</div>
+			</form>
+	    </div>
+	</div>
+</div>

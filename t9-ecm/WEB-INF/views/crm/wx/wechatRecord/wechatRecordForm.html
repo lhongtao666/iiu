@@ -1,0 +1,111 @@
+<div class='row' style='border: 1px solid #ddd; margin-left: 15px; margin-right: 15px;padding:10px;'>
+	<div class='col-sm-12'>
+		<form id="wechatRecordForm" method="get" class="form-horizontal">
+
+
+			<div class="form-group">
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">open_id_<@JTtip msg="open_id_" /></label>
+					<div class="col-sm-9">
+						<input type="text" name="openId" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">wechat_alias_<@JTtip msg="wechat_alias_" /></label>
+					<div class="col-sm-9">
+						<input type="text" name="wechatAlias" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">employee_id_<@JTtip msg="employee_id_" /></label>
+					<div class="col-sm-9">
+						<input type="text" name="employeeId" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+			</div>
+			<div class="form-group">
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">nick_name_<@JTtip msg="nick_name_" /></label>
+					<div class="col-sm-9">
+						<input type="text" name="nickName" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">content_<@JTtip msg="content_" /></label>
+					<div class="col-sm-9">
+						<input type="text" name="content" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">content_type_<@JTtip msg="content_type_" /></label>
+					<div class="col-sm-9">
+						<input type="text" name="contentType" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+			</div>
+			<div class="form-group">
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">type_<@JTtip msg="type_" /></label>
+					<div class="col-sm-9">
+						<select class="form-control" name="type" validateType="default" >
+		               		<option value="">请选择</option>
+		               		<option value="1">选项 1</option>
+		               	    <option value="2">选项 2</option>
+		               		<option value="3">选项 3</option>
+		               		<option value="4">选项 4</option>
+		              	</select>
+		            </div>
+		        </div>
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">head_img_url_<@JTtip msg="head_img_url_" /></label>
+					<div class="col-sm-9">
+						<input type="text" name="headImgUrl" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">employee_head_img_<@JTtip msg="employee_head_img_" /></label>
+					<div class="col-sm-9">
+						<input type="text" name="employeeHeadImg" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+			</div>
+			<div class="form-group">
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">消息标签<@JTtip msg="消息标签" /></label>
+					<div class="col-sm-9">
+						<input type="text" name="msgTarget" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">是包含敏感词。0=否，1=是<@JTtip msg="是包含敏感词。0=否，1=是" /></label>
+					<div class="col-sm-9">
+						<input type="text" name="isSensitive" placeholder=""  validateType="default"  class="digits form-control"> 
+					</div>
+				</div>
+
+            </div>    
+
+
+
+			<div class='form-group'>
+				<!--将隐藏域放在这里，不显示出来-->
+				<div style="display:none'">
+					<input type="hidden" id="id" name="id">
+					<input type="hidden" name="createBy">
+					<input type="hidden" name="createTime">
+				</div>
+			</div>
+
+		</form>
+	</div>
+</div>

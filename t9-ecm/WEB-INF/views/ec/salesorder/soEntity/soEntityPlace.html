@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+	<title>销售订单下单</title>
+	<#include "/common/common.html">
+	<#include "/ec/salesorder/soEntity/soEntityCommJs.html">
+	<script type="text/javascript">
+		var csId = "";
+		var planId = "";
+		var isReceivePhone = false;
+		<#if csId??>
+			csId = "${csId}";
+		</#if>
+		<#if planId??>
+			planId = "${planId}";
+		</#if>
+		var isPoint = false;
+		<#if isPoint??>
+			isPoint = "${isPoint}";
+		</#if>
+		var type = "";
+		<#if type??>
+			type = "${type}";
+		</#if>
+		var isSelectStoreInShip = "n";
+	    <#if isSelectStoreInShip??>
+	        isSelectStoreInShip = "${isSelectStoreInShip}";
+        </#if>
+		var isPlacePage = "";
+		<#if isPlacePage??>
+			isPlacePage = "${isPlacePage}";
+		</#if>
+		var isOpendPlatformSelect = "";
+		<#if isOpendPlatformSelect??>
+			isOpendPlatformSelect = "${isOpendPlatformSelect}";
+		</#if>
+		var cloudShipCompany="";
+		<#if noCloudShipCompany??>
+			noCloudShipCompany = "${noCloudShipCompany}";
+		</#if>
+		var baseType="";
+		<#if baseType??>
+			baseType = "${baseType}";
+		</#if>
+		var originSoId="";
+		<#if originSoId??>
+			originSoId = "${originSoId}";
+		</#if>
+	</script>
+	<#include "/ec/salesorder/soEntity/soEntityRenderTmpl.html">
+	<style>
+		.panel-bb {
+			border-bottom: 5px solid #e7eaec;
+    		border-radius: 0;
+    		padding: 0 10px;
+		}
+		.panel-bl {
+			border-left: 5px solid #e7eaec;
+    		border-radius: 0;
+    		padding: 0 10px;
+		}
+		.panel-bt {
+			border-top: 5px solid #e7eaec;
+    		border-radius: 0;
+    		padding: 0 10px;
+		}
+		#csEntityDiv {margin-bottom: 0;}
+		.panel .panel-body, .panel .panel-footer {
+		    padding: 8px 0;
+		}
+		#orderListDiv {display: none;}
+		.orderMoreList {
+			color: #999999;
+		    cursor: pointer;
+		    transition: all 0.25s linear;
+		    background-image: linear-gradient(to left,#fff 0%, #fff 80%, #e7eaec 100%);
+		    background-size: 0%;
+		    background-repeat: no-repeat;
+		}
+		.orderMoreList:hover {
+			background-size: 100%;
+		}
+		.so-order-layer {
+			background-color: #fff;
+			height: 100%;
+			width: 100%;
+			position: relative;
+		}
+	</style>
+<script src='${ctx}/js/jt/ec/salesorder/soEntityPlace-site${deploy_min!""}.js?v=${jsVersion}' ></script>
+</head>
+<body class='white-bg'>
+	<div class="so-order-layer">
+		<div class="panel panel-default">
+			<div class="panel-body">
+				<div class="panel panel-default panel-bb" id="orderListDiv">
+					<#include "/ec/salesorder/common/soEntityBaseTypeFlag.html" />
+					<div class="panel-heading jt-panel-heading jt8-panel-heading">
+						<h3 class="panel-title">3天内有下单提示</h3>
+					</div>
+					<div class="panel-body">
+						<div id="orderListContent" class="col-sm-12"></div>
+					</div>
+				</div>
+	       		<#include "/ec/salesorder/soEntity/soEntityForm.html">
+			</div>
+			<div class="panel-heading" style="text-align: center;padding-bottom: 50px;background: #fff;">
+				<button type='button' class="jt-btn saveAndSubmitBtn" id="saveAndSubmitBtn"><i class="fa fa-check" aria-hidden="true"></i>&nbsp;提交订单</button>
+				<button type='button' class="jt-btn saveBtn" id="saveBtn"><i class="fa fa-save" aria-hidden="true"></i>&nbsp;保存草稿</button>
+				<button type='button' class="jt-btn jt-btn-red prevBtn"><i class="fa fa-remove" aria-hidden="true"></i>&nbsp;关闭</button>	
+			</div>
+		</div>
+		<#include "/ec/salesorder/soEntity/soEntityIncludePane.html">
+	</div>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>选择客户</title>
+    <#include "/common/common.html" />
+    <script src='${ctx}/js/jt/crm/cs/selectCsEntity/selectCsEntity${deploy_min!""}.js?v=${jsVersion}'></script>
+    <script type="text/javascript">
+    $(function() {
+        var options = {
+            type: '${type}',
+        };
+        var selectCsEntity = new SelectCsEntity();
+        selectCsEntity.init(options);
+    });
+    </script>
+    <style>
+        .select-cs-layer {
+            height: 100%;
+        }
+        .select-cs-layer .panel-heading {height:55px;}
+        .select-cs-layer .panel-body {height:calc(100% - 55px);}
+    </style>
+</head>
+
+<body class='white-bg' style="overflow: hidden;">
+            <div class="panel panel-default select-cs-layer">
+                <div class="panel-heading">
+                    <form id='csEntitySearchForm' class="form-horizontal">
+                        <div class='form-group'>
+                            <div class="col-sm-3">
+                                <label class="col-sm-5 control-label">客户编号:</label>
+                                <div class='col-sm-7'>
+                                    <input type="text" placeholder="请输入客户编号"  name="csCode"  class="form-control">
+                                </div>
+                            </div>
+
+                            <div class="col-sm-3">
+                                <label class="col-sm-5 control-label">客户姓名:</label>
+                                <div class='col-sm-7'>
+                                    <input type="text" placeholder="请输入客户姓名"  name="csName"  class="form-control">
+                                </div>
+                            </div>
+
+                            <div class="col-sm-5">
+                                <label class="col-sm-3 control-label">注册时间</label>
+                                <div class='col-sm-9'>
+                                    <div class="input-daterange input-group">
+                                        <input class="laydate-icon form-control layer-date" name="lowRegisterTime" placeholder="yyyy-mm-dd hh:mm:ss" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">
+                                        <span class="input-group-addon">到</span>
+                                        <input class="laydate-icon form-control layer-date" name="hightRegisterTime" placeholder="yyyy-mm-dd hh:mm:ss" onclick="laydate({istime: true, start: laydate.now(0, 'YYYY/MM/DD 23:59:59'), format: 'YYYY-MM-DD hh:mm:ss'})"></div>
+                                </div>
+                            </div>
+                            <div class="col-sm-1">
+                                <div class="col-sm-12 col-sm-offset-2">
+                                    <button type="button" class="btn btn-sm btn-primary jt-btn-normal csEntitySearch">搜索</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="panel-body jt-grid-panel">
+                    <table id="csEntityGrid"></table>
+                    <div id="csEntityPager"></div>
+                </div>
+            </div>
+</body>
+</html>

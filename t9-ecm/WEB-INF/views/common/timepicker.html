@@ -1,0 +1,18 @@
+<!-- 日历相关的样式 -->
+<link href="${ctx}/css/plugins/timepicker/DateTimePicker.css?v=${jsVersion}" rel="stylesheet">
+<script src="${ctx}/js/plugins/timepicker/DateTimePicker.js?v=${jsVersion}"></script>
+<script src="${ctx}/js/plugins/timepicker/DatetimePicker-i18n-zh-CN.js?v=${jsVersion}"></script>
+<div id="dtBox"></div>
+<script type="text/javascript">
+	$(function() {
+	    $("#dtBox").DateTimePicker({
+	        isPopup: false,
+	        language: 'zh-CN',
+	        addEventHandlers: function() {
+	            var oDTP = this;
+	            oDTP.settings.minDate = oDTP.getDateTimeStringInFormat("Date", "yyyy-MM-dd", new Date());
+	            oDTP.settings.minTime = oDTP.getDateTimeStringInFormat("Time", "HH:mm");
+	        }
+	    });
+	});
+</script>

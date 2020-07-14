@@ -1,0 +1,58 @@
+<div class='row' style='border: 1px solid #ddd; margin-left: 15px; margin-right: 15px;padding:10px;'>
+	<div class='col-sm-12'>
+		<form id="tagForm" method="get" class="form-horizontal">
+
+
+			<div class="form-group">
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">type_<@JTtip msg="type_" /></label>
+					<div class="col-sm-9">
+						<select class="form-control" name="type" validateType="default" >
+		               		<option value="">请选择</option>
+		               		<option value="1">选项 1</option>
+		               	    <option value="2">选项 2</option>
+		               		<option value="3">选项 3</option>
+		               		<option value="4">选项 4</option>
+		              	</select>
+		            </div>
+		        </div>
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">ʵ<@JTtip msg="ʵ" /></label>
+					<div class="col-sm-9">
+						<input type="text" name="entityId" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">ѡ<@JTtip msg="ѡ" /></label>
+					<div class="col-sm-9">
+						<input type="text" name="optId" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+			</div>
+			<div class="form-group">
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">ѡ<@JTtip msg="ѡ" /></label>
+					<div class="col-sm-9">
+						<input type="text" name="sort" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+            </div>    
+
+
+
+			<div class='form-group'>
+				<!--将隐藏域放在这里，不显示出来-->
+				<div style="display:none'">
+					<input type="hidden" id="id" name="id">
+					<input type="hidden" name="createBy">
+					<input type="hidden" name="createTime">
+				</div>
+			</div>
+
+		</form>
+	</div>
+</div>

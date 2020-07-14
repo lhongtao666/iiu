@@ -1,0 +1,66 @@
+<div class='row' style='border: 1px solid #ddd; margin-left: 15px; margin-right: 15px;padding:10px;'>
+	<div class='col-sm-12'>
+		<form id="glSwiftForm" method="get" class="form-horizontal">
+
+
+			<div class="form-group">
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">名称<@JTtip msg="名称" /></label>
+					<div class="col-sm-9">
+						<input type="text" name="name" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">别名<@JTtip msg="别名" /></label>
+					<div class="col-sm-9">
+						<input type="text" name="alias" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">规则模版<@JTtip msg="规则模版" /></label>
+					<div class="col-sm-9">
+						<input type="text" name="tpl" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+			</div>
+			<div class="form-group">
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">流水号长度。默认是5<@JTtip msg="流水号长度。默认是5" /></label>
+					<div class="col-sm-9">
+						<input type="text" name="numLen" placeholder=""  validateType="default"  class="digits form-control"> 
+					</div>
+				</div>
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">初始值<@JTtip msg="初始值" /></label>
+					<div class="col-sm-9">
+						<input type="text" name="initVal" placeholder=""  validateType="default"  class="digits form-control"> 
+					</div>
+				</div>
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">步长<@JTtip msg="步长" /></label>
+					<div class="col-sm-9">
+						<input type="text" name="step" placeholder=""  validateType="default"  class="digits form-control"> 
+					</div>
+				</div>
+
+			</div>
+
+
+
+			<div class='form-group'>
+				<!--将隐藏域放在这里，不显示出来-->
+				<div style="display:none'">
+					<input type="hidden" id="id" name="id">
+					<input type="hidden" name="createBy">
+					<input type="hidden" name="createTime">
+				</div>
+			</div>
+
+		</form>
+	</div>
+</div>

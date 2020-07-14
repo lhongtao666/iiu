@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>退换货</title>
+	<#include "/common/common.html">
+	<script src="${ctx}/js/plugins/suggest/bootstrap-suggest.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/jt/ec/salesorder/revisit/soEntityRevisit${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/ec/salesorder/soLog${deploy_min!""}.js?v=${jsVersion}"></script>
+</head>
+<body class='white-bg'>
+	<div class='col-sm-12 form_wrapper'>
+	<div class="panel panel-default">
+	    <div class="panel-body">
+	    	 <form  id="soEntityRevisitForm" class="form-horizontal">
+	    	 	<div class="form-group">
+					<div class="col-sm-1 ">
+					</div>
+					<div class="col-sm-3">
+					    <#include "/ec/salesorder/common/soEntityBaseTypeFlag.html" />
+					</div>
+				</div>
+				
+	    	 	<div class="form-group">
+					<label  class="col-sm-1 control-label">订单编号</label> 
+					<div class='col-sm-2'>
+					    <input type="text"  name="soNo" value="${soInfoVo.soNo}" readonly="readonly" class="form-control">
+					   
+					</div>
+					<label  class="col-sm-1 control-label">客户编号</label> 
+					<div class='col-sm-2'>
+					    <input type="text"  name="csCode" readonly="readonly" value="${csEntityPo.code}" class="form-control">
+					</div> 
+					<label  class="col-sm-1 control-label">运费</label> 
+					<div class='col-sm-2'>
+					    <input type="text"  name="shippingAmount" readonly="readonly" value="${((soInfoVo.shippingAmount)!0.00)?string('0.00')}" class="form-control">
+					</div>
+					<label  class="col-sm-1 control-label">订单总价</label> 
+					<div class='col-sm-2'>
+					    <input type="text"  name="totalAmount" readonly="readonly" value="${((soInfoVo.totalAmount)!0.00)?string('0.00')}" class="form-control">
+					</div>
+				</div>
+				<div class="form-group">
+					<label  class="col-sm-1 control-label">支付方式</label> 
+					<div class='col-sm-2'>
+				        <select name="payType" id="payType" class="form-control"  disabled validateType="default">
+							<option value="cash" <#if soInfoVo.payType == 'cash'>selected</#if>>现金支付</option>
+							<option value="alipay" <#if soInfoVo.payType == 'alipay'>selected</#if>>支付宝</option>
+							<option value="weixin" <#if soInfoVo.payType == 'weixin'>selected</#if>>微信支付</option>
+							<option value="bank" <#if soInfoVo.payType == 'bank'>selected</#if>>银行转账</option>
+						</select>
+					</div>
+					<label  class="col-sm-1 control-label">订单状态</label> 
+					<div class='col-sm-2'>
+					    <#if soInfoVo.status == 'awaiting_post'>
+						<input type="text" readonly="readonly" class="form-control" value="待提交">
+						<#elseif soInfoVo.status == 'awaiting_comfirm'>
+						<input type="text" readonly="readonly" class="form-control" value="待审核">
+						<#elseif soInfoVo.status == 'awaiting_pay'>
+						<input type="text" readonly="readonly" class="form-control" value="待支付">
+						<#elseif soInfoVo.status == 'comfirm'>
+						<input type="text" readonly="readonly" class="form-control" value="待发货">
+						<#elseif soInfoVo.status == 'shipping'>
+						<input type="text" readonly="readonly" class="form-control" value="已发货">
+						<#elseif soInfoVo.status == 'complete'>
+						<input type="text" readonly="readonly" class="form-control" value="已签收">
+						<#elseif soInfoVo.status == 'close'>
+						<input type="text" readonly="readonly" class="form-control" value="已关闭">
+						<#elseif soInfoVo.status == 'close_reject'>
+						<input type="text" readonly="readonly" class="form-control" value="订单拒收">
+						<#elseif soInfoVo.status == 'close_lost'>
+						<input type="text" readonly="readonly" class="form-control" value="包裹丢失">
+						</#if>
+					</div> 
+					<label  class="col-sm-1 control-label">下单时间</label> 
+					<div class='col-sm-2'>
+						<#if soInfoVo.createTime??>
+					    	<input type="text"  name="placeTime" value="${soInfoVo.createTime?string('yyyy-MM-dd HH:mm:ss')}"  class="form-control" readonly="readonly">
+					    </#if>
+					</div>
+					<#if soInfoVo.status == 'complete'>
+					<label  class="col-sm-1 control-label">签收时间</label> 
+					<div class='col-sm-2'>
+						<#if soInfoVo.completeTime??>
+					    <input type="text"  name="completeTime" value="${soInfoVo.completeTime?string('yyyy-MM-dd HH:mm:ss')}" class="form-control" readonly="readonly">
+					     </#if>
+					</div>
+					<#elseif soInfoVo.status == 'close_reject'>
+					<label  class="col-sm-1 control-label">拒收时间</label> 
+					<div class='col-sm-2'>
+						<#if soInfoVo.rejectTime??>
+					    <input type="text"  name="rejectTime" value="${soInfoVo.rejectTime?string('yyyy-MM-dd HH:mm:ss')}" class="form-control" readonly="readonly">
+					    </#if>
+					</div>
+					</#if>
+				</div>
+				<div class="form-group">
+				 	<input type="hidden"  name="soId" value="${soInfoVo.id}">
+				</div>
+	    	 </form>
+	    </div>
+	</div>
+	<div class="panel panel-default">		
+		<form  class="form-horizontal" id="revisitForm">
+	    	<div class='form-group'>
+	    		<div class="col-sm-12">
+					<label class='col-sm-1 control-label'>回访内容<span style='color: red;'>*</span></label>
+					<div class='col-sm-11' style="padding-top:3px;">
+						<div class='input-group'>
+							<input type='text' class='form-control' name='revisitContent' id='revisitContent'  value="${soInfoVo.revisitContent}" placeholder='请输入内容' validateType='default'>
+							<div class='input-group-btn'><ul class='dropdown-menu dropdown-menu-right' role='menu'></ul></div>
+						</div>
+		 			</div>
+	 			</div>	 			
+	 			<input type="hidden" name="isRevisit" value="${soInfoVo.isRevisit}" />
+			</div>
+			<div class='form-group'>
+				<div class="col-sm-6">
+	 				<label class='col-sm-2 control-label'>回访时间<span style='color: red;'>*</span></label>
+	 				<div class='col-sm-9'>
+	 					<input class="laydate-icon form-control layer-date" name="revisitTime" style="height:28px;" <#if soInfoVo.revisitTime??> value="${soInfoVo.revisitTime?string('yyyy-MM-dd HH:mm:ss')}" </#if> validatetype="default" placeholder="YYYY-MM-DD hh:mm:ss" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss',choose: function(datas){$('input[name=revisitTime]').trigger('keyup');}})">
+	 				</div>
+	 			</div>
+	 			<div class="col-sm-6">
+	 				<button type='button' class='btn btn-sm  btn-primary revisitBtn' style="display:none;">保存回访记录</button>
+					<span style='color:red;padding-left: 20px;'>提示：请选择或者填写回访内容</span>
+	 			</div>
+ 			</div>
+		</form>
+		<div class="panel-body">
+			<table id="soRejectingGrid" class='table table-striped table-bordered' style="padding-bottom: 20px;">
+		    	<thead>
+			    	<tr>
+			    		<th width="10px"></th>
+			    		<th  width="15%">sku编码</th>
+			    		<th  width="40%">商品名称</th>
+			    		<th  width="15%">商品价格</th>
+			    		<th  width="15%">数量</th>
+			   
+			    		<th  width="15%">小计</th>
+			    	</tr>
+		    	</thead>
+		    	<tbody id="exchangeOrBackContainer">
+		    		<#if soInfoVo.soItemVos?? && soInfoVo.soItemVos?size gt 0>
+					<#list soInfoVo.soItemVos as soItemPo>
+					<tr id="${soItemPo.id}">
+						<td></td>
+						<td>${soItemPo.skuKey}</td>
+						<td>${soItemPo.prodName}</td>
+						<td>${soItemPo.salesPrice}</td>
+						<td>${soItemPo.count}</td>
+						<td>${(soItemPo.salesPrice*soItemPo.count)?string('0.00')}</td>
+					</tr>
+					</#list>
+					</#if>
+		    	</tbody>
+	    </table>
+		</div>
+	</div>
+	<div class="panel panel-default">
+		<div class="panel-heading" >
+			订单跟进日志
+		</div>
+		<div class="panel-body">
+			<div class="form-group">
+				<div class='col-sm-12'>
+					<table class="table table-striped table-bordered">
+						<thead>
+							<tr>
+								<th>操作者</th>
+								<th>流水来源</th>
+								<th>类型</th>
+								<th>结果</th>
+								<th>时间</th>
+								<th>备注</th>
+							</tr>
+						</thead>
+						<tbody id="soLogTbody">
+							<#if soInfoVo.soLogPos?? && soInfoVo.soLogPos?size gt 0>
+							<#list soInfoVo.soLogPos as soLogPo>
+							<tr>
+								<td>${soLogPo.employeeAid}:${soLogPo.name}</td>
+								<td>
+									<#if soLogPo.srcType == 'flow_sys'>
+									订单状态变动生成
+									<#elseif soLogPo.srcType == 'option_sys'>
+									其他操作生成
+									<#elseif soLogPo.srcType == 'manual'>
+									人工
+									</#if>
+								</td>
+								<td>
+									<#if soLogPo.type == 'add'>
+									创建
+									<#elseif soLogPo.type == 'edit'>
+									修改
+									<#elseif soLogPo.type == 'paid_up'>
+									已支付
+									<#elseif soLogPo.type == 'pay'>
+									支付确认
+									<#elseif soLogPo.type == 'comfirm'>
+									审核
+									<#elseif soLogPo.type == 'pack'>
+									备货
+									<#elseif soLogPo.type == 'deliver'>
+									打包
+									<#elseif soLogPo.type == 'shipping'>
+									发货
+									<#elseif soLogPo.type == 'back_deliver'>
+									撤销发货
+									<#elseif soLogPo.type == 'shipped'>
+									订单跟进
+									<#elseif soLogPo.type == 'back_complete'>
+									撤销完成
+									<#elseif soLogPo.type == 'turndown'>
+									驳回
+									<#elseif soLogPo.type == 'close'>
+									关闭
+									<#elseif soLogPo.type == 'back'>
+									退回处理
+									<#elseif soLogPo.type == 'awaiting_refund'>
+									退款申请
+									<#elseif soLogPo.type == 'refund'>
+									退款完成
+									<#elseif soLogPo.type == 'other_oper'>
+									其他操作
+									<#elseif soLogPo.type == 'revisit'>
+									订单回访
+									<#elseif soLogPo.type == 'remark'>
+									人工备注
+									<#elseif soLogPo.type == 'task'>
+									跟进
+									<#elseif soLogPo.type == 'repeatComfirm'>
+									复审
+									</#if>
+								</td>
+								<td>${soLogPo.result}</td>
+								<td>${soLogPo.createTime?string("yyyy-MM-dd HH:mm:ss")}</td>
+								<td>${soLogPo.comment}</td>
+							</tr>
+							</#list>
+							</#if>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>

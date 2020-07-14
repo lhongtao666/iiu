@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>公海客户管理</title>
+	<#include "/common/common.html">
+	<#include "/common/ztree.html">
+	<#include "/common/datatable.html">
+	<#include "/common/eav.html">
+	<!--客户模块的公共引用的css，js等头部文件123-->
+	<link href="${ctx}/css/plugins/chosen/chosen.css?v=${jsVersion}" rel="stylesheet">
+	<link href="${ctx}/css/plugins/switchery/switchery.css?v=${jsVersion}" rel="stylesheet">
+	<link href="${ctx}/css/jt/ec/salesorder/orderaddr${deploy_min!""}.css?v=${jsVersion}" rel="stylesheet"> 
+	<link href="${ctx}/css/plugins/select2/select2.min.css?v=${jsVersion}" rel="stylesheet">
+	<script src="${ctx}/js/plugins/select2/select2.min.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/plugins/chosen/chosen.jquery.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/plugins/hz2py/jQuery.Hz2Py-min.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/plugins/switchery/switchery.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/plugins/suggest/bootstrap-suggest.js?v=${jsVersion}"></script>
+	<script src='${ctx}/js/jt/common/service/employeesSelectLayer${deploy_min!""}.js?v=${jsVersion}'></script>
+	<script src="${ctx}/js/jt/crm/cs/csEav${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/common/utils/groupUtils${deploy_min!""}.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/jt/common/service/addressService${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/common/utils/excelUtil${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/crm/cs/csEmployee${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/common/utils/groupUtils${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/crm/cs/csEntityUtils${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/common/utils/channelUtils${deploy_min!""}.js?v=${jsVersion}"></script>
+	<script src='${ctx}/js/jt/common/service/sendMessage${deploy_min!""}.js?v=${jsVersion}'></script>
+	<script src='${ctx}/js/jt/gl/cate/cateOptService${deploy_min!""}.js?v=${jsVersion}'></script>
+	<script src="${ctx}/js/jt/crm/cs/csEntityBatchUpdate${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/crm/cs/sea/csEntitySea${deploy_min!""}.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/jt/crm/cs/sea/csEntitySeaManager${deploy_min!""}.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/jt/gl/km/glHelpUtil${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script type="text/javascript" src='${ctx}/js/jt/crm/ou/csAssign${deploy_min!""}.js?v=${jsVersion}'></script>
+	<script src="${ctx}/js/jt/crm/cs/formFrontConfig${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<#include "/gl/tag/tag/tagTmpl.html" >
+	<#include "/crm/cs/csEntity/csEntitySea/csEntitySeaToolbar.html">
+</head>
+<body class='white-bg'>
+	<div class="wrapper animated ">
+		<div class="row list_wrapper">		
+			<div class="col-sm-12">		
+				<div class="tabs-container">
+					<ul class="nav nav-tabs">
+						<li  id="mySeaTabLi" class="tabli active">
+							<a href="#tabMySea" data-toggle="tab">
+								我的公海
+							</a>
+						</li>
+						<li  id="waitSeaTabLi" class="tabli">
+							<a href="#tabWaitSea" data-toggle="tab">
+								候选公海
+							</a>
+						</li>
+					</ul>
+					<div class="tab-content">
+						<div id="tabMySea" class="tab-pane active">
+							<div class="panel-body">
+								<div class='row'>
+									<@JTCsSeaSearchPanel panelWidthCalss="my_sea_wrapper"  hasGroupSearch="false" addrContainerId="addrContainerSearch"
+									buttonStr="
+									<button type='button' class='jt-btn csReturnsByIds'>
+										<i class='fa fa-plane'></i>&nbsp;归还客户
+									</button>"/>
+									<div class='col-sm-12 jqGrid_wrapper'>
+										<table id="csEntitySeaGrid"></table>
+										<div id="csEntitySeaPager"></div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div id="tabWaitSea" class="tab-pane">
+							<div class="panel-body">
+								<div class='row'>
+									<@JTCsSeaSearchPanel panelWidthCalss="wait_sea_wrapper"  hasGroupSearch="true" addrContainerId="addrContainerSearch2"
+									buttonStr="
+										<button type='button' class='jt-btn claimCsSea'>
+											<i class='fa fa-user-plus'></i>&nbsp;领取客户
+										</button>
+										<button type='button' class='jt-btn csSeaChangeGroup'>
+											<i class='fa fa-random'></i>&nbsp;转移部门
+										</button>"/>
+									<div class='col-sm-12 jqGrid_wrapper'>
+										<table id="csEntityWaitSeaGrid"></table>
+										<div id="csEntityWaitSeaPager"></div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>			
+			</div>			
+		</div>
+	</div>
+
+	<div class="modal fade" id="changeGroupModalContainer" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	    <div class="modal-dialog" role="document">
+	    	<div class="modal-content">
+	      		<div class="modal-header">
+	        		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+	        		<h4 class="modal-title" id="myModalLabel">转移部门</h4>
+	      		</div>
+		
+		        <div class="modal-body">
+			        <form id="changeGroupForm" method="get" class="form-horizontal">
+			        	<div class="form-group">
+							<label class="col-sm-2 control-label">名称</label>
+							<div class="col-sm-10">
+								<input type="text" class='form-control' readonly id='groupName'>
+								<input type="hidden" name='groupId'>	
+								<input type="hidden" name='selectedIds'>
+							</div>
+						</div>
+			        </form>
+		        </div>
+		        <div class="modal-footer">
+		        	<button type="button" class="btn btn-sm  btn-default" data-dismiss="modal">关闭</button>
+		        	<button type="button" class="btn btn-sm  btn-primary" id='csSeaChangeGroupSave'>保存</button>
+		        </div>
+	        </div>
+        </div>
+    </div>
+	<#include "/crm/cs/csEntity/csEntityExportExcel.html">
+	<!--通话记录的相关操作html代码-->
+	<#include "/gl/cti/tRKSheetRecord/record_operate.html">
+	
+   	<#include "/crm/cs/csEntity/sendMessagePane.html" >
+   	<#include "/crm/cs/csEntity/csEntityBatchUpdate.html" >
+	<!--分配客户资源-->
+	<#include "/crm/cs/csAssign/csAssign.html">
+</body>
+</html>

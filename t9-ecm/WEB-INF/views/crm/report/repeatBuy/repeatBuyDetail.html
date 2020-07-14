@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>复购统计明细</title>
+	<#include "/common/common.html">
+	<script src="${ctx}/js/plugins/echarts/3.1.7/theme/macarons.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/plugins/echarts/3.1.7/echarts.min.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/jt/crm/report/cs/repeatBuyDetail${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script> 
+		var employeeId = "";
+		var belongOgn = "";
+		<#if employeeId??>
+	   		 employeeId="${employeeId}"; 
+	    </#if>
+	    <#if groupId??>
+	  		 belongOgn="${groupId}"; 
+	   </#if>
+	    var employeeId="${employeeId}";
+	    var repeatCount="${repeatCount}";
+	    var timeStart="${timeStart}";
+	    var timeEnd="${timeEnd}";
+	    var dateTime="${dateTime}";
+	</script>
+
+	<style> 
+		.searchImg{
+		    width:24px;
+		    height:24px;
+		    margin:0 auto;
+		}
+		.partySearchImg{
+		    border: 1px solid #e7eaec;
+		}
+
+		.partySearchImg:hover{
+		    border: 1px solid #d2d2d2
+		}
+	</style>
+</head>
+<body class="white-bg">
+	<div class='wrapper'>
+		<div class='row list_wrapper'>
+		    <div class='col-sm-12'>
+		   	    <div class="panel panel-default">
+		   	   		<div class="panel-heading">	
+			        	<span class='timeRange' style='font-weight:bold;margin-left:20px;margin-right:20px;'></span>
+		            </div>
+		        </div>
+		    </div>
+			<div class="jqGrid_wrapper col-sm-12">
+				<table id='repeatBuyDtailGrid'></table>
+				<div id="repeatBuyDetailPager"></div>
+			</div>
+		</div>
+	</div>	
+</body>
+</html>

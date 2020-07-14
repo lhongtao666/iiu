@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>系统版本说明管理</title>
+	<#include "/common/common.html">
+	<#include "/common/datatable.html">   
+	<link href="${ctx}/css/plugins/chosen/chosen.css?v=${jsVersion}" rel="stylesheet">
+	<link href="${ctx}/css/plugins/select2/select2.min.css?v=${jsVersion}" rel="stylesheet">
+	<script src="${ctx}/js/plugins/select2/select2.min.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/plugins/chosen/chosen.jquery.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/jt/gl/version/version${deploy_min!''}.js?v=${jsVersion}" ></script>
+</head>
+
+<body>
+	<div class="wrapper animated fadeInRight">
+		<!-- list界面 -->
+		<div class="row list_wrapper">
+			<#include "/gl/version/version/versionToolbar.html">	  			
+			<div class='col-sm-12 jqGrid_wrapper'>
+			    <table id="versionGrid"></table>
+				<div id="versionPager"></div>
+			</div>
+		</div>
+		
+		<!-- 编辑界面 -->
+		<#include "/gl/version/version/versionEdit.html">	 
+	</div>
+	
+	<!-- 新增条目窗口 -->
+	<div style="display:none" class="versionItemAdd">
+		<div class="panel-body" style="padding:2px;">
+			<form id='versionItemForm' class='form-horizontal'>
+				<input type="hidden" name="versionId" >
+				<div class='form-group'>
+				    <div class="col-sm-6">
+						<label class="col-sm-4 control-label">模块</label>
+						<div class="col-sm-8">
+							<select id="moduleSelect" name="module" class="form-control" >
+								<option value="">请选择</option>
+							</select>
+						</div>
+					</div>
+					 <div class="col-sm-6">
+						<label class="col-sm-4 control-label">排序</label>
+						<div class="col-sm-6">
+							<input type="text" name="sort" placeholder="" class="form-control" validateType="default" >
+						</div>
+					</div>
+				</div>
+				<div class='form-group'>
+				   <div class="col-sm-12">
+						<label class="col-sm-2 control-label">归属企业<span style="color: red;" class="redTip">*</span></label>
+						<div class="col-sm-9">
+							<select id="belongCompanyCodeSelect" multiple="" name = "belongs" data-placeholder='请选择' class="chosen-select form-control" >
+							</select>
+						</div>
+					</div>
+				</div>
+				<div class='form-group'>
+				   <div class="col-sm-12">
+						<label class="col-sm-2 control-label">归属版本</label>
+						<div class="col-sm-9">
+							<select name = "level" data-placeholder='请选择' class="chosen-select form-control" >
+								<option value="1">标准版</option>
+								<option value="2">专业版</option>
+								<option value="3">旗舰版</option>
+							</select>
+						</div>
+					</div>
+				</div>
+				<div class='form-group'>
+				   <div class="col-sm-12">
+						<label class="col-sm-2 control-label">条目标签</label>
+						<div class="col-sm-9">
+							<select id="itemTagsSelect" multiple="" name = "itemTags" data-placeholder='请选择' class="chosen-select form-control" >
+							</select>
+						</div>
+					</div>
+				</div>
+				<div class='form-group'>
+				   <div class="col-sm-12">
+						<label class="col-sm-2 control-label">文档帮助</label>
+						<div class="col-sm-9" id="hasTaskDiv">
+							<input type="text" name="doc" placeholder="" class="form-control" validateType="default" >
+						</div>
+					</div>
+				</div>
+				<div class='form-group'>
+					<div class="col-sm-12">
+						<label class="col-sm-2 control-label">描述</label>
+						<div class="col-sm-9" id="hasTaskDiv">
+							<textarea name="desc" class="form-control" rows="3"></textarea>
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+
+	<!-- 生成的sql -->
+	<div style="display:none" class="versionSqlDiv">
+		<div class="panel-body">
+			<div class="col-sm-12" id="lastVersionSql"></div>
+		</div>
+	</div>
+	
+</body>
+</html>

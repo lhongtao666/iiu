@@ -1,0 +1,13 @@
+<div class="middle-box text-center animated fadeInDown">
+	<form class="m-t" role="form" >
+	    <p class="text-muted text-center" id="forceLogoutTip" style="color:red"></p>
+	    <p class="text-muted text-center" style="color:red">你将被强制退出！</p>
+	</form>
+</div>
+<img id="SessionKeeper" style='display:none;'></img> 
+<script> 
+	function keepsession(){ 		
+		$("#SessionKeeper").attr("src","${ctx}/sessionKeeper.htm?RandStr="+Math.random()); 		
+	} 	
+	window.setInterval("keepsession()",20000); //每隔50秒调用一下本身
+</script>	

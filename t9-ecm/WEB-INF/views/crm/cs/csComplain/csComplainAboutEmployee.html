@@ -1,0 +1,24 @@
+<script src="${ctx}/js/jt/crm/cs/csComplainAboutEmployee${deploy_min!""}.js?v=${jsVersion}" ></script>
+<div class="panel panel-default" style="margin-bottom:0px; height:100%;">
+    <div class="panel-heading">
+    	<div class="panel-title">
+	    	<h4>最新客户投诉</h4>
+	    </div>
+	</div>
+	
+	<div class="panel-body" style="padding:5px;">
+		<table class='table' id='csComplainAboutEmployeeTable'>
+			<thead>
+				<tr>
+					<th>信息</th>
+					<th>投诉时间</th>
+				</tr>
+			</thead>
+			<tbody id='csComplainAboutEmployeeContainer'></tbody>
+		</table>
+	</div>
+	
+	<div style="text-align: right;padding-top: 5px;padding-right: 10px;">
+    	<span nameVal="客户投诉" urlVal="/crm/cs/csComplain/showMoreTarget.htm" style="text-decoration: underline;color: blue;cursor: pointer;" class="showMore">查看更多</span>
+    </div>
+</div>

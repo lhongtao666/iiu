@@ -1,0 +1,30 @@
+
+<form role="form" class="form-inline">
+    <div class="form-group">
+		<label for="bizTypeSearch" class="sr-only">业务类型</label> 
+		<select class="form-control" id='bizTypeSearch'>
+			<option value=''>选择业务类型</option>
+			<option value="common">common</option>
+			<option value="review">review</option>
+			<option value="sku">sku</option>
+		</select>
+	</div>
+    <div class="form-group">
+		<label for="statusSearch" class="sr-only">inactive=未激活；actived=已激活</label> 
+		<select class="form-control" id='statusSearch'>
+			<option value=''>选择状态</option>
+			<option value="inactive">未激活</option>
+			<option value="actived">激活</option>
+		</select>
+		
+	</div>
+    <div class="form-group">
+		<label for="nameSearch" class="sr-only">名称</label> 
+		<input type="text" placeholder="请输入名称" id="nameSearch" class="form-control">
+	</div>
+    <div class="form-group">
+		<label for="keySearch" class="sr-only">业务键</label> 
+		<input type="text" placeholder="请输入业务键" id="keySearch" class="form-control">
+	</div>
+    <button class="btn btn-sm   btn-primary" type='button' id="searchBtn">搜索</button>
+</form>

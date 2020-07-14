@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>客户管理</title>
+	<#include "/common/common.html">
+	<script src="${ctx}/js/plugins/echarts/echarts-all.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/jt/common/plugins/report${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/crm/report/cs/pieReport${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script>
+	    var ctx = "${ctx}";
+	</script>
+</head>
+
+<body class="white-bg">
+	<div class="wrapper wrapper-content  animated ">
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="ibox ">
+					<div class="ibox-title">
+						<h5>客户管理</h5>
+					</div>
+					<div class="ibox-content">
+						<div class="jqGrid_wrapper">
+							<#include "csReportSearchForm.html">
+							<br>
+							<div id="main" style="height:350px;"></div>
+							<br>
+							<br>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

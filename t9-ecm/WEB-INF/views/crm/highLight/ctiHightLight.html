@@ -1,0 +1,209 @@
+<style type="text/css">
+		body{background: #fff;}
+		.demo{
+			padding: 2em 0;
+		}
+		.container{
+			width:100%;
+			margin-top: 20px;
+		}
+		a:hover,a:focus{
+		    text-decoration: none;
+		    outline: none;
+		}
+		#accordion .panel{
+		    border: none;
+		    border-radius: 0;
+		    box-shadow: none;
+		    margin: 0 0 10px;
+		    overflow: hidden;
+		    position: relative;
+		}
+		#accordion .panel-heading{
+		    padding: 0;
+		    border: none;
+		    border-radius: 0;
+		    margin-bottom: 10px;
+		    z-index: 1;
+		    position: relative;
+		}
+		#accordion .panel-heading:before,
+		#accordion .panel-heading:after{
+		    content: "";
+		    width: 50%;
+		    height: 20%;
+		    box-shadow: 0 15px 5px rgba(0, 0, 0, 0.4);
+		    position: absolute;
+		    bottom: 15px;
+		    left: 10px;
+		    transform: rotate(-3deg);
+		    z-index: -1;
+		}
+		#accordion .panel-heading:after{
+		    left: auto;
+		    right: 10px;
+		    transform: rotate(3deg);
+		}
+		#accordion .panel-title a{
+		    display: block;
+		    padding: 15px 70px 15px 70px;
+		    margin: 0;
+		    background: #fff;
+		    font-size: 18px;
+		    font-weight: 700;
+		    letter-spacing: 1px;
+		    color: #1caf9a;
+		    border-radius: 0;
+		    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+		    position: relative;
+		}
+		#accordion .panel-title a:before,
+		#accordion .panel-title a.collapsed:before{
+		    content: "\f106";
+		    font-family: fontawesome;
+		    width: 55px;
+		    height: 100%;
+		    text-align: center;
+		    line-height: 50px;
+		    border-left: 2px solid #1caf9a;
+		    position: absolute;
+		    top: 0;
+		    right: 0;
+		}
+		#accordion .panel-title a.collapsed:before{ content: "\f107"; }
+		#accordion .panel-title a .icon{
+		    display: inline-block;
+		    width: 55px;
+		    height: 100%;
+		    border-right: 2px solid #1caf9a;
+		    font-size: 20px;
+		    color: #1caf9a;
+		    line-height: 50px;
+		    text-align: center;
+		    position: absolute;
+		    top: 0;
+		    left: 0;
+		}
+		#accordion .panel-body{
+		    padding: 10px 20px;
+		    margin: 0 0 20px;
+		    border-bottom: 3px solid #1caf9a;
+		    border-top: none;
+		    background: #fff;
+		    font-size: 15px;
+		    color: #333;
+		    line-height: 27px;
+		}
+		.title-desc{
+		    padding-top: 15px;
+		    margin-top: 0;
+		    margin-bottom: 0;
+		}
+		.description{
+			padding-left: 20px;
+		}
+	</style>
+<div class="container">
+	<div class="row">
+	    <div class="col-md-offset-2 col-md-8">
+	        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+
+	            <div class="panel panel-default">
+	                <div class="panel-heading" role="tab" id="headingOne">
+	                    <h4 class="panel-title">
+	                        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+	                            <i class="icon fa fa-globe"></i>
+	                           	防高频
+	                        </a>
+	                    </h4>
+	                </div>
+	                <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+	                    <div class="panel-body">
+	                        <p>
+	                        	<h3 class="title-desc">1. 限制员工某个外线号码隔多少分钟才可以重复外呼一次。</h3>
+	                        	<div class="description">配置：设置--->cti参数配置--->话机线路--->  limit.cti.out.call.interval和 limit.cti.out.call.interval.minute</div>
+	                        	<h3 class="title-desc">2. 限制员工某个外线号码一天总共可以外呼多少次。</h3>
+	                        	<div class="description">配置：设置--->cti参数配置--->话机线路---> limit.cti.adn.out.call</div>
+	                        	<h3 class="title-desc">3. 限制一个客户号码一天最多可以外呼多少次。</h3>
+	                        	<div class="description">配置：设置--->cti参数配置--->话机线路---> limit.cti.out.call.cs.times</div>
+	                        </p>
+	                    </div>
+	                </div>
+	            </div>
+
+	            <div class="panel panel-default">
+	                <div class="panel-heading" role="tab" id="headingTwo">
+	                    <h4 class="panel-title">
+	                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+	                            <i class="icon fa fa-briefcase"></i>
+	                           	呼叫中心功能
+	                        </a>
+	                    </h4>
+	                </div>
+	                <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+	                    <div class="panel-body">
+	                        <p>
+					    <h3 class="title-desc">1. 外呼与接听、未接。</h3>
+	                            <div class="description">描述：客户号码（加密）直接拨号以及来电弹屏和未接提醒。</div>
+	                            <div class="description">描述：员工可以拥有多个外呼号码进行外呼。</div>
+
+	                            <h3 class="title-desc">2. 呼叫转移。</h3>
+					    <div class="description">描述：通话时输入分机--->点击转移按钮。</div>
+
+	                            <h3 class="title-desc">3. 在线监听。<a href="#"  id="toTelMonitorList">【点击使用】</a></h3>
+	                            <div class="description">监听步骤：拨打分机对应号码--->听到坐席响之后摘机--->点监听按钮</div>
+
+					    <h3 class="title-desc">4. 通话强插（强插未完成）。</h3>
+
+					    <h3 class="title-desc">5. 批量外呼。<a href="#"  id="toCtiBatcallTaskList">【点击使用】</a></h3>
+	                            <div class="description">描述：设定定时呼叫某些客户或号码并分配到队列</div>
+
+	                            <h3 class="title-desc">6. 通话标识。</h3>
+	                            <div class="description">描述：员工结束通话后，可对通话进行标识，标识之后可以在通话记录筛选出来。</div>
+
+	                            <h3 class="title-desc">7. 设备代接与ACD智能队列。</h3>
+	                            <h3 class="title-desc">8. 无条件转接。</h3>
+	                  	</p>
+	                    </div>
+	                </div>
+	            </div>
+
+	            <div class="panel panel-default">
+	                <div class="panel-heading" role="tab" id="headingThree">
+	                    <h4 class="panel-title">
+	                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+	                            <i class="icon fa fa-mobile"></i>
+	                            数据与报表
+	                        </a>
+	                    </h4>
+	                </div>
+	                <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+	                    <div class="panel-body">
+	                        <p>
+	                            <h3 class="title-desc">1. 通话记录。<a href="#"  id="toTrkSheetRecordRecordList">【点击使用】</a></h3>
+	                            <div class="description">描述：统计员工接听或拨打的通话记录。</div>
+	                            <h3 class="title-desc">2. 录音质检。</h3>
+	                            <div class="description">描述：检查员工通话的录音交流情况。</div>
+	                            <h3 class="title-desc">3. 录音分享推荐。</h3>
+	                            <div class="description">描述：将优秀的录音推荐给员工学习。</div>
+	                            <h3 class="title-desc">4. 分机统计。<a href="#"  id="toListAdn">【点击使用】</a></h3>
+	                            <div class="description">描述：员工与分机呼入呼出有效通话等统计。</div>
+	                            <h3 class="title-desc">5. 进线时段分析。<a href="#"  id="toMediaChannelReportList">【点击使用】</a></h3>
+	                            <div class="description">描述：根据时间统计新老客户的进线情况。</div>
+	                            <h3 class="title-desc">6. 通话时长完成度报表。<a href="#"  id="toCallCompletionReportList">【点击使用】</a></h3>
+	                            <div class="description">描述：。统计员工周期时间内通话时长是否达标</div>
+	                            <h3 class="title-desc">7. 呼损管理。<a href="#"  id="toTrkSheetRecordErrorList">【点击使用】</a></h3>
+	                            <div class="description">描述：可以对呼损进行清洗。</div>
+	                            <h3 class="title-desc">8. 广告来电自动创建客户。</h3>
+	                            <div class="description">描述：对于广告未接未创建客户来电可以自动创建客户到某个工号上，由该工号进行后续分配。</div>
+	                            <h3 class="title-desc">9. 录音翻译。</h3>
+	                            <div class="description">描述：接入科大讯飞翻译功能（由客户提供帐号）。</div>
+	                        </p>
+	                    </div>
+	                </div>
+	            </div>
+
+	        </div>
+	    </div>
+	</div>
+</div>

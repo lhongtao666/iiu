@@ -1,0 +1,78 @@
+<form  id="checkForm"class="form-horizontal">
+	<div class="form-group">
+   		 <div class='col-sm-12'>
+           	<label class="col-sm-1 control-label">名称-sku：</label>
+           	<div class="col-sm-9" style="padding-top: 4px;">
+		    	 <span class="name"></span>
+           	</div>
+        </div>
+   	</div>
+   	<div class="form-group">
+   		<div class='col-sm-3'>
+   			
+           	<label class="col-sm-4 control-label">规格：</label>
+           	<div class="col-sm-8" style="padding-top: 4px;">
+		    	<span class="skuJson">
+           	</div>
+        </div>
+        <div class='col-sm-3'>
+           	<label class="col-sm-4 control-label">仓位：</label>
+           	<div class="col-sm-8" style="padding-top: 4px;">
+		    	<span class="position">
+           	</div>
+        </div>
+   	</div>
+   	<div class="form-group">
+   		<div class='col-sm-12'>
+           	<label class="col-sm-1 control-label">当前数量：</label>
+           	<div class="col-sm-6" style="padding-top: 4px;">
+		    	<span>总数(<span class="totalQty">0</span>)，良品(<span class="goodQty">0</span>)，次品(<span class="badQty">0</span>)</span>
+           	</div>
+        </div>
+   	</div>
+   	<div class="form-group">
+   		<div class='col-sm-3'>
+           	<label class="col-sm-4 control-label">实盘良品：</label>
+           	<div class="col-sm-6">
+		    	 <input type="number" class="checkQty" name="checkQty"  class='form-control'>
+           	</div>
+        </div>
+        <div class='col-sm-3'>
+           	<label class="col-sm-4 control-label">实盘次品：</label>
+           	<div class="col-sm-6">
+		    	 <input type="number" class="checkQty"  name="checkBadQty" class='form-control'>
+           	</div>
+        </div>
+        <div class='col-sm-3'>
+           	<label class="col-sm-4 control-label">实盘丢失：</label>
+           	<div class="col-sm-6" style="padding-top: 4px;">
+		    	 <span class="checkLostQty"></span>
+           	</div>
+        </div>
+   	</div>
+   	<div class="form-group">
+   		<input type="hidden" name="skuId">
+   		<input type="hidden" name="stockId">
+   	</div>
+	<div class="form-group">
+   		<button type="button" class="btn btn-sm   btn-primary addNew" style="margin-top:10px;">添加新批次</button>
+	</div>
+</form>
+<div style="margin-top: 5px;">
+   <table class="table table-striped table-bordered checkItems">
+   		<thead>
+   			<th width="30%">保质期起始</th>
+   			<th width="30%">保质期结束</th>
+   			<th width="30%">数量</th>
+   			<th width="10%">操作</th>
+   		</thead>
+   		<tbody id="checkItemsContainer">
+   			
+   		</tbody>
+   		<tfoot>
+   			<td colspan="2"></td>
+   			<td>保质期总计：<span class="totalQty_f"></span></td>
+   			<td ></td>
+   		</tfoot>
+   </table>
+</div>

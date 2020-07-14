@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>员工业绩PK</title>
+	<#include "/common/common.html">
+	<#include "/common/ztree.html">
+	<script src="${ctx}/js/jt/crm/cs/myAchiePk${deploy_min!""}.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/jt/gl/km/glHelpUtil${deploy_min!""}.js?v=${jsVersion}" ></script>
+
+	<style>
+		.pk-layer {width: calc(100% - 30px);height: 100%;margin-left: 15px;background-color: #fff;}
+		.my-pk-layer, .team-pk-layer, .pk-title, .pk-boxer, .pk-li {width:100%;}
+		.my-pk-layer {margin-bottom: 25px;}
+		.my-pk-layer:before {content: "";position: absolute;width: 2px;height: calc(100% - 205px);left: 50%;top: 160px;background-color: #f1f1f1;}
+		.pk-title {height: 35px;line-height: 40px;background-color: #fff;color: #777;border: 1px solid #eee;padding-left: 10px;border-left: 0;border-right: 0;}
+		.pk-title i {color: #1ab394;}
+		.pk-boxer {background-color: #fff;}
+		.my-pk-layer .pk-boxer {border: 2px solid #fff;border-top: 0;}
+		.pk-li {padding: 5px 10px;display: inline-block;position: relative;}
+		.pk-result-bar {position: absolute;width: calc(100% - 250px);left: 125px;top: 17px;height: 2px;box-shadow: 0 0 5px #b5b5b5 inset;overflow:hidden;filter: grayscale(100%);opacity: 0.15;transition: all 0.25s linear;}
+		.pk-result-active .pk-result-bar, .pk-result-hover .pk-result-bar {height:7px;opacity: 0.85;filter: grayscale(0);}
+		.pk-left-side, .pk-result, .pk-right-side {float:left;height: calc(100% - 20px);padding-bottom: 10px;}
+		.pk-left-side, .pk-right-side {width:38%;position: relative;}
+		.pk-result {width:24%;position: relative;}
+		.pk-result-bar .progress-bar {height: 7px;}
+		.pk-result-bar .progress-left-bar {background-color: #ed5565;}
+		.pk-result-bar .progress-right-bar {background-color: #1c84c6;}
+		.pk-result-left,.pk-result-right {position: absolute;top: 23%;color: #ccc;z-index: 2;opacity: 0;height: 80px;}
+		.pk-result-left {left:5%;}
+		.pk-result-right {right:5%;}
+		.pk-result-title {white-space: nowrap;font-size: 1.8em;font-weight: 500;height: 40px;opacity: 0;height: 20px;transition: all 0.25s ease;}
+		.pk-result-score {height:40px;font-size: 2.2em;font-weight: 600;line-height: 35px;}
+		.pk-result-right .pk-result-score {text-align: right;}
+		.pk-result-title-active {opacity: 1;height: 40px;}
+		.pk-final > div {width:50%;float:left;}
+		.pk-final .progress-left-bar {float:right;}
+		.pk-final .progress-right-bar {float:left;}
+		.pk-profile,.pk-content {height: 100%;float:left;}
+		.pk-profile {width: 110px;}
+		.pk-content {width: calc(100% - 110px);padding: 20px 7px;}
+		.pk-left-side .pk-content {padding-right: 0;}
+		.pk-right-side .pk-content {padding-left: 0;}
+		.pk-content-border {width:100%;height:100%;}
+		.pk-content-border > div {color: rgba(47, 64, 80, .5);}
+		.pk-content-border > div:first-child {padding: 10px 0;}
+		.pk-content-border > div > span {color: #777;font-weight: 600;font-size: 1.15em;}
+		.pk-content-border > div > em {color: #f8ac59;font-style: normal;width: 1.25em;height: 1.25em;line-height: 1.2em;font-size: 1.2em;display: inline-block;text-align: center;background-color: gold;border-radius: 1.35em;border: 1px solid #f8ac59;}
+		.pk-detail-msg em {color: #f8ac59;font-style: normal;width: 1.2em;height: 1.2em;line-height: 1.2em;font-size: 1em;display: inline-block;text-align: center;background-color: rgba(255, 215, 0, .5);border-radius: 1.35em;border: 1px solid #f8ac59;opacity: 0.75;}
+		.pk-right-side  .pk-content-border > div {text-align: right;}
+		.pk-profile-img {width: 66px;height: 66px;overflow: hidden;border-radius: 2.5px;border: 2.5px solid transparent;margin: 10px;box-shadow: 0 0 2px #2f4050;position: relative;}
+		.pk-profile-img > img {width:100%;position: absolute;background: #e7eaec;}
+		.pk-profile-msg > p {text-align: left;font-size: 1.1em;padding-left: 10px;margin-bottom: 0;color: #777;white-space: nowrap;cursor: pointer;}
+
+		.pk-profile-msg > p:first-child {font-size: 1.35em;font-weight: 600;color: #ed5565;}
+		.pk-profile-msg > p > span.msg-title-span {color:#ddd;font-size: 12px;font-weight: 500;}
+		/*.pk-profile-msg > p:hover span.msg-title-span {display: inline;}*/
+
+		.pk-right-side .pk-profile > div {float:right;}
+		.pk-right-side .pk-profile-img {}
+		.pk-right-side .pk-profile-msg p {text-align: right;padding-left: 0px;padding-right: 10px;}
+		.pk-right-side .pk-profile-msg p:first-child {color: #1c84c6;}
+		.pk-vs {text-align: center;padding-top: 20px;}
+		.pk-vs:before {content: "";width: 80px;height: 80px;border: 2px solid #f1f1f1;position: absolute;transform: rotate(45deg);transform-origin: 59% 65%;top:30px;z-index:2;background-color: #fff;}
+		.pk-vs img {height:100px;cursor: pointer;filter: gray;-webkit-filter: grayscale(100%);opacity: 0.25;transition: all 0.25s linear;z-index: 3;position: relative;}
+		.pk-vs img:hover {filter: none;-webkit-filter: grayscale(0);opacity: 0.85 !important;}
+		.pk-result .pk-result-bar {height: 2px;overflow: hidden;position: absolute;top: 10px;opacity: 0.5;}
+		.pk-result:before, .pk-result:after {content: "";width:0;height: 80px;position: absolute;bottom: 22.5px;border: 2px solid #eee;z-index: 1;transition: all 0.25s linear;}
+		.pk-result:before {border-right: 0;right: calc(50% + 15px);}
+		.pk-result:after {border-left: 0;left: calc(50% + 15px);}
+		.pk-result-active .pk-result:before, .pk-result-active .pk-result:after, .pk-result-hover .pk-result:before, .pk-result-hover .pk-result:after {width:calc(50% - 15px);}
+		.pk-result-active .pk-result-left, .pk-result-active .pk-result-right {opacity: 1;}
+		.pk-result-hover .pk-result-left, .pk-result-hover .pk-result-right {-webkit-animation: 0.25s score forwards ease;animation: 0.25s score forwards ease;}
+		.team-pk-head {width:100%;display: inline-block;}
+		.team-name {width: 50%;height: 27px;float: left;text-align: center;font-size: 20px;font-weight: 600;line-height: 2.5em;color: #2ba7f5;}
+		.team-name:first-child {color: #ed5565;}
+		.team-pk-layer .pk-result-bar {top: 50px;}
+		.pk-result-active .pk-vs img {filter: none;-webkit-filter: grayscale(0);opacity: 0.85;}
+		.pk-detail {position: relative;display: inline-block;width: 100%;}
+		.pk-detail-left,.pk-detail-right {width: calc(38% - 20px);min-height: 200px;border:1px solid #ccc;}
+		.pk-detail-left {float: left;margin-left: 20px;}
+		.pk-detail-right {float: right;margin-right: 20px;}
+		.pk-detail-li {display: inline-block;width: 100%;margin-top: 10px;border-bottom: 1px solid #e7eaec;padding-bottom: 5px;}
+		.pk-detail-li:last-child {border-bottom: 0;}
+		.pk-detail-num,.pk-detail-profile,.pk-detail-msg {float:left;height:100%;}
+		.pk-detail-num {width: 66px;text-align: center;line-height: 66px;font-size: 1.15em;font-weight: 600;color: rgba(237, 85, 101, 0.8);position: relative;transition: all 0.25s linear;}
+		.pk-detail-num:before {content: "";position: absolute;width: 1.5em;height: 1.5em;border: 1px solid rgba(237, 85, 101, 0.25);transform: rotate(45deg);top: 32%;left: 33%;z-index: 1;}
+		.pk-detail-num > div {position: relative;z-index: 2;}
+		.pk-detail-li:hover .pk-detail-num {color: #fff;}
+		.pk-detail-left .pk-detail-li:hover .pk-detail-num::before {background-color: rgba(237, 85, 101, 0.8);}
+		.pk-detail-right .pk-detail-li:hover .pk-detail-num::before {background-color: rgba(28, 132, 198, 0.8);}
+		.pk-detail-profile {width:66px;}
+		.pk-detail-msg {width: calc(100% - 132px);}
+		.pk-detail-img {width: 50px;height: 50px;overflow: hidden;border: 3px solid #fff;box-shadow: 0 0 2.5px #2f4050;position: relative;}
+
+		.pk-detail-img > img {width:100%;position: absolute;}
+		.pk-detail-user {white-space: nowrap;color: #1caf9a;margin-top: 5px;}
+		.pk-detail-msg > p {color: rgba(47, 64, 80, .5);}
+		.pk-detail-msg > p > span {color: #f8ac59;}
+		.pk-detail-tleft,.pk-detail-tright {position: absolute;top: -25px;height: 25px;line-height: 25px;width: calc(38% - 20px);}
+		.pk-detail-tleft {left: 20px;}
+		.pk-detail-tright {right: 20px;}
+		.pk-detail-tleft > div, .pk-detail-tright > div {border: 1px solid #ccc;border-bottom: 0;border-left: 0;padding: 0 10px;color: #777;}
+		.pk-detail-tleft > div:first-child, .pk-detail-tright > div:last-child {border-left: 1px solid #ccc;}
+		.pk-detail-tright > div:first-child {border-right: 1px solid #ccc;}
+		.pk-detail-tleft > div {float:left;}
+		.pk-detail-tright > div {float:right;}
+		.pk-detail-tleft .pk-detail-icon i {color: rgba(237, 85, 101, 0.5);}
+		.pk-detail-tright .pk-detail-icon i {color: rgba(28, 132, 198, 0.5);}
+		.pk-detail-pager {padding: 0 !important;}
+		.pk-detail-pager > div {float: left;border-right: 1px solid #ccc;padding: 0 10px;cursor: pointer;color: #ccc;transition: all 0.25s linear;}
+		.pk-detail-pager > div:last-child {border-right: 0;}
+		.pk-detail-pager > div:hover {color: #2f4050;}
+		.pk-detail-right .pk-detail-num, .pk-detail-right .pk-detail-profile, .pk-detail-right .pk-detail-msg {float: right;direction: rtl;}
+		.pk-detail-right .pk-detail-num:before {border-color:rgba(28, 132, 198, 0.25);}
+		.pk-detail-right .pk-detail-num {color: rgba(28, 132, 198, 0.8);}
+		.team-pk-layer {position: relative;}
+		.team-pk-layer:before {content: "";position: absolute;width: 2px;height: calc(100% - 205px);left: 50%;top: 195px;background-color: #f1f1f1;}
+		.pk-detail-empty {text-align: center;line-height: 50px;font-size: 1.5em;color: #ddd;}
+
+		@keyframes score {
+			0% {} 50% {opacity: 0;} 100% {opacity: 1;}
+		}
+		@-webkit-keyframes score {
+			0% {} 50% {opacity: 0;} 100% {opacity: 1;}
+		}
+		.achieveType{
+			margin-left: 10px !important;
+		}
+	</style>
+</head>
+<body>
+	<div class="pk-layer">
+		<div class="my-pk-layer">
+			<div class="pk-title"><i class="fa fa-cube" aria-hidden="true"></i>&nbsp;个人业绩PK
+               <input type="radio" checked name="achieve" id="fhAchieve" class="achieveType"><Strong>按发货业绩</Strong>
+               <input type="radio" name="achieve" id="sdAchieve" class="achieveType"><Strong>按审单业绩</Strong>
+               <div class='col-sm-6' style='float:right;'>
+                  <div class='col-sm-2'>
+                        <lable class='control-labe' style='font-weight:bold;'>时间</lable>
+                  </div>
+                  <div class='col-sm-3'>
+                        <input class="laydate-icon form-control" name="startTime" validatetype="default" placeholder="开始时间" onclick='laydate({istime: true, format: "YYYY-MM-DD",})'>
+                  </div>
+                  <div class='col-sm-1'>
+                        <label class='control-label' style='font-weight:bold;'>到</label>
+                  </div>
+                  <div class='col-sm-3'>
+                        <input class="laydate-icon form-control" name="endTime" validatetype="default" placeholder="结束时间" onclick='laydate({istime: true,format: "YYYY-MM-DD",})'>
+                  </div>
+                  <div class='col-sm-2'>
+                        <A type='button' id='searchBtn' class='jt-btn-search'><i class="fa fa-search"></i>搜索</A>
+                  </div>
+                </div>
+               <!-- 帮助中心 -->
+	            <label id="glHelpContainer">	
+	            </label>
+			</div>
+			<div class="pk-boxer">
+				<div class="pk-li">
+					<div class="pk-final pk-result-bar">
+						<div>
+							<div class="progress-bar progress-bar-striped active progress-left-bar" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 100%"></div>
+						</div>
+						<div>
+							<div class="progress-bar progress-bar-striped active progress-right-bar" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 100%"></div>
+						</div>
+					</div>
+					<div class="pk-left-side">
+						<div class="pk-profile">
+							<div class="pk-profile-img"><img id="my-profile" onerror="tgImgError(this);" src="${ctx}/img/jt/defaulTouXiang.png"/></div>
+							<div class="pk-profile-msg">
+								<p><span id="my-number"></span><span class="msg-title-span">&nbsp;工号</span></p>
+								<p><span id="my-nickname"></span><span class="msg-title-span">&nbsp;昵称</span></p>
+							</div>
+						</div>
+						<div class="pk-content">
+							<div class="pk-content-border">
+								<div>发货业绩&emsp;<em>￥</em>&nbsp;<span id="my-fa-achieve"></span></div>
+								<div>审单业绩&emsp;<em>￥</em>&nbsp;<span id="my-sd-achieve"></span></div>
+							</div>
+						</div>
+					</div>
+					<div class="pk-result">
+						<div class="pk-result-left unselect">
+							<div class="pk-result-title">准备</div>
+							<div class="pk-result-score">100</div>
+						</div>
+						<div class="pk-vs unselect"><img id="personalPk" src="${ctx}/img/jt/cs/pk.png"></div>
+						<div class="pk-result-right unselect">
+							<div class="pk-result-title">准备</div>
+							<div class="pk-result-score">100</div>
+						</div>
+					</div>
+					<div class="pk-right-side">
+						<div class="pk-content">
+							<div class="pk-content-border">
+								<div>发货业绩&emsp;<em>￥</em>&nbsp;<span id="op-fa-achieve">0.00</span></div>
+								<div>审单业绩&emsp;<em>￥</em>&nbsp;<span id="op-sd-achieve">0.00</span></div>
+							</div>
+						</div>
+						<div class="pk-profile">
+							<div class="pk-profile-img"><img id="op-profile" onerror="tgImgError(this);" src="${ctx}/img/jt/defaulTouXiang.png"/></div>
+							<div class="pk-profile-msg">
+								<p><span class="msg-title-span">工号&nbsp;</span><span id="op-number">？？？</span></p>
+								<p><span class="msg-title-span">昵称&nbsp;</span><span id="op-nickname">待定</span></p>
+							</div>
+						</div>
+						
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="team-pk-layer">
+			<div class="pk-title"><i class="fa fa-cubes" aria-hidden="true"></i>&nbsp;团队业绩PK
+               <input type="radio" checked name="teamAchieve" id="teamFhAchieve" class="achieveType"><Strong>按发货业绩</Strong>
+               <input type="radio" name="teamAchieve" id="teamSdAchieve" class="achieveType"><Strong>按审单业绩</Strong>
+			</div>
+			<div class="pk-boxer">
+				<div class="pk-li">
+					<div class="team-pk-head">
+						<div class="team-name" id="myteam-nickname">待定？？？</div>
+						<div class="team-name" id="opteam-nickname">待定？？？</div>
+					</div>
+					<div class="pk-final pk-result-bar">
+						<div>
+							<div class="progress-bar progress-bar-striped active progress-left-bar" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 100%"></div>
+						</div>
+						<div>
+							<div class="progress-bar progress-bar-striped active progress-right-bar" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 100%"></div>
+						</div>
+					</div>
+					<div class="pk-left-side">
+						<div class="pk-profile">
+							<div class="pk-profile-img"><img id="myteam-profile" onerror="tgImgError(this);" src="${ctx}/img/jt/defaulTouXiang.png"/></div>
+						</div>
+						<div class="pk-content">
+							<div class="pk-content-border">
+								<div>团队发货业绩&emsp;<em>￥</em>&nbsp;<span id="myteam-fa-achieve">0.00</span></div>
+								<div>团队审单业绩&emsp;<em>￥</em>&nbsp;<span id="myteam-sd-achieve">0.00</span></div>
+							</div>
+						</div>
+					</div>
+					<div class="pk-result">
+						<div class="pk-result-left unselect">
+							<div class="pk-result-title">准备</div>
+							<div class="pk-result-score">100</div>
+						</div>
+						<div class="pk-vs unselect"><img id="teamPk" src="${ctx}/img/jt/cs/vs.png"></div>
+						<div class="pk-result-right unselect">
+							<div class="pk-result-title">准备</div>
+							<div class="pk-result-score">100</div>
+						</div>
+					</div>
+					<div class="pk-right-side">
+						<div class="pk-content">
+							<div class="pk-content-border">
+								<div>团队发货业绩&emsp;<em>￥</em>&nbsp;<span id="opteam-fa-achieve">0.00</span></div>
+								<div>团队审单业绩&emsp;<em>￥</em>&nbsp;<span id="opteam-sd-achieve">0.00</span></div>
+							</div>
+						</div>
+						<div class="pk-profile">
+							<div class="pk-profile-img"><img id="opteam-profile" onerror="tgImgError(this);" src="${ctx}/img/jt/defaulTouXiang.png"/></div>
+						</div>
+						
+					</div>
+				</div>
+				<div class="pk-detail">
+					<div class="pk-detail-tleft unselect">
+						<div>组内详情</div>
+						<div class="pk-detail-icon"><i class="fa fa-user" aria-hidden="true"></i>&nbsp;×&nbsp;<span>12</span></div>
+						<div class="pk-detail-pager pk-pager-left">
+							<div class="pk-pager-prev">上一页</div>
+							<div class="pk-pager-refresh">刷新</div>
+							<div class="pk-pager-next">下一页</div>
+						</div>
+					</div>
+					<div class="pk-detail-tright unselect">
+						<div>组内详情</div>
+						<div class="pk-detail-icon"><i class="fa fa-user" aria-hidden="true"></i>&nbsp;×&nbsp;<span>12</span></div>
+						<div class="pk-detail-pager pk-pager-right">
+							<div class="pk-pager-prev">上一页</div>
+							<div class="pk-pager-refresh">刷新</div>
+							<div class="pk-pager-next">下一页</div>
+						</div>
+					</div>
+					<div class="pk-detail-left">
+					</div>
+					<div class="pk-detail-right">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

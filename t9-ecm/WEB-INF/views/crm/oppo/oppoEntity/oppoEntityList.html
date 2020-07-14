@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>销售商机管理</title>
+	<#include "/common/common.html">
+	<link href="${ctx}/css/jt/gl/msg/listAll${deploy_min!""}.css?v=${jsVersion}" rel="stylesheet">
+	<script type="text/javascript" src='${ctx}/js/jt/common/utils/cateUtils${deploy_min!""}.js?v=${jsVersion}'></script>
+	<script src='${ctx}/js/jt/common/service/employeesSelectLayer${deploy_min!""}.js?v=${jsVersion}'></script>
+	<script src='${ctx}/js/jt/common/service/customerSelectLayer${deploy_min!""}.js?v=${jsVersion}'></script>
+	<script src="${ctx}/js/jt/crm/oppo/oppoEntity${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script type="text/javascript">
+		$(function(){
+			var oppoEntity = new OppoEntity();
+			oppoEntity.init();
+		})
+	</script>	
+</head>
+
+<body class='white-bg'>
+	<div class="wrapper animated ">
+		<!-- list界面 -->
+		<div class="row list_wrapper">
+			<#include "/crm/oppo/oppoEntity/oppoEntityToolbar.html">
+			<div class='col-sm-12 jqGrid_wrapper'>
+			    <table id="oppoEntityGrid"></table>
+				<div id="oppoEntityPager"></div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

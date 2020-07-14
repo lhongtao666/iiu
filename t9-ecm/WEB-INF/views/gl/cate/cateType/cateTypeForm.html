@@ -1,0 +1,33 @@
+<form id="cateTypeForm" method="get" class="form-horizontal">
+	<div class="form-group">
+		<div class='col-md-4'>
+			<label class="col-sm-3 control-label">名称</label>
+			<div class="col-sm-9">
+				<input type="text" name="name" class="form-control required"
+					placeholder="名称">
+			</div>
+		</div>
+
+		<div class='col-md-4'>
+			<label class="col-sm-3 control-label">业务键</label>
+			<div class="col-sm-9">
+				<input type="text" name="key" class="form-control required"
+					placeholder="业务键">
+			</div>
+		</div>
+
+		<div id="sortDiv" class='col-md-4'>
+			<label class="col-sm-3 control-label">排序号</label>
+			<div class="col-sm-9">
+				<input type="text" name="sort" placeholder=""
+					class="digits form-control">
+			</div>
+		</div>
+	</div>
+
+	<!--将隐藏域放在这里，不显示出来-->
+	<div style="display: none'">
+		<input type="hidden" name="id"> 
+		<input type="hidden" name="createTime">
+	</div>
+</form>

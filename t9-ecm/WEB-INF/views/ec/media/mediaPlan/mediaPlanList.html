@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>广告投放计划管理</title>
+	<#include "/common/common.html">
+	<script src="${ctx}/js/jt/ec/media/mediaPlan${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src='${ctx}/js/jt/common/service/employeesSelectLayer${deploy_min!""}.js?v=${jsVersion}'></script>
+	<script src="${ctx}/js/jt/gl/km/glHelpUtil${deploy_min!""}.js?v=${jsVersion}" ></script>
+</head>
+
+<body class='white-bg'>
+	<div class="wrapper animated ">
+		<!-- list界面 -->
+		<div class="row list_wrapper">
+			<#include "mediaPlanToolbar.html">	  			
+			<div class='col-sm-12 jqGrid_wrapper'>
+			    <table id="mediaPlanGrid"></table>
+				<div id="mediaPlanPager"></div>
+			</div>
+		</div>
+		<!-- 编辑界面 -->
+		<#include "mediaPlanEdit.html">	    
+	</div>
+</body>
+</html>

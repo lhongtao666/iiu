@@ -1,0 +1,64 @@
+ <div class='row toolbar-panel'>
+	<div class='col-sm-12'  style='padding-top: 15px; padding-bottom: 15px;'>
+		<button type='button' class="btn btn-sm   btn-primary addPrivateValidToForm">新增</button>
+		<button type='button' class="btn btn-default backToForm">返回</button>
+	</div>
+</div>
+ <div class="form-horizontal"  id="privateEditDiv">
+    <div class="form-group">
+           <div class='col-sm-4'>
+	           <label class="col-sm-3 control-label">规则类型</label>
+	           <div class="col-sm-9">
+	               <label class="control-label">私有验证规则</label>
+	               <input type="hidden" name="private_type"  value="private">
+	           </div>
+         </div>
+     </div>
+     <div class="privateEditDiv col-sm-12">
+         <div class="form-group">
+            <div class='col-sm-4'>
+	           <label class="col-sm-3 control-label">规则业务键</label>
+	           <div class="col-sm-9">
+			     <input type="text" name="private_key" placeholder="" class="form-control"> 
+	           </div>
+           </div>
+           <div class='col-sm-4'>
+	           <label class="col-sm-3 control-label">配置内容类型</label>
+	           <div class="col-sm-9">
+			     <select class="form-control" name="private_configType" id="private_configType">
+                   <option value="base">基本</option>
+                   <option value="regex">正则</option>
+                   <option value="js">JS方法</option>
+                 </select>
+	           </div>
+            </div>
+            <div class='col-sm-4'>
+	           <label class="col-sm-3 control-label">配置内容</label>
+	           <div class="col-sm-9">
+			     <input type="text" name="private_config" placeholder="" class="form-control"> 
+	           </div>
+            </div>
+        </div>
+        <div class="form-group">
+             <div class='col-sm-4'>
+	           <label class="col-sm-3 control-label">服务器端验证方法</label>
+	           <div class="col-sm-9">
+			     <input type="text" name="private_serverMethod" placeholder="" class="form-control"> 
+	           </div>
+            </div>
+            <div class='col-sm-4'>
+	           <label class="col-sm-3 control-label">定制提示信息</label>
+	           <div class="col-sm-9">
+			     <input type="text" name="private_msg" placeholder="" class="form-control"> 
+	           </div>
+            </div>
+            <div class='col-sm-4'>
+		       <label class="col-sm-3 control-label">排序号</label>
+		       <div class="col-sm-9">
+			      <input type="text" name="private_sort" placeholder="" class="digits form-control"> 
+		       </div>
+	        </div>
+	    </div>
+	    <input type="hidden"  name="private_vid" >
+	 </div>  
+</div>

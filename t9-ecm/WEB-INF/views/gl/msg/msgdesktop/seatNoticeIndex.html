@@ -1,0 +1,20 @@
+<script src="${ctx}/js/jt/gl/msg/seatNoticeIndex${deploy_min!""}.js?v=${jsVersion}"></script>
+
+<div class="ibox float-e-margins" style="height:100%;position:relative;">
+	<div class="ibox-title"style="height:14%;">
+		<h5>最新消息</h5>
+		<div class="btn-group pull-right">
+			<button type="button" class="btn btn-sm btn-outline btn-primary allBtn" disabled="disabled">全部</button>
+			<button type="button" class="btn btn-sm btn-outline btn-primary noticeBtn" >系统公告</button>
+			<button type="button" class="btn btn-sm btn-outline btn-primary missBtn ">未接来电</button>
+			<button type="button" class="btn btn-sm btn-outline btn-primary csCountBtn ">新进客户</button>
+			<button type="button" class="btn btn-sm btn-outline btn-primary otherBtn">其他</button>
+	    </div>
+		<div class="pull-right" style='margin-right:20px;'>
+			<button type="button" class="btn btn-sm btn-outline btn-info today">今天</button>
+			<button type="button" class="btn btn-sm btn-outline btn-info sevenDays">7天内</button>
+		</div>
+	</div>
+	
+	<div class="ibox-content timeline" style="height:86%;overflow:auto;bottom:35px;" id='msgDiv'></div>
+</div>

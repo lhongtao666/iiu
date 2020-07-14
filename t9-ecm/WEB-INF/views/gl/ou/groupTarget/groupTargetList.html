@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>公司目标管理</title>
+	<#include "/common/common.html">
+	<#include "/common/ztree.html">
+	<script src="${ctx}/js/jt/gl/ou/groupTarget${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/common/utils/groupUtils${deploy_min!""}.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/jt/gl/km/glHelpUtil${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<style type="text/css">
+		#employee-target-container{	border: 1px solid #ccc;overflow-y: auto;}
+		.group-name{line-height: 30px;font-weight: 600;}
+		.employee-name{margin-top: 5px;width: 100%;}
+		.total-div{margin-top: 5px;}
+		.total{width: 120px;}
+		.countTarget-div{margin-top: 5px;}
+		.countTarget{width: 120px;}
+		.jt-employee-img{height:60px;width:60px;border-radius: 50%;border: 1px solid #1caf9a;}
+		.countTarget-div.hide{ display: none; }
+		.group-count{display: none;}
+		#groupTargetContainer{height: 700px;overflow-y: auto}
+		.group-target-div{height: 120px;border: 1px solid #ccc;padding: 15px;margin-bottom: 15px;}
+		.group-target-div:hover{border-color:#337ab7; }
+		.group-target-1{float: left;width: 43%;line-height: 25px;padding-left: 30px;}
+		.group-target-2{float: left;width: 33%;text-align: center;line-height: 25px;padding-top: 5px;}
+		.group-target-3{float: left;width: 23%;text-align: center;padding-top: 25px;font-size: 16px;}
+		.group-target-3 a{width: 40px; display: block;color:#959595;float: right;margin-right: 20px;  }
+		.group-target-3 a i{font-size: 30px;}
+		.group-target-3 a:hover{color:#1ab394;}
+		.hover-red:hover{color:red !important;}
+		.div-line{padding: 14px;}
+		.div-line1{float:left;border-bottom: 8px solid #1ab394;}
+		.div-line2{float:left;border-bottom: 6px solid #ccc;}
+		.div-line1-after{
+			box-shadow: 0 0 5px #c7c7c7;
+			background: #00b8ec;
+			border: 3px solid #ffffff;
+			color: #ffffff;
+			height: 20px;
+			width: 20px;
+			border-radius: 50%;
+			margin-top: -6px;
+			float: left;
+		}
+		.target-span{padding-left: 20px;}
+		.group-target-name{font-weight: 600;font-size: 15px;color: #1ab394;}
+		.self-page-div{height: 35px;border-top: 1px solid #e7eaec;line-height: 30px;}
+		.self-page-div a{border: 1px solid #ddd; padding: 1px;}
+		.self-page-div a.no{cursor: not-allowed}
+		.norecords{display: block;}
+		.norecords img{width:100px;height:100px;margin-bottom:20px;}
+		.target-num{font-weight: 600;}
+		#groupTargetContainer{
+		   border: 1px solid rgba(0, 0, 0, 0.12);
+           border-radius: 5px;
+		}
+	</style>
+	<script type="text/javascript">
+		var targetIsAudit = "n";
+		<#if targetIsAudit??>
+			targetIsAudit = "${targetIsAudit}";
+		</#if>
+	</script>
+</head>
+
+<body class='white-bg'>
+	<div class="wrapper animated ">
+		<!-- list界面 -->
+		<div class="row list_wrapper">
+			<#include "/gl/ou/groupTarget/groupTargetToolbar.html">	  			
+			<div class='col-sm-12 jqGrid_wrapper'>
+			   <div id="groupTargetContainer" >
+			   
+			   </div>
+			   <div class="self-page-div" id="groupTargetPageContainer">
+			   	显示 <span class ="first-row">0</span> 到 <span class ="last-row">0</span> 项，共 <span class ="total-row">0</span> 项
+			   	<a style="margin-left:50px; " class="pre-page no">上一页</a>
+			   	<a style="margin-left:10px; " class="next-page no">下一页</a>
+			   </div>
+			</div>
+		</div>
+		<!-- 编辑界面 -->
+		<#include "/gl/ou/groupTarget/groupTargetEdit.html">	   
+	</div>
+</body>
+</html>

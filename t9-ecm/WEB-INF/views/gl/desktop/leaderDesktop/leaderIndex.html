@@ -1,0 +1,465 @@
+ <style type="text/css">
+ 	body {
+ 		/*background-color: rgba(28, 132, 198, 0.25) !important;*/
+	    background-image: url("${ctx}/img/jt/cs/newHome/phb-white-bg.jpg");
+	    background-repeat:  no-repeat;
+	    background-size: 100% 100%;
+	}
+	 #desktopConfigContainer {
+	    height: 100%;
+	    border: 0;
+	}
+ 	#desktopConfigContainer > div, #desktopConfigContainer > div > div, #desktopConfigContainer > div > div > div {
+	    height: 100%;
+	    padding: 0;
+	    margin: 0;
+	}
+	.flex-layer {
+	    width: 1300px;
+	    height: 100%;
+	    margin: 0 auto;
+	}
+	.ld-today-performance, .ld-nc-performance, .ld-sys-message, .ld-timer-layer {
+		height:145px;		
+	}
+	.ld-issue-layer, .ld-rank-layer, .ld-communicate-layer, .ld-deal-layer {
+		height: calc(50% - 72.5px);
+	}
+	.flex-layer, .flex-layer > div {
+		border: 5px solid transparent;
+		padding: 0 !important;
+	}
+	.flex-layer > div {
+		box-shadow: 0px 0px rgba(8,10,37,.03), 0 0.9375rem 1.40625rem rgba(8,10,37,.03), 0 0.25rem 0.53125rem rgba(8,10,37,.05), 0 0.125rem 0.1875rem rgba(8,10,37,.03);
+	    border-radius: 9px;
+	    overflow: hidden;
+	}
+	.ld-today-performance > div {
+		float: left;
+		position: relative;
+	}
+	.ld-today-title, .ld-today-target {
+		height: 35px;
+    	white-space: nowrap;
+	}
+	.ld-today-title {
+		color: #1caf9a;
+	    font-size: 1.1em;
+	    text-indent: 10px;
+	    border-bottom: 1px solid #e7eaec;
+	    background-color: rgba(255, 255, 255, 0.75);
+	    line-height: 35px;
+	    width: 100%;
+	}
+	.ld-today-title > span {
+		color: rgba(47, 64, 80, 0.5);
+    	font-size: 0.5em;
+    	text-shadow: none;
+	}
+	.ld-today-target {
+		text-align: right;
+		width: 50%;
+		border-right: 10px solid transparent;
+		position: absolute !important;
+    	right: 0;
+    	line-height: 35px;
+    	color: rgba(47, 64, 80, 0.75);
+	}
+	.ld-today-target > em,#ld-target {
+		font-style: normal;
+		color: #2f4050;
+	}
+	#ld-target {
+		font-weight: 600;
+	}
+	.ld-today-detail {
+		height: 100px;
+    	width: 100%;
+    	background-color: rgba(255, 255, 255, 0.5);
+	}
+	.ld-today-num {
+		font-size: 2.2em;
+	    font-weight: 500;
+	    margin: 10px;
+	    color: #2f4050;
+	}
+	.ld-arrow {
+		margin-left: 5px;
+		display: none;
+	}
+	.ld-today-num .fa-long-arrow-down {
+		color: transparent;
+    	-webkit-text-stroke: 1px #ed5565;
+	}
+	.ld-today-num .fa-long-arrow-up {
+		color: transparent;
+    	-webkit-text-stroke: 1px #2f4050;
+	}
+	.ld-ysday-num {
+		text-indent: 10px;
+    	color: rgba(47, 64, 80, 0.65);
+	}
+	.ld-today-performance .ld-today-percent {
+		width: 100px;
+		height: 100px;
+		position: absolute;
+		background-color: transparent;
+	    bottom: 0;
+	    right: 0;
+	}
+	.ld-percent-table {
+	    width: 80%;
+	    height: 80%;
+	    display: table;
+	    margin: 10%;
+	}
+	.ld-percent-data {
+	    border: 1px solid #1c84c6;
+    	box-shadow: 0 0 25px #fff inset;
+	    border-radius: 50px;
+	    text-align: center;
+	    font-size: 1.5em;
+	    display: table-cell;
+	    vertical-align: middle;
+	    color: #1c84c6;
+	}
+	.ld-nc-performance > div, .ld-sys-message > div {
+		float: left;
+	}
+	.ld-nc-performance .ld-today-num i {
+		color: transparent;
+    	-webkit-text-stroke: 1px #1c84c6;
+	}
+	 .ld-sys-message .ld-today-num i {
+	 	font-size: 1.7em;
+		color: transparent;
+    	-webkit-text-stroke: 1px #97cc16;
+	}
+	.ld-sys-message .ld-today-num {
+		font-size: 1em;
+	    font-weight: 500;
+	    color: #2f4050;
+	}
+	.ld-today-performance .ld-today-num .fa-rmb {
+		color: transparent;
+    	-webkit-text-stroke: 1px #f8ac59;
+	}
+	.ld-nc-performance .ld-today-num span {
+		font-weight: 600;
+	}
+	.ld-sys-message .ld-today-num span {
+		color: #2f4050;
+	    font-size: 2.2em;
+	    font-weight: 600;
+	}
+	.ld-timer-container {
+		width: 100%;
+	    height: 100%;
+	    padding-top: 20px;
+	    border: 5px solid #fff;
+	    background-color: transparent;
+	    color: rgba(47, 64, 80, .75);
+	}
+	.ld-timer-container .hourMinuteSecond {
+		color: transparent !important;
+    	-webkit-text-stroke: 1px #e7eaec;
+    	text-shadow: 0 0 1px #1c84c6;
+	}
+	.blink {
+	    font-weight: 500 !important;
+	    animation: blink 1s linear infinite;
+	    -webkit-animation: blink 1s linear infinite;
+	    -moz-animation: blink 1s linear infinite;
+	    -ms-animation: blink 1s linear infinite;
+	    -o-animation: blink 1s linear infinite;
+	}
+	@keyframes blink {
+        0% {opacity: 1;}
+        50% {opacity: 1;}
+        50.01% {opacity: 0;}
+        100% {opacity: 0;}
+    }
+    @-webkit-keyframes blink {
+        0% {opacity: 1;}
+        50% {opacity: 1;}
+        50.01% {opacity: 0;}
+        100% {opacity: 0;}
+    }
+    .panel-leader {
+    	width:100%;
+    	height:100%;
+    	padding: 0;
+    	background-color: transparent;
+    	border: 1px solid #fff;
+    }
+    .panel-leader .panel-heading {
+    	height: 35px;
+    	color: #2f4050;
+    	background-color: rgba(255, 255, 255, 0.75);
+    	border-color: transparent;
+    	border-bottom: 1px solid #eaedef;
+    }
+    .panel-leader .panel-body {
+    	height: calc(100% - 35px);
+    	padding: 0;
+    	background-color: rgba(255, 255, 255, 0.5);
+    }
+    .panel-leader .panel-body .ui-jqgrid {
+    	height: 100% !important;
+    	border-color: transparent;
+    }
+    .ld-issue-btn {
+    	float: right;
+    	text-align: right;
+    	font-size: 0.8em;
+    	color: #999;
+    }
+    .ld-communicate-btn {
+    	float: right;
+    	text-shadow: none;
+    }
+    .ld-communicate-btn > div {
+	    width: 70px;
+	    height: 25px;
+	    float: left;
+	    line-height: 24px;
+	    text-align: center;
+	    border: 1px solid rgba(47, 64, 80, .5);
+	    margin-top: -2.5px;
+	    color: rgba(47, 64, 80, .5);
+	    cursor: pointer;
+	    transition: all 0.25s linear;
+	}
+	.ld-communicate-btn > div:hover {
+		border-color: #2f4050;
+    	color: #2f4050;
+	}
+	.ld-communicate-btn > div.ld-com-weixin {
+		border-left-color: transparent  !important;
+	}
+	.ld-communicate-btn > div.ld-active {
+		background-color: rgba(255, 255, 255, .5);
+	    color: #1c84c6;
+	    border-color: #6293ba;
+	}
+
+	/*表格样式*/
+	.panel-leader .panel-body .ui-jqgrid .ui-jqgrid-labels > th.ui-th-column:first-child {
+    	background-color: #1c84c6 !important;
+    }
+    .panel-leader .panel-body .ui-jqgrid .ui-jqgrid-labels > th.ui-th-column {
+    	background-color: #1c84c6;
+    	text-align: center;
+    	color: #fff;
+    	border-right: 1px solid #fff !important;
+    	height: 30px;
+    }
+    .panel-leader .panel-body .ui-jqgrid .ui-jqgrid-labels > th.ui-th-column:last-child {
+    	border-right-color: #1c84c6 !important;
+    }
+	.panel-leader .norecords {
+		top: calc(50% - 100px);
+    	color: transparent !important;
+	}
+
+	.table>tbody>tr.success>td, .table>tbody>tr.success>th, .table>tbody>tr>td.success, .table>tbody>tr>th.success, .table>tfoot>tr.success>td, .table>tfoot>tr.success>th, .table>tfoot>tr>td.success, .table>tfoot>tr>th.success, .table>thead>tr.success>td, .table>thead>tr.success>th, .table>thead>tr>td.success, .table>thead>tr>th.success {
+		    background-color: transparent !important;
+	}
+
+	.table>tbody>tr.active>td, .table>tbody>tr.active>th, .table>tbody>tr>td.active, .table>tbody>tr>th.active, .table>tfoot>tr.active>td, .table>tfoot>tr.active>th, .table>tfoot>tr>td.active, .table>tfoot>tr>th.active {
+	    background-color: transparent !important;
+	}
+
+	.panel-leader .ui-jqgrid .ui-jqgrid-btable {
+		border:0;
+	}
+	.panel-leader .ui-jqgrid tr.jqgrow {
+	    border-bottom: 1px solid #e7eaec;
+	}
+	.panel-leader .ui-jqgrid tr.jqgrow td {
+	    vertical-align: middle;
+	}
+	.ld-profile-layer,.ld-basic-layer {
+		float: left;
+		white-space: nowrap;
+		height: 35px;
+		line-height: 35px;
+		overflow: hidden;
+    	text-overflow: ellipsis;
+	}
+	.ld-profile-layer {
+		position: relative;
+		width: 35px;
+		overflow: hidden;
+    	border: 1px solid #fff;
+    	background: #e7eaec;
+	}
+	.ld-basic-layer {
+		width: calc(100% - 35px);
+		text-align: left;
+	}
+	.ld-profile {
+		width: 100%;
+		position: absolute;
+		top: 0;
+		left: 0;
+	}
+
+	.ld-percent-total {
+		display:none;
+		position: absolute;
+	    top: calc(50% - 14px);
+	    right: 0;
+	    height: 28px;
+	    width: 100%;
+	    background-color: #fff;
+	    border: 1px solid rgba(28, 132, 198, 0.75);
+	    text-align: center;
+	    line-height: 25px;
+	    font-size: 1.15em;
+	}
+	.ld-today-percent:hover .ld-percent-total {
+	    display: block;
+	}
+	/*强制隐藏一切加载动画*/
+	#loading {
+		display: none !important;
+	}
+
+	@media screen and (max-width: 1100px) {
+		.ld-today-detail {
+			height:85px;
+		}
+		.ld-today-performance .ld-today-percent {
+			width: 85px;
+    		height: 85px;
+		}
+		.ld-today-performance, .ld-nc-performance, .ld-sys-message, .ld-timer-layer {
+			height:130px;
+		}
+		.ld-issue-layer, .ld-rank-layer, .ld-communicate-layer, .ld-deal-layer {
+		    height: calc(50% - 65px);
+		}
+		.ld-timer-container {
+			padding-top: 15px;
+		}
+		.ld-tody-1024 {
+			display: none;
+		}
+		.ld-today-num #ld-total-current {
+			font-size: 0.85em;
+		}
+ 	}
+	@media screen and (max-width: 1300px) {
+ 		.flex-layer {
+		    width: 100%;
+		}
+ 	}
+ </style>
+
+ <div class="flex-layer">
+ 	<div class="col-sm-3 ld-today-performance">
+ 		<div class="ld-today-title unselect">今日业绩<span>（按审单）</span></div>
+ 		<div class="ld-today-target">
+ 			<span class="ld-tody-1024">本月</span>目标：<em class="unselect">￥</em><span id="ld-target">0</span>
+ 		</div>
+ 		<div class="ld-today-detail">
+ 			<div class="ld-today-num">
+ 				<i class="fa fa-rmb"></i>
+ 				<span id="ld-total-current">0</span>
+ 				<i class="ld-arrow fa fa-long-arrow-up" aria-hidden="true"></i>
+ 			</div>
+ 			<!-- <div class="ld-ysday-num">累计业绩总额：￥<span id="ld-total-yesterday">0</span></div> -->
+ 			<div class="ld-ysday-num">昨日业绩：￥<span id="ld-total-yesterday">0</span></div>
+ 		</div>
+ 		<div class="ld-today-percent">
+ 			<div class="ld-percent-table">
+ 				<div class="ld-percent-data"><span id="ld-percent-int">0</span>.<span id="ld-percent-float">0</span>%</div>
+ 			</div>
+ 			<div class="ld-percent-total">￥<span id="ld-already">999</span></div>
+ 		</div>
+ 	</div>
+ 	<div class="col-sm-3 ld-nc-performance"> 
+ 		<div class="ld-today-title unselect">今日新进客户</div>
+ 		<div class="ld-today-target">
+ 		</div>
+ 		<div class="ld-today-detail">
+ 			<div class="ld-today-num">
+ 				<i class="fa fa-user-plus" aria-hidden="true"></i>&nbsp;
+ 				<span id="ld-nc-current">0</span>&nbsp;
+ 				<!-- <i class="fa fa-long-arrow-up" aria-hidden="true"></i> -->
+ 			</div>
+ 			<div class="ld-ysday-num">昨日新进客户：<span id="ld-nc-yesterday">0</span></div>
+ 		</div>
+ 	</div>
+ 	<div class="col-sm-3 ld-sys-message">
+ 		<div class="ld-today-title unselect">系统信息</div>
+ 		<div class="ld-today-target">
+ 		</div>
+ 		<div class="ld-today-detail">
+ 			<div class="ld-today-num"><i class="fa fa-group" ></i>&emsp;在线人数：<span id="ld-sys-total">0</span></div>
+ 			<div class="ld-ysday-num">微信号在线数：<span id="ld-wx-total">0</span></div>
+ 		</div>
+ 	</div>
+ 	<div class="col-sm-3 ld-timer-layer">
+ 		<div class="ld-timer-container unselect">
+ 			<div class="jt-calendar"></div>
+ 		</div>
+ 	</div>
+ 	<div class="col-sm-6 ld-issue-layer">
+ 		<div class="panel panel-default panel-leader">
+ 			<div class="panel-heading">
+ 				今日出单曲线
+ 				<div class="ld-issue-btn unselect">记录了审单时间轨迹</div>
+ 			</div>
+ 			<div class="panel-body">
+ 				<div id="ld-issue-viewer" style="width:100%;height:100%;"></div>
+ 			</div>
+ 		</div>
+ 	</div>
+ 	<div class="col-sm-6 ld-rank-layer">
+ 		<!-- 销售排行 -->
+ 		<div class="panel panel-default panel-leader">
+ 			<div class="panel-heading unselect">今日销售排行</div>
+ 			<div class="panel-body jt-grid-panel ld-grid-panel">
+ 				<table id="ld-rank-grid"></table>
+ 			</div>
+ 		</div>
+ 	</div>
+ 	<div class="col-sm-6 ld-communicate-layer">
+ 		<div class="panel panel-default panel-leader">
+ 			<div class="panel-heading unselect">
+ 				今日沟通数据
+ 				<div class="ld-communicate-btn">
+ 					<div class="ld-com-phone ld-active">通话</div>
+    				<div class="ld-com-weixin">微信聊天</div>
+ 				</div>
+ 			</div>
+ 			<div class="panel-body">
+ 				<div id="ld-communicate-viewer" style="width:100%;height:100%;"></div>
+ 			</div>
+ 		</div>
+ 	</div>
+ 	<div class="col-sm-6 ld-deal-layer">
+ 		<!-- 实时成交 -->
+ 		<div class="panel panel-default panel-leader">
+ 			<div class="panel-heading unselect">
+ 				今日实时成交
+ 				<div class="ld-issue-btn">每隔两分钟刷新一次</div>
+ 			</div>
+ 			<div class="panel-body jt-grid-panel ld-grid-panel">
+ 				<table id="ld-deal-grid"></table>
+ 			</div>
+ 		</div>
+ 	</div>
+ </div>
+
+<script type="text/javascript">
+$(function(){
+	//初始化日历
+	var jtCalendar = new JTCalendar();
+	jtCalendar.init();
+
+	(new LeaderIndex()).init();
+});
+</script>

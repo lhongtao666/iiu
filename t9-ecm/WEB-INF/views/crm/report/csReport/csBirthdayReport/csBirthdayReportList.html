@@ -1,0 +1,73 @@
+ <!DOCTYPE html>
+ <html>
+
+ <head>
+ 	<title>客户生日报表</title>
+ 	<#include "/common/common.html">
+ 	<#include "/common/ztree.html">
+ 	<script src="${ctx}/js/jt/crm/report/cs/csBirthdayReport${deploy_min!""}.js?v=${jsVersion}" ></script>
+ 	<script src="${ctx}/js/jt/common/utils/groupUtils${deploy_min!""}.js?v=${jsVersion}"></script>
+ 	<link href="${ctx}/css/plugins/select2/select2.min.css?v=${jsVersion}" rel="stylesheet">
+	<script src="${ctx}/js/plugins/select2/select2.min.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/plugins/chosen/chosen.jquery.js?v=${jsVersion}"></script>
+
+ </head>
+
+ <body class='white-bg'>
+ 	<div class='wrapper'>
+ 		<div class='row list_wrapper main_div'>
+ 			<div class='col-sm-12'>
+ 				<div class="panel panel-default">
+ 					<div class="panel-heading">	
+ 						<form id="csBirthdayReportSearchForm" class="form-horizontal">
+ 							<div class='form-group'>
+ 								<div class="col-sm-4">
+ 									<label class="control-label col-sm-1">生日</label>
+ 									<div class="input-daterange input-group" id="datepicker">
+
+ 										<select name="beginMM">
+ 											<option value="">请选择选择月</option>
+ 										</select>
+ 										<select name="beginDD">
+ 											<option value="">请选择选择日</option>
+ 										</select>
+ 										<span >到</span>
+ 										<select name="endDD">
+ 											<option value="">请选择选择日</option>
+ 										</select>
+ 										<select name="endDD">
+ 											<option value="">请选择选择日</option>
+ 										</select>
+
+ 									</div>
+ 									<div class='col-sm-2'>
+ 										<button class="btn btn-sm   btn-primary" type='button' id="preDateBtn">前一天</button>
+ 										<button class="btn btn-sm   btn-primary" type='button' id="nextDateBtn">后一天</button>	
+ 									</div>
+ 									<div class="col-sm-5">
+ 										<label class="control-label col-sm-1">部门</label>
+ 										<div class="col-sm-5">
+ 											<input id="groupName" class="form-control" readonly="" title="请选择部门" style="cursor: pointer;">
+ 											<input id="groupId" name="groupId" class="form-control" type="hidden">
+ 										</div>
+ 									</div>
+ 									<div class='col-sm-1'>
+ 										<button class="btn btn-sm   btn-primary" type='button' id="searchBtn">搜索</button>	 									</div>
+ 									<div class="buttons col-sm-1">
+ 										<button type='button' class='btn btn-sm   btn-primary exportExcel'><i class='fa fa-add'>异步导出</i>
+ 										</button>
+ 									</div>
+ 								</div>
+ 							</form>
+ 						</div>
+ 					</div>
+ 				</div>
+
+ 				<div class="jqGrid_wrapper col-sm-12">
+ 					<table id="csBirthdayReportGrid"></table>
+
+ 				</div>	
+ 			</div>
+ 		</div>
+ 	</body>
+ 	</html>

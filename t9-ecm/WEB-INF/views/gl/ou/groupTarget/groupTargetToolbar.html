@@ -1,0 +1,52 @@
+<div class="col-sm-12">
+	<div class="panel panel-default">
+	    <div class="panel-heading">
+	    	<button type='button' class='jt-btn groupTargetAdd'><i class='fa fa-plus'></i>&nbsp;新增任务</button>
+	    </div>
+	    <div class="panel-body">
+	        <form id="groupTargetSearchForm" role="form" class="form-horizontal">
+		        <div class="form-group">
+		            <label class="col-sm-1 control-label">目标月份</label>
+		            <div class="col-sm-1">
+						<select  class="form-control" id="search-period-year">
+						</select>
+					</div>
+					<div class="col-sm-1">
+						<select  class="form-control" id="search-period-month">
+							<option value="">全部</option>
+							<option value="01">1月</option>
+							<option value="02">2月</option>
+							<option value="03">3月</option>
+							<option value="04">4月</option>
+							<option value="05">5月</option>
+							<option value="06">6月</option>
+							<option value="07">7月</option>
+							<option value="08">8月</option>
+							<option value="09">9月</option>
+							<option value="10">10月</option>
+							<option value="11">11月</option>
+							<option value="12">12月</option>
+						</select>
+					</div>
+					<button style="margin-left:10px; " type='button' class='jt-quick-search preMonthBtn'>上个月</button>
+					<button style="margin-left:10px; " type='button' class='jt-quick-search nextMonthBtn'>下个月</button>
+					<input style="margin-left:10px; " type="radio" name = "type" value="audit">按审单业绩
+					<input type="radio" name = "type" value="complete" checked="checked">按签收业绩
+					
+					<label class="control-label" style="width:50px;float:left">部门</label>
+					<div class="col-sm-2">
+						<input id="groupName" readonly="" class="form-control" title="请选择部门"
+							style="cursor: pointer;"> <input name="belongOgn"
+							type="hidden" class="form-control">
+					</div>
+					<button style="margin-left:50px; " type='button' class="btn jt-btn-search groupTargetSearch"><i class="fa fa-search"></i>&nbsp;搜索</button>
+					 <!-- 帮助中心 -->
+		            <label id="glHelpContainer">	
+		            </label>
+				</div>				
+			</form>
+	    </div>
+	</div>
+</div>
+
+

@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<#include "/common/common.html">
+	<#include "/common/eav.html">
+	<#include "/common/datatable.html">
+	<#include "/common/ztree.html">
+
+	<title>我的客户</title>
+	<link href="${ctx}/css/plugins/chosen/chosen.css?v=${jsVersion}" rel="stylesheet">
+	<link href="${ctx}/css/plugins/switchery/switchery.css?v=${jsVersion}" rel="stylesheet">
+	<link href="${ctx}/css/jt/ec/salesorder/orderaddr${deploy_min!""}.css?v=${jsVersion}" rel="stylesheet">
+	<link href="${ctx}/css/plugins/select2/select2.min.css?v=${jsVersion}" rel="stylesheet">
+	<link rel="stylesheet" rev="stylesheet" type="text/css" media="all" href="${ctx}/css/jt/crm/cs/wx/weiXinChatNew.css?v=${jsVersion}"> 
+	<script src="${ctx}/js/plugins/select2/select2.min.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/plugins/chosen/chosen.jquery.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/plugins/hz2py/jQuery.Hz2Py-min.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/plugins/suggest/bootstrap-suggest.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/plugins/zclip/jquery.zclip.js?v=${jsVersion}"></script>
+	<script src='${ctx}/js/jt/crm/oppo/oppoTableList${deploy_min!""}.js?v=${jsVersion}'></script>
+	<script src="${ctx}/js/jt/crm/cs/csAddrNew${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src='${ctx}/js/jt/crm/cs/csFollow${deploy_min!""}.js?v=${jsVersion}'></script>
+	<script src="${ctx}/js/jt/crm/cs/csLevelChange${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/crm/cs/csMailHistory${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/crm/cs/csComplainAdd${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/crm/cs/csOrder${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/ec/salesorder/soEntityUtils${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/crm/cs/csCallRecord${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/crm/cs/csEav${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/crm/cs/csAccount${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/crm/cs/csPhoneNew${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/crm/cs/pointLog${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/crm/cs/csContract${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src='${ctx}/js/plugins/clipboard/clipboard.min.js?v=${jsVersion}'></script>
+	<script src='${ctx}/js/jt/common/service/employeesSelectLayer${deploy_min!""}.js?v=${jsVersion}'></script>
+	<script src="${ctx}/js/jt/common/utils/groupUtils${deploy_min!""}.js?v=${jsVersion}"></script>
+	<script src='${ctx}/js/jt/common/service/sendMessage${deploy_min!""}.js?v=${jsVersion}'></script>
+	<script src='${ctx}/js/jt/gl/cate/cateOptService${deploy_min!""}.js?v=${jsVersion}'></script>
+	<script src='${ctx}/js/jt/common/service/customerSelectLayer${deploy_min!""}.js?v=${jsVersion}'></script>
+	<script src="${ctx}/js/jt/common/service/addressService${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/common/service/shopAddrOptLayer${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/common/utils/maskPhoneNum${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/common/utils/excelUtil${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/crm/cs/csEmployee${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/crm/cs/complainTypeOption${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/crm/cs/csFinanceMeeting${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/crm/cs/csFinanceContract${deploy_min!""}.js?v=${jsVersion}" ></script>	
+	<script src="${ctx}/js/jt/crm/cs/csFinanceTurnover${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/crm/cs/statisticInfo${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/plugins/switchery/switchery.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/gl/cti/recordOperate${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/common/utils/groupUtils${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/ec/salesorder/soEntityBase${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/ec/salesorder/soItem${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/ec/salesorder/soLog${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/ec/salesorder/soShip${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/ec/salesorder/soProfit${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src='${ctx}/js/jt/crm/cs/csPhonePanel${deploy_min!""}.js?v=${jsVersion}'></script>
+	<script src="${ctx}/js/jt/crm/cs/csEntityUtils${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/ec/salesorder/export/soEntityExport${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/crm/rfmt/csRfmtModel${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/common/utils/excelUtil${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/crm/limit/csLimit${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<#if weixinUseType?? && weixinUseType == 'android'>
+		<script src="${ctx}/js/jt/crm/android/androidChatNewForm${deploy_min!""}.js?v=${jsVersion}"></script>
+	<#else>
+		<script src="${ctx}/js/jt/crm/cs/weiXin/weiXinChatForm${deploy_min!""}.js?v=${jsVersion}"></script>
+	</#if>
+	
+	<script src="${ctx}/js/jt/crm/cs/weiXin/weiXinUtil${deploy_min!""}.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/plugins/echarts/3.1.7/theme/macarons.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/plugins/echarts/3.1.7/echarts.min.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/jt/common/plugins/report${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/common/service/UploadImageUtil${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<link rel="stylesheet" type="text/css" href="${ctx}/css/plugins/webuploader/webuploader.css?v=${jsVersion}">
+	<link rel="stylesheet" type="text/css" href="${ctx}/css/demo/webuploader-demo2.css?v=${jsVersion}">
+	<script type="text/javascript" src="${ctx}/js/plugins/webuploader/webuploader.js?v=${jsVersion}"></script>
+	<script type="text/javascript" src="${ctx}/js/jt/common/service/JTWebUploader${deploy_min!""}.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/jt/crm/cs/csCashHi${deploy_min!""}.js?v=${jsVersion}" ></script>
+	
+	<script type="text/javascript">
+		var isUseRfmt = "${isUseRfmt}";
+		var type = "${type}";
+		var csId = "${csId}";
+		var editType = "${editType}";
+		var inNum = "${inNum}";
+		var outNum = "${outNum}";
+		var csPhone = "${csPhone}";
+		var isDefaultLast = 'n';
+		var isNewPage = true;
+		var versionType = "${versionType}";
+		var showThirdSoNo = "${showThirdSoNo}";
+
+		//====ssq====cs
+		var showCsCalledNum = "${showCsCalledNum!''}";
+		var outNumMedia400 = "${outNum!''}";
+		var srcNames = "${srcNames!''}";
+		var outNumNot400 = "${outNumNot400!''}";
+		var csEntityIsSub = "${csEntityIsSub!''}";
+		var isOpenCallOutBtnInternal = false;
+		<#if isOpenCallOutBtnInternal??>
+			isOpenCallOutBtnInternal = "${isOpenCallOutBtnInternal}";
+		</#if>
+	</script>
+	<link rel="stylesheet" rev="stylesheet" type="text/css" media="all" href="${ctx}/css/bootstrap-select.css?v=${jsVersion}">
+	<script src="${ctx}/js/bootstrap-select.min.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/crm/cs/formFrontConfig${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/crm/cs/csEntityEdit${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<#include "/gl/tag/tag/tagTmpl.html" >
+
+	<style>
+		.title{
+		  display:block;
+		  position:relative;
+		  top:-10px;
+		  text-align: center; 
+		  background: white;
+		  width:80px;
+		}
+		#chat {
+			min-height: auto;
+		}
+		.main-hide {
+    		max-width: 10000px;
+		}
+		.jt-cs-panel {height:100%;border:0;}
+		.jt-cs-panel > .panel-body {height:calc(100% - 45px);padding: 0;padding-top: 10px;}
+		.jt-cs-tab {height:100%;}
+		.jt-cs-tab > .tab-content {height:calc(100% - 35px);}
+		.jt-cs-tab > .tab-content > div {height:100%;overflow-x:hidden;}
+		.jt-cs-tab ul li {min-width:88px;}
+		#csEntityEav {overflow:hidden;}
+		.jt-cs-tab > .tab-content > div::-webkit-scrollbar {
+    		width: 10px;
+		}
+		.jt-cs-tab > .tab-content > div::-webkit-scrollbar-thumb {
+    		background-color: #ccc;
+		}
+		.jt-cs-tab > .tab-content > div::-webkit-scrollbar-track {
+    		background-color: #e7eaec;
+		}
+		/*.jt-cs-panel .panel-heading{    border: 2.5px solid #fff;border-bottom: 0;}*/
+		/*.jt-cs-panel .panel-heading .btn {min-width: 66px;box-shadow: 0 2.5px 5px #999;}*/
+		@media screen and (max-width: 1400px) {
+		    .force-align-input {
+		    	width:calc(66.66% - 28px) !important;
+		    }
+		    .force-align-btn {
+		    	width:28px !important;
+		    }
+		    .force-align-input2 {
+		    	width:calc(66.66% - 40px) !important;
+		    }
+		    .force-align-btn2 {
+		    	width:40px !important;
+		    }
+		    .force-align-input-2 {
+	    	width:calc(66.66% - 60px) !important;
+		    }
+		}
+
+		.addr-skin .layui-layer-content {
+			padding:10px 20px;
+		}
+
+		.addr-skin .layui-layer-btn {
+			border-top: 1px solid #e5e5e5;
+		}
+		.jt-cs-baseinfo {
+			color: #1ab394;
+			border: 1px solid #1ab394;
+			cursor: pointer;
+		}
+		.jt-cs-active {
+			height:28px;
+			float:left;
+			padding:5px 5px;
+			border: 1px solid #fff;
+			background-color:#1ab394;
+			border-radius:9px;
+			margin-left:9px;
+			margin-bottom:5px;
+			font-weight:bold;
+			color: #fff;
+			cursor: pointer;
+		}
+	    .icon img{
+             width: 100% !important;
+             height: 100% !important;
+		}
+		#cs-rfmt-show{
+			float: left;
+		    margin-top: 4px;
+		    padding: 2px 10px;
+		    cursor: pointer;
+		    color: #FF5722;
+		    position: relative;
+		}
+		#cs-rfmt-show:before {
+		    content: "";
+		    border: 10px solid transparent;
+		    position: absolute;
+		    border-bottom-color: #cbe7fb;
+		    bottom: -15px;
+		    left: calc(50% - 12.5px);
+		    display: none;
+		}
+		#cs-rfmt-show.on:before {
+			display: block;
+		}
+		#cs-rfmt-show:hover:before {
+			display: block;
+		}
+		.employeeWeixin-chosen-div .bootstrap-select {
+			width:100% !important;
+		}
+		#employeeWeixin + div button {
+			background-color: #fff !important;
+			color: #333;
+			border-radius: 2.5px;
+			height: 28px;
+			line-height: 15px;
+		}
+		.operPhone > * {
+		    float: left;
+		}
+		.operPhone > *:first-child {
+			color: #F44336;
+		}
+		.operPhone > *:first-child:hover {
+			border-color: #F44336;
+		    color: #F44336;
+		    background: rgba(244, 67, 54, .1);
+		}
+		.jt-form-select.remove-addr {
+		    color: #F44336;
+		}
+		.jt-form-select.remove-addr:hover {
+		    border-color: #F44336;
+		    color: #F44336;
+		    background: rgba(244, 67, 54, .1);
+		}
+		.operPhone > button.addCsPhone {
+		    display: none;
+		}
+		#phoneNumDiv > .form-group:last-child .addCsPhone {
+		    display: block;
+		}
+
+		@media screen and (max-width: 1440px) {
+			.cs-phone-number {
+				width: 83.33333333%;
+			}
+			.col-sm-3.cs-phone-type {
+				width: 41.66666667%;
+				margin-top: 5px;
+    			padding-left: 16.667% !important;
+			}
+			.cs-phone-nickname {
+				width: 58.33333333%;
+				margin-top: 5px;
+			}
+		}
+		#csOrderTable {
+			margin-bottom: 0 !important;
+		}
+		.csOrderTable-total-layer {
+			height: 40px;
+		    border: 1px solid #ddd;
+		    text-align: center;
+		    line-height: 40px;
+		    color: red;
+		    border-top: 0;
+		}
+	</style>
+</head>
+<body class='white-bg' style='overflow:hidden;'>
+	<div class="panel panel-default jt-cs-panel">
+	   	<div class="panel-heading">
+	   		<a class="jt-btn saveBtn noVisit" id="saveBtn"><i class="fa fa-floppy-o"></i>&nbsp;保存</a>
+	   		<a class="jt-btn preCs"><i class="fa fa-arrow-left" aria-hidden="true"></i>&nbsp;上一个</a>
+	   		<a class="jt-btn nextCs"><i class="fa fa-arrow-right" aria-hidden="true"></i>&nbsp;下一个</a>
+	   		<a class="jt-btn placeOrder noVisit"><i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;下订单</a>
+	   		<a class="jt-btn questionNaire"><i class="fa fa-mixcloud" aria-hidden="true"></i>&nbsp;调查问卷</a>
+	   	    <!-- <a class="jt-btn isReturnVisit noVisit"><i class="fa fa-coffee" aria-hidden="true"></i>&nbsp;回访</a> -->
+	   		<a class="jt-btn bindWx noVisit" style="display:none;"><i class="fa fa-wechat"></i>&nbsp;绑定微信</a>
+	   		<a class="jt-btn jt-btn-red csEntityRecycle noVisit" style="display:none;"><i class="fa fa-retweet" aria-hidden="true"></i>&nbsp;还原</a>
+	   		<#if versionType?? && versionType == 'finance'>
+	   			<a class="jt-btn fastLoginBtn noVisit">&nbsp;傲融登录</a>
+	   		</#if>
+	   		<div class="btn-group noVisit">
+	   			<a data-toggle="dropdown" class="jt-btn dropdown-toggle moreBtn" aria-expanded="true">
+	   			更多<span class="caret"></span>
+	   			</a>
+	   			<ul class="dropdown-menu jt-drop-menu" style="margin-top: -7px;border-top: 1px solid #e8f4fe;border-left: 1px solid #e8f4fe;">
+	   				<li>
+	   					<button class='placePointOrder jt-btn'>
+	   					下积分订单
+	   					</button>
+	   				</li>
+	   				<li>
+	   					<button class='combineCs jt-btn'>
+	   						合并资料
+	   					</button>
+	   				</li>
+	   				<li>
+			 			<button class='createSubCsEntity jt-btn'>
+			 				创建从客户
+			 			</button>
+	        		</li>
+	   				 <li>
+	           			<button class='soAfterList jt-btn'>
+			 			去退换货
+			 			</button>
+	        		 </li>
+	        		 <li>
+	           			<button class='csReturnsByIds jt-btn' style='display:none;'>
+			 				归还客户
+			 			</button>
+		 			 <li>
+			 			<button class='claimCsSea jt-btn' style='display:none;'>
+			 				领取客户
+			 			</button>
+		 			</li>
+		 			<li>
+			 			<button class='csSeaChangeGroup jt-btn' style='display:none;'>
+			 				转移部门
+			 			</button>
+	        		 </li>
+	        		 <li>
+	        		 	<button  class='jt-btn increateYouZanPoint'>
+	        		 		同步有赞积分
+	        		 	</button>
+	        		 </li>	
+	   			</ul>
+	   		</div>
+	   		<span class="jt-span"></span>
+	   		
+	   		<a class='jt-btn jt-btn-red closeBtn noVisit'><i class="fa fa-remove" aria-hidden="true"></i>&nbsp;关闭</a>
+	       <!--  <button class='jt-btn jt-btn-red finishVisit' type='button' style="display: none;">结束回访</button> -->
+	   		<!-- 帮助中心 -->
+	   		<label id="glHelpContainer">	
+	   		</label>
+
+	
+	   		<#if outNum??>
+	   			<#if outNumNot400??>
+	   			${outNum}( ${outNumNot400!''} )进线
+	   			<#else>
+	   			${outNum}进线
+	   			</#if>
+	   		</#if>
+
+	   		<#if (csEntityIsSub!"")=="y">
+    			<label style="color:red">【从】</label>
+    			<a href="javascript:void(0)" class="toLinkMainCs" mainCsCode="${mainCsCode!''}"  mainCsId="${mainCsId!''}">（关联主客户：[${mainCsCode!''}]）</a>
+    		</#if>
+
+    		<!-- form表单字段配置 -->
+    		<div class="jt-form-config">表单字段配置&nbsp;<span class="glyphicon glyphicon-cog "></span></div>
+	   	</div>
+	
+	   	<div class="panel-body">
+	   		<!--编辑模式container-->
+	   		<div class='tabs-container jt-cs-tab'>
+	   			<ul class="nav nav-tabs">
+	   				<li class='active baseInfoDiv tabLi' attr-id='baseInfo'>
+	   					<a href="#csInfoTab" data-toggle="tab">基本信息</a>
+	   				</li>
+					<#if isUseStatistic?? && isUseStatistic == 'true'>
+	   				<li class='csEntityEav tabLi' attr-id='statistic'>
+	   					<a href="#csEntityEav" data-toggle="tab">客户画像</a>
+	   				</li>
+					</#if>
+					<#if versionType?? && versionType == 'finance'>
+	   				<li class="dropdown">
+	   					<a href="#" class="dropdown-toggle" data-toggle="dropdown">更多 <b class="caret"></b></a>
+	   					<ul class="dropdown-menu">
+	   						<!-- <li class="tabLi" attr-id='extraMessage'>
+								<a href="#extraMessage" data-toggle="tab">扩展属性</a>
+							</li>
+							<#if isUseLevel?? && isUseLevel == 'true'>
+			   				<li class="tabLi" attr-id='levelChange'>
+								<a href="#levelchangeTab" data-toggle="tab">积分级别</a>
+							</li>
+							</#if> -->
+	   						<li style="display:none;">
+	   							<a href="#accountTab" data-toggle="tab">账户</a>
+	   						</li>			    						
+		    				<!-- <li class="tabLi" attr-id='complain'>
+		    					<a href="#complainTab" data-toggle="tab">投诉</a>
+		    				</li> -->
+	   						<!-- <li class="tabLi" attr-id='email'>
+	   							<a href="#mailHistoryTab" data-toggle="tab">邮件历史</a>
+	   						</li> -->
+	   						
+								<li class="tabLi" attr-id='limit'>
+	    							<a href="#limitTag" data-toggle="tab">授信额度</a>
+	    						</li>	
+							
+	   						<li style="display:none;">
+	   							<a href="#contractTab" data-toggle="tab">合同</a>
+	   						</li>
+	   						<li style="display:none;">
+	   							<a href="#oppoTag" data-toggle="tab">商机信息</a>
+	   						</li>		    						
+	   					</ul>
+	   				</li>
+	   				</#if>
+	   				<#if isUseRfmt?? && isUseRfmt == 'true'>
+	   				<div id="cs-rfmt-show">
+	   				客户价值&nbsp;:&nbsp;<span class="rfmtRate"></span>分
+	   				</div>
+	   				</#if>
+	   				<div style='float:right;padding-top:3px;'>
+						<span id="orderTip">
+				    	</span>
+		    		</div>
+	   			</ul>
+	   			<div id="myTabContent" class="tab-content">
+	   				<div id="csInfoTab" class="tab-pane fade in active">
+	   					<#include "/crm/cs/csEntity/csInfoNew.html" >
+	   				</div>
+					<div id="extraMessage" class="tab-pane fade">
+						<div class="panel-body">
+							<style>
+								#eavCommonContainer fieldset {margin-top: 25px;}
+								#eavCommonContainer fieldset legend {text-indent: 10px;color: #1caf9a;}
+							</style>
+							<div id='eavCommonContainer'></div>
+						</div>
+					</div>
+					<div id="levelchangeTab" class="tab-pane fade">
+	   					<div class="panel-body">
+	   						<div id="pointLogDiv"></div>
+	   					</div>
+	   					<hr style="height:2px;border:none;border-top:2px solid #e5e5e5;"/>
+	   					<div class="panel-body">
+	   						<div id="csLevelChangeDiv"></div>
+	   					</div>  
+	   				</div>
+	   				
+	   				<div id="csEntityEav" class="tab-pane fade editFlag">
+	   					<div class='row'>
+	   						<div class='col-sm-12'>
+	   							<!--客户统计-->
+	   							<#include "/crm/cs/csEntity/statisticInfoDiv.html">		
+	   						</div>
+	
+	<!-- 			    						<div class='col-sm-12'>
+				    							<div class="panel panel-default">
+				    							    <div class="panel-heading">
+				    							        <h3 class="panel-title">扩展信息</h3>
+				    							    </div>
+				    							    <div class="panel-body">
+				    									<div id='eavCommonContainer'></div>	
+				    							    </div>
+				    							</div>
+				    						</div>	 -->		    						
+	   					</div>
+	   				</div>
+	
+	
+	   				<!--
+	   				<div id="contractTab" class="tab-pane fade">
+	   					<div class="panel-body">
+	   						<#include "/crm/cs/csEntity/csContract.html" >
+	   					</div>
+	   				</div>
+	   				-->
+	   				<div id="accountTab" class="tab-pane fade">
+	   					<div class="panel-body">
+	   						<div id="csAccountDiv"></div>
+	   					</div>
+	   				</div>
+	   				<div id="oppoTag" class="tab-pane fade">
+	   					<div class="panel-body">
+	   						<#include "/crm/oppo/oppoInfo/oppoTableList.html" ></div>
+	   				</div>
+	   				<#if versionType?? && versionType == 'finance'>
+	   				<div id="limitTag" class="tab-pane fade">			    				
+						<!-- 添加界面 -->
+						<#include "/crm/limit/csLimit/csLimitAdd.html">	   
+	   					<div class="panel-body">
+	   						<div id="csLimitTagDiv"></div>
+	  						</div>
+	   				</div>
+	   				</#if>
+	   				
+	   				<div id="complainTab" class="tab-pane fade">
+	   					<div class="panel-body">
+	   						<button type='button' class='btn btn-sm   btn-primary addComplain'>添加投诉</button>
+	   						<div id="csComplainDiv"></div>
+	   					</div>
+	   				</div>
+	   				
+	   				<div id="mailHistoryTab" class="tab-pane fade">
+	   					<div class="panel-body">
+	   						<div id="mailHistoryDiv"></div>
+	   					</div>
+	   				</div>
+	   			</div>
+	   		</div>
+	   	</div>
+	   </div>
+	<div class="modal fade" id="changeGroupModalContainer" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	    <div class="modal-dialog" role="document">
+	    	<div class="modal-content">
+	      		<div class="modal-header">
+	        		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+	        		<h4 class="modal-title" id="myModalLabel">转移部门</h4>
+	      		</div>
+		
+		        <div class="modal-body">
+			        <form id="changeGroupForm" method="get" class="form-horizontal">
+			        	<div class="form-group">
+							<label class="col-sm-2 control-label">名称</label>
+							<div class="col-sm-10">
+								<input type="text" class='form-control' readonly id='groupName'>
+								<input type="hidden" name='groupId'>	
+								<input type="hidden" name='selectedIds'>
+							</div>
+						</div>
+			        </form>
+		        </div>
+		        <div class="modal-footer">
+		        	<button type="button" class="btn btn-sm   btn-default" data-dismiss="modal">关闭</button>
+		        	<button type="button" class="btn btn-sm   btn-primary" id='csSeaChangeGroupSave'>保存</button>
+		        </div>
+	        </div>
+        </div>
+    </div>
+	<#include "/crm/cs/csEntity/cs-include.html">
+	<#include "/gl/cti/tRKSheetRecord/record_operate.html">
+	<!--创建从客户modal-->
+	<#include "/crm/cs/csEntity/createForSubModal.html">
+</body>
+</html>

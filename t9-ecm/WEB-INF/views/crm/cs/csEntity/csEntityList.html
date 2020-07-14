@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>客户管理</title>
+	<#include "/common/common.html">
+	<#include "/common/ztree.html">
+	<#include "/common/datatable.html">
+	<#include "/common/eav.html">
+	<!--客户模块的公共引用的css，js等头部文件123-->
+	<link href="${ctx}/css/plugins/chosen/chosen.css?v=${jsVersion}" rel="stylesheet">
+	<link href="${ctx}/css/plugins/switchery/switchery.css?v=${jsVersion}" rel="stylesheet">
+	<link href="${ctx}/css/jt/ec/salesorder/orderaddr${deploy_min!""}.css?v=${jsVersion}" rel="stylesheet"> 
+	<link href="${ctx}/css/plugins/select2/select2.min.css?v=${jsVersion}" rel="stylesheet">
+	<script src="${ctx}/js/plugins/select2/select2.min.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/plugins/chosen/chosen.jquery.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/plugins/hz2py/jQuery.Hz2Py-min.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/plugins/switchery/switchery.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/plugins/suggest/bootstrap-suggest.js?v=${jsVersion}"></script>
+	<!-- <script src="${ctx}/js/jt/common/utils/listUtil${deploy_min!""}.js?v=${jsVersion}" ></script> -->
+	<script>
+		var RScore = "${r_score}";
+		var FScore = "${f_score}";
+		var isUseRfmt = "${isUseRfmt}";
+		var type = "${type}";	 //sub下属客户,search客户查询,self我的客户
+		var filterType = "";
+		var turnNew = "";
+		var csCare = "";
+		var currentPositionId = "";
+		var phoneNums = "";
+		var belongEmployee = "";
+		var csType = "";
+		var Q__D__EQ__create_time_ = "";
+		<#if filterType??>
+			filterType = "${filterType}";
+		</#if>
+		<#if currentPositionId??>
+			currentPositionId = "${currentPositionId}";
+		</#if>
+		<#if phoneNums??>
+			phoneNums = "${phoneNums}";
+		</#if>
+		<#if turnNew??>
+			turnNew = "${turnNew}";
+		</#if>
+		<#if csCare??>
+			csCare = "${csCare}";
+		</#if>
+		<#if csCare??>
+			csCare = "${csCare}";
+		</#if>
+		<#if belongEmployee??>
+			belongEmployee = "${belongEmployee}";
+		</#if>
+		<#if csType??>
+			csType = "${csType}";
+		</#if>
+		<#if Q__D__EQ__create_time_??>
+			Q__D__EQ__create_time_ = "${Q__D__EQ__create_time_}";
+		</#if>
+		var isSelectCsEntity = "false";
+		<#if isSelectCsEntity??>
+			isSelectCsEntity = "${isSelectCsEntity}";
+		</#if>
+		var isWineIndustyPage = false;
+		<#if isWineIndustyPage??>
+			isWineIndustyPage = "${isWineIndustyPage}";
+		</#if>
+	</script>
+	<#include "/gl/tag/tag/tagTmpl.html" >
+	<style type="text/css">
+		/* 编号和名称的样式 */
+		.nameClass{
+            overflow:hidden;
+            text-overflow:ellipsis;
+            display:-webkit-box;
+            -webkit-box-orient:vertical;
+            -webkit-line-clamp:2;
+			word-break: keep-all !important;
+			color: #1b2c56;
+    		font-size: 13px;
+		}
+		.nameClass > span {
+			-webkit-user-select: none;
+		    -moz-user-select: none;
+		    -ms-user-select: none;
+		    user-select: none;
+		}
+		a.csEntityEditTmp {
+		    font-size: 14px;
+		    color: #045cad;
+		}
+		a.csEntityEditTmp:hover {
+			text-decoration: underline;
+		}
+	</style>
+<script src='${ctx}/js/jt/crm/cs/csEntity-site${deploy_min!""}.js?v=${jsVersion}' ></script>
+</head>
+<body class='white-bg'>
+	<div class="wrapper animated ">
+		<div class="row list_wrapper">
+			<#include "/crm/cs/csEntity/csEntityToolbar.html">
+			<div class='col-sm-12 jqGrid_wrapper'>
+				<table id="csEntityGrid"></table>
+				<div id="csEntityPager"></div>
+			</div>
+		</div>
+	</div>
+	<#include "/crm/cs/csEntity/csEntityExportExcel.html">
+	<!--通话记录的相关操作html代码-->
+	<#include "/gl/cti/tRKSheetRecord/record_operate.html">
+<!-- 	<div style="display:none"  class="batchEditLevelPanel" >
+	   	<#include "/crm/cs/csEntity/batchEditLevel.html" >
+	</div> -->
+	<!-- <div style="display:none"  class="batchEditSrcsPanel" >
+		<div class="panel-body">
+			<form id="batchEditSrcs" method="get" class="form-horizontal">
+				<div class='form-group'>
+					<div class='col-sm-12'>
+						<label class="col-sm-3 control-label">渠道来源</label>
+						<div class="col-sm-9">
+							<select class='form-control' name='srcSearch2' id='srcSearch2'
+								validateType="default"></select>
+						</div>
+					</div>	
+				</div>
+			</form>
+		</div>
+	</div> -->
+	<!--批量发短信-->
+	<#include "/crm/cs/csEntity/sendMessagePane.html" >
+	
+	<#include "/crm/cs/csEntity/ailTemplateModel.html">
+	
+	<#include "/crm/cs/csEntity/csEntityBatchUpdate.html" >
+	<div style="display:none"  class="csEntityBatchCallPanel">
+		<#include "/crm/cs/csEntity/csEntityBatchCall.html" >
+	</div>
+	<!--分配客户资源-->
+	<#include "/crm/cs/csAssign/csAssign.html">
+	<#include "/common/listTitleEdit.html">
+	<!--创建从客户modal-->
+	<#include "/crm/cs/csEntity/createForSubModal.html">
+	<!--客户RFMT检索-->
+	<#include "/crm/rfmt/rfmtModel/rfmtSearchForm.html">
+</body>
+</html>

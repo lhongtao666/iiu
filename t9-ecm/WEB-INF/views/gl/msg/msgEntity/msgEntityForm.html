@@ -1,0 +1,84 @@
+
+<form id="msgEntityForm" method="get" class="form-horizontal">
+	<div class="form-group">
+		<div class='col-sm-4'>
+			<label class="col-sm-3 control-label">标题<span style='color: red;'>*</span></label>
+			<div class="col-sm-9">
+				<input type="text" name="title" placeholder="" class="form-control" validateType="default" > 
+			</div>
+		</div>	
+		
+		<div class='col-sm-4'>
+			<label class="col-sm-3 control-label">开始时间<span style='color: red;'>*</span></label>
+			<div class="col-sm-9">
+				<input class='laydate-icon form-control layer-date' AUTOCOMPLETE="off" name="startTime" validateType="default"  placeholder="YYYY-MM-DD hh:mm:ss" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss',choose: function(datas){$('input[name=startTime]').trigger('keyup');}})">
+			</div>
+		</div>	
+
+		<div class='col-sm-4'>
+			<label class="col-sm-3 control-label">结束时间<span style='color: red;'>*</span></label>
+			<div class="col-sm-9">
+				<input class='laydate-icon form-control layer-date' AUTOCOMPLETE="off" name="endTime" validateType="default"  placeholder="YYYY-MM-DD hh:mm:ss" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss', choose: function(datas){$('input[name=endTime]').trigger('keyup');}})">
+			</div>
+		</div>	
+	</div>
+
+	<div class='form-group'>
+		<div class='col-sm-4'>
+			<label class="col-sm-3 control-label">接收者类型<span style='color: red;'>*</span></label>
+			<div class="col-sm-9">
+			    <select id="recevieType" name='recType' class='form-control' validateType='default'>
+			    	<option value=''>请选择</option>
+			    	<option value='admin'>全体用户</option>
+			    	<option value='users'>指定用户</option>
+			    	<option value='groups'>指定部门</option>
+			    </select>
+			</div>
+		</div>
+		
+		<div class='col-sm-4' style = "" id ="hiddenRecTypeDiv">
+			<div class="col-sm-4">
+			    <button type='button' id="hiddenRecTypeBtn" class='btn btn-sm   btn-primary selectRecType'>请选择</button> 
+			</div>
+			<div class='col-sm-8' id="hiddenRecTypeInput">
+				<select id="selectReceiveType" data-placeholder="请选择" name="receiveTypeInput" multiple class='chosen-select form-control' validateType='default'>
+					<option value="-1"></option>
+				</select>
+			</div>
+		</div>
+	</div>
+	
+	<div class='form-group'>
+		<div class='col-sm-4'>
+			<label class="col-sm-3 control-label">等级<span style='color: red;'>*</span></label>
+			<div class="col-sm-9">
+			    <select name='level' class='form-control' validateType='default'>
+			    	<option value=''>请选择</option>
+			    	<option value='0'>提示</option> <!--灰色-->
+			    	<option value='1'>普通</option> <!--蓝色-->
+			    	<option value='2'>重要</option> <!--黄色-->
+			    	<option value='3'>非常重要</option> <!--红色-->
+			    </select>
+			</div>
+		</div>
+	</div>
+
+	<div class='form-group'>
+		<div class='col-sm-12'>
+			<label class="col-sm-1 control-label">消息内容</label>
+			<div class="col-sm-11">
+				<div id="summernote"></div>
+			</div>
+		</div>
+	</div>
+
+	<div class='form-group'>
+		<!--将隐藏域放在这里，不显示出来-->
+		<div style="display:none'">
+			<input type="hidden" id="id" name="id">
+			<input type="hidden" name="createBy">
+			<input type="hidden" name="createTime">
+			<input type="hidden" name="sender">
+		</div>
+	</div>
+</form>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>权限配置</title>
+	<#include "/common/common.html">
+	<script type="text/javascript">
+		$(function(){
+			$('#editBtn').on('click', function(){
+				$(this).addClass('hidden');
+				$('#saveBtn').removeClass('hidden');
+				$('#cancelBtn').removeClass('hidden');
+				$('textarea[name="resConfig"]').removeAttr('readonly');
+			});
+
+			$('#saveBtn').on('click', function(){
+				$(this).addClass('hidden');
+				$('#cancelBtn').addClass('hidden');
+				$('#editBtn').removeClass('hidden');
+				var resConfig = $('textarea[name="resConfig"]').val();
+				FormUtils.submit(ctx + '/gl/auth/res/saveResConfig.htm', {config: resConfig}, function(msg){
+					if(msg.success){
+						DialogUtils.success(msgCode.SUCCESS, "更新成功");
+						$('#cancelBtn').trigger('click');	
+					}else{
+						$("textarea[name='resConfig']").val(resConfig);
+						$('#editBtn').trigger('click');
+						DialogUtils.error(msgCode.ERROR, msg.msg);
+					}
+				});
+				$('textarea[name="resConfig"]').attr('readonly', 'readonly');
+			});
+
+			$('#cancelBtn').on('click', function(){
+				$(this).addClass('hidden');
+				$('#saveBtn').addClass('hidden');
+				$('#editBtn').removeClass('hidden');
+				$('textarea[name="resConfig"]').attr('readonly', 'readonly');
+			});
+		});
+	</script>
+</head>
+
+<body class='white-bg'>
+	<div class="wrapper animated ">
+		<!-- list界面 -->
+		<div class="row list_wrapper">
+			<div class='col-sm-12 jqGrid_wrapper'>
+			    <form class='form-horizontal'>
+			    	<div class='form-group'>
+			    		<div class='col-sm-12'>
+							<div class="panel panel-default">
+								<div class="panel-heading">
+
+									<button class='jt-btn' id='editBtn' type='button'><i class='fa fa-edit'>&nbsp;编辑</i></button>
+									<button class='jt-btn hidden' id='saveBtn' type='button'><i class='fa fa-refresh'>&nbsp;刷新配置</i></button>
+									<button class='jt-btn jt-btn-red hidden' id='cancelBtn' type='button'><i class="fa fa-reply">&nbsp;</i>取消</button>
+
+						        </div>	
+
+						        <div class='pannel-body'>
+						        	<textarea rows='60' readonly class='form-control' name='resConfig'>${resConfig}</textarea>    
+						        </div>
+							</div>
+			    		</div>
+			    	</div>
+			    </form>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

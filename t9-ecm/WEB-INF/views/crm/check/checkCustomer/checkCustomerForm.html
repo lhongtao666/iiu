@@ -1,0 +1,85 @@
+<div class='row' style='border: 1px solid #ddd; margin-left: 15px; margin-right: 15px;padding:10px;'>
+	<div class='col-sm-12'>
+		<form id="checkCustomerForm" method="get" class="form-horizontal">
+
+
+			<div class="form-group">
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">客户名称</label>
+					<div class="col-sm-9">
+						<input type="text" name="name" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">客户编码</label>
+					<div class="col-sm-9">
+						<input type="text" name="code" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">反馈地址</label>
+					<div class="col-sm-9">
+						<input type="text" name="url" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+			</div>
+			<div class="form-group">
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">授权数量</label>
+					<div class="col-sm-9">
+						<input type="text" name="credit" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">最新版本</label>
+					<div class="col-sm-9">
+						<input type="text" name="lastVersion" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">部署时间</label>
+					<div class="col-sm-9">
+						<input class="laydate-icon form-control layer-date" name="lastDeployTime"   autocomplete="off" placeholder="yyyy-mm-dd hh:mm:ss" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">
+					</div>
+				</div>
+			</div>
+			
+			<div class='form-group'>
+				<label class="col-sm-1 control-label">接收邮箱</label>
+				<div class="col-sm-11">
+					<textarea class="form-control" name="emails"> </textarea>
+				</div>
+			</div>
+			<div class='form-group'>
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">最新结果</label>
+					<div class="col-sm-9 result">
+					</div>
+				</div>
+			</div>
+			<div class='form-group'>
+				<label class="col-sm-1 control-label">结果描述</label>
+				<div class="col-sm-11">
+					<textarea  rows="10" class="form-control " name="resultDesc" readonly="readonly" autocomplete="off" placeholder="" > </textarea>
+				</div>
+			</div>
+			<div class='form-group'>
+				<!--将隐藏域放在这里，不显示出来-->
+				<div style="display:none'">
+					<input type="hidden" id="id" name="id">
+					<input type="hidden" name="result">
+					<input type="hidden" name="createBy">
+					<input type="hidden" name="createTime">
+				</div>
+			</div>
+
+		</form>
+	</div>
+	<div class="col-sm-12 checkCustomerLogDiv">
+ 		客户跟进 <button type='button' class='jt-btn addFollow' id='addFollowBtn' >添加跟进记录</button>			
+ 	</div>
+	<div class='col-sm-12 checkCustomerLogDiv' id="checkCustomerLogDiv"></div>
+</div>

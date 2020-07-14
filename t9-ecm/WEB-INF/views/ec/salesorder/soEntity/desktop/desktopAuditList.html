@@ -1,0 +1,35 @@
+<style>
+	.darkColor {
+		color: red;
+	}
+</style>
+
+<script type="text/javascript">
+	 var curUserId = "${ONLINE_ENTITY.userId}";
+</script>
+<script src="${ctx}/js/jt/ec/salesorder/desktop/auditList${deploy_min!""}.js?v=${jsVersion}" ></script>
+<div class="panel panel-default ">
+	<div class="panel-heading">
+		<h4>待审核订单</h4>
+	</div>
+	<div class="panel-body">
+		<div class='form-group jqGrid_wrapper'>
+			
+			<table class='table table-bordered table-stripped'>
+				<thead>
+					<tr>
+						<td>订单编号</td>
+						<td>客户</td>
+						<td>订单类型</td>
+						<td>订单状态</td>
+						<td>付款方式</td>
+						<td>应收金额</td>
+						<td>下单时间</td>
+					</tr>
+				</thead>
+
+				<tbody id='auditContainer'></tbody>
+			</table>
+		</div>
+	</div>
+</div>

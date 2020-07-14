@@ -1,0 +1,156 @@
+
+<div class="ibox" >
+	<div class="ibox-title">
+		<h5>安全日志</h5>
+		<div class="pull-right" style='margin-right:20px;'>
+			<button type="button" class="btn btn-sm btn-outline btn-info today">今天</button>
+			<button type="button" class="btn btn-sm btn-outline btn-info threeDays">3天内</button>
+			<button type="button" class="btn btn-sm btn-outline btn-info sevenDays">7天内</button>
+		</div>
+	</div>
+	
+	<div class="ibox-content" style="height:100%">	
+		<div class="tabs-container">
+			<ul class="nav nav-tabs">
+				<li  id="csTabLi" class="tabli active">
+					<a href="#tabCsLogHome" data-toggle="tab">
+						客户
+					</a>
+				</li>
+				<li  id="soTabLi" class="tabli">
+					<a href="#tabSoLogHome" data-toggle="tab">
+						订单
+					</a>
+				</li>
+				<li  id="empTabLi" class="tabli">
+					<a href="#tabEmpLogHome" data-toggle="tab">
+						员工
+					</a>
+				</li>
+				<div class="csSearch pull-right">
+					<div class='col-sm-8'>
+						<input type="text" placeholder="请输入客户编号" name="csCode" class="form-control">						
+					</div>
+					<div class='col-sm-4'>
+						<button type="button" class="btn btn-sm jt-btn-normal btn-primary secureOperCsLogSearch">搜索</button>
+					</div>
+	    		</div>
+	    		
+	    		<div class="soSearch pull-right" style='display:none;'>
+					<div class='col-sm-8'>
+						<input type="text" placeholder="请输入订单编号" name="soNo" class="form-control">						
+					</div>
+					<div class='col-sm-4'>
+						<button type="button" class="btn btn-sm jt-btn-normal btn-primary secureOperSoLogSearch">搜索</button>
+					</div>
+	    		</div>
+	    		
+	    		<div class="empSearch pull-right" style='display:none;'>
+					<div class='col-sm-8'>
+						<input type="text" placeholder="请输入员工编号" name="aid" class="form-control">						
+					</div>
+					<div class='col-sm-4'>
+						<button type="button" class="btn btn-sm btn-primary jt-btn-normal secureOperEmpLogSearch">搜索</button>
+					</div>
+	    		</div>
+			</ul>
+			<div class="tab-content">
+				<div id="tabCsLogHome" class="tab-pane active">
+					<div class="panel-body">
+						<div class='row'>
+        					<div class='col-sm-12 csLogContent'></div>
+						</div>
+					</div>
+				</div>
+				<div id="tabSoLogHome" class="tab-pane">
+					<div class="panel-body">
+						<div class='row'>
+           					<div class='col-sm-12 soLogContent'></div>
+						</div>
+					</div>
+				</div>
+				<div id="tabEmpLogHome" class="tab-pane">
+					<div class="panel-body">
+						<div class='row'>
+							<div class='col-sm-12 empLogContent'></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="ibox" >
+	<div class="ibox-title">
+		<h5>系统登录日志</h5>
+	</div>
+	
+	<div class="ibox-content">	
+		<form  class="form-horizontal">
+			<div class='form-group'>
+				<div class="col-sm-3" style='text-align:center;'>
+					<button class="btn btn-info btn-circle btn-lg userLoginCountBtn" type="button" style="padding-left: 0px;padding-right: 0px;border-radius: 50%;width:70px;height:70px;"><i class="fa fa-check"></i></button>
+				</div>
+				<div class="col-sm-9">
+					<fieldset>
+						<legend style="font-size:14px;font-weight:bold;padding-left:5px;">系统</legend>						
+					</fieldset>
+					<div class="userLogContentDiv">
+						<div class="tabs-container">
+							<ul class="nav nav-tabs">
+								<li class="active">
+									<a href="#tabLoginedHome" data-toggle="tab" aria-expanded="true">
+									          已登录
+									</a>
+								</li>
+								<li>
+									
+									<a href="#tabNotLoginHome" data-toggle="tab" aria-expanded="true">
+										未登录
+									</a>
+								</li>
+							</ul>
+							<div class="tab-content">
+								<div id="tabLoginedHome" class="tab-pane active">
+									<div class="panel-body userLoginedLog"></div>
+								</div>
+								<div id="tabNotLoginHome" class="tab-pane">
+									<div class="panel-body userNotLoginLog"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+
+
+<div class="ibox" >
+	<div class="ibox-title">
+		<h5>微信登录日志</h5>
+	</div>
+	
+	<div class="ibox-content" style="height:100%">	
+		<form  class="form-horizontal">
+			<div class='form-group'>
+				<div class="col-sm-3" style='text-align:center;'>
+					<button class="btn btn-info btn-circle btn-lg weixinLoginCountBtn" style="padding-left: 0px;padding-right: 0px;border-radius: 50%;width:70px;height:70px;" type="button"></button>
+				</div>
+				<div class="col-sm-9">
+					<fieldset>
+						<legend style="font-size:14px;font-weight:bold;padding-left:5px;">微信 
+							<i class='fa fa-refresh pull-right' style='font-size:18px;color:#337ab7'></i>
+						</legend>
+						<div class="weixinLogContentDiv">
+							
+						</div>
+					</fieldset>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+

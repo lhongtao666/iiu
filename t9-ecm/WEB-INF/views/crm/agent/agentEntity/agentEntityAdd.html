@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>代理商实体新增</title> 
+<#include "/common/common.html">
+<#include "/common/ztree.html" />
+<script src="${ctx}/js/jt/crm/agent/agentEntityAdd${deploy_min!""}.js?v=${jsVersion}"></script>
+<script src="${ctx}/js/jt/common/utils/groupUtils${deploy_min!""}.js?v=${jsVersion}" ></script>
+<script src='${ctx}/js/jt/common/service/employeesSelectLayer${deploy_min!""}.js?v=${jsVersion}'></script>
+<style>
+</style>
+</head>
+
+<body>
+	<div class="wrapper animated fadeInRight">
+		<div class="row list_wrapper">
+			<div class='col-sm-12'>
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<button type='button'
+							class="jt-btn saveBtn"><i class="fa fa-floppy-o"></i>&nbsp;保存</button>
+						<a class='jt-btn jt-btn-red closeBtn'><i class="fa fa-remove" aria-hidden="true"></i>&nbsp;关闭</a>
+					</div>
+				</div>
+			</div>
+			<div class="panel-body">
+				<div class='row'
+					style='border: 1px solid #ddd; margin-left: 15px; margin-right: 15px; padding: 10px;'>
+					<div class='col-sm-12'>
+						<form id="agentEntityForm" method="get" class="form-horizontal">
+							<div class="form-group">
+								<div class='col-sm-4'>
+									<label class="col-sm-3 control-label">名称<span
+										style="color: red">*</span></label>
+									<div class="col-sm-9">
+										<input type="text" name="name" placeholder=""
+											class="form-control" validateType="default">
+									</div>
+								</div>
+								<div class='col-sm-4'>
+									<label class="col-sm-3 control-label">级别<span
+										style="color: red">*</span></label>
+									<div class="col-sm-9">
+										<select name="levelId" class="form-control levelId" id="levelId" validateType="default"
+										>
+										</select>
+									</div>
+								</div>
+								<div class='col-sm-4'>
+									<label class="col-sm-3 control-label">所属区域<span
+										style="color: red">*</span></label>
+									<div class="col-sm-9">
+										 <select name='areaId' class='form-control areaId' id='areaId' validateType="default"
+										 >
+										 </select>
+									</div>
+								</div>
+							</div>
+							<div class="form-group">
+								<div class='col-sm-4'>
+									<label class="col-sm-3 control-label">业务联系人<span style="color: red">*</span></label>
+									<div class="col-sm-8">
+										<input type="text" name="employeeShow" class="form-control" validateType="default" readonly>
+										<input type="hidden" name="contactName" >
+									</div>
+									<div class='col-sm-1'>
+										<button style='float:right;' class='btn btn-sm btn-primary jt-form-select changRelEmployee' type='button'>选</button>
+									</div>
+								</div>
+								<div class='col-sm-4'>
+									<label class="col-sm-3 control-label">联系人手机</label>
+									<div class="col-sm-9">
+										<input type="text" name="contactMobile" placeholder=""
+											class="form-control" validateType="default">
+									</div>
+								</div>
+								<div class='col-sm-4'>
+									<label class="col-sm-3 control-label">办公地址</label>
+									<div class="col-sm-9">
+										<input type="text" name="contactAddr" placeholder=""
+											class="form-control" validateType="default">
+									</div>
+								</div>
+							</div>
+							<div class="form-group">
+								<div class='col-sm-4'>
+									<label class="col-sm-3 control-label">结算开户行<span
+										style="color: red">*</span></label>
+									<div class="col-sm-9">
+										<input type="text" name="bank" placeholder=""
+											class="form-control" validateType="default">
+									</div>
+								</div>
+								<div class='col-sm-4'>
+									<label class="col-sm-3 control-label">结算开户人<span
+										style="color: red">*</span></label>
+									<div class="col-sm-9">
+										<input type="text" name="bankPerson" placeholder=""
+											class="form-control" validateType="default">
+									</div>
+								</div>
+								<div class='col-sm-4'>
+									<label class="col-sm-3 control-label">结算银行账号<span
+										style="color: red">*</span></label>
+									<div class="col-sm-9">
+										<input type="text" name="bankAccount" placeholder=""
+											class="form-control" validateType="default">
+									</div>
+								</div>
+							</div>
+							<div class="form-group">
+								<div class='col-sm-4'>
+									<label class="col-sm-3 control-label">首页欢迎语</label>
+									<div class="col-sm-9">
+										<input type="text" name="welcome" placeholder=""
+											class="form-control" validateType="default">
+									</div>
+								</div>
+								<div class='col-sm-4'>
+									<label class="col-sm-3 control-label">状态</label>
+									<div class="col-sm-9">
+										<select class="form-control" name="status"
+											validateType="default">
+											<option value="actived">激活</option>
+											<option value="inactive">禁用</option>
+										</select>
+									</div>
+								</div>
+							</div>
+							<div class='form-group'>
+								<!--将隐藏域放在这里，不显示出来-->
+								<div style="display: none'">
+									<input type="hidden" id="id" name="id"> <input
+										type="hidden" name="createBy"> <input type="hidden"
+										name="code"> <input type="hidden" name="createTime">
+										<input type="hidden" id="empCount" name="empCount">
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
+
+

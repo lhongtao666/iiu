@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>员工微信登录日志</title>
+	<#include "/common/common.html">
+	<script src="${ctx}/js/jt/gl/ou/employeeWeixinLog${deploy_min!""}.js?v=${jsVersion}" ></script>
+
+<script>
+	var userName = "";
+	<#if userName??>
+		userName = "${userName}";
+	</#if>
+	var weixin = "";
+	<#if weixin??>
+		weixin = "${weixin}";
+	</#if>
+</script>
+</head>
+<body class='white-bg'>
+	<div class='wrapper'>
+		<div class='row list_wrapper'>
+			<div class="jqGrid_wrapper col-sm-12">
+				<table id="employeeWeixinLogGrid"></table>
+			</div>	
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,118 @@
+<form role="form" class="form-horizontal soReJESForm">
+	<div class='form-group'>
+		<label class="control-label col-sm-1">周期</label>
+		<div class='col-sm-1'>
+			<select name="timeTypeSearch" id="timeTypeSearch" placeholder=""
+			class="form-control" validateType="default">
+			<option value="day">按天</option>
+			<option value="week">按周</option>
+			<option value="month">按月</option>
+			<option value="quarter">按季度</option>
+			<option value="year">按年</option>
+		</select>
+	</div>
+
+	<div class='col-sm-1 yearElement'>
+		<select name="yearSearch" id="yearSearch" placeholder=""
+		class="form-control" validateType="default">
+	</select>
+</div>
+
+<div class="col-sm-1 quarterElement">
+	<select name="quarterSearch" id="quarterSearch" placeholder=""
+	class="form-control" validateType="default">
+	<option value="1">1季度</option>
+	<option value="2">2季度</option>
+	<option value="3">3季度</option>
+	<option value="4">4季度</option>
+</select>
+</div>
+
+<div class="col-sm-1 monthElement">
+	<select name="monthSearch" id="monthSearch" placeholder=""
+	class="form-control" validateType="default">
+	<option value="1">1月</option>
+	<option value="2">2月</option>
+	<option value="3">3月</option>
+	<option value="4">4月</option>
+	<option value="5">5月</option>
+	<option value="6">6月</option>
+	<option value="7">7月</option>
+	<option value="8">8月</option>
+	<option value="9">9月</option>
+	<option value="10">10月</option>
+	<option value="11">11月</option>
+	<option value="12">12月</option>
+</select>
+</div>
+
+<div class='col-sm-3'>
+	<button class="jt-form-select dayElementBtn" id="prevBtn" type="button">前一天</button>
+	<button class="jt-form-select dayElementBtn" id="nextBtn" type="button">后一天</button>
+	<button class="jt-form-select weekElement" id="prevWeekBtn" type="button">前一周</button>
+	<button class="jt-form-select weekElement" id="nextWeekBtn" type="button">后一周</button>
+</div>
+
+<div class="col-sm-5 dayElement"> 
+	<div class="input-daterange input-group" id="datepicker">
+		<input class='laydate-icon form-control layer-date' id="beginDate" validateType="default" placeholder="开始时间" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">
+		<span class="input-group-addon">到</span>
+		<input class='laydate-icon form-control layer-date' id="endDate" validateType="default" placeholder="结束时间" onclick="laydate({istime: true, start: laydate.now(0, 'YYYY/MM/DD 23:59:59'), format: 'YYYY-MM-DD hh:mm:ss'})">
+	</div>
+</div>
+<label class="control-label col-sm-1">(按发货时间)</label>
+</div>
+
+<div class='form-group'>
+	<label class='col-sm-1 control-label'>拒收原因</label>
+	<div class='col-sm-2'>
+		<select class='form-control' id="rejectType" name="rejectType" validateType="default" >
+			<option value=''>请选择</option>
+			<option value='物流原因'>物流原因</option>
+			<option value='客户原因'>客户原因</option>
+			<option value='客服原因'>客服原因</option>
+			<option value='寄方要求退回'>寄方要求退回</option>
+		</select>
+	</div>
+	<div class='col-sm-2'>
+		<select class='form-control' id="rejectReason" name="rejectReason" validateType="default" >
+		</select>
+	</div>
+	<label  class="col-sm-1 control-label">快递公司</label>
+	<div class='col-sm-2'>
+		<select id="shipCompany"  class="form-control" name="shipCompany" >
+			<option value="">全部</option>
+		</select>
+	</div>
+<!--     	<label class='col-sm-1 control-label'>拒收率(%)</label>
+    	<div class='col-sm-2'>
+    		<select class='form-control' id="rejectRate" name="rejectRate" validateType="default" >
+    			<option value='0'>0</option>
+    			<option value='0-30'>0 ~ 30</option>
+    			<option value='30-50'>30 ~ 50</option>
+    			<option value='50-80'>50 ~ 80</option>
+    			<option value='80-100'>80 ~ 100</option>
+    		</select>
+    	</div> -->
+    </div>
+
+    <div class='form-group'>
+    	<label  class="col-sm-1 control-label">归属</label>
+    	<div class="col-sm-2">
+    		<input id='groupName' class='form-control' readonly>
+    		<input type="hidden" name="belongOgn">
+    	</div>
+    	<div class="col-sm-2">
+    		<select id="belongEmployeeSearch" class="form-control" name="belongEmployee" style='width: 100%;'>
+    		</select>
+    	</div>
+    	<div class="col-sm-1"></div>
+    	<div class='col-sm-6'>
+    		<button class="jt-btn-search" id="searchBtn" type="button"><i class="fa fa-search"></i>&nbsp;搜索</button>
+    		<button type='button' class='jt-btn-search exportExcel'><i class="fa fa-reply"></i>&nbsp;导出</button>
+    		<button type='button' class='jt-quick-search chartByCountBtn' val='countPie'>数量饼图</button>
+    		<button type='button' class='jt-quick-search chartByMoneyBtn' val='amountPie'>金额饼图</button>
+    	</div>
+    	<div class="tempDiv"></div>
+    </div>
+</form>

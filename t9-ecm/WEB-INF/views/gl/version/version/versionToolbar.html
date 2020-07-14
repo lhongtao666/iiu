@@ -1,0 +1,33 @@
+<div class="col-sm-12">
+	<div class="panel panel-default">
+	    <div class="panel-heading">
+			<button type='button' class='jt-btn versionAdd'><i class='fa fa-plus'>&nbsp;添加</i></button>
+			<button type='button' class='jt-btn versionEdit'><i class='fa fa-edit'>&nbsp;编辑</i></button>
+			<button type='button' class='jt-btn versionDetail'><i class='fa fa-th-list'>&nbsp;明细</i></button>
+			<button type='button' class='jt-btn jt-btn-red versionDel'><i class="fa fa-remove">&nbsp;删除</i></button>
+			<button type='button' class='jt-btn genNewSql'><i>生成sql</i></button>
+	    </div>
+	    
+	    <div class="panel-body">
+	        <form id='versionSearchForm' role="form" class="form-horizontal">
+				<!--默认生成一个搜索条件，需要的，用户自己添加-->
+				<div class="form-group">
+					<label class='col-sm-1 control-label'>版本号</label> 
+					<div class='col-sm-2'>
+						<input type="text" id='nameSearch' placeholder="请输入版本号" name="Q__S__EQ__version_" class="form-control">
+					</div>
+					<label class="col-sm-1 control-label">版本标签</label>
+					<div class='col-sm-2'>
+						<select id="tagsSearch" class="form-control" name="Q__S__EQ__tags_">
+							<option value="">请选择</option>
+						</select>
+					</div>
+					<div class='col-sm-1'>
+						<button type='button' class="btn btn-sm   btn-primary versionSearch">搜索</button>
+						<button type='button' class="jt-btn-search stStoreSearch"><i class='fa fa-search'></i>&nbsp;搜索</button>
+					</div>
+				</div>
+			</form>
+	    </div>
+	</div>
+</div>

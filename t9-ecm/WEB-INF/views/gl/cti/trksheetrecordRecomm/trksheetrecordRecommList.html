@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>jt_trksheetrecord_recomm管理</title>
+	<#include "/common/common.html">
+	<script src="${ctx}/js/jt/gl/cti/trksheetrecordRecomm${deploy_min!''}.js?v=1.0.0" ></script>
+	<script src="${ctx}/js/jt/gl/km/glHelpUtil${deploy_min!""}.js?v=${jsVersion}" ></script>
+</head>
+
+<body>
+	<div class="wrapper animated fadeInRight">
+		<!-- list界面 -->
+		<div class="row list_wrapper">
+			<#include "/gl/cti/trksheetrecordRecomm/trksheetrecordRecommToolbar.html">	  			
+			<div class='col-sm-12 jqGrid_wrapper'>
+			    <table id="trksheetrecordRecommGrid"></table>
+				<div id="trksheetrecordRecommPager"></div>
+			</div>
+		</div>
+		<!-- 编辑界面 -->
+		<#include "/gl/cti/trksheetrecordRecomm/trksheetrecordRecommEdit.html">	    
+	</div>
+</body>
+</html>

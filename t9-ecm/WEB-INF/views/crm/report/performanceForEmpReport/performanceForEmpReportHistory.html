@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>员工业绩报表明细</title>
+	<#include "/common/common.html">
+	<script src="${ctx}/js/plugins/echarts/3.1.7/theme/macarons.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/plugins/echarts/3.1.7/echarts.min.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/jt/crm/report/profit/profitForEmpHistoryList${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script> 
+		var type="${type}";
+	    var param="${param}";
+	    var timeType="${timeType}";
+	</script>
+
+	<style> 
+		.searchImg{
+		    width:24px;
+		    height:24px;
+		    margin:0 auto;
+		}
+		.partySearchImg{
+		    border: 1px solid #e7eaec;
+		}
+
+		.partySearchImg:hover{
+		    border: 1px solid #d2d2d2
+		}
+	</style>
+</head>
+<body class="white-bg">
+	<div class='wrapper'>
+		<div class='row list_wrapper'>
+			<div class="jqGrid_wrapper col-sm-12">
+				<table id='profitForEmpHistoryGrid'></table>
+				<div id="profitForEmpHistoryPager"></div>
+			</div>
+		</div>
+	</div>	
+</body>
+</html>

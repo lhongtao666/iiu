@@ -1,0 +1,112 @@
+<div class='row' style='border: 1px solid #ddd; margin-left: 15px; margin-right: 15px;padding:10px;'>
+	<div class='col-sm-12'>
+		<form id="shipFeeStockForm" method="get" class="form-horizontal">
+
+
+			<div class="form-group">
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">快递公司 ID<@JTtip msg="快递公司 ID" /></label>
+					<div class="col-sm-9">
+						<input type="text" name="shipCompanyId" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">N 件内<@JTtip msg="N 件内" /></label>
+					<div class="col-sm-9">
+						<input type="text" name="baseLte" placeholder=""  validateType="default"  class="digits form-control"> 
+					</div>
+				</div>
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">N 件内收<@JTtip msg="N 件内收" /></label>
+					<div class="col-sm-9">
+						<input type="text" name="baseMoney" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+			</div>
+			<div class="form-group">
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">超件后收费形式。one=按件；so=按订单<@JTtip msg="超件后收费形式。one=按件；so=按订单" /></label>
+					<div class="col-sm-9">
+						<input type="text" name="exceedType" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">每超出 1 件收<@JTtip msg="每超出 1 件收" /></label>
+					<div class="col-sm-9">
+						<input type="text" name="exceedOne" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">超出后 每订单收<@JTtip msg="超出后 每订单收" /></label>
+					<div class="col-sm-9">
+						<input type="text" name="exceedSo" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+			</div>
+			<div class="form-group">
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">打包费 - N件内<@JTtip msg="打包费 - N件内" /></label>
+					<div class="col-sm-9">
+						<input type="text" name="packageLte" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">打包费 - N件内每件价格<@JTtip msg="打包费 - N件内每件价格" /></label>
+					<div class="col-sm-9">
+						<input type="text" name="packageOne" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">打包费 - 超出后收费形式。fix=固定金额；so=按订单；one=按件<@JTtip msg="打包费 - 超出后收费形式。fix=固定金额；so=按订单；one=按件" /></label>
+					<div class="col-sm-9">
+						<input type="text" name="packageExceedType" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+			</div>
+			<div class="form-group">
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">打包费 - 超出后固定收<@JTtip msg="打包费 - 超出后固定收" /></label>
+					<div class="col-sm-9">
+						<input type="text" name="packageExceedFix" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">打包费 - 超出后 1 件收<@JTtip msg="打包费 - 超出后 1 件收" /></label>
+					<div class="col-sm-9">
+						<input type="text" name="packageExceedOne" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">打包费 - 超出后 每订单收<@JTtip msg="打包费 - 超出后 每订单收" /></label>
+					<div class="col-sm-9">
+						<input type="text" name="packageExceedSo" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+			</div>
+
+
+
+			<div class='form-group'>
+				<!--将隐藏域放在这里，不显示出来-->
+				<div style="display:none'">
+					<input type="hidden" id="id" name="id">
+					<input type="hidden" name="createBy">
+					<input type="hidden" name="createTime">
+				</div>
+			</div>
+
+		</form>
+	</div>
+</div>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>订单发货修改订单</title>
+	<#include "/common/common.html">
+	<#include "/ec/salesorder/soEntity/soEntityCommJs.html">
+	<script type="text/javascript">
+		var csId = "";
+		var canShowScTrankNo ="cannot";
+		<#if csId??>
+			csId = "${csId}";
+		</#if>
+		<#if canShowScTrankNo??>
+			canShowScTrankNo = "${canShowScTrankNo}";
+		</#if>
+		var soStatus = "${soInfoVo.status}";
+    	var isSelectStoreInShip = "n";
+	    <#if isSelectStoreInShip??>
+	        isSelectStoreInShip = "${isSelectStoreInShip}";
+        </#if>
+	</script>
+	<#include "/ec/salesorder/soEntity/soEntityRenderTmpl.html">
+<script src='${ctx}/js/jt/ec/salesorder/stock/soEntityWaitToDeliver-site${deploy_min!""}.js?v=${jsVersion}' ></script>
+</head>
+<body>
+	<div class="wrapper animated ">
+		<div class="row form_wrapper">
+			<div class='col-sm-12'>
+				<div class="panel panel-default">
+					<div class="panel-heading ">
+						<button type='button'  class="btn btn-sm btn-primary jt-btn-normal saveSoComfirmBtn remove-deliver-btn">保存订单</button>
+						<button type='button'  class="btn btn-sm btn-primary jt-btn-normal savePackBtn remove-deliver-btn">保存</button>
+						<button type='button'  class='btn btn-sm btn-primary jt-btn-normal scHotPrintBtn remove-deliver-btn'>打印热敏纸</button>
+						<button type='button'  class='btn btn-sm btn-primary jt-btn-normal printShipBtn remove-deliver-btn'>打印快递单</button>
+			            <button type='button'  class='btn btn-sm btn-primary jt-btn-normal printDeliverBtn remove-deliver-btn'>打印发货单</button>
+			            <button type='button'  class="btn btn-sm btn-primary jt-btn-normal deliverBtn remove-deliver-btn">发货</button>
+			            <button type='button'  class="btn btn-sm btn-primary jt-btn-normal remove-deliver-btn addFollow" id="addFollowBtn">添加跟进</button>
+						<button type='button'  class='btn btn-sm btn-primary jt-btn-normal preSoBtn' style="display: none;">上一张</button>
+						<button type='button'  class='btn btn-sm btn-primary jt-btn-normal nextSoBtn'style="display: none;">下一张</button>
+						丨
+						<button type='button' class='btn btn-sm btn-danger jt-btn-normal jt-bn-red remove-deliver-btn soEntityTrunDown'>驳回</button>
+			            <button type='button'  class="btn btn-sm btn-danger jt-btn-normal jt-bn-red deliverBackBtn " disabled="disabled">撤销发货</button>
+						<button type="button" class="btn btn-sm btn-default jt-btn-close prevBtn">返回列表</button>
+						<#include "/ec/salesorder/common/soEntityBaseTypeFlag.html" />
+					</div>
+					<div class="panel-body">
+			            <form id="soEntityPackForm" method="get" class="form-horizontal">	
+						   <div class='form-group'>
+						       <div class='col-sm-4'>
+								<label class="col-sm-5 control-label">快递公司</label>
+								<div class="col-sm-7">
+									<select name="scCodeShow" class="form-control" validateType="default">
+										<#if shipCompanyPos?? && shipCompanyPos?size gt 0>
+										<#list shipCompanyPos as shipCompany>
+										<option value="${shipCompany.id}" hotvar="${shipCompany.isHot}" <#if soInfoVo.soShipPo.scCode == shipCompany.id>selected</#if>>${shipCompany.name}</option>
+										</#list>
+										</#if>
+									</select>
+									<input type="hidden" name="scName">
+									<input type="hidden" name="scCode">
+								</div>
+						       </div>
+						       <div class='col-sm-4'>
+								  <div class="col-sm-5 control-label">快递单号</div>
+								  <div class="col-sm-7">
+										<input type="text"  name="scTrackingNo"  id="scTrackingNo"   class="form-control" validateType="default"  required="required"  value="${soInfoVo.soShipPo.scTrackingNo}">
+								  </div>
+							   </div>
+							   <div class='col-sm-4 hotPrintDiv' style="display:none;">
+								  	<div class="col-sm-8">
+										<div class="checkbox checkbox-success checkbox-inline">
+											<input type="checkbox" value="y" name="isHotPrint"> <label>热敏纸打印 </label>
+										</div>
+									</div>
+							   </div>
+						   </div>
+						   <div class='form-group'>
+						       <div class='col-sm-4'>
+								  <div class="col-sm-5 control-label">重量(g)</div>
+								  <div class="col-sm-7">
+										<input type="text" name="weight" class="form-control" value="${soInfoVo.soShipPo.weight}" validateType="default">
+								  </div>
+							   </div>
+							   <div class='col-sm-4'>
+								  <div class="col-sm-5 control-label">快递运费(元)</div>
+								  <div class="col-sm-7">
+										<input type="text" name="actualAmount" class="form-control" validateType="default" value="${soInfoVo.soShipPo.actualAmount}">
+								  </div>
+							   </div>
+						   </div>
+						   <div class='form-group'>
+						   	 <div class='col-sm-4 sendSmsWhenDeliver'>
+								  <div class="col-sm-6 control-label">发货同时发短信</div>
+								  <div class="col-sm-6" style="padding-top:4px;">
+										<input type="checkbox" value="y" name="sendSms" <#if soInfoVo.soShipPo.sendSms == 'y'> checked</#if> >是
+								  </div>
+							  </div>
+							  <div class="col-sm-2 sendSmsWhenDeliver" style="padding-top:4px;">
+									<a  class="setSmsTpl">设置短信模板</a>
+							  </div>
+						   </div>
+						   <input type="hidden"  name="id" id="id" value="${soInfoVo.soShipPo.id}">
+						   <input type="hidden"  name="soId" value="${soInfoVo.id}">
+						   <input type="hidden"  name="csName" value="${soInfoVo.csName}">
+						   <input type="hidden"  name="soNo" value="${soInfoVo.soNo}" >
+						   <input type="hidden"  name="isPrintHot" >
+						   <input type="hidden"  name="smsTpl" <#if soInfoVo.soShipPo.smsTpl == '' || soInfoVo.soShipPo.smsTpl == null> value="尊敬的客户，您购买的产品已发出。快递公司：{sms.scName}，单号：{sms.scTrackingNo}，收货务必核对，谨防受骗！" <#else> value="${soInfoVo.soShipPo.smsTpl} </#if>">
+						</form>
+						<#include "/ec/salesorder/soEntity/soEntityForm.html">
+					</div>
+				</div>	
+			</div>
+		</div>  
+	</div>
+	<#include "/ec/salesorder/soEntity/soEntityIncludePane.html">
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>级联下拉列表</title>
+	<#include "/common/common.html">
+	
+	<script src='${ctx}/js/jt/common/service/cascadeCate${deploy_min!""}.js?v=${jsVersion}'></script>
+	<script>
+	    var ctx = "${ctx}";
+	    $(function(){
+	        var cascadeCate = new CascadeCate("ChinaCityCateType", "cateContainer", ["国家", "省份", "市区", "县", "街道"]);
+	        cascadeCate.setSelectedOptions(["china", "440000", "440100", "440116"]);
+	        cascadeCate.init();
+	        $("button").click(function(){
+	        	
+	        	console.log(cascadeCate.getCascadeParams());
+	        });
+	    });
+	</script>
+</head>
+
+<body class="gray-bg">
+	<div class="wrapper animated ">
+		<button>获取参数内容</button>
+		<div class="row">
+			<div id='cateContainer' class="row">
+			</div>
+		</div>
+	</div>
+</body>
+</html>

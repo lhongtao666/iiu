@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd  
+	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+	http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+	http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd"
+	default-autowire="byName" default-lazy-init="false">
+
+	<import resource="base-spring-mvc.xml" />
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/**" />
+			<bean class="com.jt.crm.common.interceptor.SecureLogInterceptor" />
+		</mvc:interceptor>
+	</mvc:interceptors>
+
+	<bean id="freemarkerStaticModels" class="com.jt.base.web.engine.FreeMarkerStatic"
+		factory-method="getInstance">
+	</bean>
+
+	<bean id="viewResolverHtm"
+		class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
+		<property name="viewClass" value="com.jt.base.web.servlet.JTFreeMarkerView"></property>
+		<property name="cache" value="false" />
+		<property name="suffix" value=".html" />
+		<property name="contentType" value="text/html;charset=UTF-8"></property>
+		<property name="requestContextAttribute" value="request" />
+		<property name="exposeSpringMacroHelpers" value="false" />
+		<property name="exposeRequestAttributes" value="true" />
+		<property name="exposeSessionAttributes" value="true" />
+		<property name="allowRequestOverride" value="true" />
+		<property name="allowSessionOverride" value="true" />
+		<property name="attributesMap" ref="freemarkerStaticModels" />
+		<property name="order">
+			<value>2</value>
+		</property>
+	</bean>
+
+	<!-- SpringMVC相关Bean配置 -->
+	<context:component-scan base-package="com.jt.credit.**.controller" />
+	<context:component-scan base-package="com.jt.crm.**.controller" />
+	<context:component-scan base-package="com.jt.gl.**.controller" />
+	<context:component-scan base-package="com.jt.ec.**.controller" />
+	<context:component-scan base-package="com.jt.k8.**.controller" />
+	<context:component-scan base-package="com.jt.common.**.controller" />
+	<import resource="classpath:conf/jt-component-upload.xml" />
+
+</beans>

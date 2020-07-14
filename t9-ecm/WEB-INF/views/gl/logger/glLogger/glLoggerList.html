@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>日志管理</title>
+	<#include "/common/common.html">
+	<#include "/common/datatable.html">
+	<script src="${ctx}/js/jt/gl/logger/glLoggerList${deploy_min!""}.js?v=${jsVersion}" ></script>
+</head>
+
+<body class='white-bg'>
+	<div class="wrapper animated ">
+		<!-- list界面 -->
+		<div class="row list_wrapper ibox-content">
+			<!-- 工具栏 -->
+			<#include "/gl/logger/glLogger/glLoggerToolbar.html">	  			
+			<table class='table table-striped table-bordered' id='glLoggerTable'>
+				<thead>
+					<tr>
+						<th>名称</th>
+						<th>日志级别</th>
+						<th>操作</th>
+					</tr>
+				</thead>
+			</table>
+		</div>
+		<!-- 编辑界面 -->
+		<#include "/gl/logger/glLogger/glLoggerEdit.html">	    
+	</div>
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>订单统计报表</title>
+	<#include "/common/common.html">
+	<#include "/common/ztree.html">
+	<script src="${ctx}/js/plugins/echarts/3.1.7/theme/macarons.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/plugins/echarts/3.1.7/echarts.min.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/jt/common/plugins/report${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/crm/report/reportDateUtil${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/crm/report/so/soStatisticsReport${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/common/utils/groupUtils${deploy_min!""}.js?v=${jsVersion}"></script>
+	<script src='${ctx}/js/jt/common/service/employeesSelectLayer${deploy_min!""}.js?v=${jsVersion}'></script>
+	<script src='${ctx}/js/jt/common/service/customerSelectLayer${deploy_min!""}.js?v=${jsVersion}'></script>
+	<script src="${ctx}/js/plugins/suggest/bootstrap-suggest.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/jt/ec/salesorder/export/soEntityExport${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/common/utils/excelUtil${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/crm/report/so/saleProdReport${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<link href="${ctx}/css/plugins/select2/select2.min.css?v=${jsVersion}" rel="stylesheet">
+	<script src="${ctx}/js/plugins/select2/select2.min.js?v=${jsVersion}"></script>
+	<style>
+		.searchImg{
+		    width:24px;
+		    height:24px;
+		    margin:0 auto;
+		}
+		.partySearchImg{
+		    border: 1px solid #e7eaec;
+		}
+
+		.partySearchImg:hover{
+		    border: 1px solid #d2d2d2
+		}
+
+	</style>
+</head>
+<body class='white-bg'>
+	<div class='wrapper animated'>
+		<div class='tabs-container' style='margin-bottom:5px;'>
+			<ul class="nav nav-tabs">
+				<li class='active baseInfoDiv tabLi' attr-id='baseInfo'>
+					<a href="#soStatisticTab" data-toggle="tab">订单统计</a>
+				</li>
+
+				<li class='prodSaleStatistic tabLi' attr-id='prodSale'>
+					<a href="#prodSaleTab" data-toggle="tab">产品销售</a>
+				</li>
+			</ul>
+			<div class="tab-content">
+				<div id="soStatisticTab" class="tab-pane fade in active">
+					<div class='row list_wrapper'>
+						<div class='col-sm-12'>
+							<div class="panel panel-default">
+								<div class="panel-heading report-content">	
+									<#include "soStatisticsReportSearchForm.html">
+								</div>
+								<div class="panel-body">
+									<div  style="border: 1px solid #777;padding:5px ;">
+										<div id="soStatisticsReportChart" style="height:400px;"></div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="jqGrid_wrapper col-sm-12">
+							<table id='soStatisticsReportGrid'></table>
+							<div id="soStatisticsReportPager"></div>
+						</div>
+					</div>
+				</div>
+		
+				<div id="prodSaleTab" class="tab-pane fade">
+					<div class='row list_wrapper'>
+						<div class='col-sm-12'>
+							<div class="panel panel-default">
+								<div class="panel-heading report-content">	
+									<#include "saleProdReportSearchForm.html">
+								</div>
+							</div>
+						</div>
+						<div class="jqGrid_wrapper list_wrapper col-sm-12">
+							<table id='saleProdReportGrid'></table>
+							<div id="saleProdReportPager"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+<div style="display:none"  class="soEntityExportPane" >
+	 <#include "/ec/salesorder/soEntity/export/soEntityExport.html" >
+</div>
+</html>

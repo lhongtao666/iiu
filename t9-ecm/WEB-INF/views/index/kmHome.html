@@ -1,0 +1,79 @@
+<style type="text/css">
+    .km-list-router {
+    	height: 30px;
+        border-bottom: 1px solid #e7eaec;
+        margin-top: 15px;
+    }
+    .km-list-router > i {
+    	font-size: 16px;
+    	color: #555;
+    }
+    #jt-crumbs i {
+	    font-size: 20px;
+	    color: #777;
+	}
+    #jt-crumbs .jt-blue {
+        font-weight: 500;
+        font-size: 15px;
+        padding: 0 10px;
+        transition: all 0.25s linear;
+    }
+    #jt-crumbs .jt-blue:hover {
+    	background-color: #edf7f8;
+    }
+    .km-empty-result {
+    	padding: 10px 0;
+	    font-size: 16px;
+	    color: #999;
+    }
+    #kmHomeContent {
+    	height: calc(100% - 45px);
+    	overflow-y: auto;
+	}
+    #kmHomeContent .km-div {
+    	border-bottom-color: #eee;
+    }
+    .km-div .km-title-div {
+    	height: auto;
+    }
+    .km-title-div > a {
+    	display: inline-block;
+    	font-size: 1.15em !important;
+    	color: #607D8B;
+    	transition: all 0.25s linear;
+    }
+    .km-title-div > a > i {
+    	float: left;
+	    height: 1.2em;
+	    line-height: 1.25em;
+	    margin-right: 0.5em;
+	    color: #e2ce92;
+    }
+    .km-items-title {
+	    max-width: 40em;
+	    height: 1.5em;
+	    overflow: hidden;
+	    text-overflow: ellipsis;
+	    white-space: nowrap;
+	}
+	.km-items-msg {
+		color: #999;
+		font-size: 0.9em;
+	}
+	.km-items-msg > span:first-child {
+		margin-right: 2em;
+	}
+	.km-div .km-content {
+		background-color: transparent;
+	}
+</style>
+<div id="kmHomeListForm" style="height:100%;">
+	<!-- <div class="col-sm-12">
+		<div class='panel-body'></div>	
+	</div>  --> 	
+	<div class='col-sm-12 km-list-router'>
+		<i class="fa fa-arrow-circle-right"></i><span id="jt-crumbs"></span>
+	</div>  			
+	<div class='col-sm-12 slimScrollDiv' id="kmHomeContent"></div>
+</div>
+<#include "/index/kmHomeForm.html">

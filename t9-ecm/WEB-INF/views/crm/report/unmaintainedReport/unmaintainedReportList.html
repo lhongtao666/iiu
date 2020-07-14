@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>超期未维护数据统计报表</title>
+	<#include "/common/common.html">
+	<#include "/common/ztree.html">
+	<script src="${ctx}/js/plugins/suggest/bootstrap-suggest.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/jt/crm/report/cs/unmaintainedReportList${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/common/utils/groupUtils${deploy_min!""}.js?v=${jsVersion}"></script>
+	<script src='${ctx}/js/jt/common/service/employeesSelectLayer${deploy_min!""}.js?v=${jsVersion}'></script>
+	<link href="${ctx}/css/plugins/select2/select2.min.css?v=${jsVersion}" rel="stylesheet">
+	<link href="${ctx}/css/plugins/select2/select2.min.css?v=${jsVersion}" rel="stylesheet">
+	<script src="${ctx}/js/plugins/select2/select2.min.js?v=${jsVersion}"></script>
+</head>
+<body class="white-bg">
+	<div class='wrapper'>
+		<div class='row list_wrapper'>
+			<div class='col-sm-12'>
+				<div class="panel panel-default">
+					<div class="panel-heading report-content">	
+						<form role="form" id='searchForm' class="form-horizontal">							
+							<div class='form-group'>								
+								<label class='control-label col-sm-1'>部门</label>	
+							    <div class='col-sm-2'>
+							     	<input id='groupName' readonly class='form-control'>
+							     	<input name='belongOgn' type='hidden' class='form-control'>
+							    </div>
+								<div class='col-sm-2'>
+									<select name="belongEmployee" id='belongEmployee' class="form-control"></select>
+								</div>
+								<div class='col-sm-3'>
+							    	<button class="jt-btn-search" id="searchBtn"   type="button"><i class="fa fa-search"></i>&nbsp;搜索</button>
+							    	<button type='button' class='jt-btn-search exportExcel'><i class="fa fa-reply"></i>&nbsp;导出</button>
+							    </div>
+						    </div>
+						</form>
+					</div>
+				</div>
+			</div>
+
+			<div class="jqGrid_wrapper col-sm-12">
+				<table id='unmaintainedReportGrid'></table>
+				<div id="unmaintainedReportPager"></div>
+			</div>
+		</div>
+	</div>	
+</body>
+</html>

@@ -1,0 +1,103 @@
+<div class='row' style='border: 1px solid #ddd; margin-left: 15px; margin-right: 15px;padding:10px;'>
+	<div class='col-sm-12'>
+		<form id="weiXinRecordForm" method="get" class="form-horizontal">
+
+
+			<div class="form-group">
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">客户编码</label>
+					<div class="col-sm-9">
+						<input type="text" name="code" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">客户备注</label>
+					<div class="col-sm-9">
+						<input type="text" name="remark" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">客户微信头像</label>
+					<div class="col-sm-9">
+						<input type="text" name="headPic" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+			</div>
+			<div class="form-group">
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">客户微信昵称</label>
+					<div class="col-sm-9">
+						<input type="text" name="nickName" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">员工</label>
+					<div class="col-sm-9">
+						<input type="text" name="employeeId" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">员工微信号</label>
+					<div class="col-sm-9">
+						<input type="text" name="employeeWeiXin" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+			</div>
+			<div class="form-group">
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">员工微信头像</label>
+					<div class="col-sm-9">
+						<input type="text" name="employeeHeadPic" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">员工微信昵称</label>
+					<div class="col-sm-9">
+						<input type="text" name="employeeNickName" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">内容</label>
+					<div class="col-sm-9">
+						<input type="text" name="content" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+			</div>
+			<div class="form-group">
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">类型</label>
+					<div class="col-sm-9">
+						<select class="form-control" name="type" validateType="default" >
+		               		<option value="">请选择</option>
+		               		<option value="in">客户信息</option>
+		               	    <option value="out">客服回复</option>
+
+		              	</select>
+		            </div>
+		        </div>
+
+            </div>    
+
+
+
+			<div class='form-group'>
+				<!--将隐藏域放在这里，不显示出来-->
+				<div style="display:none'">
+					<input type="hidden" id="id" name="id">
+					<input type="hidden" name="createBy">
+					<input type="hidden" name="createTime">
+				</div>
+			</div>
+
+		</form>
+	</div>
+</div>

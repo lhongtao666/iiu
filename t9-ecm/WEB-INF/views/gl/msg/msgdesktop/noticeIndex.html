@@ -1,0 +1,43 @@
+<script src="${ctx}/js/jt/gl/msg/noticeIndex${deploy_min!""}.js?v=${jsVersion}"></script>
+<style type="text/css">
+    .tab-two-char {
+        text-indent: 2em;
+    }
+    .text-primary{
+        color:#1ab394;
+    }
+</style>
+<script type="text/javascript">
+	var currentUserName = "${ONLINE_ENTITY.datas.user.name}";
+    $(function() {
+        var indexMsg = new IndexMsg();
+        $("#welcomeString").empty().append("欢迎您：" + currentUserName);
+        indexMsg.init();
+    });
+</script>
+
+<div class="panel panel-default " style="margin-bottom:0px;height:100%;">
+    <div class="panel-heading">
+        <span class="panel-title" style='font-weight:600;'>
+            <span  class='text-success' id="welcomeString" style="font-size:14px;">欢迎您：</span>
+            <span class='text-success pull-right' id="timeString" style="float:right;font-size:14px;">今日公告</span>
+            
+        </span>
+    </div>
+    <div class="panel-body" style="padding:7px;">
+        <div class="row">
+        	<div class="col-sm-12" style="font-size:14px;margin-bottom:5px;font-weight:600;">
+                <span id="titleString" ></span>
+            </div>
+            <div class="col-sm-12" id="msgContentString" style="padding-left:40px;"></div>
+        </div>
+        
+        <div class="row" id='noticeFooter'>
+            <div class="col-sm-12 pull-right text-right">
+                <button class="btn btn-xs btn-primary prev-msg" style="margin-right:8px;">上一条</button>
+                <button class="btn btn-xs btn-primary next-msg">下一条</button>
+            </div>
+        </div>
+    </div>
+</div>
+

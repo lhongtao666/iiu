@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>复购统计明细</title>
+	<#include "/common/common.html">
+	<script src="${ctx}/js/jt/crm/report/cs/repeatBuyEmpDetail${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script> 
+		var belongOgn= null;
+	    var timeType= null;			
+	    var saleLine =null;
+		<#if belongOgn??>
+			belongOgn = "${belongOgn}";
+		</#if>
+		<#if timeType??>
+			timeType = "${timeType}";
+		</#if>
+	    <#if saleLine??>
+	    	saleLine="${saleLine}";
+	    </#if>
+	    var timeStart="${timeStart}";
+	    var timeEnd="${timeEnd}";
+	    var dateTime="${dateTime}";
+	</script>
+</head>
+<body class="white-bg">
+	<div class='wrapper'>
+		<div class='row list_wrapper'>
+		    <div class='col-sm-12'>
+		   	    <div class="panel panel-default">
+		   	   		<div class="panel-heading">	
+			        	<span class='timeRange' style='font-weight:bold;margin-left:20px;margin-right:20px;'></span>
+		            </div>
+		        </div>
+		    </div>
+			<div class="jqGrid_wrapper col-sm-12">
+				<table id='repeatBuyEmpDetailGrid'></table>
+				<div id="repeatBuyEmpDetailPager"></div>
+			</div>
+		</div>
+	</div>	
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>首页雷达图</title>
+    <#include "/common/common.html" />
+    <link href="${ctx}/css/plugins/chosen/chosen.css?v=${jsVersion}" rel="stylesheet">
+    <style type="text/css">
+
+    </style>
+    <script src="${ctx}/js/plugins/echarts/3.1.7/echarts.min.js?v=${jsVersion}"></script>
+    <script src="${ctx}/js/plugins/chosen/chosen.jquery.js?v=${jsVersion}"></script>
+    <script src="${ctx}/js/jt/gl/ou/employeeInterstRadar${deploy_min!""}.js?v=${jsVersion}"></script>
+    <script type="text/javascript">
+    $(function() {
+        var employeeIds = '${employeeIds }';
+        var isHidePanelTitle = "${isHidePanelTitle }";
+        var radarType = "${radarType }";
+        var employeeInterstRadar = new EmployeeInterstRadar();
+        var params = {
+            radarType: radarType,
+            employeeIds: employeeIds,
+            isHidePanelTitle: isHidePanelTitle,
+        };
+        employeeInterstRadar.init(params);
+    });
+    </script>
+</head>
+
+<body class="white-bg">
+    <div class="panel panel-default " style="margin-bottom:0px;height:100%;">
+        <div class="panel-heading" id="panelTitle">
+            <h4>员工能力模型</h4>
+        </div>
+        <div class="panel-body" style="padding:5px;">
+            <div class="container">
+                <div class="row">
+                    <form role="form" class="form-horizontal text-right">
+                        <div class="form-group" id="chooseEmployeeDiv" style="display: none;">
+                            <div class="col-xs-9 text-left"  >
+                                <select readonly="readonly" style="width:100%;" name="positionVals" id="employeeSelect" multiple data-placeholder="选择员工" class="chosen-select form-control" tabindex="4"></select>
+                            </div>
+                            <div class='col-xs-3'>
+                                <select name="radarMaxChoose" class="form-control"  style="width:100%;">
+                                <option value="">选择雷达端点值</option>
+                                <option value="0">同期员工意向最大</option>
+                                <option value="1">选中员工同期意向最大</option>
+                                <option value="2">选中员工同期订单最大</option>
+                                <option value="">自动调整(默认)</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class='col-xs-5 no-padding'>
+                                <select name="yearSelect" id="yearSelect" class="form-control"  style="width:100%;">
+                                </select>
+                            </div>
+                            <div class='col-xs-5'>
+                                <select name="monthSelect" id="monthSelect" class="form-control" style="width:100%;">
+                                    <option value="">请选择</option>
+                                </select>
+                            </div>
+                            <div class="col-xs-2">
+                                <button id="generateModel" type="button" class="btn btn-sm   btn-primary saveBtn">生成</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 echarts" id="echarts-radar-chart" style="height:350px;">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

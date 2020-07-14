@@ -1,0 +1,43 @@
+<form id='friendsSearchForm' role="form" class="form-horizontal">
+	<div class="jt-employee-entry">
+		<div class="jt-form-select"><i class="fa fa-search-plus" style="font-size: 14px;"></i></div>
+	</div>
+	<div class='rows-search row-friends-search'>
+		<input type="text" autocomplete="off" name="Q__S__LK__con_remark_"
+		       placeholder="搜索：客户昵称..." class="form-control firends-search-nickname"
+		       validateType="default" />
+		<i class="fa fa-search friendsAliasSearch"></i>       
+	</div>
+	<div class="friends-extra-search">
+		<div class='col-sm-12'>
+			<label class="col-sm-12 control-label left-align-label">发送时间</label>
+			<div class='col-sm-12'>
+				<div class="input-daterange input-group">
+					<input class="laydate-icon form-control layer-date startDate" name="Q__D__BW__ext.last_reply_time_" placeholder="yyyy-mm-dd hh:mm:ss" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})" autocomplete="off">
+					<span class="input-group-addon">到</span>
+					<input class="laydate-icon form-control layer-date endDate" name="Q__D__BW__ext.last_reply_time_" placeholder="yyyy-mm-dd hh:mm:ss" onclick="laydate({istime: true, start: laydate.now(0, 'YYYY/MM/DD 23:59:59'), format: 'YYYY-MM-DD hh:mm:ss'})" autocomplete="off">
+				</div>
+			</div>
+		</div>
+		<div class='col-sm-12'>
+			<label class="col-sm-12 control-label left-align-label">客户编号</label>
+			<div class="col-sm-12">
+				<input type="text"  autocomplete="off" name="Q__S__EQ__friend_code_"
+						       placeholder="请输入客户编号" class="form-control"
+						       validateType="default" style="text-indent: 7px;"/>
+			</div>
+		</div>
+		<div class='col-sm-12'>
+			<label class="col-sm-12 control-label left-align-label">好友标签</label>
+			<div class="col-sm-12">
+				<select id="wx-label_" class="form-control" name="Q__S__LK__label_"></select>
+			</div>
+		</div>
+		<div class="col-sm-12" style="text-align:right;">
+			<button type='button' class="jt-btn-empty friendsAliasEmpty" style="margin: 10px 2px;"><i class='fa fa-trash-o'></i>&nbsp;清空</button>
+			<button type='button' class="jt-btn-search friendsAliasSearch" style="margin: 10px 2px;"><i class='fa fa-search'></i>&nbsp;查询好友</button>
+			<!-- <button type='button' class="btn btn-sm   btn-primary weiXinLastRecordSearchToday">今日</button>
+			<button type='button' class="btn btn-sm   btn-primary weiXinLastRecordSearchSeven">七天内</button> -->
+		</div>
+	</div>
+</form>

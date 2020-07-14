@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>jt_weixin_follower管理</title>
+	<#include "/common/common.html">
+	<script src="${ctx}/js/jt/crm/wx/weixinFollower.js?v=1.0.0" ></script>
+</head>
+
+<body>
+	<div class="wrapper animated fadeInRight">
+		<!-- list界面 -->
+		<div class="row list_wrapper">
+			<#include "/crm/wx/weixinFollower/weixinFollowerToolbar.html">	  			
+			<div class='col-sm-12 jqGrid_wrapper'>
+			    <table id="weixinFollowerGrid"></table>
+				<div id="weixinFollowerPager"></div>
+			</div>
+		</div>
+		<!-- 编辑界面 -->
+		<#include "/crm/wx/weixinFollower/weixinFollowerEdit.html">	    
+	</div>
+</body>
+</html>

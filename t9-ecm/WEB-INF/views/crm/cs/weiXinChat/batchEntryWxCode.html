@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>批量管理微信号</title>
+	<#include "/common/common.html">
+	<style>
+		li.active a{
+			color: #FFFFFF !important;	
+		}
+
+		.list-group-item{
+			border: 1px solid #337AB7 !important;
+			padding: 3px 15px;
+		}
+		#cateOptContainer .col-sm-6{
+			padding-left: 5px;	
+			padding-right: 5px;
+		}
+	</style>
+	<link rel="stylesheet" rev="stylesheet" type="text/css" media="all" href="${ctx}/css/jt/crm/cs/wx/weiXinChat.css?v=${jsVersion}">
+	<script src="${ctx}/js/jt/crm/cs/weiXin/batchEntryWxCode${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/crm/cs/weiXin/weiXinFriendsSelect${deploy_min!""}.js?v=${jsVersion}"></script>
+	<script>
+		var empWx = "${empWx}";	//员工微信号
+	</script>
+</head>
+
+<body>
+	<div class="wrapper animated">
+		<div class='col-sm-2' style='margin-top: 5px;'>
+			<h3>微信号：</h3>
+			<ul class="folder-list" style='padding-left: 0px;'>
+				<#list wxCodes as code>
+				<li class="list-group-item <#if code_index == 0>active activeWxCode</#if>" wxCode="${code.weixin}" ><a href="javascript:void(0);">${code.nickName}:${code.weixin}<#if code.status == 0>[离]</#if></a></li>
+				</#list>
+	        		</ul>	
+		</div>
+		<div class="row list_wrapper col-sm-10">
+			<div class='col-sm-12 jqGrid_wrapper'>
+			    <table id="entryWxCodeGrid"></table>
+				<div id="entryWxCodePager"></div>
+			</div>
+		</div>
+	</div>
+	<!-- 合并 -->
+	<div style="display:none"  class="jt-wx-merge-pane" >
+	   	<div class="panel-body">
+			<form id="mergeForm" method="get" class="form-horizontal">
+				<div class='form-group'>
+					<label class='col-sm-2 control-label'>合并到：</label>
+				</div>
+				<div class='form-group'>
+					<label class='col-sm-2 control-label'>昵称</label>
+					<div class='col-sm-4 '>
+						<input type='text' class='form-control' name='mergeingNickName' readonly>
+					</div>
+					<label class='col-sm-2 control-label'>备注</label>
+					<div class='col-sm-4 '>
+						<input type='text' class='form-control' name='mergeingRemark' readonly>
+					</div>
+				</div>
+				<div class='form-group'>
+					<label class='col-sm-2 control-label'>被合并：</label>
+					<div class='col-sm-4 '>
+						<button type="button" class="btn btn-sm   btn-primary selectFriend">选择好友</button>
+					</div>
+				</div>
+				<div class='form-group'>
+					<label class='col-sm-2 control-label'>昵称</label>
+					<div class='col-sm-4 '>
+						<input type='text' class='form-control' name='mergedNickName' readonly>
+					</div>
+					<label class='col-sm-2 control-label'>备注</label>
+					<div class='col-sm-4 '>
+						<input type='text' class='form-control' name='mergedRemark' readonly>
+					</div>
+				</div>
+				<input type='hidden' class='form-control' name='mergedUserName'>
+			</form>
+		</div>
+	</div>
+</body>
+</html>

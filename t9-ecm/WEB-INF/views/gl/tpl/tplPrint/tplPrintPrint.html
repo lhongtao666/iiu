@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>快递单打印</title>
+	<#include "/common/common.html">
+	<script src="${ctx}/js/plugins/gridReport/CreateControl.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/plugins/gridReport/GRUtility.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/jt/gl/tpl/tplPrint${deploy_min!""}.js?v=${jsVersion}"></script>
+	<script>
+	    var ctx = "${ctx}";
+	    var entityId="${entityId}";
+	    var entityType="${entityType}";
+		<#if proxyType??>
+			proxyType = "${proxyType}";
+		</#if>
+	    var tplPrint = new TplPrint();
+	    CreatePrintViewerEx("100%", "100%", "", "", false, "");
+	    function loadFunc(){
+	    	if(entityType == "ship" || entityType == "hotsensitive"){
+	    		tplPrint.loadEntityShipInfo(ReportViewer,entityId,entityType,proxyType);
+	    	}
+	    	else{
+	    		tplPrint.loadEntityInfo(ReportViewer,entityId,entityType);
+	    	}
+		 }
+	</script>
+</head>
+
+<body onload="loadFunc();">
+</body>
+</html>

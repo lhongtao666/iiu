@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>退货入仓</title>
+	<#include "/common/common.html">
+	<#include "/common/ztree.html">
+	<script src="${ctx}/js/jt/common/utils/shipCompanyUtils${deploy_min!""}.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/jt/ec/stock/reject${deploy_min!""}.js?v=${jsVersion}" ></script>
+    <script src="${ctx}/js/jt/ec/salesorder/export/soEntityExport${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/common/utils/excelUtil${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/common/utils/groupUtils${deploy_min!""}.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/jt/ec/salesorder/soEntityBase${deploy_min!""}.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/jt/ec/stock/storeUtils${deploy_min!""}.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/jt/gl/km/glHelpUtil${deploy_min!""}.js?v=${jsVersion}" ></script>
+</head>
+
+<body class='white-bg'>
+	<div class="wrapper animated ">
+		<button type="button" class="soEntityTabSpanSearch" style="display:none;"></button>
+		<!-- list界面 -->
+		<div class="row list_wrapper">
+			<div class="col-sm-12">
+				<div class="tabs-container">
+					<ul class="nav nav-tabs">
+						<li  id="soRejectingTabLi" class="tabli active">
+							<a href="#soRejecting" data-toggle="tab">
+								退货入仓
+							</a>
+						</li>
+						<li  id="soEntityRejectTabLi" class="tabli">
+							<a href="#soEntityReject" data-toggle="tab">
+								退货订单
+							</a>
+						</li>
+						<li  id="soRejectProdListTabLi" class="tabli"  >
+							<a href="#soRejectProdList" data-toggle="tab">
+								退货款号汇总
+							</a>
+						</li>
+						<li>
+							<!-- 帮助中心 -->
+							<label id="glHelpContainer"></label>
+						</li>
+						
+					</ul>
+					<div class="tab-content">
+						<div id="soEntityReject" class="tab-pane">
+							<div class="panel-body">
+								<div class='row'>
+									<#include "/ec/stock/reject/soRejectList.html"></div>
+							</div>
+						</div>
+						<div id="soRejectProdList" class="tab-pane">
+							<div class="panel-body">
+								<div class='row'>
+									<#include "/ec/stock/reject/soRejectProdList.html"></div>
+							</div>
+						</div>
+						<div id="soRejecting" class="tab-pane active">
+							<div class="panel-body">
+								<div class='row'>
+									<#include "/ec/stock/reject/soRejecting.html"></div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+		</div>
+	</div>
+	<div style="display:none"  class="soEntityExportPane" >
+		 <#include "/ec/salesorder/soEntity/export/soEntityExport.html" >
+	</div>
+	<#include "/ec/salesorder/soEntity/export/soStockInExportExcel.html" >
+
+	<div style="display:none"  class="batchBackPane" >
+		<select id="batchStoreId" class="form-control" style="max-width: 300px;margin-left: 50px;"></select>
+		<br>
+		<span style="margin-left: 50px;color: red;">提示：不选仓库则退回出库仓库</span>
+	</div>
+</body>
+</html>

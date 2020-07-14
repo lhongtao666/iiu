@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>退货原因报表明细</title>
+	<#include "/common/common.html">
+	<script src="${ctx}/js/jt/crm/report/so/soBackReasonHistory${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script type="text/javascript">
+		var beginTime = "${beginTime}";
+		var endTime = "${endTime}"; 
+	</script>
+</head>
+<body class="white-bg">
+	<div class='wrapper'>
+		<div class='row list_wrapper'>
+			<div class="jqGrid_wrapper col-sm-12">
+				<div id="searchparamdiv"></div>
+				<table id='soBackReasonHistoryGrid'></table>
+			</div>
+		</div>
+	</div>	
+</body>
+</html>

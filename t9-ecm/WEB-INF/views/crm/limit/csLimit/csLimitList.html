@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>客户额度管理</title>
+	<#include "/common/common.html">
+	<script src="${ctx}/js/jt/crm/limit/csLimit${deploy_min!""}.js?v=${jsVersion}" ></script>
+</head>
+
+<body>
+	<div class="wrapper animated fadeInRight">
+		<!-- list界面 -->
+		<div class="row list_wrapper">
+			<#include "/crm/limit/csLimit/csLimitToolbar.html">	  			
+			<div class='col-sm-12 jqGrid_wrapper'>
+			    <table id="csLimitGrid"></table>
+				<div id="csLimitPager"></div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

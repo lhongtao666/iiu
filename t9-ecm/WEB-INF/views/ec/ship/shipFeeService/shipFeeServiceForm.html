@@ -1,0 +1,75 @@
+<div class='row' style='border: 1px solid #ddd; margin-left: 15px; margin-right: 15px;padding:10px;'>
+	<div class='col-sm-12'>
+		<form id="shipFeeServiceForm" method="get" class="form-horizontal">
+
+
+			<div class="form-group">
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">快递公司 ID<@JTtip msg="快递公司 ID" /></label>
+					<div class="col-sm-9">
+						<input type="text" name="shipCompanyId" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">规则说明<@JTtip msg="规则说明" /></label>
+					<div class="col-sm-9">
+						<input type="text" name="desc" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">金额大于<@JTtip msg="金额大于" /></label>
+					<div class="col-sm-9">
+						<input type="text" name="moenyGt" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+			</div>
+			<div class="form-group">
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">金额小于等于<@JTtip msg="金额小于等于" /></label>
+					<div class="col-sm-9">
+						<input type="text" name="moneyLte" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">服务费形式。percent=百分比；money=指定金额<@JTtip msg="服务费形式。percent=百分比；money=指定金额" /></label>
+					<div class="col-sm-9">
+						<input type="text" name="serviceTypes" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">服务费 - 百分比形式<@JTtip msg="服务费 - 百分比形式" /></label>
+					<div class="col-sm-9">
+						<input type="text" name="servicePercent" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+			</div>
+			<div class="form-group">
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">服务费 - 金额<@JTtip msg="服务费 - 金额" /></label>
+					<div class="col-sm-9">
+						<input type="text" name="serviceMoney" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+            </div>    
+
+
+
+			<div class='form-group'>
+				<!--将隐藏域放在这里，不显示出来-->
+				<div style="display:none'">
+					<input type="hidden" id="id" name="id">
+					<input type="hidden" name="createBy">
+					<input type="hidden" name="createTime">
+				</div>
+			</div>
+
+		</form>
+	</div>
+</div>

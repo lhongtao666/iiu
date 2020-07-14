@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>呼入电话数据统计报表</title>
+	<#include "/common/common.html">
+	<script src="${ctx}/js/jt/crm/report/ctiReport/inComeStatistics/callInDataStatisticsReport${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<style type="text/css">
+		.callIndatastatisticsreport >div  table {
+			width:  3500px !important;
+		}
+	</style>
+</head>
+<body>
+	<div class="wrapper animated fadeInRight">
+		<!-- list界面 -->
+		<div class="row list_wrapper">
+			<div class="panel-body">
+				<div class='row'>
+					<#include "/crm/report/ctiReport/inComeStatistics/callInDataStatisticsReportToolbar.html">		
+					<div class='col-sm-12 jqGrid_wrapper callIndatastatisticsreport'>
+					    <table id="callInDataStatisticsReportGrid"></table>
+						<div id="callInDataStatisticsReportPager"></div>
+					</div>
+				</div>
+			</div>
+		</div>   
+	</div>
+</body>
+</html>

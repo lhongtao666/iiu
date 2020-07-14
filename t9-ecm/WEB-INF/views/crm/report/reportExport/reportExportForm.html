@@ -1,0 +1,47 @@
+<form id="reportExportForm" method="get" class="form-horizontal">
+	<div class="form-group">
+		<div class='col-sm-4'>
+			<label class="col-sm-3 control-label">名称 </label>
+			<div class="col-sm-9">
+				<input type="text" name="name" placeholder="" class="form-control" validateType="default" > 
+			</div>
+		</div>		
+
+		<div class='col-sm-4'>
+			<label class="col-sm-3 control-label">报表路径</label>
+			<div class="col-sm-9">
+				<input type="text" name="url" placeholder="" class="form-control" validateType="default" > 
+			</div>
+		</div>		
+		<div class='col-sm-4'>
+			<label class="col-sm-3 control-label">状态</label>
+			<div class="col-sm-9">
+				<select class="form-control" name="status" validateType="default" >
+               		<option value="prepare">生成中</option>
+               	    <option value="actived">生成完成</option>
+               		<option value="fail">生成出错</option>
+              	</select>
+            </div>
+        </div>
+	</div>
+   <div class="form-group">
+      <div class='col-sm-12'>
+			<label class="col-sm-1 control-label">处理日志:</label>
+			<div class="col-sm-11">
+			      <textarea  class=" form-control"  id="log"></textarea>
+			</div>
+			</div>
+		</div>	
+   </div>
+
+
+	<div class='form-group'>
+		<!--将隐藏域放在这里，不显示出来-->
+		<div style="display:none'">
+			<input type="hidden" id="id" name="id">
+			<input type="hidden" name="createBy">
+			<input type="hidden" name="createTime">
+		</div>
+	</div>
+
+</form>

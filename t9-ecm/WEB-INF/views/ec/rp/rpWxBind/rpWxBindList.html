@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>微信绑定客户统计管理</title>
+	<#include "/common/common.html">
+	<#include "/common/ztree.html">
+	<script src="${ctx}/js/jt/ec/salesorder/soEntityUtils${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/ec/rp/rpWxBind${deploy_min!""}.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/jt/common/utils/groupUtils${deploy_min!""}.js?v=${jsVersion}"></script>
+	<link href="${ctx}/css/plugins/select2/select2.min.css?v=${jsVersion}" rel="stylesheet">
+    <script src="${ctx}/js/plugins/select2/select2.min.js?v=${jsVersion}"></script>
+</head>
+<body class="white-bg">
+	<div class='wrapper'>
+		<div class='row list_wrapper'>
+			<div class='col-sm-12'>
+				<div class="panel panel-default">
+					<div class="panel-heading report-content">	
+						<form role="form" id="rpWxBindSearchForm" class="form-horizontal rpWxBindSearchForm">
+							<div class='form-group'>
+								<label class='control-label col-sm-1'>日期</label>
+								<div class="col-sm-5 dayElement"> 
+									<div class="input-daterange input-group" id="datepicker">
+										<input class='laydate-icon form-control layer-date' id="beginDate" name="beginDate" validateType="default" placeholder="开始时间" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">
+						                <span class="input-group-addon">到</span>
+						                <input class='laydate-icon form-control layer-date' id="endDate" name="endDate" validateType="default" placeholder="结束时间" onclick="laydate({istime: true, start: laydate.now(0, 'YYYY/MM/DD 23:59:59'), format: 'YYYY-MM-DD hh:mm:ss'})">
+						           </div>
+								</div>
+								<label class='control-label col-sm-1'>类型</label>	
+								<div class='col-sm-2'>
+									<select id="typeSearch" class="form-control" name="type">
+										<option value="">请选择</option>
+										<option value="1">绑定</option>
+										<option value="2">新增</option>
+									</select>
+								</div>
+							</div>
+							<div class='form-group'>
+								<label class='control-label col-sm-1'>部门</label>	
+								<div class='col-sm-2'>
+									<input id='groupName' readonly class='form-control'>
+									<input name='belongOgn' type='hidden' class='form-control'>
+								</div>
+								<div class='col-sm-2'>
+									<select name="belongEmployee" id='belongEmployee' class="form-control" validateType="default"></select>
+								</div>
+								
+								<label class="control-label col-sm-1"></label>
+								<div class='col-sm-4'>
+									<button class="jt-btn-search rpWxBindSearch" id="rpWxBindSearch" type="button"><i class="fa fa-search"></i>&nbsp;搜索</button>
+									<button type='button' id="clearSearchBtn" class="jt-btn-empty"><i class='fa fa-trash-o'></i>&nbsp;清空</button>
+									<button type='button' class='jt-btn-search exportExcel'><i class="fa fa-reply"></i>&nbsp;导出</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>	
+			</div>
+
+			
+			<div class='col-sm-12 jqGrid_wrapper'>
+				<table id="rpWxBindGrid"></table>
+				<div id="rpWxBindPager"></div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

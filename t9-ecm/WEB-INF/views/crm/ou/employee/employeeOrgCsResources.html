@@ -1,0 +1,39 @@
+<script>
+	var currentPositionId = "";
+	<#if currentPositionId??>currentPositionId = "${currentPositionId}";</#if>
+</script>
+<script src="${ctx}/js/jt/crm/ou/employeeOrgCsResources${deploy_min!""}.js?v=${jsVersion}" ></script>
+
+<div class="panel panel-default" style="margin-bottom:0px;height:100%;">
+	<div class="panel-heading">
+    	<span class="panel-title">
+    		<h4>我的部门客户资源</h4>
+    	</span>
+    </div>
+    <div class="panel-body">
+    	<br>
+      	<table class="table">
+		    <tr>
+		      	<td>直属客户总数：</td>
+		      	<td>
+		      		<a class="csCount"><font size="3"><span id="csCount"></span> 个</font></a>
+		      		<span style="display:none;">（一类 <span id="firstCsCount"></span>，二类 <span id="secondCsCount"></span>）</span>
+		      	</td>
+		    </tr>
+		    <tr>
+		      	<td>下属客户总数：</td>
+		      	<td>
+		      		<a class="subCsCount"><font size="3"><span id="subCsCount"></span> 个</font></a>
+		      		<span style="display:none;">（一类 <span id="firstSubCsCount"></span>，二类 <span id="secondSubCsCount"></span>）</span>
+		      	</td>
+		    </tr>
+		    <tr>
+		      	<td>新分配客户：</td>
+		      	<td>
+		      		<a class="turnNewCount"><font size="3"><span id="turnNewCount"></span> 个</font></a>
+		      		<span style="display:none;">（一类 <span id="firstTurnNewCount"></span>，二类 <span id="secondTurnNewCount"></span>）</span>
+		      	</td>
+		    </tr>
+	   </table>
+   </div>
+</div> 

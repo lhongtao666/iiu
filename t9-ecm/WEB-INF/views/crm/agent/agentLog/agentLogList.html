@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>代理商维护日志管理</title>
+	<#include "/common/common.html">
+	<script src="${ctx}/js/jt/crm/agent/agentLog.js?v=1.0.0" ></script>
+</head>
+
+<body>
+	<div class="wrapper animated fadeInRight">
+		<!-- list界面 -->
+		<div class="row list_wrapper">
+			<#include "/crm/agent/agentLog/agentLogToolbar.html">	  			
+			<div class='col-sm-12 jqGrid_wrapper'>
+			    <table id="agentLogGrid"></table>
+				<div id="agentLogPager"></div>
+			</div>
+		</div>
+		<!-- 编辑界面 -->
+		<#include "/crm/agent/agentLog/agentLogEdit.html">	    
+	</div>
+</body>
+</html>

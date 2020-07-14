@@ -1,0 +1,65 @@
+<div class='row' style='border: 1px solid #ddd; margin-left: 15px; margin-right: 15px;padding:10px;'>
+	<div class='col-sm-12'>
+		<form id="cashSettingForm" method="get" class="form-horizontal">
+
+
+			<div class="form-group">
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">名称<@JTtip msg="名称" /></label>
+					<div class="col-sm-9">
+						<input type="text" name="name" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">面值金额<@JTtip msg="面值金额" /></label>
+					<div class="col-sm-9">
+						<input type="text" name="money" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">已发行数量<@JTtip msg="已发行数量" /></label>
+					<div class="col-sm-9">
+						<input type="text" name="pubSum" placeholder=""  validateType="default"  class="digits form-control"> 
+					</div>
+				</div>
+
+			</div>
+			<div class="form-group">
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">已使用数量<@JTtip msg="已使用数量" /></label>
+					<div class="col-sm-9">
+						<input type="text" name="useSum" placeholder=""  validateType="default"  class="digits form-control"> 
+					</div>
+				</div>
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">状态。init=未发行；publish=已发行<@JTtip msg="状态。init=未发行；publish=已发行" /></label>
+					<div class="col-sm-9">
+						<select class="form-control" name="status" validateType="default" >
+		               		<option value="">请选择</option>
+		               		<option value="1">选项 1</option>
+		               	    <option value="2">选项 2</option>
+		               		<option value="3">选项 3</option>
+		               		<option value="4">选项 4</option>
+		              	</select>
+		            </div>
+		        </div>
+
+            </div>    
+
+
+
+			<div class='form-group'>
+				<!--将隐藏域放在这里，不显示出来-->
+				<div style="display:none'">
+					<input type="hidden" id="id" name="id">
+					<input type="hidden" name="createBy">
+					<input type="hidden" name="createTime">
+				</div>
+			</div>
+
+		</form>
+	</div>
+</div>

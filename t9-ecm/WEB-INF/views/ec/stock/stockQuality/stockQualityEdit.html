@@ -1,0 +1,98 @@
+<style type="text/css">
+	.checkInfo tr{
+		height:20px;
+	}
+	.flaot-right{
+		width:30%;
+		text-align: right;
+		padding-right: 20px;
+	}
+	input{
+		background-color: #fff !important;
+	}
+</style>
+<div style="display: none;" class="row form_wrapper">
+	<div class='col-sm-12'>
+		<div class="panel panel-default">
+	        <div class="panel-heading">
+         		<button type='button' class="btn btn-sm   btn-primary jt-btn-normal saveBtn">保存</button>
+				<button type='button' class="btn btn-sm   btn-primary jt-btn-normal saveAndNextBtn">保存并下一个</button>
+				<button type='button' class="btn btn-sm   btn-primary jt-btn-close prevBtn">返回</button>
+         	</div>
+
+	        <div class="panel-body">
+	        	<form class="form-horizontal">
+		        	<div class="form-group">
+		           		 <div class='col-sm-8'>
+				           	<label class="col-sm-3 control-label">产品SKU名称</label>
+				           	<div class="col-sm-9">
+						    	 <input name="name" readonly='readonly' class='form-control' >
+				           	</div>
+				        </div>
+				        
+		           	</div>
+		           	<div class="form-group">
+		           		<div class='col-sm-8'>
+				           	<label class="col-sm-3 control-label">仓库仓位</label>
+				           	<div class="col-sm-9">
+						    	 <input name="position" readonly='readonly' class='form-control'>
+				           	</div>
+				        </div>
+		           	</div>
+		           	<div class="form-group">
+		           		<div class='col-sm-4'>
+				           	<label class="col-sm-6 control-label">上次盘点总数</label>
+				           	<div class="col-sm-6">
+						    	 <input name="lastQty" readonly='readonly' class='form-control' >
+				           	</div>
+				        </div>
+				        <div class='col-sm-4'>
+				           	<label class="col-sm-6 control-label">本次盘点总数</label>
+				           	<div class="col-sm-6">
+						    	 <input name="totalQty_t" readonly='readonly' class='form-control'>
+				           	</div>
+				        </div>
+		           	</div>
+		           	<div class="form-group hideWhenNo">
+		           		<div class='col-sm-8'>
+				           	<label class="col-sm-3 control-label">上次盘点时间</label>
+				           	<div class="col-sm-9">
+						    	 <input name="checkTime" readonly='readonly' class='form-control'>
+				           	</div>
+				        </div>
+		           	</div>
+	           		<div class="form-group">
+	           			<div class='col-sm-4'>
+		           			<label class="col-sm-6 control-label">
+		           				<button type="button" class="btn btn-sm   btn-primary addNew" style="margin-top:10px;">添加新批次</button>
+		           			</label>
+		           		</div>
+	           		</div>
+
+	           		<div class='form-group' style='display: none;'>
+	           			<input type="hidden" name="stockId" />
+			           	<input type="hidden" name="nextStockId" />
+			           	<input type="hidden" name="skuId" />
+	           		</div>
+		        </form>
+	          
+	            <div style="margin-top: 5px;">
+		           <table class="table table-striped table-bordered checkItems">
+		           		<thead>
+		           			<th width="30%">保质期起始</th>
+		           			<th width="30%">保质期结束</th>
+		           			<th width="30%">数量</th>
+		           			<th width="10%" class="hideWhenDetail">操作</th>
+		           		</thead>
+		           		<tbody></tbody>
+		           		<tfoot>
+		           			<td colspan="2"></td>
+		           			<td>总计：<span class="totalQty_f"></span></td>
+		           			<td class="hideWhenDetail"></td>
+		           		</tfoot>
+		           </table>
+	            </div>
+	        </div>
+	    </div>	
+	</div>
+</div>

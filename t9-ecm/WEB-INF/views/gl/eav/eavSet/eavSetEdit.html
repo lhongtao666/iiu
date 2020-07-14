@@ -1,0 +1,149 @@
+<style>
+	
+	#eavSetAttrTabDiv{
+		padding: 20px 20px 0 20px;
+	}
+	#eavSetAttrContainer{
+		padding-left: 0px;padding-left: 15px !important;
+	}
+	#selectEavAttrTable .fa:not(.fa-remove) {
+		color:#1caf9a;
+	}
+	#tabContentDiv .form-horizontal .checkbox, #tabContentDiv .form-horizontal .radio {
+	    min-height: 0; 
+	}
+</style>
+
+<div style="display: none;" class="row form_wrapper">
+	<div class='col-sm-12'>
+		<div class="panel panel-default">
+	        <div class="panel-heading jt-fixed">
+				<button type='button' class="jt-btn saveBtn"><i class="fa fa-floppy-o">&nbsp;保存</i></button>
+				<button type='button' class="jt-btn jt-btn-red prevBtn"><i class="fa fa-reply">&nbsp;取消</i></button>
+	        </div>
+
+	        <div class="panel-body">
+	            <div class='tabs-container jt-fixed-next45'>
+					<div id="tabContentDiv" class="tab-content">
+						<div id="eavSetTabDiv" class="tab-pane active">
+							<div class='panel-body'>
+								<form id="eavSetForm" method="get" class="form-horizontal">
+									<div class="panel panel-default panel-bb">
+										<div class="panel-heading jt-panel-heading">
+											<h3 class="panel-title">属性集信息</h3>
+										</div>
+
+										<div class="panel-body">
+											<div class="form-group">
+												<div class='col-sm-4'>
+													<label class="col-sm-3 control-label">名称<span style='color: red;'>*</span></label>
+													<div class="col-sm-9">
+														<input type="text" name="name" placeholder=""
+															class="form-control" validateType="default">
+													</div>
+												</div>
+												<div class='col-sm-4'>
+														<label class="col-sm-3 control-label">业务键<span style='color: red;'>*</span></label>
+														<div class="col-sm-9">
+															<input type="text" name="key" placeholder=""
+																class="form-control" validateType="default">
+														</div>
+												</div>
+												<div class='col-sm-3'>
+													<label class="col-sm-3 control-label">状态</label>
+													<div class="col-sm-9">
+														<input name='status' type='hidden' value='actived'>
+														<input type="checkbox" class="js-switch" checked='checked'/>
+														<input name='usedStatusName' type='hidden' class='form-control' readonly="readonly" value='已用'>
+													</div>
+												</div>
+											</div>
+						
+											<!--将隐藏域放在这里，不显示出来-->
+											<div style="display: none;">
+												<input type="hidden" id="id" name="id"> 
+												<input type="hidden" name="sort"> 
+												<input type="hidden" name="bizType"> 
+												<input type="hidden" name="createBy"> 
+												<input type="hidden" name="createTime">
+											</div>
+										</div>
+									</div>
+									</form>
+									<div class="panel panel-default panel-bb addInfo">
+										<div class="panel-heading jt-panel-heading">
+											<h3 class="panel-title">关联属性</h3>
+										</div>
+										<div class='panel-body' id="eavSetAttrTabDiv" >
+											<div class='row'>
+												
+												<div class='col-sm-6' id='eavSetAttrContainer'>
+													<div class='row' style='padding-bottom: 10px;'>
+														<div class='col-sm-12'>
+															<button type="button" id='addNewGroupBtn' class='jt-btn'><i class='fa fa-plus'>&nbsp;添加分组</i></button>
+														</div>
+													</div>
+
+													<div class='row'>
+														<div class='col-sm-12' style="border: 1px solid #ddd;height:650px;overflow: auto;">
+															<table class='table table-hover' >
+																<thead>
+																	<tr>
+																		<th width='10%'> </th>
+																		<th width='30%'>名字</th>
+																		<th width='15%'>数据类型</th>
+																		<th width='15%'>控件类型</th>
+																		<th width='15%'>排序</th>
+																		<th width='15%'>操作</th>
+																	</tr>	
+																</thead>
+																<tbody id='selectEavAttrTable' style="overflow: auto;"></tbody>	
+															</table>
+														</div>
+													</div>
+												</div>
+												<div class='col-sm-1' style='text-align: center;text-align:center;height: 650px;padding-top: 300px;'>
+													<div>
+														<button type="button" id='selectAttrsBtn' class='jt-btn'><i class="fa fa-check">&nbsp;选择勾选</i></button></div>
+													<div style="padding-top:10px; ">
+														<button type="button" id='selectAllAttrsBtn' class='jt-btn'><i class="fa fa-check">&nbsp;选择全部</i></button></div>
+												</div>
+												<!-- 可选属性集 -->
+												<div class='col-sm-5' style='padding-left: 10px !important;'>
+													
+													<form role="form" class=" form-horizontal" id='attrSearchFormContainer'>
+														<div class="form-group" style="margin-bottom: 10px;">
+														<div class="col-sm-7 " >
+															<button type="button" id="eavAttrAdd" class="jt-btn"><i class='fa fa-plus'>&nbsp;添加</i></button>
+															<button type="button" id="eavAttrEdit" class="jt-btn"><i class='fa fa-edit'>&nbsp;编辑</i></button>
+															<button type="button" id="eavAttrDel" class="jt-btn jt-btn-red"><i class="fa fa-remove">&nbsp;删除</i></button>
+														</div>
+														<div class="col-sm-3">
+															<label for="nameSearch" class="sr-only">名称</label> 
+															<input type="text" placeholder="请输入名称" id="nameSelectSearch"
+																class="form-control">
+														</div>
+														<div class="col-sm-2">
+															<button class="jt-btn-search" type='button' id="searchSelectBtn"><i class='fa fa-search'>&nbsp;搜索</i></button>
+														</div>
+														</div>
+													</form>
+													<div style="width:100%;overflow-x:auto;">
+														<table id="eavSetSelectGrid"></table>
+														<div id="eavSetSelectPager"></div>
+													</div>
+												</div>
+												
+
+											</div>
+										</div>
+									</div>
+								
+							</div>
+						</div>
+					</div>
+				</div>
+	        </div>
+	    </div>	
+	</div>
+</div>

@@ -1,0 +1,219 @@
+<#macro JTAgentBillPanel buttonStr completeTab rejectLostTab fluctuateTab>
+<div class="panel panel-default">
+	<div class="panel-body">
+		<div class="form-group">
+			<label for="periodYear" style="float: left; line-height: 2em;">时间：</label>	
+			<select name="periodYear" id="periodYear" class="form-control" validateType="default" style='width:6%;float:left;'></select>
+			<span style='width:2%;float:left;'>&nbsp;年</span>
+			<select name="periodMonth" id="periodMonth" class="form-control" validateType="default" style='width:6%;float:left;'>
+				<option value="1">1</option>
+				<option value="2">2</option>
+				<option value="3">3</option>
+				<option value="4">4</option>
+				<option value="5">5</option>
+				<option value="6">6</option>
+				<option value="7">7</option>
+				<option value="8">8</option>
+				<option value="9">9</option>
+				<option value="10">10</option>
+				<option value="11">11</option>
+				<option value="12">12</option>
+			</select>
+			<span style='width:2%;float:left;'>&nbsp;月</span>
+			<select name="periodNumber" id="periodNumber" class="form-control" validateType="default" style='width:6%;float:left;'>
+				<option value="1">1</option>
+				<option value="2">2</option>
+				<option value="3">3</option>
+				<option value="4">4</option>
+				<option value="5">5</option>
+				<option value="6">6</option>
+				<option value="7">7</option>
+				<option value="8">8</option>
+				<option value="9">9</option>
+				<option value="10">10</option>
+				<option value="11">11</option>
+				<option value="12">12</option>
+				<option value="13">13</option>
+				<option value="14">14</option>
+				<option value="15">15</option>
+				<option value="16">16</option>
+				<option value="17">17</option>
+				<option value="18">18</option>
+				<option value="19">19</option>
+				<option value="20">20</option>
+				<option value="21">21</option>
+				<option value="22">22</option>
+				<option value="23">23</option>
+				<option value="24">24</option>
+				<option value="25">25</option>
+				<option value="26">26</option>
+				<option value="27">27</option>
+				<option value="28">28</option>
+				<option value="29">29</option>
+				<option value="30">30</option>
+				<option value="31">31</option>
+			</select>
+			<span style='width:3%;float:left;'>&nbsp;期</span>
+			
+			<input type='hidden' name='completeDays'>	
+			<input type="hidden" name="agentId" value="${agentId}">	
+			<input type='hidden' name='startTime'>
+			<input type='hidden' name='endTime'>
+			<input type='hidden' name='id'>
+			<input type='hidden' name='prevId'>
+			<input type='hidden' name='nextId'>
+			<span style='width:15%;float:left;margin-right:1%;' class='timePeriod'></span>
+			<div style="float: left;">
+				<button type="button" class="btn btn-sm jt-btn-normal btn-primary agentBillPrev" style='display:none;'>上一期</button>	
+				<button type="button" class="btn btn-sm jt-btn-normal btn-primary agentBillNext" style='display:none;'>下一期</button>	
+				<button type="button" class="btn btn-sm jt-btn-normal btn-primary agentBillThis">当前期</button>	
+				<button type="button" class="btn btn-sm jt-btn-normal btn-primary agentBillSearch">查询</button>
+				${buttonStr}
+				<button type="button" class="btn btn-sm jt-btn-normal btn-primary agentBillSave">保存</button>	
+				<button type="button" class="btn btn-sm jt-btn-normal btn-primary agentBillFluctuate">手工增减</button>
+				<button type="button" class="btn btn-sm jt-btn-normal btn-primary agentBillExport">导出对账报表</button>				
+			</div>
+		</div>
+		<table class='table table-striped table-bordered agentBillTable'>
+			<thead>
+				<tr>
+					<th style="padding-left: 5px;">序号</th>
+					<th style="padding-left: 5px">类型</th>
+					<th style="padding-left: 8%">对账计算用</th>
+					<th style="padding-left: 8%">仅仅统计显示用</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr><td>1</td><td>签收单</td>
+					<td>
+						<table>
+							<tbody>
+								<tr>
+									<td style='padding-right:10px;'>订单金额</td>
+									<td style='padding-right:10px;'>-</td>
+									<td style='padding-right:10px;'>服务费</td>
+									<td style='padding-right:10px;'>-</td>
+									<td style='padding-right:10px;'>仓储费</td>
+									<td style='padding-right:10px;'>-</td>
+									<td style='padding-right:10px;'>打包费</td>
+									<td style='padding-right:10px;'>-</td>
+									<td style='padding-right:10px;'>发货运费</td>
+									<td style='padding-right:10px;'>-</td>
+									<td>签收成本</td>
+								</tr>		
+								<tr>
+									<td style='font-weight:bold;' class='moneySo'></td>
+									<td style='padding-right:10px;font-weight:bold;'>-</td>
+									<td style='font-weight:bold;' class='moneyService'></td>
+									<td style='padding-right:10px;font-weight:bold;'>-</td>
+									<td style='font-weight:bold;' class='moneyStock'></td>
+									<td style='padding-right:10px;font-weight:bold;'>-</td>
+									<td style='font-weight:bold;' class='moneyPackage'></td>
+									<td style='padding-right:10px;font-weight:bold;'>-</td>
+									<td style='font-weight:bold;' class='moneyShip'></td>
+									<td style='padding-right:10px;font-weight:bold;'>-</td>
+									<td style='font-weight:bold;' class='moneyCost'></td>
+								</tr>													
+							</tbody>
+						</table>
+					</td>
+					<td>
+						<div>签收件数</div>
+						<div style='font-weight:bold;' class='skuCount'></div>
+					</td>
+				</tr>
+				<tr><td>2</td><td>丢退单</td>
+					<td>												
+						<div>- 退件运费</div>
+						<span style='font-weight:bold;'>-  </span>
+						<span style='font-weight:bold;' class='returnMoneyShip'></span>
+					</td>
+					<td>
+						<table>
+							<tbody>
+								<tr>
+									<td style='padding-right:20px;'>退件件数</td>
+									<td style='padding-right:20px;'>退件金额</td>
+									<td style='padding-right:20px;'>退件打包费</td>
+									<td style='padding-right:20px;'>退件仓储费</td>
+									<td style='padding-right:20px;'>退件成本</td>
+								</tr>		
+								<tr>
+									<td style='font-weight:bold;' class='returnSkuCount'></td>
+									<td style='font-weight:bold;' class='returnMoneySo'></td>
+									<td style='font-weight:bold;' class='returnMoneyPackage'></td>
+									<td style='font-weight:bold;' class='returnMoneyStock'></td>
+									<td style='font-weight:bold;' class='returnMoneyCost'></td>
+								</tr>													
+							</tbody>
+						</table>
+					</td>
+				</tr>											
+				<tr><td>3</td><td>其他费用</td>
+					<td class='agentBillOtherTd'>													
+					</td>
+					<td></td>
+				</tr>	
+				<tr><td>4</td><td>应返款金额</td>
+					<td><span>=  </span><span style='font-weight:bold;' class='returnedTotalAmount'></span></td>
+					<td></td>
+				</tr>
+			</tbody>
+		</table>
+		<div class='tabs-container agentBillContainer'>
+			<div style="width: 100%; float: left;">
+				<ul class='nav nav-tabs' style="float: left;">
+				<li class='tabLi active'>
+					<a href="#${completeTab}" data-toggle="tab">签收单</a>
+				</li>
+				<li class='tabLi'>
+					<a href="#${rejectLostTab}" data-toggle="tab">丢退单</a>
+				</li>
+				<li class='tabLi fluctuateLi'>
+					<a href="#${fluctuateTab}" data-toggle="tab">手工增减</a>
+				</li>
+			</ul>
+			</div>
+			
+			<div class='tab-content'>
+				<div id="${completeTab}" class="tab-pane fade in active">
+					<table class='table table-striped table-bordered '>
+						<thead>
+							<tr>
+								<th style="padding-left: 5px;">序号</th><th style="padding-left: 5px;">订单号</th><th>订单状态</th><th>物流方式</th><th>发货省份</th><th>目的地省份</th><th>物流返款金额</th>
+								<th>件数</th><th>服务费</th><th>仓储费</th><th>打包费</th><th>发货运费</th><th>签收成本</th><th>应返金额</th>
+							</tr>
+						</thead>
+						<tbody class='completeTbody'></tbody>
+						<tfoot class='completeTfoot'></tfoot>
+					</table>
+				</div>
+				<div id="${rejectLostTab}" class="tab-pane fade in">
+					<table class='table table-striped table-bordered '>
+						<thead>
+							<tr>
+								<th style="padding-left: 5px;">序号</th><th style="padding-left: 5px;">订单号</th><th>订单状态</th><th>物流方式</th><th>发货省份</th><th>目的地省份</th><th>退件件数</th>
+								<th>退件金额</th><th>退件运费</th><th>退件仓储费</th><th>退件打包费</th><th>退件成本</th>
+							</tr>
+						</thead>
+						<tbody class='rejectLostTbody'></tbody>
+						<tfoot class='rejectLostTfoot'></tfoot>
+					</table>											
+				</div>
+				<div id="${fluctuateTab}" class="tab-pane fade in">
+					<table class='table table-striped table-bordered '>
+						<thead>
+							<tr>
+								<th style="padding-left: 5px;">序号</th><th>费用类型</th><th>增减类型</th><th>金额</th><th>说明</th>
+								<th>创建员工</th><th>创建时间</th><th>操作</th>
+							</tr>
+						</thead>
+						<tbody class='fluctuateTbody'></tbody>
+						<tfoot class='fluctuateTfoot'></tfoot>
+					</table>												
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</#macro>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>选择图片</title> 
+<#include "/common/common.html">
+<#include "/common/webuploader.html">
+<#include "/common/ztree.html">
+<link href="${ctx}/css/jt/common/selectImage${deploy_min!""}.css?v=${jsVersion}" rel="stylesheet">
+<script>
+    var isMultiple = "${isMutiple}";  //单选还是多选
+    var userId = "${userId}";  //用户id
+</script>
+<script src="${ctx}/js/jt/gl/image/selectImage${deploy_min!""}.js?v=${jsVersion}" ></script>
+</head>
+
+<body class="white-bg">
+	<div class="wrapper animated ">
+		<!-- 相册div -->
+		<div class='row' id='albumDiv'>
+		    <div class='col-sm-3 col-xs-4'>
+		    	<ul id="albumTree" class="ztree" style="overflow: auto;"></ul>    
+		    </div>
+
+		    <div class='col-sm-9 col-xs-8'>
+		    	<!--上传图片按钮-->
+				<div class='row'>
+					<div class='col-sm-12 col-xs-12'>
+				    	<button type='button' style='display: none;' id='uploadBtn' class='jt-btn'><i class='fa fa-upload'></i>&nbsp;上传图片</button>
+				    	<button type='button' id='cancelUploadBtn' style='display: none;' class='jt-btn jt-btn-red'><i class='fa fa-remove'></i>&nbsp;取消上传</button>
+					</div>
+				</div>
+
+
+				<!-- 上传照片的div -->
+				<div class='row' style='margin-top: 10px;'>
+					<div class='col-sm-12 col-xs-12' id="uploader"></div>	
+				</div>
+				
+		    	<!-- 相册图片容器div -->
+				<div class='row' style='margin-top: 10px;'>
+					<div class='col-sm-12 col-xs-12' id="photoContainer" ></div>
+				</div>					
+		    </div>
+		    <#include "/common/cateForm.html">
+		</div>
+	</div>
+</body>
+</html>

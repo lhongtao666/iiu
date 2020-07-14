@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>jt_st_store管理</title>
+	<#include "/common/common.html">
+	<link href="${ctx}/css/plugins/chosen/chosen.css?v=${jsVersion}" rel="stylesheet">
+    <script src="${ctx}/js/plugins/chosen/chosen.jquery.js?v=${jsVersion}"></script>
+	<script src='${ctx}/js/jt/common/service/employeesSelectLayer${deploy_min!""}.js?v=${jsVersion}'></script>
+	<script src='${ctx}/js/jt/ec/stock/addressService${deploy_min!""}.js?v=${jsVersion}'></script>
+	<script src="${ctx}/js/jt/ec/stock/stStore${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/ec/stock/stStoreAddr${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/gl/km/glHelpUtil${deploy_min!""}.js?v=${jsVersion}" ></script>
+</head>
+	<style>
+		#province_chosen{
+			width: 300px !important;
+		}
+	</style>
+<body class='white-bg'>
+	<div class="wrapper animated ">
+		<!-- list界面 -->
+		<#if isManyStore=="y">
+			<div class="row list_wrapper">
+				<#include "/ec/stock/stStore/stStoreToolbar.html">	  			
+				<div class='col-sm-12 jqGrid_wrapper'>
+				    <table id="stStoreGrid"></table>
+					<div id="stStorePager"></div>
+				</div>
+			</div>
+		</#if>	    
+		<#include "/ec/stock/stStore/stStoreEdit.html">
+	</div>
+</body>
+</html>

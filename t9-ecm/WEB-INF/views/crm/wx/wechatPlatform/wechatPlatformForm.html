@@ -1,0 +1,69 @@
+<div class='row' style='border: 1px solid #ddd; margin-left: 15px; margin-right: 15px;padding:10px;'>
+	<div class='col-sm-12'>
+		<form id="wechatPlatformForm" method="get" class="form-horizontal">
+			
+			<div class="form-group">
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">名称</label>
+					<div class="col-sm-9">
+						<input type="text" name="name" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">公众号</label>
+					<div class="col-sm-9">
+						<input type="text" name="alias" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+					
+
+			</div>
+			<div class="form-group">
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">appId</label>
+					<div class="col-sm-9">
+						<input type="text" name="appId" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>	
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">secretKey</label>
+					<div class="col-sm-9">
+						<input type="text" name="secretKey" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+            </div>    
+			<div class="form-group">
+				<div class='col-sm-12'>
+					<label class="col-sm-1 control-label">关注回复</label>
+					<div class="col-sm-7">
+						<textarea name="subscribeMsg" placeholder="" class="form-control" validateType="default" ></textarea>  
+					</div>
+				</div>			
+
+            </div>   
+			<div class="form-group">
+				<div class='col-sm-12'>
+					<label class="col-sm-1 control-label">头像</label>
+					<div class="col-sm-4" id="headImgUrlContainer" style="height: 152px;">
+						
+					</div>
+					<button id="selectPic" type="button" class="btn btn-sm btn-primary">选择图片</button>
+				</div>
+			</div>
+
+			<div class='form-group'>
+				<!--将隐藏域放在这里，不显示出来-->
+				<div style="display:none'">
+					<input type="hidden" id="id" name="id">
+					<input type="hidden" name="createBy">
+					<input type="hidden" name="createTime">
+					<input type="hidden" name="headImgUrl">
+				</div>
+			</div>
+
+		</form>
+	</div>
+</div>

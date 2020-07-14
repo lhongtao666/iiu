@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>客户投诉类型报表</title>
+	<#include "/common/common.html">
+	<script src="${ctx}/js/jt/crm/report/reportDateUtil${deploy_min!""}.js"></script>
+	<script src="${ctx}/js/jt/crm/report/cs/csComplainType${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/crm/cs/complainTypeOption${deploy_min!""}.js?v=${jsVersion}" ></script>
+</head>
+
+<body class='white-bg'>
+	<div class='wrapper'>
+		<div class='row list_wrapper'>
+			<div class='col-sm-12'>
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<form id='complainTypeSearchForm' role="form" class="form-horizontal">
+							<div class="form-group">
+						        <label class="control-label col-sm-1">指派时间：</label>
+						        <div class='col-sm-2'>
+						        	<select name="yearSearch" id="yearSearch" placeholder=""
+										class="form-control" validateType="default">
+									</select>
+						        </div>
+
+						        <div class='col-sm-2'>
+						        	<select name="monthSearch" id="monthSearch" placeholder=""
+										class="form-control" validateType="default">
+										<option value="1">1月</option>
+										<option value="2">2月</option>
+										<option value="3">3月</option>
+										<option value="4">4月</option>
+										<option value="5">5月</option>
+										<option value="6">6月</option>
+										<option value="7">7月</option>
+										<option value="8">8月</option>
+										<option value="9">9月</option>
+										<option value="10">10月</option>
+										<option value="11">11月</option>
+										<option value="12">12月</option>
+									</select>
+						        </div>
+						   		
+						   		<label class='col-sm-1 control-label'>投诉类型</label>
+						   		<div class='col-sm-2'>
+									<select name="complainTypeId" id="complainTypeDiv" class='form-control'>
+										<option value="allType">全部类型</option>
+								    </select>
+								</div>
+
+						   		<div class='col-sm-1'>
+						   			<button type='button' class="btn-sm   btn btn-sm   btn-primary findByCondition">搜索</button>		
+						   		</div>
+						    </div>
+						</form>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-sm-12 jqGrid_wrapper" >
+				<table id="complainTypeListGrid"></table>
+				<div id='complainTypePager'></div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<form role="form" class="form-inline">
+    <div class="form-group">
+		<label for="codeSearch" class="sr-only">关怀类型</label> 
+		<select name="careTypeSearch"   id="careTypeSearch"  placeholder="" class="form-control" validateType="default" >
+		    <option value="">全部</option>
+		    <option value="email">邮件</option>
+		    <option value="sms">短信</option>
+		    <option value="call">呼出电话</option>
+		    <option value="visit">外访</option>
+		 </select>
+	</div>
+    <div class="form-group">
+		<label for="briefSearch" class="sr-only">状态</label> 
+		<select name="statusSearch"   id="statusSearch"  placeholder="" class="form-control" validateType="default" >
+		     <option value="">全部</option>
+		     <option value="undo">未执行</option>
+		     <option value="done">已执行</option>
+		     <option value="follow">需后续跟进</option>
+		     <option value="follow_done">后续跟进完毕</option>
+		 </select>
+	</div>
+	<div class="form-group">
+		<label for="typeSearch" >报表类型</label> 
+		<select name="reportTypeSearch"   id="reportTypeSearch"  placeholder="" class="form-control" validateType="default" > 
+		  <option value="care_time_" >关怀时间</option>
+		  <option value="care_type_" >关怀类型</option>
+		  <option value="status_" >状态</option>
+		  <option value="party_id_" >关怀人</option>
+		</select>
+	</div>
+	<div class="form-group">
+		<label for="chartTypeSearch" >图像类型</label> 
+		<select name="chartTypeSearch"   id="chartTypeSearch"  placeholder="" class="form-control" validateType="default" > 
+		  <option value="bar" >柱状图</option>
+		  <option value="pie" >饼状图</option>
+		</select>
+	</div>
+<button class="btn btn-default" id="searchBtn"  >获取报表</button>
+</form>

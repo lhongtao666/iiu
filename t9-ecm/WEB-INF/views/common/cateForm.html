@@ -1,0 +1,64 @@
+<!--
+	添加分类的form表单modal
+	这里面将这种典型的左右两侧的结构，做成一个组件式的通用代码，提供一些回调函数来完成个性化的操作
+-->
+<style>
+  #myModalLabel {
+        color: #fff;
+        font-weight: 500;
+    }
+    #myModalLabel > span {
+        color: #f5f5f5;
+        font-size: 12px;
+    }
+    #myModalLabel > span > font {
+        color: gold;
+    }
+
+</style>
+<div style="display: none; z-index: 999; position: absolute;" id="rMenu">
+    <ul id='contextMenuContainer' role="menu" style="display: block;" class="dropdown-menu">    
+    </ul>
+</div>
+
+<div class="modal fade" id="addCateModalContainer" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header" style="background-color: #1caf9a;padding: 10px;">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        <h3 class="modal-title" id="myModalLabel">更新或添加分类</h3>
+      </div>
+      <div class="modal-body">
+        <form id="cateForm" method="get" class="form-horizontal">
+			<div class="form-group">
+				<label class="col-sm-2 control-label">名称<span style='color: red;'>*</span></label>
+				<div class="col-sm-10">
+					<input type="text" name="cateName" class="form-control" validateType='default'>
+				</div>
+			</div>
+			
+			<div class="form-group hidden">
+				<label class="col-sm-2 control-label">业务键<span style='color: red;'>*</span></label>
+				<div class="col-sm-10">
+					<input type="text" name="cateKey" placeholder="" class="form-control" validateType='default'>
+				</div>
+			</div>
+			
+			<div class='form-group'>
+				<label class="col-sm-2 control-label">图标</label>
+				<div class="col-sm-10">
+					<img id='iconUrlContainer' style='width:16px; height: 16px;'>
+					<input type='hidden' name='iconUrl'>
+					<button class='btn btn-sm   btn-danger' type='button' id='removeIconBtn'><span class='fa fa-remove'></span></button>
+					<button type='button' id='selectIconBtn' class='jt-btn'><span class='fa fa-edit'></span>选择图标</button>
+				</div>	
+			</div>
+		</form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="jt-btn jt-btn-red" data-dismiss="modal"><i class="fa fa-remove" aria-hidden="true"></i>关闭</button>
+        <button type="button" class="jt-btn" id='saveCateBtnCommon'><i class="fa fa-floppy-o"></i>&nbsp;保存</button>
+      </div>
+    </div>
+  </div>
+</div>

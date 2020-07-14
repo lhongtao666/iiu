@@ -1,0 +1,25 @@
+<script src="${ctx}/js/jt/ec/finance/desktop/comPaymentDetail${deploy_min!""}.js?v=${jsVersion}" ></script>
+
+<div class="panel panel-default" style='height:99%;'>
+	<div class="panel-heading">
+		<h4 class='titleName'></h4>
+	</div>
+
+	<div class="panel-body">
+        <table class='table table-bordered table-stripped'>
+        	<thead>
+        		<tr>
+		    		<th>账户</th>
+		    		<th>单据类型</th>
+		    		<th>关联类型</th>
+		    		<th>实体编码</th>
+		    		<th>金额(元)</th>
+	    		</tr>
+	    	</thead>
+	    	<tbody id='comPaymentContainer'></tbody>
+	    </table>
+    	<#if type_?exists>
+		    <input type="hidden"  name="hiddenType" value="${type_}">
+		</#if>
+    </div>
+ </div>

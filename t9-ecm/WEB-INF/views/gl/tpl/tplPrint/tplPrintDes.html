@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>快递公司管理</title>
+	<#include "/common/common.html">
+	<script src="${ctx}/js/plugins/gridReport/CreateControl.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/plugins/gridReport/GRUtility.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/jt/gl/tpl/tplPrint${deploy_min!""}.js?v=${jsVersion}"></script>
+	<script>
+	    var ctx = "${ctx}";
+	    var path = "${path}";
+	    var dname="${dname}";
+	    var id="${id}";
+	    var tplPrint = new TplPrint();
+	    CreateDesignerEx("100%", "100%", "", "", "", "<param name=ViewMode value=2 ><param name=ViewStyle value=6 ><param name='OnSaveReport' value='saveReport'>");
+	    function saveReport(){
+	    	tplPrint.saveReport(ReportDesigner,id);
+		 }
+	    function loadFunc(){
+	    	tplPrint.loadTplFuc(ReportDesigner,dname,path);
+		 }
+	</script>
+</head>
+
+<body onload="loadFunc();">
+</body>
+</html>

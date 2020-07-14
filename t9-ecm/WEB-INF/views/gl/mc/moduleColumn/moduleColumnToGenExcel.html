@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<title>excel模板生成</title>
+	<#include "/common/common.html">
+	<style>
+		li.active a{
+			color: #FFFFFF !important;	
+		}
+	</style>
+	<script>
+		var module = "";
+		<#if module??>
+			module = "${module}";
+		</#if>
+		var moduleText = "";
+		<#if moduleText??>
+			moduleText = "${moduleText}";
+		</#if>
+	</script>
+	<style type="text/css">
+		#columnContainer .basic-items-title, #columnContainer .other-items-title {
+		    clear: both;
+		    width: 5em;
+		    height: 1.75em;
+		    line-height: 1.75em;
+		    padding: 0 !important;
+		    text-align: center;
+		    border: 1px solid #ccc;
+		    color: #ccc;
+		}
+	</style>
+	<script src="${ctx}/js/jt/common/utils/excelUtil${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/gl/mc/moduleColumnGenExcel${deploy_min!""}.js?v=${jsVersion}" ></script>
+</head>
+<body>
+	<div class='panel panel-default' style="height: 100%;margin: 0;">
+		<div class="panel-body">
+			<br/>
+			<form id="exportExcelForm" method="get" class="form-horizontal">
+				<div class='form-group'>
+					<label class="col-sm-2 control-label">选择要生成的字段：</label>
+					<div class="col-sm-8">
+						<div class="checkbox checkbox-success checkbox-inline">
+							<input type="checkbox" id="allCheck" value=""><label style="color:red" for="allCheck">全选</label>
+						</div>
+						
+					</div>
+
+				</div>
+				<div class='form-group'>
+					<div class="col-sm-2"></div>
+					<div class="col-sm-8" id="columnContainer"></div>
+				</div>
+				<br/>
+				<div class='form-group'>
+					<div class="col-sm-2"></div>
+					<div class="col-sm-8">
+						<button type="button" class='jt-btn-search genExcel' ><i class="fa fa-list-ul"></i>&nbsp;生成excel模板</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<form id='friendsSearchForm' role="form" class="form-horizontal" style="color:#000;">
+	<div class='form-group  fg-trim'>
+		<div class='col-sm-12'>
+			<label class="col-sm-1 control-label">发送时间</label>
+			<div class='col-sm-6'>
+				<div class="input-daterange input-group">
+					<input class="laydate-icon form-control layer-date startDate" name="Q__D__BW__ext.last_reply_time_" placeholder="yyyy-mm-dd hh:mm:ss" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">
+					<span class="input-group-addon">到</span>
+					<input class="laydate-icon form-control layer-date endDate" name="Q__D__BW__ext.last_reply_time_" placeholder="yyyy-mm-dd hh:mm:ss" onclick="laydate({istime: true, start: laydate.now(0, 'YYYY/MM/DD 23:59:59'), format: 'YYYY-MM-DD hh:mm:ss'})">
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="form-group fg-trim">
+		<div class='col-sm-12'>
+			<div class="col-sm-9">
+				<div class='col-sm-4'>
+					<label class="col-sm-4 control-label left-label">粉丝昵称</label>
+					<div class="col-sm-8">
+						<input type="text" autocomplete="off" name="Q__S__LK__follower.nick_name_"
+						       placeholder="请输入昵称" class="form-control"
+						       validateType="default" />
+					</div>
+				</div>
+				<div class='col-sm-4'>
+					<label class="col-sm-4 control-label" style="white-space: nowrap;">粉丝标签</label>
+					<div class="col-sm-8">
+						<select id="wx-label_" class="form-control" name="tagId"></select>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-2" style="text-align:center;">
+				<button type='button' class="btn jt-btn-search friendsAliasSearch"><i class='fa fa-search'></i>查询</button>
+			</div>
+		</div>
+	</div>
+</form>

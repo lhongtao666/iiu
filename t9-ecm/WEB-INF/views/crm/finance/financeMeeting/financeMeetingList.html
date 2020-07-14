@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>jt_finance_meeting管理</title>
+	<#include "/common/common.html">
+	<script src="${ctx}/js/jt/crm/finance/financeMeeting.js?v=1.0.0" ></script>
+</head>
+
+<body>
+	<div class="wrapper animated fadeInRight">
+		<!-- list界面 -->
+		<div class="row list_wrapper">
+			<#include "/crm/finance/financeMeeting/financeMeetingToolbar.html">	  			
+			<div class='col-sm-12 jqGrid_wrapper'>
+			    <table id="financeMeetingGrid"></table>
+				<div id="financeMeetingPager"></div>
+			</div>
+		</div>
+		<!-- 编辑界面 -->
+		<#include "/crm/finance/financeMeeting/financeMeetingEdit.html">	    
+	</div>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>代理商实体管理</title>
+	<#include "/common/common.html">
+	<#include "/common/ztree.html">
+	<script src="${ctx}/js/jt/crm/agent/agentEntity${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/common/service/employeesSelectLayer${deploy_min!""}.js?v=${jsVersion}"></script>
+	<link rel="stylesheet" rev="stylesheet" type="text/css" media="all" href="${ctx}/css/bootstrap-select.css?v=${jsVersion}">
+	<script src="${ctx}/js/bootstrap-select.min.js?v=${jsVersion}" ></script>
+	<style>
+	.table-bordered > thead > tr > th, .table-bordered > thead > tr > td, .table-bordered > thead > .ui-jqgrid-labels > th.ui-th-column:first-child {
+			font-weight: 500;border-right: 1px solid #fff;text-align: center;}
+	#agentEntityGrid> tbody > tr > td{
+		 	vertical-align:middle;
+	}
+	#agentEntityGrid tr.jqgrow td {border: 1px solid #ccc;}
+	#agentEntityGrid .ui-jqgrid-bdiv{min-height:800px}
+	.tree-layer,.main-layer {height:100%;padding: 0;}
+	.main-layer {border-left: 6px solid transparent;}
+	.tree-layer {background:#fff;}
+	.tree-div {width:100%;height:calc(100% - 40px);overflow: auto;}
+	.search-div {width:100%;height:40px;padding: 5px 10px;}
+	.tabs-container .tab-pane>div.panel-body {
+	    background: #F0F0F0;
+	    border-radius: 2px;
+	    padding: 5px;
+	    position: relative;
+	}
+	.ui-jqgrid-bdiv{
+	  height:660px !important;
+	}
+	.storeIds-chosen-div .bootstrap-select {
+		width:100% !important;
+	}
+	#storeIds + div button {
+	    background-color: #fff !important;
+	    color: #333;
+	    border-radius: 2.5px;
+	    height: 28px;
+	    line-height: 15px;
+	}
+	</style>
+</head>
+
+<body>
+	<div class="wrapper animated fadeInRight">
+	    <div class="col-sm-2 tree-layer" style='height:850px'>
+			<div class="search-div">
+				<input type="text"  id="agentEntityTreeSearch" class="empty form-control" placeholder="Search..." style="text-indent: 10px;">  
+				<div style="position: absolute;right: 15px;top:5px">
+					<a id="clickUp" class="glyphicon glyphicon-menu-up"></a>  
+					<a id="clickDown" class="glyphicon glyphicon-menu-down" style="position: absolute;top: 14px;"></a> 
+					<label id="number" style="position: absolute; right: 50px;top: 5px;color:#999;"></label>   
+				</div>
+			</div> 
+			<div class="tree-div"  style="overflow: auto;">
+				<ul id="agentEntityTree" class="ztree"></ul>
+				<div style='margin-top:20px;padding-left:3px;'>说明：树的一级是代理跟部门，二级为代理区域，三级为每个区域的代理商根部门，此处只维护各代理商的根部门。各代理商部门结构编辑页面的员工管理维护</div>
+			</div>
+			<!--树的菜单-->
+			<div style="display: none; z-index: 999; position: absolute;" id="orgMenuContainer">
+				<ul role="menu" style="display: block;" class="dropdown-menu">
+					<li id='agentEntityAddBtn' class='text-navy'><a><i class="fa fa-plus"></i>  添加</a></li>
+					<li id='agentEntityUpBtn' class='text-navy'><a><i class="fa fa-edit"></i>  更新</a></li>
+					<li id='agentEntityDelBtn' class='text-danger'><a><i class="fa fa-remove"></i>  删除</a></li>
+				</ul>
+			</div>
+		</div>
+		<!-- list界面 -->
+		<div class="col-sm-10 main-layer">
+			<#include "/crm/agent/agentEntity/agentEntityToolbar.html">	  			
+			 <div class='panel panel-default'>
+	             <div class='panel-body jt-grid-panel' style="overflow: hidden;">
+				    <table id="agentEntityGrid"></table>
+					<div id="agentEntityPager"></div>
+				 </div>
+			</div>
+		</div>
+	</div>
+	<!-- 添加代理商区域  -->
+	<#include "/crm/agent/agentEntity/agentEntityArea.html">
+    <#include "/crm/agent/agentEntity/agentEntityGroup.html">	 	 
+</body>
+</html>

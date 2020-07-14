@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>推广时段费用管理</title>
+	<#include "/common/common.html">
+	<#include "/common/datatable.html">	
+	<link href="${ctx}/css/plugins/chosen/chosen.css?v=${jsVersion}" rel="stylesheet" />
+    <script src="${ctx}/js/plugins/chosen/chosen.jquery.js?v=${jsVersion}"></script>
+    <script src="${ctx}/js/plugins/suggest/bootstrap-suggest.js?v=${jsVersion}"></script>    
+	<script src="${ctx}/js/jt/ec/media/mediaPeriodNew${deploy_min!""}.js?v=${jsVersion}" ></script>	
+	<script src="${ctx}/js/jt/common/service/employeesSelectLayer${deploy_min!""}.js?v=${jsVersion}"></script>	
+	<script src="${ctx}/js/jt/crm/report/reportDateUtil${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/gl/km/glHelpUtil${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script type="text/javascript">
+		var type = "${type}";
+		
+	</script>
+</head>
+
+<body>
+	<div class="wrapper animated fadeInRight">
+		<!-- list界面 -->
+		<div class="row list_wrapper">
+			<#include "/ec/media/mediaPeriod/mediaPeriodNewToolbar.html">						
+			<div class='col-sm-12 mediaPeriodDiv'>
+				
+		    </div>
+		</div>
+		
+		<div style="display: none;" class="row form_wrapper">
+			<div class='col-sm-12'>
+				<div class="panel panel-default">
+			        <div class="panel-heading">
+						<button type='button' class="jt-btn saveBtn">保存</button>
+						<button type='button' class="jt-btn jt-btn-red prevBtn">取消</button>
+			        </div>
+		
+			        <div class="panel-body">
+				        <form id='mediaPeriodForm'>
+							<div class='col-sm-12' id='mediaPeriodInitDiv'>				
+								<table class='table table-striped table-bordered' id='mediaPeriodInitTable' style='text-align:center;'>
+					        		<thead>
+						        		<tr>
+							        		<td style='width: 10%;'>渠道</td>
+							        		<td style='width: 10%;'>400电话</td>
+											<td style='width: 10%;'>产品意向</td>
+											<td style='width: 30%;'>推广天</td>
+											<td style='width: 25%;'>投放时段</td>
+											<td style='width: 15%;'>消费</td>	
+											<!-- <td style='width: 10%;'>操作</td> -->
+										</tr>
+									</thead>
+									<tbody class='mediaPeriodTbody'>										
+									</tbody>
+							    </table>
+							</div>
+						</form>
+			        </div>
+			    </div>	
+			</div>		
+		</div>
+	</div>
+</body>
+</html>

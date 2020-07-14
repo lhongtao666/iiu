@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>产品库存报表</title>
+	<#include "/common/common.html">
+	<#include "/common/ztree.html">
+	<script src="${ctx}/js/plugins/echarts/3.1.7/theme/macarons.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/plugins/echarts/3.1.7/echarts.min.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/jt/common/plugins/report${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/crm/report/reportDateUtil${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/crm/report/report/proAndSale/productQtyReport${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script type="text/javascript">
+		var beginDate ='${beginDate}';
+		var endDate ='${endDate}';
+	</script>
+	<style type="text/css">
+		.showMoreInfo{
+			float: right;
+		}
+	</style>
+</head>
+<body class='white-bg'>
+	<div class='row list_wrapper'>
+		<div class='col-sm-12'>
+			<div class="panel panel-default">
+				<form role="form" class="form-horizontal" id="productQtyReportForm">
+					<div class="panel-heading report-content" style="height:35px">	
+				    <font style="font-size:15px;">产品库存</font>
+					<button type='button' class='btn btn-sm   btn-info showMoreInfo'>查看更多</button>
+					</div> 
+				</form>
+				<div class="panel-body productQtyTab">
+				<table  class='table table-striped table-bordered' style="margin:auto;height:100%;border:0px">
+				  <thead>
+						<tr>
+							<th>品名</th>
+							<th>库存总数</th>
+							<th>销售总数</th>
+							<th>平均销售</th>
+						</tr>
+					</thead>
+					<tbody id="productQtyTbody">
+					</tbody>
+				    <tfoot>
+				    </tfoot>
+				    </table>
+				</div>
+			</div>
+		</div>
+	</div>		
+</body>
+</html>

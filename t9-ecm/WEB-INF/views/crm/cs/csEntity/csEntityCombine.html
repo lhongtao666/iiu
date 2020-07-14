@@ -1,0 +1,60 @@
+<div class="panel-body">
+	<table class="table" >
+		<tr>
+			<th>客户1：</th>
+			<td>
+				<div class="col-sm-6">
+					<input type="text" class="form-control" id="customer1Info" value="" readonly>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<th>客户2：</th>
+			<td>
+				<div class="col-sm-6">
+					<input type="text" placeholder="请选择要合并的客户"  class="form-control" id="customer2Info" readonly>
+				</div>
+				<div class="col-sm-2">
+					<button type="button" class='btn btn-sm   btn-primary chooseCsForCombine' >选择</button>
+				</div>
+				<input type="hidden" id="customer2Id"/>
+			</td>
+		</tr>
+		<tr>
+			<th></th>
+			<td>
+				<div class="radio radio-success radio-inline">
+					<input type="radio" value="1" id="radio1" checked name="chooseCs">
+					<label for="radio1">保留客户1资料</label>
+				</div>
+				<div class="radio radio-success radio-inline">
+					<input type="radio" value="2" id="radio2" name="chooseCs">
+					<label for="radio2">保留客户2资料</label>
+				</div>
+				<input type="hidden" id="chooseCsValue" value="1"/>
+			</td>
+		</tr>
+		<tr>
+			<th>提示：</th>
+			<td></td>
+		</tr>
+		<tr>
+			<th></th>
+			<td>
+				<p style="color:red">1、合并前请先选择客户2的资料，然后再提交合并。</p>
+			</td>
+		</tr>
+		<tr>
+			<th></th>
+			<td>
+				<p style="color:red">2、合并资料会把订单、跟进记录、通话记录等全部合并到保留的客户名下，</p>
+			</td>
+		</tr>
+		<tr>
+			<th></th>
+			<td>
+				<p style="color:red">然后删除另一个客户的资料。</p>
+			</td>
+		</tr>
+	</table>
+</div>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>员工跟进客户任务统计</title>
+	<#include "/common/common.html">
+	<#include "/common/ztree.html">
+	<link href="${ctx}/css/plugins/chosen/chosen.css?v=${jsVersion}" rel="stylesheet">
+	<script src="${ctx}/js/plugins/chosen/chosen.jquery.js?v=${jsVersion}"></script>
+	<link href="${ctx}/css/plugins/select2/select2.min.css?v=${jsVersion}" rel="stylesheet">
+    <script src="${ctx}/js/plugins/select2/select2.min.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/plugins/echarts/echarts-all.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/jt/crm/report/reportDateUtil${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src='${ctx}/js/jt/common/service/employeesSelectLayer${deploy_min!""}.js?v=${jsVersion}'></script>
+	<script src="${ctx}/js/jt/common/utils/groupUtils${deploy_min!""}.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/jt/common/plugins/report${deploy_min!""}.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/jt/crm/report/report/empFollowCsTaskCount${deploy_min!""}.js?v=${jsVersion}"></script>
+    <style type="text/css">
+    	.panel .panel-heading .btn {
+		    margin-left: 0px;
+		}
+		.table-bordered > thead > tr > th, .table-bordered > thead > tr > td, .table-bordered > thead > .ui-jqgrid-labels > th.ui-th-column:first-child {
+			font-weight: 500;border-right: 1px solid #fff;text-align: center;}
+		#empFollowCsTaskGrid> tbody > tr > td{
+			 	vertical-align:middle;
+		}
+    </style>
+</head>
+
+<body class="white-bg">
+	<div class='wrapper'>
+		<div class='row list_wrapper'>
+			<div class='col-sm-12'>
+				<div class="panel panel-default">
+					<div class="panel-heading report-content">	
+						<form role="form" class="form-horizontal" id="empFollowCsTaskSearchForm">
+							<div class="form-group">
+								<label class="control-label col-sm-1">周期</label>	
+								<div class="col-sm-2">
+									<select name="timeTypeSearch" id="timeTypeSearch" placeholder=""
+										class="form-control" validateType="default">
+										<option value="day">按天</option>
+										<option value="month">按月</option>
+										<option value="quarter">按季度</option>
+										<option value="year">按年</option>
+									</select>
+								</div>
+
+								<div class="col-sm-2 yearElement">
+									<select name="yearSearch" id="yearSearch" placeholder=""
+										class="form-control" validateType="default">
+									</select>
+								</div>
+
+								<div class="col-sm-1 quarterElement">
+									<select name="quarterSearch" id="quarterSearch" placeholder=""
+										class="form-control" validateType="default">
+										<option value="1">1季度</option>
+										<option value="2">2季度</option>
+										<option value="3">3季度</option>
+										<option value="4">4季度</option>
+									</select>
+								</div>	
+
+								<div class="col-sm-1 monthElement">
+									<select name="monthSearch" id="monthSearch" placeholder=""
+										class="form-control" validateType="default">
+										<option value="1">1月</option>
+										<option value="2">2月</option>
+										<option value="3">3月</option>
+										<option value="4">4月</option>
+										<option value="5">5月</option>
+										<option value="6">6月</option>
+										<option value="7">7月</option>
+										<option value="8">8月</option>
+										<option value="9">9月</option>
+										<option value="10">10月</option>
+										<option value="11">11月</option>
+										<option value="12">12月</option>
+									</select>
+								</div>
+								
+								<div class='col-sm-2'>
+									<button class="jt-form-select dayElement" id="prevBtn" type="button">前一天</button>
+									<button class="jt-form-select dayElement" id="nextBtn" type="button">后一天</button>	
+								</div>
+								
+								<div class="col-sm-4 dayElement"> 
+					                <div class="input-daterange input-group" id="datepicker">
+			                        	<input class='laydate-icon form-control layer-date' id="beginDate" name="beginDate" validateType="default" placeholder="开始时间" onclick="laydate({istime: true, format: 'YYYY-MM-DD'})">
+			                            <span class="input-group-addon">到</span>
+			                            <input class='laydate-icon form-control layer-date' id="endDate" name="endDate" validateType="default" placeholder="结束时间" onclick="laydate({istime: true, start: laydate.now(0, 'YYYY/MM/DD'), format: 'YYYY-MM-DD'})">
+			                        </div>
+					            </div>
+					        </div>
+					        <div class="form-group">
+								<label class='control-label col-sm-1'>部门</label>	
+							    <div class='col-sm-2'>
+							     	<input id='groupName' readonly class='form-control'>
+							     	<input name='belongOgn' type='hidden' class='form-control'>
+							    </div>
+								<div class='col-sm-2'>
+									<select name="belongEmployee" id='belongEmployee' class="form-control" validateType="default"></select>
+								</div>
+								<div class='col-sm-2'></div>
+								<div class='col-sm-4'>
+									<button class="jt-btn-search" id="searchBtn"   type="button"><i class="fa fa-search"></i>&nbsp;搜索</button>
+									<button type='button' class="jt-btn-search empFollowCsExportExcel"><i class="fa fa-reply"></i>&nbsp;导出</button>	
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+			
+			<div class="jqGrid_wrapper col-sm-12" >
+				<table id="empFollowCsTaskGrid"></table>
+				<div id="empFollowCsTaskPager"></div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

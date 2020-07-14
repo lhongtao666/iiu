@@ -1,0 +1,132 @@
+<div class='row' style='border: 1px solid #ddd; margin-left: 15px; margin-right: 15px;padding:10px;'>
+	<div class='col-sm-12'>
+		<form id="wechatFollowerForm" method="get" class="form-horizontal">
+
+
+			<div class="form-group">
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">唯一标识</label>
+					<div class="col-sm-9">
+						<input type="text" name="openId" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">公众号></label>
+					<div class="col-sm-9">
+						<input type="text" name="wechatAlias" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">是否订阅</label>
+					<div class="col-sm-9">
+						<select  name="subscribe" placeholder=""  validateType="default"  class="digits form-control"> 
+						<option value="1">是</option>
+						<option value="0">否</option>
+						</select> 
+					</div>
+				</div>
+
+			</div>
+			<div class="form-group">
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">微信昵称</label>
+					<div class="col-sm-9">
+						<input type="text" name="nickName" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">性别</label>
+					<div class="col-sm-9">
+						<select name="sex" placeholder=""  validateType="default"  class="digits form-control"> 
+						<option value="0">未知</option>
+						<option value="1">男</option>
+						<option value="2">女</option>
+						</select>
+					</div>
+				</div>
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">城市</label>
+					<div class="col-sm-9">
+						<input type="text" name="city" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+			</div>
+			<div class="form-group">
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">国家</label>
+					<div class="col-sm-9">
+						<input type="text" name="country" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">省份</label>
+					<div class="col-sm-9">
+						<input type="text" name="province" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">语言</label>
+					<div class="col-sm-9">
+						<input type="text" name="language" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+			</div>
+			<div class="form-group">
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">用户头像</label>
+					<div class="col-sm-9">
+						<input type="text" name="headImgUrl" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">关注时间</label>
+					<div class="col-sm-9">
+						<input class='laydate-icon form-control layer-date' name="subscribeTime" validateType="default"  placeholder="YYYY-MM-DD hh:mm:ss" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">
+					</div>
+				</div>
+	
+
+			</div>
+			<div class="form-group">
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">备注</label>
+					<div class="col-sm-9">
+						<input type="text" name="remark" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>			
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">标签</label>
+					<div class="col-sm-9">
+						<input type="text" name="tagIds" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+			</div>
+
+
+
+			<div class='form-group'>
+				<!--将隐藏域放在这里，不显示出来-->
+				<div style="display:none'">
+				
+					<input type="hidden" id="unionId" name="unionId">
+					<input type="hidden" name="groupId"> 
+					<input type="hidden" id="id" name="id">
+					<input type="hidden" name="createBy">
+					<input type="hidden" name="createTime">
+				</div>
+			</div>
+
+		</form>
+	</div>
+</div>

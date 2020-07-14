@@ -1,0 +1,228 @@
+<div class="panel-heading">
+  <button type='button' class="jt-btn saveBtn"><i class="fa fa-floppy-o">&nbsp;保存</i></button>
+  <span class="jt-span"></span>
+  <button type='button' class="jt-btn jt-btn-red prevBtn"><i class="fa fa-reply">&nbsp;返回列表</i></button>
+</div>
+
+<div class="panel-body">
+  <form id="stStockForm" method="get" class="form-horizontal">
+    <div class="panel panel-default panel-bb">
+      <div class="panel-heading jt-panel-heading jt6-panel-heading">
+        <h3 class="panel-title">库存基本设置</h3>
+      </div>
+      <div class="panel-body">
+        <div class="form-group">
+          <div class='col-sm-12'>
+            <label class="col-sm-1 control-label">商品名称</label>
+            <div class="col-sm-7">
+              <input name="prodName" readonly='readonly' class='form-control' disabled="disabled">
+            </div>
+            <div class='col-sm-4'>
+              <label class="col-sm-3 control-label">商品SKU</label>
+              <div class="col-sm-9">
+                <input id='skuCode' readonly='readonly' class='form-control' disabled="disabled">
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <div class="form-group">
+          <div class='col-sm-4'>
+            <label class="col-sm-3 control-label">是否销售</label>
+            <div class="col-sm-3">
+              <select  name='canSale' class='form-control'>
+                <option value='n'>否</option>
+                <option value='y'>是</option>
+              </select>
+            </div>
+          </div>
+          <div class='col-sm-4'>
+            <label class="col-sm-3 control-label">单位</label>
+            <div class="col-sm-9">
+              <select class='form-control' name='unit' validateType='default' id='unitSelect'>
+              </select>
+            </div>
+          </div>
+          <div class='col-sm-4'>
+            <label class="col-sm-3 control-label">仓位</label>
+            <div class="col-sm-9">
+              <input type="text"  name="position" placeholder="" class="form-control" validateType="default" > 
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel panel-default panel-bb">
+      <div class="panel-heading jt-panel-heading jt4-panel-heading">
+        <h3 class="panel-title">库存信息</h3>
+      </div>
+      <div class="panel-body">
+        <div class="form-group">
+          <div class='col-sm-3'>
+            <label class="col-sm-3 control-label">总数</label>
+            <div class="col-sm-9">
+              <input type="text" disabled="disabled" name="total" placeholder=""  validateType="default"  class="digits form-control"> 
+            </div>
+          </div>
+          <div class='col-sm-3'>
+            <label class="col-sm-3 control-label">锁定</label>
+            <div class="col-sm-9">
+              <input type="text" name="lockQty"  disabled="disabled" placeholder=""  validateType="default"  class="digits form-control"> 
+            </div>
+          </div>
+          <div class='col-sm-3'>
+            <label class="col-sm-3 control-label">次品数</label>
+            <div class="col-sm-9">
+              <input type="text" disabled="disabled" name="badQty" placeholder=""  validateType="default"  class="digits form-control"> 
+            </div>
+          </div>
+          <div class='col-sm-3'>
+            <label class="col-sm-3 control-label">预留</label>
+            <div class="col-sm-9">
+              <input type="text" name="savedQty" id = "savedQty" placeholder=""  validateType="default"  class="digits form-control"> 
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel panel-default panel-bb">
+      <div class="panel-heading jt-panel-heading jt6-panel-heading">
+        <h3 class="panel-title">库存预警设置</h3>
+      </div>
+      <div class="panel-body">
+        <div class=" form-group">
+          <div class='col-sm-4'>
+            <label class="col-sm-3 control-label">预警方式</label>
+            <div class="col-sm-9">
+              <select  name='notifyType' class='form-control'>
+                <option value='dynamic'>动态算法预警方式</option>
+                <option value='static'>固定值预警方式</option>
+              </select>
+            </div>
+          </div>
+          <div class='col-sm-4'>
+            <i class="fa fa-question-circle helper"></i>
+          </div>
+        </div>
+
+        <div class="staticDiv">
+          <div class=" form-group">
+              <div class='col-sm-4'>
+                <label class="col-sm-3 control-label">安全库存上限</label>
+                <div class="col-sm-9">
+                  <input type="text" name="staticAlertMax" placeholder="" validateType="default"  class="digits form-control"> 
+                </div>
+              </div>
+              <div class='col-sm-4'>
+                <label class="col-sm-3 control-label">安全库存下限</label>
+                <div class="col-sm-9">
+                  <input type="text" name="staticAlertMin" placeholder=""  validateType="default"  class="digits form-control"> 
+                </div>
+              </div>
+          </div>
+        </div>
+
+        <div class="dynamicDiv">
+          <div class="form-group">
+            <div class='col-sm-4'>
+              <label class="col-sm-3 control-label">采购周期</label>
+              <div class="col-sm-9">
+                <input type="text" name="salesDays" placeholder=""  class="form-control" validateType="default" > 
+              </div>
+            </div>
+            <div class='col-sm-4'>
+              <label class="col-sm-3 control-label">每日平均销售</label>
+              <div class="col-sm-9">
+                <input type="text" name="salesAvg" placeholder="" disabled="disabled" class="form-control" validateType="default" > 
+              </div>
+            </div>
+            <div class='col-sm-4'>
+              <label class="col-sm-3 control-label">预估可支持天数</label>
+              <div class="col-sm-9">
+                <input type="text" name="salesSupport" placeholder="" disabled="disabled" class="form-control" validateType="default" > 
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class='col-sm-4'>
+            </div>
+            <div class='col-sm-4'>
+              <label class="col-sm-3 control-label">安全库存上限</label>
+              <div class="col-sm-9">
+                <input type="text" name="alertMax" placeholder="" disabled="disabled" class="form-control" validateType="default" > 
+              </div>
+            </div>
+            <div class='col-sm-4'>
+              <label class="col-sm-3 control-label">安全库存下限</label>
+              <div class="col-sm-9">
+                <input type="text" name="alertMin" placeholder="" disabled="disabled" class="form-control" validateType="default" > 
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class='col-sm-4'>
+            </div>
+            <div class='col-sm-4'>
+              <label class="col-sm-3 control-label">动态安全上限系数</label>
+              <div class="col-sm-9">
+                <input type="text" name="dynamicAlertMax" placeholder="" disabled="disabled" class="form-control" validateType="default" > 
+              </div>
+            </div>
+            <div class='col-sm-4'>
+              <label class="col-sm-3 control-label">动态安全下限系数</label>
+              <div class="col-sm-9">
+                <input type="text" name="dynamicAlertMin" placeholder="" disabled="disabled" class="form-control" validateType="default" > 
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class=" form-group">
+          <div class="col-sm-2">
+            <label class="col-sm-6 control-label">短信通知</label>
+            <div class="col-sm-5" id="needSendMsg">
+            </div>
+          </div>
+          <div class="col-sm-9 receiver">
+            <label class="col-sm-4 control-label">接收者</label>
+            <div class="col-sm-7">
+              <input type="hidden" name="empIds" > 
+              <input type="text" name="empNames" placeholder="" disabled="disabled" validatetype="default" class="digits form-control col-sm-11"> 
+            </div>
+            <div class="col-sm-1">
+              <button type="button" class="col-sm-1 btn btn-sm btn-primary jt-form-select selectEmp" style="width: 100%;">选</button>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+
+    <div class="form-group">
+      <!--将隐藏域放在这里，不显示出来-->
+      <div style="display:none'">
+        <input type="hidden" name="skuId"> 
+        <input type="hidden" id="id" name="id">
+        <input type="hidden" name="prodId">
+        <input type="hidden" name="salesAvg">
+        <input type="hidden" name="createBy">
+        <input type="hidden" name="createTime">
+      </div>
+    </div>
+  </form>
+</div>
+
+
+<div id="stock-helper">
+动态预警方式相关参数说明:<br>
+采购周期:可填可不填, 不填写默认设置成7天<br>
+每日平均销售 = 采购周期内订单数/采购周期<br>
+预估可支持天数 = 可售总数/每日平均销售<br>
+安全库存上限 = 动态安全上限系数*每日平均销售*采购周期，结果向上取整<br>
+安全库存下限 = 动态安全下限系数*每日平均销售*采购周期，结果向上取整<br>
+</div>

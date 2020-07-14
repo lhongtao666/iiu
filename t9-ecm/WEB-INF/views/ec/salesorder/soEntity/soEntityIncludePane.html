@@ -1,0 +1,14 @@
+<div  style="display:none"  class="partyAddrEdidddddtForm">
+	<#include "/crm/ou/party/partyAddrEditForm.html" >
+</div>
+<#include "/crm/cs/csEntity/sendMessagePane.html" >
+<div style="display:none"  class="soEntityClosePane" >
+   	<#include "/ec/salesorder/soEntity/soEntityClose.html" >
+</div>
+<#if isIframe?? && isIframe == 'true'>
+<#else>
+<div style="display:none"  class="soEntityTurnDownPane" >
+   	<#include "/ec/salesorder/soEntity/soEntityTurnDown.html" >
+</div>
+</#if>
+<#include "/crm/cs/csEntity/csFollowEdit.html" >

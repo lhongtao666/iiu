@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>某类拒收订单列表</title>
+	<#include "/common/common.html">
+	<script src="${ctx}/js/jt/ec/rp/rpSoRejectDetail${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script>
+	var soNos="";
+
+	<#if soNos??>
+		soNos = "${soNos}";
+	</#if>
+
+</script>
+</head>
+
+<body class="white-bg">
+	<div class='wrapper'>
+		<div class='row list_wrapper'>
+			<div class='col-sm-12 jqGrid_wrapper'>
+				<table id="rpSoRejectDetailGrid"></table>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>

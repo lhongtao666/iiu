@@ -1,0 +1,182 @@
+<div id="tab-baseInfo" class="tab-pane active">
+    <div class="panel-body">
+        <div class="panel panel-default">
+            <div class="panel-heading jt-panel-heading jt5-panel-heading">
+                <h3 class="panel-title">名称和状态</h3>
+            </div>
+            <div class="panel-body">
+                <div class='col-sm-12'>
+                    <form id="prodEntityForm" method="get" class="form-horizontal">
+                        <div class="form-group">
+                            <div class='col-sm-4'>
+                                <label class="col-sm-3 control-label">名称<span style='color: red;'>*</span></label>
+                                <div class="col-sm-9">
+                                    <input type="text" id='name' name="name" placeholder="" class="form-control" validateType="default">
+                                </div>
+                            </div>
+                           <!--  <div class='col-sm-4'>
+                                <label class="col-sm-3 control-label">简称<span style='color: red;'>*</span></label>
+                                <div class="col-sm-9">
+                                    <input type="text" id='shortName' name="shortName" placeholder="" class="form-control" validateType="default">
+                                </div>
+                            </div> -->
+                            <div class='col-sm-4'>
+                                <label class="col-sm-3 control-label">分类<span style='color: red;'>*</span></label>
+                                <div class="col-sm-9">
+                                    <input type="text" readonly="readonly" id='cateName' name="cateName" placeholder="" class="form-control" validateType="default">
+                                </div>
+                            </div>
+                                                        
+                            <div class='col-sm-4'>
+                                <label class="col-sm-3 control-label">销售范围<span style='color: red;'>*</span></label>
+                                <div class="col-sm-9">
+                                    <select class='form-control' name='saleRange' validateType='default' id='saleRangeSelect'> 
+                                    <option value="">请选择</option>
+                                    <option value="all">共用</option>
+                                    <option value="first">一线</option>
+                                    <option value="second">二线</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class='col-sm-4'>
+                                <label class="col-sm-3 control-label">价格类型<span style='color: red;'>*</span></label>
+                                <div class="col-sm-9">
+                                    <select class='form-control' id='priceType' name='priceType' validateType='default'>
+                                        <option value='common'>正价</option>
+                                        <option value='special'>特价</option>
+                                        <option value='experience'>体验价</option>
+                                        <option value='gift'>赠品</option>
+                                        <option value='exchange'>换购</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                           <div class='col-sm-4 addProdShow addFinanceShow'>
+                                <label class="col-sm-3 control-label">单位<span style='color: red;'>*</span></label>
+                                <div class="col-sm-9">
+                                    <select class='form-control' name='unit' validateType='default' id='unitSelect'>
+                                    </select>
+                                </div>
+                                
+                            </div>
+                                                     
+                            <div class="col-sm-4 addProdShow addFinanceHide">
+                                <label class="col-sm-3 control-label">保质期<span style='color: red;'>*</span></label>
+                                <div class="col-sm-4">
+                                    <input type="text" name="qualityPeriodVal" id='qualityPeriodVal' class="form-control" validatetype="default">
+                                </div>
+
+                                <div class="col-sm-5">
+                                    <select class="form-control" name="qualityPeriodUnit" id='qualityPeriodUnit' validatetype="default">
+                                        <option value="">请选择</option>
+                                        <option value="d">天</option>
+                                        <option value="m">月</option>
+                                        <option value="y">年</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group ">   
+                    		
+                            <!-- <div class='col-sm-4 addProdShow addFinanceShow'>
+                                <label class="col-sm-3 control-label">包装单位数量<span style='color: red;'>*</span></label>
+                                <div class="col-sm-9">
+                                    <input class='form-control' type="number" name='figure' id='figure' validateType='default' value="1">
+                                </div>
+                            </div> -->
+                             <div class='col-sm-4' style="display: none;">
+                                <label class="col-sm-3 control-label">品牌</label>
+                                <div class="col-sm-9">
+                                     <select class='form-control' name='brand' validateType='default' id='brandSelect'>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class='col-sm-4 addFinanceShow'>
+                                <label class="col-sm-3 control-label">开始时间</label>
+                                <div class="col-sm-9">
+                                  <input class="laydate-icon form-control layer-date " name="startTime" placeholder="yyyy-mm-dd" onclick="laydate({istime: true, format: 'YYYY-MM-DD'})">
+                                </div>
+                            </div>
+                            <div class='col-sm-4 addFinanceShow'>
+                                <label class="col-sm-3 control-label">结束时间</label>
+                                <div class="col-sm-9">
+                                  <input class="laydate-icon form-control layer-date " name="endTime" placeholder="yyyy-mm-dd" onclick="laydate({istime: true, format: 'YYYY-MM-DD'})">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div style="display: none'">
+                                <input type="hidden" name="id" id="id">
+                                <input type="hidden" id='status' name="status" value="on_sale">
+                                <input type="hidden" id='createBy' name="createBy">
+                                <input type="hidden" id='createTime' name="createTime">
+                                <input type="hidden" id='cateId' name="cateId">
+                                <input type="hidden" id='qualityPeriod' name="qualityPeriod" >
+                                <input type="hidden" id='salesType' name="salesType" value="stock">
+                                <input type="hidden" id='prodType'>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default addProdShow addFinanceHide">
+            <div class="panel-heading jt-panel-heading jt6-panel-heading">
+                <h3 class="panel-title">信息扩展类型</h3>
+            </div>
+            <div class="panel-body">
+                <div class='col-sm-12'>
+                    <form id="prodEntityForm-prodType" method="get" class="form-horizontal">
+                        <div class="form-group">
+                            <div class='col-sm-4'>
+                                <label class="col-sm-4 control-label">产品类型<span style='color: red;'>*</span></label>
+                                <div class="col-sm-5">
+                                    <select class="form-control" name="type" validateType="default">  
+                                        <option value="entity">普通产品</option>
+                                        <option value="sku_entity">多sku产品</option>
+                                    </select>
+                                </div>
+                                <label class="col-sm-1 control-label">套装</label>
+                                <div class="col-sm-2">
+                                    <select class="form-control" name="isSeries" validateType="default">
+                                        <option value="n">否</option>
+                                        <option value="y">是</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class='col-sm-4'>
+                                <label class="col-sm-4 control-label">sku规格<span style='color: red;'>*</span></label>
+                                <div class="col-sm-8">
+                                    <select disabled='disabled' class='form-control' id='skuSelect' name='skuSelect' validateType='default'>
+                                        <option value='default'>默认sku</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading jt-panel-heading jt3-panel-heading">
+                <h3 class="panel-title">sku</h3>
+            </div>
+           <#include "ec/product/prodEntity/prodSku.html">
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading jt-panel-heading jt3-panel-heading">
+                <h3 class="panel-title">图片</h3>
+            </div>
+           <#include "ec/product/prodEntity/prodImg.html">
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading jt-panel-heading jt4-panel-heading">
+                <h3 class="panel-title">产品描述</h3>
+            </div>
+           <#include "ec/product/prodEntity/prodDes.html">
+        </div>
+    </div>
+</div>
+

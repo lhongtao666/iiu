@@ -1,0 +1,60 @@
+<form id="mailQueueForm" method="get" class="form-horizontal">
+	<div class="form-group">
+        
+          <label class="col-sm-1 control-label">收件人<span style="color:red;">*</span></label>
+          <div class="col-sm-8">
+             <div class="col-sm-12  chosen-container chosen-container-multi ">
+            	 <ul class="chosen-choices">
+             	</ul>
+             </div> 
+          </div>
+            <div class="col-sm-1">
+				<button class="btn btn-sm   btn-primary selectCustomer" type="button">选择客户</button>
+			</div>
+    </div>
+
+    <div class="form-group"  id="selectModle"  style="display: none;">
+		<label class="col-sm-1 control-label">选择模板</label>
+		<div class="col-sm-4">
+			<select  class='form-control' id="modelType" >
+			<option value="">请选择模板</option>
+			</select>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-sm-1 control-label">邮件标题<span style="color:red;">*</span></label>
+		<div class="col-sm-5">
+			<input type="text" name="title" placeholder=""class="form-control" validateType="default">
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-sm-1 control-label">邮件内容<span style="color:red;">*</span></label>
+		<!-- <div class="col-sm-10">
+		 	<textarea name='mailContent'  id="mailContent" class='form-control' rows='6'></textarea>
+		</div> -->
+		<div class="col-sm-10">
+				<div id="summernote"></div>
+			</div>
+	</div>
+
+	<div class='form-group'>
+		<!--将隐藏域放在这里，不显示出来-->
+		<div style="display:none'">
+			<input type="hidden" id="id" name="id">
+			<input type="hidden" name="cateId">
+			<input type="hidden" name="sendType">
+			<input type="hidden" name="sendCount">					
+			<input type="hidden" name="repeatCount">
+			<input type="hidden" name="sendTime">
+			<input type="hidden" id="status" name="status">
+			<input type="hidden" name="errorMsg">
+			<input type="hidden" name="createBy">
+			<input type="hidden" name="createTime">
+			<input type="hidden" id="tos" name="tos">
+			<input type="hidden" id="tplId" name="tplId">
+			<input type="hidden" id="mailContent" name="mailContent">
+			<input type="hidden" id="csId" name="csId">
+		</div>
+	</div>
+
+</form>

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>标签管理</title>
+	<#include "/common/common.html">
+	<script type="text/javascript" src='${ctx}/js/jt/gl/eav/tag${deploy_min!""}.js?v=${jsVersion}'></script>
+	<script src="${ctx}/js/jt/gl/km/glHelpUtil${deploy_min!""}.js?v=${jsVersion}" ></script>
+</head>
+
+<body class='white-bg'>
+	<div class="wrapper animated ">
+		<div class="row form_wrapper">
+			<div class='col-sm-12'>
+				<div class="panel panel-default">
+	                <div class="panel-heading">
+	                    <button type='button' style='display: none;' class="jt-btn saveBtn"><i class="fa fa-floppy-o"></i>&nbsp;保存</button>
+						<button type='button' style='display: none;' class="jt-btn jt-btn-red prevBtn"><i class="fa fa-reply">&nbsp;</i>取消</button>
+						<button type='button' class="jt-btn editBtn"> <i class="fa fa-pencil"></i>&nbsp;编辑</button>
+						<label id="glHelpContainer"></label><!-- 帮助中心 -->
+	                </div>
+	                <div class="panel-body">
+	                    <form id="eavSetForm" method="get" class="form-horizontal">
+							<div class="form-group">
+								<div class='col-sm-4 col-sm-6'>
+									<label class="col-sm-3 control-label">名称<span style='color: red;'>*</span></label>
+									<div class="col-sm-9">
+										<input type="text" name="name" placeholder=""
+											class="form-control" validateType="default">
+									</div>
+								</div>
+
+								<div class='col-sm-4 col-sm-6'>
+									<label class="col-sm-3 control-label">业务键<span style='color: red;'>*</span></label>
+									<div class="col-sm-9">
+										<input disabled="disabled" type="text" name="key" placeholder=""
+											class="form-control" validateType="default">
+									</div>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<div class='col-sm-12'>
+									<label class="col-sm-1 control-label">备注</label>
+									<div class="col-sm-11">
+										<textarea name="comment" rows='4' class="form-control" validateType='default'></textarea>
+									</div>
+								</div>
+							</div>
+
+							<div class='form-group project-manager'>	
+								<div class='col-sm-12'>
+									<label class="col-sm-1 control-label">客户标签</label>
+									<div class='col-sm-11'>
+										<table class='table table-bordered'>
+											<thead>
+												<tr>
+													<th width='10%'>名称</th>
+													<th width='50%'>标签值</th>
+													<th width='35'>添加标签值<span style='color: red;'>*</span></th>
+													<th width='5%'>操作</th>
+												</tr>	
+											</thead>
+											
+											<tbody id='skuAttrContainer'>
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+
+							<div class='form-group' id='addSkuTrContainer' style="display: none;">
+								<div class='col-sm-12'>
+									<label class='control-label col-sm-1'>添加客户标签</label>
+									<div class='col-sm-4'>
+										<input class='form-control' name='newSkuAttrName'>
+									</div>
+									<div class='col-sm-2'>
+										<button class='jt-btn' type='button' id='saveNewAttrBtn'><i class="fa fa-floppy-o"></i>&nbsp;保存</button>
+									</div>
+								</div>
+							</div>
+				
+							<div class='form-group'>
+								<div class='col-sm-11 col-sm-offset-1'>
+									<button class='jt-btn' type='button' id='addSkuTrBtn'>
+										<i class='fa fa-plus'></i>&nbsp;添加
+									</button> 
+									<button class='jt-btn jt-btn-red' style='display: none;' type='button' id='cancelSkuTrBtn'><i class="fa fa-reply">&nbsp;</i>取消</button>
+								</div>
+							</div>
+
+							<!--将隐藏域放在这里，不显示出来-->
+							<div class='form-group' style="display: none;">
+								<input type="hidden" id="id" name="id"> 
+								<input type="hidden" name='sort'> 
+								<input type="hidden" name='status' value='actived'> 
+								<input type="hidden" name="createBy"> 
+								<input type="hidden" name="createTime">
+							</div>
+						</form>
+	                </div>
+	            </div>
+			</div>
+		</div>
+	</div>
+	<div class="modal fade" id="csTagContainer" tabindex="-1" role="dialog" aria-labelledby="csTagContainerLabel">
+		<div class="modal-dialog" role="document" style="width: 800px;">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title" id="csTagContainerLabel">客户档案</h4>
+				</div>
+				<div class="modal-body">
+					<div class='row'>
+						<div class='col-sm-12'>
+							<form id="csTagForm" class="form-horizontal">
+								<div class="form-group">
+									<div class='col-sm-4'>
+										<input type='text' name='optValue' class='col-sm-4 form-control' validateType='default'>
+									</div>
+									<div class='col-sm-3'>
+										<select class='form-control' name='optType' validateType='default'>
+											<option value='string'>字符串</option>
+											<option value='single'>单选</option>
+											<option value='multi'>多选</option>
+											<option value='double'>浮点</option>
+										</select>
+									</div>
+									<div class='col-sm-4'>
+										<input type='text' placeholder='多个请用逗号(，)隔开' class='form-control' name ='optOptions' validateType='default' style='display:none;'>	
+									</div>
+									<div class='col-sm-1'>
+							        	<button type="button" class="btn btn-sm   btn-primary" id="addNewAttrBtn">添加</button>
+							        </div>
+								</div>
+								<input type='hidden' name='attrId'>
+								<input type='hidden' name='nameVal'>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

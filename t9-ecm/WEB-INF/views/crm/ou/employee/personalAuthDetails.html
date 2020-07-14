@@ -1,0 +1,72 @@
+
+<div class='col-sm-12' style='padding:0px'>
+    <div class="tabs-container">
+        <ul class="nav nav-tabs">
+            <li id="t1" class="active"><a data-toggle="tab" href="#tab-1" aria-expanded="true">已授权的资源</a>
+            </li>
+
+            <li id="t2"><a data-toggle="tab" href="#tab-2" aria-expanded="false">已授权的报表</a>
+            </li>
+
+            <li id="t3"><a data-toggle="tab" href="#tab-3" aria-expanded="false">可导出的报表字段</a>
+            </li>
+        </ul>
+
+        <div class="tab-content">
+            <div id="tab-1" class="tab-pane active">
+                <div class="panel-body">
+                    <table style='margin-bottom: 0px;' id='personalGrantResContainer' class='table table-bordered table-stripped'></table>
+                </div>
+            </div>
+
+            <div id="tab-2" class="tab-pane">
+                <div class="panel-body">
+                    <div class='col-sm-12' id='personalGrantReportContainer'></div>
+                </div>
+            </div>
+
+            <div id="tab-3" class="tab-pane">
+                <div class="panel-body">
+                    <div class='col-sm-12' id='personalGrantExportModuleContainer'></div>
+                    <div class='col-sm-12' id='personalGrantExportColumnsContainer'></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--可以访问的报表模板-->
+<script id='personalReportTmpl' type="text/x-jsrender">
+    <div class="panel panel-default report-entry">
+        <div class="panel-heading report-cate">
+            <h3 class="panel-title">{{:cateName}}</h3>
+        </div>
+        <div class="panel-body report-body">
+            {{for reports}}
+            <div class="checkbox checkbox-success checkbox-inline report-checkbox">
+                <input type="checkbox" disabled="disabled" {{if checked}}checked='checked'{{/if}} name="reportIds" id="{{:id}}" value="{{:id}}">
+                <label for="{{:id}}">{{:name}}</label>
+            </div>
+            {{/for}}
+        </div>
+    </div>  
+</script>
+
+<!--报表到处模板-->
+<script id='personalExportColumnPanelTmpl' type='text/x-jsrender'>
+    <div class='panel panel-default' id='{{:value}}Panel' style='display:none;'>
+        <div class='panel-heading'>
+            <h3 class='panel-title'>【{{:name}}】可选导出字段</h3>
+        </div>
+        <div class='panel-body' id='{{:value}}Container'>
+        </div>
+    </div>
+</script>
+
+<!--报表导出字段可选项的模板-->
+<script id='personalExportColumnTmpl' type='text/x-jsrender'>
+    <div class='checkbox checkbox-success checkbox-inline'>
+        <input type='checkbox' disabled="disabled" {{if checked}}checked='checked'{{/if}} colname='{{:name}}' class='columnCheckBox' name='exportColumn' id='{{:id}}' value='{{:id}}'>
+        <label for='{{:id}}'>{{:name}}</label>
+    </div>
+</script>
+

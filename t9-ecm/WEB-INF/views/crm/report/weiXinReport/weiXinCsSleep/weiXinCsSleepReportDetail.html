@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>微信沉睡客户明细</title>
+	<#include "/common/common.html">
+	<#include "/common/ztree.html">
+	<script src="${ctx}/js/jt/crm/report/weiXin/weiXinCsSleepReportDetail${deploy_min!""}.js?v=${jsVersion}"></script>
+	<script>
+	    var employeeId="${employeeId}";
+	    var sleepCountDay="${sleepCountDay}";
+	    var employeeAid="${employeeAid}";
+	    var employeeName="${employeeName}";
+	</script>
+</head>
+
+<body class="white-bg">
+	<div class='wrapper'>
+		<div class='row list_wrapper'>			
+			<div class="jqGrid_wrapper col-sm-12" >
+				<table id="csSleepDetailGrid"></table>
+				<div id="csSleepDetailPager"></div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

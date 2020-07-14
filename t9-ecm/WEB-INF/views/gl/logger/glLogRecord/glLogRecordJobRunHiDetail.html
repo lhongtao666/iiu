@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>定时任务日志详情页面</title>
+	<#include "/common/common.html">
+	<script src="${ctx}/js/jt/gl/logger/jobRunHiDetail${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script type="text/javascript">
+		var runHiId = "${runHiId}";
+		var threadName = "${threadName}";
+		var createTime = "${createTime}";
+	</script>
+</head>
+
+<body class='white-bg'>
+	<div class="wrapper animated ">
+		<!-- 日志详情页 -->
+		<#include "/gl/logger/glLogRecord/glLogRecordDetail.html">	    
+	</div>
+</body>
+</html>

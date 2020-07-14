@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>个人资料</title>
+    <#include "/common/common.html">
+    <#include "/common/eav.html">
+    <style type="text/css">
+        /*不要半透明*/
+        .checkbox input[type="checkbox"]:disabled + label, .checkbox input[type="radio"]:disabled + label {
+            opacity: 0.8;
+        }
+        .nav.nav-tabs{
+          margin-left:0 !important;
+        }
+    </style>
+    <link href="${ctx}/css/plugins/chosen/chosen.css?v=${jsVersion}" rel="stylesheet">
+    <link href="${ctx}/css/plugins/iCheck/custom.css?v=${jsVersion}" rel="stylesheet">
+    <script src="${ctx}/js/plugins/iCheck/icheck.min.js?v=${jsVersion}"></script>
+    <script src="${ctx}/js/plugins/chosen/chosen.jquery.js?v=${jsVersion}"></script>
+    <script src="${ctx}/js/jt/common/utils/groupUtils${deploy_min!""}.js?v=${jsVersion}"></script>
+    <script src="${ctx}/js/jt/crm/ou/employee${deploy_min!""}.js?v=${jsVersion}" ></script>
+    <script src="${ctx}/js/jt/common/service/employeesSelectLayer${deploy_min!""}.js?v=${jsVersion}"></script>
+    <script src="${ctx}/js/jt/ec/salesorder/soShip${deploy_min!""}.js?v=${jsVersion}" ></script>
+    <link href="${ctx}/css/jt/ec/salesorder/orderaddr${deploy_min!""}.css?v=${jsVersion}" rel="stylesheet">
+    <script src='${ctx}/js/jt/common/service/addressService${deploy_min!""}.js?v=${jsVersion}'></script>
+    <script src="${ctx}/js/jt/crm/ou/userPw${deploy_min!""}.js?v=${jsVersion}" ></script>
+    <script src="${ctx}/js/plugins/suggest/bootstrap-suggest.js?v=${jsVersion}"></script>
+    <script src='${ctx}/js/jt/common/utils/positionUtils${deploy_min!""}.js?v=${jsVersion}'></script>
+    <script src="${ctx}/js/jt/crm/ou/employeeSubJs/employeeGroup${deploy_min!""}.js?v=${jsVersion}" ></script>
+    <script src="${ctx}/js/jt/crm/ou/employeeSubJs/employeeRate${deploy_min!""}.js?v=${jsVersion}" ></script>
+    <script src="${ctx}/js/jt/crm/ou/employeeSubJs/employeePercent${deploy_min!""}.js?v=${jsVersion}" ></script>
+    <script src="${ctx}/js/jt/crm/ou/employeeSubJs/employeeEditBatch${deploy_min!""}.js?v=${jsVersion}" ></script>
+    <script src="${ctx}/js/jt/common/service/seniorSearch${deploy_min!""}.js?v=${jsVersion}" ></script>
+    <script type="text/javascript">
+    var id = "${id}";
+    var type = "personal";
+    var personalGrantExportColumns = "";
+
+    function PersonalDataForm() {
+        this.hadInit = false;
+        this.employee = new Employee();
+    }
+
+    PersonalDataForm.prototype = {
+        init: function(id) {
+            if (!this.hadInit) {
+                this._hideNotGrantBtn();
+                this.hadInit = true;
+                this.employee._bindFormValidation();
+                this.employee._bindEventHander();
+                this._bindEventHander();
+                this.employee.commonEav = new Eav(Employee._CONS_.COMMON_EAV_PARAM);
+                this.employee.addressService.init({ isHideCountry: true});
+                // this.employee.employeePhone.init();
+                // this._bindFormValidation();
+              
+            }
+            $(".operateCol").hide();
+            $(".personHideGroup").hide();
+            var isPersonDetail = true; 
+            this.employee._detail(id,isPersonDetail);
+            
+            $('.i-checks').iCheck({
+                checkboxClass: 'icheckbox_square-green',
+                radioClass: 'iradio_square-green',
+            });
+        },
+        _hideNotGrantBtn:function(){
+            if (!ResUtils.canShow("personalData.button.edit")) {
+                $('.panel-heading').remove();
+            }
+        },
+        _bindEventHander:function(){
+            var self = this;
+            $(window).on("resize",function(){
+                var $width=$("#imageConatiner").width();
+                $(".file").width($width);
+             
+            });
+            $("body").on("click",".editBtn",function(){
+                $(this).hide();
+                $(".savePersonBtn").show();
+                $(".prevPersonBtn").show();
+
+                FormUtils.enableForm("partyForm");
+                FormUtils.enableForm("detailForm");
+                $("#detailForm [name=name]").removeAttr("readonly");
+                $("#detailForm [name='userPo.mobile']").removeAttr("readonly");
+                $("#partyForm [name=orgName]").attr("disabled","disabled");
+                $("#partyForm [name=adn]").attr("disabled","disabled");
+                $("#partyForm [name=status]").attr("disabled","disabled");
+                $("#partyForm [name=positionNames]").attr("disabled","disabled");
+                $("#partyForm [name='userPo.roleIds']").attr("disabled","disabled");
+                $("#selectDefaultImageBtn").show().attr("disabled",false);
+                if(versionType=="finance"){
+                	 $("#detailForm [name=name]").attr("readonly","readonly");
+                }
+               
+                //-----外呼号码
+                // $("#addPhoneForm .addPhoneRow").show();
+                $("#addPhoneForm .operateCol").show();
+                $("#addPhoneForm").find(":input").attr("disabled",false);
+                
+            });
+
+            $("body").on("click",".savePersonBtn",function(){
+                var isFormValid = $(Employee._CONS_.PARTY_FORM_ID).valid() && self.employee.commonEav.isValid() && $(Employee._CONS_.PARTY_FORM_ID).valid();
+                if(!isFormValid){
+                    return ;
+                }
+                var reqUrl = ctx+"/crm/ou/employee/savePersonalData.htm";
+                self.employee._commitUpdateFunc(reqUrl, function(){
+                    $(".savePersonBtn").hide();
+                    $(".editBtn").show();
+                    $(".prevPersonBtn").hide();
+                    $("#selectDefaultImageBtn").hide();
+                    
+                    //更新导航栏用户者的信息
+                    var img = $('img.viewImageDetail').attr('src'),
+                    name = $('#name').val(),code = $('input[name="aid"]').val(),
+                    $userInfoContainer = $('#userAccountContainer', window.top.document);
+                    
+                    $userInfoContainer.find('img').attr('src', img);
+                    $userInfoContainer.find('span').text(name + "(" + code + ")");
+                    $.log($userInfoContainer.find('span').text());
+                    FormUtils.disableForm("partyForm");
+                    FormUtils.disableForm("detailForm");
+                    //-----外呼号码
+                    $("#addPhoneForm .addPhoneRow").hide();
+                    $("#addPhoneForm .operateCol").hide();
+                    $("#addPhoneForm").find(":input").attr("disabled",true);
+
+                });
+            });
+
+            $("body").on("click",".prevPersonBtn",function(){
+                $(this).hide();
+                $(".savePersonBtn").hide();
+                $(".editBtn").show();
+                $("#selectDefaultImageBtn").hide();
+                FormUtils.disableForm("partyForm");
+                FormUtils.disableForm("detailForm");
+                //-----外呼号码
+                $("#addPhoneForm .addPhoneRow").hide();
+                $("#addPhoneForm .operateCol").hide();
+                $("#addPhoneForm").find(":input").attr("disabled",true);
+            });
+        },
+    }
+
+    $(function() {
+        var personalDataForm = new PersonalDataForm();
+        personalDataForm.init(id);
+    });
+    </script>
+    <script src="${ctx}/js/jt/common/utils/excelUtil${deploy_min!""}.js?v=${jsVersion}" ></script>
+    <script src="${ctx}/js/jt/crm/ou/personalAuth${deploy_min!""}.js?v=${jsVersion}" ></script>
+</head>
+
+<body>
+    <div class="wrapper animated ">
+        <div class="tabs-container">
+            <ul class="nav nav-tabs">
+                <li id="personal-tab-li" class="active">
+                    <a data-toggle="tab" href="#personal-tab" aria-expanded="true">个人资料</a>
+                </li>
+
+                <li id="auth-tab-li">
+                    <a data-toggle="tab" href="#auth-tab" aria-expanded="false">个人权限</a>
+                </li>
+            </ul>
+
+            <div class="tab-content">
+                <div id="personal-tab" class="panel panel-default">
+                    <div class="panel-heading">
+                        <button type='button' class="btn btn-sm   btn-primary editBtn">编辑</button>
+                        <button type='button' class="btn btn-sm   btn-primary savePersonBtn" style="display:none;"> 保存</button>
+                        <button type='button' style="display: none;" class="btn btn-sm   btn-default prevPersonBtn">取消</button>
+                    </div>
+                    <div class="panel-body">
+                        <#include "/crm/ou/employee/personalDataForm.html">
+                    </div>
+                </div> 
+
+                <div id="auth-tab" class="tab-pane">
+                    <div class="panel-body">
+                        <#include "/crm/ou/employee/personalAuthDetails.html">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

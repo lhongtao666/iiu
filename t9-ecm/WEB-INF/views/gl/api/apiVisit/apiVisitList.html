@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>API访问黑白名单管理</title>
+	<#include "/common/common.html">
+	<script src="${ctx}/js/jt/gl/api/apiVisit.js?v=1.0.0" ></script>
+</head>
+
+<body>
+	<div class="wrapper animated fadeInRight">
+		<!-- list界面 -->
+		<div class="row list_wrapper">
+			<#include "/gl/api/apiVisit/apiVisitToolbar.html">	  			
+			<div class='col-sm-12 jqGrid_wrapper'>
+			    <table id="apiVisitGrid"></table>
+				<div id="apiVisitPager"></div>
+			</div>
+		</div>
+		<!-- 编辑界面 -->
+		<#include "/gl/api/apiVisit/apiVisitEdit.html">	    
+	</div>
+</body>
+</html>

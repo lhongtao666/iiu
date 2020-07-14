@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>客户积分历史管理</title>
+	<#include "/common/common.html">
+	<script src="${ctx}/js/jt/crm/point/pointLog${deploy_min!""}.js?v=${jsVersion}" ></script>
+</head>
+
+<body class="white-bg">
+	<div class="wrapper animated ">
+		<!-- list界面 -->
+		<div class="row list_wrapper ibox-content">
+			<!-- 工具栏 -->
+			<#include "pointLogToolbar.html">	  			
+			<!-- jqgrid数据 -->
+			<div class='row jqGrid_wrapper'>			
+				<div class='col-sm-12'>
+				    <table id="pointLogGrid"></table>
+					<div id="pointLogPager"></div>
+				</div>
+			</div>
+		</div>
+		<!-- 编辑界面 -->
+		<#include "pointLogEdit.html">	    
+	</div>
+</body>
+</html>

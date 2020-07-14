@@ -1,0 +1,78 @@
+<div class="col-sm-12">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <a type='button' class='jt-btn taskEntityAdd'><i class='fa fa-plus'></i>&nbsp;添加</a>
+            <a type='button' class='jt-btn taskEntityEdit'><i class='fa fa-pencil'></i>&nbsp;编辑</a>
+            <a type='button' class='jt-btn taskForword'><i class='fa fa-retweet'></i>&nbsp;转工号</a>
+            <a type='button' class='jt-btn markTaskProcessingStatus'><i class='fa fa-tag'></i>&nbsp;标记为处理中</a>
+            <a type='button' class='jt-btn markTaskDoneStatus'><i class='fa fa-tag'></i>&nbsp;标记为完成</a>
+            <a type='button' class='jt-btn taskEntityDate switch-label'><i class='fa fa-calendar'></i>&nbsp;切换为日历视图</a>
+        	<a type='button' class='jt-btn taskEntityDetail'><i class='fa fa-bars'></i>&nbsp;明细</a>
+            <a type='button' class='jt-btn jt-btn-red taskEntityDel'><i class='fa fa-remove'></i>&nbsp;删除</a>
+        </div>
+        <div class="panel-body taskSearchPanel">
+            <form role="form" class="form-horizontal" id="taskSearchForm">
+                <div class="form-group">
+                    <div class="col-sm-3">
+                        <label class="control-label col-sm-4">名称</label>
+                        <div class="col-sm-8">
+                            <div class="input-group" style="width: 100%;">
+                                <input type="text" id='nameSearch' placeholder="请输入任务名称" name="Q__S__LK__name_" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <label  class="col-sm-1 control-label">待办时间</label> 
+					<div class='col-sm-5'>
+						<div class="input-daterange input-group">
+							<input class="laydate-icon form-control layer-date" autocomplete="off" name="Q__D__BW__notify_time_" placeholder="起始时间" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">
+							<span class="input-group-addon">到</span>
+							<input class="laydate-icon form-control layer-date" autocomplete="off" name="Q__D__BW__notify_time_" placeholder="结束时间" onclick="laydate({istime: true, start: laydate.now(0, 'YYYY/MM/DD 23:59:59'), format: 'YYYY-MM-DD hh:mm:ss'})">
+						</div>
+					</div>
+                    <div class='col-sm-1'>
+                     	<button type='button' class="jt-btn-search taskEntitySearch">
+								<i class="fa fa-search"></i>&nbsp;搜索
+						</button>
+                    </div>
+                </div>
+            </form>
+            <form role="form" class="form-horizontal" id="subTaskSearchForm" style="display:none">
+                <div class="form-group">
+                    <div class="col-sm-3">
+                        <label class="control-label col-sm-4">名称</label>
+                        <div class="col-sm-8">
+                            <div class="input-group" style="width: 100%;">
+                                <input type="text" id='nameSearch' placeholder="请输入任务名称" name="Q__S__LK__name_" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <label  class="col-sm-1 control-label">待办时间</label> 
+					<div class='col-sm-5'>
+						<div class="input-daterange input-group">
+							<input class="laydate-icon form-control layer-date" autocomplete="off" name="Q__D__BW__notify_time_" placeholder="起始时间" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">
+							<span class="input-group-addon">到</span>
+                            <input class="laydate-icon form-control layer-date" autocomplete="off" name="Q__D__BW__notify_time_" placeholder="起始时间" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">
+							<input class="laydate-icon form-control layer-date"  name="Q__D__BW__notify_time_" placeholder="结束时间" onclick="laydate({istime: true, start: laydate.now(0, 'YYYY/MM/DD 23:59:59'), format: 'YYYY-MM-DD hh:mm:ss'})">
+						</div>
+					</div>
+                </div>
+                <div class="form-group col-sm-12">
+                    <label class='control-label col-sm-1'>部门</label>    
+                    <div class='col-sm-2'>
+                        <input id='groupName' readonly class='form-control'>
+                        <input name='belongOgn' type='hidden' class='form-control'>
+                    </div>
+                    <label class="control-label col-sm-1">跟进人</label>
+                    <div class='col-sm-2'>
+                        <select name="belongEmployee" id='belongEmployee' class="form-control" validateType="default"></select>
+                    </div>
+                    <div class='col-sm-2'>
+                   		 <button type='button' class="jt-btn-search subTaskEntitySearch">
+								<i class="fa fa-search"></i>&nbsp;搜索
+						</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

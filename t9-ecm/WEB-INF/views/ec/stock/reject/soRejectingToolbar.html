@@ -1,0 +1,92 @@
+<div class="col-sm-12">
+	<div class="panel panel-default  so_reject_wrapper">
+		<div class="panel-heading">
+			<button type='button' class='jt-btn soRejectBackForOne'>退货入仓</button>
+			<button type='button' class='jt-btn soRejectBackForMany'>批量入仓</button>
+			<button type="button" class="jt-btn batchShipQryBtn">批量查物流</button>
+		</div>
+	    <div class="panel-body">
+	        <form  id="soEntityRejectingForm" class="form-horizontal">
+				<div class="form-group">
+					<label  class="col-sm-1 control-label">下单时间</label> 
+					<div class='col-sm-5'>
+						<div class="input-daterange input-group">
+                            <input class="laydate-icon form-control layer-date minPlaceTime" name="Q__D__BW__entity.place_time_" placeholder="起始时间" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">
+                            <span class="input-group-addon">到</span>
+                            <input class="laydate-icon form-control layer-date maxPlaceTime" name="Q__D__BW__entity.place_time_" placeholder="结束时间" onclick="laydate({istime: true, start: laydate.now(0, 'YYYY/MM/DD 23:59:59'),format: 'YYYY-MM-DD hh:mm:ss'})">
+                        </div>
+					</div>
+					<label  class="col-sm-1 control-label">编号</label> 
+					<div class='col-sm-2'>
+					    <input type="text" id='soNoSearch' placeholder="请输入订单编号" name="Q__S__RLK__entity.so_no_" class="form-control">
+					</div>
+					<label  class="col-sm-1 control-label">快递公司</label> 
+					<div class='col-sm-2'>
+					    <select class="form-control scCodeQry" name="scCodeQry" >
+					        <option value="">全部</option>
+					    </select>
+					</div> 
+				</div>
+				<div class="form-group hideSearchParam" style="display: none;">
+					<label  class="col-sm-1 control-label">发货时间</label> 
+					<div class='col-sm-5'>
+						<div class="input-daterange input-group">
+	                        <input class="laydate-icon form-control layer-date" name="Q__D__BW__entity.ship_time_" placeholder="起始时间" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">
+	                        <span class="input-group-addon">到</span>
+	                        <input class="laydate-icon form-control layer-date" name="Q__D__BW__entity.ship_time_" placeholder="结束时间" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">
+	                    </div>
+					</div>  
+					<label  class="col-sm-1 control-label">归属工号</label>
+					<div class="col-sm-1">
+						<input id='groupName' class='form-control' readonly>
+						<input type="hidden" id="belongOgn" name="belongOgn"></div>
+					<div class="col-sm-1">
+						<select id="belongEmployeeSearch" class="form-control" name="belongEmployee">
+							<option value="">请选择</option>
+						</select>
+					</div> 
+					<label class="col-sm-1 control-label">快递单号</label>
+					<div class="col-sm-2">
+						<input type="text" id="scNumQry" placeholder="请输入快递编号" name="scNumQry" class="form-control">
+					</div>
+			    </div>
+			    <div class="form-group hideSearchParam" style="display: none;">
+					<label  class="col-sm-1 control-label">退货时间</label> 
+					<div class='col-sm-5'>
+						<div class="input-daterange input-group">
+	                        <input class="laydate-icon form-control layer-date" name="Q__D__BW__entity.update_time_" placeholder="YYYY-MM-DD hh:mm:ss" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">
+	                        <span class="input-group-addon">到</span>
+	                        <input class="laydate-icon form-control layer-date" name="Q__D__BW__entity.update_time_" placeholder="YYYY-MM-DD hh:mm:ss" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">
+	                    </div>
+					</div> 
+					<label  class="col-sm-1 control-label">货款方式</label>
+					<div class='col-sm-2'>
+						<select class="form-control" name="Q__S__EQ__entity.cash_type_" >
+						    <option value="">全部</option>
+					        <option value="pay">款到发货</option>
+					        <option value="pay_sub">支付订金</option>
+					        <option value="cod">货到付款</option>
+					        <option value="free">免费已付</option>
+				            <option value="green">绿色通道</option>
+						</select>
+					</div>
+					<label  class="col-sm-1 control-label">仓库</label>
+					<div class='col-sm-2'>
+						<select  id="storeSearch" class="form-control" name="Q__S__EQ__entity.store_id_" >
+						</select>
+					</div>
+					  
+				</div>
+                <div class='form-group'> 
+					<div class='col-sm-4'></div>
+					<div class='col-sm-8'>
+						<button type='button' class="jt-btn-search soEntitySearch" ><i class="fa fa-search"></i>&nbsp;搜索</button>
+						<button type='button' class="jt-btn-empty resetBtn"><i class="fa fa-trash-o"></i>&nbsp;清空</button>
+						<button type='button' class="jt-btn-drop showSearch"  >展开<span class="fa fa-sort-down"></span></button>
+						<button type='button' class="jt-btn-drop hideSearch" style="display:none" >收起<span class="fa fa-sort-up"></span></button>
+					</div>
+				</div>
+			</form>
+	    </div>
+	</div>
+</div>

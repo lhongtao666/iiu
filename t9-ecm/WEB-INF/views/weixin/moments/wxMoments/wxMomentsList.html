@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>微信朋友圈内容管理</title>
+	<#include "/common/common.html">
+	<link href="${ctx}/css/plugins/chosen/chosen.css?v=${jsVersion}" rel="stylesheet">
+	<script src="${ctx}/js/jt/weixin/moments/wxMoments${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/plugins/chosen/chosen.jquery.js?v=${jsVersion}"></script>
+	<style type="text/css">
+		.link,.img,.video,.wx-label,.sendTime,.employee-weixin{
+			display: none;
+		}
+		.dragsort {
+		    list-style-type: none;
+		    margin: 0px;
+		}
+		.moments-img,.moments-video{
+			min-height: 152px;
+			border:1px solid #acd;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="wrapper animated fadeInRight">
+		<!-- list界面 -->
+		<div class="row list_wrapper">
+			<#include "/weixin/moments/wxMoments/wxMomentsToolbar.html">	  			
+			<div class='col-sm-12 jqGrid_wrapper'>
+			    <table id="wxMomentsGrid"></table>
+				<div id="wxMomentsPager"></div>
+			</div>
+		</div>
+		<!-- 编辑界面 -->
+		<#include "/weixin/moments/wxMoments/wxMomentsEdit.html">	    
+	</div>
+</body>
+</html>

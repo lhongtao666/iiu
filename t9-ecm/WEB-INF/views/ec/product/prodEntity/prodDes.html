@@ -1,0 +1,33 @@
+<#include "/common/tinyMceContent.html">
+<!--商品描述-->
+<style type="text/css">
+   .note-editable.panel-body{
+        overflow-y: auto;
+        max-height: 500px;
+        min-height: 0px !important;
+   } 
+
+</style>
+<div class="panel-body">
+        <div class='col-sm-12'>
+            <label class="col-sm-2 control-label">简述：</label>
+        </div>
+         <div class="col-sm-12">
+            <textarea autocomplete="off" id='summary' rows="5" name='summary' class='form-control'></textarea>
+        </div>
+         <div class='col-sm-12'>
+            <label class='col-sm-2 control-label'>详细：</label>
+            <!-- <div class="btn-group col-sm-4" style="float: left;">
+                <button type='button' class='btn btn-sm   btn-primary baiduBtn' disabled='disabled'>百度编辑器</button>
+               <button type='button' class='btn btn-sm   btn-primary markdownBtn'>markdown编辑器</button> 
+            </div> -->
+        </div> 
+        <div class='col-sm-12'>
+            <!-- <div id="descContainer"></div> -->
+            <textarea id="tinyMceContent" runat="server" name="elm1" rows="30" cols="80" style="width:100%"></textarea>
+            <!-- <div id="markdownDescContainer" style="display:none;"></div> -->
+        </div>
+</div>
+<input type='hidden' name='descType' />
+<input type='hidden' name='desc' />
+<input type='hidden' name='markdownDesc' />

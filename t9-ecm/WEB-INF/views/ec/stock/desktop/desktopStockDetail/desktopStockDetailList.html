@@ -1,0 +1,48 @@
+<script src="${ctx}/js/jt/ec/stock/desktop/desktopStockDetail${deploy_min!""}.js?v=${jsVersion}" ></script>
+<div class="panel panel-default"    style="margin-bottom:0px;height:100%;">
+    <div class="panel-heading">
+        <h4 >产品库存变化趋势</h4>
+    </div>
+    <div class="panel-body" style="padding:5px;">
+	    <form class="form-horizontal stockTrendSearchFrom">
+	    	<div class="form-group">
+	    		<label class="col-xs-1 control-label">仓库</label>
+				<div class="col-xs-2">
+					<select class='form-control' name='storeId' id='storeIdDetailContainer' validateType="default"></select> 
+				</div>
+		        <label class="col-xs-1 control-label">sku编码</label>
+				<div class="col-xs-4">
+					<div class="input-group" style="width:100%">
+						<input type="text" class="form-control" id="searchDetailProd">
+						<input type="hidden" id="prodSkuId">
+						<input type="hidden" id="prodName">
+						<div class="input-group-btn">
+							<ul class="dropdown-menu dropdown-menu-right" role="menu">
+							</ul>
+						</div>
+					</div>
+				</div >
+				
+				<div class="col-xs-2">
+					<select id="week" class="form-control">
+						<option value="0">本周</option>
+						<option value="1">前1周</option>
+						<option value="2">前2周</option>
+						<option value="3">前3周</option>
+						<option value="4">前4周</option>
+						<option value="5">前5周</option>
+						<option value="6">前6周</option>
+						<option value="7">前7周</option>
+					</select>
+				</div>
+
+				<button type="button" class="btn btn-sm   btn-primary searchBtn">查询</button>
+			</div>
+
+	    </form>
+	    <div  style="border: 1px solid #777;padding:5px ;">
+	    	<div class="titleName" style="text-align: center;font-weight: bold;height: 20px;"></div>
+	        <div id="stockTrend" style="height:370px;"></div>
+	    </div>
+    </div>
+ </div>

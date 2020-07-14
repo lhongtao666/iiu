@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>渠道管理</title>
+	<#include "/common/common.html">
+	<#include "/common/datatable.html">
+	<link href="${ctx}/css/plugins/chosen/chosen.css?v=${jsVersion}" rel="stylesheet" />
+	<script src="${ctx}/js/plugins/chosen/chosen.jquery.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/jt/ec/media/mediaChannel${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/ec/media/mediaChannelLog${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/ec/media/mediaChannelWeixin${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/gl/km/glHelpUtil${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/common/service/employeesSelectLayer${deploy_min!""}.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/jt/common/utils/excelUtil${deploy_min!""}.js?v=${jsVersion}" ></script>
+	
+	<script type="text/javascript">
+		var weixinType = '${weixinUseType}'
+	</script>
+	<style type="text/css">
+		#jt-weixin-info-div{
+			height: 300px;
+			display: none;
+			position: fixed;
+			z-index: 10000000;
+			background-color: #fff;
+		    border-radius: 5px;
+		    text-align: left;
+		    line-height: 30px;
+		    opacity: 0.9;
+		    padding: 10px;
+		    background-color: #fff;
+		    overflow: auto;
+		    border: 4px solid #1caf9a;
+		    box-shadow: 0 0 20px #273a4a;
+		    width: auto !important;
+		}
+	</style>
+</head>
+
+<body class='white-bg'>
+	<div class="wrapper animated ">
+		<!-- list界面 -->
+		<div class="row list_wrapper">
+			<#include "/ec/media/mediaChannel/mediaChannelToolbar.html">	  			
+			<div class='col-sm-12 jqGrid_wrapper'>
+			    <table id="mediaChannelGrid"></table>
+				<div id="mediaChannelPager"></div>
+			</div>
+		</div>
+		<!-- 编辑界面 -->
+		<#include "/ec/media/mediaChannel/mediaChannelEdit.html">	    
+		<#include "/ec/media/mediaChannel/mediaExportExcel.html">
+		
+	</div>
+	<div id="jt-weixin-info-div"></div>
+</body>
+</html>

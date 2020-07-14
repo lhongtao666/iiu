@@ -1,0 +1,131 @@
+<#macro JTFinanceSearchPanel panelWidthClass buttonStr hasFinishTime hasGroupSearch needTrunDownButton> 
+<div class="col-sm-12 ${panelWidthClass}">
+	<div class="panel panel-default">
+		<div class="panel-heading financeBillToolbar">
+			${buttonStr}
+			<#if needTrunDownButton??>
+				<#if needTrunDownButton=="true">
+				<button type='button' class='jt-btn jt-btn-red soEntityTrunDown'><i class='fa fa-times'></i>&nbsp;驳回</button>
+				</#if>
+			</#if>
+			<button type='button' class='jt-btn jt-dd-normal financeBillDetail'>
+				<i class='fa fa-list'></i>&nbsp;明细
+			</button>
+			<button id="financeBillExportBtn" type='button' class='jt-btn jt-dd-normal financeBillExport'><i class='fa fa-reply'></i>&nbsp;导出</button>
+			<button  type='button' class='jt-btn jt-dd-normal exportSo'><i class='fa fa-reply'></i>&nbsp;导出订单-产品</button>
+			<!-- 帮助中心 -->
+			<label id="glHelpContainer"></label>
+		</div>
+	
+		<div class="panel-body">
+			<form class="form-horizontal financeBillForm">
+				<div class="form-group jt-form-group jt-form-normal">
+					<div class='col-sm-6 jt-date-param'>
+						<label  class="col-sm-2 control-label">下单时间</label>
+						<div class='col-sm-10'>
+							<div class="input-daterange input-group">
+								<input class="laydate-icon form-control layer-date " name="startTime" placeholder="起始时间" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">
+								<span class="input-group-addon">到</span>
+								<input class="laydate-icon form-control layer-date " name="endTime" placeholder="结束时间" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})"></div>
+						</div>
+					</div>
+					<div class='col-sm-3'>
+						<label  class="col-sm-4 control-label">单据编码</label>
+						<div class='col-sm-8'>
+							<input type="text" id='skuSearch' placeholder="请输入关联单据编码" name="Q__S__LK__bill.entity_no_" class="form-control">
+						</div>
+					</div>
+					<div class='col-sm-3'>
+						<label  class="col-sm-4 control-label">结算方式</label>
+						<div class='col-sm-8'>
+							<select type="text" id='soNoSearch' placeholder="结算方式" name="Q__S__EQ__bill.pay_type_" class="form-control">
+								<option value="">全部</option>
+								<option value="alipay">支付宝</option>
+								<option value="weixin">微信支付</option>
+								<option value="weixinhongbao">微信红包</option>
+								<option value="bank">银行转账</option>
+								<option value="cash">现金支付</option>
+								<option value="QRCode">收款码支付</option>
+							</select>
+						</div>
+					</div>
+				</div>
+				<div class="form-group jt-form-group jt-form-normal">
+					<#if hasGroupSearch?? && hasGroupSearch=="true">
+						<div class='col-sm-6'>
+							<label class="col-sm-1 control-label">归属工号</label>
+							<div>
+								<div class="col-sm-5">
+									<input id='belongOgnName' readonly class='form-control selectBelongOgn' style='position:raletive;'>
+									<input type='hidden' name='belongOgn'>
+								</div>
+								<div class="col-sm-6">
+									<select id="belongEmployeeSearch" class="form-control" name="belongEmployee">
+										<option value="">请选择</option>
+									</select>
+								</div>
+							</div>
+						</div>
+					</#if>
+
+					<#if hasFinishTime??>
+						<#if hasFinishTime=="true">	
+						 <div class='col-sm-6 jt-date-param'>
+						 	<label  class="col-sm-2 control-label">完成时间</label>
+							<div class='col-sm-10'>
+								<div class="input-daterange input-group">
+									<input class="laydate-icon form-control layer-date minPlaceTime" name="Q__D__BW__bill.complete_time_" placeholder="起始时间" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">
+									<span class="input-group-addon">至</span>
+									<input class="laydate-icon form-control layer-date" name="Q__D__BW__bill.complete_time_" placeholder="结束时间" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">
+								</div>
+							</div>
+						 </div>
+						</#if>
+					</#if>		
+					<div class='col-sm-3'>
+						<label  class="col-sm-1 control-label">总金额</label>
+						<div class='col-sm-2'>
+							<div class="input-daterange input-group no" >
+								<input type="text" id='soNoSearch' placeholder="最低金额" name="Q__N__GTE__total_" class="form-control">
+								<span class="input-group-addon">至</span>
+								<input type="text" id='soNoSearch' placeholder="最高金额" name="Q__N__LTE__bill.total_" class="form-control"></div>
+						</div>
+					</div>
+					<#if hasFinishTime??>
+						<#if hasFinishTime=="true">	
+						<div class='col-sm-3'>
+							<label class="col-sm-4 control-label">快递公司</label>
+							<div class="col-sm-8"> 
+								<select name="scCode" id="scNameSearch1" class="form-control" validateType="default">
+								</select>
+							</div>
+						</div>
+						</#if>
+					</#if>
+					<#if hasFinishTime??>
+						<#if hasFinishTime=="false">	
+						<div class='col-sm-3'>
+							<label class="col-sm-4 control-label">快递公司</label>
+							<div class="col-sm-8"> 
+								<select name="scCode" id="scNameSearch2" class="form-control" validateType="default">
+								</select>
+							</div>
+						</div>
+						</#if>
+					</#if>		
+				</div>
+				<div class="form-group">
+					<div class="col-sm-6"></div>
+					<div class="col-sm-6">
+						<button type='button' class="btn jt-btn-search financeBillSearch">搜索</button>
+					</div>
+				</div>
+				<div class="form-group hideSearchParam">
+					<div class='col-sm-3 typediv'></div>
+					<div class='col-sm-6 type2div'></div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+</#macro>

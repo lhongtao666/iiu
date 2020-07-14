@@ -1,0 +1,38 @@
+<form id="jobRunHiForm" method="get" class="form-horizontal">
+    <div class="form-group">
+        <div class='col-sm-4'>
+            <label class="col-sm-3 control-label">任务业务键</label>
+            <div class="col-sm-9">
+                <input type="text" name="key" placeholder="" class="form-control" validateType="default">
+            </div>
+        </div>
+        <div class='col-sm-4'>
+            <label class="col-sm-3 control-label">所属组值</label>
+            <div class="col-sm-9">
+                <input type="text" name="group" placeholder="" class="form-control" validateType="default">
+            </div>
+        </div>
+        <div class='col-sm-4'>
+            <label class="col-sm-3 control-label">执行结果</label>
+            <div class="col-sm-9">
+                <input type="text" name="status" placeholder="" class="form-control" validateType="default">
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class='col-sm-12'>
+            <label class="col-sm-1 control-label">执行日志</label>
+            <div class="col-sm-11">
+                <textarea name='log' class='form-control' rows='10'></textarea>
+            </div>
+        </div>
+    </div>
+    <div class='form-group'>
+        <!--将隐藏域放在这里，不显示出来-->
+        <div style="display:none'">
+            <input type="hidden" id="id" name="id">
+            <input type="hidden" name="createBy">
+            <input type="hidden" name="createTime">
+        </div>
+    </div>
+</form>

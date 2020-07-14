@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>系统附件管理</title> 
+    <#include "/common/common.html"> 
+    <#include "/common/webuploader.html">
+    <script>
+        var type = "";
+        <#if userId?exists>
+        var userId = "${userId}";
+        <#else>
+        var userId = "";
+        </#if>
+    </script>
+    <#include "/common/ztree.html">
+    <script src="${ctx}/js/jt/gl/systemfile/systemFile${deploy_min!""}.js?v=${jsVersion}"></script>
+    <script src="${ctx}/js/jt/gl/km/glHelpUtil${deploy_min!""}.js?v=${jsVersion}" ></script>
+</head>
+
+<body class='white-bg'>
+    <div class="wrapper">
+        <div class="row">
+            <div class="col-sm-2">
+                <ul id="folderTree" class="ztree" style="width: 100%; overflow: auto;"></ul>
+            </div>
+
+            <div class="col-sm-10">
+                <div class='row'>
+                    <div class="col-sm-12">
+                        <button style='display:none;' class='btn btn-sm jt-btn-normal btn-primary uploadFileBtn' type='button'>上传文件</button>
+                        <button style='display:none;' class='btn btn-sm jt-btn-normal jt-bn-red btn-danger cancelUploadFileBtn' type='button'>取消</button>
+                        <button class='btn btn-sm  btn-danger jt-btn-normal jt-bn-red batchManageBtn' type='button'>批量管理</button>
+                        <button class='btn btn-sm  btn-danger jt-btn-normal jt-bn-red deleteBatchBtn' type='button' style='display: none;'>批量删除</button>
+                        <button class='btn btn-sm  btn-danger jt-btn-normal jt-bn-red cancelDeleteBatchBtn' type='button' style='display: none;'>取消</button>
+                        <!-- 帮助中心 -->
+                        <label id="glHelpContainer"></label>
+                    </div>    
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-12" id='fileContainer'>
+                    </div>
+                </div>
+                
+                <div class='row'>
+                    <div class='col-sm-12' id='uploadContainer'>
+                        <div class="page-container">
+                            <p>您可以尝试文件拖拽，使用QQ截屏工具，然后激活窗口后粘贴，或者点击添加图片按钮</p>
+                            <div id="uploader" class="wu-example">
+                                <div class="queueList">
+                                    <div id="dndArea" class="placeholder">
+                                        <div id="filePicker"></div>
+                                        <p>或将照片拖到这里，单次最多可选300张</p>
+                                    </div>
+                                </div>
+                                <div class="statusBar" style="display:none;">
+                                    <div class="progress">
+                                        <span class="text">0%</span>
+                                        <span class="percentage"></span>
+                                    </div>
+                                    <div class="info"></div>
+                                    <div class="btns">
+                                        <div id="filePicker2"></div>
+                                        <div class="uploadBtn">开始上传</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!--添加分类-->
+    <#include "/common/cateForm.html">
+</body>
+</html>

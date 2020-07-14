@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>jt_secure_oper_config管理</title>
+    <#include "/common/common.html" />
+    <script src="${ctx}/js/plugins/suggest/bootstrap-suggest.js?v=${jsVersion}"></script>
+    <script src="${ctx}/js/jt/gl/secure/secureOperConfig${deploy_min!""}.js?v=${jsVersion}" ></script>
+</head>
+
+<body>
+    <div class="wrapper animated fadeInRight">
+        <!-- list界面 -->
+        <div class="row list_wrapper">
+            <#include "/gl/secure/secureOperConfig/secureOperConfigToolbar.html">
+                <div class='col-sm-12 jqGrid_wrapper'>
+                    <table id="secureOperConfigGrid"></table>
+                    <div id="secureOperConfigPager"></div>
+                </div>
+        </div>
+        <!-- 编辑界面 -->
+        <#include "/gl/secure/secureOperConfig/secureOperConfigEdit.html">
+    </div>
+</body>
+
+</html>

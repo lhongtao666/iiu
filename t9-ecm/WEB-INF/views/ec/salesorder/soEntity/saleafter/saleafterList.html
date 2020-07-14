@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>待提交销售订单</title>
+	<#include "/common/common.html">
+	<script type="text/javascript">
+	$(function(){
+		var curUserId = "${ONLINE_ENTITY.userId}";
+		var csId="${csId}";
+		var csParam="";
+		if(csId!=""){
+			csParam="&Q__S__EQ__entity.cs_id_="+csId;
+		}
+		var soEntityAfter = new SoEntityAfter();
+		soEntityAfter.init({isInitAd:true,gridRecordsSpan:null,searchParam:csParam});
+	});
+	</script>
+<style>
+.test{
+	padding-right:8px !important;
+}
+.searchImg{
+    width:24px;
+    height:24px;
+    margin:0 auto;
+}
+.skuSearchImg{
+    border: 1px solid #e7eaec;
+}
+
+.skuSearchImg:hover{
+    border: 1px solid #d2d2d2
+}
+</style>
+<script src='${ctx}/js/jt/ec/salesorder/soEntityAfter-site${deploy_min!""}.js?v=${jsVersion}' ></script>
+</head>
+<body>
+     <div class="wrapper animated ">
+		<!-- list界面 -->
+		<div class="row list_wrapper">
+		    <#include "soEntityAfterToolbar.html">
+	        <div class='col-sm-12 jqGrid_wrapper'>
+			    <table id="soEntityAfterGrid"></table>
+				<div id="soEntityAfterPager"></div>
+			</div>
+		</div> 
+		<#include "/ec/salesorder/soEntity/soEntityEdit.html">
+	</div>
+	
+	<div style="display:none"  class="csFollowEdit" >
+		<div class="panel-body">
+			<form method="get" class="form-horizontal" id="csFollowForm">
+		   		<#include "/crm/cs/csEntity/csFollowEdit.html" >
+		   	</form>
+	   	</div>
+	</div>
+	<div style="display:none"  class="sendMessagePane" >
+	   	<#include "/crm/cs/csEntity/sendMessagePane.html" >
+	</div>
+</body>
+</html>

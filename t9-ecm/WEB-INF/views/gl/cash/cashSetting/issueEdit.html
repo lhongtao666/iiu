@@ -1,0 +1,116 @@
+<style type="text/css">
+    .rows-title>font {
+        border-bottom: 3px solid #1caf9a;
+        height: 31px;
+        word-wrap: break-word;
+        font-size: 1.1em;
+        width: 4.5em;
+        text-align: center;
+    }
+    .rows-title {
+        font-weight: bold;
+        padding-left: 2.5%;
+        height: 24px;
+        width: 100%;
+        padding: 0;
+        margin: 0;
+        color: #1caf9a;
+        border-bottom: 1px solid #ddd;
+    }
+</style>
+<div class="wrapper" style="overflow-x: hidden">
+	<div class="row form_wrapper" style='background-color: #ffffff'>
+		<div class='col-sm-12'>
+			<form id="issueForm" method="get" class="form-horizontal">	
+				<div class="form-group">
+					<div class="col-sm-12 rows-title">
+			            <font>现金券面值信息</font>
+			        </div>	
+		        </div>	
+				<div class="form-group">
+					<input type='hidden' name="id">
+					<label class="col-sm-1 control-label">名称：</label>
+					<span name="name" class="col-sm-2 control-label" style="text-align:left;"></span>
+					<label class="col-sm-1 control-label">状态：</label>
+					<span name="status" class="col-sm-2 control-label" style="text-align:left;"></span>
+					<label class="col-sm-1 control-label">金额：</label>
+					<span name="money" class="col-sm-2 control-label" style="text-align:left;"></span>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-1 control-label">已发行数量：</label>
+					<span name="pubSum" class="col-sm-2 control-label" style="text-align:left;"></span>
+					<label class="col-sm-1 control-label">已用数量：</label>
+					<span name="useSum" class="col-sm-2 control-label" style="text-align:left;"></span>
+					<label class="col-sm-1 control-label">未用数量：</label>
+					<span name="unuseSum" class="col-sm-2 control-label" style="text-align:left;"></span>
+					<label class="col-sm-1 control-label">已用占比：</label>
+					<span name="userPrecent" class="col-sm-2 control-label" style="text-align:left;"></span>
+				</div>	
+				<div class="form-group">
+					<div class="col-sm-12 rows-title">
+			            <font>发行现金券</font>
+			        </div>	
+			    </div>	
+		        <div class="form-group">
+		        	<label class="col-sm-1 control-label">发行数量</label>
+		        	<div class="col-sm-1">
+						<input type="number" name="count" class="form-control" validateType="default">
+					</div>
+					<label class="col-sm-2 control-label" style="min-width:160px;">有效截止日期（不设则永久）</label>
+					<div class="col-sm-2">
+						<input class='laydate-icon form-control layer-date' name='expireDate' validateType="default"  onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss', start: laydate.now(0, 'YYYY/MM/DD 23:59:59'), min: laydate.now()})">
+					</div>
+					<div class="col-sm-4">
+						<button class="btn btn-sm btn-primary issueBtn"   type="button">发行</button>
+				    	<button type='button' class='btn btn-sm btn-primary issueExportExcel' >导出查询结果</button>
+				    	<div class='checkbox checkbox-success checkbox-inline'>
+							<input type='checkbox' class='isExportPart' value='y' checked>
+							<label for='isExportPart'>只导出未使用和未关联的现金券码</label>
+						</div>
+				    </div>
+		        </div>		
+		        <div class="form-group">
+		        	<label class="col-sm-1 control-label">客户</label>
+		        	<div class="col-sm-2">
+						<input type="text" name="Q__S__EQ__cs.code_" class="form-control" validateType="default">
+					</div>
+					<label class="col-sm-1 control-label">订单号</label>
+		        	<div class="col-sm-2">
+						<input type="text" name="Q__S__EQ__hi.so_no_" class="form-control soNoSearch" validateType="default">
+					</div>
+					<label class="col-sm-1 control-label">状态</label>
+		        	<div class="col-sm-2">
+						<select name="Q__S__EQ__hi.status_" class="form-control statusSearch" validateType="default">
+							<option value=''>请选择</option>
+							<option value='unused'>未使用</option>
+							<option value='used'>已使用</option>							
+						</select>
+					</div>
+					<button class="btn btn-sm btn-primary searchBtn" type="button">查询</button>
+		        </div>	
+	            <div class="col-sm-12" style="padding: 0;">
+	                <table class="table" style="margin-bottom: 0px;">
+	                    <thead>
+	                        <tr>
+	                            <th style="width: 10%">序号</th>
+	                            <th style="width: 15%">券码</th>
+	                            <th style="width: 15%">创建时间</th>
+	                            <th style="width: 15%">有效期截止</th>
+                              	<th style="width: 10%">状态</th> 
+	                            <th style="width: 10%">订单号</th>
+	                            <th style="width: 10%">关联客户</th>
+	                            <th style="width: 15%">使用时间</th>
+	                        </tr>
+	                    </thead>
+	                </table>
+	            </div>
+	            <div class="col-sm-12 samll-scrollbar" id="issueResultDiv" style="overflow: auto;background-color: #eee;min-height: 130px;padding: 0;">
+	                <form id="tableForm" method="get" class="form-horizontal" novalidate="novalidate">
+	                    <table class="table" id="issueTableContainer">
+	                    </table>
+	                </form>
+	            </div>
+			</form>
+		</div>
+	</div>
+</div>

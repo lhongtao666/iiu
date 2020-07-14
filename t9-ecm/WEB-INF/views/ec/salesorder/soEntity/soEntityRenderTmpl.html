@@ -1,0 +1,154 @@
+<!-- 地址模板-->
+<script id='addrTmpl' type='text/x-jsrender'>
+	<div class="form-group csAddrDiv" style="display:none;">
+		<div class="col-sm-3">
+			<label class="col-sm-4 control-label" >收货人</label>
+			<div class="col-sm-7">
+				<input type="text" value="{{:name}}" readonly="readonly" class="form-control addrName">
+			</div>
+		</div>
+		<div class="col-sm-3">
+			<label class="col-sm-4 control-label" >联系方式</label>
+			<div class="col-sm-7">
+				<input type="text" value="{{:mobile}}" readonly="readonly" class="form-control addrMobile" >
+			</div>
+		</div>
+		<div class="col-sm-6">
+			<label class="col-sm-2 control-label" >地址</label>
+			<div class="col-sm-7">
+				<input type="text" value="{{:coName}}{{:prName}}{{:ciName}}{{:arName}}{{:toName}}{{:addr}}" readonly="readonly" class="form-control addrInfo" >
+			</div>
+			<div class="col-sm-3">
+				<button type="button" class="btn btn-sm btn-primary editAddr" idVal="{{:id}}">改</button>
+				<div class="radio radio-success radio-inline">
+	                                                <input type="radio" name="chooseAddr" id="{{:id}}" value="{{:id}}" coName="{{:coName}}" prName="{{:prName}}" ciName="{{:ciName}}" arName="{{:arName}}" addrDetail="{{:addr}}">
+	                                                <label for="{{:id}}">
+					选中
+	                                                </label>
+                                                </div>
+			</div>
+		</div>
+	</div>
+</script>
+<!-- 产品table模板-->
+<script id='soItemTmpl' type='text/x-jsrender'>
+	<tr>
+		<td>
+			<img style='display: inline; width:35px;' urlval='{{:prodPic}}
+			<a href='#' class='prodShow' value='{{:skuId}}' nameValue='{{:prodName}}'>{{:skuCode}}:{{:prodName}}</a>
+		</td>
+		<td><span class='originPrice'>{{:originPrice}}</span></td>
+		<td><input type="number" class="form-control prodPrice" validateType="default" value="{{:prodPrice}}"></td>
+		<td>{{:canSaleQty}}</td>
+		<td><input type="number" class="form-control soItemCount" validateType="default" value="1"></td>
+		<td><span class="unit">{{:unit}}</span></td>
+		<td><span class="prodTotal">{{:prodTotal}}</span></td>
+		<td>
+			<i class="fa fa-remove delSoItem" title="删除" style="color:red;cursor:pointer;" ></i>
+			<input type="hidden" class="skuId" value="{{:skuId}}">
+			<input type="hidden" class="skuKey" value="{{:skuCode}}">
+			<input type="hidden" class="priceType" value="{{:priceType}}">
+			<input type="hidden" class="buyLimit" value="{{:buyLimit}}">
+			<input type="hidden" class="skuPercentLimit" value="{{:skuPercentLimit}}">
+		</td>
+	</tr>
+</script>
+<script id='soItemTmpl1' type='text/x-jsrender'>
+	<tr>
+		<td>
+			<img style='display: inline; width:35px;' urlval='{{:prodPic}}  'src='{{:prodSrc}}'>
+			<a href='#' class='prodShow' value='{{:skuId}}' nameValue='{{:prodName}}'>{{:skuCode}}:{{:prodName}}</a>
+		</td>
+		<td><span class='originPrice'>{{:originPrice}}</span></td>
+		<td><input type="number" class="form-control prodPrice" validateType="default" value="{{:prodPrice}}"></td>
+		<td>{{:canSaleQty}}</td>
+		<td><input type="number" class="form-control soItemCount" validateType="default" value="1"></td>
+		<td><span class="unit">{{:unit}}</span></td>
+		<td><span class="prodTotal">{{:prodTotal}}</span></td>
+		<td>
+			<i class="fa fa-remove delSoItem" title="删除" style="color:red;cursor:pointer;" ></i>
+			<input type="hidden" class="skuId" value="{{:skuId}}">
+			<input type="hidden" class="skuKey" value="{{:skuCode}}">
+			<input type="hidden" class="priceType" value="{{:priceType}}">
+			<input type="hidden" class="buyLimit" value="{{:buyLimit}}">
+			<input type="hidden" class="skuPercentLimit" value="{{:skuPercentLimit}}">
+		</td>
+	</tr>
+</script>
+<!-- 绩效table模板-->
+<script id='soProfitTmpl' type='text/x-jsrender'>
+	{{for employees}}
+	<tr>
+		<td>{{:aid}}:<div>{{:name}}</div></td>
+		<td>{{:groupName}}</td>
+		<td><input type="text" class="form-control soProfitPercent" validateType="default" value="0.00"></td>
+		<td>
+			<i class="fa fa-remove delSoProfit" style="color:red;cursor:pointer;" title="删除"></i>
+			<input type="hidden" class="profitEmpId" value="{{:id}}" />
+		</td>
+	</tr>
+	{{/for}}
+</script>
+<!-- 日志table模板-->
+<script id='soLogTmpl' type='text/x-jsrender'>
+	<tr>
+		<td>{{:employeeAid}}:{{:employeeName}}</td>
+		<td>
+			{{if  srcType == 'flow_sys'}}
+			    订单状态变动生成
+			{{else srcType == 'option_sys'}}
+			    其他操作生成
+			{{else srcType == 'manual'}}
+			    人工
+			{{/if}}
+		</td>
+		<td>
+			{{if type == 'add'}}
+			创建
+			{{else type == 'edit'}}
+			修改
+			{{else type == 'paid_up'}}
+			已支付
+			{{else type == 'pay'}}
+			支付确认
+			{{else type == 'comfirm'}}
+			审核
+			{{else type == 'pack'}}
+			备货
+			{{else type == 'deliver'}}
+			打包
+			{{else type == 'shipping'}}
+			发货
+			{{else type == 'back_deliver'}}
+			撤销发货
+			{{else type == 'shipped'}}
+			订单跟进
+			{{else type == 'back_complete'}}
+			撤销完成
+			{{else type == 'turndown'}}
+			驳回
+			{{else type == 'close'}}
+			关闭
+			{{else type == 'back'}}
+			退回处理
+			{{else type == 'awaiting_refund'}}
+			退款申请
+			{{else type == 'refund'}}
+			退款完成
+			{{else type == 'other_oper'}}
+			其他操作
+			{{else type == 'revisit'}}
+			订单回访
+			{{else type == 'remark'}}
+			人工备注
+			{{else type == 'task'}}
+			跟进
+			{{else type == 'repeatComfirm'}}
+			复审
+			{{/if}}
+		</td>
+		<td>{{:result}}</td>
+		<td>{{:createTime}}</td>
+		<td>{{:comment}}</td>
+	</tr>
+</script>

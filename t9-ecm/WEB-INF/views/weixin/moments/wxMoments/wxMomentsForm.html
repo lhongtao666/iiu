@@ -1,0 +1,125 @@
+
+<div class='row' style='border: 1px solid #ddd; margin-left: 15px; margin-right: 15px;padding:10px;'>
+	<div class='col-sm-12'>
+		<form id="wxMomentsForm" method="get" class="form-horizontal">
+			<div class="form-group">
+				<label class="col-sm-1 control-label">内容类型：</label>
+				<div class="col-sm-6">
+					<input type="radio" value='1' checked  name="type">文字
+	               	<input type="radio" value='2'  name="type">图片
+	               	<input type="radio" value='3' name="type">视频
+	               	<input type="radio" value='4'  name="type">链接
+	            </div>
+		    </div>
+		    <div class="form-group img">
+		    	<label class="col-sm-1 control-label">图片内容：</label>
+		    	<div class="col-sm-6 moments-img" id="moments-img">
+		    	</div>
+		    	<div class="col-sm-1">
+		    		<button class="jt-btn-search" id="selectCommonImageBtn" type="button">添加图片</button>
+		    	</div>
+		    	
+		    </div>
+		    <div class="form-group link">
+		    	<label class="col-sm-1 control-label">链接内容：</label>
+		    	<div class="col-sm-6">
+		    		<input type="text" name="link"  class="form-control" validatetype="default">
+		    	</div>
+		    </div>
+		    <div class="form-group video">
+		    	<label class="col-sm-1 control-label">视频内容：</label>
+		    	<div class="col-sm-6 moments-video" id="moments-video">
+		    	</div>
+		    	<div class="col-sm-1">
+		    		<button class="btn btn-sm btn-primary" id="selectCommonVideoBtn" type="button">添加视频</button>
+		    	</div>
+		    </div>
+		    <div class="form-group">
+				<label class="col-sm-1 control-label">文案：</label>
+				<div class="col-sm-6">
+					<textarea rows="5" name="content" placeholder="请输入..." class="form-control" validateType="default" ></textarea>
+				</div>		
+			</div>
+			<div class="form-group">
+				<label class="col-sm-1 control-label">发送范围：</label>
+				<div class="col-sm-6">
+					<input type="radio" value="all" name="toScope" checked > 全部微信
+					<input type="radio" value="specify" name="toScope" > 指定微信
+				</div>		
+			</div>
+			<div class="form-group employee-weixin">
+				<label class="col-sm-1 control-label">微信号：</label>
+				<div class="col-sm-6">
+					<select id="employeeWeixins" data-placeholder="请选择" multiple class="chosen-select form-control" name="employeeWeixins">
+					</select>
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-1 control-label">时间类型：</label>
+				<div class="col-sm-9">
+					<input type="radio" value="1" name="sendTimeType" checked > 立即开始
+					<input type="radio" value="2" name="sendTimeType" > 定时执行
+				</div>
+			</div>
+			<div class="form-group sendTime">
+				<label class="col-sm-1 control-label">推送时间：</label>
+				<div class="col-sm-3">
+					<input class='laydate-icon form-control layer-date' name ="sendTime" validateType="default"  placeholder="YYYY-MM-DD hh:mm:ss" onclick="laydate({istime: true, min: laydate.now(),format: 'YYYY-MM-DD hh:mm:ss'})">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-1 control-label left-label">可见：</label>
+				<div class="col-sm-11">
+					<input type="radio" name="publicMode" checked="checked" value="0">公开
+					<input type="radio" name="publicMode" value="1">私密
+					<input type="radio" name="publicMode" value="2">标签可见
+					<input type="radio" name="publicMode" value="3">标签不可见
+				</div>
+			</div>
+			<div class="form-group wx-label">
+				<label class="col-sm-1 control-label left-label">标签：</label>
+				<div class="col-sm-6">
+					<select id="labelNames" data-placeholder="请选择" multiple class="chosen-select form-control" name="toTags">
+					</select>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-1 control-label">时间间隔：</label>
+				<div class="col-sm-4">
+					不同微信推送时间间隔
+					<select name="intervals" validateType="default" >
+						<option value="1">1分钟</option>
+						<option value="2">2分钟</option>
+						<option value="3">3分钟</option>
+						<option value="4">4分钟</option>
+						<option value="5">5分钟</option>
+						<option value="6">6分钟</option>
+						<option value="7">7分钟</option>
+						<option value="8">8分钟</option>
+						<option value="9">9分钟</option>
+						<option value="10">10分钟</option>
+					</select>
+				</div>
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">状态</label>
+					<div class="col-sm-9">
+						<select class="form-control" name="status"  disabled="disabled" validateType="default" >
+		               		<option value="awaiting">待发送</option>
+		               	    <option value="sending">发送中</option>
+		               		<option value="complete">发送完毕</option>
+		              	</select>
+		            </div>
+		        </div>
+            </div>    
+			<div class='form-group'>
+				<!--将隐藏域放在这里，不显示出来-->
+				<div style="display:none'">
+					<input type="hidden" id="id" name="id">
+					<input type="hidden" name="createBy">
+					<input type="hidden" name="createTime">
+				</div>
+			</div>
+
+		</form>
+	</div>
+</div>

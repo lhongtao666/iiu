@@ -1,0 +1,106 @@
+<div style="display: none;" class="row form_wrapper">
+	<div class='col-sm-12'>
+		<div class="panel panel-default">
+	        <div class="panel-heading">
+				<button type='button' class="btn btn-sm  btn-primary jt-btn-normal saveBtn">保存</button>
+				<button type='button' class="btn btn-sm  btn-default jt-btn-close prevBtn">取消</button>
+	        </div>
+
+	        <div class="panel-body">
+				<form id="validateForm" method="get" class="form-horizontal">
+					<div class="form-group">
+					    <div class='col-sm-4'>
+							<label class="col-sm-3 control-label">规则类型</label>
+							<div class="col-sm-9">
+								<select class="form-control showAndHideGrid" name="type" id="type"  >
+									<option value="base">基础验证规则</option>
+									<option value="mix">复合验证规则</option>
+								</select>
+							</div>
+						</div>
+				       <div class='col-sm-4'>
+							<label class="col-sm-3 control-label">规则业务键</label>
+							<div class="col-sm-9">
+								<input type="text" name="key" placeholder="" class="form-control">
+							</div>
+						</div>
+				        <div class='col-sm-4'>
+							<label class="col-sm-3 control-label">配置内容类型</label>
+							<div class="col-sm-9">
+								<select class="form-control" name="configType" id="configType">
+									<option value="base">基本</option>
+									<option value="regex">正则</option>
+									<option value="js">JS方法</option>
+								</select>
+							</div>
+						</div>
+					</div>
+					
+					<div class="form-group">
+					    <div class='col-sm-4'>
+							<label class="col-sm-3 control-label">配置内容</label>
+							<div class="col-sm-9">
+								<input type="text" name="config" placeholder="" class="form-control">
+							</div>
+						</div>
+				        <div class='col-sm-4'>
+							<label class="col-sm-3 control-label">服务器端验证方法</label>
+							<div class="col-sm-9">
+								<input type="text" name="serverMethod" placeholder=""
+									class="form-control">
+							</div>
+						</div>
+				        <div class=' col-sm-4'>
+							<label class="col-sm-3 control-label">定制提示信息</label>
+							<div class="col-sm-9">
+								<input type="text" name="msg" placeholder="" class="form-control">
+							</div>
+						</div>
+					</div>
+					
+				    <div class="form-group">
+				        <div class='col-sm-4'>
+							<label class="col-sm-3 control-label">排序号</label>
+							<div class="col-sm-9">
+								<input type="text" name="sort" placeholder=""
+									class="digits form-control">
+							</div>
+						</div>
+					</div>
+				    
+				    <div class='col-sm-12'>
+						<div class="form-group" id="relButton">
+							<div class="col-sm-4 col-sm-offset-2">
+							   <button type='button' class="btn btn-sm   btn-primary privateValidateEdit">新增关联私有规则</button>
+						       <button type='button' class="btn btn-sm   btn-primary baseValidate">新增关联基础规则</button>
+							</div>
+						</div>
+					</div>
+				    
+				    <div class='col-sm-12'>
+						<div class="form-group" id="relGrid">
+							<label class="col-sm-2 control-label" style="color: red;">验证规则关联</label>
+							<div class="col-sm-10">
+								<div style="min-width: 400px;" id="validateRelDiv">
+									<table id="validateRelGrid"></table>
+									<div id="validateRelPager"></div>
+									<input type="hidden" id="validateRelJSON" name="validateRelJSON">
+								</div>
+							</div>
+						</div>
+					</div>
+				    
+					<!--将隐藏域放在这里，不显示出来-->
+					<div style="display: none'">
+						<input type="hidden" id="id" name="id"> <input type="hidden"
+							name="createBy"> <input type="hidden" name="createTime">
+						<input type="hidden" name="updateBy"> <input type="hidden"
+							name="createTime">
+					</div>
+
+				</form>
+
+	        </div>
+	    </div>	
+	</div>
+</div>

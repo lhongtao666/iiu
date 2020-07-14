@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>帮助中心管理</title>
+	<#include "/common/common.html">
+	<script src="${ctx}/js/jt/gl/km/newGlHelp/newGlHelp${deploy_min!""}.js?v=${jsVersion}" ></script>
+</head>
+<style>
+	.section-search{
+		height: 150px;
+    		position: relative;
+    		background: url(${ctx}/img/jt/glhelp/glhelpbg.jpg) 0 6%;
+    		background-size: 100% auto;
+	}
+	.search-mask {
+	    position: absolute;
+	    top: 0;
+	    left: 0;
+	    right: 0;
+	    bottom: 0;
+	    opacity: .9;
+	    filter: alpha(opacity=90);
+	    background-image: linear-gradient(-270deg,#ccd0da 20%,#23c6c8 84%);
+	}
+	.section-search .search-wrapper {
+	    position: absolute;
+	    top: 50px;
+	    left: 50%;
+	    -webkit-transform: translate(-50%,0);
+	    -moz-transform: translate(-50%,0);
+	    -ms-transform: translate(-50%,0);
+	    -o-transform: translate(-50%,0);
+	    transform: translate(-50%,0);
+	    z-index: 2;
+	}
+	.section-search .search-wrapper .keywords-wrapper {
+	    padding: 8px 15px;
+	    font-weight: 200;
+	}
+	.section-search .search-container>input {
+	    width: 620px;
+	    height: 60px;
+	    background: #FFF;
+	    outline: 0;
+	    border: none;
+	    padding-right: 50px;
+	    padding-left: 20px;
+	    font-size: 18px;
+	    -webkit-box-shadow: 0 1px 4px 0 rgba(0,0,0,.3);
+	    box-shadow: 0 1px 4px 0 rgba(0,0,0,.3);
+	    -webkit-border-radius: 6px;
+	    -moz-border-radius: 6px;
+	    border-radius: 6px;
+	}
+	.section-search .search-container>i {
+	    position: absolute;
+	    top: 36%;
+	    right: 15px;
+	    color: #1F2D3D;
+	    font-size: 20px;
+	    -webkit-transform: translate(0,-50%);
+	    -moz-transform: translate(0,-50%);
+	    -ms-transform: translate(0,-50%);
+	    -o-transform: translate(0,-50%);
+	    transform: translate(0,-50%);
+	    cursor: pointer;
+	    font-weight: 700;
+	    -webkit-transition: color 218ms;
+	    -moz-transition: color 218ms;
+	    -o-transition: color 218ms;
+	    transition: color 218ms;
+	}
+	.section-search .keywords-wrapper {
+	    padding: 8px 15px;
+	    font-weight: 200;
+	}
+	.keywords-wrapper .keyword {
+	    position: relative;
+	    float: left;
+	    left: 0;
+	    margin-right: 15px;
+	    font-size: 14px;
+	    color: #fff;
+	}
+	.detail-content{
+		height: auto;
+	}
+	.tab-content{
+		overflow: auto;
+    		height: 95%;
+	}
+	.init-content,.search-content{
+		margin-top: 50px;
+    		margin-left: 20px;
+		height: calc(100% - 200px)
+	}
+	.init-content .nav>li{
+	    border-bottom: 2px solid #1ab394;
+	    line-height: 25px;
+	    width: 100px;
+	    color: #1ab394;
+	    font-size: 16px;
+	    font-weight: bold;
+	}
+	.search-content .nav>li{
+	    line-height: 25px;
+	    width: 20%;
+	    color: #1ab394;
+	    font-size: 16px;
+	    font-weight: bold;
+	}
+	#commonQuestion{
+		margin-top:20px;
+	}
+	#commonQuestion>li{
+		margin-bottom: 10px;
+    		font-size: 16px;
+	}
+	.videoItem{
+		float: left;
+    		width: 200px;
+    		height: 175px;
+    		margin-right: 15px;
+	}
+	.videoItem>video{
+		height: 100%!important;
+	}
+	.content .answerUrl{
+		font-size: 12px !important;
+	}
+</style>
+<body class='white-bg'>
+	<div class="wrapper animated" style="height: 100%;">
+		<div class='row list_wrapper' style="height: 100%;overflow: auto;">
+			<div class="head">
+				<div class="section-search">
+					<div class="search-mask"></div>
+					<div class="search-wrapper">
+						<div class="search-container">
+							<input placeholder="搜索关键词，例如“分配客户资源”" id="center-search">
+							<i class='fa fa-search glHelpSearch'></i>
+						</div>
+						<div class="keywords-wrapper">
+							<a class="keyword" href="#">热门搜索：</a>
+							<a class="keyword keySearch" type="button">下订单</a>
+							<a class="keyword keySearch" type="button">分业绩</a>
+							<a class="keyword keySearch" type="button">业绩报表</a>
+							<a class="keyword keySearch" type="button">通话记录</a>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="init-content" >
+				<div class="col-sm-6" style="padding-right: 50px;width:45%;height: 100%;">
+					<ul class="nav nav-tabs">
+			              <li>
+			              	常见问题
+			              </li>
+			              <span style="float: right;margin-right: 10px;">
+        					<a href="javascript:void(0);" class="moreQuestion" data-value="10">查看更多<i class="fa fa-angle-double-down" aria-hidden="true"></i></a>
+			              </span>
+			            </ul>
+			            <div class="tab-content">
+					  	<ul id="commonQuestion">
+					  		<li>暂无数据</li>
+					  		<!-- <li><a class="body-link" href="/doc/9027">数据联动</a></li>
+					  		<li><a class="body-link" href="/doc/9027">数据联动</a></li>
+					  		<li><a class="body-link" href="/doc/9027">数据联动</a></li> -->
+					  	</ul>
+					  	<div class="detail-content" style="display: none;">
+							<#include "/gl/km/newGlHelp/detailContent.html">
+						</div>
+			            </div>
+				</div>
+				<div class="col-sm-6" style="margin-left: 50px;width:45%;height: 100%;">
+					<ul class="nav nav-tabs">
+			              <li>
+			              	操作视频
+			              </li>
+			              <span style="float: right;margin-right: 10px;">
+        					<a href="javascript:void(0);" class="moreVideo" data-value="6">查看更多<i class="fa fa-angle-double-down" aria-hidden="true"></i></a>
+			              </span>
+			            </ul>
+			            <div class="tab-content">
+						  <div class="videoItem">
+						  	<li>暂无数据</li>
+						  	<!-- <video controls="" preload="metadata">
+									<source type="video/mp4" src="https://video.jiandaoyun.com/%E7%AE%80%E9%81%93%E4%BA%91%E4%BB%8B%E7%BB%8D%E8%A7%86%E9%A2%91.mp4">
+								</video>
+								<div style="text-align: center;">下单视频</div> -->
+						  </div>
+			            </div>
+				</div>
+			</div>
+			
+			<div class="search-content" style="display: none;">
+				<#include "/gl/km/newGlHelp/searchContentList.html">
+			</div>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>客户价值模型管理</title>
+	<#include "/common/common.html">
+	<script src="${ctx}/js/jt/crm/rfmt/rfmtModel${deploy_min!""}.js?v=${jsVersion}" ></script>
+</head>
+
+<body>
+	<div class="wrapper animated fadeInRight">
+		<!-- list界面 -->
+		<div class="row list_wrapper">
+			<#include "/crm/rfmt/rfmtModel/rfmtModelToolbar.html">	  			
+			<div class='col-sm-12 jqGrid_wrapper'>
+			    <table id="rfmtModelGrid"></table>
+				<div id="rfmtModelPager"></div>
+			</div>
+		</div>
+		<!-- 编辑界面 -->
+		<#include "/crm/rfmt/rfmtModel/rfmtModelEdit.html">	    
+	</div>
+</body>
+</html>

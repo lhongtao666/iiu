@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>翻译</title>
+    <#include "/common/common.html" />
+    <link rel="stylesheet" type="text/css" href="${ctx}/css/jt/solr/solr.css?v=${jsVersion}">
+    <script type="text/javascript" src="${ctx}/js/jt/gl/cti/trkSheetRecordTranslate/trkSheetRecordTranslateDialog${deploy_min!''}.js?v=${jsVersion}"></script>
+    <script type="text/javascript">
+    $(function() {
+        var recordId = "${recordId }";
+        var listenUrl = "${recordSrc }";
+        var uniqueCode = "${uniqueCode }";
+        var recordId = "${recordId }";
+        var recordWordResult = "${recordWordResult }";
+        var params = {
+            recordId: recordId,
+            listenUrl: listenUrl,
+            uniqueCode: uniqueCode,
+            recordWordResult: recordWordResult
+        };
+        var trkSheetRecordTranslateDialog = new TrkSheetRecordTranslateDialog();
+        trkSheetRecordTranslateDialog.init(params);
+        currentTranslatePageObj = trkSheetRecordTranslateDialog;
+    });
+    </script>
+</head>
+
+<body class="white-bg">
+    <div class="solr-edit-layer" style="overflow: hidden;">
+            <form id="solr-qa-form">
+                <div class="form-group">
+                    <div class="rows">
+                        <div class="col-sm-1"></div>
+                        <div class="col-sm-10">
+                            <audio src="/i/song.ogg" id="audioContainer" controls="controls">
+                            Your browser does not support the audio element.
+                            </audio>
+                        </div>
+                    </div>
+                    <div class="rows">
+                        <label class="col-sm-1 control-label left-label">翻译平台</label>
+                        <div class="col-sm-9">
+                            <select type="text" name="platform" autocomplete="off" placeholder="请选择" class="form-control" validateType="default">
+                                <option value="xunfei">讯飞</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-1" style="float: left;padding-left: 20px;">
+                              <button id="translateBtn" class="btn btn-sm  btn-jt" style="float: right;margin: 4px 10px 0 0;">翻译</button>
+                        </div>
+                    </div>
+                    <div class="rows">
+                        <label class="col-sm-1 control-label left-label">上次翻译</label>
+                        <div class="col-sm-9">
+                            <span id="lastTranslateResult" style="float: left;">
+                            </span>
+                            <span id="translateText">
+                                无
+                            </span>
+                            <a class="putText2Area" href="javascript:void(0)"  style="text-decoration:underline;float: right;">填入</a>
+                        </div>
+                    </div>
+
+                    <div class="rows">
+                        <label class="col-sm-1 control-label left-label">结果</label>
+                        <div class="col-sm-10">
+                            <textarea name="audioResult" class="ui-autocomplete-input col-sm-12" style="min-height: 110px; width: 100%; resize: vertical;" value="${recordWordResult }">${recordWordResult }</textarea>
+                        </div>
+                    </div>
+                    <div class="rows" style="padding-right: 70px;">
+                        <div class="btn-solr-add" id="saveAudioResult">
+                            <i class="fa fa-heart"></i>保存
+                        </div>
+                        <!-- <div class="btn-solr-cancle">关闭</div> -->
+                    </div>
+                </div>
+                <div class='form-group' style="display: none">
+                    <input type="hidden" id="currentUniqueMark" name="currentUniqueMark" value="${recordId}">
+                </div>
+            </form>
+        </div>
+</body>
+
+</html>

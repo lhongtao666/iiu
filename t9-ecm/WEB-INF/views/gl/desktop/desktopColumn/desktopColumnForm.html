@@ -1,0 +1,71 @@
+<div class='row' style='border: 1px solid #ddd; margin-left: 15px; margin-right: 15px;padding:10px;'>
+	<div class='col-sm-12'>
+		<form id="desktopColumnForm" method="get" class="form-horizontal">
+
+
+			<div class="form-group">
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">标题<span style='color: red;'>*</span></label>
+					<div class="col-sm-9">
+						<input type="text" name="title" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">编码<span style='color: red;'>*</span></label>
+					<div class="col-sm-9">
+						<input type="text" name="key" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">分组<span style='color: red;'>*</span></label>
+					<div class="col-sm-9">
+						<select id='groupContainer' name='group' class='form-control' validateType='default'></select>
+					</div>
+				</div>		
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">内容链接<span style='color: red;'>*</span></label>
+					<div class="col-sm-9">
+						<input type="text" name="iframeUrl" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+			</div>
+
+			<div class="form-group">
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">详情链接</label>
+					<div class="col-sm-9">
+						<input type="text" name="detailUrl" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">高度<span style='color: red;'>*</span></label>
+					<div class="col-sm-9">
+						<input type="text" placeholder="-1代表自适应高度" class="form-control" name='heightType' validateType='default'>
+					</div>
+				</div>		
+			</div>	
+
+			<div class='form-group'>
+				<div class='col-sm-12'>
+					<label class="col-sm-1 control-label">备注</label>
+					<div class="col-sm-11">
+						<textarea name='desc' class='form-control' rows='5' validateType='default'></textarea>
+					</div>
+				</div>	
+			</div>
+
+
+			<div class='form-group'>
+				<div style="display:none'">
+					<input type="hidden" id="id" name="id">
+					<input type="hidden" name="createBy">
+					<input type="hidden" name="createTime">
+				</div>
+			</div>
+		</form>
+	</div>
+</div>

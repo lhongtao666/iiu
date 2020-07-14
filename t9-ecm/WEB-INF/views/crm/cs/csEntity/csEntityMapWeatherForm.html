@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+<!--引用百度地图API-->
+<#include "/common/common.html">
+<style type="text/css">
+    html,body{margin:0;padding:0;}
+    .iw_poi_title {color:#CC5522;font-size:14px;font-weight:bold;overflow:hidden;padding-right:13px;white-space:nowrap}
+    .iw_poi_content {font:12px arial,sans-serif;overflow:visible;padding-top:4px;white-space:-moz-pre-wrap;word-wrap:break-word}
+</style>
+<!-- <script type="text/javascript" src="http://api.map.baidu.com/api?key=ztiMXNN35BpBFLIPdBQUSSt7hsN08wUM&v=1.1&services=true"></script> -->
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=15&ak=40GWXiduhOft266lK4N1dopL"></script>
+<script src="${ctx}/js/jt/common/service/mapWeatherService${deploy_min!""}.js?v=${jsVersion}" ></script>
+<script>
+	var ctx = "${ctx}";
+	var cityName="${cityName}";
+	var longitude="${longitude}";
+	var latitude = "${latitude}";
+	function loadFunc(){
+		var mapWeatherService = new MapWeatherService();
+		mapWeatherService.init({
+			cityName: cityName,
+		    longitude: longitude,
+		    latitude: latitude
+		});
+	};
+	window.onload = loadFunc;
+</script>
+</head>
+<body style="background-color: #fff;">
+	<div class='baiduMapeatherDiv' style="height: 100%;">
+		<div class='col-sm-12' style="margin-top: 7px;">
+			<form class='form-horizontal'>
+				<div class="form-group">
+					<label class='control-label' style="float: left;padding: 4px 7px 0px 7px;">当前位置：<span id="cityName" style="color: #2679b5;" >北京(默认)</span>
+					</label>
+					<div class='col-sm-2'>
+						<select id="selectFun" class="form-control">
+							<option value="1" selected="selected">本地搜索</option>
+							<option value="2">公交检索</option>
+							<option value="3">驾车线路</option>
+							<option value="4">步行规划</option>
+						</select>	
+					</div>	
+					<div class='col-sm-2' id="keyWordSpan">	
+						<input type="text"  id="keyWord" placeholder="这里输入关键词" class="form-control">
+					</div>
+					<div class='hide' id="roadSpan">
+						<div class='col-sm-2'>	
+							<input type="text"  id="beginWord" placeholder="这里输入起点" class="form-control">
+						</div>
+						<div class='col-sm-2'>	
+							<input type="text"  id="endWord" placeholder="这里输入终点" class="form-control">
+						</div>
+					</div>
+					<div class='col-sm-1'>	
+						<button class="jt-btn-search searchMap" title="搜索" type="button"><i class="fa fa-search"></i>&nbsp;搜索</button>
+					</div>
+				</div>
+			</form>
+		</div>
+		<!--百度地图容器-->
+	    <div id="dituContent" style="width:calc(100% - 30px);height:calc(100% - 200px);margin: 0 auto;">
+	    </div>	
+	    <div  style="width:25%;float:right;padding-right:1%;">
+			<div id="r-result"></div>	
+		</div>
+	     <!--天气容器-->
+	     <div style="width:100%; padding:15px;float:left;" id="tianqiContent">
+	    	<div class='col-sm-12'>
+	    		<div class='col-sm-1' style='padding:0px;width:95px;'>
+	    			<span style='font-size:46px;' class='todayTemp'></span>
+	    			<span style='position:relative;font-size:20px;top:-18px;' class='todayTempLog'></span>
+	   			</div>
+	    		<div class='col-sm-2' style='margin-top:10px;padding:0px;'>
+	    			<p><span class='todayCity'></span></p>
+	    			<p><span class='todayWeather'></span><span class='todayWind'></span></p>
+	    			<p><span class='todayTemperature'></span></p>
+	   			</div>
+	    	</div>
+	        <div class='col-sm-12' > 
+	           <ul class="futrueWeatherUl">
+	           </ul>
+	         </div>
+	    </div>
+    </div>
+</body>
+</html>

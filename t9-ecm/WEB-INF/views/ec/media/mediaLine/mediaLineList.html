@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>推广进线管理</title>
+	<#include "/common/common.html">
+	<script src="${ctx}/js/jt/ec/media/mediaLine${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/plugins/select2/select2.min.js?v=${jsVersion}"></script>
+	<link rel="stylesheet" type="text/css" href="${ctx}/css/plugins/select2/select2.min.css?v=${jsVersion}" />
+	<script src="${ctx}/js/jt/gl/km/glHelpUtil${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script>
+		var periodId = "";
+		var periodDay = "";
+		<#if periodId??>
+			periodId = "${periodId}";
+		</#if>
+		<#if periodDay??>
+			periodDay = "${periodDay}";
+		</#if>
+	</script>
+</head>
+
+<body class='white-bg'>
+	<div class="wrapper animated">
+		<!-- list界面 -->
+		<div class="row list_wrapper">
+			<#include "/ec/media/mediaLine/mediaLineToolbar.html">	  			
+			<div class='col-sm-12 jqGrid_wrapper'>
+			    <table id="mediaLineGrid"></table>
+				<div id="mediaLinePager"></div>
+			</div>
+		</div>
+		<!-- 编辑界面 -->
+		<#include "/ec/media/mediaLine/mediaLineEdit.html">	    
+	</div>
+	<div class="modal fade" id="msgMoreInfoContainer" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	    <div class="modal-dialog" role="document">
+	    	<div class="modal-content">
+	      		<div class="modal-header">
+	        		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+	        		<h4 class="modal-title" id="myModalLabel">留言信息</h4>
+	      		</div>
+		
+		        <div class="modal-body">
+			        <form method="get" class="form-horizontal">
+			        	<div class="form-group">
+							<label class="col-sm-2 control-label">姓名</label>
+							<div class="col-sm-10">
+								<input name='msgName' type='text' validateType='default' class='form-control'/>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">电话</label>
+							<div class="col-sm-10">
+								<input name='msgMobile' type='text' validateType='default' class='form-control'/>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">病情描述</label>
+							<div class="col-sm-10">
+								<input name='msgComment' type='text' validateType='default' class='form-control'/>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">联系时段</label>
+							<div class="col-sm-10">
+								<input name='msgPeriod' type='text' validateType='default' class='form-control'/>
+							</div>
+						</div>
+			        </form>
+		        </div>
+		        <div class="modal-footer">
+		        	<button type="button" class="btn btn-sm   btn-default" data-dismiss="modal">关闭</button>
+		        </div>
+	        </div>
+        </div>
+    </div>
+    
+    <div style="display:none"  class="callRecordcDiv" >
+   		<div class="panel panel-default">
+			<div class="panel-body">
+				<iframe class="callRecordIframe" name="iframe0" width="100%" height="670px" frameborder="0" seamless></iframe>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

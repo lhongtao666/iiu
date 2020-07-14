@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>出库记录列表</title>
+	<#include "/common/common.html">
+	<script src="${ctx}/js/jt/ec/stock/stStockOut${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/ec/stock/storeUtils${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/common/service/seniorSearch${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/gl/km/glHelpUtil${deploy_min!""}.js?v=${jsVersion}" ></script>
+</head>
+
+<body class='white-bg'>
+	<div class="wrapper animated ">
+		<!-- list界面 -->
+			<div class="row list_wrapper">
+				<div class="col-sm-12">
+					<div class="panel panel-default">
+					    <div class="panel-heading">
+					    	<button type='button' class="jt-btn stStockExport"><i class="fa fa-reply">&nbsp;导出</i></button>
+					    	<!-- 帮助中心 -->
+					    	<label id="glHelpContainer"></label>
+					    </div>
+					    <div class="panel-body">
+					        <form id="stStockOutSearchForm" role="form" class="form-horizontal">
+								<!--默认生成一个搜索条件，需要的，用户自己添加-->
+								<div class="form-group">
+									<label class="col-sm-1 control-label">出库时间</label>
+					                <div class="col-sm-3"> 
+						                 <div class="input-daterange input-group" id="datepicker">
+				                        	<input id='startTimeSearch' class='laydate-icon form-control layer-date' placeholder="开始时间" name="Q__D__BW__slog.create_time_" validateType="default" onclick="laydate({istime: true, format: 'YYYY-MM-DD'})" style="cursor:pointer;">
+				                            <span class="input-group-addon">到</span>
+				                            <input id='endTimeSearch' class='laydate-icon form-control layer-date' placeholder="结束时间" name="Q__D__BW__slog.create_time_" validateType="default" onclick="laydate({istime: true, format: 'YYYY-MM-DD'})" style="cursor:pointer;">
+				                        </div>
+						            </div>
+									<button type='button' class="jt-btn-search stStockOutSearch"><i class='fa fa-search'></i> &nbsp;搜索</button>
+									<button type="button" id="seniorSearch" class="jt-btn-drop dropdown-toggle" data-toggle="dropdown" tabindex="-1">展开<span class="fa fa-sort-down"></span>
+									</button>
+								</div>
+								<div id="seniorSearchDiv">
+								<div class="form-group">
+									<label class="col-sm-1 control-label">仓库</label>
+									<div class="col-sm-2"> 
+									   <select id="storeIdSearch" class="form-control" name='Q__S__EQ__slog.store_id_'></select>
+								    </div>
+								    <label class="col-sm-1 control-label">产品名称</label>
+									<div class="col-sm-2"> 
+									   <input type="text" class="form-control" name='Q__S__LK__prod.name_'>
+								    </div>
+								    <label class="col-sm-1 control-label">sku编码</label>
+									<div class="col-sm-2"> 
+									   <input type="text" class="form-control" name='Q__S__LK__sku.code_'>
+								    </div>
+								    <label class="col-sm-1 control-label">出库类型</label>
+									<div class="col-sm-2"> 
+									   <select id="storeIdSearch" class="form-control" name='Q__S__EQ__slog.type_'>
+									   	<option value="">全部</option>
+									   	<option value="out">销售出库</option>
+									   	<option value="allocate_out">调库出库</option>
+									   	<option value="check_out">盘亏</option>
+									   	<option value="manual_out">人工出库</option>
+									   </select>
+								    </div>
+								</div>
+								</div>
+							</form>
+					    </div>
+					</div>
+				</div> 			
+				<div class='col-sm-12 jqGrid_wrapper'>
+				    <table id="stStockOutGrid"></table>
+					<div id="stStockOutPager"></div>
+				</div>
+			</div>
+	</div>
+</body>
+</html>

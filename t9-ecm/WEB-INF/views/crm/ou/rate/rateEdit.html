@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>设置提成比例</title>
+    <#include "/common/common.html" />
+    <script type="text/javascript" src="${ctx}/js/jt/crm/ou/rate${deploy_min!""}.js?v=${jsVersion}"></script>
+    <script type="text/javascript">
+    $(function() {
+        var partyId = "${partyId }";
+        var partyType = "${partyType }";
+        var params = {
+            Q__S__EQ__party_id_: partyId,
+            Q__S__EQ__party_type_: partyType,
+        };
+        var rate = new Rate();
+        rate.init(params);
+    });
+    </script>
+</head>
+<style type="text/css">
+    .btn-add{
+            background:#1ab394;
+            border-color: #4cae4c;
+            color:#fff;
+        }
+    .btn-add.active,.btn-add:hover,.btn-add:focus,.btn-add:active{
+        background:#1ab3aa;
+        border-color: #4caeaa;
+        color:#fff;
+    }
+</style>
+<body class="white-bg">
+    <form id="orgRateForm">
+        <div class="panel panel-default groupRatePanel" style="margin-bottom:0px;height:100%;">
+            <div class="panel-body" style="padding:10px;">
+                <table class="table table-stripped table-bordered  table-hover data-table">
+                    <thead>
+                        <th class="col-sm-5">阶梯金额</th>
+                        <th class="col-sm-5">提成比率</th>
+                        <th class="col-sm-2">操作
+                            <button title="添加比率" type="button" style="margin-right:2.5%;float:right" class="btn btn-sm  btn-add btn-xs addRateRow"><i class="fa fa-plus">添加</i></button>
+                        </th>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </form>
+</body>
+
+</html>

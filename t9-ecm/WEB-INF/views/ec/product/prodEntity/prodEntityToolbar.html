@@ -1,0 +1,89 @@
+<div class="panel panel-default" style="padding-bottom: 7px;margin: 0;">
+    <div class="panel-heading">
+        <button type='button' class='jt-btn prodEntityAdd'><i class='fa fa-plus'>&nbsp;添加</i></button>
+        <button type='button' class='jt-btn jt-btn-normal prodEntityAddService'><i class='fa fa-plus'>添加服务</i></button>
+        <button type='button' class='jt-btn prodEntityAddCard'><i class='fa fa-plus'>&nbsp;添加卡</i></button>
+        <button type='button' class='jt-btn prodEntityAddFinance'><i class='fa fa-plus'>&nbsp;添加金融产品</i></button>
+        <button disabled='disabled' class="jt-btn putOnSaleBtn"><i class='fa fa-arrow-up'>&nbsp;</i>上架</button>
+        <button disabled='disabled' class="jt-btn jt-btn-red pullOffShelvesBtn"><i class='fa fa-arrow-down'>&nbsp;</i>下架</button>
+        <button  class="jt-btn prodEntityBatchUpdate"><i class='fa fa-pencil'>&nbsp;</i>批量修改</button> 
+        <button  class="jt-btn" id="exportProdTemplate"><i class='fa fa-reply-all'></i>&nbsp;生成商品模板</button> 
+        <button  class="jt-btn" id="prodBatchImport"><i class='fa fa-share'>&nbsp;</i>批量导入普通商品</button> 
+        <button  class="jt-btn" id="prodBatchExport"><i class='fa fa-reply-all'></i>&nbsp;导出商品</button> 
+        <button class="jt-btn jt-btn-red prodEntityDel"><i class="fa fa-remove">&nbsp;删除</i></button>
+        <button type='button' class='jt-btn prodEntityRecover'><i class='fa fa-edit'>&nbsp;复原</i></button>
+        <button type='button' class='jt-btn jt-btn-red prodEntityInvalid'><i class="fa fa-remove">&nbsp;</i>清除</button>
+        <!-- 帮助中心 -->
+        <label id="glHelpContainer"></label>
+    </div>
+    <div class="panel-body">
+        <form id='prodEntitySearchForm' role="form" class="form-horizontal" style="padding-top: 15px;">
+                <div class="form-group jt-form-group jt-form-normal">
+                    <div class="col-sm-3">
+                        <label class='control-label col-sm-4'>名称</label>
+                        <div class='col-sm-8'>
+                            <input type="text" id='nameSearch' placeholder="请输入名称" name="Q__S__LK__prod.name_" class="form-control">
+                        </div>
+                    </div>
+                    <div class='col-sm-3'>
+                        <label class='control-label col-sm-4'>sku编码</label>
+                        <div class='col-sm-8'>
+                            <input type="text" placeholder="请输入sku编码" name="Q__S__LK__sku.code_" class="form-control">
+                        </div>
+                    </div>
+                    <div class='col-sm-3'>
+                        <label class='control-label col-sm-4'>产品代码</label>
+                        <div class='col-sm-8'>
+                            <input type="text" placeholder="请输入产品代码" name="Q__S__LK__sku.prod_code_" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-sm-3 jt-form-btn">
+                         <button type='button' class="jt-btn-search prodEntitySearch"><i class='fa fa-search'></i>&nbsp;搜索</button>
+                         <button type='button' class="jt-btn-empty" id='clearSearch' ><i class='fa fa-trash-o'></i>&nbsp;清空</button>
+                         <button type="button" id="seniorSearch" class="jt-btn-drop  dropdown-toggle" data-toggle="dropdown" tabindex="-1">展开<span class="fa fa-sort-down"></span>
+                        </button>
+                    </div>
+                </div>
+                <div class="col-sm-12" id="seniorSearchDiv">
+                <div class="form-group jt-form-group jt-form-normal">
+                    <#if status !="delete">
+                        <div class="col-sm-3">
+                            <label class='control-label col-sm-4'>状态</label>
+                            <div class='col-sm-8'>
+                                <select name='Q__S__EQ__prod.status_' id='statusSearch' class='form-control'>
+                                    <option value="">请选择</option>
+                                    <option value="on_sale">上架</option>
+                                    <option value="not_on_sale">下架</option>
+                                </select>
+                            </div>
+                        </div>
+                    </#if>
+                    <div class="col-sm-3">
+                        <label class='control-label col-sm-4'>范围</label>
+                        <div class='col-sm-8'>
+                            <select type="text" placeholder="请选择销售范围" name="Q__S__EQ__prod.sale_range_" class="form-control">
+                                <option value="">请选择</option>
+                                <option value="all">共用</option>
+                                <option value="first">一线</option>
+                                <option value="second">二线</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <label class='control-label col-sm-4'>价格类型</label>
+                        <div class='col-sm-8'>
+                            <select type="text" placeholder="请选择价格类型" name="Q__S__EQ__prod.price_type_" class="form-control">
+                                <option value="">请选择</option>
+                                <option value="common">正价</option>
+                                <option value="special">特价</option>
+                                <option value='experience'>体验价</option>
+                                <option value="gift">赠品</option>
+                                <option value="exchange">换购</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<#include "/common/common.html">
+	<title>我的客户</title>
+	<link href="${ctx}/css/plugins/chosen/chosen.css?v=${jsVersion}" rel="stylesheet">
+	<script src="${ctx}/js/plugins/suggest/bootstrap-suggest.js?v=${jsVersion}"></script>
+	<script type="text/javascript">
+		var type = "${type}";
+		var inNum = "${inNum}";
+		var outNum = "${outNum}";
+		var csPhone = "${csPhone}";
+		var province = "${province}";
+		var city = "${city}";
+		var area = "${area}";
+		var isDefaultLast = "${isDefaultLast}";
+	</script>
+	<script src="${ctx}/js/plugins/chosen/chosen.jquery.js?v=${jsVersion}"></script>
+
+	<link rel="stylesheet" rev="stylesheet" type="text/css" media="all" href="${ctx}/css/bootstrap-select.css?v=${jsVersion}">
+	<script src="${ctx}/js/bootstrap-select.min.js?v=${jsVersion}" ></script>
+
+	<script src='${ctx}/js/jt/common/service/employeesSelectLayer${deploy_min!""}.js?v=${jsVersion}'></script>
+	<script src="${ctx}/js/jt/ec/salesorder/soEntityUtils${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/common/service/addressService${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/crm/cs/csEntityUtils${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/crm/cs/csEntityAdd${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/crm/cs/csPhone${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/gl/km/glHelpUtil${deploy_min!""}.js?v=${jsVersion}" ></script>
+
+	<style>
+		.interests-chosen-div .bootstrap-select {
+			width:100% !important;
+		}
+		#interests + div button {
+		    background-color: #fff !important;
+		    color: #333;
+		    border-radius: 2.5px;
+		    height: 28px;
+		    line-height: 15px;
+		}
+		#employeeWeixin + div button {
+			background-color: #fff !important;
+			color: #333;
+			border-radius: 2.5px;
+			height: 28px;
+			line-height: 15px;
+		}
+		.addrListDiv {
+			height: 100%;
+		}
+	</style>
+</head>
+<body class='white-bg'>
+	<div class="panel panel-default addrListDiv">
+		<div class="panel-heading">
+			<button type="button" class="jt-btn saveBtn" id="saveBtn"><i class="fa fa-floppy-o"></i>&nbsp;保存</button>
+			<button type="button" class="jt-btn saveBtnContinue">保存且继续添加</button>
+			<button class='jt-btn jt-btn-red closeBtn' type='button'><i class="fa fa-remove" aria-hidden="true"></i>&nbsp;关闭</button>
+			<span style="display:none;float:right; " id="phoneTip"></span>
+		</div>
+		<div class="panel-body">
+			<form id="csEntityFormForAdd" method="get" class="form-horizontal">
+			
+				<div class='form-group'>
+					<div class="col-sm-3">
+						<label class="col-sm-3 control-label">
+							姓名
+						</label>
+						<div class="col-sm-9">
+							<input type="text" name="name" class="form-control" validateType="default">
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="col-sm-3"></div>
+						<div class="radio radio-success radio-inline">
+							<input type="radio" value="男" id="genderMan" name="gender">
+							<label for="genderMan">男</label>
+						</div>
+						<div class="radio radio-success radio-inline">
+							<input type="radio" value="女" id="genderWomen" name="gender">
+							<label for="genderWomen">女</label>
+						</div>
+					</div>
+					<div class='col-sm-3'>
+						<label class='col-sm-3 control-label'>电话 <span style="color: red;" class="redTip">*</span></label>
+						<div class='col-sm-9'>
+							<input id="maskPhoneNum" class='form-control' value="<#if systemVersionName??>${csPhoneNum}</#if>">
+						</div>
+					</div>	
+					<div class='col-md-2 col-sm-2'>
+						<div class='col-md-8 col-sm-5'>
+							<select class="form-control" name='phoneType'>
+								<option value="首选">首选</option>
+								<option value="停用">停用</option>
+								<option value="本人">本人</option>
+								<option value="老公">老公</option>
+								<option value="老婆">老婆</option>
+								<option value="家人">家人</option>
+								<option value="他人">他人</option>
+								<option value="朋友">朋友</option>
+								<option value="座机">座机</option>
+							</select>
+						</div>
+						<div class="col-sm-4 makePhoneDiv" style="display:none;">
+							<a style="cursor:hand">
+								<img style="width:20px; height:20px;" title="本地号码" src="/t9-ecm/img/jt/phone.png" class="makePhone" >
+							</a>&nbsp;
+							<a style="cursor:hand">
+								<img style="width:20px; height:20px;" title="外地号码加0" src="/t9-ecm/img/jt/phoneAddZero.png" class="makePhoneAddZero" >
+							</a>
+						</div>
+					</div>
+					<div class='col-sm-1'>
+						<input type='text' placeholder='联系人' name='linkman' class='form-control' validateType='default' value=''>
+					</div>
+				</div>
+
+				<div class='form-group'>
+					<div class='col-sm-3'>
+						<label class="col-sm-3 control-label">
+							客户分类
+						</label>
+
+						<div class="col-sm-9">
+							<select class='form-control' name='bizType' id='bizType' validateType="default"></select>
+						</div>
+					</div>
+					<div class='col-sm-3'>
+						<label class="col-sm-3 control-label">渠道来源</label>
+						<div class="col-sm-9">
+							<select class='form-control'  data-placeholder="请选择" name='srcs' id='srcs' validateType="default"></select>
+						</div>	
+					</div>
+					<div class='col-sm-3'>
+						<label class="col-sm-3 control-label">意向</label>
+						<div class="col-sm-9 interests-chosen-div">
+							<!-- <select id="interests" multiple data-placeholder="请选择" class="chosen-select form-control" name="interests" validateType="default"></select> -->
+							<select class="selectpicker" id="interests" name="interests" title="请选择" multiple data-live-search="true" data-live-search-placeholder="搜索"></select>
+						</div>	
+					</div>
+					<div class='col-sm-3'>
+						<label class="col-sm-3 control-label">
+							进线方法
+						</label>
+						<div class="col-sm-9">
+							<select class='form-control' name='entry' id='entry' validateType="default"></select>
+						</div>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<div class='col-sm-9' id="addressContainer"></div>
+					<div class='col-sm-3'>
+						<label class="col-sm-3 control-label">婚姻状况</label>
+						<div class="col-sm-9">
+							<select class='form-control' name='maritalStatus' id='maritalStatus'>
+								<option value="">请选择</option>
+							</select>
+						</div>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<div class='col-sm-9'>
+						<label class="col-sm-1 control-label">地址</label>
+						<div class="col-sm-11">
+							<label class="control-label addrDetaileDescribe" style='float: left;position: relative;'></label>
+							<input type="text" name="addr_" class="form-control" style='width:50%;'>
+						</div>
+					</div>
+					<!-- <#if versionType?? && versionType != 'finance'>
+					<div class='col-sm-3'>
+						<label class="col-sm-3 control-label">允许下单</label>
+						<div class="col-sm-9">
+							<select class='form-control' name='canPlaceSo' id="canPlaceSo">
+								<option value="y">是</option>
+								<option value="n">否</option>
+							</select>
+						</div>
+					</div>
+					</#if> -->
+				</div>
+
+				<#if versionType?? && versionType != 'finance'>
+				<div class='form-group'>
+					<div class="heightWeightDiv">
+						<div class='col-sm-3'>
+							<label class="col-sm-3 control-label">身高(cm)</label>
+							<div class="col-sm-9">
+								<input type="text" name="height" class="form-control" >
+							</div>	
+						</div>
+
+						<div class='col-sm-3'>
+							<label class="col-sm-3 control-label">体重(kg)</label>
+							<div class="col-sm-9">
+								<input type="text" name="weight" class="form-control" >
+							</div>	
+						</div>
+						<div class="col-sm-3"></div>
+					</div>
+					<div class='col-sm-3'>
+							<label class="col-sm-3 control-label">是否约单</label>
+							<div class="col-sm-9">
+								<select class='form-control' name='isOrderSo' id="isOrderSo">
+									<option value="n">否</option>
+									<option value="y">是</option>
+								</select>
+							</div>
+						</div>
+				</div>
+				</#if>
+
+				<div class='form-group'>
+					<div class="wineIndustry">
+						<div class='col-sm-3'>
+							<label class="col-sm-3 control-label">用途</label>
+							<div class="col-sm-9">
+								<select class='form-control' name='purpose' id='winePurpose'>
+									<option value="">请选择</option>
+								</select>
+							</div>
+						</div>
+
+						<div class='col-sm-3'>
+							<label class="col-sm-3 control-label">口感</label>
+							<select class='form-control' style="width: 75%;" name='taste' id='taste'>
+								<option value="">请选择</option>
+							</select>
+						</div>
+					</div>
+				</div>
+
+				<div class='form-group'>
+					<div class='col-sm-3'>
+						<label class="col-sm-3 control-label">微信号</label>
+						<div class="col-sm-9">
+							<input type="text" name="weixin" class="form-control" >
+						</div>
+					</div>
+					<div class='col-sm-3'>
+						<label class="col-sm-3 control-label">年收入</label>
+						<div class="col-sm-9">
+							<select class='form-control' name='income' id="income" >
+								<option value="">请选择</option>
+							</select>
+						</div>	
+					</div>							
+					<div class='col-sm-3'>
+						<label class="col-sm-3 control-label">职 业</label>
+						<div class="col-sm-9">
+							<select class='form-control' name='vocation' id="vocation" >
+								<option value="">请选择</option>
+							</select>
+						</div>	
+					</div>
+
+
+				</div>							
+
+				<div class='form-group'>
+					<div class='col-sm-3'>
+						<label class="col-sm-3 control-label">
+							创建工号
+						</label>
+						<div class="col-sm-9">
+							<input type="text" name="createByInfo" class="form-control" value="" readonly>
+						</div>
+					</div>
+
+					<div class='col-sm-3'>
+						<label class="col-sm-3 control-label">归属工号</label>
+						<div class="col-sm-7">
+							<input type="text" name="employeeShow" class="form-control" readonly>
+							<input type="hidden" name="employeeId" >
+						</div>
+						<div class='col-sm-2'>
+							<button class='btn btn-sm btn-primary jt-form-select changRelEmployee' type='button'>转</button>
+						</div>
+					</div>
+
+					<div class='col-sm-3'>
+						<label class="col-sm-3 control-label">生 日</label>
+						<div class="col-sm-5">
+							<select class='form-control' name='birthYear' id="birthYear" >
+								<option value="">年</option>
+							</select>
+						</div>	
+						<div class='col-sm-4'>
+							<select class='form-control' name='birthMonth' id="birthMonth" >
+								<option value="">月</option>
+							</select>
+						</div>
+					</div>
+					<div class='col-sm-3'>
+						<div class='col-sm-4'>
+							<select class='form-control' name='birthDay' id="birthDay">
+								<option value="">日</option>	
+							</select>
+						</div>
+						<div class="col-sm-3">
+							<input type="number" name="age" id="age" class="form-control" >
+						</div>
+						<div class='col-sm-2'>
+							<label class='control-label'>岁</label>	
+						</div>
+						<div class="col-sm-3"></div>
+					</div>
+				</div>
+
+				<div class='form-group'>
+					<div class='col-sm-9'>
+						<label class="col-sm-1 control-label">产品意向</label>
+						<div class="col-sm-7">
+							<div class="input-group">
+								<input type="text" class="form-control" name="productName" id="searchProd">
+								<div class="input-group-btn">
+									<button type="button" class="btn btn-white dropdown-toggle" data-toggle="dropdown">
+										<span class="caret"></span>
+									</button>
+									<ul class="dropdown-menu dropdown-menu-right" role="menu"></ul>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<label class="col-sm-3 control-label">IP归属地</label>
+						<div class="col-sm-9" id="addrIpContainer">
+							<!-- <select class="col-sm-5" name="csProvince" id="csProvince"></select> -->
+						</div>										
+					</div>
+				</div>
+				<!-- <div class='form-group'>
+					<div class='col-sm-3'>
+						<label class="col-sm-3 control-label">员工微信号</label>
+						<div class="col-sm-9">
+							<select id="employeeWeixin" title="请选择" class="selectpicker" name="employeeWeixin" data-live-search="true" data-live-search-placeholder="搜索">
+                 			</select>								
+						</div>
+					</div>
+					<div class='col-sm-3'>
+						<label class="col-sm-3 control-label">进粉时间</label>
+						<div class="col-sm-9">
+							<input class='laydate-icon form-control layer-date' name="passTime" autocomplete="off" validateType="default" placeholder="进粉时间">
+						</div>	
+					</div>							
+				</div> -->
+				<div class='form-group'>
+					<div class='col-sm-9'>
+						<label class="col-sm-1 control-label">备注</label>
+						<div class='col-sm-9'>
+							<textarea name="desc" class="form-control"  rows="2" ></textarea>
+						</div>
+					</div>
+				</div>
+
+				<!--将隐藏域放在这里，不显示出来-->
+				<div style="display:none'">
+					<input type="hidden" id="id" name="id">
+					<input type="hidden" id="preId" name="preId">
+					<input type="hidden" id="nextId" name="nextId">
+					<input type="hidden" id="phoneNum" name="phoneNum">
+					<input type="hidden" id="isFollow">
+					<input type="hidden" id="type" name="type" value="${csType}">
+					<input name="ipLocations" id="ipLocations" type="hidden"></input>
+				</div>
+			</form>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,120 @@
+<div class='row' style='border: 1px solid #ddd; margin-left: 15px; margin-right: 15px;padding:10px;'>
+	<div class='col-sm-12'>
+		<form id="mailConfigForm" method="get" class="form-horizontal">
+
+
+			<div class="form-group">
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">配置名称<span style="color:red;">*</span></label>
+					<div class="col-sm-9">
+						<input type="text" name="name" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">服务器IP<span style="color:red;">*</span></label>
+					<div class="col-sm-9">
+						<input type="text" name="ip" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">服务器端口<span style="color:red;">*</span></label>
+					<div class="col-sm-9">
+						<input type="text" name="port" placeholder=""  validateType="default"  class="digits form-control"> 
+					</div>
+				</div>
+
+			</div>
+			<div class="form-group">
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">支持SSL<span style="color:red;">*</span></label>
+					<div class="col-sm-9">
+						<select id="sslSelect" class="form-control" name="ssl" validateType="default" >
+							<option value="n">不支持</option>
+							<option value="y">支持</option>
+						</select>
+					</div>
+				</div>
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">邮箱帐号<span style="color:red;">*</span></label>
+					<div class="col-sm-9">
+						<input type="text" name="username" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">密码<span style="color:red;">*</span></label>
+					<div class="col-sm-9">
+						<input type="text" id="truePassword" name="truePassword" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+			</div>
+			<div class="form-group">
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">发送者邮箱<span style="color:red;">*</span></label>
+					<div class="col-sm-9">
+						<input type="text" name="from" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">发送者姓名<span style="color:red;">*</span></label>
+					<div class="col-sm-9">
+						<input type="text" name="fromName" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">状态<span style="color:red;">*</span></label>
+					<div class="col-sm-9">
+						<select class="form-control" name="status" validateType="default" >
+		               		<option value="actived">激活</option>
+		               	    <option value="inactive">未激活</option>
+		              	</select>
+		            </div>
+		        </div>
+
+			</div>
+			<div class="form-group">
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">重试次数<span style="color:red;">*</span></label>
+					<div class="col-sm-9">
+						<input type="text" name="maxCount" placeholder=""  validateType="default"  class="digits form-control"> 
+					</div>
+				</div>
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">测试模式<span style="color:red;">*</span></label>
+					<div class="col-sm-9">
+						<select id="debugSelect" class="form-control" name="debug" validateType="default" >
+							<option value="n">不开启</option>
+							<option value="y">开启</option>
+						</select>
+					</div>
+				</div>
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">排序号</label>
+					<div class="col-sm-9">
+						<input type="text" name="sort" placeholder=""  validateType="default"  class="digits form-control"> 
+					</div>
+				</div>
+
+			</div>
+			<div class='form-group'>
+				<!--将隐藏域放在这里，不显示出来-->
+				<div style="display:none'">
+					<input type="hidden" id="id" name="id">
+					<input type="hidden" name="createBy">
+					<input type="hidden" name="createTime">
+					<input type="hidden" name="password">
+					<input id ="hasChange" type="hidden" name="hasChange" value="n">
+				</div>
+			</div>
+
+		</form>
+	</div>
+</div>

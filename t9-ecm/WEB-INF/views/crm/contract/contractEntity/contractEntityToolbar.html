@@ -1,0 +1,78 @@
+<div class="col-sm-12">
+	<div class="panel panel-default">
+	    <div class="panel-heading">
+	    	<button type='button' class='btn btn-sm  btn-primary contractEntityAdd'><i class='fa fa-plus'>添加</i></button>
+			<button type='button' class='btn  btn-sm   btn-primary contractEntityEdit'><i class='fa fa-edit'>编辑</i></button>
+			<button type='button' class='btn  btn-sm   btn-danger contractEntityDel'><i class='fa fa-remove'>删除</i></button>
+			<button type='button' class='btn  btn-sm   btn-primary contractEntityDetail'><i class='fa fa-list'>明细</i></button>
+	    </div>
+	    <div class="panel-body">
+	        <form id='contractEntitySearchForm' role="form" class="form-horizontal">
+				<!--默认生成一个搜索条件，需要的，用户自己添加-->
+				<div class="form-group">
+					<label class='control-label col-sm-1'>主题</label> 
+					<div class='col-sm-2'>
+						<input type="text" id='subjectSearch' placeholder="请输入主题" name="Q__S__LK__subject_" class="form-control">
+					</div>
+
+					<label class='control-label col-sm-1'>客户方签约人</label> 
+					<div class='col-sm-2'>
+						<input type="text" id='csSignerSearch' placeholder="客户方签约人" name="Q__S__LK__cs_signer_" class="form-control">
+					</div>
+
+					<label class='control-label col-sm-1'>我方签约人</label> 
+					<div class='col-sm-2'>
+						<input type="text" id='mySignerSearch' placeholder="请输入我方签约人" name="Q__S__LK__my_signer_" class="form-control">
+					</div>
+
+					<label class='control-label col-sm-1'>状态</label>
+					<div class='col-sm-2'>
+						<select name='Q__S__EQ__status_' class='form-control' id='statusSearch'>		
+						</select>
+					</div>
+				</div>
+
+				<div class='form-group'>
+					<label class='control-label col-sm-1'>合同金额</label>
+					<div class='col-sm-3'>
+						<div class="input-daterange input-group">
+                            <input class='form-control' name='Q__N__BW__total_'>
+                            <span class="input-group-addon">到</span>
+							<input class='form-control' name='Q__N__BW__total_'>
+                        </div>
+					</div>
+
+					<label class='control-label col-sm-1'>合同类型</label>
+					<div class='col-sm-2'>
+						<select class='form-control' name='Q__S__EQ__type_' id='typeSearch'>
+						</select>
+					</div>
+
+					<label class='control-label col-sm-1'>开始日期</label>
+					<div class="col-sm-4">
+						<div class="input-daterange input-group">
+                            <input class="laydate-icon form-control layer-date" name="Q__D__BW__start_date_" validatetype="default" placeholder="开始时间" onclick="laydate({istime: true, format: 'YYYY-MM-DD'})">	
+                            <span class="input-group-addon">到</span>
+							<input class="laydate-icon form-control layer-date" name="Q__D__BW__start_date_" validatetype="default" placeholder="结束时间" onclick="laydate({istime: true, format: 'YYYY-MM-DD'})">	
+                        </div>
+					</div>
+				</div>	
+
+				<div class='form-group'>
+					<label class='control-label col-sm-1'>签约日期</label>
+					<div class='col-sm-4'>
+						<div class="input-daterange input-group">
+                            <input class="laydate-icon form-control layer-date" name="Q__D__BW__sign_time_" validatetype="default" placeholder="开始时间" onclick="laydate({istime: true, format: 'YYYY-MM-DD'})">
+                            <span class="input-group-addon">到</span>
+							<input class="laydate-icon form-control layer-date" name="Q__D__BW__sign_time_" validatetype="default" placeholder="结束时间" onclick="laydate({istime: true, format: 'YYYY-MM-DD'})">
+                        </div>
+					</div>
+					
+					<div class='col-sm-1'>
+						<button type='button' class="btn btn-sm btn-primary jt-btn-normal contractEntitySearch">搜索</button>
+					</div>
+				</div>		
+			</form>
+	    </div>
+	</div>
+</div>

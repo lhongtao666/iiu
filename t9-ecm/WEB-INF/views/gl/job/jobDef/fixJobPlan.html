@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>补偿计划</title>
+    <#include "/common/common.html" />
+    <script src='${ctx}/js/jt/gl/job/fixJobPlan${deploy_min!""}.js?v=${jsVersion}'></script>
+    <script type="text/javascript">
+    </script>
+</head>
+
+<body>
+    <div class="wrapper animated ">
+        <div class="row">
+            <div class="col-sm-12 col-xs-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <form id="searchEmployeeForm" role="form" class="form-horizontal">
+                            <div class="form-group">
+                                <div class="col-sm-4 col-xs-4">
+                                    <label class="control-label col-sm-3 col-xs-3">开始时间</label>
+                                    <div class="col-sm-9 col-xs-9">
+                                        <input class="laydate-icon form-control layer-date" name="beginDate" validatetype="default" placeholder="开始时间" onclick="laydate({istime: true, format: 'YYYY-MM-DD'})">
+                                    </div>
+                                </div>
+                                <div class="col-sm-4 col-xs-4">
+                                    <label class="control-label col-sm-3 col-xs-3">结束时间</label>
+                                    <div class="col-sm-9 col-xs-9">
+                                        <input class="laydate-icon form-control layer-date" name="endDate" validatetype="default" placeholder="结束时间" onclick="laydate({istime: true, format: 'YYYY-MM-DD'})">
+                                    </div>
+                                </div>
+                                <div class="col-sm-4 col-xs-4">
+                                    <div class="col-sm-2 col-xm-2"></div>
+                                    <button type="button" class="jt-btn excuteChooseTask">执行选中任务</button>
+                                    <button type="button" class="jt-btn hide">能力查看</button>
+                                </div>
+                            </div>
+                    </div>
+                    </form>
+                </div>
+                <div class="panel-body">
+                    <table id="fixPlanGrid"></table>
+                    <div id="fixPlanPager"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</body>
+
+</html>

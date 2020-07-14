@@ -1,0 +1,64 @@
+<div class="panel panel-default" id="csPhonePanel">
+	<div class="panel-heading">
+		<h3 class="panel-title">客户信息</h3>
+	</div>
+	<div class="panel-body">
+		<input type="hidden" name="csId">
+		<input type="hidden" name="employeeAid">
+		<input type="hidden" name="employeeId">
+		<div class=" form-group">
+			<label class="col-sm-3 control-label"  style='min-width:67px;'>客户编号</label>
+			<div class="col-sm-7">
+				<a href="#" class="csCode" style="line-height:27px;"></a>
+			</div>
+		</div>
+		<div class=" form-group">
+			<label class="col-sm-3 control-label" style='min-width:67px;'>客户姓名</label>
+			<div class="col-sm-7">
+				<input type="text" name="csName" class="form-control" validateType="default">
+			</div>
+		</div>
+		<div class='form-group'>
+			<label class="col-sm-3 control-label"  style='min-width:67px;'>客户归属</label>
+			<div class="col-sm-7">
+				<input type="text" name="csBelong" placeholder="" readonly="readonly" class="form-control" validateType="default">
+			</div>
+			<div class="col-sm-2">
+				<button type="button" class="btn btn-sm btn-primary changeEmployee" style="display:none;">转</button>
+			</div>
+		</div>
+		<div class='form-group' id="callPhoneDiv" style="display:none;">
+			<div class="col-sm-12">
+				<div class="col-sm-1" style='min-width:20px;'>
+				</div>
+				<div class="col-sm-5" style='min-width:90px;'>
+					<select class="form-control" name="phoneSelect" readonly></select>
+				</div>
+				<!-- <div class="col-sm-3">
+					<select class="form-control" disabled="true" name="phoneType">
+						<option value="首选" selected="">首选</option>
+						<option value="停用">停用</option>
+						<option value="本人">本人</option>
+						<option value="老公">老公</option>
+						<option value="老婆">老婆</option>
+						<option value="家人">家人</option>
+						<option value="他人">他人</option>
+						<option value="朋友">朋友</option>
+						<option value="朋友">座机</option>
+					</select>
+				</div> -->
+				<div class="col-sm-5 callBtns" style="display: inline;">
+					<a style="cursor:hand">
+						<img style="width:20px; height:20px;" title="本地号码" src= "${ctx}/img/jt/phone.png" class="callPhone">
+					</a>
+					<a style="cursor:hand">
+						<img style="width:20px; height:20px;" title="外地号码加0" src="${ctx}/img/jt/phoneAddZero.png" class="callPhoneAddZero" >
+					</a>
+					<a style="cursor:hand">
+						<img style="width:20px; height:20px;" title="短信" src="${ctx}/img/jt/message.png" class="sendMessage" >
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>现金券面值管理</title>
+	<#include "/common/common.html">
+	<script src="${ctx}/js/jt/gl/cash/cashSetting${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/gl/km/glHelpUtil${deploy_min!""}.js?v=${jsVersion}" ></script>
+</head>
+<style type="text/css">
+		.form-group{
+			margin-bottom:5px;
+		}
+		.label-group{
+			margin-bottom:10px;
+		}
+		.nav.nav-tabs{
+			margin-left: 0px !important; 
+			margin-right: 0px !important;
+		}
+
+		 body {overflow: hidden;}
+		.dragsort {list-style-type:none; margin:0px; }
+		.dragsort li {float:left; padding:5px;}
+		.tree-layer,.main-layer {height:100%;}
+		.main-layer {border-left: 6px solid transparent;}
+		.tree-layer {background:#fff;}
+		.search-div {width:100%;height:40px;padding: 5px 10px;}
+		.tree-div {width:100%;height:calc(100% - 40px);overflow: auto;}
+		.form-layer {
+		    position: absolute;
+		    top: 0;
+		    left: 110%;
+		    height: 100%;
+		    width: 100%;
+		    background: #fff;
+		    opacity:0;
+		}
+		
+		.layui-layer-title {
+			color: #fff;
+			background-color: #2ac1ac;
+		}
+
+		.layui-layer-content {
+			padding:10px 20px;
+		}
+
+		.layui-layer-btn {
+			border-top: 1px solid #e5e5e5;
+		}
+	
+	</style>
+<body>
+	<div class="wrapper animated fadeInRight">
+		<!-- list界面 -->
+		<div class="row list_wrapper">
+			<#include "/gl/cash/cashSetting/cashSettingToolbar.html">	  			
+			<div class='col-sm-12 jqGrid_wrapper'>
+				<from id="cashSettingForm" method="get" class="form-horizontal">
+					<table class='table table-striped table-bordered '>
+						<thead>
+							<tr>
+								<td style='width: 5%;border-right: 2px solid rgb(242, 242, 242);'>序号</td>
+								<td style='width: 15%;'>名称</td>
+								<td style='width: 15%;'>面值金额</td>
+								<td style='width: 15%;'>已发行数量</td>
+								<td style='width: 15%;'>已使用数量</td>
+								<td style='width: 15%;'>状态</td>
+								<td style='width: 20%;'>操作</td>
+							</tr>
+						</thead>
+						<tbody id='cashSettingBody'>
+						</tbody>
+					</table>
+				</from>
+			</div>
+		</div>   
+	</div>
+	<div class="issueEdit"  style="display:none;">
+	   <#include "/gl/cash/cashSetting/issueEdit.html" >
+	</div>
+</body>
+</html>

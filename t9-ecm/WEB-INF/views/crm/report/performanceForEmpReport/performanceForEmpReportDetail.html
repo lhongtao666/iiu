@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>业绩报表明细</title>
+	<#include "/common/common.html">
+	<script src="${ctx}/js/jt/crm/report/profit/profitForEmpDetailList${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script> 
+	    var paramsDetail=${paramsDetail};
+	    var timeStart="${timeStart}";
+	    var timeEnd="${timeEnd}";
+	    var channelId="${channelId}";
+	    var withOut="${withOut}"
+   </script>
+</head>
+<body class="white-bg">
+	<div class='wrapper'>
+		<div class='row list_wrapper'>
+		    <div class='col-sm-12'>
+		   	    <div class="panel panel-default">
+		   	   		<div class="panel-heading">	
+			        	<span class='timeRange' style='font-weight:bold;margin-left:20px;margin-right:20px;'></span>
+			        	<button type='button' class='btn btn-sm jt-btn-normal  btn-primary exportExcelDetail' >导出明细</button>
+		            </div>
+		        </div>
+		    </div>
+			<div class="jqGrid_wrapper col-sm-12">
+				<table id='profitForEmpDetailGrid'></table>
+				<div id="profitForEmpDetailPager"></div>
+			</div>
+		</div>
+	</div>	
+</body>
+</html>

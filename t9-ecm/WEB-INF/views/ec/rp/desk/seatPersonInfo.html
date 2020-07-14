@@ -1,0 +1,139 @@
+<script src="${ctx}/js/plugins/owl/owl.carousel.min.js?v=${jsVersion}"></script>
+<link href="${ctx}/css/jt/gl/desktop/joli-theme-default.css?v=${jsVersion}" rel="stylesheet">
+<script src="${ctx}/js/jt/ec/rp/seatPersonInfo${deploy_min!""}.js?v=${jsVersion}" ></script>
+
+
+<style>
+.seatNewCs,.seatCsBirth{
+	cursor:pointer;
+}
+.seatNewCs:hover,.seatCsBirth:hover{
+	color:#1caf9a;
+}
+.time-span{
+	-webkit-animation: pulsate 1s ease-out;
+    -webkit-animation-iteration-count: infinite;
+    -moz-animation: pulsate 1s ease-out;
+    -moz-animation-iteration-count: infinite;
+    animation: pulsate 1s ease-out;
+    animation-iteration-count: infinite;
+    opacity: 0.0;
+    margin-right: 2px;
+}
+@keyframes blink{
+  0%{opacity: 1;}
+  50%{opacity: 1;}
+  50.01%{opacity: 0;} /* 注意这里定义50.01%立刻透明度为0，可以设置闪烁效果 */
+  100%{opacity: 0;
+  } 
+}
+
+/* 添加兼容性前缀 */
+
+@-webkit-keyframes blink {
+    0% { opacity: 1; }
+    50% { opacity: 1; }
+    50.01% { opacity: 0; }
+    100% { opacity: 0; }
+}
+
+@-moz-keyframes blink {
+    0% { opacity: 1; }
+    50% { opacity: 1; }
+    50.01% { opacity: 0; }
+    100% { opacity: 0; }
+}
+
+@-ms-keyframes blink {
+    0% { opacity: 1; }
+    50% { opacity: 1; }
+    50.01% { opacity: 0; }
+    100% { opacity: 0; }
+}
+
+@-o-keyframes blink {
+    0% { opacity: 1; }
+    50% { opacity: 1; }
+    50.01% { opacity: 0; }
+    100% { opacity: 0; }
+}
+
+/* 定义blink类*/
+.blink{
+    animation: blink 1s linear infinite;  
+    /* 其它浏览器兼容性前缀 */
+    -webkit-animation: blink 1s linear infinite;
+    -moz-animation: blink 1s linear infinite;
+    -ms-animation: blink 1s linear infinite;
+    -o-animation: blink 1s linear infinite;
+  	color: #fff;
+}
+</style>
+<div class="row">
+	<div class='col-sm-12'>
+		<form class="form-horizontal">
+		    <div class="form-group" style="display: flex;">
+		    	<div class="col-sm-6">				    
+   			    <div class='col-sm-6' style="padding-right:0.7% !important;">
+   			        <div class="widget widget-default">
+   			            <div class="col-sm-12" style="padding-top:10px;">
+							<div class='col-sm-5' style="margin:auto;text-align:center;">
+		               			<span><img alt="image" class="img-circle currentUserProfile" style='height:70px;width:70px;'></span>
+		     				</div>
+		   					<div class='col-sm-7 widget-data' style="margin:auto"><h3 id='employeeName'></h3></div>	     
+	   					</div>	
+   					</div>  				
+				</div>
+				<div class='col-sm-6'>
+		            <div class="widget widget-default widget-item-icon">
+		            	<div class="widget-item-left">
+                            <span class="fa fa-bullseye"></span>
+                        </div>                             
+                        <div class="widget-data widget-no-subtitle">
+                            <div class="widget-int num-count seatComplete" style='font-size:30px;'>0</div>
+                            <div class="widget-title seatTargetMoney">目标：0</div>
+                        </div> 
+                    </div>
+		        </div>
+		        </div>
+		        <div class="col-sm-6">
+		        <div class='col-sm-6' style="padding-right:0.7% !important;">
+					<div class="widget widget-default widget-item-icon" style='padding:0px;'>
+						<div class="owl-carousel owl-theme" id="owl-example">
+							<div>								
+		                        <div class="widget-item-left" style='padding-bottom:10px;'>
+		                            <span class="fa fa-envelope"></span>
+		                        </div>                             
+		                        <div class="widget-data widget-no-subtitle">
+		                            <div class="widget-int num-count seatNewCs">0</div>
+		                            <div class="widget-title" style='margin:0px;'>新进客户</div>
+		                        </div> 
+							</div>
+							<div>
+								<div class="widget-item-left" style='padding-bottom:10px;'>
+		                            <span class="fa fa-birthday-cake"></span>
+		                        </div>                             
+		                        <div class="widget-data widget-no-subtitle">
+		                            <div class="widget-int num-count seatCsBirth">0</div>
+		                            <div class="widget-title" style='margin:0px;'>7天内生日</div>
+		                        </div> 
+							</div>
+						</div>
+					</div>
+				</div>           
+		        <div class='col-sm-6'>
+		       		<div class="widget widget-info widget-padding-sm">
+		                <div class="hourMinuteSecond" style="font-size: 42px;line-height: 45px;font-weight: 300;text-align:center;color:#fff;padding-top:5px;">
+		                	<span class="timeHour"></span>
+		                	<span class="blink">:</span>
+		                	<span class="timeMinute"></span>
+		                </div>
+		                <div class="week" style="text-align: center;"></div>
+		                <div class="lunarYearToDate" style="text-align: center;"></div>
+	                </div>
+	            </div>
+	            </div>
+	        </div>
+		</form>
+	</div>
+</div>

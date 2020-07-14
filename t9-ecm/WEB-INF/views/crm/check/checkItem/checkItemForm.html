@@ -1,0 +1,108 @@
+<div class='row' style='border: 1px solid #ddd; margin-left: 15px; margin-right: 15px;padding:10px;'>
+	<div class='col-sm-12'>
+		<form id="checkItemForm" method="get" class="form-horizontal">
+
+
+			<div class="form-group">
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">检测项目</label>
+					<div class="col-sm-9">
+						<input type="text" name="name" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">项目编码</label>
+					<div class="col-sm-9">
+						<input type="text" name="code" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">类型</label>
+					<div class="col-sm-9">
+						<select class="form-control" name="type" validateType="default" >
+		               		<option value="linux">linux命令</option>
+		               	    <option value="windows">windows命令</option>
+		               		<option value="db_check">数据库检测</option>
+		               		<option value="redis">redis检测</option>
+		               		<option value="version">版本检测</option>
+		               		<option value="credit">授权检测</option>
+		              	</select>
+		            </div>
+		        </div>
+
+			</div>
+			<div class="form-group">
+			<div class='col-sm-4'>
+				<label class="col-sm-3 control-label">状态</label>
+					<div class="col-sm-9">
+						<select class="form-control" name="status" validateType="default" >
+		               		<option value="active">激活</option>
+		               		<option value="inactive">未激活</option>
+		              	</select>
+		            </div>
+		        </div>		
+				<div class='col-sm-4 check-cmd'>
+					<label class="col-sm-3 control-label">命令</label>
+					<div class="col-sm-9">
+						<input type="text" name="cmd" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+			</div>
+			<div class="form-group check-db">
+				
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">账号</label>
+					<div class="col-sm-9">
+						<input type="text" name="account" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">密码</label>
+					<div class="col-sm-9">
+						<input type="text" name="password" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>	
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">地址</label>
+					<div class="col-sm-9">
+						<input type="text" name="checkAddr" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+			</div>
+			<div class="form-group check-result">
+	            <div class='col-sm-4 '>
+					<label class="col-sm-3 control-label">检测结果</label>
+					<div class="col-sm-9">
+						<select id="resultSelect" class="form-control" name="result" validateType="default" >
+							<option value="">请选择</option>
+							<option value="n">异常</option>
+							<option value="y">正常</option>
+						</select>
+					</div>
+				</div> 
+			</div> 
+			<div class="form-group check-result"> 
+				<div class='col-sm-12'>
+					<label class="col-sm-1 control-label">结果描述</label>
+					<div class="col-sm-11">
+						<textarea id="resultDesc" type="text" name="resultDesc" placeholder="" class="form-control" validateType="default" > 
+						</textarea>
+					</div>
+				</div>	
+			</div>
+			<div class='form-group'>
+				<!--将隐藏域放在这里，不显示出来-->
+				<div style="display:none'">
+					<input type="hidden" id="id" name="id">
+					<input type="hidden" name="createBy">
+					<input type="hidden" name="createTime">
+				</div>
+			</div>
+
+		</form>
+	</div>
+</div>

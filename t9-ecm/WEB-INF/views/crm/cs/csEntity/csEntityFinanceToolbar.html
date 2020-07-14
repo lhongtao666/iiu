@@ -1,0 +1,208 @@
+<#if versionType?? && versionType == 'finance'>
+	<div id="seniorSearchDiv" style="display:none;">
+		<div class='form-group groupSelect'>
+			<label class="col-sm-1 control-label">部门</label>
+			<div class='col-sm-2'>
+				<input type="text" class='form-control' readonly id='belongOgnName'>
+				<input type="hidden" name='belongOgn'>
+			</div>
+	
+			<label class="col-sm-1 control-label">员工</label>
+			<div class='col-sm-2'>
+				<select name='belongEmployee' id='belongEmployeeSearch' class='form-control' style='width: 100%;'></select>	
+			</div>
+		</div>
+		<div class='form-group'>
+			<label class="col-sm-1 control-label">最新跟进</label>
+			<div class='col-sm-5'>
+				<div class="input-daterange input-group">
+					<input class="laydate-icon form-control layer-date" name="lowFollowTime" placeholder="yyyy-mm-dd hh:mm:ss" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">
+					<span class="input-group-addon">到</span>
+					<input class="laydate-icon form-control layer-date" name="hightFollowTime" placeholder="yyyy-mm-dd hh:mm:ss" onclick="laydate({istime: true, start: laydate.now(0, 'YYYY/MM/DD 23:59:59'), format: 'YYYY-MM-DD hh:mm:ss'})"></div>
+			</div>
+			<label class="col-sm-1 control-label">客户意向</label>
+			<div class='col-sm-2'>
+				<select id="interestSearch" class="form-control"  name="interests" data-placeholder="请选择"></select>
+			</div>
+			<label class="col-sm-1 control-label">客户姓名</label>
+			<div class='col-sm-2'>
+				<input type="text" placeholder="请输入客户姓名"  name="csName"  class="form-control">
+			</div>
+		</div>
+		<div class='form-group'>
+			<label class="col-sm-1 control-label">注册时间</label>
+			<div class='col-sm-5'>
+				<div class="input-daterange input-group">
+					<input class="laydate-icon form-control layer-date" name="lowRegisterTime" placeholder="yyyy-mm-dd hh:mm:ss" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">
+					<span class="input-group-addon">到</span>
+					<input class="laydate-icon form-control layer-date" name="hightRegisterTime" placeholder="yyyy-mm-dd hh:mm:ss" onclick="laydate({istime: true, start: laydate.now(0, 'YYYY/MM/DD 23:59:59'), format: 'YYYY-MM-DD hh:mm:ss'})"></div>
+			</div>
+			<label class="col-sm-1 control-label">客户电话</label>
+			<div class='col-sm-2'>
+				<input type="text" placeholder="客户电话" id="phone" name="phone"  class="form-control"></div>
+			<label class="col-sm-1 control-label">跟进标签</label>
+			<div class='col-sm-2'>
+				<select id="followSearch" class="form-control" name="follow">
+					<option value="">请选择</option>
+				</select>
+			</div>
+	
+			
+		</div>
+		<div class='form-group'>		
+			<label class="col-sm-1 control-label">最新转单</label>
+			<div class='col-sm-5'>
+				<div class="input-daterange input-group">
+					<input class="laydate-icon form-control layer-date" name="lowTurnTime" placeholder="yyyy-mm-dd hh:mm:ss" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">
+					<span class="input-group-addon">到</span>
+					<input class="laydate-icon form-control layer-date" name="hightTurnTime" placeholder="yyyy-mm-dd hh:mm:ss" onclick="laydate({istime: true, start: laydate.now(0, 'YYYY/MM/DD 23:59:59'), format: 'YYYY-MM-DD hh:mm:ss'})"></div>
+			</div>
+			<label class="col-sm-1 control-label">客户分类</label>
+			<div class='col-sm-2'>
+				<select id="bizTypeSearch" data-placeholder="请选择" multiple class="chosen-select form-control" name="bizType">
+				</select>
+			</div>
+			<label class="col-sm-1 control-label">渠道来源</label>
+			<div class='col-sm-2'>
+				<select id="srcSearch" class="form-control" name="srcs">
+					<option value="">请选择</option>
+				</select>
+			</div>
+		</div>
+		<div class='form-group'>
+			<label class="col-sm-1 control-label">是否成交</label>
+			<div class="col-sm-2">
+				<select class="form-control" name="Q__S__EQ__entity.is_turnover_">
+					<option value="">请选择</option>
+					<option value="y">已成交</option>
+					<option value="n">未成交</option>
+				</select>
+			</div>
+			
+			<label class="col-sm-1 control-label">N次购买</label>
+			<div class='col-sm-2'>
+				<select class="form-control" name="soCompleteSearch" data-placeholder="请选择">
+					<option value="">请选择</option>
+					<option value="0">0次</option>
+					<option value="1">1次</option>
+					<option value="2">2次</option>
+					<option value="3">3次</option>
+					<option value="4">4次</option>
+					<option value="5">5次</option>
+					<option value="6">5次以上</option>
+				</select>
+			</div>
+						
+			<label class="col-sm-1 control-label">关联微信</label>
+			<div class='col-sm-2'>
+				<select  class="form-control" name="Q__S__EQ__entity.related_weixin_">
+					<option value="">请选择</option>
+					<option value="y">是</option>
+					<option value="n">否</option>
+				</select>
+			</div>
+			
+			<label class="col-sm-1 control-label">微信号</label>
+			<div class='col-sm-2'>
+				<input type="text" placeholder="微信号" id="weixin" name="weixin"  class="form-control">
+			</div>
+		</div>
+		<div class='form-group'>
+			<label class="col-sm-1 control-label">客户档案</label>
+			<div class='col-sm-2'>
+			    <select name="eavSearch" id="eavSearch"  data-placeholder="请选择" multiple class="chosen-select form-control"></select>
+			</div>						
+			<label class="col-sm-1 control-label">客户标签</label>
+			<div class='col-sm-2'>
+				<select id="csTagSearch" data-placeholder="请选择" multiple class="chosen-select form-control" name="csTagSearch">
+				</select>
+			</div>
+			
+			<label class="col-sm-1 control-label">进线方式</label>
+			<div class='col-sm-2'>
+				<select id="entrySearch" class="form-control" name="entry">
+					<option value="">请选择</option>
+				</select>
+			</div>						
+			<label class="col-sm-1 control-label">转单前成交</label>
+			<div class='col-sm-2'>
+				<select  class="form-control" name="Q__S__EQ__entity.is_complete_before_turn_">
+					<option value="">请选择</option>
+					<option value="y">是</option>
+					<option value="n">否</option>
+				</select>
+			</div>	
+		</div>
+		<div class='form-group'>
+			<label class="col-sm-1 control-label">意向客户</label>
+			<div class="col-sm-2">
+				<select class="form-control" name="Q__S__EQ__entity.is_intention_">
+					<option value="">请选择</option>
+					<option value="y">是</option>
+					<option value="n">否</option>
+				</select>
+			</div>
+			<label class="col-sm-1 control-label">是否面谈</label>
+			<div class="col-sm-2">
+				<select class="form-control" name="Q__S__EQ__entity.is_meeting_">
+					<option value="">请选择</option>
+					<option value="y">是</option>
+					<option value="n">否</option>
+				</select>
+			</div>
+			<label class="col-sm-1 control-label">生日</label>
+			<div class='col-sm-2'>
+				<div class='col-sm-4'><input type="number" class="form-control" name="birthday" ></div>
+				<label class="col-sm-8 control-label" style='text-align:left;'>今天起N天内生日</label>
+			</div>
+			<label class="col-sm-1 control-label">性别</label>
+			<div class='col-sm-2'>
+				<select id="genderSearch" class="form-control" name="Q__S__EQ__entity.gender_">
+					<option value="">请选择</option>
+				</select>
+			</div>
+		</div>
+		
+		<div class='form-group'>					
+			<label class="col-sm-1 control-label">年收入</label>
+			<div class='col-sm-2'>
+				<select id="incomeSearch" class="form-control" name="Q__S__EQ__entity.income_">
+					<option value="">请选择</option>
+				</select>
+			</div>
+			<label class="col-sm-1 control-label">客户地区</label>
+			<div class='col-sm-5' id="addrContainerSearch"></div>
+			
+		</div>
+		<div class='form-group' style="display: none;">
+			<label class="col-sm-1 control-label">口感</label>
+			<div class='col-sm-2'>
+				<select id="tasteSearch" class="form-control" name="Q__S__EQ__entity.taste_"></select>
+			</div>
+			<label class="col-sm-1 control-label">用途</label>
+			<div class='col-sm-2'>
+				<select id="purposeeSearch" class="form-control" name="Q__S__EQ__entity.purpose_"></select>
+			</div>
+			<label class="col-sm-1 control-label" style='min-width: 67px;'>首次交易状态</label>
+			<div class="col-sm-2">
+				<select  class="form-control" name="firstTradeStatus">
+					<option selected  value="all">请选择</option>
+					<option value="close,close_lost,no_trade">未交易</option>
+					<option value="awaiting_post,awaiting_comfirm,comfirm,awaiting_pay,shipping">交易中</option>
+					<option value="complete">成交</option>
+					<option value="close_reject">拒收</option>
+				</select>
+			</div>
+		</div>
+		<div class='form-group'>
+			<div class='col-sm-4'></div>
+			<div class='col-sm-7'>
+				<button type='button' class="btn btn-sm btn-primary jt-btn-normal csEntitySearch" style="min-width: 35px;">搜索</button>
+				<button type='button' class='btn btn-sm jt-btn-normal jt-bn-red clearCsEntitySearchFormBtn' style="min-width: 45px;">清空</button>
+				<button type='button' id='seniorSearch2' class='btn btn-sm   btn-info seniorSearch'>
+					收起<i class='fa fa-sort-up'></i>
+				</button>
+			</div>
+		</div>
+	</div>
+</#if>

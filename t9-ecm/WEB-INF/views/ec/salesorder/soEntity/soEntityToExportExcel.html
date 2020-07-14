@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>订单导出</title>
+	<#include "/common/common.html">
+	<script src="${ctx}/js/jt/common/utils/excelUtil${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/ec/salesorder/soEntityExportExcel${deploy_min!""}.js?v=${jsVersion}" ></script>
+</head>
+<body>
+	<div class="row">
+		<div class='col-sm-12'>
+			<div class="panel panel-default">
+				<div class="panel-heading topToolbar">
+					<button type='button' class="btn btn-sm   btn-default closeBtn">关闭</button>
+				</div>
+				<div class="panel-body">
+					<form id="exportExcelForm" method="get" class="form-horizontal">
+						<div class='form-group'>
+							<label class="col-sm-2 control-label">选择要导出的字段：</label>
+						</div>
+						<div class='form-group'>
+							<div class="col-sm-2"></div>
+							<div class="col-sm-8" id="columnContainer"></div>
+						</div>
+						<br/>
+						<br/>
+						<div class='form-group'>
+							<div class="col-sm-2"></div>
+							<div class="col-sm-7">
+								<div class="checkbox checkbox-success checkbox-inline">
+									<input type="checkbox" checked id="allCheck" value="">
+									<label style="color:red" for="allCheck">全选</label>
+								</div>
+								<button type="button" class='btn btn-sm   btn-primary exportExcel' >导出</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

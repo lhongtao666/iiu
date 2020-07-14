@@ -1,0 +1,46 @@
+<div class="col-sm-12">
+	<div class="panel panel-default">
+	    <div class="panel-heading">
+			
+	    </div>
+	    <div class="panel-body">
+	        <form id='stBillHiSearchForm' role="form" class="form-horizontal">
+				<div class="form-group">
+					<label class='control-label col-sm-1'>产品名称</label> 
+					<div class='col-sm-2'>
+						<input type="text" id='nameSearch' placeholder="请输入产品名称" name="Q__S__EQ__prod.name_" class="form-control">	
+					</div>
+					
+					<label class='control-label col-sm-1'>单据号码</label> 
+					<div class='col-sm-2'>
+						<input type="text" id='codeSearch' placeholder="请输入单据号码" name="Q__S__EQ__bill.code_" class="form-control">	
+					</div>
+					<label class='control-label col-sm-1'>sku编码</label> 
+						<div class='col-sm-2'>
+							<input type="text" id='codeSearch' placeholder="请输入sku编码" name="Q__S__EQ__sku.code_" class="form-control">	
+						</div>
+					</div>
+
+				<div class='form-group'>
+					<label class="col-sm-1 control-label">入库时间</label>
+	                <div class="col-sm-5"> 
+		                 <div class="input-daterange input-group" id="datepicker">
+                        	<input  class='laydate-icon form-control layer-date startTimeSearch' placeholder="起始时间" name="Q__D__BW__slog.create_time_" validateType="default" onclick="laydate({istime: true, format: 'YYYY-MM-DD'})" style="cursor:pointer;">
+                            <span class="input-group-addon">到</span>
+                            <input  class='laydate-icon form-control layer-date' placeholder="结束时间" name="Q__D__BW__slog.create_time_" validateType="default" onclick="laydate({istime: true, format: 'YYYY-MM-DD'})" style="cursor:pointer;">
+                        </div>
+		            </div>
+				    <label  class="col-sm-1 control-label">仓库</label>
+					<div class='col-sm-2'>
+						<select class="form-control" id="storeSearch1" name="Q__S__EQ__slog.store_id_">
+						</select>
+					</div>
+					<button type='button' class="jt-btn-search historySearch"><i class='fa fa-search'></i>&nbsp;搜索</button>
+					<button type='button' class="jt-btn-empty resetHisBtn"><i class="fa fa-trash-o"></i>&nbsp;清空</button>
+				
+				</div>
+				
+			</form>
+	    </div>
+	</div>
+</div>

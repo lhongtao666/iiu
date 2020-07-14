@@ -1,0 +1,68 @@
+
+<form id="csFollowForm" method="get" class="form-horizontal">
+	<div class="form-group">
+		<div class='col-sm-4'>
+			<label class="col-sm-3 control-label">客户 ID<@JTtip msg="客户 ID" /></label>
+			<div class="col-sm-9">
+				<input type="text" name="csId" placeholder="" class="form-control" validateType="default" > 
+			</div>
+		</div>		
+
+		<div class='col-sm-4'>
+			<label class="col-sm-3 control-label">跟进标签。数据字典：CsFollowType<@JTtip msg="跟进标签。数据字典：CsFollowType" /></label>
+			<div class="col-sm-9">
+				<select class="form-control" name="type" validateType="default" >
+               		<option value="">请选择</option>
+               		<option value="1">选项 1</option>
+               	    <option value="2">选项 2</option>
+               		<option value="3">选项 3</option>
+               		<option value="4">选项 4</option>
+              	</select>
+            </div>
+        </div>
+
+		<div class='col-sm-4'>
+			<label class="col-sm-3 control-label">内容<@JTtip msg="内容" /></label>
+			<div class="col-sm-9">
+				<input type="text" name="content" placeholder="" class="form-control" validateType="default" > 
+			</div>
+		</div>		
+
+	</div>
+	<div class="form-group">
+		<div class='col-sm-4'>
+			<label class="col-sm-3 control-label">是否有待办设置<@JTtip msg="是否有待办设置" /></label>
+			<div class="col-sm-9">
+				<select id="hasTaskSelect" class="form-control" name="hasTask" validateType="default" >
+					<option value=''>请选择</option>
+					<option value="n">否</option>
+					<option value="y">是</option>
+				</select>
+			</div>
+		</div>
+
+		<div class='col-sm-4'>
+			<label class="col-sm-3 control-label">跟进员工 ID<@JTtip msg="跟进员工 ID" /></label>
+			<div class="col-sm-9">
+				<input type="text" name="partyId" placeholder="" class="form-control" validateType="default" > 
+			</div>
+		</div>		
+
+		<div class='col-sm-4'>
+			<label class="col-sm-3 control-label">待办时间<@JTtip msg="待办时间" /></label>
+			<div class="col-sm-9">
+				<input class='laydate-icon form-control layer-date' name="taskTime" validateType="default"  placeholder="YYYY-MM-DD hh:mm:ss" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">
+			</div>
+		</div>
+	</div>
+
+	<div class='form-group'>
+		<!--将隐藏域放在这里，不显示出来-->
+		<div style="display:none'">
+			<input type="hidden" id="id" name="id">
+			<input type="hidden" name="createBy">
+			<input type="hidden" name="createTime">
+		</div>
+	</div>
+
+</form>

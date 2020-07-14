@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>jt_gl_web_error管理</title>
+	<#include "/common/common.html">
+	<script src="${ctx}/js/jt/gl/log/webError${deploy_min!""}.js?v=${jsVersion}" ></script>
+</head>
+
+<body>
+	<div class="wrapper animated fadeInRight">
+		<!-- list界面 -->
+		<div class="row list_wrapper">
+			<#include "/gl/log/webError/webErrorToolbar.html">	  			
+			<div class='col-sm-12 jqGrid_wrapper'>
+			    <table id="webErrorGrid"></table>
+				<div id="webErrorPager"></div>
+			</div>
+		</div>
+		<!-- 编辑界面 -->
+		<#include "/gl/log/webError/webErrorEdit.html">	    
+	</div>
+</body>
+</html>

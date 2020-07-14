@@ -1,0 +1,28 @@
+<div id='permissionsRelatedDetailContainer' style="display: none; overflow-x: none;">
+	<div class="col-sm-12">
+		<div class="panel panel-default">
+			<div class="panel-body">
+            <label class="col-sm-1 control-label">权限层级</label>
+            <div class="col-sm-2">
+                <select name="userPo.roleIds" id="roleSelect" data-placeholder="请选择权限角色" class="chosen-select form-control" tabindex="4"></select>
+            </div>
+			</div>
+		</div>
+	</div>
+	<div class="col-sm-12">
+		<div class="panel panel-default">
+			<div class="panel-body">
+				<table class='table table-stripped table-bordered'>
+					<thead>
+						<tr>
+							<th>关联的角色</th>
+							<th>关联的用户</th>
+						</tr>
+					</thead>
+					<tbody id='csAssignResultContainer' csTypeVal='${csType}'>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>

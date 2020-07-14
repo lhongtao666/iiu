@@ -1,0 +1,97 @@
+<div class='row' style='border: 1px solid #ddd; margin-left: 15px; margin-right: 15px;padding:10px;'>
+	<div class='col-sm-12'>
+		<form id="secureLogForm" method="get" class="form-horizontal">
+
+
+			<div class="form-group">
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">名称<@JTtip msg="名称" /></label>
+					<div class="col-sm-9">
+						<input type="text" name="name" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">关联权限编号<@JTtip msg="关联权限编号" /></label>
+					<div class="col-sm-9">
+						<input type="text" name="resCode" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">员工ID<@JTtip msg="员工ID" /></label>
+					<div class="col-sm-9">
+						<input type="text" name="employeeId" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+			</div>
+			<div class="form-group">
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">客户编码<@JTtip msg="客户编码" /></label>
+					<div class="col-sm-9">
+						<input type="text" name="csCode" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">手机号码<@JTtip msg="手机号码" /></label>
+					<div class="col-sm-9">
+						<input type="text" name="csPhone" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">订单编号<@JTtip msg="订单编号" /></label>
+					<div class="col-sm-9">
+						<input type="text" name="soNo" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+			</div>
+			<div class="form-group">
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">请求URL<@JTtip msg="请求URL" /></label>
+					<div class="col-sm-9">
+						<input type="text" name="reqUrl" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">请求参数<@JTtip msg="请求参数" /></label>
+					<div class="col-sm-9">
+						<input type="text" name="reqParams" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">安全级别<@JTtip msg="安全级别" /></label>
+					<div class="col-sm-9">
+						<input type="text" name="level" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+			</div>
+
+		    <div class="form-group">
+			    <div class='col-sm-12'>
+				    <label class="col-sm-1 control-label">备注。操作的特殊备注，例如某个模块的某个操作触发的</label>
+				    <div class="col-sm-11">
+					    <textarea name='desc' class='form-control' rows='3'></textarea>
+				    </div>
+			    </div>
+		    </div>
+
+
+			<div class='form-group'>
+				<!--将隐藏域放在这里，不显示出来-->
+				<div style="display:none'">
+					<input type="hidden" id="id" name="id">
+					<input type="hidden" name="createBy">
+					<input type="hidden" name="createTime">
+				</div>
+			</div>
+
+		</form>
+	</div>
+</div>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>jt_finance_turnover管理</title>
+	<#include "/common/common.html">
+	<script src="${ctx}/js/jt/crm/finance/financeTurnover.js?v=1.0.0" ></script>
+</head>
+
+<body>
+	<div class="wrapper animated fadeInRight">
+		<!-- list界面 -->
+		<div class="row list_wrapper">
+			<#include "/crm/finance/financeTurnover/financeTurnoverToolbar.html">	  			
+			<div class='col-sm-12 jqGrid_wrapper'>
+			    <table id="financeTurnoverGrid"></table>
+				<div id="financeTurnoverPager"></div>
+			</div>
+		</div>
+		<!-- 编辑界面 -->
+		<#include "/crm/finance/financeTurnover/financeTurnoverEdit.html">	    
+	</div>
+</body>
+</html>

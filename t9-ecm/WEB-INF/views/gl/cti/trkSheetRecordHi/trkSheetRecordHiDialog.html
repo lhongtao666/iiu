@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>设置提成</title>
+    <#include "/common/common.html" />
+    <script type="text/javascript" src="${ctx}/js/jt/gl/cti/trkSheetRecordHiDialog${deploy_min!""}.js?v=${jsVersion}"></script>
+
+    <script type="text/javascript">
+    $(function() {
+        var recordId = "${recordId }";
+        var params = {
+            Q__S__EQ__recordId: recordId,
+        };
+        var trkSheetRecordHiDialog = new TrkSheetRecordHiDialog();
+        trkSheetRecordHiDialog.init(params);
+    });
+    </script>
+</head>
+
+<body class="white-bg">
+    <div class="panel panel-default employeePercentagePanel" style="margin-bottom:0px;height:100%;">
+        <div class="panel-body" style="padding:10px;">
+                <table class="table table-stripped table-bordered  table-hover data-table">
+                    <thead>
+                        <th class="col-sm-1">序号</th>
+                        <th class="col-sm-2">时间</th>
+                        <th class="col-sm-3">工号</th>
+                        <th class="col-sm-4">描述</th>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                </table>
+        </div>
+    </div>
+</body>
+</html>

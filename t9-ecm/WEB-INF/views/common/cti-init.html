@@ -1,0 +1,53 @@
+<!-- 作为cti前端客户端的common -->
+<#if (ctiType!'')=="sz">
+<script src="${ctx}/js/jt/szcti/szCtiService${deploy_min!''}.js?v=${jsVersion}"></script>
+<script src="${ctx}/js/jt/szcti/szCtiUtils${deploy_min!''}.js?v=${jsVersion}"></script>
+<#elseif (ctiType!'')=="jtsoft">
+<script type="text/javascript">
+    var ctiIp = "${ONLINE_ENTITY.datas.user.ctiIp}";
+    var ctiServer =ctiIp;
+</script>
+<script src="${ctx}/js/jt/common/cti-plugins/jtsoftcti/JtCtiAPI${deploy_min!''}.js?v=${jsVersion}"></script>
+<script src="${ctx}/js/jt/common/cti-plugins/jtsoftcti/jtsoftCtiService${deploy_min!''}.js?v=${jsVersion}"></script>
+<#elseif (ctiType!'')=="ykt">
+<script type="text/javascript">
+    var ctiAddr = "${ONLINE_ENTITY.datas.user.ctiIp}";
+    var ctiIp = ctiAddr.split(":")[0]; 
+    var ctiPortAndWebApp = ctiAddr.split(":")[1];
+    var ctiPort = ctiPortAndWebApp.split("/")[0];  
+    var webApp2AsType = ctiPortAndWebApp.split(":")[1] || "cti";
+    var companyId = "${companyId}";
+</script>
+<!-- 必要依赖 -->
+<!-- 座席电话工具条相关 -->
+<!-- 座席电话工具条样式 -->
+<link href="CTIAgentSDK/skins/simple/AgentOcxCss.css" rel="stylesheet" type="text/css" />
+<!-- 座席电话工具条相关基础脚本 start -->
+<script src="CTIAgentSDK/plugins/layer/layer.js?version=3.1.1" type="text/javascript"></script>
+<script src="CTIAgentSDK/core/Common.js?version=2.0.0" type="text/javascript"></script>
+<script src="CTIAgentSDK/core/DialogUtil_layer3.js?version=2.0.0" type="text/javascript"></script>
+<script src="CTIAgentSDK/core/model/CTIAgentModel.js?version=2.0.0" type="text/javascript"></script>
+<script src="CTIAgentSDK/core/cti/Command_CH.js?version=2.0.0" type="text/javascript"></script>
+<script src="CTIAgentSDK/core/cti/CTISrvCommandProcess.js?version=2.0.0" type="text/javascript"></script>
+<script src="CTIAgentSDK/core/cti/CTIServerImpl.js?version=2.0.0" type="text/javascript"></script>
+<script src="CTIAgentSDK/core/CTIMain.js?version=2.0.0" type="text/javascript"></script>
+<script src="CTIAgentSDK/core/ToolUI_simple.js?version=2.0.0" type="text/javascript"></script>
+<!-- 座席电话工具条相关基础脚本 end -->
+<!-- 业务实现 -->
+<script  src="${ctx}/js/jt/common/cti-plugins/ykt/yktCtiService${deploy_min!''}.js?v=${jsVersion}"></script>
+<#else>
+<script>
+    <#if isAllInOne??>
+        var isAllInOne  = "${isAllInOne}";
+        var adnPass = "${adnPass}";
+    <#else>
+        var isAllInOne = "n";
+        var adnPass = "";
+    </#if>
+    var ctiIp = "${ONLINE_ENTITY.datas.user.ctiIp}";
+    var ctiServer = "http://" + ctiIp;  
+</script>
+<script src="${ctx}/js/jt/common/cti-plugins/ls/UniMediaAPI${deploy_min!''}.js?v=${jsVersion}"></script>
+<script src="${ctx}/js/jt/common/cti-plugins/ls/UniMediaAPI2${deploy_min!''}.js?v=${jsVersion}"></script>
+<script src="${ctx}/js/jt/common/cti-plugins/ls/ctiService${deploy_min!''}.js?v=${jsVersion}"></script>
+</#if>   

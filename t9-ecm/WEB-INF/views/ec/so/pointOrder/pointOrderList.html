@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>积分订单管理</title>
+	<#include "/common/common.html">
+	<script src="${ctx}/js/jt/ec/so/pointOrder.js?v=1.0.0" ></script>
+</head>
+
+<body class='white-bg'>
+	<div class="wrapper animated">
+		<!-- list界面 -->
+		<div class="row list_wrapper">
+			<#include "/ec/so/pointOrder/pointOrderToolbar.html">	  			
+			<div class='col-sm-12 jqGrid_wrapper'>
+			    <table id="pointOrderGrid"></table>
+				<div id="pointOrderPager"></div>
+			</div>
+		</div>
+		<!-- 编辑界面 -->
+		<#include "/ec/so/pointOrder/pointOrderEdit.html">	    
+	</div>
+</body>
+</html>

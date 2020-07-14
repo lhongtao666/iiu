@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>商品全部库存</title>
+    <#include "/common/common.html" />
+    <link href="${ctx}/css/plugins/select2/select2.min.css?v=${jsVersion}" rel="stylesheet">
+	<script src="${ctx}/js/plugins/select2/select2.min.js?v=${jsVersion}"></script>
+    <script src="${ctx}/js/jt/ec/product/prodStoreList${deploy_min!""}.js?v=${jsVersion}" ></script>
+    <script src="${ctx}/js/jt/gl/km/glHelpUtil${deploy_min!""}.js?v=${jsVersion}" ></script>
+    <style type="text/css">
+		 .ui-th-ltr{
+		 	background-color: #f5f5f5 !important;
+		 }
+    </style>
+</head>
+
+<body class="white-bg">
+    <div class="wrapper">
+        <!-- list界面 -->
+        <div class="row list_wrapper">
+			<div class="col-sm-12">
+		        <div class="panel panel-default">
+			        <div class="panel-heading">	
+			        	<form id="prodForm" class="form-horizontal">
+			                <!--默认生成一个搜索条件，需要的，用户自己添加-->
+				                <div class="form-group">
+				                    <div class="col-sm-4">
+				                        <label class='control-label col-sm-4'>名称</label>
+				                        <div class='col-sm-6'>
+				                            <input type="text" readonly name="prodName" class="form-control">
+				                        </div>
+				                    </div>
+				                    <div class='col-sm-4'>
+				                        <label class='control-label col-sm-4'>sku编码</label>
+				                        <div class='col-sm-6'>
+				                            <input type="text" readonly name="skuCode" class="form-control">
+				                        </div>
+				                    </div>
+				                       <div class='col-sm-4'>
+				                        <label class='control-label col-sm-4'>总库存</label>
+				                        <div class='col-sm-6'>
+				                            <input type="number" readonly name="countStore" class="form-control">
+				                        </div>
+				                    </div>
+				                </div>
+	        			</form>
+	        		</div>
+		        </div>
+			</div>
+            <div class='jqGrid_wrapper col-sm-12'>
+                <table id="prodStoreGrid"></table>
+                <div id="prodStorePager"></div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

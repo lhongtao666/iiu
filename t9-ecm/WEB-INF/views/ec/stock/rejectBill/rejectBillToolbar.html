@@ -1,0 +1,46 @@
+<div class="col-sm-12">
+	<div class="panel panel-default">
+	    <div class="panel-heading">
+	  	    <button type='button' class="btn btn-sm   btn-primary rejectBillDetail"><i class='fa fa-list'>明细</i></button>
+			<button type='button' class="btn btn-sm   btn-primary rejectBillEdit"><i class='fa fa-edit'>编辑</i></button>
+			<button type='button' class="btn btn-sm   btn-primary rejectBillDone"><i class='fa fa-edit'>完成</i></button>
+	    </div>
+	    <div class="panel-body">
+	        <form  id="rejectBillFormSearch" role="form" class="form-horizontal">
+				<!--默认生成一个搜索条件，需要的，用户自己添加-->
+				<div class="form-group">
+					<label class="col-sm-1 control-label">单据号码</label>
+					<div class="col-sm-2"> 
+					   <input type="text" id='nameSearch' placeholder="请输单据号码" name="Q__S__LK__code_" class="form-control">
+				    </div>
+				    <label class="col-sm-1 control-label">订单号码</label>
+					<div class="col-sm-2"> 
+						<input type="text" id='codeSearch' placeholder="请输入单据号码" name="Q__S__LK__so_nos_" class="form-control">
+				    </div>
+				    <label class="col-sm-1 control-label">状态</label>
+					<div class="col-sm-2"> 
+						<select id='statusSearchContainer' name='Q__S__EQ__status_' class='form-control'>
+							<option value="">请选择状态</option>
+							<option value="awaiting_confirm">待审核</option>
+							<option value="confirm">已审核</option>
+							<option value="done">完成</option>
+						</select>
+				    </div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-1 control-label">创建时间</label>
+	                 <div class="col-sm-3"> 
+		                 <div class="input-daterange input-group" id="datepicker">
+                        	<input id='startTimeSearch' class='laydate-icon form-control layer-date' name="Q__D__BW__create_time_" validateType="default" onclick="laydate({istime: true, format: 'YYYY-MM-DD'})" style="cursor:pointer;">
+                            <span class="input-group-addon">到</span>
+                            <input id='endTimeSearch' class='laydate-icon form-control layer-date' name="Q__D__BW__create_time_" validateType="default" onclick="laydate({istime: true, format: 'YYYY-MM-DD'})" style="cursor:pointer;">
+                        </div>
+		             </div>
+		            <button type='button' class="btn btn-sm   btn-primary rejectBillSearch"><i class='fa fa-search'></i>搜索</button>
+		            <button type='button' class="btn btn-sm   btn-primary resetBtn">清空</button>
+				</div>
+				
+			</form>
+	    </div>
+	</div>
+</div>

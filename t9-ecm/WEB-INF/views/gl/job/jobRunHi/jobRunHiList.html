@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>任务执行历史管理</title>
+	<#include "/common/common.html">
+	<script src="${ctx}/js/jt/gl/job/jobRunHi${deploy_min!""}.js?v=${jsVersion}" ></script>
+
+	<script type="text/javascript">
+		$(function(){
+			var jobRunHi = new JobRunHi();
+			var Q__S__EQ__key_ = "${Q__S__EQ__key_ }";
+			console.log("Q__S__EQ__key_======>"+Q__S__EQ__key_);
+			var param = {
+				Q__S__EQ__key_:Q__S__EQ__key_,
+			};
+			jobRunHi.init(param);
+		});
+	</script>
+</head>
+
+<body>
+	<div class="wrapper animated ">
+		<!-- list界面 -->
+		<div class="row list_wrapper">
+			<#include "/gl/job/jobRunHi/jobRunHiToolbar.html">	  			
+			<div class='col-sm-12 jqGrid_wrapper'>
+			    <table id="jobRunHiGrid"></table>
+				<div id="jobRunHiPager"></div>
+			</div>
+		</div>
+		<!-- 编辑界面 -->
+		<#include "/gl/job/jobRunHi/jobRunHiEdit.html" />
+	</div>
+</body>
+
+
+</html>

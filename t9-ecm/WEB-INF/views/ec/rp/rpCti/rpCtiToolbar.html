@@ -1,0 +1,35 @@
+<div class="col-sm-12">
+	<div class="panel panel-default">
+		<div class="panel-body">
+			<form id='rpCtiSearchForm' role="form" class="form-horizontal">
+				<div class='form-group'>
+					<label class="col-sm-1 control-label">部门</label>
+					<div class='col-sm-2'>
+						<input id='belongOgnName' readonly class='form-control'>
+			            <input name='belongOgn' type='hidden' class='form-control'>
+					</div>
+					<label class="col-sm-1 control-label">员工</label>
+					<div class='col-sm-2'>
+						<select name='agentId' id='agentIdSearch' class='form-control' style='width: 100%;'></select>	
+					</div>
+					<label class="col-sm-1 control-label">时间</label>
+					<div class='col-sm-5'>
+						<div class="input-daterange input-group">
+							<input class="laydate-icon form-control layer-date minCreateTime" name="startDate" placeholder="起始时间" onclick="laydate({istime: true,  format: 'YYYY-MM-DD hh:mm:ss'})">
+							<span class="input-group-addon" id="dateTip" >到</span>
+							<input class="laydate-icon form-control layer-date maxCreateTime" name="endDate" placeholder="结束时间" onclick="laydate({istime: true,  format: 'YYYY-MM-DD hh:mm:ss'})">
+						</div>
+					</div>
+				</div>
+				<div class='form-group'>
+					<div class='col-sm-5'></div>
+					<div class='col-sm-3'>
+						<button class="jt-btn-search rpCtiSearch" id="rpCtiSearch" type="button"><i class="fa fa-search"></i>&nbsp;搜索</button>
+						<button type='button' class='jt-btn-search exportExcel'><i class="fa fa-reply"></i>&nbsp;导出</button>
+						<input type="hidden"  name="reportKey" value="${reportKey}">
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>

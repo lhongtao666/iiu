@@ -1,0 +1,297 @@
+<style type="text/css">
+    .rows-title>font {
+        border-bottom: 3px solid #1caf9a;
+        height: 31px;
+        word-wrap: break-word;
+        font-size: 1.1em;
+        width: 4.5em;
+        text-align: center;
+    }
+    .rows-title {
+        font-weight: bold;
+        padding-left: 2.5%;
+        height: 24px;
+        width: 100%;
+        padding: 0;
+        margin: 0;
+        color: #1caf9a;
+        border-bottom: 1px solid #ddd;
+    }
+    #assignContainer input::-ms-input-placeholder{
+            text-align: center;
+    }
+    #assignContainer input::-webkit-input-placeholder{
+            text-align: center;
+    }
+    #selected-emp-count{
+        color: #ed5565;
+    }
+    .blue{
+        color: #0e89f3; 
+    }
+    .red{
+        color: red;
+    }
+    .emp{
+        border: 1px solid #1ab394;
+        border-radius: 10px;
+        padding: 3px 8px;
+        float: left;
+        margin-bottom: 4px;
+        margin-left: 10px;
+    }
+    .deleteEmployeeBtn{
+
+    }
+    .btn-jt{
+        color: #000;
+        font-weight: 600;
+        background-color: #f5f5f5;
+        border-color: #ccc !important;
+        border-radius: 4px;
+    }
+    .btn-jt:hover{
+        color: #fff;
+        font-weight: 600;
+        background-color: #6293BA;
+    }
+    .samll-scrollbar::-webkit-scrollbar {/*滚动条整体样式*/
+        width: 10px;     /*高宽分别对应横竖滚动条的尺寸*/
+        height: 1px;
+        background-color: #f5f5f5;
+    }
+    .samll-scrollbar::-webkit-scrollbar-thumb {/*滚动条里面小方块*/
+        border-radius: 0 !important;
+        -webkit-box-shadow: none !important;
+        background: #428bca !important;
+    }
+    #select-employee-table tr:hover{
+        background-color: #ddd;
+    }
+    #csAssignResultContainer tr:hover{
+        background-color: #ddd;
+    }
+
+    #assignContainer .modal-dialog { width: 65%; }
+
+    @media screen and (max-width: 1024px) {
+        #assignContainer .modal-dialog { width: 90%; }
+    }
+
+    #assignModalLabel {
+        color: #fff;
+        font-weight: 500;
+    }
+    #assignModalLabel > span {
+        color: #f5f5f5;
+        font-size: 12px;
+    }
+    #assignModalLabel > span > font {
+        color: gold;
+    }
+    .assiagn-select-thead {
+        background-color: #1caf9a;
+        color: #fff;
+    }
+    .assiagn-select-thead th {
+        font-weight: 500;
+        border: 0 !important;
+        white-space: nowrap;
+    }
+    #selectEmployeeBtn {
+        padding: 0 10px;
+        height: 27px;
+        background-color: #fff;
+        border: 1px solid #555;
+        transition: all 0.25s linear;
+        color: #555;
+        float: right;
+    }
+    #selectEmployeeBtn:hover {
+        color: #1caf9a;
+        border-color: #1caf9a;
+    }
+    .emp-list {
+        display: inline-block;
+        width: 100%;
+        margin-top: 7px;
+        border: 1px solid #e7eaec;
+        padding: 10px;
+        background-color: #e7eaec;
+        min-height: 42px;
+    }
+    .emp-list .emp-items {
+        height: 30px;
+        border: 2px solid #fff;
+        line-height: 25px;
+        margin: 5px 0 5px 10px;
+        background-color: #f5f5f5;
+        padding: 0;
+        padding-left: 5px;
+        border-radius: 0;
+    }
+    .emp-list .emp-remove {
+        float: right;
+        width: 30px;
+        height: 26px;
+        background-color: #1caf9a;
+        color: #fff;
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.25s linear;
+    }
+    .emp-list .emp-remove:hover {
+        color: #ed5565;
+    }
+    #assignContainer .modal-content {
+        min-width: 800px !important;
+    }
+    #assignContainer .jt-panel-heading {
+        font-weight: 500;
+        line-height: 28px;
+        text-indent: 7px;
+    }
+    #assignContainer .jt-panel-heading:before, #assignContainer .jt-panel-heading:after {
+        top:3px;
+    }
+    #assignContainer .jt-panel-heading  > * {
+        position: relative;
+        color: #fff;
+        z-index: 1;
+        border: 0;
+        font-size: 1em;
+    }
+    #assignContainer .jt-panel-heading #reset-emp-Btn, #assignContainer .jt-panel-heading #assignBtn {
+        float: right;
+        height: 25px;
+        line-height: 0;
+        margin-top: -5px;
+        font-size: 10px;
+        padding: 0 10px;
+        min-width: 70px;
+        color: #ed5565;
+        border: 1px solid #ed5565;
+        background-color: transparent;
+        outline: none;
+    }
+    #assignContainer .jt-panel-heading #assignBtn {
+        color: #555;
+        border-color: #555;
+    }
+    #assignContainer .jt-panel-heading #assignBtn:hover {
+        color: #1caf9a;
+        border-color: #1caf9a;
+    }
+    #select-employee-table tr:hover {
+        cursor: pointer;
+    }
+    .modal-footer > button {
+        min-width: 66px;
+    }
+</style>
+
+<div class="modal fade" id="assignContainer" tabindex="-1" role="dialog" aria-labelledby="assignModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color: #1caf9a;padding: 10px;">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span style="color: black" aria-hidden="true">&times;</span></button>
+                <h3 class="modal-title" id="assignModalLabel">分配客户</h3>
+            </div>
+
+            <div class="modal-body" style="overflow-y: auto;height: 570px;padding:10px 0 0 0;">
+                <div class="col-sm-12" id="assiginPartyContainer">
+        <div class="col-sm-12 rows-title jt-panel-heading">
+            <font>选择员工</font>
+            <span style="font-size: 12px;margin-left: 35px;color: #999;">可直接选择多个部门的员工，在线与否由复选框控制</span>
+        </div>
+        <div class="col-sm-12" style='padding: 10px 0 0 0;'>
+            <div class="col-md-4 col-sm-3" style="padding: 0;">
+                <input readonly="" class="form-control" placeholder="指定部门（可多选）" style="cursor: pointer;float: left;" id="select-by-group">
+                <input type="hidden" name="assignOgn">
+                <input type="hidden" name="assignOgnId">
+
+            </div>
+            <div class="col-md-5 col-sm-6">
+                <input placeholder="请选择员工（可多选）" class="form-control" style="cursor: pointer;float: left;" id="select-employee">
+                <div  class="col-md-12 col-sm-12" style="display: none;height: 380px;position: absolute;background-color: #fff;z-index: 100;margin: 27px 0px 0px 0px; border: 1px solid #ccc;width: calc(100% - 30px);top: 3px;padding: 5px;" id="select-employee-container">
+                    <div style="height: 7%;width: 100%">
+                        <table class="table assiagn-select-thead">
+                            <tr>
+                                <th width="8%"><input type="checkbox" id="employee-select-all"></input></th>
+                                <th width="25%">员工</th>
+                                <th width="20%">部门</th>
+                                <th width="25%">新进客户数</th>
+                                <th width="25%">在线情况</th>
+                            </tr>
+                        </table>
+                    </div>
+                    <div style="height: 342px;width: 100%;overflow: auto;">
+                        <table class="table" id="select-employee-table">
+                        </table> 
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2 col-sm-2" style="float: left;line-height: 28px;">
+                <div style="float: left;"><input type="checkbox" name="employee-online" checked="checked" style="height: 15px;width: 15px;margin-top: 7px;cursor: pointer;"></input></div>&nbsp;在线员工
+            </div>
+            <div class="col-md-1 col-sm-1" style="float: left;padding: 0;text-align: right;">
+                 <button class="btn btn-sm  btn-primary" id="selectEmployeeBtn"> 选择员工</button>
+            </div>
+            <div class="col-md-2 col-sm-1" style="float: left;padding-left: 20px;display: none;">
+                  <button id="employee-select-submit" class="btn btn-sm btn-jt" style="float: right;margin: 4px 10px 0 0;">确定</button>
+            </div>
+        </div>
+       <!--  <div class="col-sm-12" style='padding-top: 10px;'>
+           
+          
+       </div> -->
+    </div>
+    <div class="col-sm-12" id="assiginEmployeeContainer" style='padding-top: 10px;'> 
+        <div class="col-sm-12 rows-title jt-panel-heading">
+            <font>已选员工</font>
+            <span style="margin-left:35px;color: #999;">您选择了&nbsp;<span id="selected-emp-count">0</span>&nbsp;个员工！</span>
+            <button style="margin-left: 20px;" class="btn btn-sm  btn-danger" id="reset-emp-Btn">清空</button>
+        </div>
+        <div class="col-sm-12 samll-scrollbar emp-list" id="selected-emp-container" style='padding:0;max-height: 105px;overflow: auto;'>
+        </div>
+    </div>
+    <div class="col-sm-12"  style='padding-top: 10px;'> 
+        <div class="col-sm-12 rows-title jt-panel-heading">
+            <font>分配方案</font>
+            <span style="color: #999; margin-left: 35px;">已分配数量/待分配数量</span><span style="color: #ed5565;">（<span id="remindCsEntityContainer" >0</span>/<span id="csCountContainer"></span>）</span>
+            <button style="margin-left: 20px;" class="btn btn-sm btn-primary" id="assignBtn">平均分配</button>
+        </div>
+        <!-- <div class="col-sm-12" id="selected-emp-container" style='padding-top: 10px;padding-left:  0px;"'>
+            
+        </div> -->
+        <div class="col-sm-12" id="assign-emp-container" style='padding-top: 10px;padding-left: 0px;padding-right: 0px;'>
+            <div class="col-sm-12" style="padding: 0;">
+                <table class="table" style="margin-bottom: 0px;">
+                    <thead>
+                        <tr>
+                            <th style="width: 16%">员工</th>
+                            <th style="width: 16%">部门</th>
+                            <th style="width: 16%">现有客户数</th>
+                            <th style="width: 20%">分配客户数</th>
+                            <th style="width: 16%">在线情况</th>
+                            <th style="width: 16%">操作</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+            <div class="col-sm-12 samll-scrollbar" id="csAssignResultDiv" style="overflow: auto;background-color: #eee;min-height: 205px;padding: 0;">
+                <form id="tableForm" method="get" class="form-horizontal" novalidate="novalidate">
+                    <table class="table" id="csAssignResultContainer">
+                    </table>
+                </form>
+            </div>
+        </div>
+    </div>     
+            </div>
+            <div class="modal-footer" style="padding: 10px 20px 10px;margin-top: 0px;">
+                <button type="button" class="btn btn-sm btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-sm   btn-primary" id='saveAssign'>确认分配</button>
+            </div>
+        </div>
+    </div>
+</div>

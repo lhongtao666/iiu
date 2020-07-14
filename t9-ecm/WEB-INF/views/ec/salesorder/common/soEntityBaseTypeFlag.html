@@ -1,0 +1,27 @@
+<#if baseType == 'exchange'>
+        <label style="color:red">【换】</label>
+        <a href="javascript:void(0)" class="toLinkSo" linkType="原" soNo="${originSoEntityLinkedOriginSoEntityNo}" soId="${originSoEntityLinkedOriginSoEntityId}">(原:[${originSoEntityLinkedOriginSoEntityNo}])</a>
+        <a href="javascript:void(0)" class="toLinkSo" linkType="换前退" soNo="${originSoNo}" soId="${originSoId}">(换前退:[${originSoNo}])</a>
+<#elseif baseType == 'back' >
+        <label style="color:red">【退】</label>
+        <a href="javascript:void(0)" class="toLinkSo" linkType="原" soNo="${originSoNo}" soId="${originSoId}">(原:[${originSoNo}])</a>
+<#elseif baseType == 'back_before_exchange' >
+        <label style="color:red">【换前退】</label>
+        <a href="javascript:void(0)" class="toLinkSo" linkType="原" soNo="${originSoNo}"  soId="${originSoId}">(原:[${originSoNo}])</a>
+        <#if exchangeSoEntityId??>
+            <a href="javascript:void(0)" class="toLinkSo" linkType="换货" soNo="${exchangeSoEntityNo}" soId="${exchangeSoEntityId}">(换:[${exchangeSoEntityNo}])</a>
+        </#if>
+</#if>
+<script type="text/javascript">
+    $("body").on("click", ".toLinkSo", function() {
+        var soNo = $(this).attr("soNo");
+        var soId = $(this).attr("soId");
+        var linkType = $(this).attr("linkType");
+        if(!soNo){
+            DialogUtils.error(msgCode.ERROR,"订单不存在,可能已被删除,请通过查询进入");
+            return ;
+        }
+        var tabName = linkType + "订单[" + soNo + "]";
+        JTTabUtils.addOrRefreshTab(ctx + "/ec/salesorder/soEntity/detail.htm?soNo="+soNo, tabName);
+    });
+</script>

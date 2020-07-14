@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>日常任务管理</title>
+    <#include "/common/common.html" />
+    <style type="text/css">
+    .margin-class {
+        margin-bottom: 20px;
+    }
+    </style>
+    <script src="${ctx}/js/jt/common/utils/taskUtils${deploy_min!""}.js?v=${jsVersion}"></script>
+    <!-- aaaaaaaa -->
+    <link href="${ctx}/css/plugins/timepicker/DateTimePicker.css?v=${jsVersion}" rel="stylesheet">
+    <script src="${ctx}/js/plugins/timepicker/DateTimePicker.js?v=${jsVersion}"></script>
+    <script src="${ctx}/js/plugins/timepicker/DatetimePicker-i18n-zh-CN.js?v=${jsVersion}"></script>
+    <script src="${ctx}/js/jt/common/service/employeesSelectLayer${deploy_min!""}.js?v=${jsVersion}"></script>
+    <!-- aaaaaaaaaa -->
+    <script type="text/javascript">
+    var id = "${id } ";
+    $(function() {
+        var currentTime = new Date();
+        currentTime.setMinutes(currentTime.getMinutes() + 10);
+        $("#dtBox").DateTimePicker({
+            language: 'zh-CN',
+            isPopup: false,
+            defaultDate: currentTime,
+            minDateTime: DateUtils.format(currentTime, DateUtils._CONS_.DEFAULT_DATE_TIME_PATTERN),
+        });
+        $("#selectCommonImageBtn").on("click", function() {
+            FileUtils.selectFile(1, function(files) {
+                if (files && files.length > 0) {
+                    $("#commonImageContainer").append(FileUtils.createFileDivStr(files));
+                }
+            });
+        });
+        $("body").on("click", "a.openLink", function(e) {
+            var type = $(this).attr("type");
+            var entityId = $(this).attr("entityId");
+            var contentLink = '';
+            switch (type) {
+                case 'jt_so_entity':
+                    var soNo = $(this).attr("entityName");
+                    var showNo = soNo;
+                    if (soNo.length > 4) {
+                        showNo = "*" + soNo.substring(soNo.length - 3, soNo.length);
+                    }
+                    conentLink = ctx + "/ec/salesorder/soEntity/detail.htm" + "?soNo=" + soNo;
+                    JTTabUtils.addOrRefreshTab(ctx + "/ec/salesorder/soEntity/detail.htm" + "?soNo=" + soNo, "订单[" + showNo + "]明细");
+                    e.stopPropagation();
+                    return;
+            }
+        });
+        TaskUtils._bindEventHandler();
+        FormUtils.loadData(ctx + "/gl/task/taskEntity/edit.htm" + "?id=" + id, function(data) {
+            $("[name=notifyTime]").val(data.notifyTime);
+            if (data.type != "simple") {
+                var taskNameLabel = new StringBuffer();
+                taskNameLabel.append('<label class="control-label" style="padding-top:0px;padding:5px; ">');
+                taskNameLabel.append(TaskUtils.dealTaskName(data));
+                taskNameLabel.append('</label>');
+                $("[name=name]").replaceWith(taskNameLabel.toString());
+            } else {
+                $("[name=name]").val(data.name);
+            }
+            $("[name=endTime]").val(data.endTime);
+            $(".status-div").show();
+            $(".status-label").text(data.statusNameStr); //status
+            if ("simple" != data.type) {
+                $(".entity-div").show();
+                var sb = new StringBuffer();
+                sb.append(data.typeName);
+                if (data.entityName) {
+                    sb.append(" <a  entityName='" + data.entityName + "' entityId='" + data.entityId + "' class='openLink' type='" + data.type + "' href='javascript:void(0)'> ");
+                    sb.append('(');
+                    sb.append(data.entityName);
+                    sb.append(')');
+                    sb.append('</a>');
+                }
+                $(".entity-label").append(sb.toString());
+            }
+            $("[name=desc]").val(data.desc);
+            if (data.taskAttachPos) {
+                $("#commonImageContainer").append(FileUtils.createFileDivStr(data.taskAttachPos));
+            }
+
+            $("[name=id]").val(data.id);
+            $("[name=type]").val(data.type);
+            $("[name=entityId]").val(data.entityId);
+            $("[name=entityName]").val(data.partyId);
+            $("[name=notifyCount]").val(data.notifyCount);
+            $("[name=status]").val(data.status);
+            $("[name=partyId]").val(data.partyId);
+            // $("[name=partyName]").val(data.partyName);
+            $("[name='partyName']").val(data.partyAid+":"+data.partyName);
+        });
+        $("body").on("click","#chooseTaskPartyBtn",function(){
+           var employeesSelect = new EmployeesSelect();
+            var isShowAllGroup = 0;
+            if (ResUtils.canShow("employeeSelector.button.task")) { //是否有显示全部部门的权限
+                isShowAllGroup: 1;
+            }
+            var param = {
+                isShowAllGroup: isShowAllGroup,
+                grantType: "/task/",
+                isMultiple: 0, // false:单选;true:多选
+                isSale: 0,
+                mode: 0,
+                callBack: function(list) {
+                    $("[name='partyName']").val(list[0].aid+":"+list[0].name);
+                    $("[name='partyId']").val(list[0].id);
+                }
+            };
+            employeesSelect.init(param);
+        });
+
+    });
+    </script>
+</head>
+
+<body>
+    <div class="panel-body" style="padding:10px;">
+        <#include "/gl/task/taskEntity/taskEntityForm.html" />
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,71 @@
+<div id="allocateContainer" style="display: none; overflow-x: none;">
+	<form id="allocateSoForm" method="get" class="form-horizontal">
+		<input type='hidden' name='soId'>
+		 <div class="col-sm-12">
+	        <div class="panel panel-default">
+	            <div class="panel-body">
+	                <table class='table table-bordered'>
+	                    <tr>
+	                        <td width='6%' style="padding-left: 5%;">
+	                            <b>员工</b>
+	                        </td>
+	                        <td width='40%'>
+	                            <div class="col-sm-8">
+	                                <div class="input-group">
+	                                    <input name='waitAllcateSearch' id="employeeInput" type='text' class='form-control' placeholder="请输入工号或者姓名">
+	                                    <div class="input-group-btn">
+	                                        <button type="button" class="btn  btn-white dropdown-toggle" data-toggle="dropdown">
+	                                            <span class="caret"></span>
+	                                        </button>
+	                                        <ul class="dropdown-menu dropdown-menu-right" role="menu">
+	                                        </ul>
+	                                    </div>
+	                                </div>
+	                            </div>
+	                            <div class='col-sm-4'>
+	                                <button class='btn btn-sm btn-primary' id='selectEmployeeBtn' type='button'>选择员工</button>
+	                            </div>
+	                        </td>
+	                        <td width='26%'>
+	                        	<h4 style="color: red">PS:不选择，默认为当前登录员工为配货人</h4>
+	                        </td>
+	                    </tr>
+	                </table>
+	            </div>
+	        </div>
+    	</div>
+	    <div class="col-sm-12">
+	        <div class="panel panel-default">
+	            <div class="panel-body">
+	                <label class='control-label col-sm-2 col-md-1' style='padding-top:5px; margin-right:5%'>
+	                    商品货码
+	                </label>
+	                <div class='col-sm-3'>
+	                	<input type="number" name="barCode" class="form-control" validateType="default">
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	    <div class="col-sm-12">
+	        <div class="panel panel-default">
+	            <div class="panel-body">
+	                <label class='control-label col-sm-2 col-md-1' style='padding-top:5px; margin-right:5%'>
+	                    订单备注
+	                </label>
+	                <div class="col-sm-9">
+						<textarea rows="4" name="comment" class="form-control" validatetype="default"></textarea>
+					</div>
+	            </div>
+	        </div>
+	    </div>
+
+	    <div class="col-sm-12">
+	        <div class="panel panel-default">
+	            <div class="panel-body">
+					<div class="col-sm-12 allocatePordDiv">
+					</div>
+	            </div>
+	        </div>
+	    </div>
+	</form>
+</div>

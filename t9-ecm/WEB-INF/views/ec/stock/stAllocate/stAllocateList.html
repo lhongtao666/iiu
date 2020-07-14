@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>库存调拨单管理</title>
+	<#include "/common/common.html">
+	<script type="text/javascript">
+		var status = "${status}";
+	</script>
+	<script src="${ctx}/js/jt/common/service/selectProdService${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/ec/stock/storeUtils${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/ec/stock/stAllocate${deploy_min!""}.js?v=${jsVersion}" ></script>
+</head>
+<body class='white-bg'>
+	<div class="wrapper animated ">
+		<!-- list界面 -->
+		<div class="row list_wrapper">
+			<#include "/ec/stock/stAllocate/stAllocateToolbar.html">	  			
+			<div class='col-sm-12 jqGrid_wrapper'>
+			    <table id="stAllocateGrid"></table>
+				<div id="stAllocatePager"></div>
+			</div>
+		</div>
+		<#include "/ec/stock/stAllocate/stAllocateEdit.html">	    
+	</div>
+</body>
+</html>

@@ -1,0 +1,29 @@
+
+<script type="text/javascript">
+   var curUserId = "${ONLINE_ENTITY.userId}";
+</script>
+<script src="${ctx}/js/jt/ec/salesorder/desktop/stockOut${deploy_min!""}.js?v=${jsVersion}" ></script>
+<div class="panel panel-default">
+    <div class="panel-heading">
+       <h4>待发货订单</h4>
+    </div>
+
+    <div class="panel-body">
+	    <table class='table table-bordered table-stripped'>
+	    	<thead>
+	    		<tr>
+	    			<td>订单编号</td>
+	    			<td>客户</td>
+	    			<td>订单类型</td>
+	    			<td style="display: none;">订单状态</td>
+	    			<td>货款方式</td>
+	    			<td>代收金额</td>
+	    			<td>下单时间</td>
+	    		</tr>
+	    	</thead>
+	    	<tbody id='stockOutContainer'>
+	    		
+	    	</tbody>
+	    </table>
+    </div>
+ </div>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>微信粉丝区域分析报表</title>
+	<#include "/common/common.html">
+	<script src="${ctx}/js/jt//crm/report/wx/weiXinAreaHistory${deploy_min!""}.js?v=${jsVersion}" ></script>
+
+</head>
+<script>
+	var beginTime="";
+	var endTime = "";
+	var groupId = "";
+	var province ="";
+	var city ="";
+	<#if beginTime??>
+		beginTime = "${beginTime}";
+	</#if>
+	<#if endTime??>
+		endTime = "${endTime}";
+	</#if>
+	<#if groupId??>
+		groupId = "${groupId}";
+	</#if>
+	<#if province??>
+		province = "${province}";
+	</#if>
+	<#if city??>
+		city = "${city}";
+	</#if>
+</script>
+
+<body class='white-bg'>
+	<div class='wrapper'>
+		<div class='row list_wrapper'>
+			<div class="jqGrid_wrapper col-sm-12">
+				<table id="weiXinAreaHistoryGrid" class='table  table-bordered'>
+					<thead>
+						<tr>
+							<th>地域</th>
+							<th>部门</th>
+							<th>员工</th>
+							<th>进粉数量</th>
+							<th>转化客户</th>
+							<th>转化率</th>
+						</tr>
+					</thead>
+					<tbody>
+					</tbody>
+				</table>
+			</div>	
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>验证规则表设置管理</title>
+	<#include "/common/common.html">
+	<script src="${ctx}/js/jt/gl/validate/validateTbl${deploy_min!""}.js?v=${jsVersion}" ></script>
+	
+	<script>
+	    var ctx = "${ctx}";
+	</script>
+</head>
+
+<body class='white-bg'>
+	<div class="wrapper animated ">
+	    <div class="row list_wrapper">
+		    <#include "validateTblToolbar.html">
+		   	<div class='col-sm-12 jqGrid_wrapper'>
+			    <table id="validateTblGrid"></table>
+			    <div id="validateTblPager"></div>
+		    </div>
+		</div>
+
+		<div style="display: none;" class="row form_wrapper">
+	         <#include "validateTblEdit.html">
+		</div>
+	</div>
+</body>
+</html>

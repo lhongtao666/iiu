@@ -1,0 +1,58 @@
+<div class="col-sm-12">
+	<div class="panel panel-default">
+	    <div class="panel-body">
+	        <form role="form" class="form-horizontal">
+				<div class="form-group">
+					<label class='control-label col-sm-1'>部门</label>
+					<div class='col-sm-3'>
+						<input id='orgName' class='form-control' placeholder="请选择" readonly="readonly">
+						<input id='orgId' type='hidden'>
+					</div>
+
+					<div class='control-label col-sm-1'>类型</div>
+					<div class='col-sm-2'>
+						<select id='type' name='type' class='form-control'>
+							<option value='agentId'>按工号统计</option>
+							<option value='adn'>按分机统计</option>
+							<option value='adnNumber'>按号码统计</option>
+						</select>
+					</div>
+					<div class="col-sm-1"></div>
+
+					<div class='col-sm-4'>
+						<button type='button' actionVal='day' class='jt-quick-search chooseDateBtn'>今日</button>	
+						<button type='button' actionVal='yesterday' class='jt-quick-search  chooseDateBtn'>昨日</button>	
+						<button type='button' actionVal='lastWeek' class='jt-quick-search  chooseDateBtn'>最近7日</button>
+						<button type='button' actionVal='month' class='jt-quick-search  chooseDateBtn'>本月</button>	
+						<button type='button' actionVal='lastMonth' class='jt-quick-search   chooseDateBtn'>上月</button>	
+						<label id="glHelpContainer"></label><!-- 帮助中心 -->
+					</div>
+
+				</div>
+
+				<div class='form-group'>
+					<label class='control-label col-sm-1'>时间</label>
+					<div class='col-sm-3'>
+						<div class="input-daterange input-group" id="datepicker">
+		                        	<input class="laydate-icon form-control layer-date" name="startTime" validatetype="default" placeholder="开始时间" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">
+		                            <span class="input-group-addon">到</span>
+		                        	<input class="laydate-icon form-control layer-date" name="endTime" validatetype="default" placeholder="结束时间" onclick="laydate({istime: true, start: laydate.now(0, 'YYYY/MM/DD 23:59:59'), format: 'YYYY-MM-DD hh:mm:ss'})">
+		                        </div>
+					</div>
+					<div class='control-label col-sm-1'>时长显示</div>
+					<div class='col-sm-2'>
+						<select id='adnDurationShowType' name='adnDurationShowType' class='form-control'>
+							<option value='hour_minute_second' checked>时分秒</option>
+							<option value='second'>秒</option>
+						</select>
+					</div>
+					<div class="col-sm-1"></div>
+					<div class='col-sm-2'>
+						<button type='button' class="jt-btn jt-btn-search adnRecordSearch"><i class="fa fa-search"></i>&nbsp;搜索</button>
+						<button type='button' class="jt-btn exportAdn">导出</button>
+					</div>
+				</div>
+			</form>
+	    </div>
+	</div>
+</div>

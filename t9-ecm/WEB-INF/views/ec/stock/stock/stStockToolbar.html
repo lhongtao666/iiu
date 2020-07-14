@@ -1,0 +1,88 @@
+<div class="panel panel-default" style="height:127px;">
+    <div class="panel-heading">
+
+		<button type='button' class='jt-btn stStockBuy'><i class='fa fa-edit'>&nbsp;采购</i></button>
+		<button type='button' class='jt-btn stStockOut'><i class='fa fa-edit'>&nbsp;出库</i></button>
+		<button type='button' class='jt-btn stStockAllocate'><i class='fa fa-edit'>&nbsp;调库</i></button>
+		<button type='button' class='jt-btn stStockCheck'><i class='fa fa-edit'>&nbsp;盘点</i></button>
+		<button type='button' class='jt-btn stStockExport'><i class='fa fa-reply-all'>&nbsp;导出</i></button>
+		<button type='button' class='jt-btn stStockEdit'><i class='fa fa-list'>&nbsp;明细</i></button>
+		<button type='button' class='jt-btn stStockExportTamplate'><i class='fa fa-reply-all'>&nbsp;导出盘点模板</i></button>
+		<button type='button' class='jt-btn stStockImport'><i class='fa fa-reply-all fa-rotate-270'></i>&nbsp;导入盘点</button>
+
+		<!-- 帮助中心 -->
+		<label id="glHelpContainer"></label>
+    </div>
+    <div class="panel-body">
+        <form id='stStockSearchForm' role="form" class="form-horizontal">
+			<div class="form-group">
+				<label class='control-label col-sm-1'>名称</label> 
+					<div class='col-sm-2'>
+						<input type="text" id='nameSearch' placeholder="请输入商品名称" name="Q__S__LK__prod_name_" class="form-control">
+				</div>
+				<label class='control-label col-sm-1'>sku编码</label> 
+				<div class='col-sm-2'>
+					<input type="text" id='nameSearch' placeholder="请输入sku编码" name="Q__S__LK__sku.code_" class="form-control">
+				</div>
+				<div class='col-sm-4'>
+					<button type='button' class="jt-btn-search stStockSearch"><i class='fa fa-search'></i>&nbsp;搜索</button>
+					<button type='button' class="jt-btn-empty resetBtn"><i class="fa fa-trash-o"></i>&nbsp;清空</button>
+					<button type="button" id="seniorSearch" class="jt-btn-drop dropdown-toggle" data-toggle="dropdown" tabindex="-1" style='margin-left:25px;'>展开<span class="fa fa-sort-down"></span>
+					</button>
+				</div>
+			
+			</div>
+			<div id="seniorSearchDiv">
+				<div class="form-group">
+					<label class='control-label col-sm-1'>保质期</label> 
+					<div class='col-sm-2'>
+						<select  name='Q__S__EQ__quality_status_' class='form-control'>
+							<option value=''>请选择</option>
+							<option value='common'>保质期良好</option>
+							<option value='notice'>保质期正常</option>
+							<option value='important'>保质期普通</option>
+							<option value='critical'>存在将过期</option>
+							<option value='expire'>存在过期库存</option>
+						</select>
+					</div>
+					<label  class="control-label col-sm-1">次品</label>
+					<div class='col-sm-1'>
+                        <input  name='hasBad' type="checkbox" id="hasBad" style="zoom:130%;" value="y">     
+                    </div>
+					<label class='control-label col-sm-1'>库存预警</label> 
+					<div class="col-sm-3">
+			    		<div class='checkbox checkbox-success checkbox-inline'>
+				    		<input type='checkbox' class='stockNumber' name='hasStock' >
+				    		<label>有货</label>
+			    		</div>
+			    		<div class='checkbox checkbox-success checkbox-inline'>
+				    		<input type='checkbox' class='stockNumber' name='noStock' >
+				    		<label>无货</label>
+			    		</div>
+			    		<div class='checkbox checkbox-success checkbox-inline'>
+				    		<input type='checkbox' class='stockNumber' name='alertMin' >
+				    		<label>缺货</label>
+			    		</div>
+			    		<div class='checkbox checkbox-success checkbox-inline'>
+				    		<input type='checkbox' class='stockNumber' name='alertMax' >
+				    		<label>积压</label>
+			    		</div>
+		    		</div>
+					<label class='control-label col-sm-1'>是否上架</label> 
+					<div class='col-sm-2'>
+						<div class='checkbox checkbox-success checkbox-inline'>
+				    		<input type='checkbox' value="on_sale" class='stockNumber' name='statusOnsale' >
+				    		<label>上架</label>
+			    		</div>
+			    		<div class='checkbox checkbox-success checkbox-inline'>
+				    		<input type='checkbox' value="not_on_sale" class='stockNumber' name='statusNotSale' >
+				    		<label>下架</label>
+			    		</div>
+					</div>		
+				</div>	
+					
+			</div>
+		</form>
+		
+    </div>
+</div>

@@ -1,0 +1,78 @@
+<div class="wrapper" style="overflow-x: hidden">
+    <div class="row form_wrapper" style='background-color: #ffffff'>
+        <div class='col-sm-12'>
+            <form id="shopAddrOptForm" method="get" class="form-horizontal">
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">联系人<span style="color: red;">*</span></label>
+                    <div class="col-sm-5">
+                        <input type="text" name="name" id="shopAddrOptForm_name" placeholder="" class="form-control" validateType="default">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">手机<span style="color: red;">*</span></label>
+                    <div class="col-sm-5" id='csEntityPhoneContainer'>
+                        <select type="text" name="maskMobile" id="shopAddrOptForm_mobile" placeholder="" class="form-control" validateType="default">
+                        </select>
+                        <input type="hidden" name="mobile">
+                    </div>
+                    <div class=' col-sm-5' id='newNumberContainer' style='display: none;'>
+                        <input type="text" class="form-control" name="maskNumber" id='maskNumber' validateType='default'>
+                    </div>
+                </div>
+
+                <!--省市区-->
+                <div class="form-group">
+                    <div class='col-sm-12' id="shopAddrOptForm_cateContainer"></div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">地址<span style="color: red;">*</span></label>
+                    <div class="col-sm-10">
+                        <label class="control-label addrDetaileDescribe" style='float: left;position: relative;'></label>
+                        <span id="ceshi" style="display: none;"></span>
+                        <input type="text" name="maskAddr" id="shopAddrOptForm_addr" placeholder="" class="form-control" validateType="default" style='width:60%;'/>
+                        <textarea name="addr" class="form-control" validateType="default" rows="3" style="display: none"> </textarea>
+                    </div>
+                </div>
+
+                <div>
+                   <p class='tip' style="color: red;margin-left:40%;margin-bottom:0px;"></p>
+               </div>
+
+               <div class="form-group">
+                <label class="col-sm-2 control-label">默认</label>
+                <div class="col-sm-5">
+                    <select class="form-control" id="shopAddrOptForm_isDefault" name="isDefault" validateType="default">
+                        <option value="y" selected=selected>是</option>
+                        <option value="n">否</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class='form-group'>
+                <div style='display: none;'>
+                    <input type="hidden" name="coRid" >
+                    <input type="hidden" name="coName">
+                    <input type="hidden" name="prRid">
+                    <input type="hidden" name="prName" id="prName">
+                    <input type="hidden" name="ciRid">
+                    <input type="hidden" name="ciName" id="ciName">
+                    <input type="hidden" name="arRid">
+                    <input type="hidden" name="partyId" id="shopAddrOptForm_partyId">
+                    <input type="hidden" name="isSnapshot" id="shopAddrOptForm_isSnapshot" value="n">
+                    <input type="hidden" name="arName" id="arName">
+                    <input type="hidden" name="toRid">
+                    <input type="hidden" name="toName" id="toName">
+                    <input type="hidden" name="types" id="shopAddrOptForm_types" value="shipping">
+                    <input type="hidden" name="createBy" id="shopAddrOptForm_createBy">
+                    <input type="hidden" name="id" id="shopAddrOptForm_id">
+                    <input type="hidden" name="createTime" id="shopAddrOptForm_createTime">
+                    <input type="hidden" name="im" id="shopAddrOptForm_im">
+                    <input type="hidden" name="fax" id="shopAddrOptForm_fax">
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+</div>

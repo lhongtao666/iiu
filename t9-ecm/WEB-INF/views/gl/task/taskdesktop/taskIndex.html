@@ -1,0 +1,18 @@
+<script src="${ctx}/js/jt/gl/task/taskIndex${deploy_min!""}.js?v=${jsVersion}"></script>
+<script src="${ctx}/js/jt/common/service/operateTask${deploy_min!""}.js?v=${jsVersion}"></script>
+<script src="${ctx}/js/jt/gl/km/glHelpUtil${deploy_min!""}.js?v=${jsVersion}" ></script>
+<script type="text/javascript">
+  var choose= "";
+</script>
+<div class="ibox float-e-margins" style="height:100%">
+	<div class="ibox-title" style="height:14%">
+		<h5>待办任务</h5>
+		<div class="pull-right" style='margin-right:20px;'>
+			<button type="button" class="btn btn-sm btn-outline btn-info today">今天</button>
+			<button type="button" class="btn btn-sm btn-outline btn-info sevenDays">7天内</button>
+		</div>
+	</div>
+	<div class="ibox-content" style="height:86%" id='taskPanel'>	
+    </div>
+</div>
+

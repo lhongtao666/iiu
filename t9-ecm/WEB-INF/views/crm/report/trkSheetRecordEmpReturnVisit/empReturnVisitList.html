@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>咨询员回访客户报表</title>
+	<#include "/common/common.html">
+	<script src="${ctx}/js/jt/crm/report/trkSheetRecordEmpReturnVisit/empReturnVisitReposrt${deploy_min!""}.js?v=${jsVersion}" ></script>
+</head>
+
+<body>
+	<div class="wrapper animated fadeInRight">
+		<!-- list界面 -->
+		<div class="row list_wrapper">	 
+			 <div class="panel panel-default">		
+				<div class='col-sm-12 jqGrid_wrapper'>
+				    <table id="empReturnVisitReposrtGrid"></table>
+					<div id="empReturnVisitReposrtPager"></div>
+				</div>
+			</div>
+		</div>   
+	</div>
+</body>
+</html>

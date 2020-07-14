@@ -1,0 +1,107 @@
+<div style="display: none;" class="row packedform_wrapper">
+	<div class='col-sm-12'>
+		<div class="panel panel-default">
+	        <div class="panel-heading">
+				<button type='button' class="btn btn-sm   btn-primary packedBtn">打包</button>
+				<button type='button' class="btn btn-sm   btn-primary packNextBtn">打包并下一个</button>
+				<button type='button' class="btn btn-sm   btn-primary nextBtn">下一个</button>
+				<button type='button' class="btn btn-sm   btn-primary previousBtn">上一个</button>
+				<button type='button' class="btn btn-sm   btn-default prevBtn2">取消</button>
+	        </div>
+
+	        <div class="panel-body">
+	            <form id="packedBillForm" method="get" class="form-horizontal">
+		            <div class="form-group">
+			            
+
+			            <div class='col-sm-4'>
+				           	<label class="col-sm-3 control-label">单据号码</label>
+				           	<div class="col-sm-9">
+						    	 <input type="text" readonly='readonly' name="code" placeholder="由系统生成" class="form-control"> 
+				           	</div>
+			            </div>
+			             <div class='col-sm-4'>
+				  	        <label class="col-sm-3 control-label">订单号</label>
+					        <div class="col-sm-9">
+			                    <input class='form-control' name='soNos' readonly="readonly">
+					        </div>
+				        </div>
+			            
+			             <div class='col-sm-4'>
+				  	        <label class="col-sm-3 control-label">经手人</label>
+					        <div class="col-sm-9">
+			                    <input name='operId' type='hidden'>
+			                    <input class='form-control' name='operName' readonly="readonly">
+					        </div>
+				        </div>
+		            </div>
+
+		            <div class="form-group">
+		            	<div class='col-sm-4'>
+				           	<label class="col-sm-3 control-label">业务类型</label>
+				           	<div class="col-sm-9">
+						    	 <select class='form-control' id='subTypeContainer' name='type' readonly="readonly" validateType="default">
+						    	 	<option value="">请选择</option>
+						    	 	<option value="out">出库单</option>
+						    	 </select>
+
+				           	</div>
+			            </div>     
+				        <div class='col-sm-4 hiddenWhenHasOneStore'>
+				           	<label class="col-sm-3 control-label">仓库</label>
+				           	<div class="col-sm-9">
+						    	<select class='form-control' name='storeId' id='storeIdContainer2' validateType="default"></select>
+				           	</div>
+			            </div>
+				        <div class='col-sm-4 operTimeContainer'>
+				  	        <label class="col-sm-3 control-label">日期</label>
+					        <div class="col-sm-9">
+			                    <input class='laydate-icon form-control layer-date' name="operTime"  readonly="readonly" validateType="default"  placeholder="YYYY-MM-DD hh:mm:ss" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">
+					        </div>
+				        </div>
+		            </div>
+
+
+		            <div class="form-group">
+			            <div class='col-sm-12'>
+				           	<label class="col-sm-1 control-label">备注</label>
+				           	<div class="col-sm-11">
+						    	 <textarea class='form-control' name='comment' readonly="readonly" rows='3'></textarea>
+				           	</div>
+			            </div>
+		            </div>
+
+					<div class="form-group">
+			            <!--将隐藏域放在这里，不显示出来-->
+			            <div style="display:none'">
+			               <input type="hidden" id="id" name="id">
+			               <input type="hidden" name="createBy">
+			               <input type="hidden" name="createTime">
+			               <input type="hidden" name="name" >
+			            </div>
+			        </div>    
+				</form>
+
+				<div class='row' style='margin-top: 5px;'>
+					<div class='col-sm-12'>
+						<table class='table table-striped table-bordered'>
+							<thead id='packedProductHeaderContainer'>
+								<tr>
+									<th width='15%'>商品名称</th>
+									<th width='10%'>sku编号</th>
+									<th width='5%'>单位</th>
+									<th width='10%'>出库数量</th>
+									<th width='10%'>仓位</th>
+									<th width='20%'>备注</th>
+								</tr>
+							</thead>
+							<tbody id='packedProductContainer'>
+							</tbody>
+							<tfoot id="packedProductFooterContainer"></tfoot>
+						</table>
+					</div>
+				</div>
+	        </div>
+	    </div>	
+	</div>
+</div>

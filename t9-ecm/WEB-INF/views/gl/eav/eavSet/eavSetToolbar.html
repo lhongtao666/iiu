@@ -1,0 +1,45 @@
+<div class="col-sm-12">
+	<div class="panel panel-default">
+	    <div class="panel-heading">
+	    	<button type='button' class='jt-btn eavSetAdd'><i class='fa fa-plus'>&nbsp;添加</i></button>
+			<button type='button' class='jt-btn jt-btn-red eavSetDel'><i class="fa fa-remove">&nbsp;删除</i></button>
+			<button type='button' class='jt-btn eavSetEdit'><i class='fa fa-edit'>&nbsp;编辑</i></button>
+			<button type='button' class='jt-btn eavSetDetail'><i class='fa fa-list'>&nbsp;明细</i></button>
+
+			<label id="glHelpContainer"></label><!-- 帮助中心 -->
+	    </div>
+	    <div class="panel-body">
+	        <form id='eavSetSearchForm' role="form" class="form-horizontal">
+				<div class="form-group jt-form-group jt-form-normal">
+					<div class="col-sm-3">
+						<label class='control-label col-sm-4'>名称</label> 
+						<div class='col-sm-8'>
+							<input type="text" id='nameSearch' placeholder="请输入名称" name="Q__S__LK__name_" class="form-control">
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<label class='control-label col-sm-4'>业务键</label> 
+						<div class='col-sm-8'>
+							<input type="text" id='keySearch' placeholder="请输入业务键" name="Q__S__LK__key_" class="form-control">
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<label class='control-label col-sm-4'>状态</label> 
+						<div class='col-sm-8'>
+							<select class='form-control' name='Q__S__EQ__status_'>
+								<option value=''>请选择</option>
+								<option value='used'>已用</option>
+								<option value='actived'>激活</option>
+								<option value='inactive'>未激活</option>							
+							</select>
+						</div>
+					</div>
+					<div class='col-sm-2 jt-form-btn'>						
+						<button type='button' class="jt-btn-search pull-right eavSetSearch"><i class='fa fa-search'>&nbsp;搜索</i></button>
+
+					</div>
+				</div>
+			</form>
+	    </div>
+	</div>
+</div>

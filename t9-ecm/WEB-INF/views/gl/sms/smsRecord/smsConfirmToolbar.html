@@ -1,0 +1,51 @@
+<div class="col-sm-12">
+    <div class="panel panel-default">
+        <div class="panel-heading btnGroup">
+            <button type='button' class='jt-btn smsConfirmConfirm'>通过</button>
+            <button type='button' class='jt-btn smsConfirmUnpass'>不通过</button>
+            <button type='button' class='jt-btn jt-btn-red smsRecordDelete'>删除</button>
+        </div>
+        <div class="panel-body">
+            <form role="form" class="form-horizontal smsSearchForm" >
+                <div class='form-group jt-form-group jt-form-normal'>
+                    <div class="col-sm-3">
+                        <label class="col-sm-4 control-label">客户编号</label>
+                        <div class="col-sm-8">
+                            <input type="text" placeholder="请输入客户编号" name="Q__S__EQ__cs_code_" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <label class="col-sm-4 control-label">部门</label>
+                        <div class="col-sm-8">
+                            <input class='groupName form-control' readonly>
+                            <input type="hidden" name="belongOgn">
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <label class="col-sm-4 control-label">工号</label>
+                        <div class="col-sm-8">
+                            <select name="Q__S__EQ__create_by_" class='form-control' style='width: 100%'></select>
+                        </div>
+                    </div>
+                </div>
+                <div class='form-group jt-form-group jt-form-normal'>
+                    <div class="col-sm-3">
+                        <label class="col-sm-4 control-label">开始时间</label>
+                        <div class='col-sm-8'>
+                            <input class="laydate-icon startCreateTime form-control layer-date minPlaceTime" name="Q__D__BW__create_time_"  placeholder="起始时间" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <label class="col-sm-4 control-label">结束时间</label>
+                        <div class='col-sm-8'>
+                            <input class="laydate-icon form-control layer-date" name="Q__D__BW__create_time_" placeholder="结束时间" onclick='laydate({istime: true, start: laydate.now(0, "YYYY/MM/DD 23:59:59"),format: "YYYY-MM-DD hh:mm:ss",})'>
+                        </div>
+                    </div>
+                    <div class="col-sm-3 jt-form-btn">
+                        <button type='button' class="jt-btn jt-btn-search smsRecordSearch"><i class="fa fa-search"></i>&nbsp;搜索</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,43 @@
+<div style="display: none;" class="row excel_wrapper">
+	<div class='col-sm-12'>
+		<div class="panel panel-default">
+			<div class="panel-heading topToolbar">
+				<button type='button' class="btn btn-sm   btn-default prevBtn">取消</button>
+			</div>
+			<div class="panel-body">
+				<form id="exportExcelForm" method="get" class="form-horizontal">
+					<div class='form-group'>
+						<label class="col-sm-2 control-label">选择要导出的字段：</label>
+					</div>
+					<div class='form-group'>
+						<div class="col-sm-2"></div>
+						<div class="col-sm-8" id="exportColumnContainer"></div>
+					</div>
+					<br/>
+					<div class='form-group'>
+						<label class="col-sm-2 control-label">选择要导出的数量：</label>
+						<div class="col-sm-7">
+							<span>从第</span>
+							<input type="number" id="beginExportNum" validateType="default" value="1"/>
+							<span>个到第</span>
+							<input type="number" id="endExportNum" validateType="default"/>
+							<span>个订单</span>
+						</div>
+						<input type='hidden' name='selectIds'>
+					</div>
+					<br/>
+					<div class='form-group'>
+						<div class="col-sm-2"></div>
+						<div class="col-sm-7">
+							<div class="checkbox checkbox-success checkbox-inline">
+								<input type="checkbox" checked id="allCheck" value="">
+								<label style="color:red" for="allCheck">全选</label>
+							</div>
+							<button type="button" class='btn btn-sm   btn-primary exportSoStockInExcel' >导出</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>

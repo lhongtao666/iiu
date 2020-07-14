@@ -1,0 +1,41 @@
+<div class="col-sm-12">
+	<div class="panel panel-default">
+	    <div class="panel-heading">
+	    	<button type='button' class='jt-btn jobDefAdd'><i class='fa fa-plus'>&nbsp;添加</i></button>
+			<button type='button' class='jt-btn jobDefDetail'><i class='fa fa-list'>&nbsp;明细</i></button>
+			<button type='button' class='jt-btn jobDefEdit'><i class='fa fa-list'>&nbsp;编辑</i></button>
+			 <button type='button' class='jt-btn jobDefPlan'><i class='fa fa-edit'>&nbsp;计划列表</i></button> 
+			 <button type='button' class='jt-btn runDefaultPlan'><i class='fa fa-edit'>&nbsp;执行默认计划</i></button>
+			 <button type='button' class='jt-btn showDefaultLog'><i class='fa fa-edit'>&nbsp;默认计划日志</i></button> 
+			 <button type='button' class='jt-btn fixJobPlan'><i class='fa fa-edit'>&nbsp;补偿计划</i></button> 
+			<button type='button' class='jt-btn jt-btn-red jobDefDel'><i class='fa fa-remove'>&nbsp;删除</i></button>
+	    </div>
+	    <div class="panel-body">
+	        <form id='jobDefSearchForm' role="form" class="form-horizontal">
+				<div class="form-group">
+					<label class='control-label col-sm-1'>名称</label> 
+					<div class='col-sm-2'>
+						<input type="text" placeholder="请输入名称" id="nameSearch"  name="Q__S__LK__name_"  class="form-control">
+					</div>
+					
+					<label class='control-label col-sm-1'>BEAN</label> 
+					<div class='col-sm-2'>
+						<input type="text" placeholder="请输入名称"  name="Q__S__LK__bean_"  class="form-control">
+					</div>
+					<label class='control-label col-sm-1'>创建时间</label>
+					<div class='col-sm-3'>
+						<div class="input-daterange input-group" id="datepicker">
+                            <input class="laydate-icon form-control layer-date" name="Q__D__BW__create_time_" validatetype="default" placeholder="开始时间" onclick="laydate({istime: true, format: 'YYYY-MM-DD'})">	
+                            <span class="input-group-addon">到</span>
+							<input class="laydate-icon form-control layer-date" name="Q__D__BW__create_time_" validatetype="default" placeholder="结束时间" onclick="laydate({istime: true, format: 'YYYY-MM-DD'})">
+                        </div>
+					</div>
+	
+					<div class='col-sm-1'>
+						<button type='button' class="jt-btn-search jobDefSearch"><i class='fa fa-search'></i>&nbsp;搜索</button>
+					</div>
+				</div>
+			</form>
+	    </div>
+	</div>
+</div>

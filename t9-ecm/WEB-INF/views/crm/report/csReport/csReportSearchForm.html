@@ -1,0 +1,50 @@
+<form role="form" class="form-inline">
+    <div class="form-group">
+		<label for="codeSearch" class="sr-only">客户类型</label> 
+		<select name="typeSearch"   id="typeSearch"  placeholder="" class="form-control" validateType="default" >
+		    <option value="">全部</option>
+		 </select>
+	</div>
+    <div class="form-group">
+		<label for="firstLtSearch" class="sr-only">客户业务类型</label> 
+		<select name="bizTypeSearch"   id="bizTypeSearch"  placeholder="" class="form-control" validateType="default" > 
+		<option value="">全部</option>
+		</select>
+	</div>
+    <div class="form-group">
+		<label for="briefSearch" class="sr-only">客户状态</label> 
+		<select name="csStatusSearch"   id="csStatusSearch"  placeholder="" class="form-control" validateType="default" >
+		     <option value="">全部</option>
+		 </select>
+	</div>
+	<div class="form-group">
+		<label for="typeSearch" class="sr-only">客户来源</label> 
+		<select name="srcSearch"   id="srcSearch"  placeholder="" class="form-control" validateType="default" >
+		   <option value="">全部</option>
+		 </select>
+	</div>
+	<div class="form-group">
+		<label for="typeSearch" class="sr-only">行业类别</label> 
+		<select name="tradeSearch"   id="tradeSearch"  placeholder="" class="form-control" validateType="default" > 
+		   <option value="">全部</option>
+		</select>
+	</div>
+	<div class="form-group">
+		<label for="typeSearch" >报表类型</label> 
+		<select name="reportTypeSearch"   id="reportTypeSearch"  placeholder="" class="form-control" validateType="default" > 
+		  <option value="cs_type_" >客户类型</option>
+		  <option value="biz_type_" >客户业务类型</option>
+		  <option value="cs_status_" >客户状态</option>
+		  <option value="src_" >客户来源</option>
+		  <option value="trade_" >行业类别</option>
+		</select>
+	</div>
+	<div class="form-group">
+		<label for="chartTypeSearch" >图像类型</label> 
+		<select name="chartTypeSearch"   id="chartTypeSearch"  placeholder="" class="form-control" validateType="default" > 
+		  <option value="bar" >柱状图</option>
+		  <option value="pie" >饼状图</option>
+		</select>
+	</div>
+<button class="btn btn-default" id="searchBtn"  >搜索</button>
+</form>

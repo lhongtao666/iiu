@@ -1,0 +1,176 @@
+<form id="financeBillForm" method="get" class="form-horizontal">
+	<div class="form-group">
+		<div class='col-sm-4'>
+			<label class="col-sm-3 control-label" style="color:red;">
+				标题
+				<span style="color:red;">*</span>
+			</label>
+			<div class="col-sm-9">
+				<input type="text" name="title" placeholder="" class="form-control" validateType="default" ></div>
+		</div>
+		<div class='col-sm-4'>
+			<label style="color:red;" class="col-sm-3 control-label">金额<span style="color:red;">*</span></label>
+			<div class="col-sm-9">
+				<input type="text" name="total" placeholder="" class="form-control" validateType="default">
+			</div>
+		</div>
+	</div>
+	<div class="form-group">	
+		<div class='col-sm-4'>
+			<label class="col-sm-3 control-label">结算方式</label>
+			<div class="col-sm-9">
+				<select  name="payType" placeholder="" class="form-control" validateType="default" >
+					<option value="alipay">支付宝</option>
+					<option value="weixin">微信支付</option>
+					<option value="bank">银行转账</option>
+					<option value="cash">现金支付</option>
+					<option value="QRCode">收款码支付</option>
+				</select>
+			</div>
+		</div>
+		<div class='col-sm-4 payAccountContent' >
+			<label   style="color:red;" class="col-sm-3 control-label">
+				付款账户
+				<span style="color:red;">*</span>
+			</label>
+			<div class="col-sm-9 payAccountDiv">
+			</div>
+			
+		</div>
+		<div class='col-sm-4 receiptAccountContent'>
+			<label style="color:red;" class="col-sm-3 control-label">
+				收款账户
+				<span style="color:red;">*</span>
+			</label>
+			<div class="col-sm-9 receiptAccountDiv">
+			</div>
+		</div>
+	</div>
+	<div class="form-group" style="display:none;">
+		<div class='col-sm-4'>
+			<label class="col-sm-3 control-label">单据类型</label>
+			<div class="col-sm-9">
+				<input type="hidden" name="type">
+				<select class="form-control" id="typeSelect" validateType="default" disabled>
+					<option value="receipt">收款单</option>
+					<option value="pay">付款单</option>
+					<option value="refund">退款单</option>
+				</select>
+			</div>
+		</div>		
+		<div class='col-sm-4 entityTypeDiv'>
+			<label class="col-sm-3 control-label">关联类型</label>
+			<div class="col-sm-9">
+				<select  name="entityType" class="form-control"   validateType="default" >
+					<option value="salesorder">订单</option>
+					<option value="returnentity">退货</option>
+					<option value="exchange">换货</option>
+					<option value="none">人工录入</option>
+				</select>
+			</div>
+		</div>
+		<div class='col-sm-4 entityNoDiv'>
+			<label class="col-sm-3 control-label">实体编码</label>
+			<div class="col-sm-9">
+				<input type="text" name="entityNo" placeholder="" class="form-control" validateType="default" >
+			</div>
+		</div>
+	</div>
+	<div class="form-group">		
+		<div class='col-sm-4  statusDiv'>
+			<label class="col-sm-3 control-label">状态</label>
+			<div class="col-sm-9">
+				<select class="form-control" name="status" validateType="default"  disabled="disabled" >
+					<option value="processing">处理中</option>
+					<option value="cancel">取消</option>
+					<option value="done">处理完毕</option>
+					<option value="audit">已审核</option>
+				</select >
+				<input type="hidden"  name="status"   >
+			</div>
+		</div>
+	</div>
+	<div class="form-group">
+		<div class='col-sm-12'>
+			<label class="col-sm-1 control-label">摘要</label>
+			<div class="col-sm-7">
+				<textarea rows="1"  name="summary" placeholder="" class="form-control" validateType="default"></textarea>
+			</div>
+		</div>
+	</div>
+	<div class="form-group processInfoDiv">
+		<div class='col-sm-4'>
+			<label class="col-sm-3 control-label">经办人</label>
+			<div class="col-sm-9">
+				<input type="text" name="personName" placeholder="" class="form-control" validateType="default" >
+				<input type="hidden" name="personId" >
+			</div>
+		</div>
+		<div class='col-sm-4'>
+			<label class="col-sm-3 control-label">经办人部门</label>
+			<div class="col-sm-9">
+				<input type="text" name="groupName" placeholder="" class="form-control" validateType="default" >
+				<input type="hidden" name="orgId" >
+			</div>
+		</div>
+		<div class='col-sm-4'>
+			<label class="col-sm-3 control-label">完成时间</label>
+			<div class="col-sm-9">
+				<input class='laydate-icon form-control layer-date' name="completeTime" validateType="default"  placeholder="YYYY-MM-DD hh:mm:ss" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">
+			</div>
+		</div>
+	</div>
+	<!--将隐藏域放在这里，不显示出来-->
+	<div style="display:none'">
+		<input type="hidden" id="id" name="id">
+		<input type="hidden" name="createBy">
+		<input type="hidden" name="createTime">
+		<input type="hidden" name="attachCount" >
+		<!-- <input type="hidden" name="payType" > -->
+	</div>
+	<div class="form-group" style="display:none;">
+		<div class="tabs-container">
+			<ul class="nav nav-tabs">
+				<li  id="FnanceItemTabLi" class="tabli active">
+					<a href="#tabiFnanceItem" data-toggle="tab">款项条目</a>
+				</li>
+				<li  id="FnanceBillAttachTabLi" class="tabli">
+					<a href="#tabFinanceBillAttach" data-toggle="tab">附件</a>
+				</li>
+			</ul>
+			<div class="tab-content">
+				<div id="tabiFnanceItem" class="tab-pane active">
+					<div class="panel-body">
+						<div class="col-sm-12 ">
+							<!--d3 -->
+							<button type="button"  class="btn btn-sm   btn-primary financeItemAdd"  >添加科目</button>
+						</div>
+						<div class="form-group"></div>
+						<div class="col-sm-12">
+							<!--d3 -->
+							<div style="width:760px;"  id="financeItemDiv">
+								<table id="financeItemGrid"  ></table>
+								<div id="financeItemPager"></div>
+							</div>
+						</div>
+						<!--END d3-->
+					</div>
+				</div>
+				<div id="tabFinanceBillAttach" class="tab-pane">
+					<div class="panel-body">
+						<div class="col-sm-12 ">
+							<!--d3 -->
+							<div class="form-group">
+								<button type="button"  class="btn btn-sm   btn-primary financeBillAttachAdd"  >添加附件</button>
+							</div>
+						</div>
+						<div class="col-sm-12 ">
+							<!--d3 -->
+							<div class="form-group financeBillAttachDiv"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</form>

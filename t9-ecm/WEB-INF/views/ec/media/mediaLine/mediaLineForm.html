@@ -1,0 +1,114 @@
+<div class='row' style='border: 1px solid #ddd; margin-left: 15px; margin-right: 15px;padding:10px;'>
+	<div class='col-sm-12'>
+		<form id="mediaLineForm" method="get" class="form-horizontal">
+
+
+			<div class="form-group">
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">渠道</label>
+					<div class="col-sm-9">
+						<input type="text" name="channelName" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>	
+				
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">时段</label>
+					<div class="col-sm-9">
+						<input type="text" name="periodTime" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">进线类型</label>
+					<div class="col-sm-9">
+						<select class="form-control" name="type" validateType="default" >
+		               		<option value="">请选择</option>
+		               		<option value="400">400电话</option>
+		               	    <option value="weixin">微信加粉</option>
+		               		<option value="msg">表单留言</option>
+		               		<option value="add">人工添加</option>
+		              	</select>
+		            </div>
+		        </div>
+
+			</div>
+			<div class="form-group msgInfoDiv">
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">姓名</label>
+					<div class="col-sm-9">
+						<input type="text" name="msgName" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">电话</label>
+					<div class="col-sm-9">
+						<input type="text" name="msgMobile" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">联系时段</label>
+					<div class="col-sm-9">
+						<input type="text" name="msgPeriod" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>	
+			</div>
+			<div class="form-group msgInfoDiv">
+					<label class="col-sm-1 control-label">病情描述</label>
+					<div class="col-sm-11">
+						<textarea name="msgComment" class="form-control" rows="2"></textarea>
+					</div>
+			</div>
+			<div class="form-group">
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">客户编号</label>
+					<div class="col-sm-9">
+						<input type="text" name="csNo" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">客户创建时间</label>
+					<div class="col-sm-9">
+						<input class='laydate-icon form-control layer-date' name="csCreateTime" validateType="default"  placeholder="YYYY-MM-DD hh:mm:ss" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">
+					</div>
+				</div>
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">是否重进线</label>
+					<div class="col-sm-9">
+						<select id="isRepeatSelect" class="form-control" name="isRepeat" validateType="default" >
+							<option value=''>请选择</option>
+							<option value="n">否</option>
+							<option value="y">是</option>
+						</select>
+					</div>
+				</div>	
+
+					
+			</div>
+			<div class="form-group">
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">是否加粉</label>
+					<div class="col-sm-9">
+						<select class="form-control" name="hasWeixin" validateType="default" >
+							<option value=''>请选择</option>
+							<option value="n">否</option>
+							<option value="y">是</option>
+						</select>
+					</div>
+				</div>
+			</div>
+			<div class='form-group'>
+				<!--将隐藏域放在这里，不显示出来-->
+				<div style="display:none'">
+					<input type="hidden" id="id" name="id">
+					<input type="hidden" name="createTime">
+					<input type="hidden" name="periodId">
+					<input type="hidden" name="channelId">
+					<input type="hidden" name="callId">
+				</div>
+			</div>
+
+		</form>
+	</div>
+</div>

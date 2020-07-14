@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>产品销售报表关联订单列表</title>
+	<#include "/common/common.html">
+	<script src="${ctx}/js/jt/ec/rp/prodSale/prodSaleRelatedSoItem${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script>
+		var soNos="";
+		var skuId="";
+		<#if soNos??>
+			soNos = "${soNos}";
+			skuId = "${skuId}";
+		</#if>
+
+	</script>
+</head>
+
+<body class="white-bg">
+	<div class='wrapper'>
+		<div class='row list_wrapper'>
+			<div class='col-sm-12 jqGrid_wrapper'>
+				<table id="prodSaleRelatedSoItemGrid"></table>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<#include "/common/common.html">
+		<#include "/common/eav.html">
+		<title>产品预览</title>
+
+		<link href="${ctx}/css/plugins/jcarousel/jcarousel.connected-carousels.css?v=${jsVersion}" rel="stylesheet">
+		<script type="text/javascript" src="${ctx}/js/plugins/jcarousel/jquery.jcarousel.min.js?v=${jsVersion}"></script>
+        <script type="text/javascript" src="${ctx}/js/plugins/jcarousel/jcarousel.connected-carousels.js?v=${jsVersion}"></script>
+		<style type="text/css">
+		.chooseSku {
+			margin-top: 10px;
+		}
+		.productService {
+			margin-top: 10px;
+		}
+		.productDetailContainer {
+			margin-top: 10px;
+		}
+		</style>
+		<script>
+		    //产品id
+		    var prodEntityId = "${prodEntity.id}";
+		</script>
+		<script type="text/javascript"	src="${ctx}/js/jt/ec/product/prodPreview${deploy_min!""}.js?v=${jsVersion}"></script>
+	</head>
+
+	<body class='white-bg'>
+		<div class="wrapper animated ">
+			<div class="row">
+			    <div class='col-sm-12'>
+			    	<h1>sorry，该商品找不到...可能是该商品已经删除了</h1>
+			    </div>
+			</div>
+		</div>
+	</body>
+</html>

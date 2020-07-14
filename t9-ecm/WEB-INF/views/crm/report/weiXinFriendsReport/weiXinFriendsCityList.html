@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>微信粉丝区域分析报表</title>
+	<#include "/common/common.html">
+	<script src="${ctx}/js/jt//crm/report/wx/weiXinFriendsCity${deploy_min!""}.js?v=${jsVersion}" ></script>
+
+</head>
+<script>
+	var beginTime="";
+	var endTime = "";
+	var groupId = "";
+	var province ="";
+	<#if beginTime??>
+		beginTime = "${beginTime}";
+	</#if>
+	<#if endTime??>
+		endTime = "${endTime}";
+	</#if>
+	<#if groupId??>
+		groupId = "${groupId}";
+	</#if>
+	<#if province??>
+		province = "${province}";
+	</#if>
+</script>
+
+<body class='white-bg'>
+	<div class='wrapper'>
+		<div class='row list_wrapper'>
+			<div class="jqGrid_wrapper col-sm-12">
+				<table id="weiXinFriendsCityGrid"></table>
+			</div>	
+		</div>
+	</div>
+</body>
+</html>

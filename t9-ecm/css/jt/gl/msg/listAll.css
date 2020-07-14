@@ -1,0 +1,67 @@
+.chat-discussion .chat-sender .message-avatar {
+	float: left;
+	margin-right: 10px;
+}
+
+.chat-discussion .chat-recer .message-avatar {
+	float: right;
+	margin-left: 10px;
+}
+
+.chat-discussion .chat-sender .message-date {
+	float: right;
+}
+
+.chat-discussion .chat-recer .message-date {
+	float: left;
+}
+
+.chat-discussion .chat-sender .message {
+	text-align: left;
+	margin-left: 55px;
+}
+
+.chat-discussion .chat-recer .message {
+	text-align: right;
+	margin-right: 55px;
+}
+
+.activeChatUser {
+	background: green;
+}
+
+.item-ft {
+	position: relative;
+	margin-top: 2px;
+	z-index: 1;
+	height: 19px;
+}
+
+.photo-item {
+	float: left;
+	margin-left: 30px;
+	display: block;
+	padding: 0px;
+	width: 82px;
+	margin-bottom: 20px;
+}
+
+.file-image-item {
+	width: 82px;
+	height: 80px;
+}
+
+.filename-item-span {
+	display: inline-block;
+	float: left;
+	width: 63px;
+	overflow: hidden;
+	text-align: left;
+}
+
+.file-item-download {
+	display: inline-block;
+	width: 19px;
+	cursor: pointer;
+	float: right;
+}

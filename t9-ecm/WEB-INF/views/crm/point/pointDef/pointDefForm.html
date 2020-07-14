@@ -1,0 +1,53 @@
+
+<form id="pointDefForm" method="get" class="form-horizontal">
+	<div class="form-group">
+		<div class='col-sm-6'>
+			<label class="col-sm-3 control-label">分类类型<span style="color:red;">*</span></label>
+			<div class="col-sm-9">
+				<select class="form-control cateType" name="cateType" validateType="default" >
+               		<option value='common'>正价</option>
+                    <option value='special'>特价</option>
+                    <option value='experience'>体验价</option>
+                    <option value='gift'>赠品</option>
+                    <option value='exchange'>换购</option>
+              	</select>
+			</div>
+		</div>		
+
+		<div class='col-sm-6'>
+			<label class="col-sm-3 control-label">产品分类<span style="color:red;">*</span></label>
+			<div class="col-sm-9">
+				<input name="cateId" type='hidden'>
+			    <input class="form-control cateName" id='cateName' name="cateName" validateType="default" readonly="readonly">
+			</div>
+		</div>	
+		
+	</div>
+	<div class="form-group">	
+		<div class='col-sm-6'>
+			<label class="col-sm-3 control-label">一元获得积分数<span style="color:red;">*</span></label>
+			<div class="col-sm-9">
+				<input type="text" name="count" placeholder=""  validateType="default"  class=" form-control"> 
+			</div>
+		</div>
+		<div class='col-sm-6'>
+			<label class="col-sm-3 control-label">状态</label>
+			<div class="col-sm-9">
+				<select class="form-control" name="status" validateType="default" >
+               		<option value="actived">启用</option>
+               	    <option value="inactive">不启用</option>
+              	</select>
+            </div>
+        </div>
+
+    </div>    
+
+	<div class='form-group'>
+		<!--将隐藏域放在这里，不显示出来-->
+		<div style="display:none'">
+			<input type="hidden" id="id" name="id">
+			<input type="hidden" name="createBy">
+			<input type="hidden" name="createTime">
+		</div>
+	</div>
+</form>

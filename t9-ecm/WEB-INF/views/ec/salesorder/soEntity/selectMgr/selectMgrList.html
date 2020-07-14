@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>订单查询</title>
+	<#include "/common/common.html">
+	<#include "/common/ztree.html">
+	<script type="text/javascript">
+       	var curUserId = "${ONLINE_ENTITY.userId}";
+	</script>
+	<link href="${ctx}/css/plugins/chosen/chosen.css?v=${jsVersion}" rel="stylesheet">
+	<link href="${ctx}/css/plugins/select2/select2.min.css?v=${jsVersion}" rel="stylesheet">
+	<script src="${ctx}/js/plugins/select2/select2.min.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/plugins/chosen/chosen.jquery.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/plugins/suggest/bootstrap-suggest.js?v=${jsVersion}"></script>
+		<style>
+		.searchImg{
+		    width:24px;
+		    height:24px;
+		    margin:0 auto;
+		}
+		.skuSearchImg{
+		    border: 1px solid #e7eaec;
+		}
+
+		.skuSearchImg:hover{
+		    border: 1px solid #d2d2d2
+		}
+	</style>
+	<script type="text/javascript">
+		var simpleShowComment = "n";
+	   	var simpleShowLastFollow = "n";
+	   	var simpleShowProductSum = "n";	
+		var isUseReturnBack = "n";
+	   	<#if simpleShowComment??>
+           simpleShowComment = "${simpleShowComment}";
+       	</#if>
+       	<#if simpleShowLastFollow??>
+           simpleShowLastFollow = "${simpleShowLastFollow}";
+       	</#if>
+       	<#if simpleShowProductSum??>
+           simpleShowProductSum = "${simpleShowProductSum}";
+        </#if>
+        <#if isUseReturnBack??>
+           isUseReturnBack = "${isUseReturnBack}";
+        </#if>
+	</script>
+<script src='${ctx}/js/jt/ec/salesorder/soEntitySearch-site${deploy_min!""}.js?v=${jsVersion}' ></script>
+</head>
+
+<body>
+    <div class="wrapper animated ">
+		<!-- list界面 -->
+		<div id='soEntityContainer' class="row list_wrapper">
+			<#include "/ec/salesorder/soEntity/selectMgr/soEntitySelectToolbar.html">
+			<div id='soEntityContainer' class='col-sm-12 jqGrid_wrapper'>    
+		        <table id="soEntityMgrGrid"></table>
+		        <div id="soEntityMgrPager"></div>
+		    </div>
+		</div>    
+	</div>
+	
+	<div style="display:none"  class="soEntityClosePane" >
+	   	<#include "/ec/salesorder/soEntity/soEntityClose.html" >
+	</div>
+	<div style="display:none"  class="soEntityTurnDownPane" >
+	   	<#include "/ec/salesorder/soEntity/soEntityTurnDown.html" >
+	</div>
+	<div style="display:none" class="soEntityExportPane" >
+		 <#include "/ec/salesorder/soEntity/export/soEntityExport.html" >
+	</div>
+	<#include "/common/listTitleEdit.html">
+</body>
+</html>

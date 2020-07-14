@@ -1,0 +1,49 @@
+<div class="col-sm-12">
+	<div class="panel panel-default">
+	    <div class="panel-heading">
+	    	<button type='button' class='btn btn-sm  btn-primary jt-btn-normal mediaPlanAdd'><i class='fa fa-plus'>添加</i></button>
+    		<button type='button' class='btn btn-sm  btn-primary jt-btn-normal mediaPlanAddLong'><i class='fa fa-plus'>添加长期</i></button>
+			<button type='button' class='btn btn-sm  btn-primary jt-btn-normal mediaPlanEdit'><i class='fa fa-edit'>编辑</i></button>
+			<button type='button' class='btn btn-sm  btn-danger jt-btn-normal jt-bn-red mediaPlanDel'>删除</button>
+			<button type='button' class='btn btn-sm  btn-primary jt-btn-normal mediaPlanDetail'><i class='fa fa-list'>明细</i></button>
+			<label id="glHelpContainer"></label><!-- 帮助中心 -->
+	    </div>
+	    <div class="panel-body">
+	        <form role="form" class="form-horizontal">
+				<!--默认生成一个搜索条件，需要的，用户自己添加-->
+				<div class="form-group">
+					<label class="col-sm-1 control-label">渠道名称</label>
+					<div class='col-sm-2'>
+						<select type="text" name="Q__S__LK__channel_id_"  class="form-control" id="channelSearch" validateType="default"> 
+						</select>
+					</div>
+					<label class="col-sm-1 control-label">费用</label>
+	                <div class='col-sm-3'>
+					    <div class="input-daterange input-group">
+                        	 <input type="text" id='costSearch' name="Q__N__GTE__cost_" class='form-control'> 
+                            <span class="input-group-addon">至</span>
+                             <input type="text" id='costSearch' name="Q__N__LTE__plan.cost_" class='form-control'>                        
+                        </div>
+	                </div>
+	                <label class="col-sm-1 control-label">广告日期</label>
+					<div class='col-sm-4'>
+					    <div class="input-daterange input-group">
+                        	 <input type="text" id='adDateStartSearch' name="Q__D__BW__plan.ad_date_" class='laydate-icon form-control layer-date' 
+                        	 onclick="laydate({istime: false, format: 'YYYY-MM-DD'})" style="cursor:pointer;">   
+                            <span class="input-group-addon">到</span>
+                            <input type="text" id='adDateEndSearch' name="Q__D__BW__plan.ad_date_"  class='laydate-icon form-control layer-date' 
+                            onclick="laydate({istime: false, format: 'YYYY-MM-DD'})" style="cursor:pointer;">                        
+                        </div>
+	                </div>
+				</div>
+				<div class="form-group">
+				    <div class='col-sm-1'></div>
+	                <div class='col-sm-1'>
+					    <button type='button' class="btn btn-sm jt-btn-normal btn-primary mediaPlanSearch">搜索</button>
+				    </div>
+				    <div class='col-sm-10'></div>
+				</div>
+			</form>
+	    </div>
+	</div>
+</div>

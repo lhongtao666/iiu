@@ -1,0 +1,75 @@
+<style>
+  #batchUpdateModalLabel {
+        color: #fff;
+        font-weight: 500;
+    }
+    #batchUpdateModalLabel > span {
+        color: #f5f5f5;
+        font-size: 12px;
+    }
+    #batchUpdateModalLabel > span > font {
+        color: gold;
+    }
+
+</style>
+<div class="modal fade" tabindex="-1" id="batchUpdateContainer" role="dialog" aria-labelledby="batchUpdateModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color: #1caf9a;padding: 10px;">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span style="color: black" aria-hidden="true">&times;</span></button>
+                <h3 class="modal-title" id="batchUpdateModalLabel"></h3>
+            </div>
+
+            <div class="modal-body" style='padding:10px 10px 0 10px;'>
+			    <form id="batchUpdateForm">
+			        <table class="table table-bordered">
+			            <tr>
+			                <td width="30%" class="tlable">
+			                	<div class="checkbox checkbox-success checkbox-inline">
+			                		<input type="checkbox" id="checkSaleRange" name="isUpdateSaleRange" value="y" />
+			                		<label for="checkSaleRange">修改产品范围</label>
+			               		</div>
+		                    </td>
+			                <td width="70%">
+			                    <select class='form-control' name='saleRange' validateType='default' id='saleRangeSelect' >
+			                        <option value="">请选择</option>
+			                        <option value="all">全部</option>
+			                        <option value="first">一线</option>
+			                        <option value="second">二线</option>
+			                    </select>
+			                </td>
+			            </tr>
+			            <tr>
+			                <td width="30%" class="tlable">
+			                	<div class="checkbox checkbox-success checkbox-inline">
+			                		<input type="checkbox" id="checkUpdateType" name="isUpdateProdType" value="y" />
+			                		<label for="checkUpdateType">修改产品分类</label>
+			               		</div>
+		                    </td>
+			                <td width="70%">
+			                     <input type='text' class='form-control' validateType='default' id="updateCateId" name="updateCateId">
+			                     <input type='text' class='form-control hide' validateType='default' id="checkCateId" name="cateId">
+			                    
+			                </td>     
+			            </tr>
+			            <tr>
+			                <td width="30%" class="tlable">
+			               		<div class="checkbox checkbox-success checkbox-inline">
+			                		 <input type="checkbox" id="checkUpdateSkuPrecentLimit" name="isUpdateSkuPercentLimit" value="y" />
+			                		<label for="checkUpdateSkuPrecentLimit">修改sku折扣限制</label>
+			               		</div>
+		                    </td>
+			                <td width="70%">
+			                    <input class='form-control' type="number" name='skuPercentLimit' id='skuPercentLimit' validateType='default'>
+			                </td>     
+			            </tr>
+			        </table>
+			    </form>
+		    </div>
+		    <div class="modal-footer" style="padding: 10px 20px 10px;margin-top: 0px;">
+                <button type="button" class="btn btn-sm btn-default" data-dismiss="modal" id='batchUpdateCancel'>取消</button>
+                <button type="button" class="btn btn-sm   btn-primary" id='batchUpdateSave'>保存</button>
+            </div>
+	    </div>
+    </div>
+</div>

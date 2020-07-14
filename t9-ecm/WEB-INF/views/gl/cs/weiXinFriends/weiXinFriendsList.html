@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>客服微信好友表管理</title>
+	<#include "/common/common.html">
+	<script src="${ctx}/js/jt/gl/cs/weiXinFriends.js?v=1.0.0" ></script>
+</head>
+
+<body>
+	<div class="wrapper animated fadeInRight">
+		<!-- list界面 -->
+		<div class="row list_wrapper">
+			<#include "/gl/cs/weiXinFriends/weiXinFriendsToolbar.html">	  			
+			<div class='col-sm-12 jqGrid_wrapper'>
+			    <table id="weiXinFriendsGrid"></table>
+				<div id="weiXinFriendsPager"></div>
+			</div>
+		</div>
+		<!-- 编辑界面 -->
+		<#include "/gl/cs/weiXinFriends/weiXinFriendsEdit.html">	    
+	</div>
+</body>
+</html>

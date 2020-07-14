@@ -1,0 +1,121 @@
+<div class='row' style='border: 1px solid #ddd; margin-left: 15px; margin-right: 15px;padding:10px;'>
+	<div class='col-sm-12'>
+		<form id="weixinFollowerForm" method="get" class="form-horizontal">
+
+
+			<div class="form-group">
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">关注公众号唯一标识<@JTtip msg="关注公众号唯一标识" /></label>
+					<div class="col-sm-9">
+						<input type="text" name="openId" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">是否订阅(0 退订, 1 订阅)<@JTtip msg="是否订阅(0 退订, 1 订阅)" /></label>
+					<div class="col-sm-9">
+						<input type="text" name="subscribe" placeholder=""  validateType="default"  class="digits form-control"> 
+					</div>
+				</div>
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">微信昵称<@JTtip msg="微信昵称" /></label>
+					<div class="col-sm-9">
+						<input type="text" name="nickName" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+			</div>
+			<div class="form-group">
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">性别(1 男, 2 女, 0 未知)<@JTtip msg="性别(1 男, 2 女, 0 未知)" /></label>
+					<div class="col-sm-9">
+						<input type="text" name="sex" placeholder=""  validateType="default"  class="digits form-control"> 
+					</div>
+				</div>
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">用户所在城市<@JTtip msg="用户所在城市" /></label>
+					<div class="col-sm-9">
+						<input type="text" name="city" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">用户所在国家<@JTtip msg="用户所在国家" /></label>
+					<div class="col-sm-9">
+						<input type="text" name="country" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+			</div>
+			<div class="form-group">
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">用户所在省份<@JTtip msg="用户所在省份" /></label>
+					<div class="col-sm-9">
+						<input type="text" name="province" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">用户的语言，简体中文为zh_CN<@JTtip msg="用户的语言，简体中文为zh_CN" /></label>
+					<div class="col-sm-9">
+						<input type="text" name="language" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">用户头像<@JTtip msg="用户头像" /></label>
+					<div class="col-sm-9">
+						<input type="text" name="headImgUrl" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+			</div>
+			<div class="form-group">
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">用户关注时间<@JTtip msg="用户关注时间" /></label>
+					<div class="col-sm-9">
+						<input class='laydate-icon form-control layer-date' name="subscribeTime" validateType="default"  placeholder="YYYY-MM-DD hh:mm:ss" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">
+					</div>
+				</div>
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">只有在用户将公众号绑定到微信开放平台帐号后，才会出现该字段<@JTtip msg="只有在用户将公众号绑定到微信开放平台帐号后，才会出现该字段" /></label>
+					<div class="col-sm-9">
+						<input type="text" name="unionId" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">粉丝的备注<@JTtip msg="粉丝的备注" /></label>
+					<div class="col-sm-9">
+						<input type="text" name="remark" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+			</div>
+			<div class="form-group">
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">用户所在的分组ID<@JTtip msg="用户所在的分组ID" /></label>
+					<div class="col-sm-9">
+						<input type="text" name="groupId" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+            </div>    
+
+
+
+			<div class='form-group'>
+				<!--将隐藏域放在这里，不显示出来-->
+				<div style="display:none'">
+					<input type="hidden" id="id" name="id">
+					<input type="hidden" name="createBy">
+					<input type="hidden" name="createTime">
+				</div>
+			</div>
+
+		</form>
+	</div>
+</div>

@@ -1,0 +1,23 @@
+<script type="text/javascript">
+   var curUserId = "${ONLINE_ENTITY.userId}";
+   var ctx = "${ctx}";
+   var qryType="${qryType}";
+   var currentPositionId="${currentPositionId}";
+</script>
+<script src="${ctx}/js/jt/ec/salesorder/soGroupTrend/soGroupTrend${deploy_min!""}.js?v=${jsVersion}" ></script>
+
+<div class="panel panel-default" style="margin-bottom:0px;">
+    <div class="panel-heading">
+        <h4 class="titleName">我的部门订单走势</h4>
+    </div>
+    <div class="panel-body" style="padding:5px;">
+	    <form role="form" class="form-inline  statisticsSearchFrom">
+	          <button type='button' class='btn preButton'    style="border-color:#1c84c6;">昨天</button>
+              <button type='button' class='btn thisButton'  style="border-color:#23c6c8;"  >今天</button>
+	    </form>
+	     
+	    <div  style="border: 1px solid #777;padding:5px ;">
+	       <div id="soGroupTrend" style="height:340px;"></div>
+	    </div>
+    </div>
+</div>

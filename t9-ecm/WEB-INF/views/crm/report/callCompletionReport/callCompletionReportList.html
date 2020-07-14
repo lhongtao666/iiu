@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>通话时长统计报表</title>
+	<#include "/common/common.html">
+	<#include "/common/ztree.html">
+	<script src="${ctx}/js/plugins/echarts/3.1.7/theme/macarons.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/plugins/echarts/3.1.7/echarts.min.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/jt/common/plugins/report${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/crm/report/reportDateUtil${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/common/utils/groupUtils${deploy_min!""}.js?v=${jsVersion}"></script>	
+	<script src="${ctx}/js/jt/crm/report/profit/callCompletionReport${deploy_min!""}.js?v=${jsVersion}" ></script>
+	
+	<style> 
+		.searchImg{
+		    width:24px;
+		    height:24px;
+		    margin:0 auto;
+		}
+		.partySearchImg{
+		    border: 1px solid #e7eaec;
+		}
+
+		.partySearchImg:hover{
+		    border: 1px solid #d2d2d2
+		}
+	</style>
+</head>
+<body class="white-bg">
+	<div class='wrapper'>
+		<div class='row list_wrapper'>
+			<div class='col-sm-12'>
+				<div class="panel panel-default">
+					<div class="panel-heading report-content">	
+						<form role="form" id='callCompletionForm' class="form-horizontal  infoSearchFrom">
+							<div class='form-group'>
+								<label class="control-label col-sm-1">周期</label>	
+								<div class="col-sm-2">
+									<select name="timeTypeSearch" id="timeTypeSearch" placeholder=""
+										class="form-control" validateType="default">
+										<option value="month">按月</option>
+									</select>
+								</div>	
+								<div class="col-sm-2 yearElement">
+									<select name="yearSearch" id="yearSearch" placeholder=""
+										class="form-control" validateType="default">
+									</select>
+								</div>
+								
+								<div class="col-sm-1 monthElement">
+									<select name="monthSearch" id="monthSearch" placeholder=""
+										class="form-control" validateType="default">
+										<option value="1">1月</option>
+										<option value="2">2月</option>
+										<option value="3">3月</option>
+										<option value="4">4月</option>
+										<option value="5">5月</option>
+										<option value="6">6月</option>
+										<option value="7">7月</option>
+										<option value="8">8月</option>
+										<option value="9">9月</option>
+										<option value="10">10月</option>
+										<option value="11">11月</option>
+										<option value="12">12月</option>
+									</select>
+								</div>
+				            	<div class='col-sm-1' style='text-align:right;'><label class='control-label con-sm-1'>部门</label></div>	
+							    <div class='col-sm-2'>
+							     	<input id='groupName' readonly class='form-control'>
+							     	<input name='belongOgn' type='hidden' class='form-control'>
+							    </div>
+					            <div class='col-sm-3'>
+					            	<button class="jt-btn-search" id="searchBtn"   type="button"><i class="fa fa-search"></i>&nbsp;搜索</button>
+						    		<button type='button' class='jt-btn-search exportExcel'><i class="fa fa-reply"></i>&nbsp;导出</button>
+									<input type="hidden"  name="reportKey"  value="${reportKey}">
+					  	    	</div>
+				  	    	</div>
+						</form>
+					</div>
+				</div>
+			</div>
+
+			<div class="jqGrid_wrapper col-sm-12" >
+				<table id='callCompletionReportGrid'></table>
+				<div id='callCompletionReportPager'></div>
+			</div>
+		</div>	
+	</div>	
+</body>
+</html>

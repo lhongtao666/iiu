@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>公司目标管理</title>
+	<#include "/common/common.html">
+	<script src="${ctx}/js/jt/gl/ou/groupTargetDetail${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script type="text/javascript">
+		var targetIsAudit = "n";
+		<#if targetIsAudit??>
+			targetIsAudit = "${targetIsAudit}";
+		</#if>
+		var targetId = "${id}";
+	</script>
+	<style type="text/css">
+		.div-line{padding: 14px;}
+		.div-line1{float:left;border-bottom: 8px solid #1ab394;}
+		.div-line2{float:left;border-bottom: 6px solid #ccc;}
+		.div-line1-after{
+			box-shadow: 0 0 5px #c7c7c7;
+			background: #00b8ec;
+			border: 3px solid #ffffff;
+			color: #ffffff;
+			height: 20px;
+			width: 20px;
+			border-radius: 50%;
+			margin-top: -6px;
+			float: left;
+		}
+		#target-info-div{text-align: center;}
+		.target-div1{border-right:2px solid #ccc;line-height: 25px; }
+		.target-div2{border-right:2px solid #ccc;line-height: 30px;padding: 19px 0; }
+		.target-div3{line-height: 30px;padding: 19px 0;}
+		.con {
+		  position:relative;
+		  display:inline-block;
+		  height:100px;
+		  width:100px;
+		}
+
+		.percent-circle {
+		  position:absolute;
+		  height:100%;
+		  background:#1ab394;
+		  overflow: hidden;
+		}
+
+		.percent-circle-right {
+		  right:0;
+		  width:50px;
+		  border-radius: 0 50px 50px 0/0 50px 50px 0;
+		}
+
+		.percent-circle-right .right-content{
+		  position: absolute;
+		  content: '';
+		  width: 100%; 
+		  height: 100%;
+		  transform-origin:left center;
+		  transform: rotate(0deg);
+		  border-radius: 0 50px 50px 0/0 50px 50px 0;
+		  background:#ccc;
+		}
+
+		.percent-circle-left {
+		  width:50px;
+		  border-radius: 50px 0 0 50px/50px 0 0 50px;
+		}
+
+		.percent-circle-left .left-content {
+		  position: absolute;
+		  content: '';
+		  width: 100%; 
+		  height: 100%;
+		  transform-origin:right center;
+		  transform: rotate(0deg);
+		  border-radius: 50px 0 0 50px/50px 0 0 50px;
+		  background:#ccc;
+		}
+
+		.text-circle {
+		  position: absolute;
+		  display:flex;
+		  align-items: center;
+		  justify-content: center;
+		  height:80%;
+		  width:80%;
+		  left:10%;
+		  top:10%;
+		  border-radius:100%;
+		  background:#fff;
+		  color:#333;
+		}
+		.float-left{float: left;padding:10px;}
+		#target-employee-list{height: 145px;overflow: hidden;padding-right: 100px;}
+		#show-more-btn{position: absolute;right: 50px;top: 60px;cursor: pointer;}
+		#show-more-btn:hover{color: #ccc;}
+		#target-employee-list.more{height:auto;max-height: 300px;overflow: auto;}
+		.jt-employee-img{height:35px;width:35px;border-radius: 50%;}
+		.group-name,.group-target,.complete-rate,.complete-amount,.employee-complete,.employee-total,.employee-not-complete,.target-period,.left-time{
+			font-weight: 600;padding: 0 3px;
+		}
+		.employee-info{line-height: 30px;}
+		.employee-complete,.employee-sort{padding-left: 35px;}
+	</style>
+</head>
+
+<body class='white-bg'>
+	<div class="wrapper animated ">
+		<div  class="form_wrapper">
+		    <div class='col-sm-12'>
+		        <div class="panel panel-default">
+		            <div class="panel-heading">
+						<button type='button' class="btn btn-sm  btn-default jt-btn-close prevBtn">关闭</button>
+					</div>
+					<div class="panel-body">
+						<div class='row'>
+							<div class='col-sm-12' id="target-info-div">
+								<div class='col-sm-6 target-div1' >
+									<div class='col-sm-12'>
+										部门名称：<span class="group-name"></span>
+									</div>
+									<div class='col-sm-12'>
+										目标：￥<span class="group-target"></span>
+									</div>
+									<div class='col-sm-12'>
+										<input  type="radio" name = "type" value="audit">按审单业绩
+										<input type="radio" name = "type" value="complete" checked="checked">按签收业绩
+									</div>
+									<div class='col-sm-12'>
+										<div class="div-line">
+											<div class="div-line1"></div>
+											<div class="div-line1-after"></div>
+											<div class="div-line2">
+											</div>
+										</div>
+										<div>
+											完成度：
+											<span class="complete-rate"></span>%
+											(<span class="complete-amount"></span>元/
+											 <span class="group-target"></span>元)
+										</div>
+									</div>
+								</div>
+								<div class='col-sm-3 target-div2'>
+									<div class="employee-complete"></div>
+									<div> 达标数</div>
+									<div > 参与人数<span class="employee-total"></span>/未达标<span class="employee-not-complete"></span></div>
+								</div>
+								<div class='col-sm-3 target-div3'>
+									<div> <span class="left-time"></span>天</div>
+									<div> 剩余</div>
+									<div class="target-period"> 2019-04</div>
+								</div>
+							</div>
+							<div class='col-sm-12'>
+								<div style="width: 100%;border-top: 1px solid #ccc;padding-top: 20px;margin-top: 20px;">
+									
+								</div>
+							</div>
+							<div class='col-sm-12' id="target-employee-list">
+								<div class='col-sm-1'>
+									<div  style="line-height: 100px;min-width: 90px;">员工排行榜</div>
+								</div>
+								<div class='col-sm-11' id="target-employee-list-li">
+									<div class="float-left">
+									<div class="float-left">
+										<div class="con">
+										  	<div class="percent-circle percent-circle-left">
+										    	<div class="left-content"></div>
+										  	</div>
+										  	<div class="percent-circle percent-circle-right">
+										    	<div class="right-content"></div>
+										  	</div>
+										  	<div class="text-circle">8%</div>
+										</div>
+									</div>
+									<div class="float-left employee-info" >
+										<div>
+											<img class="jt-employee-img" onerror="onImageError()" src="/t9-ecm/UploadedFile/bucket/temp/L78NAWQk7iWmuYa9VXsVd.jpg??dm=_mm">
+											<span>aqing:aqing</span>
+										</div>
+										<div class="employee-sort" >第一名</div>
+										<div class="employee-complete">￥7200/￥30000</div>
+									</div>
+								</div>
+								</div>
+								<div>
+									<div id="show-more-btn" title="显示更多">.&nbsp;.&nbsp;.</div>
+								</div>
+							</div>
+						</div>	
+					</div>
+				</div>
+			</div>
+		</div>		   
+	</div>
+</body>
+</html>

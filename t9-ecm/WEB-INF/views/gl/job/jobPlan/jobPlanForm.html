@@ -1,0 +1,116 @@
+<form id="jobPlanForm" method="get" class="form-horizontal">
+    <div class="form-group">
+        <div class='col-sm-4'>
+            <label class="col-sm-3 control-label">名称<span style='color: red;'>*</span></label></label>
+            <div class="col-sm-9">
+                <input type="text" name="name" placeholder="" class="form-control" validateType="default">
+            </div>
+        </div>
+        <div class='col-sm-4'>
+            <label class="col-sm-3 control-label">所属组值<span style='color: red;'>*</span></label></label>
+            <div class="col-sm-9">
+                <select id="groupSelect" type="text" name="group" placeholder="" class="form-control" validateType="default">
+                </select>
+            </div>
+        </div>
+        <div class='col-sm-4'>
+            <label class="col-sm-3 control-label">是否默认<span style='color: red;'>*</span></label>
+            <div class="col-sm-9 default-status">
+                <input type="checkbox" value="y" name="isDefault" class="js-switch" />
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class='col-sm-4'>
+            <label class="col-sm-3 control-label">调度类型</label>
+            <div class="col-sm-9">
+                <select class="form-control" name="runType" validateType="default">
+                    <option value="one_time">一次</option>
+                    <!-- 时间选择器 -->
+                    <option value="date_interval">间隔分钟</option>
+                    <!-- 时间input-group -->
+                    <option value="date_time">每天</option>
+                    <!-- 小时分钟选择器-->
+                    <option value="week">每周</option>
+                    <!-- 星期选择器(多选)+-->
+                    <option value="month">每月</option>
+                    <!-- 月选择器-->
+                    <option value="run_on_start">跟随系统调度</option>
+                    <option value="fix_plan">补偿(手动)调度</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div id="time-option" style="display: none;">
+    </div>
+    <div class="form-group add-group">
+        <div class='col-sm-12'>
+            <label class="col-sm-7 control-label">是否立即开启<span style='color: red;'>*</span></label>
+            <div class="col-sm-5 status-status">
+                <input type="checkbox" value="run" name="status" class="js-switch" />
+            </div>
+        </div>
+    </div>
+    <div class="form-group  detail-group" style="display:none;">
+        <div class="col-sm-4">
+            <label class="col-sm-3 control-label">执行状态</label>
+            <div class="col-sm-9">
+                <input readonly="readonly" class='form-control' name="executeStatus" validateType="default">
+            </div>
+        </div>
+        <div class='col-sm-4'>
+            <label class="col-sm-3 control-label">上一次执行时间</label>
+            <div class="col-sm-9">
+                <input readonly="readonly" class='form-control ' name="lastRunTime" validateType="default">
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class='col-sm-12'>
+            <label class="col-sm-1 control-label">计划说明</label>
+            <div class="col-sm-11">
+                <input type="text" name="comment" placeholder="" class="form-control" validateType="default">
+            </div>
+        </div>
+    </div>
+    <div class="form-group hiddenWhenNoParam" style="display: none;">
+        <div class='col-sm-12'>
+            <label class="col-sm-1 control-label">是否需要参数</label>
+            <div class="col-sm-11">
+                <input type="radio" name="isNeedParam" checked="checked" value="n" placeholder="" validateType="default">否
+                <input type="radio" name="isNeedParam" placeholder="" value="y" validateType="default">是
+            </div>
+        </div>
+    </div>
+    <div class="form-group showWhenHasParam" style="display: none;">
+        <div class='col-sm-12'>
+            <label class="col-sm-1 control-label">参数列表</label>
+            <div class="col-sm-11">
+                <table class="table  table-bordered paramTable">
+                    <thead>
+                        <th class="col-sm-4">参数名称</th>
+                        <th class="col-sm-4">参数类型</th>
+                        <th class="col-sm-4">参数值<span style="color:red;">(不需要则不填)</span></th>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class='form-group'>
+        <!--将隐藏域放在这里，不显示出来-->
+        <div style="display:none'">
+            <input type="hidden" id="id" name="id">
+            <input type="hidden" name="jobId">
+            <input type="hidden" name="createBy">
+            <input type="hidden" name="createTime">
+            <!-- 设置方式先硬编码为 按corn-->
+            <input type="hidden" name="exprSet" value="view">
+            <!--  计划表达 -->
+            <input type="hidden" name="expr">
+            <input type="hidden" name="type">
+            <input type="hidden" name="jobParamJSON">
+        </div>
+    </div>
+</form>

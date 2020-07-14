@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>客户微信记录表管理</title>
+	<#include "/common/common.html">
+	<#include "/common/ztree.html">
+	<link rel="stylesheet" rev="stylesheet" type="text/css" media="all" href="${ctx}/css/jt/crm/cs/wx/weiXinChat.css?v=${jsVersion}">
+	<link href="${ctx}/css/plugins/select2/select2.min.css?v=${jsVersion}" rel="stylesheet">
+	<script src="${ctx}/js/plugins/select2/select2.min.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/jt/common/utils/groupUtils${deploy_min!""}.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/jt/crm/cs/weiXinRecord${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/crm/cs/weiXin/weiXinUtil${deploy_min!""}.js?v=${jsVersion}"></script>
+	<style>
+		.web_wechat_noread {
+		    width: 11px;
+		    height: 11px;
+		    background: url(${ctx}/img/jt/wx/images/weixinother.png) no-repeat;
+		    background-position: -411px -304px;
+		    -webkit-background-size: 487px 462px;
+		    background-size: 487px 462px;
+		    float: right;
+	   		margin: 7px;
+		}
+		.qqface {
+		    width: 28px;
+		    height: 28px;
+		    font-size: 0;
+		    text-indent: -999em;
+		    border-bottom: 1px solid #f0f0f0;
+		    border-right: 1px solid #f0f0f0;
+		    cursor: pointer;
+		    background: url(${ctx}/img/jt/wx/images/qqface.png) no-repeat;
+		    display: inline-block;
+	    	vertical-align: middle;
+		}
+		.icon-unknown {
+		    background: url(${ctx}/img/jt/wx/images/weixinother.png) no-repeat;
+		    background-position: -346px -152px;
+		    -webkit-background-size: 487px 462px;
+		    background-size: 487px 462px;
+		    display: inline-block;
+		    vertical-align: middle;
+		    width: 76px;
+		    height: 76px;
+		}
+		.conten-face{
+			border:none;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="wrapper animated fadeInRight">
+		<!-- list界面 -->
+		<div class="row list_wrapper">
+			<#include "/crm/cs/weiXinRecord/weiXinRecordToolbar.html">	  			
+			<div class='col-sm-12 jqGrid_wrapper'>
+			    <table id="weiXinRecordGrid"></table>
+				<div id="weiXinRecordPager"></div>
+			</div>
+		</div>
+		<!-- 编辑界面 -->
+		<#include "/crm/cs/weiXinRecord/weiXinRecordEdit.html">	    
+	</div>
+</body>
+</html>

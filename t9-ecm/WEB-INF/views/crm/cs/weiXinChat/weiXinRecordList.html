@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>客户微信记录表管理</title>
+	<#include "/common/common.html">
+	<#include "/common/ztree.html">
+	<link rel="stylesheet" rev="stylesheet" type="text/css" media="all" href="${ctx}/css/jt/crm/cs/wx/weiXinChatNew.css?v=${jsVersion}">
+	<link href="${ctx}/css/plugins/select2/select2.min.css?v=${jsVersion}" rel="stylesheet">
+	<script src="${ctx}/js/plugins/select2/select2.min.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/jt/crm/cs/weiXin/webWeixinOldRecord${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/crm/cs/weiXin/webWeixinNewRecord${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/crm/cs/weiXin/weixinLastRecord${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/crm/cs/weiXin/webWeixinManager${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/crm/cs/weiXin/weiXinUtil${deploy_min!""}.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/jt/common/service/seniorSearch${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src='${ctx}/js/jt/crm/cs/csFollow${deploy_min!""}.js?v=${jsVersion}'></script>
+	<script src='${ctx}/js/jt/common/service/employeesSelectLayer${deploy_min!""}.js?v=${jsVersion}'></script>
+	<script src="${ctx}/js/plugins/suggest/bootstrap-suggest.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/jt/crm/cs/csEntityUtils${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/common/utils/groupUtils${deploy_min!""}.js?v=${jsVersion}"></script>
+	<script>
+		var weixinType = "${type}";
+	</script>
+	<style>
+		.web_wechat_noread {
+		    width: 11px;
+		    height: 11px;
+		    background: url(${ctx}/img/jt/wx/images/weixinother.png) no-repeat;
+		    background-position: -411px -304px;
+		    -webkit-background-size: 487px 462px;
+		    background-size: 487px 462px;
+		    float: right;
+	   		margin: 7px;
+		}
+		.qqface {
+		    width: 28px;
+		    height: 28px;
+		    font-size: 0;
+		    text-indent: -999em;
+		    border-bottom: 1px solid #f0f0f0;
+		    border-right: 1px solid #f0f0f0;
+		    cursor: pointer;
+		    background: url(${ctx}/img/jt/wx/images/qqface.png) no-repeat;
+		    display: inline-block;
+	    	vertical-align: middle;
+		}
+		.emoji{
+			width: 28px;
+		    height: 28px;
+		    font-size: 0;
+		    text-indent: -999em;
+		    cursor: pointer;
+		    background: url(/t9-ecm/img/jt/wx/images/weixinface.png) no-repeat;
+		    display: inline-block;
+	    	vertical-align: middle;
+		}
+		.icon-unknown {
+		    background: url(${ctx}/img/jt/wx/images/weixinother.png) no-repeat;
+		    background-position: -346px -152px;
+		    -webkit-background-size: 487px 462px;
+		    background-size: 487px 462px;
+		    display: inline-block;
+		    vertical-align: middle;
+		    max-width: 60px;
+		    height: 60px;
+		}
+		.cont .opr {margin-top:0;}
+		.main > .text {float:left;}
+		.chat-sign {color: #91ceff;font-size:12px;margin-top:5px;height:20px;line-height:20px;}
+		.chat-sign > i {font-size:15px;}
+		.chat-signing {    
+			padding: 0 5px;
+		    border-radius: 10px;
+		    background: rgba(33, 150, 243, .1);
+		    color: #2196F3;
+		}
+		.main > .chat-sign {float:left;margin-left:10px;}
+		.self > .text,.self > .chat-sign {float:right !important;}
+		.self > .chat-sign {margin-right:10px;}
+		.chat-sign:hover {cursor:pointer;color: #2196F3;}
+		.reset-sign {color: #1b2c56;} 
+		.sign-content {margin: 3px;}
+		.conten-face{
+			border:none;
+		}
+		.employee-alias-li,.user-alias-li {
+			height: 60px;
+		    padding: 5px 10px;
+		    cursor: pointer;
+		    list-style: none;
+		    color: #795548;
+		    overflow:hidden;
+		    position: relative;
+		}
+		.employee-alias-li:hover ,.user-alias-li:hover {
+			background-color: rgba(239, 239, 239, .5);
+		}
+		.employee-alias-li.on ,.user-alias-li.on {
+			background-color: rgba(33, 150, 243, .1) !important;
+		}
+		.employee-alias-li.on > .nickName,.user-alias-li.on > .nickName {
+			color: #2196F3;
+		}
+		.employee-alias-li > .nickName, .user-alias-li  > .nickName {
+			width: calc(100% - 90px);
+			margin-top: 5px;
+		}
+		.rows-tree-list::-webkit-scrollbar,
+		.rows-employee-list::-webkit-scrollbar,
+		.rows-friends-list::-webkit-scrollbar,
+		#chat-list::-webkit-scrollbar,
+		.newWebRecord-tree-layer::-webkit-scrollbar
+		 {
+			width:7px;
+			height:7px;
+		}
+		.rows-tree-list::-webkit-scrollbar-thumb,
+		.rows-employee-list::-webkit-scrollbar-thumb,
+		.rows-friends-list::-webkit-scrollbar-thumb,
+		#chat-list::-webkit-scrollbar-thumb,
+		.newWebRecord-tree-layer::-webkit-scrollbar-thumb
+		 {
+			background-color:rgba(39, 58, 74,0.5);
+		}
+		.jt-div{
+			float: left;
+		}
+		.jt-div-title{
+			font-weight: 600;
+		    line-height: 30px;
+		    background-color: #e6f2f8;
+		    border: 1px solid #ccc;
+		    padding-left: 20px;
+		}
+		.jt-div-title{
+			border-bottom: none;
+		}
+		.jt-div-content{
+			border: 1px solid #ccc;
+		}
+		.employee-alias-li > img,.user-alias-li > img {
+			width:50px;
+			float:left;
+			height: 50px;
+			margin-right:10px;
+			background-image: linear-gradient(to bottom,#1b2c56 30%, #cc795f);
+		}
+		.employee-alias-li > img {
+			border-radius: 25px;
+		}
+		.user-alias-li > img {
+		    border-radius: 7px;
+		    border: 1px solid #eee;
+		}
+		.wxCount {
+		    color: #9E9E9E;
+		}
+		.input-search{
+			margin-top: 5px;
+		}
+		.no-right-border{
+			border-right: none;
+		}
+		.no-bottom-border{
+			border-bottom: none;
+		}
+		.page{
+			width: 45px;
+			height: 25px;
+		    display: inline;
+		   	font-size: .9em;
+		    margin: 0;
+		    line-height: inherit;
+		}
+		.jt-left{
+			float: left;
+		}
+		.total-record{
+			color: red;
+		}
+		.nickName,.lastChat {
+		    text-overflow: ellipsis;
+		    white-space: nowrap;
+		    display: block;
+		    overflow: hidden;
+		    float: left;
+		    
+		}
+		.lastChat {
+			float:left;
+			color:#b3b3b3;
+			width: calc(100% - 80px);
+		}
+		.avatar {
+		    /*width: 20%;
+		    float: left;
+		    height: auto;*/
+		}
+		
+		.col-sm-jt {padding:0;}
+		.rows-title,.rows-search,.rows-content {
+			width:100%;
+			padding:0;
+			margin:0;
+			color:#1caf9a;
+		}
+		.rows-content {
+			height: calc(100% - 38px);
+			border: 1px solid #ddd;
+			border-bottom: 0;
+			border-left: 0;
+		}
+		.rows-search {
+			height: 38px;
+			position: relative;
+		}
+		.rows-search > input {
+			width: 100%;
+		    border: 1px solid #ddd;
+		    height: 30px;
+		    border-radius: 0px !important;
+		    outline: none;
+		    color: #607D8B;
+		    text-indent: 7px;
+		}
+		.rows-search > input:hover {
+			border-color: #2196F3 !important;
+		}
+		.rows-search > i {
+			position: absolute;
+		    right: 7px;
+		    top: 7px;
+		    font-size: 16px;
+		    color: #ccc;
+		    cursor: pointer;
+		}
+		.rows-search > i:hover {
+			color: #2196F3;
+		}
+		.rows-employee-list,.rows-tree-list {width:100%;height:100%;overflow:auto;}
+		#employee-alias-list {
+			width: 100%;
+    		height: auto;
+		}
+		
+		#lastRecordSearchForm {color:#000;}
+		#chat-list {
+			width:100%;
+			height: 100%;
+			margin:0 auto;
+			padding: 0px;
+			background-color: #f9f9f9;
+			position:relative;
+			border: 1px solid #e7eaec;
+			border-bottom: 0;
+		}
+		.main {background:transparent !important;}
+		.m-message .text {background:#fff;min-width:30px;} 
+		.m-message li {padding: 0 10px;}
+		.self .download-file {color:#999999;} 
+		.main > .text > p {margin:0 5px;}
+		.weiXinLastRecordSearch {margin-left:20%;}
+		.rows-friends-head {
+			width: 100%;
+		    position: relative;
+		    height: 30px;
+		    text-align: center;
+		    border: 1px solid #ddd;
+		    padding-left: 50px;
+    		padding-right: 60px;
+		}
+		.rows-friends-title {
+		    position: absolute;
+		    left: 0;
+		    color: #607D8B;
+		    height: 100%;
+		    line-height: 30px;
+		    padding: 0 10px;
+		    border-right: 1px solid #ddd;
+		}
+		.rows-friends-msg {
+			position: absolute;
+			right: 0;
+			top: 0;
+			height: 100%;
+		    line-height: 30px;
+		    border-left: 1px solid #ddd;
+		    padding: 0 7px;
+		    color: #FF9800;
+		}
+		.friends-msg-num {
+			color: #FF9800;
+		}
+		.rows-friends-head > div {float:left;}
+		.add-today {
+			padding: 0 5px !important;
+		    height: 22px;
+		    margin-top: 4px;
+		    border: 0;
+		    color: #9E9E9E;
+		    background-color: transparent;
+		    transition: all 0.25s linear;
+		}
+		.add-today:hover {
+		    color: #607D8B;
+			background-color: #eee;
+		}
+		.add-today-on {
+		    color: #FF9800 !important;
+			background-color: rgba(255, 152, 0, .1) !important;
+		} 
+		.rows-friends-list {
+			width: 100%;
+		    height: calc(100% - 29px);
+		    overflow-y: auto;
+		    overflow-x: hidden;
+		    border: 1px solid #ddd;
+		    border-top: 0;
+		    border-bottom: 0;
+		}
+		.rows-chat-head {
+			position: relative;
+		}
+		.rows-chat-form {
+			border: 1px solid #ddd;
+		    width: 100%;
+		    position: absolute;
+		    display: none;
+		    z-index: 2;
+    		background-color: #fff;
+		}
+		.rows-chat-list {
+			height: calc(100% - 38px);
+		}
+		.overflow-box {width:100%;overflow:hidden;height:100%;}
+		.msg-target-box {width:110px;max-height:240px;overflow-y:scroll;overflow-x:hidden;height:100%;}
+		.msg-target-box>li {width:100px;height:25px;line-height:25px;}
+		.msg-target-box>li:hover {cursor:pointer;background:#f1f1f129;}
+		
+		.extra-title {text-align:center;height:20px !important;min-width:25px;line-height:20px !important;font-size:0.7em !important;margin:5px 2.5px !important;float:left !important;}
+		.rfh-left {}
+		.rfh-right {width:20% !important;margin-top:-3px !important;float:right !important;font-weight:bold;}
+		#jt-weixin-info-div{
+			height: 150px;
+			display: none;
+			position: fixed;
+			z-index: 10000000;
+			background-color: #fff;
+		    border-radius: 5px;
+		    text-align: left;
+		    line-height: 30px;
+		    opacity: 0.9;
+		    padding: 10px;
+		    background-color: #fff;
+		    overflow: auto;
+		    border: 4px solid #1caf9a;
+		    box-shadow: 0 0 20px #273a4a;
+		    width: auto !important;
+		}
+		.jt-weixin-info{
+			color: #1ab394;
+		    position: absolute;
+		    right: 10px;
+		}
+		.chat-to-layer {box-shadow: none !important;background: transparent;}
+		.chat-to-layer .layui-layer-content,.chat-to-layer #chat-list {
+		    height: 100% !important;
+		    position: relative;
+		}
+		.chat-to-layer .layui-layer-btn {display: none;}
+		.chat-layer-move {
+			position: fixed;
+		    width: 25px;
+		    height: 25px;
+		    z-index: 2;
+		    margin-left: 0px;
+		    margin-top: 0px;
+		    opacity: 0;
+		    background-color: #fff;
+		    border-right: 1px solid #e7eaec;
+		    border-bottom: 1px solid #e7eaec;
+		    transition: all 0.25s linear;
+		    line-height: 22px;
+		    text-align: center;
+		    color: #6293ba;
+		    display: none;
+		}
+		.chat-layer-move:hover {
+			opacity: 1;
+		}
+		.chat-record-bar {
+			cursor: pointer;
+		    transition: all 0.25s linear;
+		    float: left;
+		    border: 1px solid #ccc;
+		    padding: 4px 10px 4px 7px;
+		    color: #607D8B;
+		}
+		.chat-record-total {
+			float: right;
+		    background-color: rgba(255, 152, 0, .1);
+		    color: #FF9800;
+		    padding: 2px 10px;
+		    margin-top: 5px;
+		}
+		.friends-search-bar {
+			height: 38px;
+			display: none;
+		}
+		.chat-record-tips {
+			float: left;
+		    padding: 10px 0 0 10px;
+		    color: #ccc;
+		}
+		.friends-search-former {
+			position: absolute;
+		    background-color: #fff;
+		    height: 38px;
+		    width: calc(25% - 7px);
+		    z-index: 2;
+		    overflow: hidden;
+		    padding-top: 38px;
+		}
+		.firends-list-layer {
+		    width: calc(25% - 7px);
+		    float: left;
+		    height: 100%;
+		    margin-right: 7px;
+		}
+		.firends-chat-layer {
+		    width: 75%;
+		    float: right;
+		    height: calc(100% + 38px);
+		    margin-top: -38px;
+		    padding-right: 10px;
+		}
+	.text-spacial{
+		padding-left: 8px;
+		padding-right: 8px;
+	}
+    .text-spacial >div{
+        float:left;
+    }
+    .text-spacial >div .web_wechat_noread{
+        position: absolute;
+        float: right;
+        right: -40px;   /*这里和chat不一样*/
+        top:0px;
+    }
+    .text-spacial .translateToWord{
+        line-height:34px;
+        cursor: help;
+        padding-left:5px;
+    }
+    body {
+    	height: 100%;
+    }
+    .jt-top-tabs {}
+    .jt-bottom-contents {
+    	height: calc(100% - 35px);
+    	background-color: #fff;
+    }
+    .jt-bottom-contents > .tab-content, .jt-bottom-contents > .tab-content > div.tab-pane {
+    	height: 100%;
+    	padding-top: 7px;
+    	position: relative;
+    }
+    .jt-organization, .jt-employee, .jt-friends {
+    	height: 100%;
+    	float: left;
+    }
+    .jt-friends {
+    	float: right;
+    }
+    .jt-organization {
+    	width: 12%;
+	    min-width: 200px;
+	    border-left: 7px solid transparent;
+	    border-right: 7px solid transparent;
+    }
+    .jt-employee {
+    	width: 15%;
+    	min-width: 250px;
+    	border-left: 7px solid transparent;
+    }
+    .jt-friends {
+    	width: 73%;
+    	position: relative;
+    	border-left: 7px solid transparent;
+    	z-index: 1;
+    }
+    .jt-organization-entry {
+    	width: 30px;
+    	height: 38px;
+    	position: relative;
+    	display: none;
+    }
+    .jt-employee-entry {
+    	width: 30px;
+    	height: 38px;
+    	position: absolute;
+    	top: 0;
+    	display: none;
+    }
+    .jt-organization-entry > .jt-form-select, .jt-employee-entry > .jt-form-select {
+    	height: 30px;
+    	line-height: 30px;
+    	cursor: pointer;
+    }
+    #friendsSearchForm {
+    	height: 100%;
+    }
+    .rows-friends-content {
+    	height: calc(100% - 38px);
+    	margin-top: 38px;
+    }
+    .row-friends-search {
+    	width: 100%;
+    	float: left;
+    	position: absolute;
+    	top: 0;
+    }
+    .friends-extra-search {
+    	padding: 0 7px;
+	    border: 1px solid #ddd;
+	    height: 100%;
+	    margin: 0 !important;
+	    background-color: #fafafa;
+    }
+    .left-align-label {
+    	text-align: left !important;
+    	padding: 10px 0 !important;
+    }
+    .user-alias-empty {
+    	text-align: center;
+	    color: #ccc;
+	    padding: 20px 0;
+    }
+    .wx-record-tips > div.layui-layer-content {
+    	background-color: #2196F3 !important;
+    }
+    .wx-record-tips > div.layui-layer-content > i {
+    	border-bottom-color: #2196F3 !important;
+    }
+
+    @media screen and (max-width: 1667px) {
+    	.jt-friends {
+    		width: calc(100% - 450px);
+    	}
+    }
+    /* 折叠部门树 */
+    @media screen and (max-width: 1300px) {
+    	.jt-organization {
+    		position: absolute;
+		    background-color: #fff;
+		    z-index: 3;
+    		height: calc(100% - 7px) !important;
+		    display: none;
+		    box-shadow: 5px 0px 8px 0px #ccc;
+		    padding: 7px 0;
+    	}
+    	.jt-employee > div {
+    		float: left;
+    	}
+    	.jt-employee > div.jt-organization-entry {
+    		display: block;
+    	}
+    	.jt-employee > div.rows-search {
+    		width: calc(100% - 30px);
+    	}
+    	.jt-friends {
+    		width: calc(100% - 250px);
+    	}
+    }
+    /* 折叠员工列表 */
+    @media screen and (max-width: 1000px) {
+    	.jt-employee {
+    		position: absolute;
+		    background-color: #fff;
+		    z-index: 2;
+		    display: none;
+		    height: calc(100% - 7px) !important;
+		    box-shadow: 5px 0px 8px 0px #ccc;
+		    padding: 7px;
+		    padding-left: 0;
+    	}
+    	.row-friends-search {
+    		width: calc(100% - 30px);
+    		left: 30px;
+    	}
+    	.jt-friends .jt-employee-entry {
+    		display: block;
+    	}
+    	.jt-employee > div.jt-organization-entry {
+    		display: none;
+    	}
+    	.jt-employee > div.rows-search {
+    		width: 100%;
+    	}
+    	.jt-friends {
+    		width: 100%;
+    	}
+
+    }
+    /*旧版监控*/
+    .col-sm-nopadding {
+    	padding: 0;
+    }
+    .newWebRecord-left, .newWebRecord-right {
+    	height: 100%;
+    	float: left;
+    }
+    .newWebRecord-left {
+    	width: 17%;
+    }
+    .newWebRecord-right {
+    	width: 83%;
+    	padding-left: 10px;
+    	overflow: auto;
+    	overflow-x: hidden;
+    }
+    .newWebRecord-tree-search {
+    	height: 34px;
+    	position: relative;
+    }
+    .newWebRecord-tree-search input {
+    	text-indent: 7px;
+    }
+    .newWebRecord-search-bar {
+    	position: absolute;
+    	right: 15px;
+    	top: 0;
+    }
+    .newWebRecord-search-bar > a {
+    	filter: grayscale(1);
+    	opacity: 0.5;
+    }
+    .newWebRecord-search-bar > a:hover {
+    	filter: grayscale(0);
+    	opacity: 1;
+    }
+    .newWebRecord-tree-layer {
+    	height: calc(100% - 34px);
+	    overflow: auto;
+	    width: 100%;
+    }
+    #addFollowBtn {
+    	margin-bottom: 15px;
+    }
+    #addFollowBtn:before {
+	    content: "";
+	    height: 1px;
+	    width: 10000%;
+	    background-color: #eee;
+	    position: absolute;
+	    left: 0;
+	    bottom: -10px;
+	}
+	#jt-crumbs > .jt-blue {
+		font-weight: 500;
+		color: #ccc;
+	}
+	#jt-crumbs > .jt-blue:hover {
+	    background-color: transparent;
+	    cursor: default;
+	}
+	.jt-blue + i {
+	    padding: 0 10px;
+	}
+	</style>
+</head>
+
+<body>
+	<!-- 上半区 -->
+	<div class="jt-top-tabs">
+		<ul class="nav nav-tabs jt-nav-tabs">
+			<li  id="lastRecordTabLi" class="tabli active">
+				<a href="#lastRecord" data-toggle="tab">
+					微信监控
+				</a>
+			</li>
+			<li  id="oldWebRecordTabLi" class="tabli">
+				<a href="#oldWebRecord" data-toggle="tab">
+					按消息监控
+				</a>
+			</li>
+			<li  id="newWebRecordTabLi" class="tabli">
+				<a href="#newWebRecord" data-toggle="tab">
+					旧版监控
+				</a>
+			</li>
+		</ul>
+	</div>
+	<!-- 下半区 -->
+	<div class="jt-bottom-contents">
+		<div class="tab-content">
+			<div id="newWebRecord" class="tab-pane">
+				<div class="newWebRecord-left">
+					<div class="newWebRecord-tree-search">
+						<div style="padding: 0 10px;">
+							<input type="text"  id="organizationTreeSearch" class="empty form-control" placeholder="Search..." style="padding-right: 28px;">
+						</div>
+						<div class="newWebRecord-search-bar">
+							<a id="clickUp" class="glyphicon glyphicon-menu-up"></a>  
+							<a id="clickDown" class="glyphicon glyphicon-menu-down" style="position: absolute;top: 14px;"></a> 
+							<label id="number" style="position: absolute; right: 50px;top: 5px;color:#999;display: none;"></label>   
+						</div>
+					</div>
+					<div class="newWebRecord-tree-layer">
+						<ul id="organizationTree" class="ztree"></ul>
+					</div>
+				</div>
+				<div class="newWebRecord-right">
+					<button class='jt-btn' id="addFollowBtn" style="display:none;">添加跟进</button>
+					<div class='col-sm-12 col-sm-nopadding' style="height: 86px;">
+						<#include "/crm/cs/weiXinChat/weiXinRecordToolbar.html">
+					</div>	
+					<div class='col-sm-12 col-sm-nopadding' id="jt-crumbs" style="height: 24px;"></div>  			
+					<div class='col-sm-12 jt-grid-panel' style="height: calc(100% - 110px);padding-left: 0;">
+					    <table id="weiXinRecordGrid"></table>
+						<div id="weiXinRecordPager"></div>
+					</div>
+				</div>
+			</div>
+			<div id="oldWebRecord" class="tab-pane">
+				<#include "/crm/cs/weiXinRecord/weiXinRecordToolbar.html">	  			
+				<div class='col-sm-12 jt-grid-panel' style="height: calc(100% - 121px);background-color: #fff;">
+				    <table id="webWeiXinOldRecordGrid"></table>
+					<div id="webWeiXinOldRecordPager"></div>
+				</div>
+			</div>
+			<div id="jt-weixin-info-div"></div>
+			<div id="lastRecord" class="tab-pane active">
+				<!-- 部门员工 -->
+				<div class="jt-organization">
+					<!-- <div class="rows-title">
+						<span>部门员工</span>
+					</div> -->
+					<div class="rows-search">
+						<input type="text"  id="organizationTreeSearch2" class="" placeholder="搜索：部门..."></input>
+						<i class="fa fa-search jt-ozt-search"></i>
+					</div>
+					<div class="rows-content">
+						<div class='rows-tree-list'><ul id="organizationTree2" class="ztree" style="padding: 0;"></ul></div>
+					</div>
+				</div>
+				<!-- 员工微信号 -->
+				<div class="jt-employee">
+					<!-- <div class="rows-title">
+						<font style="width:5.2em;float:left;">员工微信号</font>
+						<span>
+							<font>&nbsp;共&nbsp;</font>
+							<font color="yellow">0</font><font>&nbsp;条&nbsp;</font>
+						</span>
+					</div> -->
+					<div class="jt-organization-entry">
+						<div class="jt-form-select">D</div>
+					</div>
+					<div class="rows-search">
+						<input type="text"  id="employeeAliasInput" class="" placeholder="搜索：员工微信号..."></input>
+						<i class="fa fa-search jt-ewx-search"></i>
+					</div>
+					<div class="rows-content">
+						<div class='rows-employee-list'><div id="employee-alias-list"></div></div>
+					</div>
+				</div>
+				<!-- 好友查询等内容 -->
+				<div class="jt-friends">
+					<div class="friends-search-bar">好友查询&nbsp;<i class="fa fa-caret-up"></i></div>
+					<div class="friends-search-former">
+						<#include "/crm/cs/weiXinChat/lastRecordToolbar.html">	
+					</div>		
+					<div class="rows-friends-content">
+						<div class="firends-list-layer">
+							<div class="rows-friends-head">
+								<div class="rows-friends-title">客户</div>
+								<button class=" add-today">今日进粉</button>
+								<div class="rows-friends-msg">
+									共&nbsp;<span class="friends-msg-num">0</span>&nbsp;条
+								</div>
+							</div>
+							<div class="rows-friends-list">
+								<div id="user-alias-list"></div>
+							</div>
+						</div>
+						<div class="firends-chat-layer">
+							<div class="rows-chat-head">
+								<div class="rows second-base-line"  style="height:38px;">
+									<div class="chat-record-bar">聊天记录&nbsp;<i class="fa fa-caret-down"></i></div>
+									<div class="chat-record-tips">Tips：可以根据不同条件筛选出您所需要聊天内容...</div>
+									<div class="chat-record-total">共&nbsp;<span class="chat-record-num">0</span>&nbsp;条</div>
+								</div>
+								<div class="rows-chat-form">
+									<form id="chat-content-search" role="form" class="form-horizontal" style="margin-top:10px;">
+										<div class='form-group'>
+											<div class="col-sm-3">
+												<label class="col-sm-6 control-label left-label" style="white-space:nowrap;">包含敏感词</label>
+												<div class="col-sm-6">
+													<select class="form-control" data-placeholder="请选择" name="Q__S__EQ__is_sensitive_">
+       													<option value="">请选择</option>
+														<option value="y">是</option>
+														<option value="n">否</option>
+       												</select>
+												</div>	
+											</div>
+											<div class="col-sm-3">
+												<label class="col-sm-6 control-label left-label">敏感词</label>
+												<div class="col-sm-6">
+													<select id="sensitiveValue_" class="form-control" data-placeholder="请选择" name="Q__S__LK__content_"></select>
+												</div>
+											</div>
+											<div class="col-sm-3">
+												<label class="col-sm-6 control-label left-label">消息类型</label>
+												<div class="col-sm-6">
+													<select class="form-control" data-placeholder="请选择" id="contentType" name="Q__S__EQ__content_type_">
+       													<option value="">请选择</option>
+														<option value="3">红包</option>
+														<option value="12">转账</option>
+														<option value="0">文本</option>
+														<option value="1">图片</option>
+														<option value="4">表情</option>
+														<option value="2">语音</option>
+														<option value="5">好友申请</option>
+														<option value="6">通过好友</option>
+														<option value="7">文件</option>
+														<option value="8">视频</option>
+														<option value="10">名片</option>
+														<option value="11">语音通话</option>
+														<option value="9">其它</option>
+       												</select>
+												</div>
+											</div>
+											<div class="col-sm-3">
+												<label class="col-sm-6 control-label left-label">消息标签</label>
+												<div class="col-sm-6">
+													<select id='wx-msg-target_' name="Q__S__EQ__msg_target_" class='form-control'></select>
+												</div>
+											</div>
+										</div>
+										<div class='form-group' style="text-align:center;margin-top:15px;">
+											<button type='button' class="jt-btn-search chat-search-btn"><i class='fa fa-search'></i>&nbsp;查询</button>
+											<button type='button' id="clearSearchBtn" class="jt-btn-empty"><i class='fa fa-trash-o'></i>&nbsp;清空</button>
+											<button type='button' class="jt-btn-search chat-outprint-btn"><i class='fa fa-reply'></i>&nbsp;导出聊天记录</button>
+											<!-- <button type='button' class="jt-btn-search chat-show-del-btn"><i class='fa fa-pencil'></i>&nbsp;编辑</button>
+											<span class="chat-select-all-btn" style="margin-left:20px;display: none;" type='button'><input type='checkbox' >全选
+											</span>
+											<button type='button' class="jt-btn-empty chat-del-btn" style="display: none;"><i class='fa fa-remove'></i>&nbsp;删除</button>
+
+											<button type='button' class="jt-btn-empty chat-hide-del-btn" style="display: none;"><i class='fa fa-undo'></i>&nbsp;取消</button> -->
+										</div>
+									</form>
+								</div>
+							</div>
+							<div class="rows-chat-list ">
+								<div class="m-message" id="chat-list">
+									<div class="chat-layer-move"><i class="fa fa-arrows"></i></div>
+									<ul></ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 播放视频 -->
+	<div style="display:none"  class="jt-wx-play-video" >
+	   	<video id="jt-wx-video" style="height: 400px !important;" src ="" controls="controls" autoplay="autoplay"></video>
+		<div style="text-align: center;">
+	   		若无法播放，请下载再播放<a href="#" id="download-mp4" class="download-file" name-value="视频.mp4" url-value="">下载</a>
+	   	</div>
+	</div> 
+    <#include "/crm/cs/csEntity/csFollowEdit.html" >
+</body>
+</html>

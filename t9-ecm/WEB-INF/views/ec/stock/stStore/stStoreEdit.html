@@ -1,0 +1,54 @@
+<div style="display: none;" class="row form_wrapper">
+	<div class='col-sm-12'>
+		<div class="panel panel-default">
+	        <div class="panel-heading">
+				<button type='button' class="jt-btn saveBtn"><i class="fa fa-floppy-o"></i>&nbsp;保存</button>
+				<button type='button' class="jt-btn jt-btn-red prevBtn"><i class="fa fa-reply">&nbsp;</i>取消</button>
+	        </div>
+
+	        <div class="panel-body">
+	            <#include "/ec/stock/stStore/stStoreForm.html">	  
+	        </div>
+        	<style type="text/css">
+        		.region-addr label{
+        			display: none;
+        		}
+        	</style>
+        	<div class="tabs-container">
+					<ul class="nav nav-tabs">
+						
+						<#if isManyStore =="y">
+							<li  id="regionTabLi" class="tabli active">
+								<a href="#regionTabGrid" data-toggle="tab">负责区域</a>
+							</li>
+						</#if>
+					</ul>
+					<div class="tab-content">
+						<#if isManyStore =="y">
+							<div id="regionTabGrid" class="tab-pane active">
+								<div class="panel-body showWhenIsSale disableWhenDetail">
+						        	 <button type='button' class="jt-btn addRegion"><i class='fa fa-plus'>&nbsp;</i>添加区域</button>
+						        	 <form  method="get" class="form-horizontal">
+						        	 	<div style="max-height: 500px;overflow: auto;">
+								             <table class="table  table-bordered">
+								             	<thead>
+								             		<th width="80%">负责区域</th>
+								             		<th width="20%">操作</th>
+								             	</thead>
+								             	<tbody class="region-addr">
+								             	</tbody>
+								             </table>
+								        </div>
+						             </form>
+						        </div>
+							</div>
+						</#if>
+					</div>
+
+				</div>
+
+	        	 
+	    </div>	
+	</div>
+</div>
+

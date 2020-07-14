@@ -1,0 +1,76 @@
+
+<form id="glTplForm" method="get" class="form-horizontal">
+
+
+	<div class="form-group">
+		<div class='col-sm-4'>
+			<label class="col-sm-3 control-label">模版分类<span style='color: red;'>*</span></label>
+			<div class="col-sm-9">
+				<select name="cateId" placeholder="" class="form-control" validateType="default" /> </select>
+			</div>
+		</div>		
+
+		<div class='col-sm-4'>
+			<label class="col-sm-3 control-label">模版名称<span style='color: red;'>*</span></label>
+			<div class="col-sm-9">
+				<input type="text" name="name" placeholder="" class="form-control" validateType="default" > 
+			</div>
+		</div>		
+
+		<div class='col-sm-4'>
+			<label class="col-sm-3 control-label">模版编码<span style='color: red;'>*</span></label>
+			<div class="col-sm-9">
+				<input type="text" name="key"  id ="key" placeholder="" class="form-control" validateType="default" > 
+			</div>
+		</div>		
+
+	</div>
+	<div class="form-group">
+		<div class='col-sm-4'>
+			<label class="col-sm-3 control-label">模板类型</label>
+			<div class="col-sm-9">
+				<select class="form-control" name="type" validateType="default" >
+               		<option value="email">邮件</option>
+               	    <option value="sms">短信</option>
+               		
+              	</select>
+            </div>
+        </div>
+
+		<div class='col-sm-4'>
+			<label class="col-sm-3 control-label">是否默认</label>
+			<div class="col-sm-9">
+				<select class="form-control" name="isDefault" validateType="default" >
+               		<option value="N">非默认</option>
+               		<option value="Y">默认</option>
+              	</select>
+            </div>
+        </div>		
+    </div>    
+    <div class="form-group" id="tplTitle">
+	    <div class='col-sm-12'>
+		    <label class="col-sm-1 control-label">标题模版</label>
+		    <div class="col-sm-11">
+			    <textarea name='tplTitle' class='form-control' rows='3'></textarea>
+		    </div>
+	    </div>
+    </div>
+    <div class="form-group">
+	    <div class='col-sm-12'>
+		    <label class="col-sm-1 control-label">内容模版<span style='color: red;'>*</span></label>
+		    <div class="col-sm-11">
+			    <textarea name='tplContent' class='form-control' rows='8' validateType="default"></textarea>
+		    </div>
+	    </div>
+    </div>
+
+	<div class='form-group'>
+		<!--将隐藏域放在这里，不显示出来-->
+		<div style="display:none'">
+			<input type="hidden" id="id" name="id">
+			<input type="hidden" name="createBy">
+			<input type="hidden" name="createTime">
+		</div>
+	</div>
+
+</form>

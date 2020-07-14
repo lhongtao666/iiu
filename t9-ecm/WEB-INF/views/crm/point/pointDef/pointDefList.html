@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>积分定义管理</title>
+	<#include "/common/common.html">
+	<#include "/common/ztree.html">
+	<script src="${ctx}/js/jt/crm/point/pointDef${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/gl/km/glHelpUtil${deploy_min!""}.js?v=${jsVersion}" ></script>
+</head>
+
+<body class="white-bg"> 
+	<div class="wrapper animated ">
+		<!-- list界面 -->
+		<div class="row list_wrapper">
+			<#include "pointDefToolbar.html">	  			
+			<div class='col-sm-12 jqGrid_wrapper'>
+			    <table id="pointDefGrid"></table>
+				<div id="pointDefPager"></div>
+			</div>
+		</div>
+		<!-- 编辑界面 -->
+		<#include "pointDefEdit.html">	    
+	</div>
+</body>
+</html>

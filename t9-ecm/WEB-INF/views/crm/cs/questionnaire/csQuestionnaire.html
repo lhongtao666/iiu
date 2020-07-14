@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>客户调查问卷</title>
+<#include "/common/common.html">
+<script src="${ctx}/js/jt/crm/cs/questionnaire/questionnaireResult${deploy_min!""}.js?v=${jsVersion}" ></script>
+<script type="text/javascript">
+     var csId = "${csId}";
+</script>
+<style>
+    body {
+        
+    }
+    #questionItemDiv {
+        padding: 40px 15px;
+        opacity: 0.9;
+    }
+    .box{
+        display:block;
+        width: 900px;
+        background: url("//image.wjx.com/images/newbg/dream-seeker@2x.jpg") no-repeat top center;
+        background: url("//image.wjx.com/images/newbg/dream-seeker.jpg") no-repeat top center;
+        background: url("//image.wjx.com/images/newbg/dream-seeker.jpg") no-repeat top center;
+        background-size: 100%;
+        padding-top: 120px;
+        background-color: #F3F6FA;
+        margin: 0 auto;
+        border: 5px solid #fff;
+    }
+    @media screen and (max-width: 1237px) {
+        .qare-list-layer {
+          width: 250px !important;
+        }
+        .qare-content-layer {
+            width: calc(100% - 257px) !important;
+        }
+        .box {
+            width : 100% !important;
+        }
+        #questionItemDiv {
+            padding: 40px 7px !important;
+        }
+    }
+    .isMustQa:before {
+        content: "*";
+        position: absolute;
+        width: 1em;
+        height: 1em;
+        top: 0.1em;
+        left: -0.75em;
+        color: #FF5722;
+    }
+    #QuestionnaireName{
+        font-size: 24px !important;
+        padding: 15px 0;
+        margin-bottom: 0;
+        line-height: 30px;
+    }
+    #hasReplyed {
+        font-size: 16px;
+    }
+    #againReply {
+        margin-left: 7px;
+        font-size: 16px;
+        color: #087bd6;
+        cursor: pointer;
+    }
+    #againReply:hover{
+        text-decoration: underline;
+    }
+    .item{
+        font-size: 12px;
+        width:95%;
+        margin:0 auto;
+        background-color: transparent;
+    }
+    .explainDiv{
+        position: relative;
+        width: 100%;
+        overflow: hidden;
+        background-color: transparent;
+        border-bottom: 1px dashed #ccc;
+        margin-bottom: 15px;
+    }
+    .t9-img{
+        position: absolute;
+        width: 30px;
+        height: 28px;
+        top: 50px;
+        left: 21px;
+        filter: drop-shadow(0 -33px 0 gold);
+        color: #ffc107;
+    }
+    questionRadioDiv ,li{
+        margin:0;padding:0;
+        list-style:none
+    }
+    .queOption{
+        font-size: 15px;
+        margin-top: 5px;
+        margin-bottom: 5px;
+        padding-left: 20px;
+    }
+    .radioLi, .multiLi {
+        cursor: pointer;
+        padding: 7px 5px;
+    }
+    .commonText{
+        width: 93%;
+        margin-top:10px;
+        margin-left: 4%;
+        margin-bottom:10px;
+    }
+    .radioLi:hover, .multiLi:hover {
+        background-color: #fff;
+    }
+    .qare-list-layer, .qare-content-layer {
+        float: left;
+        height: 100%;
+        background-color: #fff;
+    }
+    .qare-list-layer {
+        width: 300px;
+        margin-right: 7px;
+    }
+    .qare-content-layer {
+        width: calc(100% - 307px);
+        overflow-y: auto;
+        background-image: url(${ctx}/img/jt/cs/newHome/ccb.png);
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+    }
+    .qare-title {
+        height: 42px;
+        padding: 4px;
+        border-bottom: 1px solid #eee;
+    }
+    .qare-title > span {
+        line-height: 40px;
+        font-size: 16px;
+        padding-left: 7px;
+        color: #7E7E7E;
+    }
+    .qare-list {
+        height: calc(100% - 42px);
+        padding: 7px;
+    }
+    #questionnaireList {
+        padding: 0;
+        margin: 0;
+    }
+    #questionnaireList > li {
+        padding: 10px 25px 10px 10px;
+        cursor: pointer;
+        border: 1px solid #eee;
+        color: #5E5E5E;
+        margin-bottom: 7px;
+        position: relative;
+    }
+    #questionnaireList > li > i {
+        display: none;
+        position: absolute;
+        right: 10px;
+        top: calc(50% - 7px);
+    }
+    #questionnaireList > li.active > i {
+        display: block;
+    }
+    #questionnaireList > li.active {
+        background-color: rgba(33, 150, 243, .05);
+        border-color: rgba(33, 150, 243, 0.5);
+        color: #2196F3;
+    }
+    #questionnaireList > li:hover {
+        border-color: rgba(33, 150, 243, 0.5);
+    }
+    .questionTitle {
+        font-size: 15px;
+        margin-bottom: 14px;
+        position: relative;
+    }
+</style>
+</head>
+<body>
+    <div class="qare-list-layer">
+        <div class="qare-title">
+            <span>问卷</span>
+            <!-- <button type='button' class='jt-btn' id="exportQue" style='display:none;'>导出该问卷</button> -->
+            <button type='button' class='jt-btn' id="exportCsQueAll" style="float: right;">导出所有问卷</button>
+            <input type='hidden' id='isRequiredInput' value='n'/>
+        </div>
+        <div class="qare-list">
+            <ul id="questionnaireList"></ul>
+            <!-- <select id='questionnaireSelect' class="form-control"></select> -->
+        </div>
+    </div>
+    <div class="qare-content-layer">
+        <div class="col-sm-12" id="questionItemDiv"></div>
+    </div>
+</body>
+</html>

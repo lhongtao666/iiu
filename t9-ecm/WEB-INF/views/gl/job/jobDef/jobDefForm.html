@@ -1,0 +1,85 @@
+<form id="jobDefForm" method="get" class="form-horizontal">
+    <div class="form-group">
+        <div class='col-sm-12'>
+            <label class="col-sm-1 control-label">名称</label>
+            <div class="col-sm-11">
+                <input type="text" name="name" placeholder="" class="form-control" validateType="default">
+            </div>
+        </div>
+    </div>
+     <div class="form-group">
+        <div class='col-sm-12'>
+            <label class="col-sm-1 control-label">任务类型</label>
+            <div class="col-sm-11">
+               <select class="form-control" name="jobType" validateType="default">
+                    <option value="common">常规</option>
+                    <option value="general">通用</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="form-group beanDiv">
+        <div class='col-sm-12'>
+            <label class="col-sm-1 control-label">BEAN</label>
+            <div class="col-sm-11">
+                <input type="text" name="bean" placeholder="" class="form-control" validateType="default">
+            </div>
+        </div>
+    </div>
+    <div class="form-group methodDiv" style="display: none;">
+        <div class='col-sm-12'>
+            <label class="col-sm-1 control-label">类和方法</label>
+            <div class="col-sm-11">
+                <input type="text" name="method" placeholder="" class="form-control" validateType="default">
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class='col-sm-12'>
+            <label class="col-sm-1 control-label">描述</label>
+            <div class="col-sm-11">
+                <textarea type="text" name="desc" placeholder="" class="form-control" validateType="default"></textarea>
+            </div>
+        </div>
+    </div>
+    <style type="text/css">
+        .btn-add{
+            background:#1ab394;
+            border-color: #4cae4c;
+            color:#fff;
+        }
+        .btn-add.active,.btn-add:hover,.btn-add:focus,.btn-add:active{
+            background:#1ab3aa;
+            border-color: #4caeaa;
+            color:#fff;
+        }
+
+    </style>
+    <div class="form-group">
+        <div class='col-sm-12'>
+            <label class="col-sm-1 control-label">参数列表</label>
+            <div class="col-sm-11">
+                <table class="table  table-bordered data-table">
+                    <thead>
+                        <th class="col-sm-5">参数名称</th>
+                        <th class="col-sm-5">参数类型</th>
+                        <th class="col-sm-2">操作
+                            <button title="添加参数" type="button" style="margin-right:2.5%;float:right" class="btn btn-sm btn-xs addRow  btn-add"><i class="fa fa-plus">添加</i></button>
+                        </th>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class='form-group'>
+        <!--将隐藏域放在这里，不显示出来-->
+        <div style="display:none'">
+            <input type="hidden" id="id" name="id">
+            <input type="hidden" name="createBy">
+            <input type="hidden" name="createTime">
+            <input type="hidden" name="jobParamJSON">
+        </div>
+    </div>
+</form>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>部门每日时段短信发送统计表</title>
+	<#include "/common/common.html">
+	<#include "/common/ztree.html">
+	<script src="${ctx}/js/plugins/echarts/3.1.7/theme/macarons.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/plugins/echarts/3.1.7/echarts.min.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/jt/common/plugins/report${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/crm/report/reportDateUtil${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/crm/report/sms/smsForDayReport${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script type="text/javascript">
+		var dateVal = "${dateVal}"
+	</script>
+</head>
+<body class='white-bg'>
+	<div class='wrapper'>
+		<div class='row list_wrapper'>
+			<div class='col-sm-12'>
+				<div class="panel panel-default">
+					<div class="panel-heading">	
+						<form role="form" class="form-horizontal">
+							<div class='form-group'>
+								<div class='col-sm-4'>
+									<button type='button' class='btn btn-sm  jt-btn-normal btn-primary exportExcel'><i class='fa fa-add'>导出Excel</i></button>	
+								</div>
+								<label class="control-label col-sm-5">温馨提示:(统计时段为07:00:00~23:00:00)</label>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+
+		<div class="jqGrid_wrapper col-sm-12">
+			<table id="smsForDayReportGrid"></table>
+			<div id='smsForDayReportPager'></div>
+		</div>	
+	</div>
+</div>
+</body>
+</html>

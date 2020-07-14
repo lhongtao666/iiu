@@ -1,0 +1,53 @@
+<div class="col-sm-12">
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<button type='button' class='btn btn-sm  btn-primary csComplainEdit'><i class='fa fa-edit'>跟进</i></button>
+			<button type='button' class='btn btn-sm  btn-primary batchApplyDealy'><i class='fa fa-edit'>申请延期</i></button>
+			<!-- 帮助中心 -->
+            <label id="glHelpContainer"></label>
+		</div>
+		<div class="panel-body">
+			<form class="form-horizontal">
+				<div class='form-group'>
+					<label class="col-sm-1 control-label">编号</label>
+					<div class="col-sm-2">
+		                 <input type="text" placeholder="请输入客户编号" id="csSearch"  name="csSearch"  class="form-control">
+                    </div>
+                    <label class="col-sm-1 control-label">投诉类型</label>
+					<div class="col-sm-2">
+				    	<select id="typeSearch" class="form-control" name="Q__S__EQ__complain.type_">
+	                   		<option value="">请选择</option>
+	                   </select>
+                    </div>
+                    <label class="col-sm-1 control-label">投诉工号</label>
+					<div class="col-sm-2" id="complainSearch">
+				
+                    </div>
+                    <label class="col-sm-1 control-label">状态</label>
+					<div class="col-sm-2">
+				    	<select class="form-control" name="Q__S__EQ__complain.status_">
+	                   		<option value="">请选择</option>
+	                   		<option value="new">新增</option>
+	                   		<option value="follow">跟进中</option>
+	                   		<option value="complete">完成</option>
+	                   </select>
+                    </div>
+				</div>
+				<div class='form-group'>
+                    <label class="col-sm-1 control-label">提交时间</label>
+					<div class='col-sm-4'>
+						<div class="input-daterange input-group" id="datepicker">
+                            <input class="laydate-icon form-control layer-date" name="lowCreateTime" placeholder="yyyy-mm-dd hh:mm:ss" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">
+                            <span class="input-group-addon">到</span>
+							<input class="laydate-icon form-control layer-date" name="highCreateTime" placeholder="yyyy-mm-dd hh:mm:ss" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">
+                        </div>
+					</div>
+                    <div class="col-sm-2">
+                    	<button type='button' class="btn btn-sm  btn-primary jt-btn-normal csComplainSearch">搜索</button>
+                    	<button class="btn btn-sm btn-primary jt-btn-normal myCsComplainExport" type='button' >导出</button>
+                    </div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>

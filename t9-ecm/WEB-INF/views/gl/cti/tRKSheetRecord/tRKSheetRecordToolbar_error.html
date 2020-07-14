@@ -1,0 +1,45 @@
+<div class="col-sm-12">
+	<div class="panel panel-default">
+	    <div class="panel-body">
+	        <form id="tRKSheetRecordSearchForm" role="form" class="form-horizontal">
+				<div class="form-group">
+					<div class='col-sm-5'>
+						<button type='button' actionVal='day' class='btn btn-sm  btn-primary chooseDateBtn'>今日</button>	
+						<button type='button' actionVal='yesterday' class='btn  btn-primary btn-sm chooseDateBtn'>昨日</button>	
+						<button type='button' actionVal='lastWeek' class='btn  btn-primary btn-sm chooseDateBtn'>最近7日</button>
+						<button type='button' actionVal='last30' class='btn   btn-primary btn-sm chooseDateBtn'>最近30日</button>
+						<button type='button' actionVal='month' class='btn btn-sm  btn-primary   chooseDateBtn'>本月</button>
+						<button type='button' actionVal='prev' class='btn btn-sm  btn-primary   chooseDateBtn'>前一天</button>	
+						<button type='button' actionVal='next' class='btn btn-sm  btn-primary   chooseDateBtn'>后一天</button>
+						<label id="glHelpContainer"></label><!-- 帮助中心 -->	
+					</div>
+					<label class='control-label col-sm-1'>时间</label>
+					<div class='col-sm-5'>
+						<div class="input-daterange input-group" id="datepicker">
+							<input class="laydate-icon form-control layer-date" name="startTime" validatetype="default" placeholder="开始时间" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">
+                            <span class="input-group-addon">到</span>
+                            <input class="laydate-icon form-control layer-date" name="endTime" validatetype="default" placeholder="结束时间" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">
+                        </div>
+					</div>
+					<div class='col-sm-1'>
+						<button type='button' class="btn btn-sm   btn-primary tRKSheetRecordSearch">搜索</button>
+					</div>
+				</div>
+				<div class='form-group'>
+					<div class='col-sm-12 detailContainer'>
+						<p style='color: red; font-weight: bold;'>呼损定义说明：</p>
+						<p>1. 来话到达系统，没有被系统应答就挂断的来话记录</p>
+						<p>2. 来话到达 IVR，没有到达 ACD 队列，没有落地到分机，就挂断的来话记
+		录</p>
+						<p>3. 来话到达 IVR，到达 ACD 队列，但没有成功找到空闲座席就挂断的来话
+		记录</p>
+						<p>4. 来话到达 IVR，到达 ACD 队列，成功找到空闲座席，但座席没有成功接
+		听就挂断的来话记录</p>
+						<p>5. 来话到达 IVR， 没有到达 ACD 队列，成功到达内线分机，但分机没有成
+		功接听就挂断的来话记录</p>
+					</div>
+				</div>
+			</form>
+	    </div>
+	</div>
+</div>

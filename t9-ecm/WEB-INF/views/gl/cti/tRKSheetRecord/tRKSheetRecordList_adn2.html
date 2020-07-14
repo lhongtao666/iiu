@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>分机通话统计报表</title>
+	<#include "/common/common.html">
+	<#include "/common/ztree.html">
+	<script type="text/javascript">
+		var feeTypeListStr = "" ;
+		var feeTypeListShowStr = "";
+		<#if feeTypeList??>
+	     feeTypeListStr  = "${feeTypeList}";
+	    </#if>
+	    <#if feeTypeListShow??>
+	     feeTypeListShowStr  = "${feeTypeListShow}";
+	    </#if>
+		console.log(feeTypeListStr);
+		console.log(feeTypeListShowStr);
+	</script>
+	<script src='${ctx}/js/jt/common/utils/groupUtils${deploy_min!""}.js?v=${jsVersion}'></script>
+	<script src='${ctx}/js/jt/gl/cti/tRKSheetRecord_adn${deploy_min!""}.js?v=${jsVersion}'></script>
+	<script src="${ctx}/js/jt/gl/km/glHelpUtil${deploy_min!""}.js?v=${jsVersion}" ></script>
+</head>
+
+<body>
+	<div class="wrapper animated ">
+		<div class="row list_wrapper">
+			<#include "/gl/cti/tRKSheetRecord/tRKSheetRecordToolbar_adn.html">
+			<div class='col-sm-12 jqGrid_wrapper'>
+			    <table id="adnRecordGrid"></table>
+				<div id="adnRecordPager"></div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

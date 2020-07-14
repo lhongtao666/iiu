@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>员工关联微信号表管理</title>
+	<#include "/common/common.html">
+	<#include "/common/ztree.html">
+	<link href="${ctx}/css/plugins/select2/select2.min.css?v=${jsVersion}" rel="stylesheet">
+	<script src="${ctx}/js/plugins/select2/select2.min.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/jt/gl/ou/employeeWeiXin${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src='${ctx}/js/jt/common/service/employeesSelectLayer${deploy_min!""}.js?v=${jsVersion}'></script>
+	<script src="${ctx}/js/jt/gl/km/glHelpUtil${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/common/utils/groupUtils${deploy_min!""}.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/jt/common/service/seniorSearch${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/common/utils/excelUtil${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script type="text/javascript">
+		var weixin = "";
+		<#if weixin??>
+			weixin = "${weixin}";
+		</#if>
+	</script>
+	<style type="text/css">
+       .wxGroupLi{
+          position: relative;
+          border-bottom:1px solid rgb(204, 204, 204);
+          padding-top:15px;
+          text-align:center;
+          display: block;
+          background-color: #fff;
+          color: #697277;
+	      box-shadow: none;
+	      background-image: -webkit-linear-gradient(left top, rgb(28, 175, 154) 50%, transparent 50%);
+	      background-size: 0%;
+	      background-repeat: no-repeat;
+	      animation: jtbtnM 0.5s ease forwards;
+	      height:50px;
+	      font-size:15px;
+	      font-weight:bold
+       }
+       .wxGroupUl{
+          position: relative;
+          display: block;
+          padding:0;
+          margin-left:-50%;
+          margin-right:-50%;
+          background-color:#fff;
+          min-width: 66px;
+       }
+        .wxGroupLi.active{
+            color: rgb(255, 255, 255);
+		    background-color: rgb(28, 175, 154);
+		    min-width: 66px;
+		    box-shadow: none;
+		    background-image: -webkit-linear-gradient(left top, rgb(28, 175, 154) 50%, transparent 50%);
+		    background-size: 0%;
+		    border-color: rgb(28, 175, 154);
+		    background-repeat: no-repeat;
+		    animation: jtbtnM 0.5s ease forwards;
+       }
+       .wxGroupLi:hover{
+            background-color: transparent;
+		    border-color: #1caf9a;
+		    color: #fff;
+		    -webkit-animation: .5s jtbtnL ease forwards;
+		    animation: .5s jtbtnL ease forwards;
+		    text-shadow: none;
+		    box-shadow: none;
+       }
+       #selfWxGroupLi{
+         border-top:1px solid rgb(245, 245, 245);
+       }
+    </style>
+</head>
+
+<body class='white-bg'>
+	<div class="wrapper animated fadeInRight">
+        <div class="row list_wrapper">
+            <div class="col-sm-2">
+            <ul class="nav nav-tabs tabUl">
+				<li id="organizationTabLi" class="tabli active">
+					<a href="#organizationDiv" data-toggle="tab" aria-expanded="false">			
+						部门
+					</a>
+				</li>
+				<li id="wxGroupTabLi" class="tabli">
+					<a href="#wxGroupDiv" data-toggle="tab" aria-expanded="false">
+						分组
+					</a>
+				</li>				
+			</ul>
+                 
+            <div id="organizationDiv" class="tab-pane active">
+				<div class="row">
+					<div class="col-sm-12">
+						<input type="text"  id="organizationTreeSearch" class="empty form-control" placeholder="Search..." style="padding-right: 70px;">  
+					</div> 
+					<div style="position: absolute;right: 20px;">
+						<a id="clickUp" class="glyphicon glyphicon-menu-up"></a>  
+						<a id="clickDown" class="glyphicon glyphicon-menu-down" style="position: absolute;top: 14px;"></a> 
+						<label id="number" style="position: absolute; right: 50px;top: 5px;color:#999;"></label>   
+					</div>
+					<ul id="organizationTree" class="ztree" style="width: 100%; max-height:810px; overflow:auto;"></ul>
+		    	</div>
+			</div>
+			<div id="wxGroupDiv" class="tab-pane" style="display: none;">
+				<div class="row" style="margin-top:5px;">
+					<ul class='wxGroupUl' id="wxGroupUl"> </ul>
+		    	</div>
+			</div>
+            </div>
+            
+            <div class="col-sm-10 list_wrapper">
+				<#include "/gl/ou/employeeWeiXin/employeeWeiXinToolbar.html">	  			
+				<div class='col-sm-12 jqGrid_wrapper'>
+				    <table id="employeeWeiXinGrid"></table>
+					<div id="employeeWeiXinPager"></div>
+				</div>
+            </div>
+        </div>
+		<!-- 编辑界面 -->
+		<#include "/gl/ou/employeeWeiXin/employeeWeiXinEdit.html">	    
+	</div>
+	<div style="display:none"  class="jt-select-employee-pane" >
+	   	<div class="panel-body">
+			<form method="get" class="form-horizontal">
+				<div class='form-group'>
+					<label class="col-sm-2 control-label">员工</label>
+					<div class="col-sm-10">
+						<select id="select-employee" class="form-control" style="width:100%" >
+						</select>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</body>
+</html>

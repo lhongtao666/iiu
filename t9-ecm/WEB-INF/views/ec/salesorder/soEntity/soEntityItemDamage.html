@@ -1,0 +1,44 @@
+<style>
+  #myModalLabel {
+        color: #fff;
+        font-weight: 500;
+    }
+</style>
+<div class="modal fade" id="damageModalContainer" tabindex="1" role="dialog" aria-labelledby="myModalLabel">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header" style="background-color: #1caf9a;padding: 10px;">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                	<h4 class="modal-title" id="myModalLabel">产品破损</h4>
+			</div>
+			<div class="modal-body">
+				<form method="get" class="form-horizontal">
+	                <div class="form-group">
+	                    <label class="col-sm-2 control-label">破损数量</label>
+	                    <div class="col-sm-10">
+	                  		<input type="hidden" name="itemId" class="form-control" validateType='default'>
+	                    	<input type="hidden" name="itemCount" class="form-control" validateType='default'>
+	                        <input type="number" name="damageCount" class="form-control" validateType='default'>
+	                    </div>
+	                </div>
+	                <div class="form-group">
+	                    <label class="col-sm-2 control-label">破损原因</label>
+	                    <div class="col-sm-10">
+	                        <select name="damageReason" id="damageReason" class="form-control" validateType="default"></select>
+	                    </div>
+	                </div>
+	                <div class="form-group">
+	                    <label class="col-sm-2 control-label">破损程度</label>
+	                    <div class="col-sm-10">
+	                        <select name="damageType" id="damageType" class="form-control" validateType="default"></select>
+	                    </div>
+	                </div>
+	            </form>
+			</div>
+			<div class="modal-footer">
+                <button type="button" class="btn btn-sm   btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-sm   btn-primary" id='saveDamageBtn'>保存</button>
+            </div>
+		</div>
+	</div>
+</div>

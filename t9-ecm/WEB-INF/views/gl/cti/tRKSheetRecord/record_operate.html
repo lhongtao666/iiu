@@ -1,0 +1,60 @@
+<!--考核-->
+<div class="modal fade" id="evaluateModalContainer" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        <h4 class="modal-title" id="myModalLabel">新增考核记录</h4>
+      </div>
+
+      <div class="modal-body">
+        <form id="addRoleForm" method="get" class="form-horizontal">
+			<div class="form-group">
+				<label class="col-sm-2 control-label">考核项目<span style='color: red'>*</span></label>
+				<div class="col-sm-10">
+					<select name='item' class='form-control' validateType='default'>
+						<option value=''>请选择</option>
+						<option value=''>违规录音（-2分）</option>
+						<option value=''>胡乱成诺客户（-2分）</option>
+						<option value=''>低价销售（-2分）</option>
+						<option value=''>话术违规（-2分）</option>
+						<option value=''>辱骂客户（-2分）</option>
+					</select>
+				</div>
+			</div>	
+
+			<div class="form-group">
+				<label class="col-sm-2 control-label">工号<span style='color: red'>*</span></label>
+				<div class="col-sm-10">
+					<select name='item' class='form-control' validateType='default'>
+						<option value=''>请选择</option>
+						<option value=''>1001:骆宏</option>
+						<option value=''>1002:沈少钦</option>
+						<option value=''>1003:张国庆</option>
+						<option value=''>1004:梁君健</option>
+					</select>
+				</div>
+			</div>	
+
+			<div class="form-group">
+				<label class="col-sm-2 control-label">考核时间<span style='color: red'>*</span></label>
+				<div class="col-sm-10">
+					<input class="laydate-icon form-control layer-date" validatetype="default" placeholder="开始时间" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">
+				</div>
+			</div>	
+
+			<div class="form-group">
+				<label class="col-sm-2 control-label">备注<span style='color: red'>*</span></label>
+				<div class="col-sm-10">
+					<textarea class='form-control' validateType='required' rows='5'></textarea>
+				</div>
+			</div>	
+		</form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+        <button type="button" class="btn btn-sm   btn-primary" id='saveRoleBtn1'>保存</button>
+      </div>
+    </div>
+  </div>
+</div>

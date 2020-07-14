@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>员工的沉睡客户报表</title>
+	<#include "/common/common.html">
+	<#include "/common/ztree.html">
+	<link href="${ctx}/css/plugins/chosen/chosen.css?v=${jsVersion}" rel="stylesheet">
+	<script src="${ctx}/js/plugins/chosen/chosen.jquery.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/plugins/echarts/echarts-all.js?v=${jsVersion}"></script>
+	<script src='${ctx}/js/jt/common/service/employeesSelectLayer${deploy_min!""}.js?v=${jsVersion}'></script>
+	<script src="${ctx}/js/jt/common/utils/groupUtils${deploy_min!""}.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/jt/common/plugins/report${deploy_min!""}.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/jt/crm/report/cs/csSleepList${deploy_min!""}.js?v=${jsVersion}"></script>
+	<script>
+	    var paramsDetail=${paramsDetail};
+		var type = "org";
+		var reportType = "orgCsSleepList";
+	</script>
+</head>
+
+<body class="white-bg">
+	<div class='wrapper'>
+		<div class='row list_wrapper'>
+			<div class='col-sm-12'>
+				<div class="panel panel-default">
+					<div class="panel-heading">	
+						<form role="form" class="form-horizontal" id="csSleepListSearchForm">
+							<div class="form-group">
+								<div class='col-sm-3'>
+									<button type='button' class="btn btn-sm  jt-btn-normal btn-primary csSleepExportExcel" >导出</button>	
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+			
+			<div class="jqGrid_wrapper col-sm-12" >
+				<table id="csSleepListGrid"></table>
+				<div id="csSleepListPager"></div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>jt_st_stock管理</title>
+	<#include "/common/common.html">
+	<#include "/common/ztree.html">
+	<script src="${ctx}/js/jt/ec/stock/stStockLog${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/ec/stock/stStockBill${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/ec/stock/storeUtils${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/ec/stock/stStock${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/common/service/prodTypeSelect${deploy_min!""}.js?v=${jsVersion}"></script>
+	<style type="text/css">
+	.white-bg {
+		background-color: #fff !important;
+	}
+	</style>
+</head>
+
+<body class='white-bg'>
+	<div class="wrapper animated">
+		<!-- list界面 -->
+		<div class="row list_wrapper">
+			<#include "/ec/stock/stStock/stStockToolbar.html">	  			
+			<div class='col-sm-12 jqGrid_wrapper'>
+			    <table id="stStockGrid"></table>
+				<div id="stStockPager"></div>
+			</div>
+		</div>
+		<!-- 编辑界面 -->
+		<#include "/ec/stock/stStock/stStockEdit.html">	    
+	</div>
+</body>
+</html>

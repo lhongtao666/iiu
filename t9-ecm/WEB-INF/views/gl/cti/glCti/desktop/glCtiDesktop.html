@@ -1,0 +1,51 @@
+<script src="${ctx}/js/jt/gl/cti/glCtiDesktop${deploy_min!""}.js?v=${jsVersion}" ></script>
+
+<style type="text/css">
+	.extDiv{
+		width:50px;
+		float: left;
+		color:#fff;
+		margin:5px 0 5px 15px;
+		padding-left: 5px;
+		cursor: pointer;
+	}
+	.notInDiv{
+		background-color: #c2c2c2;
+	}
+	.callDiv{
+		background-color: #f8ac59;
+	}
+	.freeDiv{
+		background-color: #6293BA;
+	}
+</style>
+
+<div class="panel panel-default " style="margin-bottom:0px;">
+    <div class="panel-heading">
+        <span class="panel-title">
+            <span   style="font-size:14px;">CTI分机动态监控</span>
+        </span>
+    </div>
+    <div class="panel-body" style="padding:10px;" >
+        <form role="form" class="form-inline  statisticsSearchFrom">
+			<button type="button" class="btn btn-warning " style="width:50px;height:20px;margin:10px"></button> 通话中
+			<button type="button" class="btn btn-primary " style="width:50px;height:20px;margin:10px"></button> 空闲中
+			<button type="button" class="btn btn-default " style="width:50px;height:20px;margin:10px"></button> 离线   
+	        &nbsp;&nbsp;&nbsp;&nbsp;自动刷新间隔
+	        <div class="form-group">
+   		        <select name="intervalValue" id="intervalValue" class="form-control">
+                  <option value="1">1分钟 </option>
+                  <option value="3">3分钟 </option>
+                  <option value="5" selected="selected">5分钟 </option>
+                  <option value="10" >10分钟 </option>
+                </select>
+	        </div>   
+	       上次刷新时间:<span id="lastRefreshTime"></span>
+	        <input type="hidden" id="nowTime">
+	        <button type="button" class="btn btn-sm   btn-primary RefreshBtn"><i class="fa fa-detail">刷新</i></button>
+		 </form>
+    	
+		<div id="CTIcontainer" style="max-height: 390px;overflow: auto;">
+		</div>
+	</div>
+</div>

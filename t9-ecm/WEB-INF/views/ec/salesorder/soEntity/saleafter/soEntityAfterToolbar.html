@@ -1,0 +1,30 @@
+<div class="col-sm-12">
+	<div class="panel panel-default  after_wrapper">
+	    <div class="panel-heading">
+	       <!--  <button type='button' class='btn btn-sm   btn-primary soEntityReturn'><i class='fa fa-edit'>退货</i></button>
+			<button type='button' class='btn btn-sm   btn-primary soEntityExchange'><i class='fa fa-edit'>换货</i></button> -->
+			<button type='button' class='jt-btn soEntityExchangeOrBack'><i class='fa fa-retweet'></i>&nbsp;退换货</button>
+	    </div>
+	    <div class="panel-body">
+	        <form  class="form-horizontal">
+				<div class="form-group ">
+					<label  class="col-sm-1 control-label">下单时间</label> 
+					<div class='col-sm-5'>
+						<div class="input-daterange input-group">
+							<input class="laydate-icon form-control layer-date minPlaceTime" name="Q__D__BW__entity.place_time_" placeholder="yyyy-mm-dd hh:mm:ss" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">
+							<span class="input-group-addon">到</span>
+							<input class="laydate-icon form-control layer-date maxPlaceTime" name="Q__D__BW__entity.place_time_" placeholder="yyyy-mm-dd hh:mm:ss" onclick="laydate({istime: true, start: laydate.now(0, 'YYYY/MM/DD 23:59:59'), format: 'YYYY-MM-DD hh:mm:ss'})">
+						</div>
+					</div>
+					<label  class="col-sm-1 control-label">编号</label> 
+					<div class='col-sm-2'>
+					    <input type="text" id='soNoSearch' placeholder="请输入订单编号" name="Q__S__EQ__entity.so_no_" class="form-control">
+					</div>
+					<div class="col-sm-2" style="text-align: center;">
+						<button type='button' class="jt-btn-search soEntitySearch"><i class='fa fa-search'></i>&nbsp;搜索</button>
+					</div>
+				</div>
+			</form>
+	    </div>
+	</div>
+</div>

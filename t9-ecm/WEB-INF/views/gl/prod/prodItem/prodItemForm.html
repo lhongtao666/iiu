@@ -1,0 +1,66 @@
+<div class='row' style='border: 1px solid #ddd; margin-left: 15px; margin-right: 15px;padding:10px;'>
+	<div class='col-sm-12'>
+		<form id="prodItemForm" method="get" class="form-horizontal">
+
+
+			<div class="form-group">
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">当前产品 ID<@JTtip msg="当前产品 ID" /></label>
+					<div class="col-sm-9">
+						<input type="text" name="prodId" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">当前产品 SKU ID<@JTtip msg="当前产品 SKU ID" /></label>
+					<div class="col-sm-9">
+						<input type="text" name="skuId" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">构件 ID<@JTtip msg="构件 ID" /></label>
+					<div class="col-sm-9">
+						<input type="text" name="itemId" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+			</div>
+			<div class="form-group">
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">构件 SKU ID<@JTtip msg="构件 SKU ID" /></label>
+					<div class="col-sm-9">
+						<input type="text" name="itemSku" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">构件数量<@JTtip msg="构件数量" /></label>
+					<div class="col-sm-9">
+						<input type="text" name="itemCount" placeholder=""  validateType="default"  class="digits form-control"> 
+					</div>
+				</div>
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">排序号<@JTtip msg="排序号" /></label>
+					<div class="col-sm-9">
+						<input type="text" name="sort" placeholder=""  validateType="default"  class="digits form-control"> 
+					</div>
+				</div>
+
+			</div>
+
+
+
+			<div class='form-group'>
+				<!--将隐藏域放在这里，不显示出来-->
+				<div style="display:none'">
+					<input type="hidden" id="id" name="id">
+					<input type="hidden" name="createBy">
+					<input type="hidden" name="createTime">
+				</div>
+			</div>
+
+		</form>
+	</div>
+</div>

@@ -1,0 +1,37 @@
+<div class="col-sm-12">
+	<div class="panel panel-default">
+	    <div class="panel-heading">
+	    	<button type='button' class='jt-btn checkCustomerAdd'><i class='fa fa-plus'>&nbsp;添加</i></button>
+			<button type='button' class='jt-btn checkCustomerEdit'><i class='fa fa-edit'>&nbsp;编辑</i></button>
+			<button type='button' class='jt-btn checkCustomerDetail'><i class='fa fa-th-list'>&nbsp;明细</i></button>
+			<button type='button' class='jt-btn jt-btn-red checkCustomerDel'><i class="fa fa-remove">&nbsp;删除</i></button>
+	    </div>
+	    
+	    <div class="panel-body">
+	        <form id='checkCustomerSearchForm' role="form" class="form-horizontal">
+				<!--默认生成一个搜索条件，需要的，用户自己添加-->
+				<div class="form-group">
+					<label class='col-sm-1 control-label'>客户名称</label> 
+					<div class='col-sm-2'>
+						<input type="text"  placeholder="请输入客户名称" name="Q__S__LK__name_" class="form-control">
+					</div>
+					<label class='col-sm-1 control-label'>客户编码</label> 
+					<div class='col-sm-2'>
+						<input type="text"  placeholder="请输入项目编码" name="Q__S__LK__code_" class="form-control">
+					</div>
+					<label class='col-sm-1 control-label'>最新结果</label> 
+					<div class='col-sm-2'>
+						<select placeholder="请输入检测项目" name="Q__S__EQ__result_" class="form-control">
+							<option value="">请选择</option>
+							<option value="n">异常</option>
+							<option value="y">正常</option>
+						</select>
+					</div>
+					<div class='col-sm-1'>
+					    <button type='button' class="jt-btn-search checkCustomerSearch"><i class='fa fa-search'></i>&nbsp;搜索</button>
+					</div>
+				</div>
+			</form>
+	    </div>
+	</div>
+</div>

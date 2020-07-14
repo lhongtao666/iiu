@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>呼损报表</title>
+	<#include "/common/common.html">
+	<script src="${ctx}/js/jt/gl/cti/tRKSheetRecord_error${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/gl/km/glHelpUtil${deploy_min!""}.js?v=${jsVersion}" ></script>
+</head>
+
+<body class='white-bg'>
+	<div class="wrapper animated ">
+		<!-- list界面 -->
+		<div class="row list_wrapper">
+			<#include "/gl/cti/tRKSheetRecord/tRKSheetRecordToolbar_error.html">	  			
+			<div class='col-sm-12 jqGrid_wrapper'>
+			    <table id="tRKSheetRecordGrid"></table>
+				<div id="tRKSheetRecordPager"></div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

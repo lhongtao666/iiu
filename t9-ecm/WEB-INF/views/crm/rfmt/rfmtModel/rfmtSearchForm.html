@@ -1,0 +1,141 @@
+<style type="text/css">
+	#rfmtSearchForm{
+		position: absolute;
+	    left: 12px;
+	    top: 45px;
+	    width: 490px;
+	    z-index: 1000;
+	    background-color: #fff;
+	    display: none;
+	    border: 1px solid rgba(96, 125, 139, .25);
+	    box-shadow: 10px 10px 20px 0px rgba(27, 44, 86, .25);
+	}
+	#rfmtSearchForm:before, #rfmtSearchForm:after {
+		content: " ";
+	    width: 0;
+	    height: 0;
+	    border-bottom: 10px solid rgba(96, 125, 139, .25);
+	    border-left: 7px solid transparent;
+	    border-right: 7px solid transparent;
+	    position: absolute;
+	    left: 40px;
+	}
+	#rfmtSearchForm:before {
+	    top: -10px;
+	    z-index: 1;
+	}
+	#rfmtSearchForm:after {
+	    border-bottom: 10px solid #fff;
+	    top: -8px;
+	    z-index: 2; 
+	}
+	.rfmt-div{
+		float: left;
+	    border: 1px solid #eee;
+	    text-align: center;
+	    background-color: #f5f8fb;
+	    color: #607D8B;
+	    font-size: 10px;
+	    margin: 2px;
+	    padding: 2px 0;
+	    cursor: pointer;
+	    width: 75px;
+	    border-radius: 4px;
+	}
+	.rfmt-div.on{
+		background-color: rgba(26, 179, 148, .1) !important;
+	    color: #1ab394;
+	    border-color: #dbf1ec;
+	}
+	.rfmt-div:hover{
+		background-color: rgba(33, 150, 243, .1) !important;
+	}
+	.csEntityRfmt.on{
+		
+	}
+	.csRfmtTip{
+		width: 66px;
+	    position: absolute;
+	    left: 40px;
+	    text-align: center;
+	    padding: 3px 0;
+	    color: #fff;
+	    background-color: #2196F3;
+	    top: 40px;
+	    display: none;
+	    z-index: 2;
+	}
+	.csRfmtTip:before {
+		content: " ";
+	    width: 0;
+	    height: 0;
+	    border-bottom: 5px solid #2196F3;
+	    border-left: 5px solid transparent;
+	    border-right: 5px solid transparent;
+	    top: -5px;
+	    position: absolute;
+	    left: calc(50% - 5px);
+	}
+	.border-top{
+		padding: 3px;
+	}
+	.aq-btn-normal{
+		padding: 3px 20px;
+    	font-size: 0.9em;
+	}
+	.rfmt-title-top, .rfmt-title-bottom {
+		font-size: 14px;
+	    line-height: 24px;
+	    height: 100%;
+	    color: #795548;
+	    padding: 23px 15px;
+	    background-color: #f7f9fa;
+	}
+	.rfmt-title-top {
+		padding: 10px 15px;
+	}
+	.rfmt-div[data-f="1"]:nth-child(even), .rfmt-div[data-f="2"]:nth-child(odd), .rfmt-div[data-f="3"]:nth-child(even), .rfmt-div[data-f="4"]:nth-child(odd), .rfmt-div[data-f="5"]:nth-child(even), .rfmt-div[data-f="0"]:nth-child(odd),
+	.rfmt-div[data-t="1"]:nth-child(even), .rfmt-div[data-t="2"]:nth-child(odd), .rfmt-div[data-t="3"]:nth-child(even), .rfmt-div[data-t="4"]:nth-child(odd), .rfmt-div[data-t="5"]:nth-child(even), .rfmt-div[data-t="0"]:nth-child(odd)
+	{
+	    background-color: #fff;
+	}
+	.rfmt-label {
+		width: auto;
+	    line-height: 30px;
+	    color: #9E9E9E;
+	}
+</style>
+<div  id="rfmtSearchForm">
+		<div class="col-sm-12" style="padding: 5px 7px 0px 10px;border-bottom: 1px solid #eee;">
+			<button id="rfmt-search-btn"type="button" class="jt-btn-search aq-btn-normal"><i class="fa fa-search"></i>&nbsp;查询</button>
+			<button id="rfmt-search-clear" type="button" class="jt-btn-empty aq-btn-normal"><i class="fa fa-trash-o"></i>&nbsp;清空</button>
+			<i id="close-rfmt"style="font-size: 20px;float: right;color: #FF5722;cursor: pointer;-webkit-text-stroke: 2px #fff;" class=" fa fa-times"></i>
+		</div>
+		<div class="col-sm-12 border-top">
+			<div class="col-sm-3 rfmt-label">营销分类</div>
+			<div class="col-sm-9">
+				<select id="rfmt-config-container" class="form-control" style="width: 267px;">
+				</select>
+			</div>
+		</div>
+		<div class="col-sm-12 border-top">
+			<div class="col-sm-1 rfmt-title-top">
+			最<br>近<br>购<br>买<br>和<br>购<br>买<br>总<br>次<br>数
+			</div>
+			<div class="col-sm-11"  id="rfmt-rf-container">
+			</div>
+		</div>
+		<div class="col-sm-12 border-top">
+			<div class="col-sm-1 rfmt-title-bottom">
+				客<br>户<br>单<br>均<br>和<br>最<br>高<br>单<br>价
+			</div>	
+			<div class="col-sm-11" id="rfmt-mt-container">
+			</div>	
+		</div>
+		<div class="col-sm-12 border-top" style="border-top: 1px solid #eee;padding-top: 7px;">
+			<div class="col-sm-3 rfmt-label">RFMT分值</div>
+			<div class="col-sm-9">
+				<input type="number" id="start-rfmt" style="width: 100px;" /> 至 <input type="number" style="width: 100px;"id="end-rfmt" />
+			</div>
+		</div>
+</div>

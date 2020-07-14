@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>知识管理</title>
+	<#include "/common/common.html">
+	<#include "/common/ztree.html">
+	<#include "/common/tinyMceContent.html">
+	<script>
+		var cateId = "${cateId}";
+	</script>
+	<link href="${ctx}/css/plugins/chosen/chosen.css?v=${jsVersion}" rel="stylesheet">
+	<link href="${ctx}/css/plugins/select2/select2.min.css?v=${jsVersion}" rel="stylesheet">
+	<script src="${ctx}/js/plugins/select2/select2.min.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/plugins/chosen/chosen.jquery.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/jt/gl/km/kmEntity${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/gl/km/kmFile${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/gl/km/kmReview${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/plugins/suggest/bootstrap-suggest.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/jt/common/service/seniorSearch${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/gl/km/glHelpUtil${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<style type="text/css">
+	</style>
+	<style type="text/css">
+	  .note-list {list-style: none;padding: 0; margin: 0;overflow-y:auto;overflow-x: hidden;height:100%;}
+	  .note-list>li {background-color:  #fff;padding: 3px 10px 10px 2.5%;height: auto;margin-bottom:7px;border:1px solid transparent;border-bottom-color: rgba(100, 152, 204, 0.15);position: relative;}
+	  .note-list>li>.title>a {font-size: 1.25em;margin: 10px 0;display:  block;color: #0a5eff;}
+	  .note-list>li>.title>.content {margin-bottom:10px;}
+	  .note-list>li>.title>.content>img {margin-right:5px;width:100px;}
+	  .note-list>li:hover {background-image: linear-gradient(to left,#e8f1f9 ,#fff);}
+	  .note-list>li:hover .single-libtn-layer {right:2.5%;}
+	  .note-list>li.km-list-select .single-libtn-layer {right:2.5%;}
+	  .km-list-select {background-color: rgba(255, 255, 255, 0.75) !important;background-image: none !important;box-shadow: 0 0 125px rgba(219, 241, 236, 0.75) inset;}
+	  .note-list>li.load-more:hover {cursor: pointer;background-image: none;}
+	  .note-list>li.no-data-li:hover {background-image: none;}
+	  .no-data-li {color: #ddd;border-bottom: 0 !important;background:transparent !important;}
+	  .cate-type {display:  block;float: left;margin-right:  10px;color: #1caf9a;border: 1px solid;border-radius: 4px;padding: 0 5px;}
+	 .km-form-layer {height:60px;position: absolute;top: 0;left: 0;z-index: 1;}
+	 .km-list-heading {height:35px;background-color: rgba(100, 152, 204, 0.3);border: 1px solid rgba(173, 194, 210, 0.25);border-bottom: 0;border-top-left-radius: 10px;border-top-right-radius: 10px;margin-top: 50px;}
+	 .km-list-bar {float:left;margin-top: 9px;white-space: nowrap;margin-left: 1.5%;}
+	 .km-list-bar span {margin-left:9px;cursor: pointer;padding: 0 5px;transition: all 0.25s linear;color: #555;}
+	 .km-list-bar span:hover {color: #1c84c6;}
+	 .km-list-bar span.deleteAll:hover {color: #ed5565;}
+	 .km-list-bar span.kmEntityChangeCate:hover {color: #1caf9a;}
+	 .km-list-bar span.disabledBtn {color: #fff;cursor: default;}
+	 .km-list-bar span.disabledBtn:hover {color: #fff;background-image: none;}
+	 .km-list-body {height:calc(100% - 85px);background: rgba(255, 255, 255, .75);}
+     .km-noanswer-layer {width: 80%;min-height: 10px;}
+   	 .km-li-expand {color: #1caf9a;cursor: pointer;}
+   	 .createBy {color:#c0c0c0;}
+   	 .single-libtn-layer {width: auto;height: 25px;position: absolute;right: -170px;bottom: 10px;transition: all 0.25s linear;cursor: pointer;}
+	 .single-libtn-layer > span {cursor: pointer;color:#999;transition: all 0.15s linear;}
+	 .single-libtn-layer > span:hover {color: #555;}
+	 .km-detail-btn i {color:#f8ac59;}
+	 .km-edit-btn i {color: #1ab394;}
+	 .km-delete-btn i {color: #ed5565;}
+	 .km-li-pickup {color: #1caf9a;cursor: pointer;}
+	 .load-more {text-align:center;color:#1caf9a8a;line-height:25px;}
+	 .load-more:hover {color:#1caf9a;}
+	 .note-list>li.load-more:hover {cursor: pointer;background-image: none;}
+	</style>
+</head>
+<body class='white-bg'>
+	<div class="wrapper animated " style="height: 100%;">
+		<div class="col-sm-2 km-tree-layer" style="padding-left:0px;padding-right:0px !important;">
+			<ul id="kmEntityCateTree" class="ztree" style="overflow: auto;"></ul>
+		</div>
+		<div class="col-sm-10 km-content-layer" style="height: 100%;">
+			<div class="km-form-layer col-sm-12 kmInfo">
+				<#include "/gl/km/kmEntity/kmEntityToolbar.html">
+			</div>
+			<div class="km-list-layer col-sm-12 kmInfo" style="height: 100%;">
+				<div class="km-list-heading">
+					<div class="km-list-bar unselect">
+						<span class="kmEntityAdd"><i class="fa fa-plus"></i>&nbsp;添加</span>
+						<span class='kmEntityChangeCate'><i class='fa fa-mail-forward'>移动分类</i></span>
+						<span class="deleteAll"><i class='fa fa-trash-o'></i>&nbsp;批量删除</span>
+					</div>
+				</div>
+				<div class="km-list-body">
+					<ul class="note-list" id="kmList"></ul>
+				</div>
+			</div>
+			<#include "/gl/km/kmEntity/kmEntityEdit.html">
+		</div>
+		<div class="col-sm-10 km-learn" style="height: 100%;display: none;">
+			<button type="button" class="btn jt-btn-normal  btn-primary" id="returnList">返回</button>
+			<#include "/gl/km/kmEntity/kmLearn.html">
+		</div>
+	</div>
+        </div>
+        <div class="col-sm-10 km-learn" style="height: 100%;display: none;">
+        	<button type='button' class="jt-btn jt-btn-red prevBtn" id="returnList"><i class='fa fa-mail-reply'></i>&nbsp;返回</button>
+            <#include "/gl/km/kmEntity/kmLearn.html">
+        </div>
+    </div>
+	<#include "/common/cateForm.html">
+
+</body>
+</html>

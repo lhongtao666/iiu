@@ -1,0 +1,34 @@
+<div class="col-sm-12">
+	<div class="panel panel-default">
+	    <div class="panel-heading">
+	    	<button type='button' class='jt-btn agentEntityAdd'><i class="fa fa-plus"></i>&nbsp;添加</button>
+	    </div>
+	    <div class="panel-body">
+	        <form id='agentEntitySearchForm' role="form" class="form-horizontal">
+				<!--默认生成一个搜索条件，需要的，用户自己添加-->
+				<div class="form-group">
+					<label class='col-sm-1 control-label'>名称</label> 
+					<div class='col-sm-2'>
+						<input type="text" id='nameSearch' placeholder="请输入名称" name="Q__S__LK__e.name_" class="form-control">
+					</div>
+					<label class='col-sm-1 control-label'>代理级别</label> 
+					<div class='col-sm-2'>
+						<select name='levelId' class="form-control levelId">
+						</select>
+					</div>
+					<label class='col-sm-1 control-label'>状态</label> 
+					<div class='col-sm-2'>
+						<select name='status' class="form-control">
+						   <option value=''>请选择</option>
+						   <option value='actived'>激活</option>
+						   <option value='inactive'>禁用</option>
+						</select>
+					</div>
+					<div class='col-sm-3'>
+						<button type='button' class="jt-btn-search agentEntitySearch"><i class="fa fa-search"></i>&nbsp;搜索</button>
+					</div>
+				</div>
+			</form>
+	    </div>
+	</div>
+</div>

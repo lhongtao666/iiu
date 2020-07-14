@@ -1,0 +1,111 @@
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h3 class="panel-title">其他信息</h3>
+	</div>
+	<div class="panel-body">
+		<div class='tabs-container'>
+			<ul class="nav nav-tabs">
+				<li class='active'>
+					<a href="#followRecordTab" data-toggle="tab">跟进记录</a>
+				</li>
+				<li>
+					<a href="#eavCommonTag" data-toggle="tab">扩展信息</a>
+				</li>
+				<li>
+					<a href="#orderTab" data-toggle="tab">订单</a>
+				</li>
+				<li>
+					<a href="#complainTab" data-toggle="tab">投诉</a>
+				</li>
+				<li>
+					<a href="#callRecordTab" data-toggle="tab">通话记录</a>
+				</li>
+				<li>
+					<a href="#messageRecordTab" data-toggle="tab">短信记录</a>
+				</li>
+				<li>
+					<a href="#accountTab" data-toggle="tab">账户</a>
+				</li>
+				<li>
+					<a href="#levelchangeTab" data-toggle="tab">级别变更</a>
+				</li>
+				<li>
+					<a href="#mailHistoryTab" data-toggle="tab">邮件历史</a>
+				</li>
+				<li style="display:none;">
+					<a href="#contractTab" data-toggle="tab">合同</a>
+				</li>
+				<li style="display:none;">
+					<a href="#oppoTag" data-toggle="tab">商机信息</a>
+				</li>
+			</ul>
+
+			<div id="myTabContent" class="tab-content">
+				<div id="followRecordTab" class="tab-pane fade in active">
+					<div class="panel-body">
+						<button type='button' class='btn btn-sm   btn-primary addFollow' >添加跟进</button>
+						<div id="csFollowDiv"></div>
+					</div>
+				</div>
+
+				<div id="callRecordTab" class="tab-pane fade">
+					<div class="panel-body">
+						<div id="callRecordDiv"></div>
+					</div>
+				</div>
+
+				<div id="eavCommonTag" class="tab-pane fade">
+					<div class="panel-body">
+						<div id='eavCommonContainer'></div>
+					</div>
+				</div>
+
+				<div id="orderTab" class="tab-pane fade">
+					<div class="panel-body">
+						<div id="csOrderDiv"></div>
+					</div>
+				</div>
+
+				<div id="complainTab" class="tab-pane fade">
+					<div class="panel-body">
+						<button type='button' class='btn btn-sm   btn-primary addComplain'  >添加投诉</button>
+						<div id="csComplainDiv"></div>
+					</div>
+				</div>
+
+				<div id="contractTab" class="tab-pane fade">
+					<div class="panel-body">
+						<#include "/crm/cs/csEntity/csContract.html" ></div>
+				</div>
+
+				<div id="accountTab" class="tab-pane fade">
+					<div class="panel-body">
+						<div id="csAccountDiv"></div>
+					</div>
+				</div>
+
+				<div id="oppoTag" class="tab-pane fade">
+					<div class="panel-body">
+						<#include "/crm/oppo/oppoInfo/oppoTableList.html" ></div>
+				</div>
+				<div id="levelchangeTab" class="tab-pane fade">
+					<div class="panel-body">
+						<div id="csLevelChangeDiv"></div>
+					</div>
+				</div>
+
+				<div id="messageRecordTab" class="tab-pane fade">
+					<div class="panel-body">
+						<div id="smsRecordDiv"></div>
+					</div>
+				</div>
+				
+				<div id="mailHistoryTab" class="tab-pane fade">
+					<div class="panel-body">
+						<div id="mailHistoryDiv"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

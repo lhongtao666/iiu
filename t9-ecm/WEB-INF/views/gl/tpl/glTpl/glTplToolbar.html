@@ -1,0 +1,36 @@
+<div class="col-sm-12">
+	<div class="panel panel-default">
+	    <div class="panel-heading">
+			<button type='button' class='jt-btn glTplAdd'><i class='fa fa-plus'>&nbsp;添加</i></button>
+			<button type='button' class='jt-btn glTplEdit'><i class='fa fa-edit'>&nbsp;编辑</i></button>
+			<button type='button' class='jt-btn glTplDetail'><i class='fa fa-th-list'>&nbsp;明细</i></button>
+			<button type='button' class='jt-btn jt-btn-red glTplDel'><i class="fa fa-remove">&nbsp;删除</i></button>
+	    </div>
+	    <div class="panel-body">
+	        <form role="form" class="form-horizontal">
+				<!--默认生成一个搜索条件，需要的，用户自己添加-->
+				<div class="form-group">
+					<label class="col-sm-1 control-label">模板名称</label>
+					<div class="col-sm-2"> 
+					    <input type="text" id='nameSearch' placeholder="模板名称" name="Q__S__LK__name_" class="form-control">
+				    </div>
+				    <label class="col-sm-1 control-label">模板编码</label>
+					<div class="col-sm-2"> 
+					    <input type="text" id='nameSearch' placeholder="模板编码" name="Q__S__LK__key_" class="form-control">
+				    </div>
+				     <label class="col-sm-1 control-label">模板类型</label>
+					<div class="col-sm-2"> 
+					    <select  id="statusSearch" class='form-control' name="Q__S__EQ__type_" >
+		    				<option value=''>模板类型</option>
+		    				<option value='email'>邮件</option>
+		    				<option value='sms'>短信</option>
+						</select>
+				    </div>
+				    <button type='button' class="jt-btn-search glTplSearch"><i class='fa fa-search'></i>&nbsp;搜索</button>
+				</div>
+				
+				
+			</form>
+	    </div>
+	</div>
+</div>

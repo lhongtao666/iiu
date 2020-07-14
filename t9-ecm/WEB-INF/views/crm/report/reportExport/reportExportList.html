@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>报表导出队列管理</title>
+	<#include "/common/common.html">
+	<script src="${ctx}/js/jt/crm/report/reportExport${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script type="text/javascript">
+       var curUserId = "${ONLINE_ENTITY.userId}";
+	</script>
+</head>
+<body class='white-bg'>
+	<div class="wrapper animated ">
+		<!-- list界面 -->
+		<div class="row list_wrapper">
+			<#include "/crm/report/reportExport/reportExportToolbar.html">	  			
+			<div class='col-sm-12 jqGrid_wrapper'>
+			    <table id="reportExportGrid"></table>
+				<div id="reportExportPager"></div>
+			</div>
+		</div>
+		<!-- 编辑界面 -->
+		<#include "/crm/report/reportExport/reportExportEdit.html">	    
+	</div>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<link href='${ctx}/css/jt/common/advanceSearch${deploy_min!""}.css?v=${jsVersion}' rel="stylesheet"/>
+<script src='${ctx}/js/jt/common/service/advanceSearch${deploy_min!""}.js?v=${jsVersion}'></script>
+
+<!-- 查询方案下拉列表 -->
+<div class="form-group" style='float: right;'>
+	<label for="bizTypeSearch" class="sr-only">查询方案</label> 
+	<select class="form-control" id="searchPlanSelect">
+		
+	</select>
+	<button type="button" class="btn btn-sm   btn-primary" data-toggle="modal"
+		data-target="#advanceSearchModal">高级搜索</button>
+    <div style="clear: both; display:none;"></div>
+</div>
+	
+<div class="modal fade" id="advanceSearchModal" tabindex="-1" role="dialog"
+	aria-hidden="true" aria-labelledby="myModalLabel">
+	<div class="modal-dialog">
+		<div class="modal-content animated bounceInRight">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">
+					<span aria-hidden="true">×</span><span class="sr-only">关闭</span>
+				</button>
+				<h4 id='myModalLabel' class="modal-title">高级查询</h4>
+			</div>
+			<div class="modal-body">
+				<div id='queryPlanContainer' class='row'>
+					<h3>
+						<i style='cursor: pointer;font-size: 20px;' class="fa fa-star"></i>  查询方案
+					</h3>
+				</div>
+
+				<hr />
+				<div class='row'>
+					<h3 class='fa-caret' id='advanceQuery'>
+						<i  style='cursor: pointer;font-size: 20px;' class='fa fa-caret-right'></i>  高级查询
+					</h3>
+
+					<div id='advanceQueryContainer' style='display:none; margin-top: 5px;' class="form-horizontal">
+						<div class='row' style='margin-left: 0px; margin-right: 0px;'>
+						</div>
+						
+						<div class='row' style='margin-top: 5px;'>
+							<div class='col-sm-12'>
+								<button class='addNewCondition btn btn-sm   btn-primary'><i class='fa fa-plus'></i>添加查询条件</button>
+							</div>
+						</div>
+					</div>
+				</div>
+				<hr />
+				<!-- 保存当前查询条件为收藏的查询方案 -->
+				<div class='row'>
+					<h3 id='queryPlan' class='fa-caret' style='margin-bottom: 5px;'>
+						<i  style='cursor: pointer;font-size: 20px;' class='fa fa-caret-right'></i>  保存为查询方案
+					</h3>
+					<div id='saveQueryPlanContainer' style='display:none;' class='form-horizontal'>
+						<div class='form-group'>
+							<label class="col-sm-2 control-label">名称</label>
+							<div class='col-sm-10'>
+								<input type='text' class='form-control' id='planName' name='planName'>
+								<span class="help-block m-b-none" style='color: red;'>如果查询方案名称相同，将更新该查询方案</span>
+							</div>
+						</div>
+
+						<div class='form-group'>
+							<label class='col-sm-2 control-label'>是否默认</label>
+							<div class="col-sm-10">
+								<input type="checkbox"  value="y" name='isDefault'>
+							</div>
+						</div>
+						
+						<div class='form-group'>
+						    <div class="col-sm-12">
+						        <button id='saveQueryPlanBtn' class='btn btn-sm   btn-primary'>保存为查询方案</button>
+						    </div>
+						</div>
+					</div> 
+				</div>
+			</div>
+
+			<div class="modal-footer">
+				<button type="button" class="btn btn-white" data-dismiss="modal">关闭</button>
+				<button type="button" id='advanceSearchBtn' class="btn btn-sm   btn-primary">查询</button>
+			</div>
+		</div>
+	</div>
+</div>

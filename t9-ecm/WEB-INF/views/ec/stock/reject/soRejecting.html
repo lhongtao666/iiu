@@ -1,0 +1,58 @@
+<div class="list_wrapper">
+	<#include "/ec/stock/reject/soRejectingToolbar.html">	 
+	<div class='col-sm-12 jqGrid_wrapper'>
+		<table id="soRejectingGrid"></table>
+		<div id="soRejectingPager"></div>
+	</div>
+</div>
+<div class="form_wrapper" style="display: none;">	
+	<div class='col-sm-12 '>
+		<div class="panel panel-default so_rejecting_wrapper">
+		    <div class="panel-heading" style="color:red;">
+		 		<button type="button" class='jt-btn stockSaveBtn' ><i class="fa fa-linkedin-square"></i>&nbsp;入库</button>
+	    		<button type="button" class='jt-btn jt-btn-red stockPreBtn' ><i class="fa fa-reply"></i>&nbsp;返回</button>
+		    </div>
+		    <div class="panel-body">
+		    	<input type='hidden' id='backSoId'>
+		    	
+			    <div class="col-sm-12" style="color:red;">
+				  	 提示：不选仓库则退回出库仓库
+			    </div>
+			    <div class="panel-body">
+					<div class='col-sm-4'>
+						<select class="form-control" id="singleStoreId"></select>
+					</div>
+				</div>
+			    <table id="soRejectingGrid" class='table table-striped table-bordered' style="padding-bottom: 20px;">
+			    	<thead>
+				    	<tr>
+				    		<th width="10px"></th>
+				    		<th  width="20%">sku编码</th>
+				    		<th  width="30%">商品名称</th>
+				    		<th  width="10%">价格</th>
+				    		<th  width="10%">总数量</th>
+				    		<th  width="10%">次品数量</th>
+				    		<th  width="10%">正品数量</th>
+				    		<th  width="10%">小计(元)</th>
+				    	</tr>
+			    	</thead>
+			    	<tbody id="soRejectingbodyContainer" >
+			    	</tbody>
+	    		</table>
+		    </div>
+		</div>
+	</div>
+	<div class="col-sm-12">
+		<div class="panel panel-default so_rejecting_wrapper">
+		    <div class="panel-heading" style="color:red;">
+		  	 提示：
+		  	 <br />
+		  	 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		  	 1.如果货品已退回仓库，就做入仓处理，货品状态就是已入仓状态。
+		  	  <br />
+		  	 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		  	 2.如果货品无法退回仓库，比如以途中破损或已丢失就做终止处理，否则就一直是退货未入仓状态，系统就当一直退货在途处理。
+		    </div>
+		</div> 
+	</div>
+</div>

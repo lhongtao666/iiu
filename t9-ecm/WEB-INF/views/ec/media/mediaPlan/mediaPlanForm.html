@@ -1,0 +1,120 @@
+<form id="mediaPlanForm" method="get" class="form-horizontal">
+	<div class="form-group">
+		<div class='col-sm-4'>
+			<label class="col-sm-3 control-label">媒体渠道<span style="color:red;">*</span></label>
+			<div class="col-sm-9">
+				<select name="channelId"  id="channelId" class="form-control" validateType="default"> 
+				</select>
+			</div>
+		</div>		
+
+		<div class='col-sm-8'>
+			<label class="col-sm-3 control-label">广告日期<span style="color:red;">*</span></label>
+			<div class="col-sm-9"> 
+                <div class="input-daterange input-group">
+                    <input class='laydate-icon form-control layer-date adDateStart' name="adDate" validateType="default"  
+						placeholder="YYYY-MM-DD"  onclick="laydate({istime: true, format: 'YYYY-MM-DD',  istime: false,
+							min: laydate.now(),
+							choose: function(datas){
+								$('input[name=adDate]').trigger('keyup');
+							} 
+						})" />                 
+                    <span class="input-group-addon" id="timeToTime">到</span>
+				    <input class='laydate-icon form-control layer-date adDateEnd' name="adDateEnd" id="adDateEnd" validateType="default" 
+ 						placeholder="YYYY-MM-DD" onclick="laydate({istime: true, format: 'YYYY-MM-DD', istime: false, 
+ 							min: laydate.now(),
+ 							choose: function(datas){
+                    		$('input[name=adDateEnd]').trigger('keyup');
+                    	}
+                    })" />
+                </div>
+            </div>
+		</div>	
+	</div>
+	<div  class='form-group' >
+	    <div  class='col-sm-2'>
+	        <label class="control-label col-sm-9">广告时间段(1~20条)：</label>
+	    </div>
+    </div>
+    <div  class='form-group'>
+    	<div class="col-sm-1"> </div>
+		<div class='form-group col-sm-10' style="margin-left:10px;">
+		     <table class='table table-stripped table-bordered' id='planContainer'>
+				<thead>
+					<tr>
+						<th>开始时间</th>
+						<th>时长</th>
+						<th>价格（元）</th>
+						<th>有效截止时间</th>
+						<th class="operation">操作</th>
+					</tr>
+				</thead>
+				<tbody id='planContainer'> 
+					<tr class="planTr">
+						<td class="startTd" width='18%'>
+						    <div class="col-sm-6"> 
+								<input type="text" name="start"  class="form-control startTime"  validateType="default">
+							</div>
+						</td>
+						<td width='25%'>
+						    <div class="col-sm-4"> 
+						    	<input type="text" name="duration" class="form-control" validateType="default">
+						    </div>
+						    <div class="col-sm-6"> 
+							    <select class="form-control" name="type" id="typeContainer" validateType="default" >
+									<option value="second">秒钟</option>
+									<option value="minute">分钟</option>
+								</select>
+							</div>
+						</td>
+						<td  class="startTd" width='22%'>
+							<div class="col-sm-7">
+								<input type="text" name="cost"  class="form-control" validateType="default" >
+							</div>
+						</td>
+						<td class="thContainer" width='20%'>
+							<div class="col-sm-3 morrowDiv">
+								<span class='morrow' >次日</span>
+							</div>
+							<div class="col-sm-6 deadlineDiv">
+								<input type="text" name="deadlineNew" class="form-control deadlineTime" validateType="default" disabled='disabled'>
+							</div>
+						</td>
+						<td class = 'operation' width='15%'>
+							<div class="col-sm-12"> 
+								<button type='button' class='addNewPlan btn btn-sm   btn-primary'><i class='fa fa-plus'></i>
+								</button>
+							</div>
+						</td>
+					</tr>
+		        </tbody>
+		    </table> 
+		</div>
+	</div>
+	<div class="form-group" id="resourcesDirector">
+		<div class='col-sm-4'>
+			<label class="col-sm-3 control-label">广告负责人<span style="color:red;">*</span></label>
+			<div class="col-sm-9">
+			    <div class="col-sm-8">
+					<input class='form-control' name="mgrName" validateType="default" readonly=true />	
+				</div>
+				<div class="col-sm-3">		
+					<button type='button' class='addMgrId btn btn-sm   btn-primary'>选择负责人</button>
+				</div>
+			</div>
+		</div>
+   	</div>
+   
+	<div class='form-group'>
+		<!--将隐藏域放在这里，不显示出来-->
+		<div style="display:none">
+			<input type="hidden" name="deadline">
+			<input type="hidden" name="mgrId">
+			<input type="hidden" id="id" name="id">
+			<input type="hidden" name="createBy">
+			<input type="hidden" name="createTime">
+			<input type="hidden" name="adStartTime">
+		</div>
+	</div>
+
+</form>

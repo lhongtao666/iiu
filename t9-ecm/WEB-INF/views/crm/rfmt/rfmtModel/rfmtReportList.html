@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>客户价值模型管理</title>
+	<#include "/common/common.html">
+	<script src="${ctx}/js/jt/crm/rfmt/rfmtReport${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/gl/km/glHelpUtil${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script type="text/javascript">
+		var r_config = "${r_config}";
+		var f_config = "${f_config}";
+	</script>
+	<style type="text/css">
+		#rfmt-cs-count,#rfmt-cs-monetary,#rfmt-cs-total{
+			border:2px solid #33333375 !important;
+			text-align: center;
+			width: 1300px;
+			margin: 0 auto;
+		}
+		.rfmt-title{
+			width: 1300px;
+		    margin: 0 auto;
+		    margin-bottom: 5px;
+		    margin-top: 5px;
+		    border-bottom: 1px solid #1ab394;
+		}
+		.rfmt-title span{
+			background-color: #1caf9a;
+    		padding: 2px 10px;
+    		color: #fff;
+    		font-size: 10px;
+    		line-height: 21px;
+		}
+		.rfmt-title:after {
+		    content: "";
+		    background: #1caf9a;
+		    width: 0;
+		    height: 0;
+		    position: absolute;
+		    border: 11px;
+		    border-style: solid;
+		    border-color: white white #1caf9a #1caf9a;
+		    z-index: 0;
+		}
+
+		table td{
+			border: 1px solid #5d4e4e;
+		}
+		table tr:nth-child(1) td:nth-child(1){
+			background-color: #f8ac59;
+    		font-weight: 600;
+		}
+		table tr:nth-child(1) td:nth-child(n+2){
+			background-color: #f1ea22;
+		}
+		table tr:nth-child(n+2) td:nth-child(1){
+			background-color: #1caf1a ;
+		}
+		table tr:nth-child(n+2) td:nth-child(n+2){
+			background-color: #efd280 ;
+		}
+		table tr:last-child td{
+			background-color: #fff !important;
+		}
+		table tr td:last-child{
+			background-color: #fff !important;
+		}
+		.select-type-div-1{
+			width: 1300px;
+			margin: 0 auto;
+		}
+		@media screen and (max-width: 1300px) {
+			#rfmt-cs-count,#rfmt-cs-monetary,#rfmt-cs-total{
+				width: 100%;
+			}
+			.rfmt-title{
+				width:100%;
+			}
+			.select-type-div-1{
+				width: 100%;
+				margin: 0 auto;
+			}
+		}
+		.rfmt-td{
+			cursor: pointer;
+		}
+		.rfmt-td:hover{
+			background-color: #acd !important;;
+		}
+		.select-type-div{
+			top: 0px;
+		    left: 0px;
+		    z-index: 100;
+		    position: fixed;
+		    height: 40px;
+		    background: #edf0f1;
+		    width: 100%;
+		    padding: 0 10px;
+		}
+
+		.select-type{
+			float: left;
+			border:1px solid #1ab394;
+			cursor: pointer;
+			padding: 5px;
+			color: #1ab394;
+		}
+		.select-type.on{
+			background-color: #1ab394;
+			color: #fff;
+		}
+		.select-type:hover{
+			background-color: #209c83;
+			color: #fff;
+		}
+		.top-padding{
+			padding-top: 40px;
+		}
+	</style>
+</head>
+
+<body>
+	<#if hasSub && hasSub=='true'>
+	<div class="select-type-div">
+		<div class="select-type-div-1">
+			<div class="select-type on" data-type="self">我的客户</div>
+			<div class="select-type" data-type="sub">下属客户</div>
+			<!-- 帮助中心 -->
+            <label id="glHelpContainer">	
+            </label>
+		</div>
+	</div>
+	</#if>
+	<div class="wrapper animated fadeInRight  <#if hasSub && hasSub=='true'>top-padding</#if>">
+
+		<div class="rfmt-title"><span>按客户数/占比划分象限</span></div>
+		<table class="table" id="rfmt-cs-count"> </table>
+		<div class="rfmt-title"><span>按平均每次购买金额划分象限</span></div>
+		<table id="rfmt-cs-monetary"> </table>
+		<div class="rfmt-title"><span>按累计购买金额划分象限</span></div>
+		<table id="rfmt-cs-total"> </table>
+	</div>
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>库存进出明细报表</title>
+	<#include "/common/common.html">
+	<#include "/common/ztree.html">
+	<script src="${ctx}/js/plugins/echarts/echarts-all.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/jt/common/plugins/report${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/crm/report/stock/stockDetailReport${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/ec/stock/storeUtils${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/common/service/prodTypeSelect${deploy_min!""}.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/jt/crm/report/reportDateUtil${deploy_min!""}.js?v=${jsVersion}" ></script>
+</head>
+<style>
+</style>
+<body class='white-bg'>
+	<div class='wrapper'>
+		<div class='row list_wrapper'>
+			<div class='col-sm-12'>
+				<div class="panel panel-default">
+					<div class="panel-heading">	
+					    <form  id="searchForm" role="form" class="form-horizontal">
+						    <div class='form-group'>
+								<label class="control-label col-sm-1">年</label>
+								<div  class="col-sm-3">
+									<div class="col-sm-4">
+										<select id='yearSelect'  class='form-control'></select>
+									</div>
+									<label class="control-label col-sm-4">月</label>
+									<div class="col-sm-4">
+										<select id='monthSelect'  class='form-control'></select>
+									</div>
+								</div>
+								<div class="col-sm-5">
+									<div class="input-daterange input-group" id="datepicker">
+			                        	<input id="beginTime" class='laydate-icon form-control layer-date' name="beginTime" validateType="default" 
+			                        	placeholder="起始时间" onclick="laydate({istime: true, start: laydate.now(0, 'YYYY/MM/DD 23:59:59'), format: 'YYYY-MM-DD hh:mm:ss'})">
+			                            <span class="input-group-addon">到</span>
+			                            <input id="endTime" class='laydate-icon form-control layer-date' name="endTime" validateType="default"
+										placeholder="结束时间" onclick="laydate({istime: true, start: laydate.now(0, 'YYYY/MM/DD 23:59:59'), format: 'YYYY-MM-DD hh:mm:ss'})">
+			                        </div>
+								</div>
+								<div class='col-sm-3'>
+									<button class="jt-form-select" type='button' id="thisMonth">本月</button>
+									<button class="jt-form-select" type='button' id="preMonth">上个月</button>
+								</div>
+							</div>
+
+							<div class="form-group">
+								
+								<label for="storeIdSearch" class="control-label col-sm-1 hiddenWhenHasOneStore">仓库</label>
+								<div class="col-sm-2 hiddenWhenHasOneStore">
+									<select id='storeIdSearch'  class='form-control'></select>
+								</div>
+								
+								<label  class="control-label col-sm-1">品名</label>
+								<div class="col-sm-2">
+									<input type="text" id="prodName" placeholder="品名" name="prodName" class="form-control">
+								</div>
+						    	<label  class="control-label col-sm-1">产品分类</label>
+						    	<div class="col-sm-2">
+									<input id="prodDetType" name="prodDetType" readonly="readonly" placeholder="请选择" class="form-control">
+									<input type="hidden" name="cateIdSearch" id='cateIdSearch'>
+								</div>
+								
+								<div class="col-sm-2">
+									<button class="jt-btn-search" type='button' id="searchBtn" ><i class="fa fa-search"></i>&nbsp;搜索</button>
+									<button type='button' class='jt-btn-search exportExcel'><i class='fa fa-add'><i class="fa fa-reply"></i>&nbsp;导出</i>
+									</button>
+								</div>
+							</div>
+                         </form>
+                         <input type="hidden" value="product" name="prodTypeSearch" id='prodTypeSearch' class='form-control'>
+						<input type="hidden"  name="reportKey"  value="${reportKey}">
+					</div>
+				</div>		
+			</div>
+
+			<div class="jqGrid_wrapper col-sm-12">
+				<table id="stockDetailReportGrid"></table>
+				<div id='stockDetailReportPager'></div>
+			</div>
+		</div>
+		
+	</div>
+</body>
+</html>

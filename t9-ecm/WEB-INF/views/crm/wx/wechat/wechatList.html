@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+ <#include "/common/common.html"> 
+ <link rel="stylesheet" rev="stylesheet" type="text/css" media="all" href="${ctx}/css/jt/crm/cs/wx/weiXinChatNew.css?v=${jsVersion}">
+ <script src="${ctx}/js/jt/crm/wx/wechat${deploy_min!""}.js?v=${jsVersion}"></script>
+ <script src="${ctx}/js/jt/crm/wx/wechatUtil${deploy_min!""}.js?v=${jsVersion}"></script>
+ <script src="${ctx}/js/jt/crm/cs/weiXin/weiXinUtil${deploy_min!""}.js?v=${jsVersion}"></script>
+</head>
+<style type="text/css">
+	.chat-list-layer .sidebar-left {
+		max-width: 60px;
+		width:15%;
+		min-width:35px;
+		color: #f4f4f4;
+		background-color: #26292d;
+		position: absolute;
+	    left: 0;
+	    top: 0;
+	}
+	.chat-list-layer .sidebar {
+	    width: 85%;
+	    color: #555;
+	    background-color: #e4e4e4;
+	    overflow: hidden;
+	    margin-left: 15%;
+	}
+	body {
+	    background: url(${ctx}/img/jt/backgroud/bg002.jpg) no-repeat;
+	    background-size: cover;
+	}
+	.chat-list-layer, .chat-main-layer, .chat-extra-layer {
+	    height: 100%;
+	    width: 100%;
+	    overflow: hidden;
+	    display: none;
+	}
+	.chat-list-layer .sidebar, .chat-list-layer .sidebar-left {
+	    height: 100%;
+	}
+	.chat-list-layer,.chat-main-layer,.chat-extra-layer {height:100%;width:100%;overflow:hidden;display:none;}
+	.layer-left-list, .layer-center-list,.layer-right-list {box-shadow: none;}
+	.employee-nickname {
+		float: left;
+		margin-top: 15px;
+		width: auto;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		display: block;
+		overflow: hidden;
+		width: calc(100% - 96px);
+	}
+	.jt-selected-employee-wx-img {
+		width: 58px;
+		height: 50px;
+		padding: 5px 9px;
+		cursor: pointer;
+	}
+
+	.m-card {
+		padding: 3px;
+		padding-top: 45px;
+	}
+</style>
+<script type="text/javascript">
+	var maxIndex = null;	//窗口层叠最大值
+</script>
+<body>
+	<div class="chat-list-layer">
+		<div class="sidebar-left">
+			<div class="my-wexin-list" style="overflow: auto;"></div>
+		</div>
+		<div class="sidebar" style="">
+			<div class="chat-list-move" style="padding: 10px; padding-left: 0px;">
+				<img onerror="onImageError();" style="float: left;"
+					class="jt-selected-employee-wx-img" weixin="" title="" alt=""
+					src="">
+				<div class="employee-nickname"></div>
+			</div>
+			<div class="m-card">
+				<footer style="position: relative;">
+					<i class="fa fa-search" id="jt-weixin-search"
+						style="position: absolute; padding: 7px 0 0 7px; color: #777;"></i>
+					<input class="search jt-search" placeholder="搜索"> <span
+						class="glyphicon glyphicon-remove remove-search-param"
+						aria-hidden="true"
+						style="margin-left: -25px; cursor: pointer; font-size: 10px; color: #b3b3b3; position: absolute; right: 7px; top: 9px;"></span>
+				</footer>
+			</div>	
+			<div id="tabRecent" class="tab-pane active">
+				<div class="m-list">
+					<ul>
+					</ul>
+				</div>
+				<div class='wx-footer-not-related'
+					style='height: 30px; padding: 5px;'>
+					共<span id="tabRecent-current">50</span>/<span
+						id="tabRecent-total"></span>条 <span style="padding: 0 30px;">|</span>
+					共<span id="tabRecent-current-page">1</span>/<span
+						id="tabRecent-total-page"></span>页
+				</div>
+			</div>
+
+		</div>
+	</div>
+	<div class="chat-main-layer">
+		<#include "/crm/wx/wechat/wechatForm.html"> 
+	</div>
+	<!-- 播放视频 -->
+	<div style="display: none" class="jt-wx-play-video">
+		<video id="jt-wx-video" style="height: 450px !important;" src=""
+			controls="controls" autoplay="autoplay"></video>
+		<div style="text-align: center;">
+			若无法播放，请下载再播放<a href="#" id="download-mp4" class="download-file"
+				name-value="视频.mp4" url-value="">下载</a>
+		</div>
+
+	</div>
+	<#include "/crm/wx/wechat/wechatHistory.html">
+</body>
+</html>

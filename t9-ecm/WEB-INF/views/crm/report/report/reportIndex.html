@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>报表</title>
+	<#include "/common/common.html">
+    <#include "/common/ztree.html">
+	<link rel="stylesheet" href="${ctx}/css/plugins/smartMenu/smartMenu.css?v=${jsVersion}" type="text/css">
+	<script src="${ctx}/js/jt/crm/report/reportIndex${deploy_min!""}.js?v=${jsVersion}"></script>
+	<style type="text/css">
+		#reportContainer ul li{
+			cursor: pointer;
+		}
+    </style>
+
+    <!--报表列表模板-->
+    <script id='reportCateTmpl' type='text/x-jsrender'>
+    	<div class="panel panel-default">
+			<div class="panel-heading" role="tab" id="headingOne{{:index}}">
+				<h4 class="panel-title collapsed" style="cursor: pointer;" data-toggle="collapse" data-parent="#reportContainer" href="#collapseOne{{:index}}" aria-expanded="false" aria-controls="collapseOne{{:index}}">{{:group}}</h4>
+			</div>
+
+			<div id="collapseOne{{:index}}" class="panel-collapse collapse {{if index == 0}}in{{/if}}" role="tabpanel" aria-labelledby="headingOne{{:index}}" aria-expanded="{{if index == 0}}true{{/if}}">
+				<div class="panel-body">
+					<ul class="list-group">
+						{{for reports}}
+						<li idval="{{:id}}" urlValue='{{:url}}' class="list-group-item">
+							{{:name}}
+						</li>
+						{{/for}}
+					</ul>
+				</div>
+			</div>
+		</div>
+    </script>
+</head>
+
+<body class='fixed-sidebar full-height-layout"'>
+	<input type="hidden" name="cateKey" value="${reportType}">
+	<div class="wrapper animated   ">
+	    <div class="row">
+			<div class="col-sm-2" style='margin-top: 5px;'>
+				<div class="panel-group" id='reportContainer' role="tablist" aria-multiselectable="true">
+        			
+        		</div>
+			</div>
+
+			<div class="col-sm-10"  style="padding-left:2px;">
+				<iframe class="J_iframe" name='reportIframe' style="width: 100%; height: 100%;" frameborder="0" seamless=""  >
+				</iframe>
+			</div>
+		</div> 
+	</div>
+</body>
+</html>

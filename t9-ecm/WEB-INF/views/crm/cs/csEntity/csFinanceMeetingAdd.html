@@ -1,0 +1,64 @@
+<div class="wrapper ">
+	<div  class="form_wrapper">
+		<form id="csFinanceMeetingAdd" method="get" class="form-horizontal">	
+			<div class='form-group'>
+				<div class="col-sm-6">
+					<label class="control-label col-sm-4">面谈人</label>
+					<div class="col-sm-5">
+						<input type="hidden" name="employeeId" >
+						<input type="hidden" name="employeeName" >
+						<input type="hidden" name="employeeAid" >
+						<div class="input-group">
+							<input type="text" name='employeeShow' class="form-control" placeholder="请选择面谈人" validateType="default" readonly="readonly" />
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<button type="button" class="btn btn-sm   btn-primary  selectEmployeeId">选择员工</button>
+					</div>
+				</div>
+				<div class="col-sm-6">
+					<label class="control-label col-sm-4">参与人</label>
+					<div class="col-sm-5">
+						<input type="hidden" name="partakeId" >
+						<input type="hidden" name="partakeAid" >
+						<input type="hidden" name="partakeName" >
+						<div class="input-group">
+							<input type="text" name='partakeShow' class="form-control" placeholder="请选择参与人" validateType="default" readonly="readonly"/>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<button type="button" class="btn btn-sm btn-primary  selectPartakeId">选择员工</button>
+					</div>
+				</div>
+			</div>
+			<div class='form-group'>
+				<div class="col-sm-6">
+					<label class="control-label col-sm-4">面谈时间</label>
+					<div class="col-sm-8" >
+						<input class='laydate-icon form-control layer-date'  name="meetingTime" placeholder="YYYY-MM-DD hh:mm" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">
+					</div>
+				</div>
+				<div class="col-sm-6">
+					<label class="control-label col-sm-4">面谈地点</label>
+					<div class="col-sm-8" >
+						<select class="form-control" name="meetingArea" id="meetingArea">
+							<option value="公司">公司</option>
+							<option value="家里">家里</option>
+							<option value="外面">外面</option>
+						</select>
+					</div>
+				</div>
+			</div>	
+			<div class='form-group'>
+				<div class="col-sm-12">
+					<label class="col-sm-2 control-label">内 容</label>
+					<div class="col-sm-9">
+						<textarea rows="6" name="meetingContent" class="form-control" validateType="default"></textarea>
+					</div>
+				</div>
+			</div>
+			<input type="hidden" name="csId"/>
+			<input type="hidden" name="csCode">	
+		</form>
+	</div>
+</div>

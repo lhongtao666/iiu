@@ -1,0 +1,142 @@
+<div class="wrapper" style="overflow-x: hidden">
+	<div class="row form_wrapper" style='background-color: #ffffff'>
+		<div class='col-sm-12'>
+			<form id="newHotConfigForm" method="get" class="form-horizontal">
+				<div class="form-group">
+					<label class="col-sm-1"></label>
+				    	<label class="col-sm-1">寄件信息：</label>
+				 </div>
+				<div class='form-group'>
+					<label class="col-sm-2 control-label">姓名：</label>
+					<div class="col-sm-3">
+						<input type="text" name="userName" placeholder="" class="form-control" validateType="default">
+					</div>
+					<label class="col-sm-2 control-label">手机号码：</label>
+					<div class="col-sm-3">
+						<input type="text" name="mobile" placeholder="" class="form-control" validateType="default">
+					</div>
+				</div>
+				<div class='form-group'>
+					<div class='col-sm-12' id="newAddrContainer"></div>
+				</div>
+				<div class='form-group'>
+					<label class="col-sm-2 control-label">地址：</label>
+					<div class="col-sm-3">
+						<input type="text" name="address" placeholder="" class="form-control" validateType="default">
+					</div>
+					<label class="col-sm-2 control-label">业务类型</label>
+					<div class="col-sm-3">
+						<select class="form-control expressType" name="expressType" validateType="default">
+							<option >请选择</option>
+
+							<option value='1'>顺丰-标准快递</option>
+							<option value='2'>顺丰-顺丰特惠</option>
+							<option value='3'>顺丰-电商特惠</option>
+							<option value='5'>顺丰-顺丰次晨</option>
+							<option value='11'>顺丰-医药安心递</option>
+
+							<option value='1'>圆通-上门揽件</option>
+							<option value='2'>圆通-次日达</option>
+							<option value='4'>圆通-次晨达</option>
+							<option value='8'>圆通-当日达</option>
+							<option value='0'>圆通-自己联系</option>
+
+							<option value='PACKAGE'>德邦-标准快递</option>
+							<option value='RCP'>德邦-360特惠件</option>
+							<option value='EPEP'>德邦-电商尊享</option>
+							<option value='DEAP'>德邦-特准快件</option>
+
+							<option value='1'>EMS-标准快递</option>
+							<option value='8'>EMS-代收到付</option>
+							<option value='9'>EMS-快递包裹</option>
+						</select>
+					</div>
+				</div>
+
+				<div class="form-group" style="margin-top: 20px;">
+					<label class="col-sm-1"></label>
+				    	<label class="">热敏配置信息：</label>
+				 </div>
+
+				<div class='form-group custIdInfo'>
+					<label class="col-sm-2 control-label">月结卡号：</label>
+					<div class="col-sm-3">
+						<input type="text" name="configId" placeholder="" class="form-control" validateType="default">
+					</div>
+					<label class="col-sm-2 control-label">接入密钥：</label>
+					<div class="col-sm-3">
+						<input type="text" name="configKey" placeholder="" class="form-control" validateType="default">
+					</div>
+				</div>
+				
+				<div class='form-group custIdInfo'>
+					<label class="col-sm-2 control-label">商家ID：</label>
+					<div class="col-sm-3">
+						<input type="text" name="configUserName" placeholder="" class="form-control" validateType="default">
+					</div>
+					<label class="col-sm-2 control-label">账号验证：</label>
+					<div class="col-sm-3">
+						<input type="text" name="configPassword" placeholder="" class="form-control" validateType="default">
+					</div>
+				</div> 
+				<div class='form-group custIdInfo'>
+					<label class="col-sm-2 control-label">app_key：</label>
+					<div class="col-sm-3">
+						<input type="text" name="appKey" placeholder="" class="form-control" validateType="default">
+					</div>
+					<label class="col-sm-2 control-label">token：</label>
+					<div class="col-sm-3">
+						<input type="text" name="token" placeholder="" class="form-control" validateType="default">
+					</div>
+				</div>
+				
+				
+				<div class="form-group jdNewConfigInfo" style="margin-top: 20px;">
+					<label class="col-sm-1"></label>
+				    	<label class="">京东配置信息：</label>
+				 </div>
+
+				<div class='jdNewConfigInfo'>
+					<div class='form-group'>
+						<label class="col-sm-2 control-label">ISV来源编号：</label>
+						<div class="col-sm-3">
+							<input type="text" name="isvSource" placeholder="" class="form-control" validateType="default">
+						</div>
+						<label class="col-sm-2 control-label">店铺编号： </label>
+						<div class="col-sm-3">
+							<input type="text" name="shopNo" placeholder="" class="form-control" validateType="default">
+						</div>
+					</div>
+					<div class='form-group'>
+						<label class="col-sm-2 control-label">事业部编号：</label>
+						<div class="col-sm-3">
+							<input type="text" name="departmentNo" placeholder="" class="form-control" validateType="default">
+						</div>
+						<label class="col-sm-2 control-label">商家编码：</label>
+						<div class="col-sm-3">
+							<input type="text" name="customerCode" placeholder="" class="form-control" validateType="default">
+						</div>
+					</div>
+				</div>
+				
+				<div class="form-group dbNewConfigInfo" style="margin-top: 20px;">
+					<label class="col-sm-1"></label>
+				    	<label class="">德邦配置信息：</label>
+				 </div>
+
+				<div class='dbNewConfigInfo'>
+					<div class='form-group'>
+						<label class="col-sm-2 control-label">德邦服务开户名：</label>
+						<div class="col-sm-3">
+							<input type="text" name="accountName" placeholder="" class="form-control" validateType="default">
+						</div>
+						<label class="col-sm-2 control-label">德邦服务银行卡号：</label>
+						<div class="col-sm-3">
+							<input type="text" name="reciveLoanAccount" placeholder="" class="form-control" validateType="default">
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>

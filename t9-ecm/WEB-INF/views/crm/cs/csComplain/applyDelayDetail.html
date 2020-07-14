@@ -1,0 +1,32 @@
+<div class="panel panel-default" id="applyDelayDiv">
+	<div class="panel-heading">
+		<h3 class="panel-title">申请延期详情</h3>
+	</div>
+	<div class="panel-body">
+		<form method="get" class="form-horizontal" id="applyDelayForm">
+			<div class='form-group'>
+				<label class="col-sm-3 control-label">申请状态</label>
+				<div class="col-sm-9">
+					<select class='form-control' name='delayStatus'>
+						<option value="">请选择</option>
+						<option value="awaiting_comfirm">待审核</option>
+						<option value="comfirm">审核通过</option>
+						<option value="reject">否决</option>
+					</select>
+				</div>
+			</div>
+			<div class='form-group'>
+				<label class="col-sm-3 control-label">延期理由</label>
+				<div class="col-sm-9">
+					<textarea rows="4" name="delayReason" placeholder="" class="form-control" style="resize: none;"></textarea>
+				</div>
+			</div>
+			<div class='form-group'>
+				<label class="col-sm-3 control-label">否决理由</label>
+				<div class="col-sm-9">
+					<textarea rows="4" name="rejectReason" placeholder="" class="form-control" style="resize: none;"></textarea>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>

@@ -1,0 +1,64 @@
+<div class="tabs-container jt-fixed-next45">
+	<ul class="nav nav-tabs">
+		<li class="active">
+		    <a data-toggle="tab" href="#tab-baseInfo" aria-expanded="true">基本信息</a>
+		</li>
+		
+		<!-- <li>
+		    <a data-toggle="tab" href="#tab-csTarget" aria-expanded="false">客户标签</a>
+		</li>
+ -->
+		 <li class='addProdShow'>
+			<a data-toggle="tab" href="#tab-extendInfo" aria-expanded="false">扩展信息</a>
+		</li> 
+		
+		<!-- <li>
+			<a data-toggle="tab" href="#tab-images" aria-expanded="false">图片</a>
+		</li> -->
+		<!-- <li>
+		    <a data-toggle="tab" href="#tab-files" aria-expanded="false">附件</a>
+		</li> -->
+		<!-- <li id="tabDesc">
+		    <a data-toggle="tab" href="#tab-des"  aria-expanded="false">产品描述</a>
+		</li> -->
+		<!--
+		<li>
+		    <a data-toggle="tab" href="#tab-cate" aria-expanded="false">从属其它分类</a>
+		</li>
+		-->
+	</ul>
+	
+	<div class="tab-content" >
+		<#include "ec/product/prodEntity/prodBaseInfo.html">
+		
+		<div id="tab-extendInfo" class="tab-pane">
+			<div class="panel-body">
+				<div class='col-sm-12'>
+					<div class='col-sm-4'>
+	                    <label class="col-sm-4 control-label">属性集</label>
+	                    <div class="col-sm-8">
+	                        <select class='form-control' validateType='default' name='entityType' id='entityTypeSelect'>
+	                        </select>
+	                    </div>
+	                </div>
+                </div>
+			    <div class='col-sm-12' id='eavCommonContainer'></div>
+			</div>
+		</div>
+		<!-- <div id="tab-csTarget" class="tab-pane">
+            <div class="panel-body">
+                <div class='col-sm-12' id='tagContainer'>
+                </div>
+            </div>
+        </div> -->
+		
+		
+		
+		<#-- 
+		<#include "ec/product/prodEntity/prodFile.html">
+		<#include "ec/product/prodEntity/prodDes.html">
+		<#include "ec/product/prodEntity/prodImg.html">
+		<#include "ec/product/prodEntity/prodCate.html">
+		-->
+	</div>
+</div>

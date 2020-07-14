@@ -1,0 +1,50 @@
+<script src="${ctx}/js/jt/ec/stock/desktop/desktopSearchStock${deploy_min!""}.js?v=${jsVersion}" ></script>
+
+<div class="panel panel-default" style="margin-bottom:0px;height:100%;">
+    <div class="panel-heading">
+       <h4>库存查询</h4>
+    </div>
+    <div class="panel-body desktopSearchStock" style="padding:5px;">
+	    <div class='col-sm-12 select_wrapper'>
+            <#include "/ec/stock/desktop/desktopSearchStock/desktopSearchStockToolbar.html">
+	    </div>
+	    <div class='col-sm-12 jqGrid_wrapper'>
+              <table class="table  table-bordered">
+              		<tr>
+              			<td width="20%">产品名称</td>
+  
+              			<td colspan="3" class="prod-name"></td>
+    
+              		</tr>
+              		<tr>
+    					      <td width="20%">sku编码</td>
+              			<td width="30%" class="sku-code"></td>
+              		</tr>
+              		<tr>
+              			<td width="20%">总数量</td>
+              			<td class="prod-total"></td>
+              			<td width="20%">可售数量</td>
+              			<td class="prod-canSale"></td>
+              		</tr>
+              		<tr>
+              			<td width="20%">锁定数量</td>
+              			<td class="lock-qty"></td>
+              			<td width="20%">损坏数量</td>
+              			<td class="bad-qty"></td>
+              		</tr>
+              		<tr>
+              			<td width="20%">保留数量</td>
+              			<td class="save-qty"></td>
+              			<td width="20%">计算天数</td>
+              			<td class="caculate-day"></td>
+              		</tr>
+              		<tr>
+              			<td width="20%">预估可支持天数</td>
+              			<td class="suport-day"></td>
+              			<td width="20%">平均销售值</td>
+              			<td class="avg-value"></td>
+              		</tr>
+              </table>
+	    </div>
+    </div>
+</div>	

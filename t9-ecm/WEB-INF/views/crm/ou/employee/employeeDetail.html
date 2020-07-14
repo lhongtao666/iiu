@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>员工管理</title>
+    <#include "/common/common.html" />
+    <#include "/common/eav.html" />
+    <#include "/common/ztree.html" />
+    
+    <link href="${ctx}/css/plugins/chosen/chosen.css?v=${jsVersion}" rel="stylesheet" />
+    <link href="${ctx}/css/plugins/iCheck/custom.css?v=${jsVersion}" rel="stylesheet" />
+    <script src="${ctx}/js/plugins/iCheck/icheck.min.js?v=${jsVersion}"></script>
+    <script src="${ctx}/js/plugins/chosen/chosen.jquery.js?v=${jsVersion}"></script>
+    <script src="${ctx}/js/plugins/suggest/bootstrap-suggest.js?v=${jsVersion}"></script>
+    <script type="text/javascript">
+    var id = '${id}';
+    var isHide = '${isHide}'
+    $(function() {
+        var employee = new Employee();
+        employee.commonEav = new Eav(Employee._CONS_.COMMON_EAV_PARAM);
+        employee._detail(id);
+        employee.addressService.init();
+
+        $(".closeBtn").on("click",function(e){
+            JTTabUtils.closeTab(ctx+"/crm/ou/employee/employeeDetail.htm?id="+id);
+        });
+    });
+    </script>
+    <style type="text/css">
+    .form-group {
+        margin-bottom: 5px;
+    }
+    
+    .label-group {
+        margin-bottom: 10px;
+    }
+    </style>
+<script src='${ctx}/js/jt/crm/ou/employeeDetail-site${deploy_min!""}.js?v=${jsVersion}' ></script>
+</head>
+
+<body class='white-bg'>
+    <div class="wrapper animated ">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="row form_wrapper">
+                    <div class='col-sm-12'>
+                        <div class="panel panel-default">
+                        <#if isHide??>
+                            <div class="panel-heading">
+                                <button type='button' class="btn btn-sm   btn-default closeBtn">关闭</button>
+                            </div>
+                        </#if>
+                            <div class="panel-body">
+                                <#include "/crm/ou/employee/employeeForm.html">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

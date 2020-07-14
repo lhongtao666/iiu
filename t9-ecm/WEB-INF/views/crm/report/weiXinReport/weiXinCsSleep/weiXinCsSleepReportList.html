@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>微信沉睡客户统计报表</title>
+	<#include "/common/common.html">
+	<#include "/common/ztree.html">
+	<script src="${ctx}/js/jt/common/utils/groupUtils${deploy_min!""}.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/jt/common/plugins/report${deploy_min!""}.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/jt/crm/report/weiXin/weiXinCsSleepReport${deploy_min!""}.js?v=${jsVersion}"></script>
+	<link href="${ctx}/css/plugins/select2/select2.min.css?v=${jsVersion}" rel="stylesheet">
+    <script src="${ctx}/js/plugins/select2/select2.min.js?v=${jsVersion}"></script>
+	<script>
+		var reportType = "weiXinCsSleep"
+		<#if reportType??>reportType = "${reportType}";</#if>
+	</script>
+</head>
+<body class="white-bg">
+	<div class='wrapper'>
+		<div class='row list_wrapper'>
+			<div class='col-sm-12'>
+				<div class="panel panel-default">
+					<div class="panel-heading">	
+						<form role="form" class="form-horizontal" id="weiXinCsSleepSearchForm">
+						    <div class="form-group">
+						        <label class="control-label col-sm-1">部门</label>
+						        <div class="col-sm-2">
+						            <input id="groupName" class="form-control" readonly="">
+						      		<input id="groupId" type="hidden">
+						    	</div>
+						    	<div class="col-sm-2">
+									<select id="belongEmployeeSearch" class="form-control" name="belongEmployee" style='width: 100%;'>
+									</select>
+								</div>
+					    	    <label class="control-label col-sm-1">沉睡客户定义</label>
+						        <div class="col-sm-2">
+						           <select name="sleepCountDay" placeholder="" class="form-control sleepCountDay" validateType="default" > 
+						               <option value="7">一周</option>
+						               <option value="30">一月</option>
+						               <option value="90">一季</option>
+						               <option value="365">一年</option>
+								    </select>
+						    	</div>
+
+						    	<div class="col-sm-4">
+						      		<button type='button' class="jt-btn-search weiXinCsSleepSearchBtn"><i class="fa fa-search"></i>&nbsp;搜索</button>
+						      		<button type='button' id="clearSearchBtn" class="jt-btn-empty"><i class='fa fa-trash-o'></i>&nbsp;清空</button>
+						      		<button type='button' class="jt-btn-search weiXinCsSleepExportExcel"><i class="fa fa-reply"></i>&nbsp;导出</button>
+						    	</div>
+						  	</div>
+						</form>
+					</div>
+				</div>
+			</div>
+			
+			<div class="jqGrid_wrapper col-sm-12" >
+				<table id="weiXinCsSleepReportGrid"></table>
+				<div id="weiXinCsSleepReportPager"></div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

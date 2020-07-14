@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>微信进粉明细报表</title>
+	<#include "/common/common.html">
+	<script src="${ctx}/js/jt/crm/report/weiXin/weiXinFriendDetail${deploy_min!""}.js?v=${jsVersion}" ></script>
+
+<script>
+	var beginTime="";
+	var endTime = "";
+	var employeeId = "";
+	var radioValue = "";
+	var employeeAlias = "";
+	<#if beginTime??>
+		beginTime = "${beginTime}";
+	</#if>
+
+	<#if endTime??>
+		endTime = "${endTime}";
+	</#if>
+	<#if endTime??>
+		endTime = "${endTime}";
+	</#if>
+	<#if employeeId??>
+		employeeId = "${employeeId}";
+	</#if>
+	<#if radioValue??>
+		radioValue = "${radioValue}";
+	</#if>
+	<#if employeeAlias??>
+		employeeAlias = "${employeeAlias}";
+	</#if>
+</script>
+</head>
+<body class='white-bg'>
+	<div class='wrapper'>
+		<div class='row list_wrapper'>
+			<div class="jqGrid_wrapper col-sm-12">
+				<table id="weiXinFriendDetailGrid"></table>
+			</div>	
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<div class='row' style='border: 1px solid #ddd; margin-left: 15px; margin-right: 15px;padding:10px;'>
+	<div class='col-sm-12'>
+		<form id="acdConfigForm" method="get" class="form-horizontal">
+
+
+			<div class="form-group">
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">cti_name_<@JTtip msg="cti_name_" /></label>
+					<div class="col-sm-9">
+						<input type="text" name="ctiName" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">cti_port_<@JTtip msg="cti_port_" /></label>
+					<div class="col-sm-9">
+						<input type="text" name="ctiPort" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">isp_<@JTtip msg="isp_" /></label>
+					<div class="col-sm-9">
+						<input type="text" name="isp" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+			</div>
+			<div class="form-group">
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">acd_<@JTtip msg="acd_" /></label>
+					<div class="col-sm-9">
+						<input type="text" name="acd" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">number_<@JTtip msg="number_" /></label>
+					<div class="col-sm-9">
+						<input type="text" name="number" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">phones_<@JTtip msg="phones_" /></label>
+					<div class="col-sm-9">
+						<input type="text" name="phones" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+			</div>
+
+
+
+			<div class='form-group'>
+				<!--将隐藏域放在这里，不显示出来-->
+				<div style="display:none'">
+					<input type="hidden" id="id" name="id">
+					<input type="hidden" name="createBy">
+					<input type="hidden" name="createTime">
+				</div>
+			</div>
+
+		</form>
+	</div>
+</div>

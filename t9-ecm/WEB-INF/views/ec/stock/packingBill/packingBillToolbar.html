@@ -1,0 +1,53 @@
+<div class="col-sm-12">
+	<div class="panel panel-default">
+	    <div class="panel-heading">
+			<button type='button' class='btn btn-sm   btn-primary packingBillDetail'><i class='fa fa-th-list'>明细</i></button>
+			<button type='button' class='btn btn-sm   btn-primary packingBillExport'><i class='fa fa-th-list'>导出备货单</i></button>
+	    </div>
+	    <div class="panel-body">
+	        <form id="packingBillFormSearch" role="form" class="form-horizontal">
+				<div class="form-group">
+					<label class='control-label col-sm-1 hiddenWhenHasOneStore'>仓库</label> 
+					<div class='col-sm-2 hiddenWhenHasOneStore'>
+						<select id='storeIdSearchContainer' name='Q__S__EQ__store_id_' class='form-control'></select>	
+					</div>
+					<label class='control-label col-sm-1'>单据号码</label> 
+					<div class='col-sm-2'>
+						<input type="text" id='nameSearch' placeholder="请输入单据号码" name="Q__S__LK__code_" class="form-control">	
+					</div> 
+						
+					<label class='control-label col-sm-1'>订单号</label> 
+					<div class='col-sm-2'>
+						<input type="text" id='codeSearch' placeholder="请输入订单号码" name="Q__S__LK__so_nos_" class="form-control">	
+					</div>
+					<label class='control-label col-sm-1'>状态</label> 
+					<div class='col-sm-2'>
+						<select id='statusSearchContainer' name='Q__S__EQ__status_' class='form-control'>
+							<option value="">请选择状态</option>
+							<option value="confirm">已审核</option>
+							<option value="done">完成</option>
+						</select>	
+					</div>
+
+						
+					
+				</div>
+				<div class="form-group">
+					<label class="col-sm-1 control-label">创建时间</label>
+	                 <div class="col-sm-3"> 
+		                 <div class="input-daterange input-group" id="datepicker">
+                        	<input id='startTimeSearch' class='laydate-icon form-control layer-date' name="Q__D__BW__create_time_" validateType="default" onclick="laydate({istime: true, format: 'YYYY-MM-DD'})" style="cursor:pointer;">
+                            <span class="input-group-addon">到</span>
+                            <input id='endTimeSearch' class='laydate-icon form-control layer-date' name="Q__D__BW__create_time_" validateType="default" onclick="laydate({istime: true, format: 'YYYY-MM-DD'})" style="cursor:pointer;">
+                        </div>
+		             </div>
+		             <div class="col-sm-1">
+		             	<button type='button' class="btn btn-sm btn-primary jt-btn-normal packingBillSearch"><i class='fa fa-search'></i>搜索</button>
+		             	<button type='button' class="btn btn-sm jt-btn-normal jt-bn-red resetBtn">清空</button>
+		             </div>
+				</div>
+				<input name="Q__S__EQ__type_" value="packing" type="hidden">
+			</form>
+	    </div>
+	</div>
+</div>

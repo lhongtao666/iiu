@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>角色管理</title>
+	<#include "/common/common.html" />
+	<#include "/common/ztree.html">
+	<style type="text/css">
+		/*不要半透明*/
+		.checkbox input[type="checkbox"]:disabled + label, .checkbox input[type="radio"]:disabled + label {
+		    opacity: 1;
+		}
+
+		#fixed-save {
+		    position: fixed;
+		    z-index: 10000;
+    		width: 100%;
+    		top: 0px;
+		}
+
+		#roleContainer ul li{
+			cursor: pointer;
+		}
+
+		.list-group{
+			margin-bottom: 0px;
+		}
+
+		#roleGrantResContainer > thead > tr > th,
+		#roleGrantResContainer > tbody > tr > th,
+		#roleGrantResContainer > tfoot > tr > th,
+		#roleGrantResContainer > thead > tr > td,
+		#roleGrantResContainer > tbody > tr > td,
+		#roleGrantResContainer > tfoot > tr > td {
+		    border: 1px solid #3181c5
+		}
+		#newReportContainer > tbody > tr > td{
+			border: 1px solid #3181c5;
+		}
+		
+		/* 问答分类树*/
+		#qaResContainer li span.button.chk.checkbox_false_disable {background-position: 0 0;}
+		#qaResContainer li span.button.chk.checkbox_true_disable {background-position: -14px 0;}
+		#qaResContainer li span.button.chk.checkbox_false_disable:hover, #qaResContainer li span.button.chk.checkbox_true_disable:hover {cursor: not-allowed;}
+		
+		#roleDetailContainer {
+			height: calc(100% - 100px) !important;
+    		overflow: hidden;
+		}
+		.tab-content-role {
+			height: calc(100% - 70px) !important;
+    		overflow-x: hidden;
+		}
+		.limitHeight {
+			height:100% !important;
+			width:100% !important;
+			margin: 0;
+			padding: 0;
+		}
+		.report-cate{
+			font-weight: bold;
+	        width: 100%;
+	        padding: 0 ! important;
+	        margin: 0 ! important;
+	        color: #1caf9a ! important;
+	        border-bottom: 1px solid #ddd ! important;
+		}
+	    .report-cate>font{
+            font-size: 1em;
+            border-bottom: 2px solid;
+	        height: 31px;
+	        word-wrap: break-word;
+	        width: 4.5em;
+	        text-align: center;
+		}
+		.layui-layer-title {
+			color: #fff;
+			background-color: #2ac1ac;
+		}
+		#roleContainer .panel-collapse {
+		    background-color: #f5f5f5;
+		}
+		#roleContainer .panel-collapse > .panel-body {
+		    border: 5px solid #fff;
+		    padding: 0;
+		}
+		#roleContainer > .panel > .panel-heading {
+			padding: 9px 5px;
+		}
+		#roleContainer > .panel > .panel-heading > i {
+	        line-height: 24px;
+		    color: #ddd !important;
+		    font-size: 13px !important;
+		    cursor: pointer;
+		    transition: all 0.25s linear;
+		}
+		#roleContainer > .panel > .panel-heading:hover > i {
+			color: #1caf9a !important;
+		}
+		#roleContainer .panel-collapse > .panel-body .list-group-item {
+		    border-color: #ccc;
+		    border-radius: 0;
+		}
+		#roleContainer .panel-collapse > .panel-body .list-group-item i {
+			color: #f8ac59 !important;
+			margin-right: 5px;
+		}
+		#roleContainer .panel-collapse > .panel-body .list-group-item i:hover {
+			color: #ed5565 !important;
+		}
+		#roleContainer .panel-collapse > .panel-body .list-group-item.active {
+		    background-color: #fff;
+		    border-color: #1caf9a;
+		    color: #1caf9a;
+		}
+	</style>
+	<script type="text/javascript">
+		var sys = '${sys}';
+		console.log("role-sys:"+sys);
+	</script>
+	<link href="${ctx}/css/plugins/chosen/chosen.css?v=${jsVersion}" rel="stylesheet" />
+	<link href="${ctx}/css/plugins/iCheck/custom.css?v=${jsVersion}" rel="stylesheet" />
+	<link href="${ctx}/css/plugins/select2/select2.min.css?v=${jsVersion}" rel="stylesheet">
+	<script src="${ctx}/js/plugins/select2/select2.min.js?v=${jsVersion}"></script>
+    <script src="${ctx}/js/plugins/iCheck/icheck.min.js?v=${jsVersion}"></script>
+    <script src="${ctx}/js/plugins/chosen/chosen.jquery.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/jt/common/service/desktopSelect${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script type="text/javascript" src='${ctx}/js/jt/common/service/employeesSelectLayer${deploy_min!""}.js?v=${jsVersion}'></script>
+	<script src="${ctx}/js/jt/crm/ou/role${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/common/utils/excelUtil${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/common/utils/roleUtils${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/gl/km/glHelpUtil${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/crm/ou/permissionsRelatedDetail${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/crm/ou/roleComparedDetail${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/crm/ou/employee${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<!--角色关联用户的模板-->
+	<script id='userTmpl' type='text/x-jsrender'>
+		<li idVal='{{:id}}' nameVal='{{:name}}' class='col-sm-2' style='padding-right:5px;padding-left:0px;'>
+            <a href='javascript: void(0);' style='padding-left:0px;padding-right:0px;margin-right:0px;'>
+                {{:aid}}:{{:name}}&nbsp;&nbsp;
+                <button class='btn btn-danger btn-xs deleteEmployeeBtn' type='button'>
+                    <i class='fa fa-remove'></i>
+                </button>
+            </a>
+        </li>
+	</script>
+
+	<!--角色模板-->
+	<script id='roleTmpl' type='text/x-jsrender'>
+		<div class="panel panel-default">
+			<div class="panel-heading" role="tab" id="headingOne{{:index}}">
+				<h4 class="panel-title" style="cursor: pointer;" data-toggle="collapse" data-parent="#roleContainer" href="#collapseOne{{:index}}" aria-expanded="false" aria-controls="collapseOne{{:index}}">{{:group}}</h4>
+				{{if roles &&　roles.length == 0}}				
+					<i style="color: red; font-size: 14px;margin-top:-14px;" class="deleteGroupBtn fa fa-remove pull-right"  idVal="{{:id}}"></i>
+				{{else roles &&　roles.length > 0}}
+					<i style="color: #6293BA; font-size: 20px;margin-top:-20px;" class="roleDoubleDown fa fa-plus pull-right"></i>
+					<i style="color: #6293BA; font-size: 20px;margin-top:-20px;" class="roleDoubleUp fa fa-minus pull-right"></i>
+				{{/if}}
+            </div>
+
+			<div id="collapseOne{{:index}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne{{:index}}" aria-expanded="{{if index == 0}}true{{/if}}">
+				<div class="panel-body">
+					<ul class="list-group">
+						{{for roles}}
+						<li idval="{{:id}}" class="list-group-item">
+							{{:name}}
+						</li>
+						{{/for}}
+					</ul>
+				</div>
+			</div>
+		</div>
+	</script>
+
+	<!--报表到处模板-->
+	<script id='exportColumnPanelTmpl' type='text/x-jsrender'>
+		<div class='panel panel-default' id='{{:value}}Panel' style='display:none;'>
+            <div class='panel-heading'>
+                <h3 class='panel-title'>【{{:name}}】可选导出字段</h3>
+            </div>
+            <div class='panel-body' id='{{:value}}Container'>
+            </div>
+        </div>
+	</script>
+
+	<!--报表导出字段可选项的模板-->
+	<script id='exportColumnTmpl' type='text/x-jsrender'>
+		<div class='checkbox checkbox-success checkbox-inline'>
+            <input type='checkbox' disabled="disabled" {{if checked}}checked='checked'{{/if}} colname='{{:name}}' class='columnCheckBox' name='exportColumn' id='{{:id}}' value='{{:id}}'>
+            <label for='{{:id}}'>{{:name}}</label>
+        </div>
+	</script>
+
+	<!--可以访问的报表模板-->
+	<script id='reportTmpl' type="text/x-jsrender">
+		<div class="panel panel-default report-entry">
+		    <div class="panel-heading report-cate">
+		        <font class="panel-title ">{{:cateName}}</font>
+		    </div>
+		    <div class="panel-body report-body">
+		        {{for reports}}
+		        <div class="checkbox checkbox-success checkbox-inline report-checkbox">
+		            <input type="checkbox" disabled="disabled" {{if checked}}checked='checked'{{/if}} name="reportIds" id="{{:id}}" value="{{:id}}">
+		            <label for="{{:id}}">{{:name}}</label>
+		        </div>
+		        {{/for}}
+			</div>
+		</div>	
+	</script>
+</head>
+
+<body class="white-bg" style="overflow:hidden;">
+	<div class="wrapper animated limitHeight" >
+		<div class='row limitHeight'>
+			<div class='col-sm-2'  style='height:100%;padding: 0;background-color: #fff;border-right: 7px solid #eaecee;'>
+		    	<div class='row' style='height:100%;'>
+		        	<div class='col-sm-12'  style='height:100%;'>
+		        		<div class="panel-group" id='roleContainer' role="tablist" aria-multiselectable="true" style='height:100%;overflow-y:auto;'>
+		        			
+		        		</div>
+			    	</div>
+		    	</div>
+        	</div>
+
+
+			<div class="col-sm-10">
+                <!-- list界面 -->
+                <div class="row list_wrapper">
+                    <#include "/crm/ou/role/roleToolbar.html">
+                </div>
+            </div>
+
+
+        
+		    <div class='col-sm-10' id='roleDetailContainer' style='background-color: #fff;padding-top:10px;padding-left: 15px;'>
+		    		<div class="tabs-container limitHeight">
+		    			<ul class="nav nav-tabs">
+		    				<li class="active"><a data-toggle="tab" href="#tab-1" aria-expanded="true">访问权限</a>
+		    				</li>
+
+		    				<li><a data-toggle="tab" href="#tab-2" aria-expanded="false">报表授权</a>
+		    				</li>
+							<!-- <li><a data-toggle="tab" href="#tab-5" aria-expanded="false">报表授权【新】</a> -->
+		    				</li>
+		    				<li><a data-toggle="tab" href="#tab-3" aria-expanded="false">报表导出字段授权</a>
+		    				</li>
+
+		    				<li><a data-toggle="tab" href="#tab-4" aria-expanded="false">关联用户</a>
+		    				</li>
+		    				<!-- <li><a data-toggle="tab" href="#tab-6" aria-expanded="false">问答分类授权</a>
+		    				</li> -->
+		    			</ul>
+
+		    			<div class="tab-content tab-content-role">
+		    				<div id="tab-1" class="tab-pane active">
+		    					<div class="panel-body">
+		    						<table style='margin-bottom: 0px;' id='roleGrantResContainer' class='table table-bordered table-stripped'></table>
+		    					</div>
+		    				</div>
+
+		    				<div id="tab-2" class="tab-pane">
+		    					<div class="panel-body">
+		    						<div class='col-sm-12' id='reportContainer'></div>
+
+		    					</div>
+		    				</div>
+							<!-- <div id="tab-5" class="tab-pane">
+		    					<div class="panel-body">
+		    						<table style='margin-bottom: 0px;' id='newReportContainer' class='table table-bordered table-stripped'></table>
+		    					</div>
+		    				</div> -->
+		    				<div id="tab-3" class="tab-pane">
+		    					<div class="panel-body">
+		    						<div class='col-sm-12' id='exportModuleContainer'></div>
+		    						<div class='col-sm-12' id='exportColumnsContainer'>
+		    						</div>
+		    					</div>
+		    				</div>
+
+		    				<div id="tab-4" class="tab-pane">
+		    					<div class="panel-body">
+		    						<div class='col-sm-11'>
+		    							<table class='table table-bordered'>
+		    								<tr>
+		    									<td width='100%'>
+		    										<ul class="tag-list" style="padding: 0">
+		    										</ul>
+		    									</td>
+		    								</tr>
+		    							</table>	
+		    						</div>
+
+		    						<div class='col-sm-1'>
+		    							<button style="margin-top:10px;" class="btn btn-sm   btn-primary btn-sm" id="selectEmployeeBtn" type="button" disabled="disabled">选择员工</button>
+		    						</div>
+		    					</div>
+		    				</div>
+		    				<!-- <div id="tab-6" class="tab-pane">
+		    					<div class="panel-body">
+		    						<input id="qaResSearch" />
+		    						<ul id="qaResContainer"  class="ztree"></ul>
+		    					</div>
+		    				</div> -->
+		    			</div>
+		    		</div>
+		    </div>
+		</div>
+	</div>
+
+	<!--添加角色时的modal弹窗-->
+	<div class="modal fade" id="addRoleModalContainer" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	    <div class="modal-dialog" role="document">
+	    	<div class="modal-content">
+	      		<div class="modal-header">
+	        		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+	        		<h4 class="modal-title" id="myModalLabel">添加角色</h4>
+	      		</div>
+		
+		        <div class="modal-body">
+			        <form id="addRoleForm" method="get" class="form-horizontal">
+						<div class="form-group">
+							<label class="col-sm-2 control-label">名称<span style='color: red'>*</span></label>
+							<div class="col-sm-10">
+								<input type="text" name="name1" placeholder="" class="form-control" validateType='default'>
+							</div>
+						</div>	
+						<div class="form-group">
+							<label class="col-sm-2 control-label">默认<span style='color: red'>*</span></label>
+							<div class="col-sm-10">
+								<select class="form-control" name="isDefault1" validateType='default'>
+									<option value="">请选择</option>
+									<option value="n" selected='selected'>否</option>
+									<option value="y">是(选是,则该角色会自动关联到所有系统用户)</option>
+								</select> 
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">复制权限</label>
+							<div class="col-sm-10">
+								<select name='copyRoleId' class='form-control' validateType='default' id='copyRoleIdContainer'></select>
+							</div>
+						</div>	
+						
+						<div class="form-group">
+							<label class="col-sm-2 control-label">分组<span style='color: red'>*</span></label>
+							<div class="col-sm-10">
+								<select name='cateId1' class='form-control ' validateType='default' id='cateIdContainer1'></select>
+							</div>
+						</div>	
+						
+						<div class="form-group">
+							<label class="col-sm-2 control-label">客户上限</label>
+							<div class="col-sm-10">
+								<input type="text" name="csLimit1" class="form-control" validateType='default'>
+							</div>
+						</div>	
+						
+						<div class="form-group">
+							<label class="col-sm-2 control-label">状态<span style='color: red'>*</span></label>
+							<div class="col-sm-10">
+								<select class="form-control" name="status1" validateType='default'>
+									<option value="">请选择</option>
+									<option value="inactive">未激活</option>
+									<option value="actived" selected='selected'>激活</option>
+								</select>
+							</div>
+						</div>
+
+						<!-- <div class="form-group">
+							<label class="col-sm-2 control-label">描述</label>
+							<div class="col-sm-10">
+								<textarea name='desc1' rows='7' validateType='default' class='form-control'></textarea>
+							</div>
+						</div> -->
+					</form>
+		      	</div>
+		        <div class="modal-footer">
+		        	<button type="button" class="btn btn-sm   btn-default" data-dismiss="modal">关闭</button>
+		        	<button type="button" class="btn btn-sm   btn-primary" id='saveRoleBtn1'>保存</button>
+		        </div>
+	    	</div>
+	    </div>
+	</div>
+
+	<!--添加角色时的modal弹窗-->
+	<div class="modal fade" id="addGroupModalContainer" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	    <div class="modal-dialog" role="document">
+	    	<div class="modal-content">
+	      		<div class="modal-header">
+	        		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+	        		<h4 class="modal-title" id="myModalLabel">添加分组</h4>
+	      		</div>
+		
+		        <div class="modal-body">
+			        <form id="addGroupForm" method="get" class="form-horizontal">
+			        	<div class="form-group">
+							<label class="col-sm-2 control-label">名称</label>
+							<div class="col-sm-10">
+								<input name='groupName' type='text' validateType='default' class='form-control'/>
+							</div>
+						</div>
+			        </form>
+		        </div>
+		        <div class="modal-footer">
+		        	<button type="button" class="btn btn-sm   btn-default" data-dismiss="modal">关闭</button>
+		        	<button type="button" class="btn btn-sm   btn-primary" id='saveGroupBtn'>保存</button>
+		        </div>
+	        </div>
+        </div>
+    </div>
+    <#include "/crm/ou/role/permissionsRelatedDetail.html">
+    <#include "/crm/ou/role/roleComparedDetail.html">    
+</body>
+</html>

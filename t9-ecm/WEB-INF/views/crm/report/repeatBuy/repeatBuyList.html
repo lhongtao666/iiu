@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>复购客户统计报表</title>
+	<#include "/common/common.html">
+	<#include "/common/ztree.html">
+	<script src="${ctx}/js/plugins/echarts/echarts-all.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/plugins/echarts/3.1.7/echarts.min.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/jt/common/plugins/report${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/common/plugins/report${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/crm/report/cs/repeatBuy${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/common/utils/groupUtils${deploy_min!""}.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/plugins/echarts/3.1.7/echarts.min.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/jt/crm/report/reportDateUtil${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script>
+		var type = "";
+		var reportType = "repeatBuy";
+		<#if type??>type = "${type}";</#if>
+		<#if reportType??>reportType = "${reportType}";</#if>
+	</script>
+	<style> 
+	   .panel .panel-heading .btn {
+		    margin-left: 0px;
+		}
+	</style>
+</head>
+<body class="white-bg">
+	<div class='wrapper'>
+		<div class='row list_wrapper'>
+			<div class='col-sm-12'>
+				<div class="panel panel-default">
+					<div class="panel-heading report-content">	
+						<form role="form" id='repeatBuySearchForm' class="form-horizontal">
+							<div class='form-group'>
+								<label class="control-label col-sm-1">周期</label>	
+								<div class="col-sm-2">
+									<select name="timeTypeSearch" id="timeTypeSearch" placeholder=""
+										class="form-control" validateType="default">
+										<option value="day">按天</option>
+										<option value="month">按月</option>
+										<option value="quarter">按季度</option>
+										<option value="year">按年</option>
+									</select>
+								</div>
+
+								<div class="col-sm-2 yearElement">
+									<select name="yearSearch" id="yearSearch" placeholder=""
+										class="form-control" validateType="default">
+									</select>
+								</div>
+
+								<div class="col-sm-1 quarterElement">
+									<select name="quarterSearch" id="quarterSearch" placeholder=""
+										class="form-control" validateType="default">
+										<option value="1">1季度</option>
+										<option value="2">2季度</option>
+										<option value="3">3季度</option>
+										<option value="4">4季度</option>
+									</select>
+								</div>	
+
+								<div class="col-sm-1 monthElement">
+									<select name="monthSearch" id="monthSearch" placeholder=""
+										class="form-control" validateType="default">
+										<option value="1">1月</option>
+										<option value="2">2月</option>
+										<option value="3">3月</option>
+										<option value="4">4月</option>
+										<option value="5">5月</option>
+										<option value="6">6月</option>
+										<option value="7">7月</option>
+										<option value="8">8月</option>
+										<option value="9">9月</option>
+										<option value="10">10月</option>
+										<option value="11">11月</option>
+										<option value="12">12月</option>
+									</select>
+								</div>
+								
+								<div class='col-sm-2'>
+									<button class="jt-form-select dayElement" id="prevBtn" type="button">前一天</button>
+									<button class="jt-form-select dayElement" id="nextBtn" type="button">后一天</button>	
+								</div>
+								
+								<div class="col-sm-4 dayElement"> 
+					                <div class="input-daterange input-group" id="datepicker">
+			                       		<input class='laydate-icon form-control layer-date' id="beginDate" name="beginDate" validateType="default" placeholder="开始时间" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">
+			                            <span class="input-group-addon">到</span>
+			                            <input class='laydate-icon form-control layer-date' id="endDate" name="endDate" validateType="default" placeholder="结束时间" onclick="laydate({istime: true, start: laydate.now(0, 'YYYY/MM/DD 23:59:59'), format: 'YYYY-MM-DD hh:mm:ss'})">
+			                        </div>
+					            </div>
+					            <div class="col-sm-3">
+									<button class="jt-quick-search opterate" type="button" >以操作时间统计</button>
+							    	<button type='button' class='jt-quick-search place' value="1">以下单时间统计</button>
+					        	</div>								
+							</div>
+							
+					        <div class="form-group">
+					        	<label class='control-label col-sm-1'>部门</label>	
+							    <div class='col-sm-2'>
+							     	<input id='groupName' readonly class='form-control'>
+							     	<input name='belongOgn' type='hidden' class='form-control'>
+							    </div>
+								<label class="col-sm-2 control-label">销售部门类型</label>
+								<div class='col-sm-2'>
+								  <select id="saleLine" class="form-control" name="saleLine">
+									  <option value="">请选择</option>
+									  <option value="one">一类</option>
+									  <option value="two">二类</option>
+								  </select>
+								</div>
+					        	<div class="col-sm-2">
+					        		<button type='button' class="jt-btn-search repeatBuySearchBtn"><i class="fa fa-search"></i>&nbsp;搜索</button>
+					        		<button type='button' class="jt-btn-search repeatBuyExportExcel"><i class="fa fa-reply"></i>&nbsp;导出</button>
+					        	</div>
+			        		</div>
+			      		</form>
+					</div>
+					<div class="panel-body">
+						<div style="overflow-y:auto; height: 400px;">
+							<div id="entityRepeatChart" style="width: 60%;height:100%; position: absolute;left: 15%;"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="jqGrid_wrapper col-sm-12" >
+				<table id="repeatBuyGrid"></table>
+				<div id="repeatBuyPager"></div>
+			</div>
+			
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>批量外呼条目表管理</title>
+	<#include "/common/common.html">
+	<script src="${ctx}/js/jt/gl/cti/ctiBatcallItem${deploy_min!""}.js?v=${jsVersion}" ></script>
+</head>
+<script type="text/javascript">
+	var taskId = '${taskId}';
+</script>
+<body>
+	<div class="wrapper animated fadeInRight">
+		<!-- list界面 -->
+		<div class="row">
+			<div class="list_wrapper">
+            	<#include "/gl/cti/ctiBatcallItem/ctiBatcallItemToolbar.html">	  			
+				<div class='col-sm-12 jqGrid_wrapper'>
+				    <table id="ctiBatcallItemGrid"></table>
+					<div id="ctiBatcallItemPager"></div>
+				</div>
+									
+			</div>
+		</div>
+		<!-- 编辑界面 -->
+		<#include "/gl/cti/ctiBatcallItem/ctiBatcallItemEdit.html">	    
+	</div>
+</body>
+</html>

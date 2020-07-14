@@ -1,0 +1,35 @@
+<div style="display: none;" class="row import_wrapper ">
+	<div class='col-sm-12'>
+		<div class="panel panel-default">
+	        <div class="panel-heading">
+				<button type='button' class="btn btn-sm   btn-primary importBtn">导入</button>
+				<button type='button' class="btn btn-sm   btn-default prevBtn2">返回</button>
+	        </div>
+		</div>  
+	</div>
+
+	<!-- 导入文件页面	 --> 
+
+	<div class='row' style='border: 1px solid #ddd; margin-left: 15px; margin-right: 15px;padding:10px;'>
+		<div class='col-sm-12'>
+			<form id="phoneImportForm" method="post" class="form-horizontal" enctype="multipart/form-data">
+				<div class="form-group">
+		       		<label class="col-sm-1 control-label">上传文件</label>
+		       		<div  class='col-sm-11'>
+		       			<div class='row' style='margin-top: 10px;'>
+							<div id="uploader"></div>	
+						</div>
+		       		</div>
+		       	</div>
+				<div class="form-group" >
+			   	 	<div class='col-sm-12'>
+				    	<label class="col-sm-1 control-label">导入信息</label>
+				    	<div class="col-sm-11">
+					    	<textarea name='infos' class='form-control' rows='10'></textarea>
+				    	</div>
+			   		 </div>
+		    	</div>
+			</form>
+		</div>
+	</div>   
+</div>

@@ -1,0 +1,90 @@
+<div class="wrapper" style="overflow-x:hidden">
+	<div  class="row form_wrapper">
+		<div class='col-sm-12'>
+			<form id="soShipBalanceForm" method="get" class="form-horizontal">
+				<div class="form-group">
+					<label class="col-sm-2 control-label">订单编号：</label>
+					<span class="col-sm-2 control-label soNo" style='text-align:left;'></span>
+					<label class="col-sm-2 control-label">货款方式：</label>
+					<span class="col-sm-2 control-label cashType" style='text-align:left;'></span>
+					<label class="col-sm-2 control-label">订单状态：</label>
+					<span class="col-sm-2 control-label status" style='text-align:left;'></span>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">总金额(元)：</label>
+					<span class="col-sm-2 control-label totalAmount" style='text-align:left;'></span>
+					<label class="col-sm-2 control-label">发货时间：</label>
+					<span class="col-sm-2 control-label shipTime" style='text-align:left;'></span>
+					<label class="col-sm-2 control-label">快递公司：</label>
+					<span class="col-sm-2 control-label scName" style='text-align:left;'></span>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">快递单号：</label>
+					<span class="col-sm-2 control-label scTrackingNo" style='text-align:left;'></span>
+				</div>
+				<div class="form-group">
+					<table class='table table-bordered table-stripped'>
+						<thead></thead>
+				    	<tbody>
+				    		<tr>
+				    			<th width='10%'>快递费</th>
+				    			<td>
+				    				<label class='col-sm-1 control-label' style='padding:0px;'>运费</label>
+				    				<div class='col-sm-2' style='padding:0px;'>
+				    					<input type='text' class='form-control actualAmount' name='actualAmount' validateType="default"/>
+			    					</div>
+									<button type='button' class='btn btn-sm   btn-primary balance'  name='actualBlance' id='actualBalanceBtn'>结算</button>
+                					<button type='button' class='btn btn-sm   btn-primary revoke' style='display:none' name='actualBlance' id='actualRevokeBtn'>撤销</button>
+                				</td>
+				    		</tr>
+				    		<tr>
+				    			<th width='10%'>代收款</th>
+				    			<td>
+					    			<label class='col-sm-1 control-label' style='padding:0px;'>已代收</label>
+					    			<div class='col-sm-2' style='padding:0px;'>
+					    				<input type='text' class='form-control proxyAmount' name='proxyAmount' validateType="default"/>
+					    			</div>
+									<label class='col-sm-2 control-label'style='padding:0px;'>已代收手续费</label>
+									<div class='col-sm-2' style='padding:0px;'>
+										<input type='text' class='form-control counterAmount' validateType="default" name='counterAmount'/>
+									</div>
+									<button type='button' class='btn btn-sm   btn-primary balance' name='proxyBlance' id='proxyBalanceBtn'>结算</button>
+		                			<button type='button' class='btn btn-sm   btn-primary revoke' name='proxyBlance' style='display:none' id='proxyRevokeBtn'>撤销</button>
+	                			</td>
+				    		</tr>
+				    		<tr>
+				    			<th width='10%'>拒丢</th>
+				    			<td>
+									<label class='col-sm-1 control-label' style='padding:0px;'>赔付</label>
+									<div class='col-sm-2' style='padding:0px;'>
+										<input type='text' class='form-control breakAmount' name='breakAmount'  validateType="default"/>
+									</div>
+						  			<label class='col-sm-2 control-label'style='padding:0px;'>其它费用</label>
+						  			<div class='col-sm-2' style='padding:0px;'>
+						  				<input type='text' class='form-control otherAmount' name='otherAmount'  validateType="default"/>
+						  			</div>
+									<button type='button' class='btn btn-sm   btn-primary balance' name='breakBlance' id='breakBlanceBtn'>结算</button>
+	                				<button type='button' class='btn btn-sm   btn-primary revoke' style='display:none' name='breakBlance' id='breakRevokeBtn'>撤销</button>
+	                			</td>
+				    		</tr>
+				    	</tbody>
+					</table>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">收(元)：</label>
+					<span class="col-sm-2 control-label receiptTotal" style='text-align:left;'></span>
+					<label class="col-sm-2 control-label">付(元)：</label>
+					<span class="col-sm-2 control-label payTotal" style='text-align:left;'></span>
+					<label class="col-sm-2 control-label">合计(元)：</label>
+					<span class="col-sm-2 control-label allTotal" style='text-align:left;'></span>
+				</div>
+				<div class='form-group'>
+					<!--将隐藏域放在这里，不显示出来-->
+					<div style="display: none'">
+						<input type="hidden" name="id">
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>

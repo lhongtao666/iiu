@@ -1,0 +1,17 @@
+<script src="${ctx}/js/jt/ec/finance/desktop/accPaymentStatic${deploy_min!""}.js?v=${jsVersion}" ></script>
+
+
+<div class="panel panel-default"  style="margin-bottom:0px;height:100%;">
+    <div class="panel-heading">
+    	<div class="panel-title">
+    		<h4>账户年收/支情况</h4>
+    	</div>
+    </div>
+    <div class="panel-body" style="padding:5px;">
+        <#include "/ec/finance/desktop/accPaymentStaticToolbar.html">
+	    <div  style="border: 1px solid #777;padding:5px ;">
+	    	<div class="titleName" style="text-align: center;font-weight: bold;height: 20px;"></div>
+	        <div id="financeTrendForAcc" style="height:340px;"></div>
+	    </div>
+    </div>
+</div>

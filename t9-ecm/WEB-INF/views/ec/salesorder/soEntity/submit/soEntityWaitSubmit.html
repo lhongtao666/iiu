@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>待提交销售订单</title>
+	<#include "/common/common.html">
+	<script src="${ctx}/js/jt/ec/salesorder/soItem${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/common/utils/groupUtils${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/ec/salesorder/soEntityBase${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/common/service/shopAddrOptLayer${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src='${ctx}/js/jt/common/service/addressService${deploy_min!""}.js?v=${jsVersion}'></script>
+	<link href="${ctx}/css/jt/ec/salesorder/orderaddr${deploy_min!""}.css?v=${jsVersion}" rel="stylesheet">
+	<script src='${ctx}/js/jt/crm/cs/csFollow${deploy_min!""}.js?v=${jsVersion}'></script>
+	<script type="text/javascript">
+	$(function(){
+		var curUserId = "${ONLINE_ENTITY.userId}";
+		var soEntitySubmit = new SoEntitySubmit();
+		soEntitySubmit.init({isInitAd:true,gridRecordsSpan:null});
+		
+	});
+	</script>
+</head>
+<body>
+	<div class="wrapper animated ">
+		<div class="row sowait_wrapper ">
+		    <#include "soEntityWaitSubmitToolbar.html">
+		    <div class='col-sm-12 jqGrid_wrapper'>
+			    <table id="soEntitySubmitGrid"></table>
+				<div id="soEntitySubmitPager"></div>
+			</div>
+		</div> 	
+	</div>
+	<div style="display:none"  class="csFollowEdit" >
+		<div class="panel-body">
+			<form method="get" class="form-horizontal" id="csFollowForm">
+		   		<#include "/crm/cs/csEntity/csFollowEdit.html" >
+		   	</form>
+	   	</div>
+	</div>
+	<div style="display:none"  class="sendMessagePane" >
+	   	<#include "/crm/cs/csEntity/sendMessagePane.html" >
+	</div>
+</body>
+</html>

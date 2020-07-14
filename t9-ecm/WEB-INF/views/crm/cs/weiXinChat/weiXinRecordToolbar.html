@@ -1,0 +1,43 @@
+<div class="col-sm-12 col-sm-nopadding">
+	<div class="panel panel-default">
+		<div class="panel-body">
+			<form id='weiXinRecordSearchForm' role="form" class="form-horizontal">
+				<div class='form-group'>
+					<label class="col-sm-1 control-label" style="width: auto;">发送时间</label>
+					<div class='col-sm-5'>
+						<div class="input-daterange input-group">
+							<input class="laydate-icon form-control layer-date startDate" name="startDate" placeholder="yyyy-mm-dd hh:mm:ss" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">
+							<span class="input-group-addon">到</span>
+							<input class="laydate-icon form-control layer-date endDate" name="endDate" placeholder="yyyy-mm-dd hh:mm:ss" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">
+						</div>
+					</div>
+					<div class='col-sm-6'>
+						<button type='button' class="jt-btn-search weiXinRecordSearch"><i class='fa fa-search'></i>&nbsp;查询</button>
+						<button type='button' class="jt-quick-search weiXinRecordSearchToday">今日</button>
+						<button type='button' class="jt-quick-search weiXinRecordSearchSeven">七天内</button>
+					</div>
+				</div>
+				<div class='form-group' id="listParam">
+					<label class="col-sm-1 control-label" style="width: auto;">客户编号</label>
+					<div class="col-sm-2">
+						<input type="text" placeholder="请输入客户编号" name="Q__S__EQ__friend_code_"  class="form-control">
+					</div>
+					<label class="col-sm-1 control-label">昵称</label>
+					<div class="col-sm-2">
+						<input type="text" placeholder="请输入昵称" name="Q__S__LK__nick_name_"  class="form-control">
+					</div> 
+					<label class="col-sm-1 control-label">员工微信</label>
+					<div class="col-sm-2">
+						<select style="width: 100%;" id="employee-wx-select" name="Q__S__EQ__employee_wei_xin_"  class="form-control">
+						</select>
+					</div> 
+					<label class="col-sm-1 control-label">好友标签</label>
+					<div class="col-sm-2">
+						<select id="wx-label" class="form-control" name="Q__S__LK__label_">
+						</select>
+					</div> 
+				</div>
+			</form>
+		</div>
+	</div>
+</div>

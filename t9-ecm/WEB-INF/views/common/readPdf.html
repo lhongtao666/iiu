@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>PDF阅读器</title>
+    <meta charset="utf-8" />
+    <script src="${ctx}/js/jquery-2.1.1.min.js?v=${jsVersion}"></script>
+    <script src="${ctx}/js/plugins/PDFObject/pdfobject.min.js?v=${jsVersion}"></script>
+    <style type="text/css">
+        html,body,#pdf_viewer{
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            scroll
+        }
+        .pdfobject-container { height: 500px;}
+        .pdfobject { border: 1px solid #666; }
+    </style>
+</head>
+<body>
+    <div id="pdf_viewer"></div>
+</body>
+<script type="text/javascript">
+    $(function(){
+        var $node = $("#pdf_viewer");
+        var pdfFilePath = "${pdfFilePath}"
+        var pdfReadPath =pdfFilePath;
+        if(pdfFilePath){
+            if(PDFObject.supportsPDFs){
+                if(pdfFilePath.endsWith(".pdf") || pdfFilePath.endsWith(".PDF") ){
+                     var options = {
+                        pdfOpenParams: { view: 'FitV' }
+                    };
+                    PDFObject.embed(pdfReadPath,$node ,options );
+                }else{
+                     $node.append("<h2>暂不支持打开非pdf文档</h2>")
+                }
+            }else{
+                $node.append("<h2>当前浏览器不支持,请更换后重试</h2>")
+            }
+        }else{
+            $node.append("<h2>文档不存在</h2>")
+        }
+    });
+</script>
+</html>

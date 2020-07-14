@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>快递公司管理</title>
+	<#include "/common/common.html">
+	 <#include "/common/ztree.html" />
+	<script src="${ctx}/js/jt/ec/ship/shipCompany${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/plugins/gridReport/CreateControl.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/plugins/gridReport/GRInstall.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/jt/common/service/addressService${deploy_min!""}.js?v=${jsVersion}" ></script>
+    <script src="${ctx}/js/jt/common/utils/groupUtils${deploy_min!''}.js?v=${jsVersion}"></script>
+	<script type="text/javascript">
+	var ctx="${ctx}";
+	var isOpenSubLogisticsSystem = "${isOpenSubLogisticsSystem}";
+	var isOpenSubLogisticsSystemsubmitOrder = "${isOpenSubLogisticsSystemsubmitOrder}";
+       Install_InsertReport();
+    </script>
+    <script src="${ctx}/js/jt/gl/km/glHelpUtil${deploy_min!""}.js?v=${jsVersion}" ></script>
+    	
+    <style>
+   	    .layui-layer-title {
+			color: #fff;
+			background-color: #2ac1ac;
+		}
+
+		.layui-layer-content {
+			padding:10px 20px;
+		}
+
+		.layui-layer-btn {
+			border-top: 1px solid #e5e5e5;
+		}
+		#shipBody .form-control {
+		    border-color: transparent !important;
+		    text-indent: 7px;
+		}
+		#shipBody tr:hover .form-control {
+		    border-color: #2196F3 !important;
+		}
+    </style>
+</head>
+
+<body>
+<script type="text/javascript">
+var installed = Install_Detect();
+if(installed==true){
+	   var testObj = document.getElementById("_ReportOK");
+	   testObj.style.display="none";
+ }
+</script>
+	<div class="wrapper animated " style="padding: 0;">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<form class="form-horizontal">
+					<div class="form-group">
+						<label class="col-sm-1 control-label" style="width: auto;padding: 7px !important;">启用</label>
+						<div class="col-sm-2">
+							<select class="form-control" name="Q__S__EQ__status_" style="margin-top: 3px;">
+								<option value="">请选择</option>
+								<option value="actived">是</option>
+								<option value="inactive">否</option>
+							</select>		
+						</div>
+						<div class="col-sm-4">
+							<button type='button' class="jt-btn-search searchBtn"><i class='fa fa-search'></i>&nbsp;搜索</button>						
+							<button type='button' class="jt-btn initTplBtn">初始化模板</button>
+							<button type='button' class="jt-btn feeSetting">物流费用设置</button>
+							<label id="glHelpContainer"></label><!-- 帮助中心 -->
+						</div>
+					</div>	
+				</form>			
+			</div>
+			<div class="panel-body">
+				<div class='form-group jqGrid_wrapper'>
+					<from id="shipCompanyForm" method="get" class="form-horizontal">
+					<table class='table table-striped table-bordered '>
+						<thead>
+							<tr>
+								<td style='width: 5%;border-right: 2px solid rgb(242, 242, 242);'>编号</td>
+								<td style='width: 12%;'>公司简称</td>
+								<td style='width: 8%;'>客服电话</td>
+								<td style='width: 6%;'>代收费率</td>
+								<td style='width: 6%;'>启用状态</td>
+								<td style='width: 8%;'>是否热敏打印</td>
+								<td style='width: 5%;'>序号</td>
+								<td style='width: 58%;'>操作</td>
+							</tr>
+						</thead>
+						<tbody id='shipBody'>
+						</tbody>
+					</table>
+					<table class='table table-striped table-bordered '>
+						<thead>
+							<tr>
+								<td>出货单模板</td>
+							</tr>
+						</thead>
+						<tbody id='outSaleBody'>
+						</tbody>
+					</table>
+					</from>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="sfHotConfigEdit"  style="display:none;">
+	   <#include "/ec/ship/shipCompany/sfHotConfigEdit.html" >
+	</div>
+	<div class="newHotConfigEdit"  style="display:none;">
+	   <#include "/ec/ship/shipCompany/newHotConfigEdit.html" >
+	</div>
+	<div class="shipCodeEdit"  style="display:none;">
+	   <#include "/ec/ship/shipCompany/shipCodeEdit.html" >
+	</div>
+	<div class="shipTplEdit"  style="display:none;">
+	   <#include "/ec/ship/shipCompany/shipTplEdit.html" >
+	</div>
+	<div class="shipGroupEdit"  style="display:none;">
+	   <#include "/ec/ship/shipCompany/shipGroupEdit.html" >
+	</div>
+</body>
+</html>

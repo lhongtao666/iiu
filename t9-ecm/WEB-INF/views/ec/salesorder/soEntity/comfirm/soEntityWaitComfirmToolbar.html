@@ -1,0 +1,205 @@
+<div class="col-sm-12">
+	<div class="panel panel-default  sowait_wrapper">
+		<div class="panel-heading">
+			<button type='button' class='jt-btn jt-dd-normal soEntityComfirm soEntityComfirmHead'><i class='fa fa-check'></i>&nbsp;审核</button>
+			<button type='button' class='jt-btn jt-dd-normal soEntityRepeatAudit'><i class='fa fa-check'></i>&nbsp;复审</button>
+			<button type="button" class="jt-btn jt-btn-red soEntityTrunDown soEntityTrunDownHead" id="soEntityTrunDown"><i class='fa fa-times'></i>&nbsp;驳回</button>
+			<button type="button" class="jt-btn jt-btn-red soEntityClose soEntityCloseHead" id="soEntityClose"><i class="fa fa-remove"></i>&nbsp;作废</button>
+			<div class="btn-group">
+       			<button data-toggle="dropdown" class="jt-btn dropdown-toggle jt-dd-normal">更多操作 <span class="caret"></span></button>
+       			<ul class="dropdown-menu">            		       		
+        			<!-- <li>
+						<button type='button' class='btn btn-sm  btn-primary jt-btn-normal soEntitySplitOrder'>拆分</button>
+					</li> -->
+					<li>
+						<button type="button" class="jt-btn jt-dd-normal soAddLock"><i class="fa fa-detail"></i>&nbsp;订单冻结</button>
+					</li>
+					<li>
+						<button type="button" class="jt-btn jt-dd-normal soUnLock">订单解冻</button>
+					</li>
+				</ul>
+			</div>
+			<button type='button' class='jt-btn jt-dd-normal soEntityReload'>
+				<i class="fa fa-refresh"></i>&nbsp;刷新
+			</button>
+			<#include "/ec/salesorder/soEntity/soEntityRefreshTool.html">
+		</div>
+		<div class="panel-body">
+			<form  class="form-horizontal">
+				<div class="form-group jt-form-group jt-form-normal">
+					<div class='col-sm-6 jt-date-param'>
+						<label  class="col-sm-2 control-label">下单时间</label>
+						<div class='col-sm-10'>
+							<div class="input-daterange input-group">
+								<input class="laydate-icon form-control layer-date minPlaceTime" name="Q__D__BW__entity.place_time_" placeholder="起始时间" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">
+								<span class="input-group-addon">到</span>
+								<input class="laydate-icon form-control layer-date maxPlaceTime" name="Q__D__BW__entity.place_time_" placeholder="结束时间" onclick="laydate({istime: true, start: laydate.now(0, 'YYYY/MM/DD 23:59:59'), format: 'YYYY-MM-DD hh:mm:ss'})">
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<label  class="col-sm-4 control-label">订单编号</label>
+						<div class='col-sm-8'>
+							<input type="text" id='soNoSearch' placeholder="请输入订单编号" name="Q__S__EQ__entity.so_no_" class="form-control">
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<label  class="col-sm-4 control-label">客户编号</label>
+						<div class='col-sm-8'>
+							<input type="text" placeholder="请输入客户编号" id="csSearchParam"  name="csSearchParam"  class="form-control">
+						</div>
+					</div>
+					
+				</div>
+				<div class="form-group hideSearchParam jt-form-group jt-form-normal">
+					<div class="col-sm-3">
+						<label  class="col-sm-4 control-label">快递公司</label>
+						<div class='col-sm-8'>
+							<select class="chosen-select form-control scCodeQry scCodeQryWait" data-placeholder="请选择" multiple>
+								<option value="">全部</option>
+							</select>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<label  class="col-sm-4 control-label">是否加急</label>
+						<div class='col-sm-8'>
+							<select  name="Q__S__EQ__entity.is_fast_" class="form-control">
+								<option value="">不区分</option>
+								<option value="y">是</option>
+								<option value="n">否</option>
+							</select>
+						</div>
+					</div>
+					<div class="col-sm-6">
+						<label class="col-sm-1 control-label">归属工号</label>
+						<div>
+							<div class="col-sm-5">
+								<input type='text' id='belongOgnConfirm'class='form-control' readonly>
+								<input id='belongOgnIdConfirm' name='belongOgn' type='hidden'>
+							</div>
+							<div class="col-sm-6">
+								<select id='belongEmployeeConfirm' class="form-control" name="belongEmployee" style='width: 100%;'>
+									<option value="">请选择</option>
+								</select>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="form-group hideSearchParam jt-form-group jt-form-normal">
+					<div class="col-sm-3">
+						<label  class="col-sm-4 control-label">商品</label>
+						<div class='col-sm-8'>
+							<div class="input-group">
+								<input type="text" id='skuSearch' placeholder="请选择或输入" name="skuKeyQry" class="form-control">
+								<div class="input-group-btn skuSearchImg" >
+										<img class="searchImg"  src="${ctx}/img/jt/search.png"></img>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					<div class="col-sm-3">
+						<label  class="col-sm-4 control-label">订单类型</label>
+						<div class='col-sm-8'>
+							<select  name="Q__S__EQ__entity.so_type_" class="form-control soTypeQry">
+								<option value="">全部</option>
+							</select>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<label  class="col-sm-4 control-label">货款方式</label>
+						<div class='col-sm-8'>
+							<select class="chosen-select form-control cashType" data-placeholder="请选择" multiple>
+								<option value="">全部</option>
+								<option value="pay">款到发货</option>
+								<option value="pay_sub">支付订金</option>
+								<option value="green">绿色通道</option>
+								<option value="cod">货到付款</option>
+								<option value="free">免费已付</option>
+								<option value="point">积分付款</option>
+							</select>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<label  class="col-sm-4 control-label">购买次数</label>
+						<div class='col-sm-8'>
+							<input type="number" placeholder="请输入购买次数" name="soCompleteSearch" class="form-control">
+						</div>
+					</div>
+				</div>
+				<div class="form-group hideSearchParam jt-form-group jt-form-normal">
+					<div class="col-sm-3">
+						<label  class="col-sm-4 control-label">驳回</label>
+						<div class='col-sm-8'>
+							<select  name="turnDownSearch" class="form-control">
+								<option value="">请选择</option>
+								<option value="comfirmTurnDown">审核驳回</option>
+								<option value="financeTurnDown">收付驳回</option>
+								<option value="shipTurnDown">待发驳回</option>
+								<option value="hasShipTurnDown">已发驳回</option>
+								<option value="allTurnDown">全部驳回</option>
+							</select>				
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<label class="col-sm-4 control-label">店铺名称</label>
+						<div class='col-sm-8'>
+							<select name="Q__S__EQ__entity.third_store_name_" class="form-control storeNameSearch">
+							</select>
+						</div>
+					</div>
+					
+					<div class="col-sm-6">
+						<label  class="col-sm-1 control-label">下单人</label>
+						<div>
+							<div class="col-sm-5">
+								<input type='text' id='plaerConfirm'class='form-control' readonly>
+								<input id='plaerIdConfirm' name='belongOgnPlacer' type='hidden'>
+							</div>
+							<div class="col-sm-6">
+								<select id="planMan" class="form-control planMan" name="Q__S__EQ__entity.placer_id_" style='width: 100%;'>
+								</select>
+							</div>
+						</div>
+					</div>	
+				</div>
+				<div class='form-group hideSearchParam jt-form-group jt-form-normal'>
+					<div class='isFirstAuditDiv'>
+						<div class="col-sm-3">
+							<label  class="col-sm-4 control-label">已审次数</label>
+							<div class='col-sm-8'>
+								<select name="Q__S__EQ__entity.audit_count_" class="form-control">
+									<option value=''>请选择</option>
+									<option value='0'>0</option>
+									<option value='1'>1</option>
+								</select>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<label  class="col-sm-4 control-label">现金券设置</label> 
+						<div class="col-sm-8">
+							<select class="form-control cashSearch" name="Q__S__EQ__entity.cash_id_">
+							</select>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<label  class="col-sm-4 control-label">现金券券码</label> 
+						<div class="col-sm-8">
+							<input  class='form-control' name="Q__S__EQ__entity.cash_code_">
+						</div>
+					</div>
+				</div>	
+				<div class='form-group'>
+					<div class='col-sm-5'></div>
+					<div class='col-sm-7'>
+						<button type='button' class="btn jt-btn-search soEntitySearch" style="min-width: 35px;"><i class='fa fa-search' style="font-style: 15px;"></i>&nbsp;搜索</button>
+						<button type='button' class="btn jt-btn-empty soEntityClearSearch" style="min-width: 45px;"><i class="fa fa-trash-o"></i>&nbsp;清空</button>
+						<button type='button' class="btn jt-btn-drop dropdown-toggle showSearch">展开<span class="fa fa-sort-down"></span></button>
+						<button type='button' class="btn jt-btn-drop hideSearch" style="display:none">收起<span class="fa fa-sort-up"></span></button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>

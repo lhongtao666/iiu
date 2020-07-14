@@ -1,0 +1,38 @@
+<div class="col-sm-12">
+	<div class="panel panel-default">
+	    <div class="panel-heading">
+			<button type='button' class='jt-btn jt-btn-red jobRunHiDel'><i class='fa fa-remove'>&nbsp;删除</i></button>
+			<button type='button' class='jt-btn jobRunHiDetail'><i class='fa fa-list'>&nbsp;明细</i></button>
+			<button type='button' class='jt-btn jobRunHiShowMoreLog'><i class='fa fa-list'>&nbsp;查看更多日志</i></button>
+	    </div>
+	    
+	    <div class="panel-body">
+	        <form id='jobRunHiForm' role="form" class="form-horizontal">
+				<div class="form-group">
+					<label class='col-sm-1 control-label'>业务键</label> 
+					<div class='col-sm-2'>
+						<input type="text"  placeholder="业务键" name="Q__S__LK__key_" class="form-control" />
+					</div>
+			
+				
+					<label class='col-sm-1 control-label'>所属组值</label> 
+					<div class='col-sm-2'>
+						<select type="text" id='groupSelect' placeholder="所属组值" name="Q__S__EQ__group_" class="form-control" ></select>
+					</div>
+			
+					<label class='col-sm-1 control-label'>执行结果</label> 
+					<div class='col-sm-2'>
+						<select type="text" id='nameSearch' placeholder="执行结果" name="Q__S__EQ__status_" class="form-control">
+							<option value="">请选择</option>
+							<option value="failure">失败</option>
+							<option value="success">成功</option>
+						</select>
+					</div>
+					<div class='col-sm-1'>
+						<button type='button' class="jt-btn-search jobRunHiSearch"><i class='fa fa-search'></i>&nbsp;搜索</button>
+					</div>
+				</div>
+			</form>
+	    </div>
+	</div>
+</div>

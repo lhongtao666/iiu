@@ -1,0 +1,182 @@
+<style type="text/css">
+    .margin-class {
+        margin-bottom: 20px;
+    }
+    </style>
+    <!-- aaaaaaaa -->
+    <link href="${ctx}/css/plugins/timepicker/DateTimePicker.css?v=${jsVersion}" rel="stylesheet">
+    <script src="${ctx}/js/plugins/timepicker/DateTimePicker.js?v=${jsVersion}"></script>
+    <script src="${ctx}/js/plugins/timepicker/DatetimePicker-i18n-zh-CN.js?v=${jsVersion}"></script>
+    <script src="${ctx}/js/jt/common/service/employeesSelectLayer${deploy_min!""}.js?v=${jsVersion}"></script>
+    <!-- aaaaaaaaaa -->
+    <script type="text/javascript">
+    var type = "${type } ";
+    var entityId = "${entityId }";
+    var entityName = "${entityName } ";
+    var currentPartyId = currentUserId;
+    var currentPartyName = currentUserName;
+    var currentPartyAid = currentUserAid;
+    $(function() {
+
+        var elem = document.querySelector('.js-switch');
+        var init = new Switchery(elem, { className: "switchery switchery-small" });
+
+        var currentTime = new Date();
+        currentTime.setMinutes(currentTime.getMinutes() + 10);
+        $("#selectCommonImageBtn").on("click", function() {
+            FileUtils.selectFile(1, function(files) {
+                if (files && files.length > 0) {
+                    $("#commonImageContainer").append(FileUtils.createFileDivStr(files));
+                }
+            });
+        });
+        if (!type) {
+            $("[name=type]").val("simple");
+        } else {
+            $("[name=type]").val(type);
+            $("[name=entityId]").val(entityId);
+            $("[name=entityName]").val(entityName);
+        }
+        $("body").on("click", "#chooseTaskPartyBtn", function() {
+            var employeesSelect = new EmployeesSelect();
+            var isShowAllGroup = 0;
+            if (ResUtils.canShow("employeeSelector.button.task")) { //是否有显示全部部门的权限
+                isShowAllGroup: 1;
+            }
+            var param = {
+                isShowAllGroup: isShowAllGroup,
+                grantType: "/task/",
+                isMultiple: 0, // false:单选;true:多选
+                isSale: 0,
+                mode: 0,
+                callBack: function(list) {
+                    $("[name='partyName']").val(list[0].aid+":"+list[0].name);
+                    $("[name='partyId']").val(list[0].id);
+                }
+            };
+            employeesSelect.init(param);
+        });
+        $("[name=partyId]").val(currentPartyId);
+        $("[name=partyName]").val(currentPartyAid+":"+currentPartyName);
+        $("[name=notifyTime]").val(currentTime.current());
+    });
+</script>
+
+
+
+<div class="content-frame-left" style="height: 807px;">
+    <form role="form" class="form-horizontal" id="taskSearchForm">
+    <div class="form-group margin-class" >
+        <h4 style="margin-bottom:10px;">【搜索任务】</h4>
+            <div class="col-sm-2">
+                <button type="button" class="pull-right jt-btn taskEntitySearch" ><span class="fa fa-search"></span></button>
+            </div>
+            <div class="col-sm-8">
+                <input type="text" class="form-control pull-left" name="Q__S__LK__name_" placeholder="请输入任务名称">
+            </div>
+    </div>
+    </form>
+
+    <div class="content-fram-addForm">
+    <div class="form-group margin-class">
+        <h4>【添加任务】</h4>
+    </div>                        
+
+
+    <form id="taskEntityForm" method="get" class="form-horizontal">
+       <div class="form-group margin-class">
+        <div class="col-sm-12">
+            <label class="col-sm-4 control-label">任务名称<span style="color: red;">*</span></label>
+            <div class="col-sm-8">
+                <input required maxlength="64" type="text" name="name" placeholder="请输入任务名称" class="form-control" validatetype="default">
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group margin-class">
+        <div class="col-sm-12">
+            <label class="col-sm-4 control-label">是否待办</label>
+            <div class="col-sm-8">
+                <input name='hasTask' value='n' type='checkbox' class='js-switch' />
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group margin-class isHasTask" style="display:none;">
+        <div class="col-sm-12">
+            <label class="col-sm-4 control-label">待办人</label>
+            <div class="col-sm-6">
+                <input readonly="true" type="text" name="partyName" class="form-control" validatetype="default">
+                <input type="hidden" name="partyId">
+
+            </div>
+            <div class="col-sm-2">
+                <button type="button" id="chooseTaskPartyBtn" class="jt-form-select" style="display: block;">选择</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group margin-class isHasTask" style="display:none;">
+        <div class="col-sm-12">
+            <label class="col-sm-4 control-label">待办时间<span style="color: red;">*</span></label>
+            <div class="col-sm-8">
+                         <input class="laydate-icon form-control layer-date" required name="notifyTime" placeholder="yyyy-mm-dd hh:mm:ss"  type="text" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group margin-class">
+        <div class="col-sm-12">
+            <label class="col-sm-4 control-label">截止时间</label>
+            <div class="col-sm-8">
+            <input class="laydate-icon form-control layer-date" name="endTime" placeholder="yyyy-mm-dd hh:mm:ss"  type="text" onclick="laydate({istime: true, start: laydate.now(0, 'YYYY/MM/DD 23:59:59'), format: 'YYYY-MM-DD hh:mm:ss'})">
+                
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group margin-class">
+        <div class="col-sm-12">
+            <label class="col-sm-3 control-label">任务说明</label>
+        </div>
+    </div>
+    <div class="form-group margin-class">
+        <div class="col-sm-12">
+            <textarea cols="1" id="desc" maxlength="1024" name='desc' rows="1" placeholder="" class="ui-autocomplete-input form-control" autocomplete="off" validateType="default" style="height:60px;"></textarea>
+        </div>
+    </div>
+
+
+    <div class="form-group margin-class">
+        <table class='table table-striped table-bordered'>
+                    <tr>
+                        <td width='90%' id='commonImageContainer'>
+                        </td>
+                        <td width='10%'>
+                            <button class='jt-form-select' id='selectCommonImageBtn' type='button'>添加附件</button>
+                        </td>
+                    </tr>
+        </table>
+    </div>
+
+    <div class="form-group margin-class" style="margin-top:50px;">
+        <button class='jt-btn pull-right' id='addSaveBtn' type='button'><i class='fa fa-floppy-o'></i>&nbsp;保存</button>
+    </div>
+
+
+
+    <div class='form-group'>
+        <!--将隐藏域放在这里，不显示出来-->
+        <div style="display:none'">
+            <input type="hidden" id="id" name="id">
+            <input type="hidden" name="type" />
+            <input type="hidden" name="entityId">
+            <input type="hidden" name="entityName">
+            <input type="hidden" name="needRemind" />
+            <input type="hidden" name="notifyCount" />
+            <input type="hidden" name="status" />
+        </div>
+    </div>
+</form>
+</div>
+</div>

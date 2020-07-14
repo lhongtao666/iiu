@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>邮件配置管理</title>
+	<#include "/common/common.html">
+	<script src="${ctx}/js/jt/gl/mail/mailConfig${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/gl/km/glHelpUtil${deploy_min!""}.js?v=${jsVersion}" ></script>
+</head>
+
+<body>
+	<div class="wrapper animated fadeInRight">
+		<!-- list界面 -->
+		<div class="row list_wrapper">
+			<#include "/gl/mail/mailConfig/mailConfigToolbar.html">	  			
+			<div class='col-sm-12 jqGrid_wrapper'>
+			    <table id="mailConfigGrid"></table>
+				<div id="mailConfigPager"></div>
+			</div>
+		</div>
+		<!-- 编辑界面 -->
+		<#include "/gl/mail/mailConfig/mailConfigEdit.html">	    
+	</div>
+</body>
+</html>

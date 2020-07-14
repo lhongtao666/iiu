@@ -1,0 +1,37 @@
+<div class="col-sm-12">
+	<div class="panel panel-default">
+	    <div class="panel-heading">
+			<!-- <button type='button' class='btn btn-sm  btn-primary ctiBatcallItemEdit'><i class='fa fa-edit'>编辑</i></button> -->
+			<!-- <button type='button' class='btn btn-sm  btn-danger ctiBatcallItemDel'><i class='fa fa-remove'>删除</i></button> -->
+			<!-- <button type='button' class='btn btn-sm  btn-primary ctiBatcallItemDetail'><i class='fa fa-list'>明细</i></button> -->
+	    </div>
+	    
+	    <div class="panel-body">
+	        <form id='ctiBatcallItemSearchForm' role="form" class="form-horizontal">
+				<!--默认生成一个搜索条件，需要的，用户自己添加-->
+
+				<div class="form-group">
+					<div class="col-sm-4">
+						<label class='col-sm-3 control-label'>客户名字</label> 
+						<div class='col-sm-6'>
+							<input type="text" id='csNameSearch' placeholder="请输入客户名字" name="Q__S__LK__item.cs_name_" class="form-control">
+						</div>
+					</div>
+					<div class="col-sm-4">
+						<label class='col-sm-3 control-label'>任务时间</label> 
+						<div class='col-sm-9'>
+							<div class="input-daterange input-group">
+								<input class="laydate-icon form-control layer-date" name="Q__D__BW__item.task_time_" placeholder="yyyy-mm-dd hh:mm:ss" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">
+								<span class="input-group-addon">到</span>
+								<input class="laydate-icon form-control layer-date" name="Q__D__BW__item.task_time_" placeholder="yyyy-mm-dd hh:mm:ss" onclick="laydate({istime: true, start: laydate.now(0, 'YYYY/MM/DD 23:59:59'), format: 'YYYY-MM-DD hh:mm:ss'})">
+							</div>
+						</div>
+					</div>
+					<div class='col-sm-1'>
+						<button type='button' class="btn btn-sm  btn-primary ctiBatcallItemSearch">搜索</button>
+					</div>
+				</div>
+			</form>
+	    </div>
+	</div>
+</div>

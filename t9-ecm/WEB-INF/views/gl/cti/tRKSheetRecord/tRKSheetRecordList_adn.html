@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>分机通话统计报表</title>
+	<#include "/common/common.html">
+	<#include "/common/ztree.html">
+	<script src='${ctx}/js/jt/common/utils/groupUtils${deploy_min!""}.js?v=${jsVersion}'></script>
+	<script src='${ctx}/js/jt/gl/cti/tRKSheetRecord_adn${deploy_min!""}.js?v=${jsVersion}'></script>
+	<script src="${ctx}/js/jt/gl/km/glHelpUtil${deploy_min!''}.js?v=${jsVersion}" ></script>
+	<script type="text/javascript">
+		console.log("xxx:");
+		$(function() {
+			var feeTypeListStr = "" ;
+			var feeTypeListShowStr = "";
+			feeTypeListShow = null;
+			feeTypeList = null;
+			feeTypeMap = {};
+	    	<#if feeTypeList??>
+			    feeTypeListStr  = "${feeTypeList}";
+			</#if>
+		    <#if feeTypeListShow??>
+		     		feeTypeListShowStr  = "${feeTypeListShow}";
+		    </#if>
+		    if(feeTypeListStr){
+				feeTypeList = feeTypeListStr.split(",");
+				feeTypeListShow = feeTypeListShowStr.split(",");
+				for (var i = 0; i < feeTypeList.length; i++) {
+					var key  = feeTypeList[i];
+					var value = feeTypeListShow[i];
+					feeTypeMap[key] = value; 
+				}
+			}else{
+				feeTypeList = [];
+				feeTypeListShow = [];
+			}
+			var adnRecord = new AdnRecordManager();
+			adnRecord.init();
+		});
+	</script>
+</head>
+<style type="text/css">
+	#adnRecordPager .jt-tb-left, #adnRecordPager .jt-tb-right{
+		width: 100% !important;
+	}
+	#adnRecordPager_center{
+		display:none;
+	}
+	#adnRecordPager_left{
+		float:right;
+	}
+	<#if feeTypeMap??>
+		<#list feeTypeMap?keys as key>
+				#adn${key}RecordPager .jt-tb-left, #adn${key}RecordPager .jt-tb-right{
+			width: 100% !important;
+		}
+		#adn${key}RecordPager_center{
+			display:none;
+		}
+		#adn${key}RecordPager_left{
+			float:right;
+		}
+		</#list>
+	</#if>
+</style>
+<body>
+	<div class="wrapper animated ">
+		<div class="row list_wrapper">
+			<div class='col-sm-12'>
+				<div class="tabs-container" id="adnRecordContainer">
+
+					<ul class="nav nav-tabs">
+						<li  id="adnTabLi-" class="tabli active">
+							<a href="#tabAdn-all"  feeType="all" data-toggle="tab">
+								所有统计
+							</a>
+						</li>
+						<#if feeTypeMap??>
+							<#list feeTypeMap?keys as key>
+								<li  id="adnTabLi-${key}" feeType="${key}" class="tabli">
+									<a href="#tabAdn-${key}" data-toggle="tab">
+										${feeTypeMap[key]}统计
+									</a>
+								</li>
+							</#list>
+						</#if>
+					</ul>
+
+					<div class="tab-content">
+						<div id="tabAdn-all"  feeType='all' class="tab-pane active">
+							<div class="panel-body">
+								<div class='row'>
+									<#include "/gl/cti/tRKSheetRecord/tRKSheetRecordToolbar_adn.html">
+									<div class='col-sm-12 jqGrid_wrapper'>
+									    <table id="adnRecordGrid-all"></table>
+										<div id="adnRecordPager-all"></div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<#if feeTypeMap??>
+							<#list feeTypeMap?keys as key>
+								<div id="tabAdn-${key}" feeType='${key}' class="tab-pane">
+									<div class="panel-body">
+										<div class='row'>
+											<#include "/gl/cti/tRKSheetRecord/tRKSheetRecordToolbar_adn.html">
+											<div class='col-sm-12 jqGrid_wrapper'>
+											    <table id="adnRecordGrid-${key}"></table>
+												<div id="adnRecordPager-${key}"></div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</#list>
+						</#if>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

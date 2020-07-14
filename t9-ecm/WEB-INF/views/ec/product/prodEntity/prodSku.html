@@ -1,0 +1,79 @@
+
+    <div class="panel-body">
+        <div id='multiSkuContainer' class='row' style='display: none;'>
+            <div class='col-sm-12' id='eavSkuContainer'></div>
+            <div class='col-sm-12'>
+                <div class='row'>
+                    <div class='col-sm-12'>
+                        <button class='btn btn-sm   btn-primary' id='createSkuBtn' type='button'>生成sku</button>
+                    </div>
+                </div>
+                <div class='row' style='margin-top:5px;'>
+                    <div class='col-sm-12' id='skuContainer'>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 使用默认sku -->
+    <div id='normalSkuContainer' class='row'>
+        <div class='col-sm-12'>
+            <form id='normalSkuForm' class='form-horizontal'>
+                <table class='table table-striped table-bordered'>
+                    <thead id='headerContainer'>
+                        <tr>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <input class='form-control' name='skuCode' type='text' id='skuCode' validateType='default'>
+                            </td> 
+                            <td>
+                                <input class='form-control' type='text' name='skuPrice' id='skuPrice' validateType='default'>
+                            </td>
+                            <td>
+                                <select class='form-control' style="width:100px;" name='spec' validateType='default' id='specSelect'>
+                                </select>
+                            </td>
+                            <td>
+                                <select class='form-control' name='skuStatus' id='skuStatus' validateType='default'>
+                                    <option value='on_sale'>上架</option>
+                                    <option value='not_on_sale'>下架</option>
+                                    <option value='sold_out'>售罄</option>
+                                </select>
+                            </td>
+                            <td>
+                                <input class='form-control' type="number" name='buyLimit' id='buyLimit' validateType='default'>
+                            </td>
+                            <td>
+                                <input class='form-control' type="number" name='skuPercentLimit' id='skuPercentLimit' validateType='default'>
+                            </td>
+                            <td>
+                                <input class='form-control' type="text" name='skuShortName' id='skuShortName' validateType='default'>
+                            </td>
+                            <td>
+                                <input class='form-control' type="text" name='prodCode' id='prodCode' validateType='default'>
+                            </td>
+                             <td style="display: none;">
+                                <input class='form-control' type="text" name='barCode' id='barCode' validateType='default'>
+                            </td>
+                            <td>
+                                <input class='form-control' type='text' name='startStock' id='startStock' validateType='default'>
+                            </td>
+                            <td>
+                                <input class='form-control' type='text' number='true' name='bizPrice' id='bizPrice' validateType='default'>
+                            </td>
+                            <td style="display: none;">
+                                <select class='form-control' type='text' name='startStore' id='startStore' validateType='default'></select>
+                            </td>
+                            <td>
+                                <button class='btn jt-form-select prodStockBtn' type='button'>库存</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </form>
+        </div>
+    </div>
+

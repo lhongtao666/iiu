@@ -1,0 +1,51 @@
+<!DOCTYPE html >
+<html>
+<head>
+	<title>	地图工具</title>	
+	<#include "/common/common.html">
+	<style type="text/css">
+	#l-map{height:420px;width:100%;}
+	#r-result{width:100%;}
+	.btn-area-rang.on{
+		background-color:#23c6c8;
+	}
+	</style>
+	<!-- 百度js引入 -->
+	<script type="text/javascript" src="http://api.map.baidu.com/api?v=15&ak=40GWXiduhOft266lK4N1dopL"></script>
+	<script src="${ctx}/js/jt/gl/tool/baiduMap${deploy_min!""}.js?v=${jsVersion}" ></script>
+</head>
+<body class='white-bg'>
+	<div class="page-content">
+		<div class='col-sm-12'>
+			<div class="col-sm-3">
+				<div class="col-sm-12">
+					<form class='form-horizontal'>
+						<div class="form-group">
+							<div class='col-sm-8'>	
+								当前位置：<span id="cityName" style="color: #2679b5;" >北京(默认)</span>
+							</div>
+							<div class='col-sm-4'>	
+								<button class="btn btn-warning btn-xs searchMap" title="搜索" type="button"><i class="fa fa-search"></i></button>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class='col-sm-10' id="keyWordSpan">	
+								<input type="text"  id="keyWord" placeholder="这里输入关键词" class="form-control">
+							</div>
+						</div>
+						<div class="form-group">
+							<button class="btn btn-primary btn-xs    btn-area-rang on" title="1公里" type="button" value="1000">1公里</button>
+							<button class="btn btn-primary btn-xs    btn-area-rang" title="2公里" type="button" value="2000">2公里</button>
+							<button class="btn btn-primary btn-xs    btn-area-rang" title="5公里" type="button" value="5000">5公里</button>
+						</div>
+					</form>
+				</div>	
+				<div id="r-result"></div>	
+			</div>
+			<div class="col-sm-9">
+				<div id="l-map"></div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

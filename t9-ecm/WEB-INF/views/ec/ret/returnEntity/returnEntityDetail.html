@@ -1,0 +1,27 @@
+<div class="tabs-container returnDetailDiv">
+    <ul class="nav nav-tabs">
+        <li  id="detailTabLi" class="tabli active">
+            <a href="#detailTab" data-toggle="tab">退货单详情</a>
+        </li>
+        <li  id="logTabLi" class="tabli">
+            <a href="#logTab" data-toggle="tab">备注历史</a>
+        </li>
+        <li id="shipTabLi" class="tabli  shipScInfo" style="display:none;">
+            <a href="#shipInfoTab" data-toggle="tab">物流信息</a>
+        </li>
+    </ul>
+    <div class="tab-content">
+        <div id="detailTab" class="tab-pane active">
+            <div class="panel-body">
+                <#include "/ec/ret/returnEntity/returnEntityForm.html"></div>
+        </div>
+        <div id="logTab" class="tab-pane">
+            <div class="panel-body">
+                <#include "/ec/ret/returnEntity/returnLogList.html"></div>
+        </div>
+        <div id="shipInfoTab" class="tab-pane">
+            <div class="panel-body">
+                <#include "/ec/ret/returnEntity/shipInfoTab.html"></div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,46 @@
+<div class='row toolbar-panel'>
+	<div class='col-sm-12'  style='padding-top: 15px; padding-bottom: 15px;'>
+		<button type='button' class="btn btn-sm   btn-primary saveRelOrgBtn">保存</button>
+		<button type='button' class="btn btn-sm   btn-default prevBtn">取消</button>
+	</div>
+</div>
+
+<div class=' col-sm-12'  >
+  <div class="form-group">
+	 <div class='col-sm-4'>
+	    <div class="form-group">
+	      <label class="col-sm-2 control-label">组织</label>
+	      <div class="col-sm-5">
+	        <input type="text" name="relOrgName"  id="relOrgName"   disabled="disabled"  class="form-control" validateType="default" >
+	        <input type="hidden" name="relOrgId"   id="relOrgId"> 
+	       </div>
+	       <div class="col-sm-5">
+	         <input type="button"  id="selectOrganization"   class="btn btn-sm   btn-primary selectOrganization"  value="选择组织">
+	      </div>
+	   </div>
+	 </div>
+	 <div class=' col-sm-4'>
+	    <div class="form-group">
+	     <label class="col-sm-3 control-label">关系类型</label>
+	     <div class="col-sm-9">
+	        <select name="ouRelType"   id="relOuRelType"  placeholder="" class="form-control" validateType="default" > </select>
+	     </div>
+	   </div>
+	 </div>
+	 <div class='col-sm-4'>
+	    <div class="form-group">
+	     <input type="button"    class="btn btn-sm   btn-primary addOrg"  value="添加">
+	    </div>
+	 </div>
+   </div>
+</div>
+<div class=' col-sm-12'>
+   <div  id="relOrgDiv" >
+      <table id="relOrgGrid" ></table>
+      <div id="relOrgPager"></div>
+      <input type="hidden"  id="relOrgJSON" name="relOrgJSON">
+   </div>
+</div>
+
+<input type="hidden"  name="rel_org_custId">
+<input type="hidden"  name="rel_org_custName">

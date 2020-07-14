@@ -1,0 +1,163 @@
+<style type="text/css">
+	.chosen-container {
+		width: 100% !important;
+	}
+</style>
+<!--添加公海规则modal-->
+	<div class="modal fade" id="csSeaConfigContainer" tabindex="-1" role="dialog" aria-labelledby="csSeaConfigLabel">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+	        <h4 class="modal-title" id="csSeaConfigLabel">公海客户规则</h4>
+	      </div>
+	      <div class="modal-body" style="overflow-y: scroll;height: 400px;">
+	       <form id="csSeaConfigForm" method="get" class="form-horizontal">
+			<div class="form-group">
+				<div class='col-sm-12'>
+					<label class="col-sm-2 control-label">最后消费时间(天)</label>
+					<select style="width: 80px;float: left;" class="control-label" name = "lastCompleteTime_c">
+						<option value="">请选择</option>
+						<option value=">">大于</option>
+						<option value="<">小于</option>
+						<option value=">=">大于等于</option>
+						<option value="<=">小于等于</option>
+						<option value="=">等于</option>
+					</select> 
+					<div class="col-sm-6">
+						<input type="number" name="lastCompleteTime" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class='col-sm-12'>
+					<label class="col-sm-2 control-label">客户创建时间(天)</label>
+					<select style="width: 80px;float: left;" class="control-label" name = "csCreateTime_c">
+						<option value="">请选择</option>
+						<option value=">">大于</option>
+						<option value="<">小于</option>
+						<option value=">=">大于等于</option>
+						<option value="<=">小于等于</option>
+						<option value="=">等于</option>
+					</select> 
+					<div class="col-sm-6">
+						<input type="number" name="csCreateTime" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class='col-sm-12'>
+					<label class="col-sm-2 control-label">消费总金额(元)</label>
+					<select style="width: 80px;float: left;" class="control-label" name = "soTotal_c">
+						<option value="">请选择</option>
+						<option value=">">大于</option>
+						<option value="<">小于</option>
+						<option value=">=">大于等于</option>
+						<option value="<=">小于等于</option>
+						<option value="=">等于</option>
+					</select> 
+					<div class="col-sm-6">
+						<input type="number" name="soTotal" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>
+			</div>
+			<div class="form-group">		
+				<div class='col-sm-12'>
+					<label class="col-sm-2 control-label">消费总次数(次)</label>
+					<select style="width: 80px;float: left;" class="control-label" name = "soCount_c">
+							<option value="">请选择</option>
+							<option value=">">大于</option>
+							<option value="<">小于</option>
+							<option value=">=">大于等于</option>
+							<option value="<=">小于等于</option>
+							<option value="=">等于</option>
+					</select> 
+					<div class="col-sm-6">
+						<input type="number" name="soCount" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>
+			</div>
+			<div class="form-group">							
+				<div class='col-sm-12'>
+					<label class="col-sm-2 control-label">店铺(可多选)</label>
+					<select style="width: 80px;float: left;" class="control-label" name = "shopName_c">
+						<option value="">请选择</option>
+						<option value="in">包含</option>
+						<option value="notin">不包含</option>
+					</select>
+					<div class="col-sm-6">
+						<select id="shopName" data-placeholder="请选择" class="form-control" name="shopName"
+						validateType="default"></select>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label" style="min-width: 67px;">仓库</label>		
+				<div class="col-sm-3">
+					<select class='form-control' style="width: 100% !important;" id="storeId" name='storeId' data-placeholder="请选择仓库" validateType="default">
+					</select> 
+					<input type="hidden" name="realStoreId" value="${soInfoVo.storeId}">
+				</div>
+				<div class='col-sm-1' style="margin-left: 15.5%">
+					<button type="button" class="btn jt-form-select" id='selectSkuBtn'>
+						<i class='fa fa-edit'></i>&nbsp;选择商品
+					</button>
+				</div>
+			</div>
+			<div class="form-group">		
+				<div class='col-sm-12'>
+					<label class="col-sm-2 control-label">产品(可多选)</label>
+					<select style="width: 80px;float: left;" class="control-label" name = "skuCode_c">
+						<option value="">请选择</option>
+						<option value="in">包含</option>
+						<option value="notin">不包含</option>
+					</select>
+
+					<div class="col-sm-6">
+						<input type="text" name="skuCode" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>
+			</div>
+			<div class="form-group">		
+				<div class='col-sm-12'>
+					<label class="col-sm-2 control-label">发货时间(天)</label>
+					<select style="width: 80px;float: left;" class="control-label" name = "shippingTime_c">
+						<option value="">请选择</option>
+						<option value=">">大于</option>
+						<option value="<">小于</option>
+						<option value=">=">大于等于</option>
+						<option value="<=">小于等于</option>
+						<option value="=">等于</option>
+					</select> 
+					<div class="col-sm-6">
+						<input type="number" name="shippingTime" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+			</div>
+			<div class="form-group">
+				<div class='col-sm-12'>
+					<label class="col-sm-2 control-label">发货金额(元)</label>
+					<select style="width: 80px;float: left;" class="control-label" name = "soSub_c">
+						<option value="">请选择</option>
+						<option value=">">大于</option>
+						<option value="<">小于</option>
+						<option value=">=">大于等于</option>
+						<option value="<=">小于等于</option>
+						<option value="=">等于</option>
+					</select> 
+					<div class="col-sm-6">
+						<input type="number" name="soSub" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+			</div>
+		</form>	
+    	
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-sm btn-default" data-dismiss="modal">关闭</button>
+	        <button type="button" class="btn btn-sm   btn-primary" id='saveSeaConfigBtn'>保存</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>

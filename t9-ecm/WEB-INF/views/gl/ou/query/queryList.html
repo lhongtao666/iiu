@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>用户查询方案管理</title>
+	<#include "/common/common.html" />
+	
+	<script src="${ctx}/js/jt/gl/ou/query.js?v=${jsVersion}" ></script>
+</head>
+
+<body>
+	<div class="wrapper animated fadeInRight">
+		<!-- list界面 -->
+		<div class="row list_wrapper">
+			<#include "/gl/ou/query/queryToolbar.html">	  			
+			<div class='col-sm-12 jqGrid_wrapper'>
+			    <table id="queryGrid"></table>
+				<div id="queryPager"></div>
+			</div>
+		</div>
+		<!-- 编辑界面 -->
+		<#include "/gl/ou/query/queryEdit.html">	    
+	</div>
+</body>
+</html>

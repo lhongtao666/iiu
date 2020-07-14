@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<#include "/common/common.html">
+	<#include "/common/eav.html">
+	<title>产品预览</title>
+
+	<link href="${ctx}/css/plugins/jcarousel/jcarousel.connected-carousels.css?v=${jsVersion}" rel="stylesheet">
+	<script type="text/javascript" src="${ctx}/js/plugins/jcarousel/jquery.jcarousel.min.js?v=${jsVersion}"></script>
+	<script type="text/javascript" src="${ctx}/js/plugins/jcarousel/jcarousel.connected-carousels.js?v=${jsVersion}"></script>
+	<style type="text/css">
+		.chooseSku {
+			margin-top: 10px;
+		}
+		.productService {
+			margin-top: 10px;
+		}
+		.productDetailContainer {
+			margin-top: 10px;
+		}
+		.row-bottom{
+			border-bottom: 1px solid #999;
+			padding: 4px;
+		}
+	</style>
+	<script>
+		    //产品id
+		    var prodEntityId = "${prodEntity.id}";
+		</script>
+		<script type="text/javascript"	src="${ctx}/js/jt/ec/product/prodPreview${deploy_min!""}.js?v=${jsVersion}"></script>
+	</head>
+
+	<body class='white-bg2'>
+		<div class="wrapper animated ">
+			<div class="row">
+				<div class="col-sm-4">
+					<div class="connected-carousels">
+						<div class="stage">
+							<div class="carousel carousel-stage">
+								<ul id='prodImgContainer'>
+									<#if prodEntity.prodImgPoList?exists>
+									<#list prodEntity.prodImgPoList as prodImgPo>
+									<li>
+										<img src="${ctx}${prodImgPo.path}" alt="${prodImgPo.name}">
+									</li>    
+									</#list>
+									</#if>
+								</ul>
+							</div>
+							<a href="#" class="prev prev-stage"><span>‹</span></a>
+							<a href="#" class="next next-stage"><span>›</span></a>
+						</div>
+
+						<div class="navigation">
+							<div class="carousel carousel-navigation">
+								<ul id='prodNarrowImgContainer'>
+									<#if prodEntity.prodImgPoList?exists>
+									<#list prodEntity.prodImgPoList as prodImgPo>
+									<li><img src="${ctx}${prodImgPo.path}" width="50" height="50" alt="${prodImgPo.name}"></li>
+									</#list>
+									</#if>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class='col-sm-8 prod-info' style=" margin-top: 10px; font-family:微软雅黑">
+					<div class='row productName'>
+						<div class='col-sm-12'>
+							<span> <strong style='font-size: 20px;'>${prodEntity.name}</strong></span> 
+						</div>
+					</div>
+					<div class='row'>
+						<div class='col-sm-6'>
+							<div class='row productSku row-bottom'>
+								<div class='col-sm-12' style="height:44px;">
+									
+									<#if prodEntity.skuMap?exists>
+									<#list prodEntity.skuMap?keys as skuItem> 
+									<div class='row chooseSku'>
+										<div class='col-sm-12'>
+											<span><strong style='font-size: 16px;'>${skuItem}:</strong></span>
+											<#list prodEntity.skuMap[skuItem] as opt>
+											<#if opt.isSelected == "y">
+											<button valValue='${opt.value}' type="button" class="btn btn-primary skuBtn" data-id='${opt.id}'>${opt.name}</button>
+											<input type="hidden" name="selectedSkuId" value='${opt.id}'></input>
+											<#else>
+											<button valValue='${opt.value}' type="button" class="btn btn-default skuBtn" data-id='${opt.id}'>${opt.name}</button>
+											</#if>
+											</#list>
+										</div>
+									</div>
+									</#list>
+									<#else>
+									<input type="hidden" name="selectedSkuId" value='${prodEntity.skuId}'></input>
+									</#if>
+								</div>
+							</div>
+
+							<div class='row row-bottom' style='margin-top: 10px;'>
+								<div class='col-sm-6 productCate'>
+									<span style='font-size: 16px;'>品牌:</span> 
+									<span style='display: inline-block;  font-size: 16px;'>${prodEntity.brand}
+									</span>
+								</div>
+								<div class='col-sm-6 '>
+								<input type="hidden" name="selectedSkuId" value='${prodEntity.saleRange}'></input>
+									<span style='font-size: 16px;'>销售范围:</span> 
+									<span style='display: inline-block; font-size: 16px;'>
+									<#if prodEntity.saleRange=="all">
+										全部
+									<#elseif prodEntity.saleRange=="first">
+										一线
+									<#else >
+										二线
+									</#if>
+									</span>
+								</div>
+							</div>
+
+							<div class='row row-bottom' style='margin-top: 10px;'>
+								<div class='col-sm-6 productCate'>
+									<span style='font-size: 16px;'>分类:</span> 
+									<span style='display: inline-block; font-size: 16px;'>${prodEntity.cate}</span>
+								</div>
+								<div class='col-sm-6 productSkuCode'>
+									<span style='font-size: 16px;'>sku编号:</span> 
+									<span style='display: inline-block; font-size: 16px;' id='skuCodeContainer'>${prodEntity.skuCode}</span>
+								</div>
+							</div>
+
+							
+
+							<div class='row row-bottom' style='margin-top: 10px;'>
+								<div class='col-sm-6'>
+									<span style='font-size: 16px;'>价格:</span> 
+									<span style='display: inline-block; font-size: 16px;'><p id="productPrice">￥${prodEntity.price}</p></span>
+								</div>
+								<div class='col-sm-6'>
+									<span style='font-size: 16px;'>规格:</span> 
+									<span style='display: inline-block; font-size: 16px;' id='skuSpec'><#if prodEntity.spec??>${prodEntity.spec}</#if></span>
+								</div>
+							</div>
+						</div>
+						<div class='col-sm-1'>
+						</div>
+						<div class='col-sm-4'>
+							<div class='row  row-bottom'style='margin-top: 16px;'>
+								<div class='col-sm-6'>
+									<span><strong style='font-size: 16px;color: #e4393c;'>售出合计</strong></span> 
+								</div>
+								<div class='col-sm-6' style="text-align: right;font-size: 20px;">
+									<i class='fa fa-refresh refresh-stock-qty' style="cursor: pointer;"></i>
+								</div>
+							</div>
+							<div class='row  row-bottom'style='margin-top: 10px;'>
+								<div class='col-sm-6'>
+									<span style='font-size: 16px;'>本周售出</span> 
+								</div>
+								<div class='col-sm-6' style="text-align: right;font-size: 16px;">
+									<span><strong class="weekSale" style='font-size: 16px;color:#1ab394'>0</strong></span>
+								</div>
+							</div>
+							<div class='row  row-bottom'style='margin-top: 10px;'>
+								<div class='col-sm-6'>
+									<span style='font-size: 16px;'>本月售出</span> 
+								</div>
+								<div class='col-sm-6' style="text-align: right;font-size:16px;">
+									<span><strong class="monthSale" style='font-size: 16px;color:#1ab394'>0</strong></span>
+								</div>
+							</div>
+							<div class='row  row-bottom'style='margin-top: 10px;'>
+								<div class='col-sm-6'>
+									<span style='font-size: 16px;'>总售出</span> 
+								</div>
+								<div class='col-sm-6' style="text-align: right;font-size: 16px;">
+									<span><strong class="totalSale" style='font-size: 16px;color:#1ab394'>0</strong></span>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class='row productCode' style='margin-top: 10px;'>
+						<div class='col-sm-12' style='font-size: 16px;'>
+							<#if prodEntity.summary?length gt 1>
+							<table> 
+								<tr>  
+									<td style="width:40px" valign='top'>简介:</span></td>  
+									<td rowspan='2'>  
+										${prodEntity.summary}
+									</td>   
+								</tr>  
+								<tr>  
+									<td></td>
+								</tr>  
+							</table>
+							</#if>
+						</div>
+					</div>
+					<div class='row'>
+				<div class='col-sm-12' style="padding-top: 10px;">
+					<div class="tabs-container">
+						<ul class="nav nav-tabs">
+							<li class='active'><a data-toggle="tab" href="#tab-1"aria-expanded="true">扩展信息</a></li>
+							<li><a data-toggle="tab" href="#tab-0" aria-expanded="true">产品描述</a></li>
+<!-- 							<li><a data-toggle="tab" href="#tab-3" aria-expanded="true">客户档案</a></li>
+ -->							<li><a data-toggle="tab" href="#tab-2" aria-expanded="true">附件</a></li>
+						</ul>
+						<div class="tab-content">
+							<div id="tab-1" class="tab-pane active">
+								<div class="panel-body">
+									<div class='row'>
+										<div class='col-sm-12' id='commonEavContainer'>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div id="tab-0" class="tab-pane">
+								<div class="panel-body">
+									<div class='row'>
+										<div class='col-sm-12'>
+											${prodEntity.desc}
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div id="tab-2" class="tab-pane">
+								<div class="panel-body">
+									<div class='row'>
+										<div class='col-sm-12' id='fileContainer'>
+
+										</div>
+									</div>
+								</div>
+							</div>
+<!-- 
+							<div id="tab-3" class="tab-pane">
+								<div class="panel-body">
+									<div class='row'>
+										<div class='col-sm-12' id='tagContainer'>
+
+										</div>
+									</div>
+								</div>
+							</div> -->
+						</div>
+					</div>
+				</div>
+			</div>
+				</div>
+			</div>
+
+			
+		</div>
+	</body>
+	</html>

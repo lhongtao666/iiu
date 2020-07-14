@@ -1,0 +1,38 @@
+<style type="text/css">
+    .emp-form-layer {
+        position:absolute;height:100%;width:100%;top:0;left: calc(100% + 15px);z-index: 2;
+    }
+    #saveEmpTip {
+        width: calc(100% - 350px);
+        float: right;
+        padding-top: 5px;
+        white-space: nowrap;
+        color: #7E7E7E;
+    }
+    @media screen and (min-width: 1100px) {
+        #saveEmpTip {
+            font-size: 1.2em;
+        }
+    }
+    @media screen and (max-width: 1100px) {
+        #saveEmpTip {
+            font-size: 1em;
+            width: calc(100% - 290px);
+        }
+    }
+</style>
+<div class="row form_wrapper emp-form-layer" >
+    <div class='col-sm-12' style="height:100%;">
+        <div class="panel panel-default" style="height:100%;">
+            <div class="panel-heading">
+                <button type='button' class="jt-btn saveBtn"><i class="fa fa-floppy-o">&nbsp;保存</i></button>
+                <button type='button' style="display: none" id="saveAddBtn" class="jt-btn saveBtn"><i class="fa fa-floppy-o">&nbsp;</i>保存并新增</button>
+                <button type='button' class="jt-btn jt-btn-red prevBtn"><i class="fa fa-reply">&nbsp;</i>取消</button>
+                <div id="saveEmpTip" style='display:none;'><font color='red'>注：</font> <span>新建员工使用默认密码：<font color='red'>123456</font>，员工第一次登录必须修改！</span></div>
+            </div>
+            <div class="panel-body" style='overflow-y:auto;overflow-x:hidden;height: calc(100% - 50px);width:100%;'>
+                <#include "/crm/ou/employee/employeeForm.html">
+            </div>
+        </div>  
+    </div>
+</div>

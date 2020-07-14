@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>批量外呼表管理</title>
+	<meta http-equiv="Content-Type" content="multipart/form-data; charset=utf-8" />
+	<#include "/common/common.html">
+	<link rel="stylesheet" type="text/css" href="${ctx}/css/jt/common/ace.min.css?v=${jsVersion}">
+	<link rel="stylesheet" type="text/css" href="${ctx}/css/jt/common/font-awesome.min.css?v=${jsVersion}">
+	<script type="text/javascript" src="${ctx}/js/jquery.form.min.js?v=${jsVersion}"></script>
+	<script type="text/javascript" src="${ctx}/js/jt/common/uploadFile/jquery-browser${deploy_min!""}.js?v=${jsVersion}"></script>
+	<script type="text/javascript" src="${ctx}/js/jt/common/uploadFile/ace-elements.min.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/jt/gl/cti/ctiBatcallTask${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/crm/cs/selectCsEntity/selectCsEntityService${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/common/utils/excelUtil${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/gl/km/glHelpUtil${deploy_min!""}.js?v=${jsVersion}" ></script>
+</head>
+	<style>
+		 .cardBox {
+                text-align: center;
+                float: left;
+                padding: 5px;
+                padding-bottom: 10px;
+                padding-top: 10px;
+                border-right: 15px solid transparent;
+            }
+
+            .headerBox {
+                color: #fff;
+                padding: 10px;
+                height: 40px;
+                font-size: 1vw;
+            }
+
+            .bodyBox {
+                padding: 10px;
+                font-size: 0.8vw;
+                border: 1px solid #ddd;
+		    display: inline-block;
+		    border-top: 0;
+            }
+
+            .bodyBox p {
+                margin-left: 5px;
+            } 
+            .bodyBox > div{
+               	padding:0;
+               	padding-bottom: 10px;
+            }
+            #ctiBatcallTaskList {
+            	padding-left: 20px;
+    			padding-top: 20px;
+            }
+		#ctiBatcallTaskList .col-sm-2 {
+		    width: 20%;
+		}
+		.ctiBatcallTaskDel:hover, .ctiBatcallTaskEdit:hover { 
+			cursor: pointer;
+		}
+		@media screen and (max-width:1300px) {
+			#ctiBatcallTaskList .col-sm-2 {
+			    width: 25%;
+			}
+		}
+		@media screen and (max-width:900px) {
+			.cardBox {
+			    border-right: 0;
+			}
+		}
+	</style>
+<body>
+	<div class="wrapper animated fadeInRight">
+		<!-- list界面 -->
+		<div class="row list_wrapper">
+			<#include "/gl/cti/ctiBatcallTask/ctiBatcallTaskToolbar.html">	  			
+			<!-- <div class='col-sm-12 jqGrid_wrapper'>
+			    <table id="ctiBatcallTaskGrid"></table>
+				<div id="ctiBatcallTaskPager"></div>
+			</div> -->
+
+			<div class="col-sm-12" id="ctiBatcallTaskList">
+					
+			</div>
+		</div>
+		<!-- 编辑界面 -->
+		<#include "/gl/cti/ctiBatcallTask/ctiBatcallTaskEdit.html">	  
+	</div>
+</body>
+</html>

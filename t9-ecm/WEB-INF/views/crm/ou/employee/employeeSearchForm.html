@@ -1,0 +1,16 @@
+<form role="form" class="form-inline">
+    <div class="form-group">
+		<label for="nameSearch" class="sr-only">名称</label> 
+		<input type="text" placeholder="请输入姓名" id="nameSearch" class="form-control">
+	</div>
+    <div class="form-group">
+		<label for="statusSearch" class="sr-only">状态</label> 
+		<select class="form-control" name="statusSearch"  id="statusSearch" >
+		           <option value="">请选择状态</option>
+                   <option value="actived">激活</option>
+                   <option value="locked">锁定</option>
+         </select>
+	</div>
+    <#include "/common/advanceSearch.html">
+<button  type='button' class="btn btn-default" id="searchBtn">搜索</button>
+</form>

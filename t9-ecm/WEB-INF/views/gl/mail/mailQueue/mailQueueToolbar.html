@@ -1,0 +1,54 @@
+<div class="col-sm-12">
+	<div class="panel panel-default">
+	    <div class="panel-heading">
+	    	<button type='button' class='btn-sm  btn btn-primary mailQueueAdd'><i class='fa fa-plus'>写邮件</i></button>
+			<button type='button' class='btn-sm  btn btn-primary mailQueueEdit'><i class='fa fa-edit'>编辑</i></button> 
+			<button type='button' class='btn-sm  btn btn-primary mailQueueResend'><i class='fa fa-repeat'>重发</i></button> 
+			<button type='button' class='btn-sm  btn btn-danger mailQueueDel'><i class='fa fa-remove'>删除</i></button>
+			<button type='button' class='btn-sm  btn btn-primary mailQueueDetail'><i class='fa fa-list'>明细</i></button>
+			<label id="glHelpContainer"></label><!-- 帮助中心 -->
+	    </div>
+	    <div class="panel-body">
+	        <form id="mailQueueSearchForm" role="form" class="form-horizontal">
+					<!--默认生成一个搜索条件，需要的，用户自己添加-->
+
+					<div class="form-group">
+						<label class="col-sm-1 control-label">邮件标题</label>
+						<div class="col-sm-2"> 
+						   <input type="text" id='nameSearch' placeholder="邮件标题" name="Q__S__LK__mail.title_" class="form-control">
+					    </div>
+						<label class="col-sm-1 control-label">发送方式</label>
+						<div class="col-sm-2"> 
+						   <select  id="statusSearch" class='form-control' name="Q__S__EQ__mail.send_type_" >
+			    				<option value=''>发送方式</option>
+			    				<option value="manual">人工</option>
+			               	    <option value="sys">系统生成</option>
+							</select>
+					    </div>
+					    <label class="col-sm-1 control-label">状态</label>
+						<div class="col-sm-2"> 
+						   <select  id="statusSearch" class='form-control' name="Q__S__EQ__mail.status_" >
+			    				<option value=''>状态</option>
+			    				<option value="success">发送成功</option>
+			    				<option value="sending">发送中</option>
+			               	    <option value="resend">待重发</option>
+			               		<option value="failure">发送失败</option>
+							</select>
+					    </div>
+					  
+					</div>
+					<div class="form-group">
+						<label  class="col-sm-1 control-label">创建时间</label> 
+						<div class='col-sm-5'>
+							<div class="input-daterange input-group">
+	                            <input class="laydate-icon form-control layer-date minPlaceTime" name="Q__D__BW__mail.create_time_" placeholder="" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">
+	                            <span class="input-group-addon">到</span>
+	                            <input class="laydate-icon form-control layer-date" name="Q__D__BW__mail.create_time_" placeholder="" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">
+	                        </div>
+						</div>
+						 <button type='button' class="btn btn-sm   btn-primary mailQueueSearch">搜索</button>
+					</div>
+				</form>
+	    </div>
+	</div>
+</div>

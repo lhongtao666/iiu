@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>客户复购报表</title>
+	<#include "/common/common.html">
+	<#include "/common/ztree.html">
+	<script src="${ctx}/js/plugins/echarts/3.1.7/theme/macarons.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/plugins/echarts/3.1.7/echarts.min.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/jt/common/plugins/report${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/crm/report/reportDateUtil${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/common/utils/groupUtils${deploy_min!""}.js?v=${jsVersion}"></script>	
+	<link href="${ctx}/css/plugins/select2/select2.min.css?v=${jsVersion}" rel="stylesheet">
+	<script src="${ctx}/js/plugins/select2/select2.min.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/jt/crm/report/cs/csRepeat${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<style> 
+		.searchImg{
+		    width:24px;
+		    height:24px;
+		    margin:0 auto;
+		}
+		.partySearchImg{
+		    border: 1px solid #e7eaec;
+		}
+
+		.partySearchImg:hover{
+		    border: 1px solid #d2d2d2
+		}
+	</style>
+	<script>
+		var startMonth = "${startMonth}";
+		var endMonth = "${endMonth}";
+	</script>
+</head>
+<body class="white-bg">
+	<div class='wrapper'>
+		<div class='row list_wrapper'>
+			<div class='col-sm-12'>
+				<div class="panel panel-default">
+					<div class="panel-heading report-content">	
+						<form role="form" id='csRepForm' class="form-horizontal  infoSearchFrom">
+							<div class='form-group'>
+								<label class="col-sm-1 control-label">部门</label>
+								<div class='col-sm-2'>
+									<input type="text" class='form-control' readonly id='belongOgnName'>
+									<input type="hidden" name='belongOgn'>
+								</div>
+								<label class="col-sm-1 control-label">员工</label>
+								<div class='col-sm-2'>
+									<select name='belongEmployee' id='belongEmployeeSearch' class='form-control' style='width: 100%;'></select>	
+								</div>
+								<label class="col-sm-1 control-label">时间范围</label>
+								<div class='col-sm-5'>
+									<div class="input-daterange input-group">
+										<input class="laydate-icon form-control layer-date" name="startMonth" placeholder="yyyy-mm" onclick="laydate({format: 'YYYY-MM'})">
+										<span class="input-group-addon">到</span>
+										<input class="laydate-icon form-control layer-date" name="endMonth" placeholder="yyyy-mm" onclick="laydate({format: 'YYYY-MM'})">
+									</div>
+								</div>
+							</div>
+							<div class='form-group'>
+								<div class='col-sm-2'></div>
+								<div class='col-sm-2'>
+									<button class="btn btn-sm   btn-primary" id="searchBtn"   type="button">搜索</button>
+									<button type='button' class='btn btn-sm   btn-primary repeatExportExcel'>导出</button>
+									<input type="hidden"  name="reportKey"  value="${reportKey}">
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+
+			<div class="jqGrid_wrapper col-sm-12 csGridDiv" >
+				<table id='csRepeatGrid'></table>
+				<div id='csRepeatPager'></div>
+			</div>
+		</div>	
+	</div>	
+</body>
+</html>

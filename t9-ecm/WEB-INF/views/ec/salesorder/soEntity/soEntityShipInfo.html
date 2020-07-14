@@ -1,0 +1,154 @@
+<style type="text/css">
+.main-page{margin:0 auto; height:100%;}
+.main-page .left, .main-page .right{float:left;padding: 0;}
+.main-page .left{padding-left:0px; border-right: 1px #ddd  solid;height:100%;overflow: auto;padding-right: 8px;}
+.main-page .nav{position:relative;text-align:center;margin-top:10px;font-size:0.8vw;font-family:"微软雅黑";color:#000;}
+.main-page .nav div{
+	height: 30px;
+	line-height: 30px;
+	border-radius: 2px;
+	cursor: pointer;
+	transition: all 0.25s linear;
+	border: 1px solid transparent;
+	margin-bottom: 5px;
+}
+.main-page .nav div.on{
+	background: #fff !important;
+      color: #1caf9a;
+      border: 1px solid #1caf9a;
+}
+.main-page .nav div.queryPlatform:hover {
+	background-color: #f1f1f1;
+}
+.main-page .right{overflow:auto;height:100%;}
+.layui-layer-page .layui-layer-content {
+    overflow: hidden;
+}
+.rows-title {
+	width: 100%;
+	font-size: 1em;
+	font-weight: 500;
+	padding: 0;
+	margin: 0;
+	color: #fff;
+	border-bottom: 1px solid transparent;
+	background: #2ac1ac;
+	padding-left: 10px;
+	background-image: linear-gradient(to left, #fff, #2ac1ac);
+}
+.rows-title>font {
+    border-bottom: 3px solid #1caf9a;
+    height: 31px;
+    word-wrap: break-word;
+    font-size: 1.1em;
+    width: 4.5em;
+    text-align: center;
+}
+.my-skin .layui-layer-btn {
+    border-top: #e7eaec 1px solid;
+}
+.my-skin .layui-layer-btn .layui-layer-btn0{
+    height: 28px;
+    line-height: 28px;
+    margin: 5px 5px 0;
+    padding: 0 15px;
+    border: 1px solid #dedede;
+    background-color: #fff;
+    color: #333;
+    border-radius: 2px;
+    font-weight: 400;
+    cursor: pointer;
+    text-decoration: none;
+}
+#shipInfoDiv {height:100%;padding:8px;}
+.main-page .left::-webkit-scrollbar {/*滚动条整体样式*/
+        width: 8px;     /*高宽分别对应横竖滚动条的尺寸*/
+    }
+.main-page .left::-webkit-scrollbar-thumb {/*滚动条里面小方块*/
+        background: #ddd;
+    }
+.main-page .left::-webkit-scrollbar-track {/*滚动条里面轨道*/
+        background: #fff;
+    }
+    .main-page .right::-webkit-scrollbar {/*滚动条整体样式*/
+        width: 8px;     /*高宽分别对应横竖滚动条的尺寸*/
+        height:8px;
+    }
+.main-page .right::-webkit-scrollbar-thumb {/*滚动条里面小方块*/
+        background: #ddd;
+    }
+.main-page .right::-webkit-scrollbar-track {/*滚动条里面轨道*/
+        background: #fff;
+    }
+.form-content  form.form-horizontal .form-group {
+    margin-right: 0px !important;
+    margin-left: -3% !important;
+}
+</style>
+
+
+<div id="shipInfoDiv" class="shipScInfo">
+		<div class="main-page">
+		    <div class="left col-sm-2">
+		       <div class="rows-title">默认</div>
+		        <div class="nav">
+		            <div class="on "id="jdkuaidi">京东快递</div>
+		            <div  id="shunfengkuaidi">顺丰快递</div>
+		        </div>
+		        <div class="rows-title" style="margin-top:40px;">可选</div>
+		        <div class="nav">
+		        	<div class="queryPlatform " id="aly">阿里云</div>
+		        	<div class="queryPlatform " id="kuaidiwo">快递窝</div>
+		            <div class="queryPlatform " id="kuaidiWang">快递网</div>
+		            <div class="queryPlatform " id="kd100Ship">快递100</div>
+		            <div class="queryPlatform " id="kuaidiniao">快递鸟</div>
+		        </div>
+		    </div>
+		    <div class="right col-sm-10">
+        		<div class="form-content">
+        			<form class="form-horizontal">
+					<div class="form-group">
+						<input type="hidden" name="soId">
+						<!-- <div class='col-sm-4'>
+							<label class="col-sm-4 control-label">快递公司</label>
+							<div class="col-sm-8">
+								<select class='form-control' id="shipType" name="shipType" validateType="default" >							
+									<option value='kuaidiWang'>快递网</option>
+									<option value='kd100Ship'>快递100</option>
+									<option value='ickdShip'>爱查快递</option>
+									<option value='kuaidiwo'>快递窝</option>
+								</select>
+							</div>
+						</div> -->
+						<div class='col-sm-6'>
+							<label class="col-sm-4 control-label">快递公司</label>
+							<div class="col-sm-8">
+								<input type="text" name="scNameShow" placeholder="" readonly="readonly" class="form-control" validateType="default">
+							</div>
+						</div>
+						<div class='col-sm-6'>
+							<label class="col-sm-4 control-label">快递单号</label>
+							<div class="col-sm-8">
+								<input type="text" name="scTrackingNoShow" placeholder="" readonly="readonly" class="form-control" validateType="default">
+							</div>
+						</div>
+					</div>
+					<div class="form-group" style="margin-top:20px;">
+						<div class='col-sm-4'>
+							<div class="col-sm-3"></div>
+							<button type="button" class="btn btn-primary jt-btn-normal  queryLogistics">查询物流</button>
+						</div>
+					</div>
+
+					<div class="form-group" >
+						<!-- <label class="col-sm-2 control-label">物流信息</label> -->
+						<div class="col-sm-1"></div>
+						<div class="col-sm-11" >
+							<#include "/ec/salesorder/soEntity/time-axis.html">
+						</div>
+					</div>
+				</form>
+        		</div>
+        	</div>
+	</div>
+</div>

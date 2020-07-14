@@ -1,0 +1,45 @@
+<div class="col-sm-2 tree-layer" style='height:800px;border: 1px solid #ddd;margin-top: -4px;'>
+    <div class="col-sm-12 tree-layer groupType tree-group-layer">
+     		 <div class="search-div">
+			  <input type="text"  id="organizationTreeSearch" class="empty form-control" placeholder="Search..." style="text-indent: 10px;">  
+				<div style="position: absolute;right: 15px;top:5px">
+					<a id="clickUp" class="glyphicon glyphicon-menu-up"></a>  
+					<a id="clickDown" class="glyphicon glyphicon-menu-down" style="position: absolute;top: 14px;"></a> 
+					<label id="number" style="position: absolute; right: 50px;top: 5px;color:#999;"></label>   
+				</div>
+			 </div>
+			 <div class="tree-div"  style="overflow: auto;">
+				 <ul id="organizationTree" class="ztree" style="width: 100%; overflow: auto;"></ul>
+			 </div>
+				<!--树的菜单-->
+				<div style="display: none; z-index: 999; position: absolute;" id="orgMenuContainer">
+					<ul role="menu" style="display: block;" class="dropdown-menu">
+						<li id='agentGroupAddBtn' class='text-navy'><a><i class="fa fa-plus"></i>  添加</a></li>
+						<li id='agentGroupUpBtn' class='text-navy'><a><i class="fa fa-edit"></i>  更新</a></li>
+						<li id='agentGroupDelBtn' class='text-danger'><a><i class="fa fa-remove"></i>  删除</a></li>
+					</ul>
+				</div>
+	 </div>
+</div>
+<div class="col-sm-10 main-layer groupType">
+    <div class='col-sm-12 agentEmpTab'>
+       <div class="panel panel-default">
+           <div class="panel-heading">
+           	<button type='button' class="jt-btn addEmpBtn"><i class="fa fa-plus"></i>&nbsp;添加</button>
+			<button type='button' class="jt-btn resetPassBtn"><i class='fa fa-repeat'>&nbsp;</i>重置密码</button>
+		  </div>
+	   </div>
+	</div>
+    <div class='panel panel-default agentEmpTab' >
+        <div class='panel-body jt-grid-panel' style="overflow: hidden;">
+		   <table id="agentEmpGrid"></table>
+	       <div id="agentEmpPager"></div>
+        </div>
+     </div>
+     <div class='col-sm-12 agentEmpDiv' style='display:none;height:800px;'>
+         <#include "/crm/ou/employee/employeeEdit.html">
+     </div>
+    
+</div>
+<#include "/crm/agent/agentEntity/agentEntityGroup.html">
+ 

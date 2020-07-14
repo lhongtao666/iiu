@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>选项卡管理</title>
+	<#include "/common/common.html">
+	<script src="${ctx}/js/jt/gl/desktop/desktopColumn${deploy_min!""}.js?v=${jsVersion}" ></script>
+</head>
+
+<body class='white-bg'>
+	<div class="wrapper animated ">
+		<!-- list界面 -->
+		<div class="row list_wrapper">
+			<#include "/gl/desktop/desktopColumn/desktopColumnToolbar.html">	  			
+			<div class='col-sm-12 jqGrid_wrapper'>
+			    <table id="desktopColumnGrid"></table>
+				<div id="desktopColumnPager"></div>
+			</div>
+		</div>
+		<!-- 编辑界面 -->
+		<#include "/gl/desktop/desktopColumn/desktopColumnEdit.html">	    
+	</div>
+</body>
+</html>

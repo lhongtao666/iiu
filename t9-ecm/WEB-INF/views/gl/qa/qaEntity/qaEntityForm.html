@@ -1,0 +1,85 @@
+<form id="qaEntityForm" method="get" class="form-horizontal" style="padding-top:10px;">
+	<div class="form-group" style="margin-top: 10px;">
+		<div class='col-sm-12'>
+			<label class="col-sm-1 control-label left-label">问题</label>
+			<div class="col-sm-11">
+				<div class='col-sm-4'>
+					<input type="text" id="questionArea" name="questionArea"
+						autocomplete="off"
+						placeholder="请输入问题，字数限制128字以内" class="form-control"
+						validateType="default">
+				</div>
+				<div class="col-sm-2 qa-model-btn" style="margin-left: 30px;">
+					<div class="checkbox checkbox-success checkbox-inline " style="padding-right:0px;margin-right:0px;">
+						<input  type="checkbox" class="favoriteCheckbox">
+						<label for="favoriteCheckbox">我的收藏
+						</label>
+					</div>
+				</div>
+				<div class='col-sm-2 qa-add-model'>
+					<label class="col-sm-3 control-label" style="white-space: nowrap;">分类</label>
+					<div class="col-sm-9">
+						<input type="text" id="qa-cate-select"
+						autocomplete="off" readonly="readonly"
+						placeholder="请选择分类..." class="form-control"
+						validateType="default">
+					</div>
+				</div>
+				<div class='col-sm-3 qa-add-model'>
+					<label class="col-sm-3 control-label" style="white-space: nowrap;">部门</label>
+					<div class="col-sm-9">
+						<input type='text' class='groupNames form-control'  validateType='default'>
+						<input type="hidden" name="groupIds" >
+					</div>
+				</div>
+				<div class='col-sm-2 qa-model-entry'>
+					<label class="col-sm-7 control-label" style="white-space: nowrap;">是否提问</label>
+					<div class="col-sm-5" style="padding-top: 2px;">
+						<input type='checkbox' class='js-switch' id="is-chg-qa">
+					</div>
+				</div>
+				<div  class='col-sm-2 qa-model-btn'>
+					<button type="button" class="jt-btn-search qa-search" tabindex="-1" title=""><i class='fa fa-search'></i><span>&nbsp;搜索</span></button>
+					<!-- 帮助中心 -->
+		            <label id="glHelpContainer">	
+		            </label>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="form-group to-chg-qa">
+		<div class='col-sm-12'>
+			<label class="col-sm-1 control-label left-label">回复</label>
+			<div class="col-sm-11">
+				<textarea id="answerArea" name="answerArea" validatetype="default" maxlength="1025" 
+					class="ui-autocomplete-input col-sm-12" style="min-height: 85px;width:100%;border-color: #ddd;resize: vertical;"></textarea>
+			</div>
+		</div>
+	</div>
+	<div class='form-group'>
+		<!--将隐藏域放在这里，不显示出来-->
+		<div style="display: none'">
+			<input type="hidden" id="id" name="id"> 
+			<input type="hidden" name="cateId" id="cateId"> 
+			<input type="hidden" name="belong" value="t9"> 
+			<input type="hidden" name="qaCateFirstId"> 
+			<input type="hidden" name="answer"> 
+			<input type="hidden" name="question"> 
+			<input type="hidden" name="answerType"  value="string"> 
+			<input type="hidden" name="createBy" > 
+			<input type="hidden" name="createTime">
+		</div>
+	</div>
+	<div class="qa-form-extrabtn">
+		<#if type?? && type>
+		<#else>
+		<button type="button" class="btn btn-sm jt-btn-form saveQa" tabindex="-1" title=""><i class='fa fa-save'></i>&nbsp;保存<span>问答</span></button>
+		</#if>
+		<#if type?? && type>
+		<#else>
+		<button type="button" class="btn btn-sm jt-btn-form resetQa" tabindex="-1" title="清空"><i class='fa fa-repeat'></i><span>&nbsp;清空</span></button>
+		</#if>
+		<button type="button" class="btn btn-sm jt-btn-form saveNoAnswer" tabindex="-1" title=""><i class='fa fa-send-o'></i>&nbsp;我要提问</span></button>
+	</div>
+	<div class="qa-form-slide" title="关闭编辑模式"><i class="fa fa-sort-up"></i><i class="fa fa-sort-down"></i></div>
+</form>

@@ -1,0 +1,262 @@
+<link rel="stylesheet" rev="stylesheet" type="text/css" media="all" href="${ctx}/css/bootstrap-select.css?v=${jsVersion}">
+<script src="${ctx}/js/bootstrap-select.min.js?v=${jsVersion}" ></script>
+<style type="text/css">
+	.popover{
+		z-index:2051;
+	}
+	.storeIds-chosen-div .bootstrap-select {
+		width:100% !important;
+	}
+	#storeIds + div button {
+	    background-color: #fff !important;
+	    color: #333;
+	    border-radius: 2.5px;
+	    height: 28px;
+	    line-height: 15px;
+	}
+</style>
+<div class="modal fade" id="orgModalContainer" tabindex="-1" role="dialog" aria-labelledby="orgModalLabel">
+	<div class="modal-dialog" role="document" style="width:800px">
+		<div class="modal-content">
+			<div class="modal-header" style="background-color:#2ac1ac">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span style="color: black;font-size: 30px;" aria-hidden="true">&times;</span></button>
+				<h3 style="color: white" class="modal-title" id="orgModalLabel">添加部门</h3>
+			</div>
+
+			<div class="modal-body" style="overflow-y: scroll;height: 500px;">
+				<form id="orgForm" method="get" class="form-horizontal">
+					<div class='tabs-container'>
+						<ul class="nav nav-tabs">
+							<li class='active baseInfoDiv tabLi' attr-id='baseInfo'>
+								<a href="#csInfoTab" data-toggle="tab">基本信息</a>
+							</li>
+						</ul>
+						<div id="myTabContent" class="tab-content" style="padding-top:10px;">
+							<div id="groupInfoTab" class="tab-pane fade in active">
+								<div class="form-group">
+									<label class="col-sm-2 control-label">名称<span style='color: red'>*</span></label>
+									<div class="col-sm-3" >
+										<input type="text" name="name" placeholder="" class="form-control" validateType='default'>
+									</div>
+									<label class="col-sm-1"><a style="margin-left:10px" title="部门名称，必填"><img src="${ctx}/img/jt/help.png"></a></label>
+
+									<div id="groupMgrDiv">
+										<label class="col-sm-2 control-label">部门管理者</label>
+										<div class="col-sm-4">
+											<div class="col-sm-9">
+												<input name="groupMgrName" readonly="readonly" placeholder="" class="form-control" validatetype="default" aria-invalid="false" aria-describedby="">
+												<input name="groupMgr" type="hidden" value="">
+											</div>
+											<button type="button" class="btn btn-sm btn-primary chooseGroupMgr">选</button>&nbsp;
+											<button type="button" class="btn btn-sm btn-danger" id="clearGroupMgr">清</button>											
+										</div>
+									</div>									
+								</div>
+
+								<div  class="form-group" >
+									<label class="col-sm-2 control-label">每月工作日(天)</label>
+									<div class="col-sm-3">
+										<input class='form-control'  name='workDays' validateType='default'>
+									</div>
+									<label class="col-sm-1"><a style="margin-left:10px" title="用于计算员工每小时的业绩目标"><img src="${ctx}/img/jt/help.png"></a></label>
+									<label class="col-sm-2 control-label">日通话时长(小时)</label>
+									<div class="col-sm-3">
+										<input class='form-control'  name='workHours' validateType='default'>
+									</div>
+									<label class="col-sm-1"><a style="margin-left:10px" title="每个员工通话时长限制(0为不限)"><img src="${ctx}/img/jt/help.png"></a></label>
+								</div>
+
+								<div class="form-group" >
+									<label class="col-sm-2 control-label">客户消费限额</label>
+									<div class="col-sm-3">
+										<input class='form-control'  name='upperLimit' validateType='default'>
+									</div>
+									<label class="col-sm-1"><a style="margin-left:10px" title="单个客户消费限额"><img src="${ctx}/img/jt/help.png"></a></label>
+									<label class="col-sm-2 control-label">领取公海客户额度</label>
+									<div class="col-sm-3">
+										<input class='form-control'  name='seaLimit' validateType='default'>
+									</div>
+									<label class="col-sm-1"><a style="margin-left:10px" title="直属部门下所有员工领取公海客户总限制(0为不限)"><img src="${ctx}/img/jt/help.png"></a></label>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-2 control-label">日短信限制</label>
+									<div class="col-sm-3">
+										<input class="form-control" name="smsLimit" validatetype="default" aria-invalid="false" aria-describedby="">
+									</div>
+									<label class="col-sm-1"><a style="margin-left:10px" title="只对直属员工限制(0为不限)"><img src="${ctx}/img/jt/help.png"></a></label>
+									<label class="col-sm-2 control-label">禁止下单时段</label>
+									<div class="col-sm-3">
+										<input class="form-control" name="noOrderTime" validatetype="default" aria-invalid="false" aria-describedby="">
+									</div>
+									<label class="col-sm-1"><a style="margin-left:10px" title="格式：hh:mm-hh:mm"><img src="${ctx}/img/jt/help.png"></a></label>
+								</div>
+								<div class="form-group">
+								    <label class="col-sm-2 control-label">仓库 </label>
+								    <div class='col-sm-3 storeIds-chosen-div storeIdGroup'> 
+                                       <select class='selectpicker'  id="storeIds" title="请选择" multiple data-live-search="true" data-live-search-placeholder="搜索">
+									   </select>
+									   <input type="hidden" name='storeIds'>								      
+								    </div>   
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class='tabs-container'>
+						<ul class="nav nav-tabs">
+							<li class='active baseInfoDiv tabLi' attr-id='baseInfo'>
+								<a href="#csInfoTab" data-toggle="tab">订单和销售</a>
+							</li>
+						</ul>
+						<div style="padding-top:10px;">
+							<div id="groupExtendTab" class="tab-pane fade in active">
+								<div class="form-group" >
+									<label class="col-sm-2 control-label">批量修改子部门</label>
+									<div class="col-sm-3">
+										<div class="radio radio-success radio-inline">
+											<input  type="radio" id="isUpdateSubGroupRadio1" value="y" name="isUpdateSubGroup" >
+											<label for="isUpdateSubGroupRadio1">是</label>
+										</div>
+										<div class="radio radio-success radio-inline">
+											<input  type="radio" id="isUpdateSubGroupRadio2" value="n" name="isUpdateSubGroup">
+											<label for="isUpdateSubGroupRadio2">否</label>
+										</div>
+									</div>
+									<span style="color:red;">注: 若是,子部门以下几项将与父部门一样;否则可自行修改.</span>
+								</div>
+
+								<div id="isSaleDiv" class="form-group" >
+									<label class="col-sm-2 control-label">是否销售部门<span style='color: red'>*</span></label>
+									<div class="col-sm-3">
+										<div class="radio radio-success radio-inline">
+											<input id='isSale' type="radio" id="isSaleinlineRadio1" value="y" name="isSale" >
+											<label for="isSaleinlineRadio1">是</label>
+										</div>
+										<div class="radio radio-success radio-inline">
+											<input id='isNotSale' type="radio" id="isSaleInlineRadio2" value="n" name="isSale">
+											<label for="isSaleInlineRadio2">否</label>
+										</div>
+									</div>
+									<span style="color:red;">注: 如设为销售部门,将级联设置子部门为销售部门</span>
+								</div>
+
+								<div class="form-group needFinanceConfirmDiv" >
+									<label class="col-sm-2 control-label">是否财审<span style='color: red'>*</span></label>
+									<div class="col-sm-3">
+										<div class="radio radio-success radio-inline">
+											<input type="radio" checked id="oneNeedFinanceConfirmRadio" value="y" name="needFinanceConfirm" >
+											<label for="oneNeedFinanceConfirmRadio">是</label>
+										</div>
+										<div class="radio radio-success radio-inline">
+											<input type="radio" id="twoNeedFinanceConfirmRadio" value="n" name="needFinanceConfirm">
+											<label for="twoNeedFinanceConfirmRadio">否</label>
+										</div>
+									</div>
+									<span style="color:red;">注: 若选否,订单将不产生财务单,请谨慎选择.</span>
+								</div>
+
+								<div id="saleLineDiv" class="form-group" >
+									<label class="col-sm-2 control-label">销售部门类型<span style='color: red'>*</span></label>
+									<div class="col-sm-8">
+										<div class="radio radio-success radio-inline">
+											<input id='oneSaleLine' type="radio" id="oneSaleLineRadio" value="one" name="saleLine" >
+											<label for="oneSaleLineRadio">一类</label>
+										</div>
+										<div class="radio radio-success radio-inline">
+											<input id='twoSaleLine' type="radio" id="twoSaleLineRadio" value="two" name="saleLine">
+											<label for="twoSaleLineRadio">二类</label>
+										</div>
+									</div>
+								</div>
+								<div id="salePercentDiv" class="form-group" >
+									<label class="col-sm-2 control-label">最低折扣限制（含）</label>
+									<div class="col-sm-3">
+										<input class='form-control' type="number"  name='percentLimit' validateType='default' >
+									</div>
+									<label class="col-sm-1">
+										<a href="#" id="salePercentA" style="margin-left:10px" title="" data-container="body"  data-toggle="popover" data-placement="right" data-trigger="hover"  data-content="<h5 style='color:red;'>该部门员工下订单时对总金额可以调整到的最低折扣，为空不限。可选值为10~100，表示折扣百分比</h5>">
+											<img src="${ctx}/img/jt/help.png">
+										</a>
+									</label>
+									<label class="col-sm-2 control-label">自动折扣设置（含）</label>
+									<div class="col-sm-3">
+										<input class='form-control' type="number"  name='autoPercent' validateType='default' >
+									</div>
+									<label class="col-sm-1">
+										<a href="#" id="autoPercentA" style="margin-left:10px" title="" data-container="body"  data-toggle="popover" data-placement="right" data-trigger="hover"  data-content="<h5 style='color:red;'>该部门员工下订单时对商品金额可以调整的折扣，为空不限。可选值为0~100，表示折扣百分比</h5>">
+											<img src="${ctx}/img/jt/help.png">
+										</a>
+									</label>
+								</div>
+								<div id="saleRangeDiv" class="form-group" >
+									<label class="col-sm-2 control-label">可售商品分类<span style='color: red'>*</span></label>
+									<div class="col-sm-3">
+										<input class='form-control'  name='prodCateNames' validateType='default' id="prodCateNames">
+										<input type="hidden" name='prodCates'>
+									</div>
+									<label class="col-sm-2 control-label">新增客户转工号</label>
+									<div class="col-sm-3">
+										<input name="createToName"  readonly="readonly" placeholder="" class="form-control" validatetype="default" aria-invalid="false" aria-describedby="">
+										<input name="createTo" type="hidden" value="">
+									</div>
+									<div class="col-sm-1">
+										<button type="button" class="btn btn-sm btn-primary chooseCreateTo">选</button>&nbsp;
+										<button type="button" class="btn btn-sm btn-danger" id="clearCreateTo">清</button>
+									</div>	
+								</div>	
+
+								<div id="createToDiv" class="form-group" >
+									<label class="col-sm-2 control-label">可售商品范围<span style='color: red'>*</span></label>
+									<div class="col-sm-3">
+										<select id="saleRangeSelect" required  name="saleRange" placeholder="" class="form-control" validateType='default'>
+											<option value="">请选择</option>
+											<option value="all">全部</option>
+											<option value="only_all_type">共用</option>
+											<option value="first">一线</option>
+											<option value="second">二线</option>
+										</select>
+									</div>
+									<label class="col-sm-2 control-label">签收转工号</label>
+									<div class="col-sm-3">
+										<input name="transToName" readonly="readonly" placeholder="" class="form-control" validatetype="default" aria-invalid="false" aria-describedby="">
+										<input name="transTo" type="hidden" value="">
+
+									</div>
+									<div class="col-sm-1">
+										<button type="button" class="btn btn-sm btn-primary chooseTransTo">选</button>&nbsp;
+										<button type="button" class="btn btn-sm btn-danger" id="clearTransTo">清</button>
+									</div>
+								</div>	
+
+								<div id="secTypeDiv" class="form-group hide" >
+									<label class="col-sm-8 control-label">二类客户等级</label>
+									<div class="col-sm-8">
+										<select id="secTypeSelect" name="secType" placeholder="" class="form-control" validateType='default'></select>
+									</div>
+								</div>	
+								
+								<div id='deductRatesDiv'>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class='form-group' style="display: none;">
+						<!--当前节点的信息-->
+						<input type="hidden" name='id'>
+						<input type="hidden" name='parentId'>
+						<input type="hidden" name="path">
+						<input type="hidden" name="sort"> 
+						<input type="hidden" name="depth"> 
+						<input type="hidden" name="createBy" value="">
+						<input type="hidden" name="createTime" value="">
+					</div>	
+				</form>			
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-sm btn-default" data-dismiss="modal">关闭</button>
+				<button type="button" class="btn btn-sm   btn-primary" id='saveOrgBtn'>保存</button>
+			</div>
+		</div>
+	</div>
+</div>

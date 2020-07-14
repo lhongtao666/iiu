@@ -1,0 +1,64 @@
+body,div,img,a,ul,li,p,h1,h2,h3,h4{
+    padding:0;
+    margin:0;
+}
+.item-ft {
+	position: relative;
+	margin-top: 2px;
+	z-index: 1;
+	height:19px;
+}
+.photo-item {
+	float: left;
+	margin-left: 30px;
+	display: block;
+	padding: 0px;
+	width: 102px;
+	margin-bottom: 50px;
+}
+
+.photo-item-edit {
+	border: 1px solid #ccc;
+	padding: 5px;
+	width: 114px;
+	margin-bottom: 50px;
+	cursor: pointer;
+}
+
+.photo-item-shadow-red {
+	border-color: #03A9F4;
+    background-color: rgba(3, 169, 244, .1);
+}
+.photo-item-edit-default {
+}
+.photo-item-edit:hover {
+	-webkit-box-shadow: 5px 5px 5px 0px rgba(33, 150, 243, .25);
+	-moz-box-shadow: 5px 5px 5px 0px rgba(33, 150, 243, .25);
+	box-shadow: 5px 5px 5px 0px rgba(33, 150, 243, .25);
+}
+
+
+.album-item{
+    float: left;
+	margin-left: 30px;
+	display: inline-block;
+	padding: 5px;
+	width: 132px;
+	margin-bottom: 20px;
+	cursor: pointer;
+}
+
+.album-item:hover{
+	-webkit-box-shadow: 5px 5px 5px 5px;
+	-moz-box-shadow: 5px 5px 5px 5px;
+	box-shadow: 5px 5px 5px 5px;
+}
+.folder-item-span{
+	display:inline-block; float:left; width:80px; overflow: hidden
+}
+.folder-item-count-span{
+	display:inline-block; cursor: pointer; float: right;
+}
+.filename-item-span{
+	display:inline-block; width:80px; overflow:hidden; float: left;
+}

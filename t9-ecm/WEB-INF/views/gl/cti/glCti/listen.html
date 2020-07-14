@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>电话监听</title>
+	<#include "/common/common.html">
+	<link href="${ctx}/css/plugins/select2/select2.min.css?v=${jsVersion}" rel="stylesheet">
+	<script src="${ctx}/js/plugins/select2/select2.min.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/jt/gl/km/glHelpUtil${deploy_min!""}.js?v=${jsVersion}" ></script>
+
+	<script type="text/javascript">
+		$(function(){
+			//初始化员工选择
+			(function(groupIds){
+		        FormUtils.loadData(ctx + "/crm/ou/employee/listEmployees.htm?groupId=" + groupIds + '&type=dept_manager', function(employeePos){
+		            $('#agentId').empty();
+		            var sb = new StringBuffer();
+		            sb.append("<option value=''>请选择</option>");
+		            if(employeePos && employeePos.length){
+		                for(var i=0; i<employeePos.length; i++){
+		                    sb.append("<option value='" + employeePos[i].aid + "'>" + employeePos[i].aid + ":" + employeePos[i].name + "</option>");
+		                }
+		                $('#agentId').append(sb.toString()).select2();
+		            }
+		        });
+				var cateKey = "glHelp.dataAudit.ctiListen";
+				glHelpUtil.init(cateKey);
+		    })('');
+		    
+		    $('#startBtn').on('click', function(){
+		    	var agentId = $('#agentId').val();
+		    	if(!agentId){		
+                    $('#infoSpan').text('请选择要监听的工号');
+                    return;
+		    	}
+		    	if(isNaN(agentId)){
+		    		$('#infoSpan').text('该工号无法使用cti');
+                    return;		
+		    	}
+
+		    	window.top.UMO.listen(agentId, function(cmd, result){
+                    console.log(JSON.parse(result));	 
+		    	});
+		    	$('#infoSpan').text('正在监听工号' + agentId + '...');
+		    	$(this).attr('disabled', 'disabled');
+		    });
+
+		    $('#stopBtn').on('click', function(){
+		    	$('#infoSpan').text('监听已停止');
+		    	$('#startBtn').removeAttr('disabled');
+		    });
+		});
+	</script>
+</head>
+
+<body class='white-bg'>
+	<div class="wrapper animated ">
+		<!-- list界面 -->
+		<div class="row list_wrapper">
+			<div class='col-sm-12 jqGrid_wrapper'>
+			    <br>
+			    <form class='form-horizontal'>
+				    <div class='form-group'>
+					    <div class='col-sm-12'>
+					    	<span class='control-label col-sm-1'>
+					    		要监听的工号:	
+					    	</span>
+					    	<div class='col-sm-2'>
+					    		<select id='agentId' class='form-control' style="width: 100%"></select>
+					    	</div>
+					    	<div class='col-sm-2'>
+					    		<button class='btn btn-sm btn-primary  ' type='button' id='startBtn'>开始监听</button>
+					    		<button class='btn btn-sm btn-primary  ' type='button' id='stopBtn'>停止监听</button>	
+					    		<label id="glHelpContainer"></label><!-- 帮助中心 -->
+					    	</div>
+					    	<div class='col-sm-2'>
+					    		<span class='control-label text-danger' id='infoSpan'></span>
+					    	</div>
+					    </div>
+				    </div>
+				    <div class='form-group'>
+				    	<div class='col-sm-12'>
+							<span>提示：威普交换机的电话监听只能通过话机操作。步骤：摘机》拨分机号码》听到忙音后按#6</span>    		
+				    	</div>
+				    </div>
+			    </form>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,122 @@
+<div class="col-sm-12">
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<button type='button' class='jt-btn setSign'><i class='fa fa-envelope-open-o'></i>&nbsp;已读</button>
+			<button type='button' class='jt-btn cancelSign'><i class='fa fa-envelope-o'></i>&nbsp;未读</button>
+			<button type='button' class="jt-btn jt-btn-red weixinRecordDel"><i class='fa fa-remove'></i>&nbsp;删除</button>
+			
+		</div>
+		<div class="panel-body">
+			<form id='webWeiXinOldRecordSearchForm' role="form" class="form-horizontal">
+				<div class='form-group'>
+					<label class="col-sm-1 control-label">发送时间</label>
+					<div class='col-sm-5'>
+						<div class="input-daterange input-group">
+							<input class="laydate-icon form-control layer-date startDate" name="startDate" placeholder="yyyy-mm-dd hh:mm:ss" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">
+							<span class="input-group-addon">到</span>
+							<input class="laydate-icon form-control layer-date endDate" name="endDate" placeholder="yyyy-mm-dd hh:mm:ss" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">
+						</div>
+					</div>
+					<div class='col-sm-6'>
+						<button type='button' class="jt-btn-search webWeiXinOldRecordSearch"><i class="fa fa-search"></i>&nbsp;查询</button>
+						<button type="button" id="seniorSearch" class="jt-btn-drop dropdown-toggle" data-toggle="dropdown" tabindex="-1" >展开<span class="fa fa-sort-down"></span>
+						</button>
+						
+					</div>
+				</div>
+				<div id="seniorSearchDiv">
+				<div class='form-group'>
+					<label class="col-sm-1 control-label">部门</label>
+					<div class='col-sm-2'>
+						<input id='groupName' class='form-control' readonly>
+						<input type="hidden" name="belongOgn">
+					</div>
+					<label class="col-sm-1 control-label">工号</label>
+					<div class="col-sm-2">
+						<select id='employeeId' name="employeeId" class='form-control' style='width: 100%'></select>
+					</div>
+					<label class="col-sm-1 control-label">消息标签</label>
+					<div class="col-sm-2">
+						<select id='wx-msg-target' name="Q__S__EQ__msg_target_" class='form-control' style='width: 100%'></select>
+					</div> 
+					<label class="col-sm-1 control-label">客户手机</label>
+					<div class="col-sm-2">
+						<input type="text" placeholder="请输入客户手机" name="csPhone"  class="form-control">
+					</div> 
+				</div>
+				<div class='form-group'>
+					<label class="col-sm-1 control-label">包含敏感词</label>
+					<div class='col-sm-2'>
+						<select id='isSensitive' class='form-control' name="Q__S__EQ__is_sensitive_">
+							<option value="">请选择</option>
+							<option value="y">是</option>
+							<option value="n">否</option>
+						</select>
+					</div>
+					<label class="col-sm-1 control-label">敏感词</label>
+					<div class='col-sm-2'>
+						<select id='sensitiveValue' class='form-control' name="Q__S__LK__content_">
+						</select>
+					</div>
+					<label class="col-sm-1 control-label">消息类型</label>
+					<div class="col-sm-2">
+						<select id='isSensitive' class='form-control' name="Q__S__EQ__content_type_">
+							<option value="">请选择</option>
+							<option value="3">红包</option>
+							<option value="12">转账</option>
+							<option value="0">文本</option>
+							<option value="1">图片</option>
+							<option value="4">表情</option>
+							<option value="2">语音</option>
+							<option value="5">好友申请</option>
+							<option value="6">通过好友</option>
+							<option value="7">文件</option>
+							<option value="8">视频</option>
+							<option value="10">名片</option>
+							<option value="11">语音通话</option>
+							<option value="9">其它</option>
+						</select>
+					</div>
+					<label class="col-sm-1 control-label">收发</label>
+					<div class='col-sm-2'>
+						<select class='form-control' name="Q__S__EQ__type_">
+							<option value="">全部</option>
+							<option value="in">收</option>
+							<option value="out">发</option>
+						</select>
+					</div>
+				</div>
+				<div class='form-group' id="listParam">
+					<label class="col-sm-1 control-label">客户编号</label>
+					<div class="col-sm-2">
+						<input type="text" placeholder="请输入客户编号" name="Q__S__EQ__friend_code_"  class="form-control">
+					</div>
+					<label class="col-sm-1 control-label">昵称</label>
+					<div class="col-sm-2">
+						<input type="text" placeholder="请输入昵称" name="Q__S__LK__nick_name_"  class="form-control">
+					</div>
+					<label class="col-sm-1 control-label">已读</label>
+					<div class='col-sm-2'>
+						<select id='isSign' class='form-control' name="isSign">
+							<option value="">请选择</option>
+							<option value="y">是</option>
+							<option value="n">否</option>
+						</select>
+					</div>
+					<label class="col-sm-1 control-label">员工微信</label>
+					<div class="col-sm-2">
+						<select style="width: 100%;" id="employee-wx-select2" name="Q__S__EQ__employee_wei_xin_"  class="form-control">
+						</select>
+					</div> 
+				</div>
+				<div class='form-group'>
+					<label class="col-sm-1 control-label">客户微信</label>
+					<div class="col-sm-2">
+						<input type="text" placeholder="请输入客户微信" name="csAlias"  class="form-control">
+					</div>
+				</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>

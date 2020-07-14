@@ -1,0 +1,152 @@
+<style>
+.title{
+  display:block;
+  position:relative;
+  top:-10px;
+  text-align: center; 
+  background: white;
+  width:80px;
+}
+</style>
+
+<form id="exchangeEntityForm" method="get" class="form-horizontal">
+	<input type="hidden" name="id"/>
+	<div class='col-sm-12'>
+		<div class="col-sm-7">
+			<div class="panel panel-default" >
+				<div class="panel-heading">
+					<h3 class="panel-title">换货产品</h3>
+				</div>
+				<div class="panel-body">
+					<div class='form-group'>
+						<div class='col-sm-6 editInfoDiv' style="display:none">
+							<label class="col-sm-4 control-label">换货单号</label>
+							<div class="col-sm-8">
+								<input type="text" name="eno" placeholder="" readonly="readonly"  value=""  class="form-control" validateType="default" ></div>
+						</div>
+						<div class='col-sm-6'>
+							<label class="col-sm-4 control-label">客户名称</label>
+							<div class="col-sm-8">
+								<input type="text" name="csName" placeholder="" readonly="readonly"  value="客户1"  class="form-control" validateType="default" >
+								<input type="hidden" name="csId" ></div>
+						</div>
+					</div>
+					<div class="col-sm-12" >
+						<div class='col-sm-12' id="soItemDiv">
+							<table id="soItemGrid"></table>
+						</div>
+						<div class='form-group'></div>
+					</div>
+				</div>
+			</div>
+			<div class="panel panel-default" >
+				<div class="panel-heading">
+					<h3 class="panel-title">问题描述</h3>
+				</div>
+				<div class="panel-body">
+					<div class='form-group'>
+						<div class='col-sm-6'>
+							<label class="col-sm-4 control-label">状 态</label>
+							<div class="col-sm-8">
+								<input type="text" placeholder="" name="statusName" class="form-control" validateType="default" readonly="readonly" value="等待提交"></div>
+						</div>
+						<div class='col-sm-6'>
+							<label class="col-sm-4 control-label">提交数量</label>
+							<div class="col-sm-8">
+								<input type="number" name="skuCount" placeholder="" class="form-control" validateType="default" readonly="readonly" value="1"></div>
+						</div>
+					</div>
+					<div class="col-sm-12"    style=" height:15px;" ></div>
+					<div class='form-group'>
+						<div class='col-sm-12'>
+							<label class="col-sm-2 control-label">
+								问题描述
+								<span style="color: red;">*</span>
+							</label>
+							<div class="col-sm-10">
+								<textarea rows="3" readonly="readonly"  name="reasonName" placeholder="" class="form-control" validateType="default"   style="resize: none;"></textarea>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-12"    style=" height:15px;" ></div>
+					<div class='form-group' id="imgDiv">
+						<div class='col-sm-6'>
+							<label class="col-sm-4 control-label">图片信息</label>
+							<div class="col-sm-8">
+								<button class='btn btn-sm   btn-primary selectImageBtn' type='button' style="display:none;">添加图片</button>
+							</div>
+						</div>
+					</div>
+					<div class='form-group'>
+						<table>
+							<tr>
+								<td id='imgContainer'></td>
+							</tr>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-5">
+			<div class="panel panel-default returnInfoDiv" >
+				<div class="panel-heading">
+					<h3 class="panel-title">确认信息</h3>
+				</div>
+				<div class="panel-body">
+					<div class=" form-group needReturnDiv">
+						<label class="col-sm-2 control-label">是否回寄</label>
+						<div class="col-sm-4">
+							<select class='form-control'   name='needReturn' >
+								<option value="Y">需要</option>
+								<option value="N">不需要</option>
+							</select>
+						</div>
+					</div>
+					<div class='form-group shipAmountDiv'>
+						<label class="col-sm-2 control-label">运费补偿</label>
+						<div class="col-sm-4">
+							<input type="number" name="shipAmount" placeholder="" class="form-control" validateType="default" ></div>
+						<label class="control-label">元</label>
+					</div>
+					<div class=" form-group scDiv">
+						<label class="col-sm-2 control-label">快递公司</label>
+						<div class="col-sm-8">
+							<select class='form-control' validateType="default" name='scId' id="shipCompany">
+							</select>
+						</div>
+					</div>
+					<div class='form-group trackingNoDiv'>
+						<label class="col-sm-2 control-label">物流单号</label>
+						<div class="col-sm-8">
+							<input type="text" name="trackingNo" placeholder="" class="form-control" validateType="default" ></div>
+					</div>
+					<div class='form-group returnAddrDiv'>
+						<label class="col-sm-2 control-label">回寄地址</label>
+						<div class="col-sm-8">
+							<textarea rows="3"   name="returnAddr" placeholder="" class="form-control" validateType="default"   style="resize: none;"></textarea>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="panel panel-default" id="commentDiv">
+				<div class="panel-heading">
+					<h3 class="panel-title">添加备注</h3>
+				</div>
+				<div class="panel-body">
+					<div class='form-group'>
+						<div class="col-sm-12">
+							<label class="col-sm-3 control-label"></label>
+						</div>
+						<div class="col-sm-12">
+							<div class="col-sm-1"></div>
+							<div class="col-sm-10">
+								<textarea rows="4"   name="comment" placeholder="" class="form-control" validateType="default"   style="resize: none;"></textarea>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-12"    style=" height:25px;" ></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</form>

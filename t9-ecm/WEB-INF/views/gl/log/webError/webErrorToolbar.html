@@ -1,0 +1,30 @@
+<div class="col-sm-12">
+	<div class="panel panel-default">
+	    <div class="panel-heading">
+			<button type='button' class='jt-btn webErrorDetail'><i class='fa fa-list'>&nbsp;明细</i></button>
+	    </div>
+	    
+	    <div class="panel-body">
+	        <form id='webErrorSearchForm' role="form" class="form-horizontal">
+				<!--默认生成一个搜索条件，需要的，用户自己添加-->
+				<div class="form-group">
+					<label class='col-sm-1 control-label'>异常信息</label> 
+					<div class='col-sm-2'>
+						<input type="text" id='nameSearch' placeholder="请输入名称" name="Q__S__LK__message_" class="form-control">
+					</div>
+					<label class="col-sm-1 control-label">生成时间</label>
+					<div class='col-sm-4'>
+						<div class="input-daterange input-group">
+							<input class="laydate-icon form-control layer-date"  name="Q__D__BW__create_time_" placeholder="yyyy-mm-dd" onclick="laydate({istime: true, format: 'YYYY-MM-DD'})">
+							<span class="input-group-addon">到</span>
+							<input class="laydate-icon form-control layer-date"  name="Q__D__BW__create_time_" placeholder="yyyy-mm-dd" onclick="laydate({issure: true, format: 'YYYY-MM-DD'})">
+						</div>
+					</div>
+					<div class='col-sm-1'>
+					    <button type='button' class="jt-btn-search webErrorSearch"><i class='fa fa-search'></i>&nbsp;搜索</button>
+					</div>
+				</div>
+			</form>
+	    </div>
+	</div>
+</div>

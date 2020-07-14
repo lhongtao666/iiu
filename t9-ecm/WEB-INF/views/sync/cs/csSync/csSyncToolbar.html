@@ -1,0 +1,33 @@
+<div class="col-sm-12">
+	<div class="panel panel-default">
+	    <div class="panel-heading">
+	    	<button type='button' class='jt-btn sync'>同步</button>
+	    	<button type='button' class='jt-btn jt-btn-red csSyncDel'>删除</button>
+	    	
+	    </div>
+	    
+	    <div class="panel-body">
+	        <form id='csSyncSearchForm' role="form" class="form-horizontal">
+				<!--默认生成一个搜索条件，需要的，用户自己添加-->
+				<div class="form-group">
+					<label class='col-sm-1 control-label'>客户编号</label> 
+					<div class='col-sm-2'>
+						<input type="text"  autocomplete="off" placeholder="请输入客户编号" name="Q__S__LK__from_cs_code_" class="form-control">
+					</div>
+					<div class="col-sm-6 ">
+						<label class="col-sm-2 control-label">创建时间</label>
+						<div class='col-sm-10'>
+							<div class="input-daterange input-group">
+								<input class="laydate-icon form-control layer-date" autocomplete="off" name="Q__D__BW__create_time_" placeholder="起始时间" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">
+								<span class="input-group-addon">到</span>
+								<input autocomplete="off" class="laydate-icon form-control layer-date" name="Q__D__BW__create_time_" placeholder="结束时间" onclick="laydate({istime: true, start: laydate.now(0, 'YYYY/MM/DD 23:59:59'), format: 'YYYY-MM-DD hh:mm:ss'})"></div>
+						</div>
+					</div>
+					<div class='col-sm-1'>
+						<button id="csSyncSearch" type='button' class="btn jt-btn-search"><i class="fa fa-search"></i>&nbsp;搜索</button>
+					</div>
+				</div>
+			</form>
+	    </div>
+	</div>
+</div>

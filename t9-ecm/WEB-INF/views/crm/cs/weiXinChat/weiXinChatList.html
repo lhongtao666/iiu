@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>客户微信聊天界面</title>
+	<#include "/common/common.html">
+	<link rel="stylesheet" rev="stylesheet" type="text/css" media="all" href="${ctx}/css/jt/crm/cs/wx/weiXinChat.css?v=${jsVersion}">
+	<script src="${ctx}/js/jt/crm/cs/weiXin/weiXinChat${deploy_min!""}.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/jt/crm/cs/weiXin/weiXinChatForm${deploy_min!""}.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/jt/crm/cs/weiXin/weiXinUtil${deploy_min!""}.js?v=${jsVersion}"></script>
+	<script src='${ctx}/js/jt/common/service/customerSelectLayer${deploy_min!""}.js?v=${jsVersion}'></script>
+	<script src='${ctx}/js/jt/crm/cs/csFollow${deploy_min!""}.js?v=${jsVersion}'></script>
+	<script src='${ctx}/js/jt/common/service/employeesSelectLayer${deploy_min!""}.js?v=${jsVersion}'></script>
+	<script src="${ctx}/js/plugins/suggest/bootstrap-suggest.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/jt/crm/cs/csEntityUtils${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/common/service/addressService${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/crm/cs/csPhone${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script type="text/javascript">
+		var isDefaultLast = "y";
+		var forceInputWx = "${forceInputWx}";
+	</script>
+</head>
+<style>
+	body {
+	    color: #4d4d4d;
+	    font:'Helvetica Neue', Helvetica, 'Microsoft Yahei', Arial, sans-serif;
+	    background: #f5f5f5 url(${ctx}/img/jt/wx/images/bg.jpg) no-repeat center;
+	    background-size: cover;
+	    font-smoothing: antialiased;
+	}
+	.web_wechat_women {
+	    display: inline-block;
+	    vertical-align: middle;
+	    width: 16px;
+	    height: 16px;
+	    background: url(${ctx}/img/jt/wx/images/weixinother.png) no-repeat;
+	    background-position: -368px -304px;
+	    -webkit-background-size: 487px 462px;
+	    background-size: 487px 462px;
+	}
+	.web_wechat_men {
+		display: inline-block;
+	    vertical-align: middle;
+	    width: 16px;
+	    height: 16px;
+	    background: url(${ctx}/img/jt/wx/images/weixinother.png) no-repeat;
+	    background-position: -384px -304px;
+	    -webkit-background-size: 487px 462px;
+	    background-size: 487px 462px;
+	}
+	.label-not-related{
+		background-color: rgb(214, 132, 42);
+		float:right;
+		border-radius: 50%;
+		width:50px;
+		padding-left:5px;
+		color:#333;
+		margin-top: -25px;
+	}
+	.label-qun{
+		background-color: #23c6c8;
+		float:right;
+		border-radius: 50%;
+		width:50px;
+		padding-left:18px;
+		color:#333;
+		margin-top: -25px;
+	}
+	.m-list::-webkit-scrollbar  
+	{  
+	    width: 16px;  
+	    height: 16px;  
+	    background-color: #F5F5F5;  
+	}  
+	 .my-wexin-list::-webkit-scrollbar  
+	{  
+	    width: 2px;  
+	    height: 2px;  
+	    background-color: #F5F5F5;  
+	}  
+	/*定义滚动条轨道 内阴影+圆角*/  
+	.m-list::-webkit-scrollbar-track  
+	{  
+	    background-color: #3a3a3a;  
+	}  
+	  
+	/*定义滑块 内阴影+圆角*/  
+	.m-list::-webkit-scrollbar-thumb  
+	{  
+	    background-color: #555;  
+	}
+	.tabs-container .nav-tabs>li.active>a, .tabs-container .nav-tabs>li.active>a:focus, .tabs-container .nav-tabs>li.active>a:hover {
+	    border-bottom-color: transparent;
+	    color: green;
+	} 
+	.jt-more-button{
+		display:none;
+	}
+</style>
+<body>
+	<div id="chat">
+		<div class="sidebar-left" style="display: none;">
+			<div class="my-wexin-list" style="overflow:auto;">
+			</div>
+		</div>
+		<div class="sidebar" style="display: none;">
+			<div class="m-card">
+				<footer>
+					<i class="fa fa-search" id="jt-weixin-search" style="position:absolute;padding:7px 0 0 7px;"></i>
+					<input class="search jt-search" placeholder="搜索">
+					<span class="glyphicon glyphicon-remove remove-search-param" aria-hidden="true" style=" margin-left: -25px;cursor:pointer;font-size:10px;color:red;"></span>
+					<button type="button" class='btn btn-sm btn-primary' id="jt-weixin-barch-send" style="margin-left:10px;">群发</button>
+					<i class="glyphicon glyphicon-cog" title="功能" style="padding-left:10px;cursor:pointer;" id="show-more-button"></i>
+					<input type="hidden" id="jt-weixin-reloadWx">
+					<button type="button" class='btn btn-sm btn-primary' id="jt-weixin-reloadBtn" style="display:none;">搜索</button>
+					<button type="button" class='btn btn-sm btn-default' id="jt-weixin-reciverBtn2" style="display:none;">聊天</button>
+					<div class="jt-more-button">
+						<select style="background-color:#dddddd;color:#000;height:25px;width:50%;" id='fans-in-time'>
+							<option value=''>进粉时间</option>
+							<option value='today'>今天</option>
+						</select>
+					</div>
+				</footer>
+			</div>
+			<div style="height:30px;"> 
+				
+				<select id="employeeWeiXins" style="background-color:#dddddd;color:#000;height:25px;margin-left:5px;width:90%;">
+				</select>
+				<!-- <div style="margin-right:5px;font-size:11px;padding-top: 5px;float:right;padding-right: 13px;">
+					<input type="checkbox" name="selectOnLine" title="全部在线" >
+					<span class="selectOnLine"  title="全部在线" style="cursor:pointer;">全部在线</span>
+				</div> -->
+			</div>
+			<div class="tabs-container">
+					<ul class="nav nav-tabs weiXin-nav-tabs" style="margin-left:5px;border-color:#999;">
+						<li  id="recentTabLi" class="tabli active ">
+							<a href="#tabRecent" data-toggle="tab">
+								最近联系人<span class='badge badge-danger pull-right msg-not-read' id="recent-not-read" style="display: none;margin-left: -2px;margin-top: -10px;"></span>
+							</a>
+						</li>
+						<li  id="relatedTabLi" class="tabli">
+							<a href="#tabRelated" data-toggle="tab">
+								已关联<span class='badge badge-danger pull-right msg-not-read' id="related-not-read" style="display: none;margin-left: -2px;margin-top: -10px;"></span>
+							</a>
+						</li>
+						<li  id="notRelateTabLi" class="tabli">
+							<a href="#tabNotRelate" data-toggle="tab">
+								未关联<span class='badge badge-danger pull-right msg-not-read' id="notRelated-not-read" style="display: none;margin-left: -2px;margin-top: -10px;"></span>
+							</a>
+						</li>
+						<!-- <div style="margin-right:5px;font-size:11px;padding-top: 5px;">
+						<span class="orderByPinyin" style="padding-left:5px;cursor:pointer;float:right; padding-top: 2px;" title="按拼音首字母排序">首字母排序</span>
+						<input type="checkbox" name="orderByPinyin" title="按拼音首字母排序"  style="float:right;">
+						</div> -->
+					</ul>
+					<div class="tab-content weiXin-nav-tabs">
+						<div id="tabRecent" class="tab-pane active">
+							<div class="m-list">
+								<ul>
+								</ul>
+							</div>
+							<div class = 'wx-footer-related'  style='height:30px;padding:5px;'>
+							 	共<span id="recent-total"></span>条
+							</div>
+						</div>
+						<div id="tabRelated" class="tab-pane">
+							<div class="m-list contacts-list">
+								
+								<button class='btn btn-sm btn-primary' id="addFollowBtn" style="display:none;">添加跟进</button>
+								<ul>
+								</ul>
+								
+							</div>
+							<div class = 'wx-footer-related'  style='height:30px;padding:5px;'>
+							 	共<span id="related-total"></span>条
+							</div>
+						</div>
+						<div id="tabNotRelate" class="tab-pane">
+							<div style="padding-left:10px;">
+								<input type="checkbox" id="selectAll"> 全选
+								<button class='btn btn-sm btn-primary' id="jt-add-cs-batch" style="margin:5px 8px;">批量新增客户</button>
+								<button class='btn btn-sm btn-primary' id="jt-entry-wxcode-batch" style="margin:5px 8px;">批量管理微信号</button>
+							</div>
+							<div class="m-list contacts-list">
+								<ul>
+								</ul>
+							</div>
+							<div class = 'wx-footer-not-related' style='height:30px;padding:5px;'>
+								共<span id="not-related-total"></span>条
+							</div>
+						</div>
+					</div>
+			</div>
+		</div>
+		<div id="msg-button-div">
+			<button type="button" class='btn btn-sm btn-danger   backmsg' >撤回</button>
+			<button type="button" class='btn btn-sm btn-primary   jt-copy-content' data-clipboard-text='' >复制</button>
+			<input type="hidden" id="back-msg-id">
+			<input type="hidden" id="back-msg-createtime">
+		</div>
+		<div  id="image-button-div">
+			<button type="button" class='btn btn-sm btn-danger   backmsg' >撤回</button>
+			<button type="button" class='btn btn-sm btn-primary   collection-img' >收藏</button>
+			<input type="hidden" id="collection-img-url">
+		</div>
+		<div id="my-image-button-div">
+			<button type="button" class='btn btn-sm btn-danger   collection-img-delete' >删除</button>
+			<input type="hidden" id="collection-img-id">
+		</div>
+		<#include "/crm/cs/weiXinChat/weiXinChatForm.html">	
+		
+		<#include "/crm/cs/csEntity/csFollowEdit.html" >	
+		<!-- 绑定客户-->
+		<div style="display:none"  class="jt-wx-bind-cs" >
+		   	<div class="panel-body">
+				<form id="bindCsForm" method="get" class="form-horizontal">
+					<div class='form-group'>
+						<label class='col-sm-2 control-label'>客户编号<span style='color: red;'>*</span></label>
+						<div class='col-sm-3 '>
+							<input type='text' class='form-control' name='friendCode'  validateType='default' readonly>
+						</div>
+						<div class='col-sm-1 '>
+							<button type="button" class='btn btn-sm btn-primary' id="jt-select-cs" >选择</button>
+						</div>
+						<label class='col-sm-2 control-label'>微信昵称</label>
+						<div class='col-sm-4 '>
+							<input type='text' class='form-control' name='nickName'  validateType='default' readonly>
+						</div>
+						<input type="hidden" name="userName">
+					</div>
+					<div class='form-group bind-with-weixin'>
+						<label class="col-sm-2 control-label">微信号</label>
+						<div class="col-sm-4">
+							<input type="text" name="weixin" class="form-control" validateType="default">
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+		<!-- 群发消息-->
+		<div style="display:none"  class="jt-wx-batch-send" >
+		   	<div class="panel-body">
+		   		<form method="get" class="form-horizontal">
+			   		<div class='form-group'>
+			   			<label class='col-sm-2 control-label'>微信号</label>
+			   			<div class='col-sm-8 '>
+							<select id="batch-send-employeeWeiXins" class='form-control'>
+							</select>
+						</div>
+					</div>
+					<div class='form-group'>
+						<label class="col-sm-2 control-label">标签</label>
+						<div class="col-sm-8 batch-send-label-div">
+							
+						</div>
+					</div>
+					<div class='form-group'>
+						<label class="col-sm-2 control-label"></label>
+						<div class="col-sm-8 batch-send-person-num">
+						</div>
+						<input type="hidden" id="selected-firends">
+					</div>
+					<div class='form-group'>
+						<div class="m-text"  id="batch-send-msg-div">
+					    	<textarea  id="batch-chat-textarea"></textarea>
+	    					<div class="send-p">
+		    					<span style="padding-right:30px;">按 Ctrl + Enter 换行</span>
+		    					<button type="button" class='btn btn-sm btn-default jt-weixin-batch-sendMsgBtn'>发送</button>
+	    					</div>
+				   		</div>
+					</div>
+				</form>
+			</div>
+			
+		</div>
+		<!-- 输入微信 -->
+		<div style="display:none"  class="jt-wx-input-pane" >
+		   	<div class="panel-body">
+				<form id="inputWeiXinForm" method="get" class="form-horizontal">
+					<div class='form-group'>
+						<label class='col-sm-2 control-label'>微信号<span style='color: red;'>*</span></label>
+						<div class='col-sm-10 '>
+							<input type='text' class='form-control' name='inputWeiXin'  validateType='default' >
+						</div>
+					</div>
+					<div class='form-group'>
+						<div class='col-sm-2 '>
+						</div>
+						<div class='col-sm-6 '>
+							<a class="when-has-not-wx">无微信号请点击此处</a>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+		<!-- 修改备注 -->
+		<div style="display:none"  class="jt-wx-remark-pane" >
+		   	<div class="panel-body">
+				<form id="changeRemarkForm" method="get" class="form-horizontal">
+					<div class='form-group'>
+						<label class='col-sm-2 control-label'>备注<span style='color: red;'>*</span></label>
+						<div class='col-sm-10 '>
+							<input type='text' class='form-control' name='inputRemark'  validateType='default' >
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+		<!-- 添加号码-->
+		<div style="display:none"  class="jt-wx-add-phone" >
+		   	<div class="panel-body">
+				<form id="addPhoneForm" method="get" class="form-horizontal">
+					<div class='form-group'>
+						<label class='col-sm-2 control-label'>客户编号<span style='color: red;'>*</span></label>
+						<div class='col-sm-3 '>
+							<input type='text' class='form-control' name='friendCode'  validateType='default' readonly>
+						</div>
+						<label class='col-sm-2 control-label'>客户姓名</label>
+						<div class='col-sm-4 '>
+							<input type='text' class='form-control' name='csName'  validateType='default' readonly>
+						</div>
+					</div>
+					<div class='form-group'>
+						<label class='col-sm-2 control-label'>电话</label>
+						<div class='col-sm-4'>
+							<div class='col-sm-8'>
+								<input name="phone" class='form-control' readonly>
+							</div>
+							<div class='col-sm-4'>
+								<select class="form-control" name='phoneType'>
+									<option value="首选">首选</option>
+									<option value="停用">停用</option>
+									<option value="本人">本人</option>
+									<option value="老公">老公</option>
+									<option value="老婆">老婆</option>
+									<option value="家人">家人</option>
+									<option value="他人">他人</option>
+									<option value="朋友">朋友</option>
+									<option value="座机">座机</option>
+								</select>
+					  		 </div>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+		<!-- 新增客户-->
+		<div style="display:none"  class="jt-wx-add-cs" >
+		   	<div class="panel-body">
+				<form id="csEntityFormForAdd" method="get" class="form-horizontal">
+					<div class='form-group'>
+						<label class="col-sm-2 control-label">
+							姓名
+						</label>
+						<div class="col-sm-4">
+							<input type="text" name="name" class="form-control" validateType="default">
+						</div>
+						<div class="col-sm-6">
+                              <div class="col-sm-3"></div>
+                               <div class="radio radio-success radio-inline">
+								<input type="radio" value="男" checked id="genderMan" name="gender">
+								<label for="genderMan">男</label>
+							</div>
+							<div class="radio radio-success radio-inline">
+								<input type="radio" value="女" id="genderWomen" name="gender">
+								<label for="genderWomen">女</label>
+							</div>
+                        </div>
+					</div>
+		<div class='form-group'>
+    			<label class='col-sm-2 control-label'>电话 </label>
+			<div class='col-sm-4'>
+				<div class='col-sm-8'>
+					<input id="maskPhoneNum" class='form-control'>
+				</div>
+				<div class='col-sm-4'>
+					<select class="form-control" name='phoneType'>
+						<option value="首选">首选</option>
+						<option value="停用">停用</option>
+						<option value="本人">本人</option>
+						<option value="老公">老公</option>
+						<option value="老婆">老婆</option>
+						<option value="家人">家人</option>
+						<option value="他人">他人</option>
+						<option value="朋友">朋友</option>
+						<option value="座机">座机</option>
+					</select>
+		  		 </div>
+			</div>
+			<label class="col-sm-2 control-label">微信号</label>
+			<div class="col-sm-4">
+				<input type="text" name="weixin" class="form-control" validateType="default">
+			</div>
+                     </div>
+                     <div class='form-group'>
+						<label class="col-sm-2 control-label">
+							客户分类
+						</label>
+						<div class="col-sm-4">
+							<select class='form-control' name='bizType' id='bizType' validateType="default"></select>
+						</div>
+						<label class="col-sm-2 control-label">渠道来源</label>
+						<div class="col-sm-4">
+							<select class='form-control'  data-placeholder="请选择" name='srcs' id='srcs' validateType="default"></select>
+						</div>	
+					</div>
+					<div class='form-group'>
+						<label class="col-sm-2 control-label">意向</label>
+						<div class="col-sm-4">
+							<select id="interests"  data-placeholder="请选择" class=" form-control" name="interests" validateType="default"></select>
+						</div>	
+						<label class="col-sm-2 control-label">
+							进线方法
+						</label>
+						<div class="col-sm-4">
+							<select class='form-control' name='entry' id='entry' validateType="default"></select>
+						</div>
+					</div>
+					<div class="form-group">
+				        <div class='col-sm-11' id="addressContainer" style="margin-left:54px;"></div>
+				    </div>
+				    <div class="form-group">
+				        <label class="col-sm-2 control-label">地址</label>
+				        <div class="col-sm-10">
+			        		<label class="control-label addrDetaileDescribe" style='float: left;position: relative;'></label>
+			            	<input type="text" name="addr_" class="form-control" style='width:50%;'>
+			            </div>
+				    </div>
+				    <div class='form-group'>
+						<label class="col-sm-2 control-label">生 日</label>
+						<div class="col-sm-2">
+							<select class='form-control' name='birthYear' id="birthYear" >
+								<option value="">年</option>
+							</select>
+						</div>	
+						<div class='col-sm-2'>
+							<select class='form-control' name='birthMonth' id="birthMonth" >
+								<option value="">月</option>
+							</select>
+						</div>
+						<div class='col-sm-2'>
+							<select class='form-control' name='birthDay' id="birthDay">
+								<option value="">日</option>	
+							</select>
+						</div>
+						<div class="col-sm-2">
+							<input type="number" name="age" id="age" class="form-control" >
+						</div>
+						<div class='col-sm-2'>
+							<label class='control-label'>岁</label>	
+						</div>
+					</div>
+					<div class='form-group'>
+						<label class="col-sm-2 control-label">身高(cm)</label>
+						<div class="col-sm-4">
+							<input type="text" name="height" class="form-control" >
+						</div>	
+					
+						<label class="col-sm-2 control-label">体重(kg)</label>
+						<div class="col-sm-4">
+							<input type="text" name="weight" class="form-control" >
+						</div>	
+					</div>
+					<div class='form-group'>
+						<label class="col-sm-2 control-label">年收入</label>
+						<div class="col-sm-4">
+							<select class='form-control' name='income' id="income" >
+								<option value="">请选择</option>
+							</select>
+						</div>	
+						<label class="col-sm-2 control-label">职 业</label>
+						<div class="col-sm-4">
+							<select class='form-control' name='vocation' id="vocation" >
+								<option value="">请选择</option>
+							</select>
+						</div>	
+					</div>
+					<div class='form-group'>	
+						<label class="col-sm-2 control-label">允许下单</label>
+						<div class="col-sm-4">
+							<select class='form-control' name='canPlaceSo' id="canPlaceSo" >
+								<option value="y">是</option>
+								<option value="n">否</option>
+							</select>
+						</div>	
+					</div>
+					<!--将隐藏域放在这里，不显示出来-->
+					<div style="display:none'">
+						<input type="hidden" id="id" name="id">
+						<input type="hidden" id="preId" name="preId">
+						<input type="hidden" id="nextId" name="nextId">
+						<input type="hidden" id="phoneNum" name="phoneNum">
+						<input type="hidden" id="isFollow">
+						<input type="hidden" name="userName">
+						<input type="hidden" name="employeeId" >
+						<input type="hidden" id="type" name="type" value="1">
+					</div>	
+				</form>
+			</div>
+		</div>
+</div>
+</body>
+</html>

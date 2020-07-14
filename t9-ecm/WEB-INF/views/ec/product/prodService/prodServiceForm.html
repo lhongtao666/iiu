@@ -1,0 +1,170 @@
+<div class="tabs-container">
+	<ul class="nav nav-tabs">
+		<li class="active">
+		    <a data-toggle="tab" href="#tab-baseInfo" aria-expanded="true">商品基本信息</a>
+		</li>
+		<li class="">
+		    <a data-toggle="tab" href="#tab-skuInfo" aria-expanded="false">sku信息</a>
+		</li>
+	</ul>
+	
+	<div class="tab-content">
+		<div id="tab-baseInfo" class="tab-pane active">
+			<div class="panel-body">
+			    <div class='col-sm-12'>
+					<form id="prodServiceForm" method="get" class="form-horizontal">
+						<div class="form-group">
+							<div class='col-sm-4'>
+								<label class="col-sm-3 control-label">名称<span
+									data-toggle="tooltip" data-clickf="false" data-trigger="manual"
+									data-container="body" data-placement="top" title="名称"
+									style="width: 12px; height: 12px; display: inline; top: 2px;"
+									class="glyphicon glyphicon-question-sign"></span></label>
+								<div class="col-sm-9">
+									<input type="text" name="name" placeholder="" class="form-control"
+										validateType="default">
+								</div>
+							</div>
+							<div class='col-sm-4'>
+								<label class="col-sm-3 control-label">副名称<span
+									data-toggle="tooltip" data-clickf="false" data-trigger="manual"
+									data-container="body" data-placement="top" title="副名称"
+									style="width: 12px; height: 12px; display: inline; top: 2px;"
+									class="glyphicon glyphicon-question-sign"></span></label>
+								<div class="col-sm-9">
+									<input type="text" name="shortName" placeholder=""
+										class="form-control" validateType="default">
+								</div>
+							</div>
+							<div class='col-sm-4'>
+								<label class="col-sm-3 control-label">服务编码<span
+									data-toggle="tooltip" data-clickf="false" data-trigger="manual"
+									data-container="body" data-placement="top" title="服务编码"
+									style="width: 12px; height: 12px; display: inline; top: 2px;"
+									class="glyphicon glyphicon-question-sign"></span></label>
+								<div class="col-sm-9">
+									<input type="text" name="key" placeholder="" class="form-control"
+										validateType="default">
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class='col-sm-4'>
+								<label class="col-sm-3 control-label">服务状态<span
+									data-toggle="tooltip" data-clickf="false" data-trigger="manual"
+									data-container="body" data-placement="top"
+									title="服务状态。on_sale=上架（可购买）；not_on_sell=下架（前端不可见）"
+									style="width: 12px; height: 12px; display: inline; top: 2px;"
+									class="glyphicon glyphicon-question-sign"></span></label>
+								<div class="col-sm-9">
+									<select class="form-control" name="status" validateType="default">
+										<option value="on_sale">上架</option>
+										<option value="not_on_sale">下架</option>
+									</select>
+								</div>
+							</div>
+							
+							<div class='col-sm-4'>
+								<label class="col-sm-3 control-label">服务类型<span
+									data-toggle="tooltip" data-clickf="false" data-trigger="manual"
+									data-container="body" data-placement="top"
+									title="服务类型。entity=普通服务；sku_entity=多SKU服务；"
+									style="width: 12px; height: 12px; display: inline; top: 2px;"
+									class="glyphicon glyphicon-question-sign"></span></label>
+								<div class="col-sm-9">
+									<select class="form-control" name="type" validateType="default">
+										<option value="entity">普通服务</option>
+										<option value="sku_entity">多sku服务</option>
+									</select>
+								</div>
+							</div>
+							
+							<div class='col-sm-4'>
+								<label class="col-sm-3 control-label">sku信息<span
+									data-toggle="tooltip" data-clickf="false" data-trigger="manual"
+									data-container="body" data-placement="top" title="简述"
+									style="width: 12px; height: 12px; display: inline; top: 2px;"
+									class="glyphicon glyphicon-question-sign"></span></label>
+								<div class="col-sm-9">
+									<select disabled='disabled' class='form-control' id='skuSelect'>
+									    <option value="">默认sku</option>
+									</select>
+								</div>
+							</div>
+						</div>
+						
+						<div class="form-group">
+						    <div class='col-sm-12'>
+								<label class="col-sm-1 control-label">简述<span
+									data-toggle="tooltip" data-clickf="false" data-trigger="manual"
+									data-container="body" data-placement="top" title="简述"
+									style="width: 12px; height: 12px; display: inline; top: 2px;"
+									class="glyphicon glyphicon-question-sign"></span></label>
+								<div class="col-sm-11">
+							        <textarea rows="3" name='summary' class='form-control'></textarea>
+								</div>
+						    </div>
+						</div>
+						
+						<div class="form-group">
+							<div style="display: none'">
+								<input type="hidden" id="id" name="id"> 
+								<input type="hidden" name="createBy"> 
+								<input type="hidden" name="createTime">
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		
+		<div id="tab-skuInfo" class="tab-pane">
+			<div class="panel-body">
+			    <div id='multiSkuContainer' class='row' style='display: none;'>
+				    <div class='col-sm-12' id='eavSkuContainer'></div>
+				    <div class='col-sm-12'>
+				        <button class='btn btn-sm   btn-primary' id='createSkuBtn' type='button'>生成sku</button>
+				        
+				        <div class='row'>
+				            <div class='col-sm-12' id='skuContainer'>                
+				            </div>
+				        </div>
+				    </div>
+			    </div>
+			    
+			    <!-- 使用默认sku -->
+			    <div id='normalSkuContainer' class='row'>
+			        <form id='normalSkuForm' class='form-horizontal'>
+			            <div class='form-group'>
+			                <div class='col-sm-4'>
+				                <label class='col-sm-3 control-label'>库存型号</label>
+				                <div class='col-sm-9'>
+				                    <input class='form-control' name='skuCode' type='text' id='skuCode'>
+				                </div>
+			                </div>
+			                
+			                <div class='col-sm-4'>
+				                <label class='col-sm-3 control-label'>价格</label>
+				                <div class='col-sm-9'>
+				                    <input class='form-control' type='text' name='skuPrice' id='skuPrice'>
+				                </div>
+			                </div>
+			                
+			                <div class='col-sm-4'>
+			                    <label class='col-sm-3 control-label'>状态</label>
+			                    <div class='col-sm-9'>
+				                    <select class='form-control' name='skuStatus' id='skuStatus'>
+				                        <option value='on_sale'>上架</option>
+				                        <option value='not_on_sell'>下架</option>
+				                        <option value='delete'>删除</option>
+				                        <option value='sold_out'>售罄</option>
+				                    </select>
+			                    </div>
+			                </div>
+			            </div>
+			        </form>
+			    </div>
+			</div>
+		</div>
+	</div>
+</div>

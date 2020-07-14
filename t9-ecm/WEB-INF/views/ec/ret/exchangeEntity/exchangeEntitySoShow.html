@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>换货申请</title>
+	<#include "/common/common.html">
+	<!--suggest search plugins-->
+	<link href="${ctx}/css/plugins/blueimp/css/blueimp-gallery.min.css?v=${jsVersion}" rel="stylesheet">
+	<style type="text/css">
+		.dragsort {list-style-type:none; margin:0px; }
+		.dragsort li {float:left; padding:5px;}
+	</style>
+
+	<script src="${ctx}/js/plugins/suggest/bootstrap-suggest.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/plugins/dragsort/jquery.dragsort-0.5.2.min.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/jt/ec/ret/exchangeEntityApply${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/ec/ret/soItemList${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/ec/ret/soInfo${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/ec/ret/exchangeEntityBase${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/ec/ret/exchangeLog${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/common/utils/shipCompanyUtils${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/ec/ret/shipInfoUtil${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/common/service/financeAccountSelect${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script type="text/javascript">var soNo = "${soNo}";</script>
+</head>
+
+<body class='white-bg'>
+	<div id="blueimp-gallery" class="blueimp-gallery">
+		<div class="slides"></div>
+		<h3 class="title"></h3>
+		<a class="prev">‹</a>
+		<a class="next">›</a>
+		<a class="close">×</a>
+		<a class="play-pause"></a>
+		<ol class="indicator"></ol>
+	</div>
+
+	<div class="wrapper animated ">
+		<div class="row form_wrapper soInfoDiv">
+			<form id="soInfoForm" method="get" class="form-horizontal">
+				<input type="hidden" name="csId"/>
+				<div class="col-sm-12"    style=" height:20px;" ></div>
+				<div class="col-sm-8">
+					<div class='col-sm-4'>
+						<div class="col-sm-4 control-label">客户名称</div>
+						<div class="col-sm-8">
+							<input type="text" name="csName" placeholder="" readonly="readonly"    class="form-control" validateType="default" ></div>
+					</div>
+					<div class='col-sm-4'>
+						<div class="col-sm-4 control-label">订单编号</div>
+						<div class="col-sm-8">
+							<input type="text" name="soNo"  readonly="readonly"   class="form-control" validateType="default" ></div>
+					</div>
+				</div>
+				<div class="col-sm-12"    style=" height:25px;" ></div>
+				<div class='col-sm-12' >
+					<table id="soItemListGrid"></table>
+				</div>
+				<!-- 专门用来放隐藏的地方 -->
+				<div class="hiddenInfo">
+					<input type="hidden" id="skuName" name="skuName" title="退货的sku名称">
+					<input type="hidden" id="skuId" name="skuId" title="退货的skuID">
+					<input type="hidden" id="skuImage" name="skuImage" title="退货的sku主图">
+					<input type="hidden" id="canReturnCount" name="canReturnCount" title="能退的最大数量"></div>
+			</form>
+		</div>
+
+		<div style="display: none;" class="row form_wrapper exchangeEntityDetailDiv">
+			<div class='col-sm-12'>
+				<div class='panel-heading'>
+					<span id="applyDiv" style="display : none">
+						<button type='button' id="saveBtn" class="btn btn-sm   btn-primary jt-btn-normal saveBtn">保存</button>
+						<button type='button' id="prevBtn" class="btn btn-sm   btn-default jt-btn-close prevBtn">取消</button>
+					</span>
+					<span id="detailDiv" style="display : none">
+						<button type='button' class="btn btn-sm   btn-default prevBtn">取消</button>
+					</span>
+				</div>
+			</div>
+			<div class='col-sm-12'>
+				<div class="tabs-container">
+					<ul class="nav nav-tabs">
+						<li  id="detailTabLi" class="tabli active">
+							<a href="#detailTab" data-toggle="tab">换货详情</a>
+						</li>
+						<li  id="exchangeBillTabLi" class="tabli" style="display : none" >
+							<a href="#exchangeBillTab" data-toggle="tab">换货单据</a>
+						</li>
+						<li  id="logTabLi" class="tabli">
+							<a href="#logTab" data-toggle="tab">备注历史</a>
+						</li>
+						<li id="shipTabLi" class="tabli  shipScInfo" style="display:none;">
+							<a href="#shipInfoTab" data-toggle="tab">物流信息</a>
+						</li>
+					</ul>
+					<div class="tab-content">
+						<div id="detailTab" class="tab-pane active">
+							<div class="panel-body">
+								<#include "exchangeEntityForm.html"></div>
+						</div>
+						<div id="exchangeBillTab" class="tab-pane">
+							<div class="panel-body">
+								<#include "exchangeBill.html"></div>
+						</div>
+						<div id="logTab" class="tab-pane">
+							<div class="panel-body">
+								<#include "exchangeLogList.html"></div>
+						</div>
+						<div id="shipInfoTab" class="tab-pane">
+							<div class="panel-body">
+								<#include "/ec/ret/returnEntity/shipInfoTab.html"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div style="display: none;" class="records_wrapper">
+			<#include "exchangeEntityRecords.html"></div>
+	</div>
+
+	<!-- 备忘日志修改页面弹出层 -->
+	<div id="exchangeLogPage" style="display : none">
+		<#include "exchangeLogEdit.html"></div>
+
+	<div style="display : none">
+		<#include "exchangeAdd.html"></div>
+
+		
+
+</body>
+</html>

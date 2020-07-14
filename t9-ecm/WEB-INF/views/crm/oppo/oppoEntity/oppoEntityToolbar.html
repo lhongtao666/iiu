@@ -1,0 +1,74 @@
+<div class="col-sm-12">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <button type='button' class='btn btn-sm   btn-primary oppoEntityAdd'>
+                <i class='fa fa-plus'>添加</i>
+            </button>
+            <button type='button' class='btn btn-sm   btn-danger oppoEntityDel'>
+                <i class='fa fa-remove'>删除</i>
+            </button>
+            <button type='button' class='btn btn-sm   btn-primary oppoEntityDetail isDetailBtn'>
+                <i class='fa fa-th-list'>明细</i>
+            </button>
+            <button type='button' class='btn btn-sm   btn-primary oppoEntityEdit'>
+                <i class='fa fa-edit'>编辑</i>
+            </button>
+        </div>
+        <div class="panel-body">
+            <form role="form" class="form-horizontal">
+                <div class="form-group">
+                    <div class="col-sm-3">
+                        <label class="control-label col-sm-4">编号/名称</label>
+                        <div class="col-sm-8">
+                            <div class="input-group" style="width: 100%;">
+                                <input type="text" id="keySearch" placeholder="编号/名称" name="keyorname" class="form-control" autocomplete="off">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <label for="nameSearch" class="col-sm-4 control-label">阶段</label>
+                        <div class="col-sm-8">
+                            <select class="form-control" name="Q__S__EQ__stage_">
+                                <option value="">请选择</option>
+                                <option value="begin">挖掘商机</option>
+                                <option value="interest">确定客户意向</option>
+                                <option value="project">引导客户立项</option>
+                                <option value="agree">赢得客户认可</option>
+                                <option value="discuss">进行商务谈判</option>
+                                <option value="win">赢单</option>
+                                <option value="lost">丢单</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <label for="nameSearch" class="col-sm-4 control-label">兴趣</label>
+                        <div class="col-sm-8">
+                            <select class="form-control" name="Q__S__EQ__interest_">
+                                <option value="">请选择</option>
+                                <option value="1">一般</option>
+                                <option value="2">普通</option>
+                                <option value="3">较大</option>
+                                <option value="4">很大</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <label for="nameSearch" class="col-sm-4 control-label">概率</label>
+                        <div class="col-sm-8">
+                            <select class="form-control" name="Q__S__EQ__rate_">
+                                <option value="">请选择</option>
+                                <option value="1">很小</option>
+                                <option value="2">一般</option>
+                                <option value="3">较大</option>
+                                <option value="4">很大</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-sm   btn-primary oppoEntitySearch col-sm-offset-1">
+                        <i class="fa fa-search"></i>搜索
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

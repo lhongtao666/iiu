@@ -1,0 +1,115 @@
+<div style="display: none;" class="row form_wrapper">
+	<div class='col-sm-12'>
+		<div class="panel panel-default">
+	        <div class="panel-heading">
+				<button type='button' class="jt-btn saveBtn"><i class="fa fa-floppy-o">&nbsp;保存</i></button>
+				<span class="jt-span"></span>
+				<button type='button' class="jt-btn jt-btn-red prevBtn"><i class="fa fa-reply">&nbsp;取消</i></button>
+	        </div>
+
+	        <div class="panel-body">
+	            <form id="eavSetForm" method="get" class="form-horizontal">
+					<div class="form-group">
+						<div class='col-sm-4 col-sm-6'>
+							<label class="col-sm-3 control-label">名称<span style='color: red;'>*</span></label>
+							<div class="col-sm-9">
+								<input type="text" name="name" placeholder=""
+									class="form-control" validateType="default">
+							</div>
+						</div>
+
+						<div class='col-sm-4 col-sm-6'>
+							<label class="col-sm-3 control-label">业务键<span style='color: red;'>*</span></label>
+							<div class="col-sm-9">
+								<input type="text" name="key" placeholder=""
+									class="form-control" validateType="default">
+							</div>
+						</div>
+						<div class='col-sm-4 col-sm-6'>
+							<label class="col-sm-3 control-label">状态</label>
+							<div class="col-sm-9">
+								<input name='status' type='hidden' value='actived'>
+								<input type="checkbox" class="js-switch" checked='checked'/>
+								<input name='usedStatusName' type='hidden' class='form-control' readonly="readonly" value='已用'>
+							</div>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<div class='col-sm-12'>
+							<label class="col-sm-1 control-label">备注</label>
+							<div class="col-sm-11">
+								<textarea name="comment" rows='4' class="form-control" validateType='default'></textarea>
+							</div>
+						</div>
+					</div>
+
+					<div class='form-group'>
+						<div class='col-sm-12'>
+							<label class="col-sm-1 control-label">快速复制</label>
+							<div class="col-sm-3">
+								<select class='form-control' id='skusContainer'>
+									<option value=''>请选择</option>
+								</select>
+							</div>
+							<div class='col-sm-1'>
+								<button type='button' class='btn btn-sm   btn-primary' id='copySkuBtn'>复制</button>
+							</div>
+						</div>
+					</div>
+
+					<div class='form-group project-manager'>	
+						<div class='col-sm-12'>
+							<label class="col-sm-1 control-label">sku属性</label>
+							<div class='col-sm-11'>
+								<table class='table table-bordered'>
+									<thead>
+										<tr>
+											<th width='10%'>名称</th>
+											<th width='10'>是否sku属性</th>
+											<th width='50%'>选项值</th>
+											<th width='20'>添加选项值</th>
+											<th width='10%'>操作</th>
+										</tr>	
+									</thead>
+									
+									<tbody id='skuAttrContainer'>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+
+					<div class='form-group' id='addSkuTrContainer' style="display: none;">
+						<div class='col-sm-12'>
+							<label class='control-label col-sm-1'>添加sku属性</label>
+							<div class='col-sm-4'>
+								<input class='form-control' name='newSkuAttrName'>
+							</div>
+							<div class='col-sm-2'>
+								<button class='btn btn-sm   btn-primary' type='button' id='saveNewAttrBtn'>保存</button>
+							</div>
+						</div>
+					</div>
+
+					<div class='form-group'>
+						<div class='col-sm-11 col-sm-offset-1'>
+							<button class='btn btn-sm   btn-primary' type='button' id='addSkuTrBtn'>
+								<i class='fa fa-plus'></i>添加
+							</button>
+							<button class='btn btn-sm   btn-danger' style='display: none;' type='button' id='cancelSkuTrBtn'>取消</button>
+						</div>
+					</div>
+
+					<!--将隐藏域放在这里，不显示出来-->
+					<div class='form-group' style="display: none;">
+						<input type="hidden" id="id" name="id"> 
+						<input type="hidden" name='sort'> 
+						<input type="hidden" name="createBy"> 
+						<input type="hidden" name="createTime">
+					</div>
+				</form>
+	        </div>
+	    </div>	
+	</div>
+</div>

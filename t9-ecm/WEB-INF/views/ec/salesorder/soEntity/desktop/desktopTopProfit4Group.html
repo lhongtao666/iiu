@@ -1,0 +1,37 @@
+<script type="text/javascript">
+    var curUserId = "${ONLINE_ENTITY.userId}";
+    var empType = "${empType}";
+    var currentPositionId = "${currentPositionId}";
+</script>
+<script src="${ctx}/js/jt/ec/salesorder/desktop/topProfit${deploy_min!""}.js?v=${jsVersion}" ></script>
+
+<style>
+	.darkColor{
+	   color:red;
+	}
+</style>
+
+<div class="panel panel-default ">
+	<div class="panel-heading">
+		<h4><span id="typeName"></span>员工销售排名</h4>
+	</div>
+	<div class="panel-body">
+        <table class='table table-bordered table-stripped'>
+        	<thead>
+        		<tr>
+	        		<th>排名</th>
+	        		<th>员工</th>
+	        		<th>下单数</th>
+	        		<th>下单金额</th>
+	        		<th>成单率</th>
+	        		<th>签收数</th>
+	        		<th>签收总额</th>
+	        		<th>签收率</th>
+        		</tr>
+        	</thead>
+        	<tbody id='profitContainer'>
+        		
+        	</tbody>
+        </table>
+	</div>
+</div>

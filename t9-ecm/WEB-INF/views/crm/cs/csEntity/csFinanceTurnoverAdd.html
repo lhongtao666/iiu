@@ -1,0 +1,60 @@
+<div class="wrapper ">
+	<div  class="form_wrapper">
+		<form id="csFinanceTurnoverAdd" method="get" class="form-horizontal">
+			<div class='form-group'>
+				<div class="col-sm-6">
+					<label class="control-label col-sm-4">订单号</label>
+					<div class="col-sm-8">
+						<input type="text" name='soNo' class="form-control" placeholder="请输入订单号" validateType="default"  />
+					</div>
+				</div>
+				<div class="col-sm-6">
+					<label class="control-label col-sm-4">订单金额</label>
+					<div class="col-sm-8">
+						<input type="number" name='amount' class="form-control" placeholder="请输入订单金额" validateType="default"  />
+					</div>
+				</div>
+			</div>
+			<div class='form-group'>
+				<div class="col-sm-6">
+					<label class="control-label col-sm-4">下单人</label>
+					<div class="col-sm-5">
+						<input type="hidden" name="placerId" >
+						<input type="hidden" name="placerName" >
+						<input type="hidden" name="placerAid" >
+						<div class="input-group">
+							<input type="text" name='placerShow' class="form-control" placeholder="请选择下单人" validateType="default" readonly="readonly" />
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<button type="button" class="btn btn-sm   btn-primary  selectPlacerId">选择员工</button>
+					</div>
+				</div>
+			</div>
+			<div class='form-group'>
+				<div class="col-sm-6">
+					<label class="control-label col-sm-4">开户时间</label>
+					<div class="col-sm-8" >
+						<input class='laydate-icon form-control layer-date'  name="startTime" placeholder="YYYY-MM-DD hh:mm" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">
+					</div>
+				</div>
+				<div class="col-sm-6">
+					<label class="control-label col-sm-4">到期时间</label>
+					<div class="col-sm-8" >
+						<input class='laydate-icon form-control layer-date'  name="endTime" placeholder="YYYY-MM-DD hh:mm" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">
+					</div>
+				</div>
+			</div>	
+			<div class='form-group'>
+				<div class="col-sm-12">
+					<label class="col-sm-2 control-label">产品</label>
+					<div class="col-sm-9">
+						<textarea rows="3" name="prodName" class="form-control" validateType="default"></textarea>
+					</div>
+				</div>
+			</div>
+			<input type="hidden" name="csId"/>
+			<input type="hidden" name="csCode">	
+		</form>
+	</div>
+</div>

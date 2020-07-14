@@ -1,0 +1,120 @@
+<div class='row list_wrapper' id="interestDiv" style="display: none;">
+	<script src="${ctx}/js/jt/crm/report/profit/interestStatisticsReport${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/crm/report/profit/interestStatisticsUtil${deploy_min!""}.js?v=${jsVersion}" ></script>
+			<div class='col-sm-12'>
+				<div class="panel panel-default">
+					<div class="panel-heading report-content1">	
+						<form role="form" id='interestSearchForm' class="form-horizontal">
+							<div class='form-group'>
+								<label class="control-label col-sm-1">周期</label>	
+								<div class="col-sm-2">
+									<select name="timeTypeSearch1" id="timeTypeSearch1" placeholder=""
+										class="form-control" validateType="default">
+										<option value="day">按天</option>
+										<option value="month">按月</option>
+										<option value="quarter">按季度</option>
+										<option value="year">按年</option>
+									</select>
+								</div>
+
+								<div class="col-sm-2 yearElement1">
+									<select name="yearSearch1" id="yearSearch1" placeholder=""
+										class="form-control" validateType="default">
+									</select>
+								</div>
+
+								<div class="col-sm-1 quarterElement1">
+									<select name="quarterSearch1" id="quarterSearch1" placeholder=""
+										class="form-control" validateType="default">
+										<option value="1">1季度</option>
+										<option value="2">2季度</option>
+										<option value="3">3季度</option>
+										<option value="4">4季度</option>
+									</select>
+								</div>	
+
+								<div class="col-sm-1 monthElement1">
+									<select name="monthSearch1" id="monthSearch1" placeholder=""
+										class="form-control" validateType="default">
+										<option value="1">1月</option>
+										<option value="2">2月</option>
+										<option value="3">3月</option>
+										<option value="4">4月</option>
+										<option value="5">5月</option>
+										<option value="6">6月</option>
+										<option value="7">7月</option>
+										<option value="8">8月</option>
+										<option value="9">9月</option>
+										<option value="10">10月</option>
+										<option value="11">11月</option>
+										<option value="12">12月</option>
+									</select>
+								</div>
+								
+								<div class='col-sm-2'>
+									<button class="jt-form-select dayElement" id="prevBtn1" type="button">前一天</button>
+									<button class="jt-form-select dayElement" id="nextBtn1" type="button">后一天</button>	
+								</div>
+								
+								<div class="col-sm-4 dayElement1"> 
+					                <div class="input-daterange input-group" id="datepicker">
+			                        	<input class='laydate-icon form-control layer-date' id="beginDate1" name="beginDate1" validateType="default" placeholder="开始时间" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">
+			                            <span class="input-group-addon">到</span>
+			                            <input class='laydate-icon form-control layer-date' id="endDate1" name="endDate1" validateType="default" placeholder="结束时间" onclick="laydate({istime: true, start: laydate.now(0, 'YYYY/MM/DD 23:59:59'), format: 'YYYY-MM-DD hh:mm:ss'})">
+			                        </div>
+					            </div>					            
+					      
+					            <div class='col-sm-3'>
+									<div class="radio radio-success radio-inline" style="margin-right:10%">
+										<input type="radio" value="interest" id="interest" name="searchType" checked>
+										<label for="interest">客户意向</label>
+									</div>
+									<div class="radio radio-success radio-inline">
+										<input type="radio" value="productName" id="productName" name="searchType">
+										<label for="productName">产品意向</label>
+									</div>
+								</div>
+							</div>
+							
+							<div class='form-group'>
+							    <label class="control-label col-sm-1">进线方式</label>
+								<div class='col-sm-2'>
+									<select name="Q__S__EQ__cs_entry_" id='entrySearch' class="form-control" validateType="default"></select>
+								</div>
+								<div class='col-sm-1' style='text-align:right;'><label class='control-label con-sm-1'>部门</label></div>	
+							    <div class='col-sm-2'>
+							     	<input id='groupName1' readonly class='form-control'>
+							     	<input id="belongOgn1" name='belongOgn' type='hidden' class='form-control'>
+							    </div>
+							    <label class="control-label col-sm-1">时间类型</label>
+								<div class='col-sm-2'>
+									<select name="timeType" class="form-control timeType" validateType="default">
+										<option value='oper'>操作时间</option>
+										<option value='place'>下单时间</option>
+									</select>
+								</div>
+							     <div class='col-sm-3'>
+							    	<button class="jt-btn-search" id="interestSearchBtn"   type="button"><i class="fa fa-search"></i>&nbsp;搜索</button>
+							    	<button type='button' class='jt-btn-search exportExcel1' ><i class="fa fa-reply"></i>&nbsp;导出</button>
+							    	<input type="hidden"  name="reportKey"  value="${reportKey}">
+							    </div>
+						    </div>
+						</form>
+					</div>
+				</div>
+			</div>
+
+			<div class="jqGrid_wrapper col-sm-12">
+				<table id='interestStatisticsReportGrid'></table>
+				<div id="interestStatisticsReportPager"></div>
+			</div>
+		    		
+			<div class="panel-body insterestPieDataDiv">
+				<div  style="border: 1px solid #CACCC1;margin-bottom:5px;" class="col-sm-12">
+					<div id="interestStatisticsReportChart" style="height:350px;"></div>
+				</div>
+				<div  style="border: 1px solid #CACCC1;" class="col-sm-12">
+					<div id="interestStatisticsReportBarChart" style="height:350px;"></div>
+			    </div>
+			</div>
+		</div>

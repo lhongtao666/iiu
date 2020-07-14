@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>调查答卷管理</title>
+	<#include "/common/common.html">
+	<script src="${ctx}/js/ty/cs/questionnaire/questionnaireResult${deploy_min!""}.js?v=${jsVersion}" ></script>
+</head>
+
+<body>
+	<div class="wrapper animated fadeInRight">
+		<!-- list界面 -->
+		<div class="row list_wrapper">
+			<#include "/cs/questionnaire/questionnaireResult/questionnaireResultToolbar.html">	  			
+			<div class='col-sm-12 jqGrid_wrapper'>
+			    <table id="questionnaireResultGrid"></table>
+				<div id="questionnaireResultPager"></div>
+			</div>
+		</div>
+		<!-- 编辑界面 -->
+		<#include "/cs/questionnaire/questionnaireResult/questionnaireResultEdit.html">	    
+	</div>
+</body>
+</html>

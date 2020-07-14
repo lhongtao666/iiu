@@ -1,0 +1,1295 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>客户微信聊天界面</title> <#include "/common/common.html"> <#include
+"/common/ztree.html">
+<link rel="stylesheet" rev="stylesheet" type="text/css" media="all" href="${ctx}/css/jt/crm/cs/wx/weiXinChatNew.css?v=${jsVersion}">
+<link rel="stylesheet" rev="stylesheet" type="text/css" media="all" href="${ctx}/css/bootstrap-select.css?v=${jsVersion}">
+<link rel="stylesheet" rev="stylesheet" type="text/css" media="all"
+<link rel="stylesheet" rev="stylesheet" type="text/css" media="all"
+	href="${ctx}/css/jt/solr/solr.css?v=${jsVersion}">
+<link href="${ctx}/css/plugins/chosen/chosen.css?v=${jsVersion}"
+	rel="stylesheet">
+<script src="${ctx}/js/plugins/chosen/chosen.jquery.js?v=${jsVersion}"></script>
+<script src="${ctx}/js/jt/crm/android/androidNew${deploy_min!"
+	"}.js?v=${jsVersion}"></script>
+<script src="${ctx}/js/jt/crm/android/androidChatNewForm${deploy_min!"
+	"}.js?v=${jsVersion}"></script>
+<script src="${ctx}/js/jt/solr/solr-layer${deploy_min!"
+	"}.js?v=${jsVersion}"></script>
+<script src="${ctx}/js/jt/crm/android/androidCsInfo${deploy_min!"
+	"}.js?v=${jsVersion}"></script>
+<script src="${ctx}/js/jt/crm/android/androidCsFollow${deploy_min!"
+	"}.js?v=${jsVersion}"></script>
+<script src="${ctx}/js/jt/crm/cs/weiXin/weiXinUtil${deploy_min!"
+	"}.js?v=${jsVersion}"></script>
+<script
+	src='${ctx}/js/jt/common/service/customerSelectLayer${deploy_min!""}.js?v=${jsVersion}'></script>
+<script
+	src='${ctx}/js/jt/crm/cs/csFollow${deploy_min!""}.js?v=${jsVersion}'></script>
+<script src='${ctx}/js/jt/crm/android/androidKmEntity${deploy_min!""}.js?v=${jsVersion}'></script>
+<script
+	src='${ctx}/js/jt/common/service/employeesSelectLayer${deploy_min!""}.js?v=${jsVersion}'></script>
+<script
+	src="${ctx}/js/plugins/suggest/bootstrap-suggest.js?v=${jsVersion}"></script>
+<script src="${ctx}/js/jt/crm/cs/csEntityUtils${deploy_min!"
+	"}.js?v=${jsVersion}" ></script>
+<script src="${ctx}/js/jt/common/service/addressService${deploy_min!"
+	"}.js?v=${jsVersion}" ></script>
+<script src="${ctx}/js/jt/crm/cs/csPhone${deploy_min!""}.js?v=${jsVersion}" ></script>
+<script src="${ctx}/js/jt/gl/km/kmFile${deploy_min!""}.js?v=${jsVersion}" ></script>
+<script src="${ctx}/js/bootstrap-select.min.js?v=${jsVersion}" ></script>
+<script type="text/javascript">
+		var maxIndex = null;	//窗口层叠最大值
+		var isDefaultLast = "y";
+		var forceInputWx = "${forceInputWx}";
+		var isGZHChat = "${isGZHChat}";
+		var openCsChat = "${openCsChat}";
+		var channelData = "";
+		var isChannel = "${isChannel}";
+		var isBizType = "${isBizType}";
+	</script>
+</head>
+<style title="wexin-css-rule">
+@font-face {
+ 	font-family: 'test';
+ 	src: url('${ctx}/fonts/test.ttf');
+}
+@font-face {
+ 	font-family: 'test1';
+ 	src: url('${ctx}/fonts/test1.ttf');
+}
+@font-face {
+ 	font-family: 'test2';
+ 	src: url('${ctx}/fonts/test2.ttf');
+}
+@font-face {
+ 	font-family: 'test3';
+ 	src: url('${ctx}/fonts/test3.ttf');
+}
+/* .layer-left-list:not(i), .layer-center-list:not(.chat-solr), .layer-right-list:not(i),.layer-right-list:not(em), #more-button-div * {font-family: 'test';font-size:1.1em;} */
+.layer-left-list, .layer-center-list,.layer-right-list {box-shadow: none;}
+/* 微信聊天solr入口样式 */
+.chat-solr {float:left;width:30px;height:25px;margin:2.5px 10px;background-color:#d7e5e5;font-size:1.2em;text-align:center;border-radius:5px;color:#408080;}
+.chat-solr:hover {cursor:pointer;box-shadow:0 0 10px #21b9bb;font-size:1.3em;}
+
+body {
+	color: #4d4d4d;
+	font: 'Helvetica Neue', Helvetica, 'Microsoft Yahei', Arial, sans-serif;
+	background: url(${ctx}/img/jt/wx/images/weixin-bg-04.jpg) no-repeat;
+	background-size: cover;
+	font-smoothing: antialiased;
+}
+
+.web_wechat_women {
+	display: inline-block;
+	vertical-align: middle;
+	width: 16px;
+	height: 16px;
+	background: url(${ctx}/img/jt/wx/images/weixinother.png) no-repeat;
+	background-position: -368px -304px;
+	-webkit-background-size: 487px 462px;
+	background-size: 487px 462px;
+}
+
+.web_wechat_men {
+	display: inline-block;
+	vertical-align: middle;
+	width: 16px;
+	height: 16px;
+	background: url(${ctx}/img/jt/wx/images/weixinother.png) no-repeat;
+	background-position: -384px -304px;
+	-webkit-background-size: 487px 462px;
+	background-size: 487px 462px;
+}
+
+.label-not-related {
+	background-color: #1ab394;
+	float: right;
+	border-radius: 50%;
+	width: 50px;
+	padding-left: 5px;
+	color: #333;
+	margin-top: -25px;
+	border-radius: 5px;
+	color: #e7eaec;
+}
+
+.label-qun {
+	background-color: #337ab7;
+	float: right;
+	width: 50px;
+	padding-left: 18px;
+	color: #f1f1f1;
+	margin-top: -25px;
+}
+
+.label-add-friend:hover {
+	background-color: #23c6c8;
+}
+
+.label-add-friend {
+	background-color: #1ab394;
+	float: right;
+	border-radius: 10%;
+	width: 50px;
+	padding-left: 13px;
+	color: #f3f3f4;
+	margin-top: -25px;
+	cursor: pointer;
+	padding-bottom: 2px;
+	padding-top: 2px;
+}
+
+.m-list::-webkit-scrollbar {
+	width: 10px;
+	height: 16px;
+	background-color: transparent;
+}
+
+.m-message::-webkit-scrollbar {
+	width: 10px;
+	background-color: #F5F5F5;
+}
+
+#csinfo-field-binded::-webkit-scrollbar {
+	width: 10px;
+	background-color: #F5F5F5;
+}
+
+#follow-field::-webkit-scrollbar {
+	width: 7px;
+	background-color: transparent;
+}
+
+.my-wexin-list::-webkit-scrollbar {
+	width: 2px;
+	height: 2px;
+	background-color: #F5F5F5;
+}
+/*定义滚动条轨道 内阴影+圆角*/
+.m-list::-webkit-scrollbar-track {
+	background-color: transparent;
+}
+
+/*定义滑块 内阴影+圆角*/
+.m-list::-webkit-scrollbar-thumb {
+	background-color: rgba(208, 205, 204, 0.7);
+	border-redius: 3px;
+}
+/*定义滑块 内阴影+圆角*/
+.m-message::-webkit-scrollbar-thumb {
+	background-color: #bbb;
+}
+/*定义滑块 内阴影+圆角*/
+#csinfo-field-binded::-webkit-scrollbar-thumb {
+	background-color: #bbb;
+}
+/*定义滑块 内阴影+圆角*/
+#follow-field::-webkit-scrollbar-thumb {
+	background-color: rgba(234, 236, 236, 0.3);
+}
+
+.exp_bd::-webkit-scrollbar {
+	width: 7px;
+	background-color: transparent;
+}
+/*定义滚动条轨道 内阴影+圆角*/
+.exp_bd::-webkit-scrollbar-track {
+	background-color: transparent;
+}
+
+/*定义滑块 内阴影+圆角*/
+.exp_bd::-webkit-scrollbar-thumb {
+	background-color: rgba(208, 205, 204, 0.7);
+	border-redius: 3px;
+}
+
+.tab-top.active>a, .tab-top.active>a:focus, .tab-top.active>a:hover {
+	border-bottom-color: transparent;
+	color: #fff !important;
+}
+
+.jt-more-button {
+	display: none;
+}
+
+.tab-top.active>a:focus, .tab-top.active>a:hover {
+	border-bottom-color: transparent;
+	color: #f9f9f9 !important;
+}
+
+.tab-top.active>a, .tab-top.active>a:hover, .tab-top.active>a:focus {
+	background: #1ab394 !important;
+}
+
+.weiXin-nav-tabs {
+	margin-right: 0 !important;
+}
+
+.weiXin-nav-tabs>li>a {
+	background-color: #dbd9d8;
+	color: #555;
+}
+
+.weiXin-nav-tabs>li.active>a, .weiXin-nav-tabs>li.active>a:hover,
+	.weiXin-nav-tabs>li.active>a:focus {
+	border-bottom-color: none;
+	border-left-color: none;
+	border-right-color: none;
+	border-top-color: none;
+	background: none;
+	border: none;
+	border-bottom-color: #1ab394 !important;
+	border-image: none;
+	color: #1ab394;
+	cursor: default;
+	font-size: 1em;
+	border-bottom: 2px solid #1ab394;
+	background-color: #dadada !important;
+}
+
+.weiXin-nav-tabs>li>a:hover, .weiXin-nav-tabs>li>a:focus {
+	background-color: #dbd9d8;
+	color: #1ab394;
+	border: none;
+	font-size: 1em;
+	border-bottom: 2px solid #1ab394;
+}
+
+.jt-selected-employee-wx-img {
+	width: 58px;
+	height: 50px;
+	padding: 5px 9px;
+	cursor: pointer;
+}
+
+.employee-nickname {
+	float: left;
+	margin-top: 15px;
+	width: auto;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	display: block;
+	overflow: hidden;
+	width: calc(100% - 96px);
+}
+
+.m-card {
+	padding: 3px;
+	padding-top: 45px;
+}
+
+.nav-tabs {
+	border-bottom: none;
+}
+
+#more-button-div,#li-contextmenu{
+	background-color: rgba(245, 247, 247, 0.85);
+    display: block;
+    border-radius: 5px;
+    text-align: left;
+    border: 1px solid #6ad0c1;
+    overflow: hidden;
+    width: 150px;
+}
+
+#more-button-div div ,#li-contextmenu div{
+	background: transparent;
+	border: none;
+	color: #555;
+	font-size: 13px;
+	padding-left: 10px;
+	cursor: pointer;
+	width: 150px;
+}
+#more-button-div div:hover,#li-contextmenu div:hover {
+	background-color: rgb(226, 239, 238);
+}
+.batch-a {
+	width: 25px;
+	height: 25px;
+	background: url(${ctx}/img/jt/wx/images/qunfa.png) no-repeat;
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.add-contact-a {
+	width: 25px;
+	height: 25px;
+	background: url(${ctx}/img/jt/wx/images/tianjia.png) no-repeat;
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.refresh-a {
+	width: 25px;
+	height: 25px;
+	background: url(${ctx}/img/jt/wx/images/shuaxin.png) no-repeat;
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.tooltip {
+	max-width: 300px !important;
+}
+.chat-container {
+	width:100%;
+	height:90%;
+	max-height:750px;
+	margin-top:2.5%;
+	position: relative;
+	/* background-color: rgba(238, 238, 238, 0.2); */
+}
+.left-blank {width:10%;height:100%;float:left;}
+
+
+
+.chat-list-layer,.chat-main-layer,.chat-extra-layer {height:100%;width:100%;overflow:hidden;display:none;}
+.chat-list-layer .sidebar ,.chat-list-layer .sidebar-left{height: 100%;}
+.chat-list-layer .sidebar {
+	width:85%;
+	color: #555;
+	background-color: #e4e4e4;
+	overflow: hidden;
+	margin-left:15%;
+}
+.sidebar-min {margin-left:15% !important;width:85% !important;min-width: auto !important;}
+.csinfo-button-field-min {}
+.chat-list-layer .sidebar-left {
+	max-width: 60px;
+	width:15%;
+	min-width:35px;
+	color: #f4f4f4;
+	background-color: #26292d;
+	position: absolute;
+    left: 0;
+    top: 0;
+}
+.chat-extra-layer .chat-history {height: 100%; display: none;width: 100%;background:transparent;}
+.layer-right-list {background-color: rgba(238, 238, 238, 0.5);}
+.layer-move-div {position:absolute;top:-10px;left:0;background:transparent;width:100%;height:20px;z-index:999;}
+#jt-weixin-repeat-div{
+	height: 200px;
+	display: none;
+	position: fixed;
+	z-index: 10000000;
+	background-color: #fff;
+    border-radius: 5px;
+    text-align: left;
+    line-height: 30px;
+    opacity: 0.9;
+    padding: 10px;
+    background-color: #fff;
+    overflow: auto;
+    border: 4px solid #1caf9a;
+    box-shadow: 0 0 20px #273a4a;
+    width: auto !important;
+}
+
+.jt-cs-baseinfo {display: none;}
+.obi {color: #1ab394;}
+
+
+/* 知识库样式*/
+.kmArticleList{
+	padding: 0px 10px;
+	height:calc(100% - 50px);
+	overflow:auto;
+}
+#kmEntitySearchForm .chosen-container-multi .chosen-choices{
+	min-height: 25px !important;
+	height: 25px !important;
+}
+#accordion .panel{
+    border: none;
+    border-top: 1px solid #e8e8e8;
+    box-shadow: none;
+    border-radius: 0;
+    margin: 0;
+}
+#accordion .panel:last-child{
+    border-bottom: 1px solid #e8e8e8;
+}
+#accordion .panel-heading{
+    padding: 0;
+}
+#accordion .panel-title a{
+    display: block;
+    font-size: 0.8vw;
+    font-weight: bold;
+    line-height: 24px;
+    color: #635858;
+    background: #fff;
+    padding: 15px 20px 15px 47px;
+    position: relative;
+    transition: all 0.5s ease 0s;
+}
+#accordion .panel-title a:before{
+    content: "\f068";
+    font-family: 'FontAwesome';
+    display: block;
+    width: 30px;
+    height: 30px;
+    line-height: 32px;
+    border-radius: 50%;
+    background: #888bc2;
+    font-size: 14px;
+    color: #fff;
+    text-align: center;
+    position: absolute;
+    top: 25%;
+    left: 0;
+    transition: all 0.3s ease 0s;
+}
+#accordion .panel-title a.collapsed:before{
+    content: "\f067";
+}
+#accordion .panel-body{
+    font-size: 8px;
+    color: #635858;
+    line-height: 25px;
+    border: none;
+    padding: 14px 20px 14px 47px;
+}
+.kmEntitySearch{
+    background: #1caf9a;
+    color: #fff;
+    border-color: #1caf9a;
+}
+#accordion .panel-body:hover{
+	cursor:"pointer";
+	background-color:#9cac97;
+}
+.kmArticleList::-webkit-scrollbar {/*滚动条整体样式*/
+        width: 8px;     /*高宽分别对应横竖滚动条的尺寸*/
+    }
+.kmArticleList::-webkit-scrollbar-thumb {/*滚动条里面小方块*/ 
+        background: #ddd;
+    }
+.kmArticleList::-webkit-scrollbar-track {/*滚动条里面轨道*/
+        background: #fff;
+    }
+  #tags + div {
+  	width: 100%;
+  	min-height: 25px !important;
+  } 
+   #tags + div button{
+    	height: 25px;
+    	padding-top: 0;
+    	background-color: #fff !important;
+    	color: #676a6c !important;
+    }
+    #tags + div .dropdown-menu{
+	width:100%;
+    }
+    .bootstrap-select.btn-group.show-tick .dropdown-menu li.selected a span.check-mark {
+   	 left: 3px;
+	}
+	.text-spacial{
+		padding-left: 8px;
+		padding-right: 8px;
+	}
+	.disturb{color: #999;float: right;}
+	.top{background-color: #ddd;}
+    .text-spacial >div{
+        float:left;
+    }
+    .text-spacial >div .web_wechat_noread{
+        position: absolute;
+        float: right;
+        right: -60px;
+        top:0px;
+    }
+    .text-spacial .translateToWord{
+        line-height:34px;
+        cursor: help;
+        padding-left:20px;
+    }
+</style>
+
+<body>
+	<div class="chat-list-layer">
+		<div class="sidebar-left">
+			<div class="my-wexin-list" style="overflow: auto;"></div>
+		</div>
+		<div class="sidebar" style="">
+			<div style="display: none;">
+				<div style="height: 30px; padding-top: 5px; display: none;">
+					<select id="employeeWeiXins"
+						style="background-color: #dddddd; color: #000; height: 25px; margin-left: 5px; width: 90%;">
+					</select>
+				</div>
+				<input type="hidden" id="jt-weixin-reloadWx">
+				<button type="button" class='btn btn-sm btn-primary'
+					id="jt-weixin-reloadBtn" style="display: none;">搜索</button>
+				<button type="button" class='btn btn-sm btn-default'
+					id="jt-weixin-reciverBtn2" style="display: none;">聊天</button>
+				<button type="button" class='btn btn-sm btn-default'
+					id="jt-weixin-newFriend" style="display: none;">新朋友</button>
+			</div>
+			<div class="chat-list-move" style="padding: 10px; padding-left: 0px;">
+				<img onerror="onImageError();" style="float: left;"
+					class="jt-selected-employee-wx-img" weixin="" title="" alt=""
+					src="">
+				<div class="employee-nickname"></div>
+				<div style="float: right;">
+					<i class="glyphicon glyphicon-cog" title="功能"
+						style="cursor: pointer; color: #ccc; font-size: 18px; margin-top: 15px; margin-right: 10px;"
+						id="show-more-button"></i>
+				</div>
+			</div>
+			<div class="m-card">
+				<footer style="position: relative;">
+					<i class="fa fa-search" id="jt-weixin-search"
+						style="position: absolute; padding: 7px 0 0 7px; color: #777;"></i>
+					<input class="search jt-search" placeholder="搜索"> <span
+						class="glyphicon glyphicon-remove remove-search-param"
+						aria-hidden="true"
+						style="margin-left: -25px; cursor: pointer; font-size: 10px; color: #b3b3b3; position: absolute; right: 7px; top: 9px;"></span>
+				</footer>
+			</div>
+			<div class="tabs-container">
+				<ul class="nav nav-tabs weiXin-nav-tabs" style="margin-left: 5px;">
+					<li id="recentTabLi" class="tabli active " style="width: 25%;">
+						<a href="#tabRecent" data-toggle="tab"> 会话<span
+							class='badge badge-danger pull-right msg-not-read'
+							id="recent-not-read"
+							style="display: none; margin-left: -2px; margin-top: -10px;"></span>
+					</a>
+					</li>
+					<li id="relatedTabLi" class="tabli" style="width: 25%;"><a
+						href="#tabRelated" data-toggle="tab"> 客户 </a></li>
+					<li id="notRelateTabLi" class="tabli" style="width: 25%;"><a
+						href="#tabNotRelate" data-toggle="tab"> 新朋友 </a></li>
+					<li id="notFriendTabLi" class="tabli" style="width: 25%;"><a
+						href="#notFriend" data-toggle="tab"> 新粉<span
+							class='badge badge-danger pull-right msg-not-read'
+							id="newFriend-not-read"
+							style="display: none; margin-left: -2px; margin-top: -10px;"></span>
+					</a></li>
+				</ul>
+				<div class="tab-content weiXin-nav-tabs weixin-list-tab">
+					
+					<div id="tabRecent" class="tab-pane active">
+						<div class="m-list">
+							<ul>
+							</ul>
+						</div>
+						<div class='wx-footer-related' style='height: 30px; padding: 5px;'>
+							共<span id="recent-total"></span>条
+						</div>
+					</div>
+					<div id="tabRelated" class="tab-pane">
+						<div class="m-list contacts-list">
+
+							<button class='btn btn-sm btn-primary' id="addFollowBtn"
+								style="display: none;">添加跟进</button>
+							<ul>
+							</ul>
+
+						</div>
+						<div class='wx-footer-related' style='height: 30px; padding: 5px;'>
+							共<span id="related-current">50</span>/<span id="related-total"></span>条
+							<span style="padding: 0 30px;">|</span> 共<span
+								id="related-current-page">1</span>/<span id="related-total-page"></span>页
+						</div>
+					</div>
+					<div id="tabNotRelate" class="tab-pane">
+						<div style="padding-left: 10px;"><!-- 
+							<input type="checkbox" id="selectAll"> 全选
+							<button class='btn btn-sm btn-primary' id="jt-add-cs-batch"
+								style="margin: 5px 8px;">批量新增客户</button> -->
+						</div>
+						<div class="m-list contacts-list">
+							<ul>
+							</ul>
+						</div>
+						<div class='wx-footer-not-related'
+							style='height: 30px; padding: 5px;'>
+							共<span id="not-related-current">50</span>/<span
+								id="not-related-total"></span>条 <span style="padding: 0 30px;">|</span>
+							共<span id="not-related-current-page">1</span>/<span
+								id="not-related-total-page"></span>页
+						</div>
+					</div>
+					<div id="notFriend" class="tab-pane">
+						<div class="m-list contacts-list">
+							<ul>
+							</ul>
+						</div>
+						<div class='wx-footer-not-related'
+							style='height: 30px; padding: 5px;'>
+							共<span id="not-friend-total"></span>条
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="chat-main-layer">
+		<#include "/crm/android/androidChatForm.html"> 
+	</div>
+
+	<div class="chat-extra-layer">
+		<div class="chat-history">
+			<div class="tabs-container" style="height:100%;">
+				<ul class="nav nav-tabs detail-info-tab" style="margin-left: 5px;height:30px;">
+					<li id="infoTabLi" class="tabli active "><a href="#tabInfo"
+						data-toggle="tab"> 资料 </a></li>
+					<li id="csFollowTabLi" class="tabli "><a href="#tabCsFollow"
+						data-toggle="tab"> 跟进 </a></li>
+					<li id="kmTabLi" class="tabli "><a href="#tabKm"
+						data-toggle="tab"> 问答知识 </a></li>
+				</ul>
+				<div class="tab-content" style="height: calc(100% - 30px);">
+					<div id="tabInfo" class="tab-pane active">
+						<div class="csinfo-button-field" id="myMenu">
+							<button class='btn btn-sm all unrelate' id="jt-add-cs"
+								style="margin: 5px 8px;">
+								<img class="jt-button-img"
+									src="${ctx}/img/jt/wx/images/addcs.png">新增客户
+							</button>
+							<button class='btn btn-sm all unrelate' id="jt-add-cs-place"
+								style="margin: 5px 8px;">
+								<img class="jt-button-img"
+									src="${ctx}/img/jt/wx/images/addcs.png">新增并下单
+							</button>
+							<button class='btn btn-sm all unrelate' id="jt-bind-cs"
+								style="margin: 5px 8px;">
+								<img class="jt-button-img"
+									src="${ctx}/img/jt/wx/images/bind.png">绑定客户
+							</button>
+							<button class='btn btn-sm all related' id="jt-cs-placeOrder"
+								style="margin: 5px 8px;">
+								<img class="jt-button-img"
+									src="${ctx}/img/jt/wx/images/order.png">下订单
+							</button>
+							<button class='btn btn-sm jt-cs-addFollow  all related'
+								style="margin: 5px 8px;">
+								<img class="jt-button-img"
+									src="${ctx}/img/jt/wx/images/follow.png">添加跟进
+							</button>
+							<button class='btn btn-sm all related' id="jt-rebind-cs"
+								style="margin: 5px 8px;">
+								<img class="jt-button-img"
+									src="${ctx}/img/jt/wx/images/rebind.png">重新绑定
+							</button>
+							<input id="jt-bind-code" type="hidden">
+						</div>
+						<div id="csinfo-field-unbind">
+							<div class="jt-paper-box">
+								<div class="jt-addr-title" style="height: 25px;">
+									<img src="${ctx}/img/jt/wx/images/gdz.png"
+										style="width: 35px; position: absolute; top: -10px; right: 0;" />
+								</div>
+								<div class="info-div">
+									<div class="info-div-title">来源微信&nbsp;:&nbsp;</div>
+									<div class="info-div-content jt-wx-from-weixin">jt15013160665</div>
+								</div>
+								<div class="info-div">
+									<div class="info-div-title">来源昵称&nbsp;:&nbsp;</div>
+									<div class="info-div-content jt-wx-from-nickname">有点意思</div>
+								</div>
+								<div class="info-div">
+									<div class="info-div-title">进粉时间&nbsp;:&nbsp;</div>
+									<div class="info-div-content jt-wx-passtime">--</div>
+								</div>
+								<div class="shr_box4"></div>
+								<div class="shl_box4"></div>
+							</div>
+						</div>
+						<div id="csinfo-field-binded">
+							<div class="jt-cs-baseinfo-div">
+								<!-- <div class="jt-cs-baseinfo">
+									<span class="jt-label-img"><i class="fa fa-tag"></i></span> 职业:<span
+										class="jt-cs-vocation"></span>
+								</div>
+								<div class="jt-cs-baseinfo">
+									<span class="jt-label-img"><i class="fa fa-tag"></i></span> 学历:<span
+										class="jt-cs-degree"></span>
+								</div> -->
+								<div class="jt-cs-baseinfo">
+									<span class="jt-label-img"><i class="fa fa-tag"></i></span>&nbsp;客户分类&nbsp;<span class="jt-cs-bizType"></span>
+								</div>
+								<div class="jt-cs-baseinfo">
+									<span class="jt-label-img"><i class="fa fa-tag"></i></span>&nbsp;渠道来源&nbsp;<span
+										class="jt-cs-srcnames"></span>
+								</div>
+								<div class="jt-cs-baseinfo">
+									<span class="jt-label-img"><i class="fa fa-tag"></i></span>&nbsp;产品意向&nbsp;<span
+										class="jt-cs-productname"></span>
+								</div>
+								<div class="jt-cs-baseinfo">
+									<span class="jt-label-img"><i class="fa fa-tag"></i></span>&nbsp;客户意向&nbsp;<span
+										class="jt-cs-interests"></span>
+								</div>
+								
+							</div>
+							<div
+								style="width: 100%; clear: both; position: relative; perspective: 600px; height: 180px;">
+								<div class="weixin-csinfo">
+									<figure class="front">
+										<div class="info-div main-info-div">
+											<img class="jt-sex-img" src="${ctx}/img/jt/wx/images/boy.png">
+											<div class="jt-cs-name">林思行</div>
+											<div class="jt-cs-nickname">昵称(丑乌龟)</div>
+											<i class="fa fa-list-alt jt-ziliao-img-weixin"></i>
+										</div>
+										<div class="info-div">
+											<div class="info-div-title">微信号&nbsp;:&nbsp;</div>
+											<div class="info-div-content jt-cs-weixin">jt15013160665</div>
+										</div>
+										<div class="info-div">
+											<div class="info-div-title">电&emsp;话&nbsp;:&nbsp;</div>
+											<div class="info-div-content jt-cs-phone">jt15013160665</div>
+										</div>
+										<div class="info-div">
+											<div class="info-div-title">生&emsp;日&nbsp;:&nbsp;</div>
+											<div class="info-div-content jt-cs-birth">jt15013160665</div>
+										</div>
+										<div class="info-div">
+											<div class="info-div-title">地&emsp;址&nbsp;:&nbsp;</div>
+											<div class="info-div-content jt-addr-addr">广东省广州市海珠区江海大道中凯荣都大酒店</div>
+										</div>
+									</figure>
+									<figure class="back">
+										<div class="info-div main-info-div">
+											<img class="jt-sex-img" src="${ctx}/img/jt/wx/images/boy.png">
+											<div class="jt-cs-name">林思行</div>
+											<div class="jt-cs-nickname">昵称(丑乌龟)</div>
+											<i class="fa fa-list-alt jt-ziliao-img-weixin"></i>
+										</div>
+										<div style="width: 100%;">
+											<div class="info-div-title-more">更多地址：</div>
+											<div class="info-div-content-more">
+												<div class="info-div-content">广东省广州市海珠区江海大道中凯荣都大酒店</div>
+											</div>
+										</div>
+									</figure>
+								</div>
+							</div>
+							<div class="weixin-csinfo-small has-order">
+								<div class="jt-paper-box">
+									<div class="jt-addr-title"
+										style="height: 25px; margin-bottom: 9px; border-bottom: 1.5px dotted #a8b1b0;">
+										<i class="fa fa-jpy"></i><span>消费记录</span> <img
+											src="${ctx}/img/jt/wx/images/gdz.png"
+											style="width: 35px; position: absolute; top: -10px; right: 0;" />
+									</div>
+									<div class="info-div">
+										<div class="info-div-title">累计消费&nbsp;:&nbsp;</div>
+										<div class="jt-cs-total-so-amount">￥1888.90</div>
+									</div>
+									<div class="info-div">
+										<div class="info-div-title">单数/客单价&nbsp;:&nbsp;</div>
+										<div class="jt-cs-total-so-count">8单/￥236</div>
+									</div>
+									<div class="shr_box4"></div>
+									<div class="shl_box4"></div>
+								</div>
+							</div>
+							<div class="has-order weixin-order-box">
+								<div class="jt-so-left">
+									<span><i class="fa fa-caret-left"></i></span>
+								</div>
+								<div class="jt-so-right">
+									<span><i class="fa fa-caret-right"></i></span>
+								</div>
+								<div class="weixin-csinfo-big">
+									<div class="jt-so-count-box">
+										<span class="jt-cs-so-count">3</span>
+										<div></div>
+									</div>
+									<div id="jt-cs-so-div"
+										style="display: inline-block; padding: 10px; font-size: 0.9em; width: 96%; overflow: hidden;">
+
+									</div>
+								</div>
+								<div class="weixin-order-btn">
+									<button class='btn jt-btn-normal orderBasicInfo'>基本信息</button>
+									<button class='btn jt-btn-normal orderAddr'>地址</button>
+									<button class='btn jt-btn-normal orderShip'>物流</button>
+								</div>
+							</div>
+
+						</div>
+					</div>
+					<div id="tabCsFollow" class="tab-pane">
+						<div id="follow-button-field">
+							跟进记录
+							<button
+								class='btn btn-sm btn-warning  jt-cs-addFollow all related'
+								style="margin: 5px 8px; float: right">
+								<img class="jt-button-img"
+									src="${ctx}/img/jt/wx/images/follow.png">添加跟进
+							</button>
+							<button type="button" id="reload-follow" style="display: none"></button>
+						</div>
+						<div id="follow-field"></div>
+					</div>
+					<div id="tabKm" class="tab-pane" style="height:100%;">
+						<form class="form-horizontal" id="kmEntitySearchForm">
+							<input type="hidden" name="Q__S__EQ__cate_id_">
+							<div class="form-group " style="margin-top:20px;">
+								<div class='col-sm-12'>
+									<div class="col-sm-5" style="padding:0;">
+										<label class="col-sm-3 control-label" style="color: #9de0c8; font-size: 1em; font-weight: bold;padding:0;">分类:</label>
+										<div class="col-sm-8" style="padding:0;height:25px;">
+											<input style="height:100%;" type="text" readonly="readonly" name="cateName" class="form-control" id="cateName" validateType="default">
+										</div>
+									</div>
+									<div class="col-sm-5" style="padding:0px;">
+										<label class="col-sm-3 control-label" style="color: #9de0c8; font-size: 1em; font-weight: bold;padding:0;">内容:</label>
+										<div class="col-sm-8" style="padding:0;height:25px;">
+											<input style="height:100%;" type="text" name="likeContent" class="form-control" >
+										</div>
+									</div>	
+									<div class="col-sm-2" style="padding: 0px;">
+										<button type="button" class="btn btn-sm btn-warning  kmEntitySearch all related">
+											搜索
+										</button>
+									</div>
+								</div>
+							</div>
+							<!-- <div class="form-group " >
+								<div class='col-sm-12'>
+									
+								</div>
+							</div> -->
+						</form>
+						<div class="kmArticleList">
+							<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+						            
+						        </div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<div id="msg-button-div">
+		<!-- <button type="button" class='btn btn-sm btn-danger   backmsg'>撤回</button>
+ -->		<button type="button" class='btn btn-sm btn-primary   jt-copy-content'
+			data-clipboard-text=''>复制</button>
+		<input type="hidden" id="back-msg-id"> <input type="hidden"
+			id="back-msg-createtime">
+	</div>
+	<div id="image-button-div">
+		<!-- <button type="button" class='btn btn-sm btn-danger   backmsg'>撤回</button> -->
+		<button type="button" class='btn btn-sm btn-primary   collection-img'>收藏</button>
+		<input type="hidden" id="collection-img-url">
+	</div>
+	<div id="my-image-button-div">
+		<button type="button"
+			class='btn btn-sm btn-danger   collection-img-delete'>删除</button>
+		<input type="hidden" id="collection-img-id">
+	</div>
+	<div id="more-button-div" style="display: none;">
+		<div id="jt-weixin-barch-send">
+			<a class="batch-a"></a>群发
+		</div>
+		<!-- <div id="jt-add-contact">
+			<a class="add-contact-a"></a>添加好友
+		</div> -->
+		<div id="jt-refresh-contacts">
+			<a class="refresh-a"></a>刷新好友
+		</div>
+	</div>
+	<div id="li-contextmenu" style="display: none;">
+		<div id="jt-weixin-top">
+			置顶
+		</div>
+		<div id="jt-weixin-disturb">
+			免打扰
+		</div>
+	</div>
+	<div id="more-cs-info-div" style="display: none;">
+		<div class="more-cs-info-box">
+			<div class="info-div">
+				<div class="more-info-div-title">来源微信&nbsp;:</div>
+				<div class="more-info-div-content jt-wx-from-weixin"></div>
+			</div>
+			<div class="info-div">
+				<div class="more-info-div-title">来源昵称&nbsp;:</div>
+				<div class="more-info-div-content jt-wx-from-nickname"></div>
+			</div>
+			<div class="info-div">
+				<div class="more-info-div-title">进粉时间&nbsp;:</div>
+				<div class="more-info-div-content jt-wx-passtime"></div>
+			</div>
+			<div class="info-div">
+				<div class="more-info-div-title">绑定时间&nbsp;:</div>
+				<div class="more-info-div-content jt-wx-bindtime"></div>
+			</div>
+		</div>
+	</div>
+	<#include "/crm/cs/csEntity/csFollowEdit.html" >
+	<!-- 绑定客户-->
+	<div style="display: none" class="jt-wx-bind-cs">
+		<div class="panel-body">
+			<form id="bindCsForm" method="get" class="form-horizontal">
+				<div class='form-group'>
+					<label class='col-sm-2 control-label'>客户编号<span
+						style='color: red;'>*</span></label>
+					<div class='col-sm-3 '>
+						<input type='text' class='form-control' name='friendCode'
+							validateType='default' readonly>
+					</div>
+					<div class='col-sm-1 '>
+						<button type="button" class='btn btn-sm btn-primary'
+							id="jt-select-cs">选择</button>
+					</div>
+					<label class='col-sm-2 control-label'>微信昵称</label>
+					<div class='col-sm-4 '>
+						<input type='text' class='form-control' name='nickName'
+							validateType='default' readonly>
+					</div>
+					<input type="hidden" name="userName">
+				</div>
+			</form>
+		</div>
+	</div>
+	<!-- 群发消息-->
+	<div style="display: none" class="jt-wx-batch-send">
+		<div class="panel-body">
+			<form method="get" class="form-horizontal">
+				<div class='form-group'>
+					<label class='col-sm-2 control-label'>微信号</label>
+					<div class='col-sm-8 '>
+						<select id="batch-send-employeeWeiXins" class='form-control'>
+						</select>
+					</div>
+				</div>
+				<div class='form-group'>
+					<label class="col-sm-2 control-label">标签</label>
+					<div class="col-sm-8 batch-send-label-div"></div>
+				</div>
+				<div class='form-group'>
+					<label class="col-sm-2 control-label"></label>
+					<div class="col-sm-8 batch-send-person-num"></div>
+					<input type="hidden" id="selected-firends">
+				</div>
+				<div class='form-group'>
+					<div class="m-text" id="batch-send-msg-div">
+						<textarea id="batch-chat-textarea"></textarea>
+						<div class="send-p">
+							<span style="padding-right: 30px;">按 Ctrl + Enter 换行</span>
+							<button type="button"
+								class='btn btn-sm btn-default jt-weixin-batch-sendMsgBtn'>发送</button>
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+
+	</div>
+	<!-- 输入微信 -->
+	<div style="display: none" class="jt-wx-input-pane">
+		<div class="panel-body">
+			<form id="inputWeiXinForm" method="get" class="form-horizontal">
+				<div class='form-group'>
+					<label class='col-sm-2 control-label'>微信号<span
+						style='color: red;'>*</span></label>
+					<div class='col-sm-10 '>
+						<input type='text' class='form-control' name='inputWeiXin'
+							validateType='default'>
+					</div>
+				</div>
+				<div class='form-group'>
+					<div class='col-sm-2 '></div>
+					<div class='col-sm-6 '>
+						<a class="when-has-not-wx">无微信号请点击此处</a>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+	<!-- 播放视频 -->
+	<div style="display: none" class="jt-wx-play-video">
+		<video id="jt-wx-video" style="height: 450px !important;" src=""
+			controls="controls" autoplay="autoplay"></video>
+		<div style="text-align: center;">
+			若无法播放，请下载再播放<a href="#" id="download-mp4" class="download-file"
+				name-value="视频.mp4" url-value="">下载</a>
+		</div>
+
+	</div>
+	<!-- 新增好友 -->
+	<div style="display: none" class="jt-wx-add-contact-pane">
+		<div class="panel-body">
+			<form id="addContactForm" method="get" class="form-horizontal">
+				<div class='form-group'>
+					<label class='col-sm-2 control-label'>微信号<span
+						style='color: red;'>*</span></label>
+					<div class='col-sm-10 '>
+						<input type='text' class='form-control' name='alias'
+							validateType='default'>
+					</div>
+				</div>
+				<div class='form-group'>
+					<label class='col-sm-2 control-label'>备注</label>
+					<div class='col-sm-10 '>
+						<input type='text' class='form-control' name='remark'
+							validateType='default'>
+					</div>
+				</div>
+				<div class='form-group'>
+					<label class='col-sm-2 control-label'>招呼语</span></label>
+					<div class='col-sm-10 '>
+						<input type='text' class='form-control' name='sendWords'
+							validateType='default'>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+
+	<!-- 修改备注 -->
+	<div style="display: none" class="jt-wx-remark-pane">
+		<div class="panel-body">
+			<form id="changeRemarkForm" method="get" class="form-horizontal">
+				<div class='form-group'>
+					<label class='col-sm-2 control-label'>备注<span
+						style='color: red;'>*</span></label>
+					<div class='col-sm-10 '>
+						<input type='text' class='form-control' name='inputRemark'
+							validateType='default'>
+						<input type='text' class='form-control' style="display: none;">
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+	<!-- 添加号码-->
+	<div style="display: none" class="jt-wx-add-phone">
+		<div class="panel-body">
+			<form id="addPhoneForm" method="get" class="form-horizontal">
+				<div class='form-group'>
+					<label class='col-sm-2 control-label'>客户编号<span
+						style='color: red;'>*</span></label>
+					<div class='col-sm-3 '>
+						<input type='text' class='form-control' name='friendCode'
+							validateType='default' readonly>
+					</div>
+					<label class='col-sm-2 control-label'>客户姓名</label>
+					<div class='col-sm-4 '>
+						<input type='text' class='form-control' name='csName'
+							validateType='default' readonly>
+					</div>
+				</div>
+				<div class='form-group'>
+					<label class='col-sm-2 control-label'>电话</label>
+					<div class='col-sm-4'>
+						<div class='col-sm-8'>
+							<input name="phone" class='form-control' readonly>
+						</div>
+						<div class='col-sm-4'>
+							<select class="form-control" name='phoneType'>
+								<option value="首选">首选</option>
+								<option value="停用">停用</option>
+								<option value="本人">本人</option>
+								<option value="老公">老公</option>
+								<option value="老婆">老婆</option>
+								<option value="家人">家人</option>
+								<option value="他人">他人</option>
+								<option value="朋友">朋友</option>
+								<option value="座机">座机</option>
+							</select>
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+	<#include "/crm/android/androidHistory.html">
+	<div id="jt-weixin-repeat-div">
+	</div>
+	<!-- 新增客户-->
+	<div style="display: none" class="jt-wx-add-cs">
+		<div class="panel-body">
+			<form id="csEntityFormForAdd" method="get" class="form-horizontal">
+				<div class='form-group'>
+					<label class="col-sm-2 control-label"> 姓名 </label>
+					<div class="col-sm-4">
+						<input type="text" name="name" class="form-control"
+							validateType="default">
+					</div>
+					<div class="col-sm-6">
+						<div class="col-sm-3"></div>
+						<div class="radio radio-success radio-inline">
+							<input type="radio" value="男" checked id="genderMan"
+								name="gender"> <label for="genderMan">男</label>
+						</div>
+						<div class="radio radio-success radio-inline">
+							<input type="radio" value="女" id="genderWomen" name="gender">
+							<label for="genderWomen">女</label>
+						</div>
+					</div>
+				</div>
+				<div class='form-group'>
+					<label class='col-sm-2 control-label'>电话 </label>
+					<div class='col-sm-4'>
+						<div class='col-sm-8'>
+							<input id="maskPhoneNum" class='form-control'>
+						</div>
+						<div class='col-sm-4'>
+							<select class="form-control" name='phoneType'>
+								<option value="首选">首选</option>
+								<option value="停用">停用</option>
+								<option value="本人">本人</option>
+								<option value="老公">老公</option>
+								<option value="老婆">老婆</option>
+								<option value="家人">家人</option>
+								<option value="他人">他人</option>
+								<option value="朋友">朋友</option>
+								<option value="座机">座机</option>
+							</select>
+						</div>
+					</div>
+				</div>
+				<div class='form-group'>
+					<label class="col-sm-2 control-label"> 客户分类 </label>
+					<div class="col-sm-4">
+						<select class='form-control' name='bizType' id='bizType'
+							validateType="default"></select>
+					</div>
+					<label class="col-sm-2 control-label">渠道来源</label>
+					<div class="col-sm-4">
+						<select class='form-control' data-placeholder="请选择" name='srcs'
+							id='srcs' validateType="default"></select>
+					</div>
+				</div>
+				<div class='form-group'>
+					<label class="col-sm-2 control-label">意向</label>
+					<div class="col-sm-4">
+						<select id="interests" multiple data-placeholder="请选择"
+							class="chosen-select form-control" name="interests"
+							validateType="default" style="width: 100%;"></select>
+					</div>
+					<label class="col-sm-2 control-label"> 进线方法 </label>
+					<div class="col-sm-4">
+						<select class='form-control' name='entry' id='entry'
+							validateType="default"></select>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class='col-sm-11' id="addressContainer"
+						style="margin-left: 54px;"></div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">地址</label>
+					<div class="col-sm-10">
+						<label class="control-label addrDetaileDescribe"
+							style='float: left; position: relative;'></label> <input
+							type="text" name="addr_" class="form-control" style='width: 50%;'>
+					</div>
+				</div>
+				<div class='form-group'>
+					<label class="col-sm-2 control-label">生 日</label>
+					<div class="col-sm-2">
+						<select class='form-control' name='birthYear' id="birthYear">
+							<option value="">年</option>
+						</select>
+					</div>
+					<div class='col-sm-2'>
+						<select class='form-control' name='birthMonth' id="birthMonth">
+							<option value="">月</option>
+						</select>
+					</div>
+					<div class='col-sm-2'>
+						<select class='form-control' name='birthDay' id="birthDay">
+							<option value="">日</option>
+						</select>
+					</div>
+					<div class="col-sm-2">
+						<input type="number" name="age" id="age" class="form-control">
+					</div>
+					<div class='col-sm-2'>
+						<label class='control-label'>岁</label>
+					</div>
+				</div>
+				<div class='form-group'>
+					<label class="col-sm-2 control-label">身高(cm)</label>
+					<div class="col-sm-4">
+						<input type="text" name="height" class="form-control">
+					</div>
+
+					<label class="col-sm-2 control-label">体重(kg)</label>
+					<div class="col-sm-4">
+						<input type="text" name="weight" class="form-control">
+					</div>
+				</div>
+				<div class='form-group'>
+					<label class="col-sm-2 control-label">年收入</label>
+					<div class="col-sm-4">
+						<select class='form-control' name='income' id="income">
+							<option value="">请选择</option>
+						</select>
+					</div>
+					<label class="col-sm-2 control-label">职 业</label>
+					<div class="col-sm-4">
+						<select class='form-control' name='vocation' id="vocation">
+							<option value="">请选择</option>
+						</select>
+					</div>
+				</div>
+				<div class='form-group'>
+					<label class="col-sm-2 control-label">分享券码</label>
+					<div class="col-sm-4">
+						<input type="text" name="shareCode" class="form-control">
+					</div>
+					<label class="col-sm-2 control-label">婚姻状况</label>
+					<div class='col-sm-4'>
+						<select class='form-control' style="width: 75%;"
+							name='maritalStatus' id='maritalStatus'>
+							<option value="">请选择</option>
+						</select>
+					</div>
+				</div>
+				<div class="form-group wineIndustry" style="display: none;">
+					<label class="col-sm-2 control-label">用途</label>
+					<div class='col-sm-4'>
+						<select class='form-control' style="width: 75%;"
+							name='winePurpose' id='winePurpose'>
+							<option value="">请选择</option>
+						</select>
+					</div>
+					<label class="col-sm-2 control-label">口感</label>
+					<div class='col-sm-4'>
+						<select class='form-control' style="width: 75%;" name='taste'
+							id='taste'>
+							<option value="">请选择</option>
+						</select>
+					</div>
+
+				</div>
+				<!--将隐藏域放在这里，不显示出来-->
+				<div style="display: none'">
+					<input type="hidden" id="id" name="id"> <input
+						type="hidden" id="preId" name="preId"> <input
+						type="hidden" id="nextId" name="nextId"> <input
+						type="hidden" id="phoneNum" name="phoneNum"> <input
+						type="hidden" id="isFollow"> <input type="hidden"
+						name="userName"> <input type="hidden" name="employeeAlias">
+					<input type="hidden" name="employeeId"> <input
+						type="hidden" id="type" name="type" value="1">
+				</div>
+			</form>
+		</div>
+	</div>
+	<div class="androidKmEntityLayer" style="display: none;height:100%;">
+		<#include "/crm/android/androidKmEntityLayer.html"> 
+		<div class="col-sm-12">
+			<div class="checkbox checkbox-success checkbox-inline" style="float:right;padding-top:5px;">
+				<input type="checkbox" class="columnCheckBox" name="closeCurrentArticleDocument">
+				<label for="">采纳关闭当前窗口</label>
+			</div>
+		</div>
+	<div>
+</body>
+</html>

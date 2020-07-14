@@ -1,0 +1,360 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="renderer" content="webkit">
+<meta http-equiv="Cache-Control" content="max-age=1200" />
+<link rel="shortcut icon" href="${ctx}/favicon.ico?v=${jsVersion}" />
+<link rel="icon" href="${ctx}/img/jt/login/t9-version-<#if systemVersionName?? && systemVersionName == '旗舰版'>5<#elseif systemVersionName?? && systemVersionName == '标准版'>2<#elseif systemVersionName?? && systemVersionName == '专业版'>3</#if>.png" type="image/png" >
+<link href="${ctx}/css/jt/common/include/third-plugins.min.css?v=${jsVersion}" rel="stylesheet">
+<link href="${ctx}/css/style.css?v=${jsVersion}" rel="stylesheet">
+
+<!-- Unified Css -->
+<link href="${ctx}/css/unified.css?v=${jsVersion}" rel="stylesheet">
+
+<!--plugin js-->
+<script src="${ctx}/js/jt/common/include/third-plugins.min.js?v=${jsVersion}"></script>
+<script src="${ctx}/js/plugins/layer/layer/layer.js"></script>
+<script src="${ctx}/js/plugins/layer/laydate/laydate.js"></script>
+<script src="${ctx}/js/plugins/fancybox/jquery.mousewheel-3.0.6.pack.js"></script>
+<script src="${ctx}/js/plugins/jqres/jquery.easing.min.js?v=${jsVersion}"></script>
+<!-- customer js -->
+
+<script src="${ctx}/js/plugins/jqres/Tdrag.min${deploy_min!""}.js?v=${jsVersion}"></script>
+<script src="${ctx}/js/jt/common/utils/utils${deploy_min!""}.js?v=${jsVersion}"></script>
+<script type="text/javascript">
+     <#if ONLINE_ENTITY.datas.baiduKey??>
+    ${ONLINE_ENTITY.datas.baiduKey}
+    </#if>
+</script>
+
+<style type="text/css">
+    #loading{
+        width: 80px;
+        height: 40px;
+        top: 50%;
+        left: 50%;
+        z-index: 1991060212;
+        position: absolute;
+    }
+    #loading span{
+        display: inline-block;
+        width: 8px;
+        height: 100%;
+        border-radius: 4px;
+        background: lightgreen;
+        -webkit-animation: load 1s ease infinite;
+    }
+    @-webkit-keyframes load{
+        0%,100%{
+            height: 40px;
+            background: lightgreen;
+        }
+        50%{
+            height: 70px;
+            margin: -15px 0;
+            background: lightblue;
+        }
+    }
+    #loading span:nth-child(2){
+        -webkit-animation-delay:0.1s;
+    }
+    #loading span:nth-child(3){
+        -webkit-animation-delay:0.3s;
+    }
+    #loading span:nth-child(4){
+        -webkit-animation-delay:0.5s;
+    }
+    #loading span:nth-child(5){
+        -webkit-animation-delay:0.7s;
+    }
+</style>
+
+<#include "/common/jtmacro.html">
+<script>
+    var commomloading      = null;
+    var currentAccount     = "${ONLINE_ENTITY.datas.user.userPo.account}";
+    var currentUserId      = "${ONLINE_ENTITY.datas.user.id}";
+    var currentUserName    = "${ONLINE_ENTITY.datas.user.name}";
+    var currentUserAid     = "${ONLINE_ENTITY.datas.user.aid}";
+    var showPJ             = "${showPJ}";
+    var currentUserPassword     = "${ONLINE_ENTITY.datas.user.userPo.password}";
+    var versionType        = "${versionType}";
+    var weixinUseType      = "";
+    <#if weixinUseType??>
+        weixinUseType      = "${weixinUseType}";
+    </#if>
+    var helpVideoIP="";
+    <#if ONLINE_ENTITY.datas.helpVideoIP??>
+        helpVideoIP      = "${ONLINE_ENTITY.datas.helpVideoIP}";
+    </#if>
+    var markCtiRecord      = "${markCtiRecord}";
+    var isOpenSelectPlatform      = "${isOpenSelectPlatform}";
+    var ctiWapApiKey       = "${ctiWapApiKey}";
+    var ctiWapApiPassCode  = "${ctiWapApiPassCode}";
+    var systemPhoneArea_quhao = "${SystemPhoneArea_quhao!'020'}";
+    window.isCheckQuhao="${isCheckQuhao!'n'}";
+    <#if listenVoiceOutNet??>
+    var listenVoiceOutNet  = "${listenVoiceOutNet}";
+    <#else>
+        var listenVoiceOutNet = "n";
+    </#if>
+    <#if ONLINE_ENTITY.datas.isOpenCallEndDeal??>
+        var isOpenCallEndDeal  = "${ONLINE_ENTITY.datas.isOpenCallEndDeal}";
+    <#else>
+        var isOpenCallEndDeal = "n";
+    </#if>
+    <#if ONLINE_ENTITY.datas.isOpenAgentMapCti??>
+        var isOpenAgentMapCti  = "${ONLINE_ENTITY.datas.isOpenAgentMapCti}";
+    <#else>
+        var isOpenAgentMapCti = "n";
+    </#if>
+    <#if ONLINE_ENTITY.datas.callEndDealTime??>
+        var callEndDealTime  = "${ONLINE_ENTITY.datas.callEndDealTime}";
+    <#else>
+        var callEndDealTime = "5";
+    </#if>
+    <#if ONLINE_ENTITY.datas.limitCall??>
+        var limitCall  = "${ONLINE_ENTITY.datas.limitCall}";
+    <#else>
+        var limitCall = "n";
+    </#if>
+    <#if ONLINE_ENTITY.datas.limitInterval??>
+        var limitInterval  = "${ONLINE_ENTITY.datas.limitInterval}";
+    <#else>
+        var limitInterval = "n";
+    </#if>
+    <#if ONLINE_ENTITY.datas.limitCountCallType??>
+        var limitCountCallType  = "${ONLINE_ENTITY.datas.limitCountCallType}";
+    <#else>
+        var limitCountCallType = "call";
+    </#if>
+    <#if ONLINE_ENTITY.datas.limitCallCs??>
+        var limitCallCs  = "${ONLINE_ENTITY.datas.limitCallCs}";
+    <#else>
+        var limitCallCs = "n";
+    </#if>
+    <#if ONLINE_ENTITY.datas.isAppendUUD??>
+        var isAppendUUD  = "${ONLINE_ENTITY.datas.isAppendUUD}";
+    <#else>
+        var isAppendUUD = "n";
+    </#if>
+    <#if ONLINE_ENTITY.datas.openRemind??>
+        var openRemind  = "${ONLINE_ENTITY.datas.openRemind}";
+    <#else>
+        var openRemind = null;
+    </#if>
+    
+    
+
+    <#if ONLINE_ENTITY.datas.filterDefaultLineWay??>
+        var filterDefaultLineWay  = "${ONLINE_ENTITY.datas.filterDefaultLineWay}";
+    <#else>
+        var filterDefaultLineWay = "";
+    </#if>
+    
+    var reloginAdnCount    = 0 ;
+    var isCodeLogoutAdn    = 0 ; //是否用了代码上自动logout了分机.(如果是主动,则onreadystate返回0的时候则不应该重新start)
+    <#if ONLINE_ENTITY.datas.user.userPo.forcePw??>
+    var currentUserForcePw = "${ONLINE_ENTITY.datas.user.userPo.forcePw}";       
+    <#else>
+    var currentUserForcePw     = "n"; 
+    </#if>
+    
+    <#if ONLINE_ENTITY.datas.user.acd??>
+    var currentUserAcd     = "${ONLINE_ENTITY.datas.user.acd}";       
+    <#else>
+    var currentUserAcd     = "";          
+    </#if>
+
+    <#if ONLINE_ENTITY.datas.szCtiAdn??>
+    var szCtiAdn     = "${ONLINE_ENTITY.datas.szCtiAdn}";       
+    <#else>
+    var szCtiAdn     = "";          
+    </#if>
+
+    <#if  ctiType??>
+        ctiType = "${ctiType }";
+    <#else>
+        ctiType = "ls";
+    </#if>
+
+    CommonCtiUtils ={
+        logout:function(aid,fun1,fun2){
+            if(window.jtCtiService && window.currentUserAdn){
+                isCodeLogoutAdn = 1;
+                if(ctiType && ctiType=='sz'){
+                    SzCtiUtils.logout(currentUserAid);
+                }else if(ctiType && ctiType == 'ykt'){
+                    try{
+                        OcxCore.Session.Checkout();
+                    }catch(exception){
+                        console.log(exception);
+                    }
+                }else if(ctiType && ctiType == 'jtsoft'){
+                    try{
+                        JtCtiAPI.exit();
+                    }catch(exception){
+                        console.log(exception);
+                    }
+                }else{
+                    if(!jtCtiService.talkingClock){
+                        isCodeLogoutAdn = 1;
+                        if("y" == isAllInOne){
+                            UMO.exit();
+                        }else{
+                            UMO.logout(currentUserAid, function(cmd, result){
+                                FormUtils.submit(ctx + "/crm/ou/employee/delAdnLoginByAid.htm?aid="+aid, null, function(msg) {});
+                                UMO.exit();
+                            });
+                        }
+                        UMX.logout(47 + "" + currentUserAid, function(cmd, result){
+                            FormUtils.submit(ctx + "/crm/ou/employee/delAdnLoginByAid.htm?aid="+aid, null, function(msg) {});
+                            UMX.exit();
+                        });
+                    }else{
+                        return false;
+                    }
+                }
+            }
+            return true;
+        },
+    };
+
+    <#if ONLINE_ENTITY.datas.user.realPhone??>
+    var currentUserRelPhone= "${ONLINE_ENTITY.datas.user.realPhone}";
+    <#else>
+    var currentUserRelPhone     = "";          
+    </#if>
+
+    <#if ONLINE_ENTITY.datas.user.adNum??>
+    var currentUserAdNum   = "${ONLINE_ENTITY.datas.user.adNum}";    
+    <#else>
+    var currentUserAdNum   = "";          
+    </#if>
+    
+    <#if ONLINE_ENTITY.datas.user.profile??>
+    var currentUserProfile = "${ONLINE_ENTITY.datas.user.profile}";   
+    <#else>
+    var currentUserProfile = "";          
+    </#if>
+    <#if ONLINE_ENTITY.datas.isManyStore??>
+    var isManyStore = "${ONLINE_ENTITY.datas.isManyStore}";       
+    <#else>
+    var isManyStore     = "y"; 
+    </#if>
+    <#if isMultiPlatForm??>
+        var isMultiPlatForm  = "${isMultiPlatForm}";
+    <#else>
+        var isMultiPlatForm = "";
+    </#if>
+    
+    var enableTaskSoStatusFilter = "n";
+    <#if ONLINE_ENTITY.datas.enableTaskSoStatusFilter??>
+    var enableTaskSoStatusFilter = "${ONLINE_ENTITY.datas.enableTaskSoStatusFilter}";       
+    <#else>
+    var enableTaskSoStatusFilter     = "n"; 
+    </#if>
+
+    var percentLimit = "";
+    <#if ONLINE_ENTITY.datas.percentLimit??>
+         percentLimit = "${ONLINE_ENTITY.datas.percentLimit}";       
+    </#if>
+    var autoPercent = "";
+    <#if ONLINE_ENTITY.datas.autoPercent??>
+    	autoPercent = "${ONLINE_ENTITY.datas.autoPercent}";       
+    </#if>
+    var isOpenTotalLinkSale = "";
+    <#if ONLINE_ENTITY.datas.isOpenTotalLinkSale??>
+         isOpenTotalLinkSale = "${ONLINE_ENTITY.datas.isOpenTotalLinkSale}";       
+    </#if>
+
+    var ctx                = "${ctx}";
+    var sessionId          = "${ONLINE_ENTITY.sessionId}";                  
+    var lockTime           = "${lockTime}";                             
+    var lockTag            = "Ctrl";                                    
+    var lockValue          = "L";
+    var lockTimer          = null;
+    window.onload = function(){ 
+        HotKeyHandler.init({'tag' : lockTag, 'value' : lockValue}); 
+    }
+    
+    //处理键盘事件  
+    function doKey(e){  
+        var ev = e || window.event;//获取event对象  
+        var obj = ev.target || ev.srcElement;//获取事件源  
+        var t = obj.type || obj.getAttribute('type');//获取事件源类型  
+        if(ev.keyCode == 8 && t != "password" && t != "text" && t != "textarea"){  
+            return false;  
+        }  
+    } 
+    function onImageError(e){
+            var event = e || window.event;//获取event对象
+            var img=event.srcElement;
+            img.src=ctx+"/img/jt/defaulTouXiang.png";
+            img.onerror=null;
+    }
+    $(function(){
+        $(document).on("click", function(){
+            window.sessionStorage.setItem("activeTime", new Date().getTime());
+        });
+        
+        $(document).keydown(function(e){
+            var target = e.target;
+            var tag = e.target.tagName.toUpperCase();
+
+            if(e.keyCode == 8){
+                if((tag == 'INPUT' && !$(target).attr("readonly")) || (tag == 'TEXTAREA' && !$(target).attr("readonly"))){
+                    if((target.type.toUpperCase() == "RADIO") || (target.type.toUpperCase() == "CHECKBOX")){
+                        return false;
+                    }else{
+                        return true; 
+                    }
+                }else if($(e.target).hasClass('note-editable')){  //summernote
+                   return true;
+                }else{
+                    return false;
+                }
+            }
+        });
+        $(document).on("change",".simple-time-select",function(){
+            var value =$(this).val();
+            var $dates = $(this).parent("div").find(".layer-date");
+            if(value==0){
+                $dates.val("");
+            }else if(value==1){
+                var time = DateUtils.format(new Date(),"yyyy-MM-dd");
+                $($dates[0]).val(time+" 00:00:00");
+                $($dates[1]).val(time+" 23:59:59");
+            }else if(value==2){
+                var time = DateUtils.getBeforeDate(1,new Date()).substring(0,10);
+                $($dates[0]).val(time+" 00:00:00");
+                $($dates[1]).val(time+" 23:59:59");
+            }else if(value==3){
+                var time1 = DateUtils.format(DateUtils.getWeekStartDate(),"yyyy-MM-dd");
+                var time2 = DateUtils.format(DateUtils.getWeekEndDate(),"yyyy-MM-dd");
+                $($dates[0]).val(time1+" 00:00:00");
+                $($dates[1]).val(time2+" 23:59:59");
+            }else if(value==4){
+                var time1 = DateUtils.format(DateUtils.getCurrentMonthFirst(),"yyyy-MM-dd");
+                var time2 = DateUtils.format(DateUtils.getCurrentMonthLast(),"yyyy-MM-dd");
+                $($dates[0]).val(time1+" 00:00:00");
+                $($dates[1]).val(time2+" 23:59:59");
+            }
+        });
+        var sb = "<select class='simple-time-select'>"
+            +"<option value='0'>时间</option>"
+            +"<option value='1'>今天</option>"
+            +"<option value='2'>昨天</option>"
+            +"<option value='3'>本周</option>"
+            +"<option value='4'>本月</option>"
+            +"</selec>"
+        $(".input-daterange:not(.no)").before(sb);
+    });
+    var currentIsSendSms = "n";  //是否发送短信
+</script> 
+<script type="text/javascript" src="${ctx}/js/plugins/cryptojs/crypto-js.js"></script>
+<script type="text/javascript" src="${ctx}/js/plugins/cryptojs/aes.js"></script>
+<script type="text/javascript" src="${ctx}/js/plugins/cryptojs/md5.js"></script>
+<script type="text/javascript" src="${ctx}/js/plugins/cryptojs/pad-zeropadding.js"></script>
+
+<script src="${ctx}/js/jt/common/utils/listUtil${deploy_min!""}.js?v=${jsVersion}"></script>
+

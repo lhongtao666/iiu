@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>优惠券定义管理</title>
+	<#include "/common/common.html">
+	<#include "/common/ztree.html">
+	<script src="${ctx}/js/jt/common/service/selectProd${deploy_min!""}.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/jt/ec/rule/selectCouponUtils${deploy_min!""}.js?v=${jsVersion}"></script>
+
+	<script src="${ctx}/js/jt/ec/rule/ruleDef${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/ec/rule/couponDef${deploy_min!""}.js?v=${jsVersion}" ></script>
+</head>
+
+<body class='white-bg'>
+	<div class="wrapper animated ">
+		<!-- list界面 -->
+		<div class="row list_wrapper">
+			<#include "couponDefToolbar.html">	  			
+			<div class='col-sm-12 jqGrid_wrapper'>
+			    <table id="couponDefGrid"></table>
+				<div id="couponDefPager"></div>
+			</div>
+			
+			<!-- 编辑界面 -->
+			<#include "couponDefEdit.html">	   
+		</div>
+		 
+	</div>
+</body>
+</html>

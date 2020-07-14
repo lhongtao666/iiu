@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>销售订单发货</title>
+	<#include "/common/common.html">
+	<script src='${ctx}/js/jt/common/service/employeesSelectLayer${deploy_min!""}.js?v=${jsVersion}'></script>
+	<script src='${ctx}/js/jt/crm/cs/csFollow${deploy_min!""}.js?v=${jsVersion}'></script>
+	<script src="${ctx}/js/jt/ec/salesorder/shipQry/shipQry${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script>
+	var shipQryids = '${ids}';
+	var shipSoEntityMap = {};
+	<#if soEntityPos?? && soEntityPos?size gt 0>
+		<#list soEntityPos as soEntityPo>
+			<#if soEntityPo.logicsShipInfo??>
+				shipSoEntityMap["${soEntityPo.id}"] = "${soEntityPo.logicsShipInfo}";
+			</#if>
+		</#list>
+	 </#if>
+	 $(function() {
+	    var shipQry = new ShipQry();
+	    shipQry.init(shipSoEntityMap);
+	});
+	</script>
+</head>
+<body class='white-bg'>
+	
+	<div class="list_wrapper">
+	<div class="col-sm-12">
+		<div class="panel panel-default sweep_deliver_wrapper">
+		    <div class="panel-heading">
+		    	<div class="radio radio-info radio-inline">
+				<input type="radio" name="shipType" value="kuaidiwo" checked>
+				<label for="kuaidiwo">快递窝</label>
+			</div>
+			<div class="radio radio-info radio-inline">
+				<input type="radio" name="shipType" value="kuaidiWang" >
+				<label for="kuaidiWang">快递网</label>
+			</div>
+			<div class="radio radio-info radio-inline">
+				<input type="radio" name="shipType" value="kd100Ship" >
+				<label for="kd100Ship">快递100</label>
+			</div>
+			<div class="radio radio-info radio-inline">
+				<input type="radio" name="shipType" value="kuaidiniao" >
+				<label for="kd100Ship">快递鸟</label>
+			</div>
+			<div class="radio radio-info radio-inline">
+				<input type="radio" name="shipType" value="aly" >
+				<label for="aly">阿里云</label>
+			</div>
+				<!-- <input type="radio" name="shipType" value="kuaidiwo" checked>快递窝
+				<input type="radio" name="shipType" value="kuaidiWang"  >快递网
+				<input type="radio" name="shipType" value="kd100Ship" >快递100
+				<input type="radio" name="shipType" value="ickdShip">爱查快递  -->
+				<button type='button'  class="jt-btn jt-dd-normal searchBtn" style="margin-left:20px;"><i class="fa fa-search"></i>&nbsp;查询物流</button>
+				<button type='button'  class="jt-btn jt-dd-normal completeBtn"><i class="fa fa-check"></i>&nbsp;收货</button>
+				<button type='button'  class="jt-btn jt-btn-red rejectBtn"><i class="fa fa-times"></i>&nbsp;拒收</button>
+				<button type='button'  class="jt-btn jt-btn-red lostBtn"><i class="fa fa-times"></i>&nbsp;丢失</button>
+				<button type='button'  class="jt-btn jt-btn-red soBackAndStoreInBtn"><i class="fa fa-times"></i>&nbsp;退货入仓</button>
+				<button type='button'  class="jt-btn jt-btn-red backCompleteBtn"><i class="fa fa-times"></i>&nbsp;撤销收货/拒收/丢失</button>
+				<button type='button'  class="jt-btn jt-dd-normal refreshBtn" style="margin-left:20px;"><i class="fa fa-refresh"></i>&nbsp;刷新</button>
+				<div style="margin-left:20px; display: none;"  class="btn btn-sm btn-primary colckDiv"><h5 id="num"></h5></div>
+		    </div>
+		</div> 
+	</div>			
+	<div class='col-sm-12 jqGrid_wrapper' style="overflow:auto;background-color: white;">
+	    <table id="batchShipQryGrid" class='table table-striped table-bordered' style="padding-bottom: 20px;">
+	    	<thead>
+		    	<tr>
+		    		<!-- <th  width="5%"><input type="checkbox" name="checkAll"><span style="padding-left:10px;">序号</span></th>
+		    		<th  width="10%">订单编号</th>
+		    		<th  width="10%">快递公司</th>
+		    		<th  width="10%">快递单号</th>
+		    		<th  width="50%">物流信息</th>
+		    		<th  width="50%" style="display: none;">调用时间</th>
+		    		<th  width="15%">订单状态</th> -->
+		    		<th width="5%"></th>
+		    		<th width="10%"></th>
+		    		<th width="10%"></th>
+		    		<th width="10%"></th>
+		    		<th width="15%"></th>
+		    		<th width="40%"></th>
+		    		<th width="15">精简显示
+		    			<input style='margin-left : 10px;margin-right: 5px;' type='checkbox' name="simpleShow"  class='simpleShow'>
+		    		</th>
+		    	</tr>
+	    	</thead>
+	    	<tbody id="batchShipQrybodyContainer" >
+	    		<tr>
+	    			<td width="5%"><input type="checkbox" name="checkAll"><span style="padding-left:10px;">序号</span></td>
+	    			<td width="10%">订单编号</td>
+	    			<td width="10%">快递公司</td>
+	    			<td width="10%">快递单号</td>
+	    			<td width="15%">最新跟进</td>
+	    			<td width="40%">物流信息</td>
+	    			<td width="50%" style="display: none;">调用时间</td>
+	    			<td width="10%" style="display: none;">followParams</td>
+	    			<td width="15%">订单状态</td>
+	    		</tr>
+	    		<#if soEntityPos?? && soEntityPos?size gt 0>
+	    			<#list soEntityPos as soEntityPo>
+	    				<tr id="${soEntityPo.id}">
+						<td  width="5%">
+							<input type="checkbox" name="shipQryCheckbox" id-value="${soEntityPo.id}" status-value = "${soEntityPo.status}">
+							<span style="padding-left:10px;">${soEntityPo_index+1}</span>
+						</td>
+				    		<td  width="10%">
+				    			<a href='#' class='soTab' status='${soEntityPo.status}' csNameVal='${soEntityPo.csName}' idVal='${soEntityPo.id}' soType='${soEntityPo.soType}' cashType=' ${soEntityPo.cashType}' value='${soEntityPo.soNo}' > ${soEntityPo.soNo}</a>
+				    		</td>
+				    		<td  width="10%">${soEntityPo.shipName}</td>
+				    		<td  width="10%">${soEntityPo.scTrackingNo}</td>
+				    		<td  width="15%">${soEntityPo.lastFollow}</td>
+				    		<td  width="40%" class="ship-info" style='text-align: left;'>
+				    			
+				    		</td>
+				    		<td class="revokeTime" style="display: none;"></td>
+				    		<td  width="50%" style="display: none;" csCode='${soEntityPo.csCode}' entityId='${soEntityPo.id}' csId='${soEntityPo.csId}' partyId='${soEntityPo.placerId}' partyName='${soEntityPo.placerName}' partyAid='${soEntityPo.placerAid}' totalAmount='${soEntityPo.totalAmount}' soNo='${soEntityPo.soNo}' csPhone='${soEntityPo.partyMaskPhone}'></td>
+				    		<td  width="15%" class="td-status">
+				    			<#if soEntityPo.status == 'awaiting_post'>
+								<span style="color:red">待提交</span>
+								<#elseif soEntityPo.status == 'awaiting_comfirm'>
+								<span style="color:red">待审核</span>
+								<#elseif soEntityPo.status == 'awaiting_pay'>
+								<span style="color:red">待支付</span>
+								<#elseif soEntityPo.status == 'comfirm'>
+								<span style="color:red">待发货</span>
+								<#elseif soEntityPo.status == 'shipping'>
+								<span>已发货</span><br>
+								<button type='button'  id-value='${soEntityPo.id}' class="jt-btn jt-dd-normal completeBtn" >收货</button>
+								<button type='button'  id-value='${soEntityPo.id}' class="jt-btn jt-btn-red rejectBtn" >拒收</button>
+								<button type='button'  id-value='${soEntityPo.id}' class="jt-btn jt-btn-red lostBtn" >丢失</button>
+								<button type='button'  id-value='${soEntityPo.id}' class="jt-btn jt-btn-red soBackAndStoreInBtn">退货入仓</button>
+								<button type='button'  id-value='${soEntityPo.id}' class="jt-btn jt-dd-normal addFollowBtn">添加订单跟进</button>
+								<#elseif soEntityPo.status == 'complete'>
+								<span style="color:green">已签收</span><br>
+								<button type='button' id-value='${soEntityPo.id}'  class="jt-btn jt-btn-red backCompleteBtn">撤销收货</button>
+								<#elseif soEntityPo.status == 'close'>
+								<span style="color:red">已关闭</span>
+								<#elseif soEntityPo.status == 'close_reject'>
+									<#if soEntityPo.afterSaleStatus == 'complete'>
+										<span style="color:red">已退回</span><br>
+									<#else>
+										<span style="color:red">订单拒收</span><br>
+										<button type='button'  id-value='${soEntityPo.id}' class="jt-btn jt-btn-red backCompleteBtn">撤销拒收</button>
+									</#if>
+								<#elseif soEntityPo.status == 'close_lost'>
+								<span style="color:red">包裹丢失</span><br>
+								<button type='button'  id-value='${soEntityPo.id}' class="jt-btn jt-btn-red backCompleteBtn">撤销丢失</button>
+								</#if>
+				    		</td>
+			    		</tr>
+					</#list>
+	    		</#if>
+	    	</tbody>
+	    </table>
+	</div>
+</div>
+<#include "/crm/cs/csEntity/csFollowEdit.html" >
+</body>
+</html>

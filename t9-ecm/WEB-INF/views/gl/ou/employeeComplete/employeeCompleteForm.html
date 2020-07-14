@@ -1,0 +1,61 @@
+<div class='row'>
+	<div class='col-sm-12'>
+		<form id="employeeCompleteForm" method="get" class="form-horizontal">
+			<div class="form-group">
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">姓名<span style='color: red;'>*</span></label>
+					<div class="col-sm-9">
+						<input type="hidden" name="employeeId" placeholder="" class="form-control" validateType="default" > 
+						<input type="text" name="employeeName" readonly="readonly" placeholder="" class="form-control" validateType="default" >
+					</div>
+				</div>		
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">目标名称<span style='color: red;'>*</span></label>
+					<div class="col-sm-9">
+						<input type="text" name="name" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>	
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">目标金额<span style='color: red;'>*</span></label>
+					<div class="col-sm-9">
+						<input type="text" name="target" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+			</div>
+			<div class="form-group">			
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">目标时间<span style='color: red;'>*</span></label>
+					<div class="col-sm-9">
+						<input class="laydate-icon  layer-date form-control" readonly="readonly" placeholder="目标时间" id ="period" name="period" validateType="default">
+					</div>
+				</div>	
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">完成金额</label>
+					<div class="col-sm-9">
+						<input type="text" name="count" placeholder="" value="0" readonly="readonly" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">是否达成<span style='color: red;'>*</span></label>
+					<div class="col-sm-9">
+						<select id="isCompleteSelect" class="form-control" name="isComplete" validateType="default" >
+							<option value=''>请选择</option>
+							<option value="n">否</option>
+							<option value="y">是</option>
+						</select>
+					</div>
+				</div>
+			</div>  
+
+			<div class='form-group'>
+				<!--将隐藏域放在这里，不显示出来-->
+				<div style="display:none'">
+					<input type="hidden" id="id" name="id">
+					<input type="hidden" name="createBy">
+					<input type="hidden" name="createTime">
+				</div>
+			</div>
+
+		</form>
+	</div>
+</div>

@@ -1,0 +1,25 @@
+<div class="modal fade" id="loginCTIModalContainer" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="margin-top:7%;">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        <h4 class="modal-title" id="myModalLabel">登录CTI</h4>
+      </div>
+      <div class="modal-body">
+        <form id="loginCTIForm" method="get" class="form-horizontal">
+	        <div style='margin-left:0px; margin-right: 0px;' class='form-group'>
+	            <label style='margin-left:0px; margin-right: 0px;' class='col-sm-3 control-label'>分机号<span style='color: red;'>*</span></label>
+	            <div style='margin-left:0px; margin-right: 0px;' class='col-sm-9'>
+	               <input name='userAdn'  id='userAdn'  type='text' class='form-control'  validateType='default' >
+	            </div>
+	        </div>
+	       <input name='userId' id='loginCTIForm_userId' type="hidden">
+	   </form>  
+      </div>
+      <div class="modal-footer" style="text-align: center;">
+      		<button type="button" class="btn btn-sm   btn-default" data-dismiss="modal">取消</button>
+        	<button type="button" class="btn btn-sm   btn-primary" id='loginCTIBtn'>登录</button>
+      </div>
+    </div>
+  </div>
+</div>

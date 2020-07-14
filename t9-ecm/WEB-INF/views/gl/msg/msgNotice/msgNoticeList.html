@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>消息管理</title>
+	<#include "/common/common.html">
+	<script src="${ctx}/js/jt/gl/msg/msgNotice${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<style type="text/css">
+		.ibox {
+			height:100%;
+			position:relative;
+			margin: 0;
+			margin-right: 10px;
+			background-color: #fff;
+			overflow: auto;
+		}
+		.ibox-title {
+			height:50px;
+			padding-left:20px;
+			border: 0;
+			position: fixed;
+			width: calc(100% - 10px);
+			background-color: #fff;
+			z-index: 2;
+			border-bottom: 1px solid #eee;
+		}
+		.ibox-content {
+			margin-top: 50px;
+			border: 0;
+		}
+		.timeline-item {
+		    border-bottom: 1px solid #eee;
+		    padding: 7px 0;
+		}
+		.timeline-item:hover {
+			background-color: #f9f9f9;
+		}
+		.ibox-content .timeline-item .date {
+			font-weight: 500;
+			color: #795548;
+			padding-top: 25px;
+		}
+		.ibox-content .timeline-item .date i {
+			background: transparent;
+		    color: #bbb;
+		    border: 0;
+		    right: 0;
+		    width: auto;
+		    font-style: normal;
+		}
+		.ibox-content .timeline-item .content {
+			border: 0;
+		}
+		.ibox-content .timeline-item .content:hover {
+			background-color: transparent;
+		}
+		.ibox-content .timeline-item .content > div:first-child {
+			text-align: center;
+			overflow: hidden;
+			padding: 0;
+			height: 30px;
+		}
+		.img-circle {
+
+		}
+		.img-circle.msg-level-1 {
+		    
+		}
+		.img-circle.msg-level-2 {
+		   
+		}
+		.img-circle.msg-level-3 {
+			-webkit-animation-name: shake-rotate;
+		    -ms-animation-name: shake-rotate;
+		    animation-name: shake-rotate;
+		    -webkit-animation-duration: 2500ms;
+		    -ms-animation-duration: 2500ms;
+		    animation-duration: 2500ms;
+		    -webkit-animation-iteration-count: infinite;
+		    -ms-animation-iteration-count: infinite;
+		    animation-iteration-count: infinite;
+		    -webkit-animation-timing-function: ease-in-out;
+		    -ms-animation-timing-function: ease-in-out;
+		    animation-timing-function: ease-in-out;
+		    -webkit-animation-delay: 0s;
+		    -ms-animation-delay: 0s;
+		    animation-delay: 0s;
+		    -webkit-animation-play-state: running;
+		    -ms-animation-play-state: running;
+		    animation-play-state: running;
+		}
+		@keyframes shake-rotate {
+			0% {
+			    transform: translate(0px, 0px) rotate(0deg);
+			}
+			2% {
+			    transform: translate(0px, 0px) rotate(2.5deg);
+			}
+			4% {
+			    transform: translate(0px, 0px) rotate(-4.5deg);
+			}
+			6% {
+			    transform: translate(0px, 0px) rotate(2.5deg);
+			}
+			8% {
+			    transform: translate(0px, 0px) rotate(4.5deg);
+			}
+			10% {
+			    transform: translate(0px, 0px) rotate(-5.5deg);
+			}
+			12% {
+			    transform: translate(0px, 0px) rotate(-3.5deg);
+			}
+			14% {
+			    transform: translate(0px, 0px) rotate(-1.5deg);
+			}
+			16% {
+			    transform: translate(0px, 0px) rotate(-1.5deg);
+			}
+			18% {
+			    transform: translate(0px, 0px) rotate(2.5deg);
+			}
+			20% {
+			    transform: translate(0px, 0px) rotate(-0.5deg);
+			}
+			22% {
+			    transform: translate(0px, 0px) rotate(6.5deg);
+			}
+			24% {
+			    transform: translate(0px, 0px) rotate(0.5deg);
+			}
+			26% {
+			    transform: translate(0px, 0px) rotate(-5.5deg);
+			}
+			28% {
+			    transform: translate(0px, 0px) rotate(-4.5deg);
+			}
+			30% {
+			    transform: translate(0px, 0px) rotate(-1.5deg);
+			}
+			32% {
+			    transform: translate(0px, 0px) rotate(2.5deg);
+			}
+			34% {
+			    transform: translate(0px, 0px) rotate(0.5deg);
+			}
+			36% {
+			    transform: translate(0px, 0px) rotate(6.5deg);
+			}
+			38% {
+			    transform: translate(0px, 0px) rotate(-6.5deg);
+			}
+			40% {
+			    transform: translate(0px, 0px) rotate(3.5deg);
+			}
+			42% {
+			    transform: translate(0px, 0px) rotate(-4.5deg);
+			}
+			44% {
+			    transform: translate(0px, 0px) rotate(5.5deg);
+			}
+			46% {
+			    transform: translate(0px, 0px) rotate(2.5deg);
+			}
+			48% {
+			    transform: translate(0px, 0px) rotate(2.5deg);
+			}
+			50% {
+			    transform: translate(0px, 0px) rotate(5.5deg);
+			}
+			52% {
+			    transform: translate(0px, 0px) rotate(-1.5deg);
+			}
+			54% {
+			    transform: translate(0px, 0px) rotate(5.5deg);
+			}
+			56% {
+			    transform: translate(0px, 0px) rotate(-7.5deg);
+			}
+			58% {
+			    transform: translate(0px, 0px) rotate(2.5deg);
+			}
+			60% {
+			    transform: translate(0px, 0px) rotate(6.5deg);
+			}
+			62% {
+			    transform: translate(0px, 0px) rotate(1.5deg);
+			}
+			64% {
+			    transform: translate(0px, 0px) rotate(-7.5deg);
+			}
+			66% {
+			    transform: translate(0px, 0px) rotate(-2.5deg);
+			}
+			68% {
+			    transform: translate(0px, 0px) rotate(3.5deg);
+			}
+			70% {
+			    transform: translate(0px, 0px) rotate(-4.5deg);
+			}
+			72% {
+			    transform: translate(0px, 0px) rotate(2.5deg);
+			}
+			74% {
+			    transform: translate(0px, 0px) rotate(2.5deg);
+			}
+			76% {
+			    transform: translate(0px, 0px) rotate(-2.5deg);
+			}
+			78% {
+			    transform: translate(0px, 0px) rotate(-0.5deg);
+			}
+			80% {
+			    transform: translate(0px, 0px) rotate(-3.5deg);
+			}
+			82% {
+			    transform: translate(0px, 0px) rotate(5.5deg);
+			}
+			84% {
+			    transform: translate(0px, 0px) rotate(-1.5deg);
+			}
+			86% {
+			    transform: translate(0px, 0px) rotate(-1.5deg);
+			}
+			88% {
+			    transform: translate(0px, 0px) rotate(4.5deg);
+			}
+			90% {
+			    transform: translate(0px, 0px) rotate(5.5deg);
+			}
+			92% {
+			    transform: translate(0px, 0px) rotate(4.5deg);
+			}
+			94% {
+			    transform: translate(0px, 0px) rotate(-1.5deg);
+			}
+			96% {
+			    transform: translate(0px, 0px) rotate(3.5deg);
+			}
+			98% {
+			    transform: translate(0px, 0px) rotate(-7.5deg);
+			}
+		}
+		.jt-form-select.deleteMsg {
+			color: #f44336;
+		}
+		.jt-form-select.deleteMsg:hover {
+			border-color: #f44336;
+			background-color: rgba(244, 67, 54, 0.1);
+		}
+		.msg-check-box:before {
+		    content: "";
+		    font: normal normal normal 14px/1 FontAwesome;
+		    font-size: 18px;
+		    width: 20px;
+		    height: 20px;
+		    background-color: #fff;
+		    border: 1px solid #ddd;
+		    border-radius: 0;
+		    position: absolute;
+		    cursor: pointer;
+		    line-height: 20px;
+		    text-align: center;
+		}
+		.msg-check-box:checked:before {
+		    content: "\f00c";
+		    border-color: #ccc;
+		    background-color: #fff;
+		    color: #2196F3;
+		    -webkit-text-stroke: 1px #fff;
+		}
+		#deleteAll + label {
+			margin: 0 20px 0 10px;
+		    font-weight: 500;
+		    height: 100%;
+		    color: #555;
+		}
+	</style>
+</head>
+<body class='white-bg'>
+	<div class="ibox float-e-margins">
+		<div class="ibox-title">
+			<input type="checkbox" name="deleteAll" value="deleteAll" id='deleteAll' class="msg-check-box">
+	    	<label for="deleteAll">全部</label>
+    		<button type="button" class="jt-btn-empty deleteMsgAll"><i class="fa fa-trash-o"></i>&nbsp;删除全部</button>	
+    		<button type="button" class="jt-btn-empty deleteMsgs"><i class="fa fa-remove"></i>&nbsp;删除选中</button>		    		
+			<div class="btn-group pull-right">
+				<button type="button" class="jt-quick-search allBtn" disabled="disabled">全部</button>
+				<button type="button" class="jt-quick-search noticeBtn" >系统公告</button>
+				<button type="button" class="jt-quick-search missBtn">未接来电</button>
+				<button type="button" class="jt-quick-search csCountBtn">新进客户</button>
+				<button type="button" class="jt-quick-search otherBtn">其他</button>
+		    </div>
+		</div>
+		
+		<div class="ibox-content timeline" id='msgDiv'></div>
+		<div class='col-sm-12'>
+			<div class='btn-group pull-right'>
+				<button class='jt-quick-search jt-quick-opt prev-msg'><i class="fa fa-step-backward" aria-hidden="true"></i>&nbsp;上一页</button>
+				<button class='jt-quick-search jt-quick-opt  next-msg'>下一页&nbsp;<i class="fa fa-step-forward" aria-hidden="true"></i></button>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

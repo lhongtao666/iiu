@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>客户关怀报表</title>
+	<#include "/common/common.html">
+	<script src="${ctx}/js/plugins/echarts/3.1.7/theme/macarons.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/plugins/echarts/3.1.7/echarts.min.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/jt/common/plugins/report${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/crm/report/cs/csCareReport${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src='${ctx}/js/jt/common/service/common-cate${deploy_min!""}.js?v=${jsVersion}'></script>
+</head>
+
+<body class="white-bg">
+	<div class="wrapper animated ">
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="ibox ">
+					<div class="ibox-title">
+						<h5>客户关怀</h5>
+					</div>
+					<div class="ibox-content">
+					    <#include "csCareReportSearchForm.html">
+						<hr  style="height:1px;border:none;border-top:1px solid #CACCC1;">
+						<div id="searchShow" style="color:red;">查询条件： 关怀类型=全部 状态=全部</div>
+						<br>
+						<div id="main" style="height:350px;"></div>
+						<br>
+						<div class="jqGrid_wrapper" >
+						   <div id="csCareReportGridDiv"><table id="csCareReportGrid"></table></div>
+						</div>
+						<br>
+					</div>
+			    </div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

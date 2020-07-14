@@ -1,0 +1,92 @@
+  <style>
+    .form-horizontal .btn-default {
+      background-color: #ffffff; 
+     border-color: #333; 
+     color: #333; 
+    }
+ .form-horizontal .btn-default:focus,  .form-horizontal .btn-default:hover {
+    background-color: #bababa;
+    border-color: #bababa;
+    color: #FFFFFF;
+  }
+  </style>
+<form id="buyForm" method="get" class="form-horizontal">
+    <div class="form-group">  
+         <div class='col-sm-4 operTimeContainer'>
+            <label class="col-sm-3 control-label">采购日期<span style='color: red;'>*</span></label>
+          <div class="col-sm-9">
+                <input class='laydate-icon form-control layer-date' name="operTime" validateType="default"  placeholder="YYYY-MM-DD" onclick="laydate({istime: true, format: 'YYYY-MM-DD',choose: function(datas){$('input[name=operTime]').trigger('keyup');}})">
+          </div>
+        </div>
+        <div class='col-sm-4 '>
+            <label class="col-sm-3 control-label">运费(元)</label>
+            <div class="col-sm-9">
+              <input type="number" name="shippingFee" placeholder="" class="form-control" validateType="default" > 
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class='col-sm-12'>
+           	<label class="col-sm-1 control-label">备注</label>
+           	<div class="col-sm-11">
+		    	 <textarea class='form-control' name='comment' rows='3'></textarea>
+           	</div>
+        </div>
+    </div>
+	 <div class="form-group">
+        <!--将隐藏域放在这里，不显示出来-->
+        <div style="display:none'">
+           <input type="hidden" id="id" name="id">
+           <input type="hidden" name="createBy">
+           <input type="hidden" name="createTime">
+           <input type="hidden" name="status">
+           <input type="hidden" name="prodType">
+           <input type='hidden' name='operId' >
+           <input type="hidden" name="storeId">
+           <input type="hidden" name="subType" value="buy">
+        </div>
+    </div>    
+</form>
+<div class='form-horizontal' style="margin-top: 1.5%;">
+      <div class='form-group'>
+          <div class='col-sm-12'>
+              <label class="col-sm-1 control-label" style="padding-right:1;">产品编号</label>
+              <div class="col-sm-6" style="padding:0;">
+                <div class="input-group">
+                  <input type="text" class="form-control" id="searchProd">
+                  <div class="input-group-btn">
+                    <button type="button" class="btn btn-white dropdown-toggle" data-toggle="dropdown">
+                      <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-right" role="menu"></ul>
+                  </div>
+                </div>
+              </div>
+              <div class='col-sm-1' style="padding:0;">
+                <button class='btn btn-sm  btn-default' id='selectProdBtn' type='button' style="">选择商品</button>
+                <button class='btn btn-sm  btn-default' id='selectPointBtn'  style="display:none;" type='button'>选择积分商品</button>
+              </div>
+          </div>
+        </div>
+</div>
+<div class='row'>
+    <div class='col-sm-12'>
+        <table class='table table-striped table-bordered'>
+            <thead id='buyProductHeaderContainer'>
+              <tr>
+                <th width='15%'>名称</th>
+                <th width='10%'>sku编码</th>
+                <th width='10%'>采购数量<span style='color: red;'>*</span></th>
+                <th width='13%'>采购价格(元)</th>
+                <th width='11%'>总金额(元)</th>
+                <th width='13%'>生产日期<span style='color: red;'>*</span></th>
+                <th width='8%'>仓位</th>
+                <th width='7%'>操作</th>
+              </tr>
+            </thead>
+            <tbody id='buyProductContainer'>
+            </tbody>
+            <tfoot id="buyProductFooterContainer"></tfoot>
+        </table>  
+    </div>
+</div>

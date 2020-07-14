@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>通话记录</title>
+	<#include "/common/common.html">
+	<#include "/common/ztree.html">
+	
+	<link href="${ctx}/css/plugins/select2/select2.min.css?v=${jsVersion}" rel="stylesheet">
+	<script src="${ctx}/js/plugins/select2/select2.min.js?v=${jsVersion}"></script>
+	
+	<script type="text/javascript">
+		var type = "${type}";
+		var reqType = "${reqType}";
+		var recordIds = "${recordIds}";
+		var adnStaticReqParamStr = "${adnStaticReqParamStr}"; 
+	</script>
+	<script src="${ctx}/js/plugins/suggest/bootstrap-suggest.js?v=${jsVersion}"></script>
+	<script src='${ctx}/js/jt/common/service/employeesSelectLayer${deploy_min!""}.js?v=${jsVersion}'></script>
+	<script type="text/javascript" src='${ctx}/js/jt/crm/ou/csAssign${deploy_min!""}.js?v=${jsVersion}'></script>
+	
+	<script src="${ctx}/js/jt/common/utils/groupUtils${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/common/utils/channelUtils${deploy_min!""}.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/jt/gl/cti/tRKSheetRecord_record${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/gl/cti/recordOperate${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/gl/km/glHelpUtil${deploy_min!""}.js?v=${jsVersion}" ></script>
+</head>
+
+<body class='white-bg'>
+	<div class="wrapper animated ">
+		<!-- list界面 -->
+		<div class="row list_wrapper">
+			<#include "/gl/cti/tRKSheetRecord/tRKSheetRecordToolbar_record.html">
+			<div class='col-sm-12 jqGrid_wrapper'>
+			    <table id="insideLineSheetRecordGrid"></table>
+				<div id="insideLineSheetRecordPager"></div>
+			</div>
+		</div>
+	</div>
+
+	<#include "/gl/cti/tRKSheetRecord/record_operate.html">
+	
+	<#include "/crm/cs/csAssign/csAssign.html">
+</body>
+</html>

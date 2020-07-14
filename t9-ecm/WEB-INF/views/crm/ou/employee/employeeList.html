@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>员工管理</title>
+	<#include "/common/common.html" />
+	<#include "/common/eav.html" />
+	<#include "/common/ztree.html" />
+	
+	<link href="${ctx}/css/plugins/chosen/chosen.css?v=${jsVersion}" rel="stylesheet" />
+	<link href="${ctx}/css/plugins/iCheck/custom.css?v=${jsVersion}" rel="stylesheet" />
+	<link href="${ctx}/css/plugins/select2/select2.min.css?v=${jsVersion}" rel="stylesheet">
+	<script src="${ctx}/js/plugins/select2/select2.min.js?v=${jsVersion}"></script>
+    <script src="${ctx}/js/plugins/iCheck/icheck.min.js?v=${jsVersion}"></script>
+    <script src="${ctx}/js/plugins/chosen/chosen.jquery.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/plugins/suggest/bootstrap-suggest.js?v=${jsVersion}"></script>
+
+	<script type="text/javascript">
+		var type = "${type}";
+		var deploySys = "${deploySys}";
+		var teamDatas="";
+		$(function() {
+		    var employee = new Employee();
+		    employee.init();
+		});
+	</script>
+	<style type="text/css">
+		.form-group{
+			margin-bottom:5px;
+		}
+		.label-group{
+			margin-bottom:10px;
+		}
+		.nav.nav-tabs{
+			margin-left: 0px !important; 
+			margin-right: 0px !important;
+		}
+
+		 body {overflow: hidden;}
+		.dragsort {list-style-type:none; margin:0px; }
+		.dragsort li {float:left; padding:5px;}
+		.jt-tree-search {
+			display: none;
+			width: 100%;
+		    padding: 0 10px;
+		    height: 32px;
+		    float: left;
+		}
+		.search-div {
+			width: calc(100% - 30px);
+			height: 100%;  
+			float: left;
+			position: relative;
+		}
+		.jt-tree-search > .jt-form-select {
+			float: left;
+		    padding: 0 6px;
+		    height: 28px;
+		    margin: 0;
+		    margin-left: 4px;
+	        opacity: 0.75;
+			cursor: pointer;
+		}
+		.tree-div {width:100%;height:calc(100% - 40px);overflow: auto;}
+		.form-layer {
+		    position: absolute;
+		    top: 0;
+		    left: 110%;
+		    height: 100%;
+		    width: 100%;
+		    background: #fff;
+		    opacity:0;
+		}
+		
+		.layui-layer-title {
+			color: #fff;
+			background-color: #2ac1ac;
+		}
+
+		.layui-layer-content {
+			padding:0px 20px;
+		}
+
+		.layui-layer-btn {
+			border-top: 1px solid #e5e5e5;
+		}
+	  
+	    .rows-title>font {
+        border-bottom: 3px solid #1caf9a;
+        height: 31px;
+        word-wrap: break-word;
+        font-size: 1.1em;
+        width: 4.5em;
+        text-align: center;
+	    }
+	    .rows-title {
+	        font-weight: bold;
+	        padding-left: 2.5%;
+	        height: 24px;
+	        width: 100%;
+	        padding: 0;
+	        margin: 0;
+	        color: #1caf9a;
+	        border-bottom: 1px solid #ddd;
+	    }
+	    .samll-scrollbar::-webkit-scrollbar {/*滚动条整体样式*/
+        width: 10px;     /*高宽分别对应横竖滚动条的尺寸*/
+        height: 1px;
+	    }
+	    .samll-scrollbar::-webkit-scrollbar-thumb {/*滚动条里面小方块*/
+	        border-radius: 10px;
+	         -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+	        background: #ccc;
+	    }
+	    .select-employee-table tr:hover{
+	        background-color: #ddd;
+	    }
+	    table.select-employee-table td {
+		    word-break: break-all;
+		}
+		.teamGroupInfo{
+            margin-top: 8px;
+            border: 1px solid rgba(173, 194, 210, 0.25);
+            border-radius: 5px;
+		}
+		
+		.tab-layer {
+			height: 35px;
+			width: 100%;
+			text-align: center;
+		}
+		.tab-layer > div {
+			float: left;
+		    width: 50%;
+		    height: 100%;
+		    line-height: 35px;
+		    cursor: pointer;
+		    color: #999;
+		    background-color: rgba(236, 243, 247, .25);
+		    border-bottom: 4px solid #ecf3f7;
+		}
+		.tab-layer > div.activeBtn {
+			background-color: transparent;
+			border: 2px solid transparent;
+			color: #f8ac59 !important;
+			font-size: 1.1em;
+		}
+		.tab-layer > div#groupInfo {
+			border-right: 2px solid #ecf3f7;
+		}
+		.tab-layer > div#teamInfo {
+			border-left: 2px solid #ecf3f7;
+		}
+		.tab-layer > div:hover {
+			color: #607D8B;
+		}
+		.tab-layer > div.activeBtn:hover {
+			text-shadow: 0 0 2px rgba(248, 172, 89, 0.5);
+		}
+
+		<#if type?? && type == 'myGroup'>
+		.tab-layer {display: none;}
+		<#else>
+		.tree-group-layer {height:calc(100% - 35px) !important;}
+		</#if>
+
+		/*团队 ul*/
+		ul#loadTeam {
+			width: 100%;
+		    overflow: auto;
+		    border: 7px solid transparent;
+		    list-style: none;
+		}
+		ul#loadTeam > li.teamLi {
+		    margin-bottom: 7px;
+		    cursor: pointer;
+		}
+		ul#loadTeam > li.teamLi > input {
+		    height: 35px;
+		}
+		ul#loadTeam > li.teamLi > input[readonly] {
+			cursor: pointer;
+		}
+		ul#loadTeam > li.teamLi > input[readonly]:hover {
+			color: #1caf9a;
+		}
+		ul#loadTeam > li.addTeamLi > div {
+			float: left;
+			height:30px;
+		}
+		.addTeamLi-input {
+			width: calc(100% - 66px);
+		}
+		.addTeamLi-btn {
+			width: 66px;
+		}
+		.addTeamLi-input > input,.addTeamLi-btn > button {
+			width:100%;
+			height:30px;
+			text-align: center;
+		}
+		#addTeamInput {
+			border: 1px solid #ddd;
+    		outline: none;
+		}
+		#addTeamBtn {
+			background-color: #fff;
+		    border-color: #ddd;
+		    line-height: 25px;
+		    color: #999;
+		    border-left: 0;
+		    transition: all 0.25s linear;
+		}
+		#addTeamBtn:hover {
+			color: #1caf9a;
+		}
+		/*团队容器 panel*/
+		.team-panel {
+			background-color: #fff;
+			width: 100%;
+			height: 100%;
+		}
+		.team-panel > .panel-heading {
+			padding: 5px 10px;
+		}
+		.team-panel > .panel-body {
+			padding: 0;
+			height: calc(100% - 42px);
+    		overflow-y: auto;
+		}
+		.cs-opt-layer .layui-layer-btn0{display: none;}
+
+		.jt-tree-bars {
+		    text-align: center;
+		    padding: 0 10px;
+		    display: inline-block;
+		    width: 100%;
+		    position: relative;
+		    margin-top: 8px;
+		    float: left;
+		}
+		.jt-tree-bars > .jt-form-select {
+		    width: calc(25% - 4px);
+		    font-size: 0.8em;
+		    float: left;
+		    border-color: #ddd;
+		}
+		.jt-tree-bars > .orgTreeMoreBars {
+			margin-right: 0;
+			position: relative;
+		}
+		.sort-compose-icon {
+			position: relative;
+    		padding: 0 7px;
+		}
+		.sort-compose-icon > i.fa {
+			position: absolute;
+    		top: 2px;
+    		padding-left: 0;
+		}
+		.orgTreeMoreBars:hover:after {
+		    content: "";
+		    width: calc(100% + 2px);
+		    height: 10px;
+		    position: absolute;
+		    background-color: #fff;
+		    left: -1px;
+		    bottom: -7px;
+		    z-index: 4;
+		    border: 1px solid #ccc;
+		    border-bottom: 0;
+		    border-top: 0;
+		}
+		.orgTreeMoreBars .sort-compose-icon > i.fa-sort-down {
+			color: #ccc;
+		}
+		.orgTreeMoreBars:hover .sort-compose-icon > i.fa-sort-down {
+			color: #2196f3;
+		}
+		.orgTreeMoreBars:hover .sort-compose-icon > i.fa-sort-up {
+			color: #ccc;
+		}
+		.jt-more-drop {
+			position: absolute;
+		    background-color: #fff;
+		    border: 1px solid #ccc;
+		    z-index: 3;
+		    right: -1px;
+		    top: 30px;
+		    padding-bottom: 15px;
+		    display: none;
+		}
+		.jt-more-drop.only {
+			left: -1px;
+    		right: auto;
+		}
+		/*.jt-more-drop:hover {
+			display: block;
+		}*/
+		.orgTreeMoreBars:hover > .jt-more-drop {
+			display: block;
+		}
+		.jt-more-drop > div {
+		    text-align: left;
+		    padding: 15px;
+		    padding-bottom: 0;
+		    font-size: 0.8em;
+		    cursor: pointer;
+		    color: #607D8B;
+		    white-space: nowrap;
+		}
+		.jt-more-drop > div:hover {
+		 	color: #2196F3;
+		 }
+		 .jt-more-drop > div[disabled] {
+		    color: #ccc;
+		    cursor: not-allowed;
+		}
+		 .search-bars > a {
+		 	color: #ddd;
+		 	font-size: 12px;
+		 }
+		 .search-bars > a:hover {
+		 	color: #2196F3;
+		 }
+		 .search-bars > label {
+		 	font-weight: 500;
+    		letter-spacing: 1px;
+		 }
+		 .tree-layer {
+		 	min-width: 250px;
+		 }
+		 .jt-blue {
+		 	font-weight: 500;
+		 	color: #607D8B;
+		 	padding: 0 7px;
+		 }
+		 .jt-blue:first-child {
+		 	padding-left: 0;
+		 }
+		 .jt-blue:hover {
+		 	background-color: transparent;
+		 	color: #2196F3;
+		 }
+		 @media screen and (max-width: 1500px) {
+		 	.main-layer {
+		 		width: calc(100% - 250px);
+		 	}
+		 }
+	</style>
+<script src='${ctx}/js/jt/crm/ou/employee-site${deploy_min!""}.js?v=${jsVersion}' ></script>
+</head>
+<body class='white-bg' style="position: fixed;left:0;top:0;width:100%;">
+     		
+     		<div class="col-sm-2 tree-layer">
+     			<div class="tab-layer teamManageDiv">
+     				<div class="activeBtn teamManage" id="groupInfo">架构</div>
+	     			<div class="teamManage" id="teamInfo">团队</div>
+     			</div>
+	     		
+	     	<div class="col-sm-12 tree-layer groupType tree-group-layer">
+			<div class="jt-tree-bars">
+			 	<button class="jt-form-select orgAddBtn"><i class="fa fa-plus"></i><span>&nbsp;添加</span></button>
+			 	<button class="jt-form-select jt-edit-select orgUpdateBtn"><i class="fa fa-pencil"></i><span>&nbsp;编辑</span></button>
+			 	<button class="jt-form-select jt-danger-select orgDelBtn"><i class="fa fa-remove"></i><span>&nbsp;删除</span></button>
+			 	<button class="jt-form-select jt-more-select orgTreeMoreBars">
+			 		<span class="sort-compose-icon">
+			 			<i class="fa fa-sort-up"></i>
+			 			<i class="fa fa-sort-down"></i>
+			 		</span>
+			 		&nbsp;更多
+			 		<div class="jt-more-drop">
+				 		<div class='orgRateBtn text-navy' style="display:none;">设置部门提成比率</div>
+						<!-- <div class='competencyConfigBtn text-navy'>设置员工能力参数</div> -->
+						<div class='orgSeaConfigBtn text-navy'>设置公海规则</a></div>
+						<div class='orgSearchDpm text-navy'>搜索部门</a></div>
+				 	</div>
+			 	</button>
+			 </div>
+			 <div class="jt-tree-search">
+     			<div class="search-div">
+				  <input type="text"  id="organizationTreeSearch" class="empty form-control" placeholder="搜索：部门..." style="text-indent: 7px;">  
+					<div class="search-bars" style="position: absolute;right: 5px;top:0px">
+						<a id="clickUp" class="glyphicon glyphicon-menu-up"></a>  
+						<a id="clickDown" class="glyphicon glyphicon-menu-down" style="position: absolute;top: 14px;"></a> 
+						<label id="number" style="position: absolute; right: 50px;top: 5px;color:#999;"></label>   
+					</div>
+				 </div>
+				 <div class="jt-form-select jt-danger-select jt-tree-search-close"><i class="fa fa-remove"></i></div>
+     		</div>
+			 <div class="tree-div"  style="overflow: auto;">
+				 <ul id="organizationTree" class="ztree"></ul>
+			 </div>
+				<!--树的菜单-->
+				<div style="display: none; z-index: 999; position: absolute;" id="orgMenuContainer">
+					<ul role="menu" style="display: block;" class="dropdown-menu">
+						<li id='orgAddBtn' class='text-navy'><a><i class="fa fa-plus"></i>&nbsp;添加</a></li>
+						<li id='orgUpdateBtn' class='text-navy'><a><i class="fa fa-edit"></i>&nbsp;编辑</a></li>
+						<li id='orgDelBtn' class='text-danger'><a><i class="fa fa-remove"></i>&nbsp;删除</a></li>
+						<li class='orgRateBtn text-navy' style="display:none;"><a><i class="fa fa-pie-chart"></i>&nbsp;设置部门提成比率</a></li>
+						<!-- <li id="competencyConfigBtn" class='text-navy'><a><i class="fa fa-id-badge"></i>&nbsp;设置员工能力参数</a></li> -->
+						<li id='orgSeaConfigBtn' class='text-navy'><a><i class="fa fa-globe"></i>&nbsp;设置公海规则</a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="col-sm-12 tree-layer teamType" style="display: none;">
+				<ul id="loadTeam"></ul>
+			    <div style="display: none; z-index: 999999; position: absolute;" id="editTeam-menu">
+					<ul role="menu" style="display: block;" class="dropdown-menu">
+						<li id='teamEditBtn' class='text-navy'><a><i class="fa fa-edit"></i> 编辑队名</a></li>
+						<li id='teamDelBtn' class='text-navy'><a><i class="fa fa-remove"></i> 删除</a></li>
+					</ul>
+				</div>
+			</div>
+            </div>
+            <div class="col-sm-10 main-layer teamType" style="display: none;">
+            	<div class="panel-default team-panel">
+	            	<div class="panel-heading saveButtonDiv">
+	            		<button style="height: 28px;" type="button" class="jt-btn" id="teamSaveBtn"><i class="fa fa-floppy-o">&nbsp;</i>全部保存</button>
+	            	</div> 
+	            	<div class="panel-body">
+	            		<style type="text/css">
+	            			.team-group-li {width:100%;display: inline-block;overflow: hidden;padding: 10px;border-bottom: 7px solid #ebedef;}
+	            			.team-group-li:first-child {border-top: 5px solid #e7eaec;}
+	            			.team-group-li:hover {}
+	            			.team-group-li > div {float: left;height:66px;}
+	            			.team-group-profile {width: 66px;border: 1px solid #2f4050;}
+	            			.team-group-profile > div {width: 54px;height: 54px;margin:5px;overflow:hidden;}
+	            			.team-group-profile > div > img {width:100%;}
+	            			.team-group-msg {min-width: 200px;}
+	            			@media screen and (max-width: 1024px){
+	            				.team-group-msg {min-width: auto;}
+	            			}
+	            			.team-group-msg > div {height: 33px;width: 100%;padding: 0 15px;position: relative;}
+	            			.team-group-name {
+							    border-bottom: 1px solid #ddd;
+							    font-size: 1.1em;
+							    line-height: 30px;
+							}
+							.team-group-name i {color: #ed5565;}
+							.team-group-member {line-height: 38px;color: #999;cursor: pointer;transition: all 0.25s linear;}
+							.team-group-name:before, .team-group-member:before {
+								content: "";
+							    position: absolute;
+							    width: calc(100% - 8px);
+							    height: calc(100% - 4px);
+							    border: 1px solid #ddd;
+							    z-index: 1;
+							    border-right: 0 !important;
+							    transition: all 0.25s linear;
+							}
+							.team-group-name:before {
+							    left: 4px;
+							    bottom: 4px;
+							}
+							.team-group-member:before {
+							    left: 4px;
+							    top: 4px;
+							}
+							.team-group-name:after, .team-group-member:after {
+							    content: "";
+							    position: absolute;
+							    border: 1px solid #ddd;
+							    transform: rotate(45deg);
+							    transform-origin: 59% 65%;
+							    border-left-color: transparent !important;
+							    border-bottom-color: transparent !important;
+							    transition: all 0.25s linear;
+							}	
+							.team-group-name:after {
+							    width: 20.5px;
+							    height: 20.5px;
+							    bottom: 7px;
+							    right: -2px;
+							}
+							.team-group-member:after {
+							    width: 22px;
+							    height: 22px;
+							    top: 8.5px;
+							    right: -2px;
+							}
+							.team-group-member:hover, .team-group-member.tg-active {
+								color: #f8ac59;
+							}
+							.team-group-member:hover:before,.team-group-member:hover:after, .team-group-member.tg-active:before,.team-group-member.tg-active:after {
+								border-color: #f8ac59;
+							}
+	            			.team-group-pk {
+	            				float: left;
+							    width: 66px;
+							    height: 66px;
+							    position: relative;
+	            			}
+	            			.team-group-pk:before {
+	            				content: "";
+								width: 47px;
+								height: 47px;
+								border: 1px solid #ddd;
+								position: absolute;
+								transform: rotate(45deg);
+								transform-origin: 59% 65%;
+								top: 10px; 
+								left: 0;
+								z-index: 2;
+								background-color: #fff;
+	            			}
+	            			.team-group-pk > div:first-child {width: 70%;height: 70%;margin: 15% 20% 15% 10%;filter: grayscale(100%);opacity: 0.25;position: relative;z-index: 2;transition: all 0.25s linear;}
+	            			.team-group-pk > div > img {width: 100%;}
+	            			.team-group-li:hover .team-group-pk > div  {filter: grayscale(0%);opacity: 0.85;}
+	            			.team-group-target {min-width:200px;width:20%;position: relative;}
+	            			.team-group-target:before {
+							    content: "";
+							    width: 50px;
+							    height: 33px;
+							    float: left;
+							}
+							.team-group-target:after {
+							    content: "";
+							    position: absolute;
+							    border: 1px solid #ddd;
+							    transform: rotate(45deg);
+							    transform-origin: 59% 65%;
+							    border-left-color: transparent !important;
+							    border-bottom-color: transparent !important;
+							    transition: all 0.25s linear;
+							    width: 47px;
+							    height: 47px;
+							    top: 10px;
+							    right: -20px;
+							    z-index: 1;
+							}
+							.tg-target-border {
+								position: absolute;
+							    width: calc(100% + 41px);
+							    height: 100%;
+							    border-top: 1px solid #ddd;
+							    border-bottom: 1px solid #ddd;
+							    top: 0;
+							    left: -38px;
+							}
+							.tg-target-border:before {
+								content: "";
+								position: absolute;
+								width: calc(100% + 33px);
+								height: 1px;
+								background-color: #ddd;
+								top: 50%;
+								left: 0;
+							}
+							.team-group-target > select {
+								margin-top: 18px;
+							    border-color: #ddd;
+							    height: 30px;
+							    width: calc(100% - 50px);
+							    outline: none;
+							    position: relative;
+							    z-index: 2;
+							    text-indent: 7px;
+							}
+							.team-group-list {
+								width: 100%;
+							    min-height: 66px;
+							    margin-top: 4px;
+							    border: 1px solid #ffddb7;
+							    position: relative;
+							    height: auto !important;
+							}
+							.team-group-direct {
+								position: relative;
+							    width: 22px;
+							    height: 22px;
+							    bottom: 6px;
+    							left: -2px;
+							    border: 1px solid #ffddb7;
+							    transform: rotate(45deg);
+							    transform-origin: 59% 65%;
+							    border-right-color: transparent !important;
+							    border-bottom-color: transparent !important;
+							    background: #f5f8fb;
+							    z-index: 2;
+							}
+							.tg-list-head {
+							    width: 100%;
+								height: 35px;
+								padding: 4px;
+								position: relative;
+								z-index: 4;
+								background-color: #f5f8fb;
+								padding-left: 90px;
+							}
+							.tg-head-title {
+								position: absolute;
+							    left: 0;
+							    top: 0;
+							    width: 80px;
+							    border-right: 1px solid #ddd;
+							    height: calc(100% + 1px);
+							    margin-right: 10px;
+							    text-align: left;
+							    line-height: 35px;
+							    color: #1caf9a;
+							    background: #fff;
+							    text-align: center;
+							}
+							.tg-head-title:before {
+							    content: "";
+							    position: absolute;
+							    width: 75px;
+							    height: 34px;
+							    border: 1px solid #e7eaec;
+							    border-bottom: 0;
+							    top: 2px;
+							    left: 2px;
+							}
+							.tg-list-head > button {
+								float: left;
+								height: 100%;
+								padding: 0 11px;
+								margin-right: 10px;
+								line-height: 25px;
+								outline: 0 none !important;
+							}
+							.tg-list-body {
+								width:100%;
+								min-height: 33px;
+								position: relative;
+								z-index: 3;
+								border-top: 1px solid #ffddb7;
+								padding: 7px 4px;
+							}
+							.btn-blank, .btn-reset {
+								background: #fff;
+							    transition: all 0.25s linear;
+							}
+							.btn-blank {
+							    border: 1px solid #999;
+							    color: #999;
+							}
+							.btn-blank:hover {
+							    background: #fff;
+							    color: #f8ac59;
+							    border-color: #f8ac59;
+							}
+							.btn-reset {
+							    color: #f58d98;
+							    border: 1px solid #f58d98;
+							}
+							.btn-reset:hover {
+							    background: #fff;
+							    border: 1px solid #ed5565;
+							    color: #ed5565;
+							}
+							.selected-emp-container {
+								width: 100%;
+    							display: inline-block;
+							}
+							.tg-list-body > .selected-emp-container > .emp {
+								border-color: #ddd;
+							    margin: 0 10px 5px 0;
+							    color: #555;
+							    border-radius:0;
+							    position: relative;
+							    padding-right: 35px;
+							    height: 30px;
+    							line-height: 24px;
+							}
+							.tg-list-body > .selected-emp-container > .emp  .blue {display: none;}
+							.tg-list-body > .selected-emp-container > .emp  .deleteEmployeeBtn {
+							    color: #fff;
+							    font-size: 15px;
+							    cursor: pointer;
+							    display: block;
+							    position: absolute;
+							    right: 0;
+							    top: 0;
+							    width: 28px;
+							    height: 28px;
+							    text-align: center;
+							    line-height: 26px;
+							    border-left: 1px solid #ddd;
+							    background-color: #1caf9a;
+							    transition: all 0.25s linear;
+							}
+							.tg-list-body > .selected-emp-container > .emp  .deleteEmployeeBtn:hover {
+								color: #ec4758;
+							}
+							.noData {
+								color: #999;
+    							margin-left: 2px;
+							}
+							.tg-list-body,.team-group-list,.team-group-direct {
+								border-color: #ddd;
+							}
+							.tg-select {display: none;}
+							.tg-select > div {float: left;position: relative;}
+							.tg-select > div > input {text-indent: 10px;}
+							.selectDep,.selectEmp {width:50%;padding: 7px;background-color: #fff;}
+							.select-employee-container {
+								display: none;
+								height: 380px;
+							    width: 500px;
+							    border: 1px solid #ddd;
+							    background: #fff;
+							    margin-top: 3px;
+							    padding: 0 2px;
+							}
+							.tg-select-layer .layui-layer-content {padding: 0;}
+							.select-employee-table {width:100%;}
+							.layui-layer{
+								border-radius: 6px !important;
+							}
+							.layui-layer-btn{
+								padding: 10px 20px 10px !important;
+								margin-top: 0px !important;
+							}
+							.layui-layer-btn0{
+								float: right !important;
+							}
+							.group-type-layer {
+								height: 100%;
+								width: 100%;
+								overflow: hidden;
+								overflow-y: auto;
+								background-color: #fff;
+							}
+	            		</style>
+	            		<div id="teamPkInfo">
+	            		</div>
+	            	</div>
+            	</div>
+            </div>
+			<div class="col-sm-10 main-layer groupType">
+				<div class="group-type-layer">
+					<#include "/crm/ou/employee/employeeToolbar.html">
+					<!-- <div id="jt-crumbs" ></div> -->
+					<div class="panel-body jt-grid-marker" style="padding-top: 0;padding-bottom: 0;">
+						<table id="employeeGrid"></table>
+						<div id="employeePager"></div>
+					</div>
+			        <#include "/crm/ou/employee/employeeEdit.html">
+		    	</div>
+			</div>
+
+	<#include "/crm/ou/employee/changePassword.html">
+	<#include "/crm/ou/employee/moveGroupForEmp.html">
+	<#include "/gl/cs/csSeaConfig/csSeaConfigForm.html">
+	<#include "/crm/ou/employee/competencyConfig.html">
+	<!--添加部门，跟新部门modal-->
+	<#include "/crm/ou/employee/employeeGroupList.html">
+	
+	<!-- 员工业绩PK -->
+	<#include "/crm/ou/employee/employeeProfitPK.html">
+	<!-- 员工跟进客户数 -->
+    <#include "/crm/ou/employee/followCsCount.html">
+	<!--修改部门负责人modal-->
+	<div class="modal fade" id="officerModalContainer" tabindex="-1" role="dialog" aria-labelledby="orgModalLabel" style="margin-top:7%;">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+	        <h4 class="modal-title">负责人</h4>
+	      </div>
+	      <div class="modal-body">
+	        <form id="officerForm" method="get" class="form-horizontal">
+				<div class="form-group">
+					<label class="col-sm-2 control-label">负责人<span style='color: red'>*</span></label>
+					<div class="col-sm-10">
+						<select name='officerSelect' class='form-control' validateType='default'>
+						</select>
+					</div>
+				</div>	
+			</form>		
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+	        <button type="button" class="btn btn-sm   btn-primary" id='saveOrgManager'>保存</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	<#include "/crm/ou/employee/teamPkModule.html">
+</body>
+</html>

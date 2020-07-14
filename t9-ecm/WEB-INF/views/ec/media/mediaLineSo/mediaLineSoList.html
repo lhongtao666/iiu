@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>资源订单管理</title>
+	<#include "/common/common.html">
+	<script src="${ctx}/js/jt/ec/media/mediaLineSo.js?v=1.0.0" ></script>
+</head>
+
+<body>
+	<div class="wrapper animated fadeInRight">
+		<!-- list界面 -->
+		<div class="row list_wrapper">
+			<#include "/ec/media/mediaLineSo/mediaLineSoToolbar.html">	  			
+			<div class='col-sm-12 jqGrid_wrapper'>
+			    <table id="mediaLineSoGrid"></table>
+				<div id="mediaLineSoPager"></div>
+			</div>
+		</div>
+		<!-- 编辑界面 -->
+		<#include "/ec/media/mediaLineSo/mediaLineSoEdit.html">	    
+	</div>
+</body>
+</html>

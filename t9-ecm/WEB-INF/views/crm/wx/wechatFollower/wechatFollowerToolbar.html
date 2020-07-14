@@ -1,0 +1,39 @@
+<div class="col-sm-12">
+	<div class="panel panel-default">
+	    <div class="panel-heading">
+	    	<button type='button' class='jt-btn wechatFollowerTag'>打标签</button>
+			<button type='button' class='jt-btn wechatFollowerUntag'>取消标签</button>
+	    </div>
+	    
+	    <div class="panel-body">
+	        <form id='wechatFollowerSearchForm' role="form" class="form-horizontal">
+				<!--默认生成一个搜索条件，需要的，用户自己添加-->
+				<div class="form-group">
+					
+					<label class="col-sm-1 control-label">关注时间</label>
+					<div class='col-sm-5'>
+						<div class="input-daterange input-group">
+							<input class="laydate-icon form-control layer-date" name="Q__D__BW__follower.subscribe_time_" placeholder="yyyy-mm-dd hh:mm:ss" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">
+							<span class="input-group-addon">到</span>
+							<input class="laydate-icon form-control layer-date" name="Q__D__BW__follower.subscribe_time_" placeholder="yyyy-mm-dd hh:mm:ss" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">
+						</div>
+					</div>
+					<label class='col-sm-1 control-label'>昵称</label> 
+					<div class='col-sm-2'>
+						<input type="text" id='nameSearch' placeholder="请输入昵称" name="Q__S__LK__nick_name_" class="form-control">
+					</div>
+					<label class='col-sm-1 control-label'>备注</label> 
+					<div class='col-sm-2'>
+						<input type="text" id='nameSearch' placeholder="请输入备注" name="Q__S__LK__remark_" class="form-control">
+					</div>
+				</div>
+				<div class="form-group">
+					<div class='col-sm-5'></div>
+					<div class='col-sm-1'>
+						<button type='button' class="btn jt-btn-search wechatFollowerSearch"><i class="fa fa-search"></i>&nbsp;搜索</button>
+					</div>
+				</div>
+			</form>
+	    </div>
+	</div>
+</div>

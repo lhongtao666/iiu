@@ -1,0 +1,98 @@
+<form id="reportEntityForm" method="get" class="form-horizontal">
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h3 class="panel-title">基本信息</h3>
+		</div>
+		<div class="panel-body">
+			<div class='col-sm-12'>
+				<div class="form-group">
+					<div class='col-sm-4'>
+						<label class="col-sm-3 control-label">名称</label>
+						<div class="col-sm-9">
+							<input type="text" name="name" placeholder=""
+								class="form-control" validateType="default">
+						</div>
+					</div>
+					<div class='col-sm-4'>
+						<label class="col-sm-3 control-label">业务键 </label>
+						<div class="col-sm-9">
+							<input type="text" name="key" placeholder="" class="form-control"
+								validateType="default">
+						</div>
+					</div>
+					<div class='col-sm-4'>
+						<label class="col-sm-3 control-label">分类</label>
+						<div class="col-sm-5">
+							<input readonly="readonly" type="text" name="cateName" name="cateName" placeholder=""
+								class="form-control" validateType="default"> <input
+								type="hidden" name="cateId">
+						</div>
+						<div class="col-sm-4">
+							<button type="button"
+								class="jt-btn selectReportKey">选择分类</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class='col-sm-12'>
+				<div class="form-group">
+					<div class='col-sm-4' style="display:none;">
+						<label class="col-sm-3 control-label">报表类型</label>
+						<div class="col-sm-9">
+							<select class="form-control" name="type" id="type"
+								validateType="default">
+								<option value="chart">数据图</option>
+								<option value="data">数据表</option>
+							</select>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class='col-sm-12'>
+				<div class="form-group">
+					<label class="col-sm-1 control-label">报表URL</label>
+					<div class="col-sm-11">
+						<input type="text" name="url" placeholder="" class="form-control"
+							validateType="default">
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">序号</label>
+					<div class="col-sm-9">
+						<input type="number" name="sort" placeholder=""
+							class="form-control" validateType="default">
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<!--将隐藏域放在这里，不显示出来-->
+				<div style="display: none'">
+					<input type="hidden" id="id" name="id">
+					<input type="hidden" name="createBy">
+					<input type="hidden" name="createTime">
+					<input type="hidden" name="sort">
+					<input type="hidden" name="isNew">
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h3 class="panel-title">授权信息</h3>
+		</div>
+		<div class="panel-body">
+			<table class='table table-stripped table-bordered authDiv'  border="0" cellspacing="0">
+				<thead>
+				   <td style="width:150px;">授权类型</td><td >授权对象</td><td style="width:100px;">操作</td>
+				</thead>
+				<tbody class='authTable'  >
+				</tbody>
+			</table>
+			<button type='button'  class='addAuth btn btn-sm   btn-primary'>新增授权</button>
+		</div>
+	</div>
+	-->
+</form>

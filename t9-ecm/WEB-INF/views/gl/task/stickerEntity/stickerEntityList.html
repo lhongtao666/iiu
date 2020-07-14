@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <#include "/common/common.html">
+    <script src="${ctx}/js/jt/common/service/operateTask${deploy_min!""}.js?v=${jsVersion}"></script>
+    <script type="text/javascript" src="${ctx}/js/jt/gl/task/stickerEntity${deploy_min!""}.js?v=${jsVersion}"></script>
+    <script src="${ctx}/js/jt/gl/km/glHelpUtil${deploy_min!""}.js?v=${jsVersion}" ></script>
+    <style>
+        ul {
+            float: left;
+            margin: 0px;
+            overflow: hidden;
+            display: block;
+            width: auto;
+        }
+        
+        ul li {
+            list-style: none;
+            margin: 1em;
+            float: left;
+        }
+        
+        ul li h4 {
+            font-size: 140%;
+            font-weight: bold;
+            padding-bottom: 10px;
+            font-size: 100%;
+            font-weight: normal;
+        }
+        
+        ul li p {
+            font-family: "Reenie Beanie", arial, sans-serif, 微软雅黑;
+            font-size: 110%;
+            font-weight: normal;
+        }
+        
+        ul li div {
+            padding: 1em;
+            text-decoration: none;
+            color: #000;
+            background: #ffc;
+            display: block;
+            height: 230px;
+            width: 230px;
+            padding: 1em;
+            /* Firefox */
+            -moz-box-shadow: 5px 5px 7px rgba(33, 33, 33, 1);
+            /* Safari+Chrome */
+            -webkit-box-shadow: 5px 5px 7px rgba(33, 33, 33, .7);
+            /* Opera */
+            box-shadow: 5px 5px 7px rgba(33, 33, 33, .7);
+        }
+        
+        .hight-light {
+            padding: 1em;
+            text-decoration: none;
+            color: #000;
+            background: #ffc;
+            display: block;
+            height: 230px;
+            width: 230px;
+            padding: 1em;
+            background: orange;
+        }
+        
+        .input-title,
+        .textarea-content {
+            border: none;
+            background: none;
+            display: block;
+            margin-top: 5px;
+            font-weight: bold;
+            font-size: 16px;
+            width: 100%;
+        }
+        
+        .input-title-edit,
+        .textarea-content-edit {
+            border: dotted thin #87CEEB;
+        }
+        
+        .textarea-content {
+            height: 130px;
+            font-weight: normal;
+            font-size: 14px;
+        }
+        
+        .operation-span {
+            float: right;
+            width: 75px;
+            text-align: right;
+            margin-top: 2px;
+            vertical-align: middle;
+            position: absolute;
+            right: 5px;
+            bottom: 5px;
+        }
+        
+        .operation {
+            width: 20px;
+            height: 20px;
+            text-align: center;
+            cursor: pointer;
+            margin-left: 4px;
+            font-size: 18px;
+        }
+        
+        .rotate0 {
+            -webkit-transform: rotate(0deg);
+            -o-transform: rotate(0deg);
+            -moz-transform: rotate(0deg);
+        }
+        
+        .rotate-6 {
+            -webkit-transform: rotate(-6deg);
+            -o-transform: rotate(-6deg);
+            -moz-transform: rotate(-6deg);
+        }
+        
+        .rotate-2 {
+            -webkit-transform: rotate(-2deg);
+            -o-transform: rotate(-2deg);
+            -moz-transform: rotate(-2deg);
+        }
+        
+        .rotate2 {
+            -webkit-transform: rotate(2deg);
+            -o-transform: rotate(2deg);
+            -moz-transform: rotate(2deg);
+        }
+        
+        .rotate6 {
+            -webkit-transform: rotate(6deg);
+            -o-transform: rotate(6deg);
+            -moz-transform: rotate(6deg);
+        }
+    </style>
+</head>
+
+<body class='white-bg'>
+    <div class="wrapper ">
+        <div class="row">
+            <#include "/gl/task/stickerEntity/stickerEntityToolbar.html">
+            <div class='col-sm-12'>
+                <ul class="mynotes">
+                </ul>
+                <ul class="notes deletedNotes hidden">
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

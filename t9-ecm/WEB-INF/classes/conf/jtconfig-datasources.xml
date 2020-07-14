@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSources>
+		<dataSource>
+		<group>jtsoft</group>
+		<alias>ecm</alias>
+		<name>jtsoft ecm db</name>
+		<dbType>mysql</dbType>
+		<driver>com.mysql.jdbc.Driver</driver>	
+		<!-- 开发环境数据库 -->
+		<driverUrl>jdbc:mysql://127.0.0.1:3318/jtsoft_ecm?useUnicode=true&amp;characterEncoding=utf-8&amp;allowMultiQueries=true&amp;zeroDateTimeBehavior=convertToNull&amp;autoReconnect=true</driverUrl>
+		<dbName>jtsoft_ecm_setup</dbName>
+		<user>root</user>
+		<password>4876623844395A6B7745424D357563644C5375536C773D3D</password>
+		<isDefault>true</isDefault>
+			<variables>
+				<minIdle>12</minIdle>
+				<initialSize>12</initialSize>
+				<maxActive>30</maxActive>
+				<maxWait>5000</maxWait>
+				<timeBetweenEvictionRunsMillis>60000</timeBetweenEvictionRunsMillis>
+				<minEvictableIdleTimeMillis>30000</minEvictableIdleTimeMillis>
+				<validationQuery>select 1</validationQuery>
+				<testWhileIdle>true</testWhileIdle>
+				<testOnBorrow>false</testOnBorrow>
+				<testOnReturn>false</testOnReturn>
+				<poolPreparedStatements>true</poolPreparedStatements>
+				<maxPoolPreparedStatementPerConnectionSize>20</maxPoolPreparedStatementPerConnectionSize>
+				<filters>stat</filters>
+				<removeAbandoned>true</removeAbandoned>
+				<removeAbandonedTimeout>1800</removeAbandonedTimeout>
+				<logAbandoned>true</logAbandoned>		
+			</variables>
+	</dataSource>
+	
+	<dataSource>
+		<group>jtsoft</group>
+		<alias>cti</alias>
+		<name>cti_db</name>
+		<dbType>mysql</dbType>
+		<driver>com.mysql.jdbc.Driver</driver>	
+		<driverUrl>jdbc:mysql://127.0.0.1:3318/jtsoft_ecm?useUnicode=true&amp;characterEncoding=utf-8&amp;allowMultiQueries=true&amp;zeroDateTimeBehavior=convertToNull&amp;autoReconnect=true</driverUrl>
+		<dbName>cti_db</dbName>
+		<user>root</user>
+		<password>4876623844395A6B7745424D357563644C5375536C773D3D</password>
+		<isDefault>true</isDefault>
+			<variables>
+				<minIdle>12</minIdle>
+				<initialSize>12</initialSize>
+				<maxActive>30</maxActive>
+				<maxWait>5000</maxWait>
+				<timeBetweenEvictionRunsMillis>60000</timeBetweenEvictionRunsMillis>
+				<minEvictableIdleTimeMillis>30000</minEvictableIdleTimeMillis>
+				<validationQuery>select 1</validationQuery>
+				<testWhileIdle>true</testWhileIdle>
+				<testOnBorrow>false</testOnBorrow>
+				<testOnReturn>false</testOnReturn>
+				<poolPreparedStatements>true</poolPreparedStatements>
+				<maxPoolPreparedStatementPerConnectionSize>20</maxPoolPreparedStatementPerConnectionSize>
+				<filters>stat</filters>
+				<removeAbandoned>true</removeAbandoned>
+				<removeAbandonedTimeout>1800</removeAbandonedTimeout>
+				<logAbandoned>true</logAbandoned>
+			</variables>
+	</dataSource>
+	
+	
+	<dataSource>
+		<group>jtsoft</group>
+		<alias>csfollows</alias>
+		<name>CsEntity Follow DB</name>
+		<dbType>mysql</dbType>
+		<driver>com.mysql.jdbc.Driver</driver>
+		<driverUrl>jdbc:mysql://127.0.0.1:3318/jtsoft_csfollows?useUnicode=true&amp;characterEncoding=utf-8&amp;allowMultiQueries=true&amp;zeroDateTimeBehavior=convertToNull&amp;autoReconnect=true</driverUrl>
+		<dbName>jtsoft_csfollows</dbName>
+		<user>root</user>
+		<password>4876623844395A6B7745424D357563644C5375536C773D3D</password>
+		<isDefault>false</isDefault>
+			<variables>
+				<minIdle>12</minIdle>
+				<initialSize>12</initialSize>
+				<maxActive>30</maxActive>
+				<maxWait>5000</maxWait>
+				<timeBetweenEvictionRunsMillis>60000</timeBetweenEvictionRunsMillis>
+				<minEvictableIdleTimeMillis>30000</minEvictableIdleTimeMillis>
+				<validationQuery>select 1</validationQuery>
+				<testWhileIdle>true</testWhileIdle>
+				<testOnBorrow>false</testOnBorrow>
+				<testOnReturn>false</testOnReturn>
+				<poolPreparedStatements>true</poolPreparedStatements>
+				<maxPoolPreparedStatementPerConnectionSize>20</maxPoolPreparedStatementPerConnectionSize>
+				<filters>stat</filters>
+				<removeAbandoned>true</removeAbandoned>
+				<removeAbandonedTimeout>1800</removeAbandonedTimeout>
+				<logAbandoned>true</logAbandoned>
+			</variables>
+	</dataSource>
+	<dataSource>
+		<group>jtsoft</group>
+		<alias>logs</alias>
+		<name>jtsoft_logs</name>
+		<dbType>mysql</dbType>
+		<driver>com.mysql.jdbc.Driver</driver>
+		<driverUrl>jdbc:mysql://127.0.0.1:3318/jtsoft_logs?useUnicode=true&amp;characterEncoding=utf-8&amp;allowMultiQueries=true&amp;zeroDateTimeBehavior=convertToNull&amp;autoReconnect=true</driverUrl>
+		<dbName>jtsoft_logs</dbName>
+		<user>root</user>
+		<password>4876623844395A6B7745424D357563644C5375536C773D3D</password>
+		<isDefault>false</isDefault>
+			<variables>
+				<minIdle>12</minIdle>
+				<initialSize>12</initialSize>
+				<maxActive>30</maxActive>
+				<maxWait>5000</maxWait>
+				<timeBetweenEvictionRunsMillis>60000</timeBetweenEvictionRunsMillis>
+				<minEvictableIdleTimeMillis>30000</minEvictableIdleTimeMillis>
+				<validationQuery>select 1</validationQuery>
+				<testWhileIdle>true</testWhileIdle>
+				<testOnBorrow>false</testOnBorrow>
+				<testOnReturn>false</testOnReturn>
+				<poolPreparedStatements>true</poolPreparedStatements>
+				<maxPoolPreparedStatementPerConnectionSize>20</maxPoolPreparedStatementPerConnectionSize>
+				<filters>stat</filters>
+				<removeAbandoned>true</removeAbandoned>
+				<removeAbandonedTimeout>1800</removeAbandonedTimeout>
+				<logAbandoned>true</logAbandoned>
+			</variables>
+	</dataSource>
+	<dataSource>
+		<group>jtsoft</group>
+		<alias>weixin_records</alias>
+		<name>CsEntity weixinRecord DB</name>
+		<dbType>mysql</dbType>
+		<driver>com.mysql.jdbc.Driver</driver>
+		<driverUrl>jdbc:mysql://127.0.0.1:3318/jtsoft_weixin_records?useUnicode=true&amp;characterEncoding=utf-8&amp;allowMultiQueries=true&amp;zeroDateTimeBehavior=convertToNull&amp;autoReconnect=true</driverUrl>
+		<dbName>jtsoft_weixin_records</dbName>
+		<user>root</user>
+		<password>4876623844395A6B7745424D357563644C5375536C773D3D</password>
+		<isDefault>false</isDefault>
+			<variables>
+				<minIdle>12</minIdle>
+				<initialSize>12</initialSize>
+				<maxActive>30</maxActive>
+				<maxWait>5000</maxWait>
+				<timeBetweenEvictionRunsMillis>60000</timeBetweenEvictionRunsMillis>
+				<minEvictableIdleTimeMillis>30000</minEvictableIdleTimeMillis>
+				<validationQuery>select 1</validationQuery>
+				<testWhileIdle>true</testWhileIdle>
+				<testOnBorrow>false</testOnBorrow>
+				<testOnReturn>false</testOnReturn>
+				<poolPreparedStatements>true</poolPreparedStatements>
+				<maxPoolPreparedStatementPerConnectionSize>20</maxPoolPreparedStatementPerConnectionSize>
+				<filters>stat</filters>
+				<removeAbandoned>true</removeAbandoned>
+				<removeAbandonedTimeout>1800</removeAbandonedTimeout>
+				<logAbandoned>true</logAbandoned>
+			</variables>
+	</dataSource>
+	<dataSource>
+		<group>jtsoft</group>
+		<alias>jtsoft_ecm</alias>
+		<name>jtsoft mongodb</name>
+		<dbType>mongodb</dbType>
+		<driverUrl>127.0.0.1</driverUrl>
+		<dbName>jtsoft_ecm</dbName>
+		<user>root</user>
+		<password>4876623844395A6B7745424D357563644C5375536C773D3D</password>		
+		<port>27017</port>
+		<isDefault>true</isDefault>
+		<variables>			
+			<connectTimeout>5000</connectTimeout>
+			<socketTimeout>5000</socketTimeout>						
+			<connectionsPerHost>60</connectionsPerHost>
+			<maxWaitTime>300000</maxWaitTime>
+			<threadsAllowedToBlockForConnectionMultiplier >10</threadsAllowedToBlockForConnectionMultiplier>
+		</variables>
+	</dataSource>	
+	<dataSource>
+		<group>jtsoft</group>
+		<alias>jtsoft_weixin</alias>
+		<name>jtsoft mongodb</name>
+		<dbType>mongodb</dbType>
+		<driverUrl>127.0.0.1</driverUrl>
+		<dbName>jtsoft_weixin</dbName>
+		<user>root</user>
+		<password>4876623844395A6B7745424D357563644C5375536C773D3D</password>		
+		<port>27017</port>
+		<isDefault>false</isDefault>
+		<variables>			
+			<connectTimeout>5000</connectTimeout>
+			<socketTimeout>5000</socketTimeout>						
+			<connectionsPerHost>60</connectionsPerHost>
+			<maxWaitTime>300000</maxWaitTime>
+			<threadsAllowedToBlockForConnectionMultiplier >10</threadsAllowedToBlockForConnectionMultiplier>
+		</variables>
+		<bucketNames>
+			<_weixin_>both</_weixin_>
+		</bucketNames>
+	</dataSource>
+</dataSources>

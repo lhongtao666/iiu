@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>我的投诉跟进</title>
+	<#include "/common/common.html">
+	<#include "/common/datatable.html">
+	<link href="${ctx}/css/plugins/chosen/chosen.css?v=${jsVersion}" rel="stylesheet">
+	<link href="${ctx}/css/plugins/iCheck/custom.css?v=${jsVersion}" rel="stylesheet">
+	<link href="${ctx}/css/plugins/select2/select2.min.css?v=${jsVersion}" rel="stylesheet">
+	<script src="${ctx}/js/plugins/select2/select2.min.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/plugins/chosen/chosen.jquery.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/plugins/suggest/bootstrap-suggest.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/jt/crm/cs/csComplain${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/crm/cs/csComplainAdd${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/crm/cs/complainTypeOption${deploy_min!""}.js?v=${jsVersion}" ></script>
+    <script src="${ctx}/js/jt/crm/cs/csComplainFollow${deploy_min!""}.js?v=${jsVersion}" ></script>
+    <script>
+		var type = "self";	//分配给我的投诉
+		var isShowMoreTarget = "no";
+	</script>
+	<script src="${ctx}/js/jt/gl/km/glHelpUtil${deploy_min!""}.js?v=${jsVersion}" ></script>
+</head>
+
+<body>
+	<div class="wrapper animated ">
+		<div class="row list_wrapper">
+			<#include "csComplainSelfToolBar.html">	  			
+			<div class='col-sm-12 jqGrid_wrapper'>		
+			    <table id="csComplainGrid"></table>
+				<div id="csComplainPager"></div>
+			</div>
+		</div>
+		<#include "csComplainEdit.html">	    
+	</div>
+	<div style="display:none" class="csComplainFollowAddDiv">
+    	<#include "csComplainFollowAdd.html" >
+	</div>
+	<div style="display:none" class="applyDelayReasonAddDiv">
+    	<#include "applyDelayReasonAdd.html" >
+	</div>
+</body>
+
+</html>

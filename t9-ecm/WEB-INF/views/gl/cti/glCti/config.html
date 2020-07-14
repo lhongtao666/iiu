@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>cti配置</title>
+	<#include "/common/common.html">
+	<script src="${ctx}/js/jt/common/utils/excelUtil${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/gl/cti/glCti/glCtiConfig${deploy_min!""}.js?v=${jsVersion}" ></script>
+</head>
+
+<body class='white-bg'>
+	<div class="wrapper animated ">
+		<!-- list界面 -->
+		<div class="row list_wrapper">
+			<div class='col-sm-12 jqGrid_wrapper'>
+			    <form class='form-horizontal'>
+			    	<div class='form-group'>
+			    		<div class='col-sm-6'>
+						<div class="panel panel-default">
+							<div class="panel-heading">
+									<button class='jt-btn' id='editBtn' type='button'><i class='fa fa-pencil'></i>&nbsp;编辑</button>
+									<button class='jt-btn hidden' id='saveBtn' type='button'>刷新cti</button>
+									<button class='jt-btn hidden' id='cancelBtn' type='button'>取消</button>
+						        </div>	
+						        <div style="height:20px;"><span style="color:red;">注意：真正使用的是左边的</span></div>
+						        <div class='pannel-body defaultConfig'>
+						        	<textarea rows='60' readonly class='form-control' name='config'>${config}</textarea>    
+						        </div>
+						</div>
+			    		</div>
+			    		<div class='col-sm-6'>
+			    			<div class="panel panel-default">
+							<div class="panel-heading">
+									<button class='jt-btn' id='editBtnImport' type='button'><i class='fa fa-pencil'></i>&nbsp;编辑</button>
+									<button class='jt-btn hidden' id='saveBtnImport' type='button'>刷新cti</button>
+									<button class='jt-btn hidden' id='cancelBtnImport' type='button'>取消</button>
+									<button class='jt-btn' id='importOrderExcel' type='button'>导入</button>
+									<button class='jt-btn ' id='applyConfig' type='button'>应用导入配置</button>
+						        </div>	
+								<div style="height:20px;"></div>
+						        <div class='pannel-body '>
+						        	<textarea rows='60' readonly class='form-control' name='importConfig'><#if importConfig??>${importConfig}<#else>没有导入cti记录</#if>
+						        	</textarea>    
+						        </div>
+						</div>
+			    		</div>
+			    	</div>
+			    </form>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

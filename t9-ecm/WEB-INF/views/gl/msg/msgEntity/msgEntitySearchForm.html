@@ -1,0 +1,25 @@
+<form role="form" class="form-inline">
+    <div class="form-group">
+		<label for="statusSearch" class="sr-only">状态。draft=草稿；send=已发送</label> 
+		<select  id="statusSearch" class='form-control'>
+		    <option value=''>状态</option>
+		    <option value='send'>已发送</option>
+		    <option value='draft'>草稿</option>
+		</select>
+	</div>
+
+	<div class="form-group">
+		<label for="titleSearch" class="sr-only">标题</label> 
+		<input type="text" placeholder="请输入标题" id="titleSearch" class="form-control">
+	</div>
+	
+	<div class="form-group">
+        <label class="font-noraml">创建时间</label>
+        <div class="input-daterange input-group date" id="datepicker">
+            <div class="inline layinput"><input class='form-control' id="createStartTime" name='updateStartTime' placeholder="YYYY-MM-DD" onclick="laydate({istime: true, format: 'YYYY-MM-DD'})"><label class="laydate-icon"></label></div>
+            <span class="input-group-addon">到</span>
+            <div class="inline layinput"><input class='form-control' id="createEndTime" name='updateEndTime' placeholder="YYYY-MM-DD" onclick="laydate({istime: true, format: 'YYYY-MM-DD'})"><label class="laydate-icon"></label></div>
+        </div>
+    </div>
+    <button class="btn btn-default" id="searchBtn">搜索</button>
+</form>

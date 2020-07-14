@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>坐席分机号管理</title>
+    <#include "/common/common.html" />
+    <script src="${ctx}/js/jt/gl/cti/monitor/jtsoftctiStatusList${deploy_min!''}.js?v=${jsVersion}"></script>
+    <link href="${ctx}/css/jt/gl/cti/monitor/adnManage.css?v=${jsVersion}" rel="stylesheet"/>
+    <script type="text/javascript">
+        var ctiType = "${ctiType}";
+    </script>
+    <script type="text/x-jsrender" id="cardBoxTmp">
+        <div class="cardBox col-sm-1">
+                        <div class="headerBox">
+                            <div class="checkbox checkbox-success checkbox-inline ">
+                                <input type="checkbox" name="adnCheckbox" value="{{:adn}}">
+                                <label type="adnCheckbox">{{:adn}}</label>
+                            </div>
+                        </div>
+                        {{if state=="Receiving" }}
+                            <div class="bodyBox"><img src="${ctx}/img/jt/cti/calling48.png"></div>
+                        {{else status=="On Break"}}
+                            <div class="bodyBox"><img src="${ctx}/img/jt/cti/busy48.png"></div>
+                        {{else}}
+                            <div class="bodyBox"><img src="${ctx}/img/jt/cti/idle48.png"></div>
+                        {{/if}}
+                        <div class="bottomBox"><span>{{:agentId}}</span></div>
+                    </div>
+    </script>
+
+    <script type="text/x-jsrender" id="panelTmp">
+        <div class="panel">
+            <div id="defaultAdnPanel" class="panel-collapse collapse in">
+                <div class="panel-body" id="defaultAdnPanelBody">
+                </div>
+            </div>
+        </div>
+
+
+
+    </script>
+</head>
+<style type="text/css">
+    .cardBox {
+        text-align: center;
+        padding: 10px;
+        font-size: 0.8vw;
+        border: 1px solid #ddd;
+        display: inline-block;
+        margin-right: 10px;
+        margin-top: 5px;
+        height: 135px;
+    }
+</style>
+<body class='white-bg'>
+<div class="wrapper animated ">
+    <div class="row list_wrapper">
+        <div class="col-sm-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <a type='button' class="jt-btn forcebusy">示忙</a>
+                    <a type='button' class="jt-btn forceidle">示闲</a>
+                    <a type='button' class="jt-btn listen">监听</a>
+                    <a type='button' class="jt-btn jt-btn-red forcehugup">挂机</a>
+                    <a type='button' class="jt-btn refreshList">刷新</a>
+                    <div class="col-sm-10" style="float:right">
+                        <div style="float: left;">
+                            <div class="checkbox checkbox-success checkbox-inline">
+                                <input type="checkbox" name="checkAll" id="checkAll">
+                                <label for="checkAll">选择全部</label>
+                            </div>
+                        </div>
+                        <div style="float: right;">
+                            <span><img src="${ctx}/img/jt/cti/calling32.png">：通话中</span>&nbsp;
+                            <span><img src="${ctx}/img/jt/cti/idle32.png">：空闲</span>&nbsp;
+                            <span><img src="${ctx}/img/jt/cti/busy32.png">：示忙</span>&nbsp;
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12">
+            <div class="panel-group wrap" id="bs-collapse">
+                <div style="font-size: 18px;text-align: center;">暂无数据</div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

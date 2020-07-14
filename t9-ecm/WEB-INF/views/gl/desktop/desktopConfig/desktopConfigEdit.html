@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>我的桌面</title>
+    <#include "/common/common.html">
+    <#include "/common/ztree.html">
+    <link href="${ctx}/css/plugins/chosen/chosen.css?v=${jsVersion}" rel="stylesheet">
+    <script type="text/javascript">
+        var position =  "${desktopConfig.position}";
+    </script>
+    <script src="${ctx}/js/plugins/suggest/bootstrap-suggest.js?v=${jsVersion}"></script>
+    <script src="${ctx}/js/plugins/chosen/chosen.jquery.js?v=${jsVersion}"></script>
+    <script src="${ctx}/js/plugins/echarts/3.1.7/theme/macarons.js?v=${jsVersion}"></script>
+    <script src="${ctx}/js/plugins/echarts/3.1.7/echarts.min.js?v=${jsVersion}"></script>
+    <script src="${ctx}/js/jt/common/plugins/report${deploy_min!""}.js?v=${jsVersion}" ></script>
+    <script src="${ctx}/js/jt/crm/report/reportDateUtil${deploy_min!""}.js?v=${jsVersion}" ></script>
+    <script src="${ctx}/js/jt/common/service/selectProdService${deploy_min!""}.js?v=${jsVersion}" ></script>
+    <script src="${ctx}/js/jt/ec/stock/storeUtils${deploy_min!""}.js?v=${jsVersion}" ></script>
+    <script src="${ctx}/js/jt/ec/stock/storeUtils${deploy_min!""}.js?v=${jsVersion}" ></script>
+    <script src="${ctx}/js/jt/common/utils/taskUtils${deploy_min!""}.js?v=${jsVersion}"></script>
+    <script src="${ctx}/js/jt/common/utils/groupUtils${deploy_min!""}.js?v=${jsVersion}"></script>
+    <script src='${ctx}/js/jt/common/service/financeAccountSelect${deploy_min!""}.js?v=${jsVersion}'></script>
+    <script src="${ctx}/js/jt/ec/ret/shipInfoUtil${deploy_min!""}.js?v=${jsVersion}" ></script>
+    <link href="${ctx}/css/jt/gl/desktop/layoutit${deploy_min!""}.css?v=${jsVersion}" rel="stylesheet">
+	<link href="${ctx}/css/jt/gl/desktop/desktopEdit${deploy_min!""}.css?v=${jsVersion}" rel="stylesheet">
+	<script type="text/javascript" src="${ctx}/js/plugins/htmlclean/jquery.htmlClean.js?v=${jsVersion}"></script>
+    <script src="${ctx}/js/jt/common/utils/positionUtils${deploy_min!""}.js?v=${jsVersion}" ></script>
+    <script type="text/javascript" src="${ctx}/js/jt/gl/desktop/desktopEdit${deploy_min!""}.js?v=${jsVersion}"></script>
+
+    <style>
+        .navbar-fixed-top{
+        	background-color: #1b1b1b;
+        	padding: 7px;
+        }
+
+        .sidebar-nav .preview input{
+        	color: #000;
+        }
+
+        .label{
+        	color: #000;
+        }
+        .drag.label.label-default{
+        	color: #000;
+        }
+
+        .label-important, .label-danger{
+        	color: #ffffff;
+        }
+
+        .preview{
+        	color: #000 !important;
+        }     
+    </style>
+</head>
+
+<body style="min-height: 306px; cursor: auto;" class="edit">
+    <#include "/gl/desktop/desktopConfig/head-buttons.html">
+	<div class="wrapper">
+	    <div class="row">
+	        <div class="col-sm-12">
+	            <#include "/gl/desktop/desktopConfig/sidebar-nav.html">
+	        </div>
+	        <div style="min-height: 236px;" id="desktopConfigContainer" class="demo ui-sortable">
+	            <#if desktopConfig?exists>${desktopConfig.editCode}</#if>
+	        </div>
+	        <div id="download-layout">
+	            <div class="container-fluid"></div>
+	        </div>
+	    </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="saveModal" tabindex="-1"
+        role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"
+                        aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">保存</h4>
+                </div>
+                <div class="modal-body">
+                    <form id="desktopConfigForm" role='form'
+                        class="form-horizontal">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">名字<span style='color: red;'>*</span></label>
+                            <div class="col-sm-9">
+                                <#if desktopConfig?exists> 
+                                    <input type="hidden" name="id" value="${desktopConfig.id}">
+                                    <input type="hidden" name="createBy" value="${desktopConfig.createBy}"> 
+                                    <input type="hidden" name="createTime" value="${desktopConfig.createTime?string('yyyy-MM-dd HH:mm:ss')}">
+                                    <input type="text" name="name" placeholder="" value="${desktopConfig.name}" validateType='default' class="form-control">                                        
+                                <#else> 
+                                    <input type="text" validateType='default' name="name" placeholder=""class="form-control"> 
+                                </#if>
+                            </div>
+                        </div>
+                        
+                        <div class='form-group'>
+                            <label class='col-sm-3 control-label'>备注</label>
+                            <div class='col-sm-9'>
+                                <#if desktopConfig?exists> 
+                                    <textarea name='desc' class='form-control' rows='4'>${desktopConfig.desc}</textarea>
+                                <#else>
+                                    <textarea name='desc' class='form-control' rows='4'></textarea>
+                                </#if>
+                            </div>
+                        </div>
+ 						<div class='form-group'>
+                            <label class="col-sm-3 control-label">排序<span style="color: red;">*</span></label>
+                            <div class="col-sm-9">
+                           		<#if desktopConfig?exists && desktopConfig.sort != '' && desktopConfig.sort != null>
+	                           		<#if desktopConfig.isDefault == "y">
+	                          			<input type="text" validateType='default' name="sort" placeholder=""class="form-control" disabled='disabled' value='0' > 
+                       				<#else>
+	                          			<input type="text" validateType='default' name="sort" placeholder=""class="form-control" value="${desktopConfig.sort}"> 
+                          			</#if>
+                          		<#else>
+	                          			<input type="text" validateType='default' name="sort" placeholder=""class="form-control" > 
+                          		</#if>
+                            </div>
+                        </div>
+                        <div class='form-group'>
+                            <label class="col-sm-3 control-label">是否默认<span style="color: red;">*</span></label>
+                            <div class="col-sm-9">
+                                <select validateType='default' name='isDefault' class='form-control'>
+                                    <option value=''>请选择</option>
+                                    <option <#if desktopConfig?exists><#if desktopConfig.isDefault == "n">selected='selected'</#if></#if> value="n">否</option>
+                                    <option <#if desktopConfig?exists><#if desktopConfig.isDefault == "y">selected='selected'</#if></#if> value="y">是</option>
+                                </select>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default jt-btn-close" 
+                        data-dismiss="modal">取消</button>
+                    <button type="button" id='saveBtn' class="btn btn-sm   btn-primary jt-btn-normal">保存</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

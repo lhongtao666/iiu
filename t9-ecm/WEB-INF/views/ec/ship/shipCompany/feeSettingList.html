@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>物流费用管理</title>
+	<#include "/common/common.html">
+	<script src="${ctx}/js/jt/ec/ship/feeSetting${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/common/utils/shipCompanyUtils${deploy_min!""}.js?v=${jsVersion}" ></script>
+	
+</head>
+
+<body>
+	<div class="wrapper animated ">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<form class="form-horizontal">
+					<div class="form-group">
+						<div class="col-sm-4">
+							<div class="col-sm-4">
+								<button type='button' class="jt-btn feeSettingSaveAll"><i class="fa fa-floppy-o"></i>&nbsp;全部保存</button>	
+							</div>
+							<div class="col-sm-5">
+								<select class="form-control shipCompanySearch">
+								</select>
+							</div>	
+							<div class="col-sm-3">
+								<button type='button' class="jt-btn feeSettingAdd"><i class='fa fa-plus'>&nbsp;添加</i></button>
+							</div>	
+						</div>						
+					</div>
+				</form>			
+			</div>
+			<div class="panel-body feeSettingContent">
+			</div>
+		</div>
+	</div>
+</body>
+</html>

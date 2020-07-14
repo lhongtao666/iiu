@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>jt_wechat_subscribe管理</title>
+	<#include "/common/common.html">
+	<script src="${ctx}/js/jt/crm/wx/wechatSubscribe${deploy_min!""}.js?v=${jsVersion}" ></script>
+</head>
+
+<body>
+	<div class="wrapper animated fadeInRight">
+		<!-- list界面 -->
+		<div class="row list_wrapper">
+			<#include "/crm/wx/wechatSubscribe/wechatSubscribeToolbar.html">	  			
+			<div class='col-sm-12 jqGrid_wrapper'>
+			    <table id="wechatSubscribeGrid"></table>
+				<div id="wechatSubscribePager"></div>
+			</div>
+		</div>
+		<!-- 编辑界面 -->
+		<#include "/crm/wx/wechatSubscribe/wechatSubscribeEdit.html">	    
+	</div>
+</body>
+</html>

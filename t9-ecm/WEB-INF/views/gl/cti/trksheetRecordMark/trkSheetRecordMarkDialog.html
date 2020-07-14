@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>设置提成</title>
+    <#include "/common/common.html" />
+    <script type="text/javascript" src="${ctx}/js/jt/gl/cti/trkSheetRecordMarkDialog${deploy_min!""}.js?v=${jsVersion}"></script>
+
+    <script type="text/javascript">
+    $(function() {
+        var recordId = "${recordId }";
+        var params = {
+            Q__S__EQ__recordId: recordId,
+        };
+        var trkSheetRecordMarkDialog = new TrkSheetRecordMarkDialog();
+        trkSheetRecordMarkDialog.init(params);
+    });
+    </script>
+    <style type="text/css">
+        .btn-add{
+            background:#1ab394;
+            border-color: #4cae4c;
+            color:#fff;
+        }
+        .btn-add.active,.btn-add:hover,.btn-add:focus,.btn-add:active{
+            background:#1ab3aa;
+            border-color: #4caeaa;
+            color:#fff;
+        }
+    </style>
+</head>
+
+<body class="white-bg">
+    <div class="panel panel-default employeePercentagePanel" style="margin-bottom:0px;height:100%;">
+        <div class="panel-body" style="padding:10px;">
+                <table class="table table-stripped table-bordered  table-hover data-table">
+                    <thead>
+                        <th class="col-sm-1">序号</th>
+                        <th class="col-sm-2">时间</th>
+                        <th class="col-sm-2">工号</th>
+                        <th class="col-sm-3">类型</th>
+                        <th class="col-sm-3">描述</th>
+                        <th class="col-sm-1">操作<button title="添加" type="button" style="margin-right:2.5%;float:right" class="btn btn-sm  btn-add btn-xs addRow"><i class="fa fa-plus">添加</i></button></th>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                </table>
+        </div>
+    </div>
+</body>
+</html>

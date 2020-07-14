@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>产品库存报表</title>
+    <#include "/common/common.html" />
+    <script src="${ctx}/js/jt/crm/report/stock/saleStockReportDetail${deploy_min!""}.js?v=${jsVersion}"></script>
+</head>
+
+<body class='white-bg'>
+    <div class='wrapper'>
+        <div class='row list_wrapper'>
+            <div class='col-sm-12'>
+            </div>
+            <div class="jqGrid_wrapper col-sm-12">
+				<table id='saleStockReportDetailGrid'></table>
+				<div id="saleStockReportDetailPager"></div>
+			</div>
+        </div>
+    </div>
+</body>
+</html>

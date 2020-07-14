@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>物流报表明细</title>
+	<#include "/common/common.html">
+	<script src="${ctx}/js/plugins/echarts/3.1.7/theme/macarons.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/plugins/echarts/3.1.7/echarts.min.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/jt/crm/report/reportDateUtil${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/crm/report/logistics/logisticsStatReportDetail${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script> 
+		var scCode = "${scCode}";
+		var status = "${status}";
+	    var timeStart="${timeStart}";
+	    var timeEnd="${timeEnd}";
+	    var groupId="${groupId}";
+	</script>
+
+	<style> 
+		.searchImg{
+		    width:24px;
+		    height:24px;
+		    margin:0 auto;
+		}
+		.partySearchImg{
+		    border: 1px solid #e7eaec;
+		}
+
+		.partySearchImg:hover{
+		    border: 1px solid #d2d2d2
+		}
+	</style>
+</head>
+<body class="white-bg">
+	<div class='wrapper'>
+		<div class='row list_wrapper'>
+		    <div class='col-sm-12'>
+		   	    <div class="panel panel-default">
+		   	   		<div class="panel-heading">	
+			        	<span class='timeRange' style='font-weight:bold;margin-left:20px;margin-right:20px;'></span>
+		            </div>
+		        </div>
+		    </div>
+			<div class="jqGrid_wrapper col-sm-12">
+				<table id='logisticsStatReportDetailGrid'></table>
+				<div id="logisticsStatReportDetailPager"></div>
+			</div>
+		</div>
+	</div>	
+</body>
+</html>

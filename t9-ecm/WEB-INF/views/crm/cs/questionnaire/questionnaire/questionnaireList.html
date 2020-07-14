@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>调查问卷管理</title>
+	<#include "/common/common.html">
+	<script src="${ctx}/js/jt/crm/cs/questionnaire/questionnaire${deploy_min!""}.js?v=${jsVersion}" ></script>
+    <style>
+      #queItrmTr td{
+         text-align:center;vertical-align:middle;
+      }
+      #queItrmBody td{
+         text-align:center;vertical-align:middle;
+      }
+      #queItrmBody input {
+      	text-indent: 7px;
+      }
+      .addCut{
+          font-size: 18px;
+          margin-top: 5px;
+      }
+      .linkQue{
+         margin-top:3px;
+      }
+      .repeatItem{
+         border:1px solid #f00 !important;
+      }
+    </style>
+</head>
+
+<body>
+	<div class="wrapper animated fadeInRight">
+		<!-- list界面 -->
+		<div class="row list_wrapper">
+			<#include "/crm/cs/questionnaire/questionnaire/questionnaireToolbar.html">	  			
+			<div class='col-sm-12 jqGrid_wrapper'>
+			    <table id="questionnaireGrid"></table>
+				<div id="questionnairePager"></div>
+			</div>
+		</div>
+		<!-- 编辑界面 -->
+		<#include "/crm/cs/questionnaire/questionnaire/questionnaireEdit.html">	    
+	</div>
+	<#include "/crm/cs/questionnaire/questionnaire/questionnaireModel.html">	 
+</body>
+</html>

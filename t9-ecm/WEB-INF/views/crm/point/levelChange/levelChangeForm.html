@@ -1,0 +1,63 @@
+<form id="levelChangeForm" method="get" class="form-horizontal">
+	<div class="form-group">
+		<div class='col-sm-4'>
+			<label class="col-sm-3 control-label">客户编号</label>
+			<div class="col-sm-9">
+				<input type="text" name="csId" placeholder="" class="form-control" validateType="default" > 
+			</div>
+		</div>		
+
+		<div class='col-sm-4'>
+			<label class="col-sm-3 control-label">原级别名称</label>
+			<div class="col-sm-9">
+				<input type="text" name="srcLevelName" placeholder="" class="form-control" validateType="default" > 
+			</div>
+		</div>		
+
+		<div class='col-sm-4'>
+			<label class="col-sm-3 control-label">原级别</label>
+			<div class="col-sm-9">
+				<input type="text" name="srcLevel" placeholder=""  validateType="default"  class="digits form-control"> 
+			</div>
+		</div>
+
+	</div>
+	<div class="form-group">
+		<div class='col-sm-4'>
+			<label class="col-sm-3 control-label">现级别名称</label>
+			<div class="col-sm-9">
+				<input type="text" name="levelName" placeholder="" class="form-control" validateType="default" > 
+			</div>
+		</div>		
+
+		<div class='col-sm-4'>
+			<label class="col-sm-3 control-label">现级别</label>
+			<div class="col-sm-9">
+				<input type="text" name="level" placeholder=""  validateType="default"  class="digits form-control"> 
+			</div>
+		</div>
+
+		<div class='col-sm-4'>
+			<label class="col-sm-3 control-label">升/降</label>
+			<div class="col-sm-9"> 
+				<select name="dirType" placeholder="" class="form-control" validateType="default" /> 
+				     <option value="upgrade">升级</option>
+				     <option value="degrade">降级</option>
+				</select>
+			</div>
+		</div>		
+
+	</div>
+
+
+
+	<div class='form-group'>
+		<!--将隐藏域放在这里，不显示出来-->
+		<div style="display:none'">
+			<input type="hidden" id="id" name="id">
+			<input type="hidden" name="createBy">
+			<input type="hidden" name="createTime">
+		</div>
+	</div>
+
+</form>

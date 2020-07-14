@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>批量管理微信号</title>
+	<#include "/common/common.html">
+	<link href="${ctx}/css/plugins/chosen/chosen.css?v=${jsVersion}" rel="stylesheet">
+	<script src="${ctx}/js/jt/crm/android/androidContact${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/common/service/seniorSearch${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/plugins/chosen/chosen.jquery.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/jt/gl/km/glHelpUtil${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<style type="text/css">
+		li.active a{
+			color: #FFFFFF !important;	
+		}
+
+		.list-group-item{
+			border: 1px solid #337AB7 !important;
+			padding: 3px 15px;
+		}
+		#cateOptContainer .col-sm-6{
+			padding-left: 5px;	
+			padding-right: 5px;
+		}
+		.employee-alias-li {
+			height: 60px;
+		    padding: 5px 10px;
+		    cursor: pointer;
+		    list-style: none;
+		    color: #1b2c56;
+		    overflow:hidden;
+		}
+		.employee-alias-li.on{
+			background-color: rgba(33, 150, 243, .1); 
+    		color: #2196f3;
+		}
+		.employee-alias-li:hover{
+		    background-color: rgba(33, 150, 243, .1); 
+    		color: #2196f3;
+		}
+		.employee-alias-li>img,.user-alias-li>img {width:50px;float:left;height: auto;margin-right:10px;}
+		.input-search{
+			margin-top: 5px;
+		}
+		.no-right-border{
+			border-right: none;
+		}
+		.no-bottom-border{
+			border-bottom: none;
+		}
+		#chat-list{
+			padding: 0px;
+		}
+		.page{
+			width: 45px;
+			height: 25px;
+		    display: inline;
+		   	font-size: .9em;
+		    margin: 0;
+		    line-height: inherit;
+		}
+		.jt-left{
+			float: left;
+		}
+		.total-record{
+			color: red;
+		}
+		.nickName, .wxCount, .lastChat {
+		    text-overflow: ellipsis;
+		    white-space: nowrap;
+		    display: block;
+		    overflow: hidden;  
+		}
+		.nickName {
+			margin-top: 5px;
+		}
+		.wxCount {
+		    color: #9E9E9E;
+		}
+		.rows-title,.rows-search,.rows-content {width:100%;padding:0;margin:0;color:#607D8B;}
+		.rows-title {padding-left:9px;height:35px;line-height: 35px;} 
+		.rows-title>font {word-wrap:break-word;font-size:1em;background-color: rgba(33, 150, 243, 0.1);padding: 3px 7px;}
+		.rows-title>span {
+			float:right;
+			font-size: 0.5em;
+		    background: rgba(33, 150, 243, .1);
+		    height: 17px;
+		    line-height: 16px;
+		    color: #607D8B;
+		    border-radius: 2px;
+		    margin-top: 12px;
+    		margin-right: 10px;
+		}
+		.rows-search {height:38px;padding:2px 0;}
+		.rows-search>input {width:95%;margin-left:9px;border:1px solid #ddd;height:30px;border-radius:3px;padding-left:7px;}
+		.rows-search>input:hover {border-color: #2196F3;}
+		.rows-employee-list {width:100%;height:100%;overflow:hidden;padding-bottom: 7px;}
+		#employee-alias-list {width:95%;border-radius:3px;border:1px solid #ddd;margin:0 auto;overflow:auto;}
+		#employee-alias-list::-webkit-scrollbar {width:6px;}
+		#employee-alias-list::-webkit-scrollbar-thumb {background-color:rgba(39, 58, 74,0.5);}
+		 .tooltip > p {
+		   text-align:left;
+		 }
+		 .jt-btns-normal{
+		    background-color: rgb(255, 255, 255);
+            color: rgb(28, 175, 154);
+		  /*  min-width: 66px;*/
+		    box-shadow: none;
+		    background-image: -webkit-linear-gradient(left top, rgb(28, 175, 154) 50%, transparent 50%);
+		    background-size: 0%;
+		    border-color: rgb(28, 175, 154);
+		    background-repeat: no-repeat;
+		    animation: jtbtnM 0.5s ease forwards;
+		 }
+		 .jt-btns-normal.active{
+		    color: rgb(255, 255, 255);
+            background-color: rgb(28, 175, 154);
+		    min-width: 36px;
+		    box-shadow: none;
+		    background-image: -webkit-linear-gradient(left top, rgb(28, 175, 154) 50%, transparent 50%);
+		    background-size: 0%;
+		    border-color: rgb(28, 175, 154);
+		    background-repeat: no-repeat;
+		    animation: jtbtnM 0.5s ease forwards; 
+		 }
+
+		 .jt-btns-normal:hover{
+            background-color: transparent;
+		    border-color: #1caf9a;
+		    color: #fff;
+		    -webkit-animation: .5s jtbtnL ease forwards;
+		    animation: .5s jtbtnL ease forwards;
+		    text-shadow: none;
+		    box-shadow: none;
+        }
+        
+        .jt-left-list, .jt-right-content {
+		    padding: 0;
+		    height: 100%;
+		    background-color: transparent;
+		}
+		.jt-left-list > *, .jt-right-content > * {
+			background-color: #fff;
+		}
+		.jt-left-list {
+			position: fixed;
+			min-width: 200px;
+		}
+		.jt-right-content {
+			padding-left: 7px !important;
+			margin-left: 16.67%;
+		}
+		@media (max-width: 1200px) {
+			.jt-right-content {
+			    width: calc(100% - 200px);
+			    margin-left: 200px;
+			}
+		}
+		.jt-mywx-tab {
+			margin: 0 !important;
+    		height: 34px;
+    		background-color: transparent !important;
+    		border: 0;
+		}
+		.jt-mywx-tab > li {
+		    width: calc(50% - 2px);
+		    height: 30px;
+		    line-height: 30px;
+		    cursor: pointer;
+		    color: #aaa;
+		    background-color: #fff !important;
+		}
+		.jt-mywx-tab > li:hover {
+			color: #607D8B;
+		}
+		.jt-mywx-tab > li.active {
+        	color: #FF9800;
+        	height: 35px;
+        }
+        .employee-alias-img {
+        	width: 50px;
+		    height: 50px;
+		    margin-right: 10px;
+		    float: left;
+		    overflow: hidden;
+		    position: relative;
+		    background-image: linear-gradient(to bottom,#1b2c56 30%, #cc795f);
+		    border-radius: 25px;
+        }
+        .employee-alias-img > img {
+        	width: 100%;
+        	position: absolute;
+        }
+        .jt-panel-flexed {
+        	padding-top: 50px;
+        }
+        .jt-panel-flexed > .panel-heading {
+        	position: fixed;
+		    top: 0;
+		    width: calc(83.33% - 20px);
+		    z-index: 2;
+        }
+	</style>
+	<script type="text/javascript">
+		var type ='${type}';
+	</script>
+</head>
+
+<body>
+	<div class="col-sm-2 jt-left-list">
+		<ul class='nav nav-tabs jt-mywx-tab'>
+			<li class="tabLi active" id="selfChat">我的微信</li>
+			<li class="tabLi" id='subChat' style="float:right;">下属微信</li>
+		</ul>
+		    <!-- <button type="button" class="btn  jt-btns-normal btn-primary active " id="selfChat" >我的</button>
+		    <button type="button" class="btn  jt-btns-normal btn-primary " id="subChat" style="float:right;">下属微信</button> -->
+		<div class="col-sm-12 rows-title">
+			<font>员工微信号</font>
+			<span><font>&nbsp;共&nbsp;</font><font color="#FF5722">0</font><font>&nbsp;条&nbsp;</font></span>
+		</div>
+		<div class="col-sm-12 rows-search">
+			<input type="text"  id="employeeAliasInput" class="" placeholder="输入微信号，按enter键搜索"></input>
+		</div>
+		<div class="col-sm-12 rows-content">
+			<div class='rows-employee-list'><div id="employee-alias-list"></div></div>
+		</div>
+	</div>
+	<div class="col-sm-10 list_wrapper jt-right-content">
+		<#include "/crm/android/androidContactToolbar.html">	  
+		<div class='col-sm-12 jqGrid_wrapper'>
+		    <table id="androidContactGrid"></table>
+			<div id="androidContactPager"></div>
+		</div>
+	</div>
+	<!-- 标签 -->
+	<div style="display:none"  class="jt-wx-label-pane" >
+	   	<div class="panel-body">
+			<form id="addContactForm" method="get" class="form-horizontal">
+				<div class='form-group'>
+					<label class='col-sm-2 control-label'>标签<span style='color: red;'>*</span></label>
+					<div class='col-sm-10 '>
+						<select id="wxLabels" data-placeholder="请选择" multiple class="chosen-select form-control" name="bizType">
+								</select>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</body>
+</html>

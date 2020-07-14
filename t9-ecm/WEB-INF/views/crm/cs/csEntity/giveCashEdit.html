@@ -1,0 +1,44 @@
+<div class="modal fade" id="giveCashModalContainer" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document" style="width: 900px;">
+    	<div class="modal-content">
+      		<div class="modal-header">
+        		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        		<h4 class="modal-title" id="myModalLabel">赠送现金券</h4>
+      		</div>
+	
+	        <div class="modal-body">
+		        <form method="get" class="form-horizontal">
+	        		<div class="form-group">
+						<label class="col-sm-2 control-label">现金券名称</label>
+						<div class="col-sm-4">
+							<select name="type" class="form-control cashSearch" ></select>
+						</div>
+						<div class="col-sm-4">
+							<input name='cashMoney' type='hidden'>
+							<input name='cashCode' type='hidden'>
+							<input name='cashHiId' type='hidden'>
+							<span class='cashInfo'></span>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-2 control-label">图片底图</label>
+						<div class="col-sm-4">
+							<select name="type" class="form-control cashPictureSearch" ></select>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-sm-2"></div>
+						<div class="col-sm-6" style='height:200px;width:400px;'>
+							<img style="height:100%;width:100%" class='cashPicture' src="">
+						</div>
+					</div>
+		        </form>
+	        </div>
+	        <div class="modal-footer">
+	        	<span>点击生成图片、并将现金券和客户关联</span>
+	      	    <button type="button" class="btn btn-sm   btn-primary" id='cashBindCs'>确定赠送</button>
+	        	<button type="button" class="btn btn-sm   btn-default" data-dismiss="modal">关闭</button>
+	        </div>
+        </div>
+    </div>
+</div>

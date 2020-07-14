@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>客户数据同步历史表管理</title>
+	<#include "/common/common.html">
+	<script src="${ctx}/js/jt/sync/cs/csSyncHi${deploy_min!""}.js?v=${jsVersion}" ></script>
+</head>
+
+<body>
+	<div class="wrapper animated fadeInRight">
+		<!-- list界面 -->
+		<div class="row list_wrapper">
+			<#include "/sync/cs/csSyncHi/csSyncHiToolbar.html">	  			
+			<div class='col-sm-12 jqGrid_wrapper'>
+			    <table id="csSyncHiGrid"></table>
+				<div id="csSyncHiPager"></div>
+			</div>
+		</div>
+		<!-- 编辑界面 -->
+		<#include "/sync/cs/csSyncHi/csSyncHiEdit.html">	    
+	</div>
+</body>
+</html>

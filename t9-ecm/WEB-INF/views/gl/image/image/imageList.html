@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>图片文件</title>
+    <#include "/common/common.html">
+    <#include "/common/webuploader.html">
+    <#include "/common/ztree.html">
+    <script>
+        var type = "";
+        <#if userId?exists>
+        var userId = "${userId}";
+        <#else>
+        var userId = "";
+        </#if>
+    </script>
+    
+    <link href="${ctx}/css/plugins/blueimp/css/blueimp-gallery.min.css?v=${jsVersion}" rel="stylesheet">
+    <script src="${ctx}/js/plugins/blueimp/jquery.blueimp-gallery.min.js?v=${jsVersion}"></script>
+    <script src="${ctx}/js/jt/gl/image/image${deploy_min!""}.js?v=${jsVersion}"></script>
+    <script src="${ctx}/js/jt/gl/systemfile/systemFile${deploy_min!""}.js?v=${jsVersion}"></script>
+    <script src="${ctx}/js/jt/gl/km/glHelpUtil${deploy_min!""}.js?v=${jsVersion}" ></script>
+    <style type="text/css">
+        .button-size {
+            font-size: 13px !important;
+        }
+    </style>
+</head>
+<body class='white-bg'>
+    <div class='col-sm-12' id="imageFile" style="padding:0;height: 100%;background-color: #fff;">
+        <!--编辑模式container-->
+        <div class='tabs-container'>
+            <ul class="nav nav-tabs">
+                <li class='active systemImageLi tabLi' attr-id='systemImageTabLi'>
+                    <a href="#systemImageTab" data-toggle="tab">系统图片</a>
+                </li>
+                <li class='systemFileLi tabLi' attr-id='systemFileTabLi'>
+                    <a href="#systemFileTab" data-toggle="tab">系统附件</a>
+                </li>
+                <!-- 帮助中心 -->
+                <label id="glHelpContainer"></label>
+            </ul>
+            <div id="myTabContent" class="tab-content">
+                <div id="systemImageTab" class="tab-pane fade in active">
+                    <div class="panel-body">
+                        <div class="col-sm-2" style="padding-left:0px;padding-right:0px !important;">
+                            <ul id="albumTree" class="ztree" style="width: 100%; overflow: auto;"></ul>
+                        </div>
+                        <div class="col-sm-10">
+                        <div class='row'>
+                            <div class="col-sm-12" style="padding: 10px;">
+                                <button class='jt-btn button-size uploadImageBtn' type='button' style='display: none;'><i class='fa fa-upload'></i>&nbsp;上传图片</button>
+                                <button class='jt-btn jt-btn-red button-size cancelUploadImageBtn' type='button' style='display: none;'><i class='fa fa-remove'></i>&nbsp;取消</button>
+                                <button class='jt-btn button-size batchManageBtn' type='button'><i class='fa fa-gears'></i>&nbsp;批量管理</button>
+                                <button class='jt-btn jt-btn-red button-size deleteBatchBtn' type='button' style='display: none;'><i class='fa fa-remove'></i>&nbsp;批量删除</button>
+                                <button class='jt-btn jt-btn-red  cancelDeleteBatchBtn' type='button' style='display: none;'><i class='fa fa-remove'></i>&nbsp;取消</button>                                                
+                            </div>    
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-12" id='imageContainer'>
+                            </div>
+                        </div>
+
+                        <div class='row'>
+                            <div class='col-sm-12' id='uploadImageContainer'>
+                                <div class="page-container">
+                                    <p>您可以尝试文件拖拽，使用QQ截屏工具，然后激活窗口后粘贴，或者点击添加图片按钮</p>
+                                    <div id="imageUploader" class="wu-example uploader">
+                                        <div class="queueList">
+                                            <div id="dndArea" class="placeholder">
+                                                <div id="filePicker"></div>
+                                            </div>
+                                        </div>
+                                        <div class="statusBar" style="display:none;">
+                                            <div class="progress">
+                                                <span class="text">0%</span>
+                                                <span class="percentage"></span>
+                                            </div>
+                                            <div class="info"></div>
+                                            <div class="btns">
+                                                <div id="filePicker2"></div>
+                                                <div class="uploadBtn">开始上传</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                	</div>
+                </div>
+
+                <div id="systemFileTab" class="tab-pane fade">
+                    <div class="panel-body">
+                        <div class="col-sm-2" style="padding-left:0px;padding-right:0px !important;">
+                            <ul id="folderTree" class="ztree" style="width: 100%; overflow: auto;"></ul>
+                        </div>
+                        <div class="col-sm-10">
+                            <div class='row'>
+                                <div class="col-sm-12" style="padding: 10px;">
+                                    <button class='jt-btn button-size uploadFileBtn' type='button' style='display: none;'><i class='fa fa-upload'></i>&nbsp;上传附件</button>
+                                    <button class='jt-btn jt-btn-red button-size cancelUploadFileBtn' type='button' style='display: none;'><i class='fa fa-remove'></i>&nbsp;取消</button>
+                                    <button class='jt-btn button-size batchManageBtn' type='button'><i class='fa fa-gears'></i>&nbsp;批量管理</button>
+                                    <button class='jt-btn jt-btn-red button-size deleteBatchBtn' type='button' style='display: none;'><i class='fa fa-remove'></i>&nbsp;批量删除</button>
+                                    <button class='jt-btn jt-btn-red button-size cancelDeleteBatchBtn' type='button' style='display: none;'><i class='fa fa-remove'></i>&nbsp;取消</button>                                               
+                                </div>    
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-12" id='fileContainer'>
+                                </div>
+                            </div>
+
+                            <div class='row'>
+                                <div class='col-sm-12' id='uploadFileContainer'>
+                                    <div class="page-container">
+                                        <p>您可以尝试文件拖拽，使用QQ截屏工具，然后激活窗口后粘贴，或者点击添加图片按钮</p>
+                                        <div id="fileUploader" class="wu-example uploader">
+                                            <div class="queueList">
+                                                <div id="dndArea" class="placeholder">
+                                                    <div id="filePicker"></div>
+                                                    <p>aaaaaaaaaaaaaaaaaaa</p>
+                                                </div>
+                                            </div>
+                                            <div class="statusBar" style="display:none;">
+                                                <div class="progress">
+                                                    <span class="text">0%</span>
+                                                    <span class="percentage"></span>
+                                                </div>
+                                                <div class="info"></div>
+                                                <div class="btns">
+                                                    <div id="filePicker2"></div>
+                                                    <div class="uploadBtn">开始上传</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <#include "/common/cateForm.html">
+</body>
+
+</html>

@@ -1,0 +1,28 @@
+<div class="col-sm-12">
+	<div class="panel panel-default">
+		<form role="form" id='inComeStatisticsReportSearchForm' class="form-horizontal">
+			<div class="form-group">
+				<label class='control-label col-sm-1'>时间</label>
+				<div class='col-sm-5'>
+					<div class="input-daterange input-group" id="datepicker">
+						<input class="laydate-icon form-control layer-date" name="startTime" validatetype="default" placeholder="开始时间" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">
+						<span class="input-group-addon">到</span>
+						<input class="laydate-icon form-control layer-date" name="endTime" validatetype="default" placeholder="结束时间" onclick="laydate({istime: true, start: laydate.now(0, 'YYYY/MM/DD 23:59:59'), format: 'YYYY-MM-DD hh:mm:ss'})">
+					</div>
+				</div>
+				<label class='control-label col-sm-1'>时间间隔</label>
+                        <div class='col-sm-3'>
+                            <select name='timeType' id="timeType" class='form-control'>
+                            	<option value="fifteen">15分钟</option>
+                            	<option value="half_hour">30分钟</option>
+                            	<option value="hour">1小时</option>
+                            	<option value="day">1天</option>
+                            </select>
+                        </div>
+				<div class='col-sm-2'>
+					<button type='button' class="jt-btn-search inComeStatisticsReportSearch"><i class="fa fa-search"></i>&nbsp;搜索</button>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>拒收订单报表管理</title>
+	<#include "/common/common.html">
+	<#include "/common/ztree.html">
+	<script src="${ctx}/js/plugins/echarts/3.1.7/theme/macarons.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/plugins/echarts/3.1.7/echarts.min.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/jt/common/plugins/report${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/crm/report/reportDateUtil${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/common/utils/shipCompanyUtils${deploy_min!""}.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/jt/common/utils/groupUtils${deploy_min!""}.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/jt/ec/rp/rpSoReject${deploy_min!""}.js?v=${jsVersion}" ></script>
+</head>
+
+<body class="white-bg">
+	<div class='wrapper'>
+		<div class='row list_wrapper'>
+			<div class='col-sm-12'>
+				<div class="panel panel-default">
+					<div class="panel-heading report-content">
+						<#include "rpSoRejectToolbar.html">
+					</div>
+
+					<div id="chartByCount" class="panel-body col-sm-12" style="display: none;">
+						<div style="border: 1px solid #CACCC1;padding:5px ;">
+							<div id="soRejectReportChartByCount" style="height:300px;"></div>
+						</div>
+					</div>
+
+					<div id="chartByMoney" class="panel-body col-sm-12" style="display: none;">
+						<div style="border: 1px solid #CACCC1;padding:5px ;">
+							<div id="soRejectReportChartByMoney" style="height:300px;"></div>
+						</div>
+					</div>
+
+				</div>	
+			</div>
+
+			<div class='col-sm-12 jqGrid_wrapper'>
+				<table id="rpSoRejectGrid"></table>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>

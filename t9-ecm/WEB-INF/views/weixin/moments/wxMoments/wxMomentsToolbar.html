@@ -1,0 +1,59 @@
+<div class="col-sm-12">
+	<div class="panel panel-default">
+	    <div class="panel-heading">
+	    	<button type='button' class='jt-btn wxMomentsAdd'><i class='fa fa-plus'>&nbsp;新增</i></button>
+	    	<button type='button' class='jt-btn wxMomentsCopy'><i class='fa fa-plus'>&nbsp;复制</i></button>
+			<button type='button' class='jt-btn wxMomentsEdit'><i class='fa fa-edit'>&nbsp;编辑</i></button>
+			<button type='button' class='jt-btn jt-btn-red wxMomentsDel'><i class="fa fa-trash-o"></i>&nbsp;删除</button>
+			<button type='button' class='jt-btn wxMomentsDetail'><i class='fa fa-list'>&nbsp;明细</i></button>
+	    </div>
+	    
+	    <div class="panel-body">
+	        <form id='wxMomentsSearchForm' role="form" class="form-horizontal">
+				<!--默认生成一个搜索条件，需要的，用户自己添加-->
+				<div class="form-group">
+					<label class='col-sm-1 control-label'>类型</label> 
+					<div class='col-sm-2'>
+						<select class="form-control" name="Q__S__EQ__type_">
+							<option value="">请选择</option>
+							<option value="1">文本</option>
+							<option value="2">图片</option>
+							<option value="3">视频</option>
+							<option value="4">链接</option>
+						</select>
+					</div>
+					<label class='col-sm-1 control-label'>文案</label> 
+					<div class='col-sm-2'>
+						<input type="text" class="form-control" name="Q__S__LK__content_"></input>
+					</div>
+					<label class='col-sm-1 control-label'>推送时间</label> 
+					<div class='col-sm-4'>
+						<div class="input-daterange input-group">
+							<input class="laydate-icon form-control layer-date startDate" name="Q__D__BW__send_time_" placeholder="yyyy-mm-dd hh:mm:ss" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">
+							<span class="input-group-addon">到</span>
+							<input class="laydate-icon form-control layer-date endDate" name="Q__D__BW__send_time_" placeholder="yyyy-mm-dd hh:mm:ss" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class='col-sm-1 control-label'>状态</label> 
+					<div class='col-sm-2'>
+						<select class="form-control" name="Q__S__EQ__status_">
+							<option value="">请选择</option>
+							<option value="awaiting">待发送</option>
+							<option value="sending">发送中</option>
+							<option value="complete">发送完毕</option>
+						</select>
+					</div>
+					<label class='col-sm-1 control-label'>标签</label> 
+					<div class='col-sm-2'>
+						<input type="text" class="form-control" name="Q__S__LK__to_tags_"></input>
+					</div>
+					<div class='col-sm-1'>
+						<button type='button' class="btn jt-btn-search wxMomentsSearch"><i class="fa fa-search"></i>&nbsp;搜索</button>
+					</div>
+				</div>
+			</form>
+	    </div>
+	</div>
+</div>

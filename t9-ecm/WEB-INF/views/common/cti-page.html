@@ -1,0 +1,217 @@
+<!-- 作为cti前端客户端的common -->
+<style type="text/css">
+    #mobileNumber {
+        color: #fff;
+        text-align: center;
+        padding-top: 10px;
+    }
+    #speedDialNumber {
+        margin-top:5px;
+        text-indent: 9px;
+        color:#273a4a;
+        width:100%;
+        max-width:185px;
+    }
+    .numbers-container .speedDialNumber-span {
+        width:95%;
+        height:28px;
+        margin-top:4px;
+        margin-left:2.5%;
+        text-align:center;
+        background:#fff;
+        font-size: 16px;
+        color: #273a4a;
+        line-height:30px;
+        overflow:hidden;
+    }
+    .speedDialNumber-span #speedDialNumber-temp {
+        padding: 0;
+        text-indent: 9px;
+    }
+    .numbers-container > span {
+        height: 44px;
+    }
+    .numbers-container .tel-btn-star {
+        line-height: 50px;
+        font-size: 26px;
+    }
+    .numbers-container .tel-btn-well {
+        font-size: 22px;
+        line-height: 40px;
+    }
+    .numbers-container .tel-btn-up .fa-angle-up {
+        display: none;
+        position: absolute;
+        left: 33.33%;
+    }
+    .numbers-container .tel-btn-up:hover .fa-angle-up, .numbers-container .tel-btn-call:hover .fa-rss {
+        display: block;
+    }
+    .numbers-container .tel-btn-call .fa-rss {
+        display: none;
+        font-size: 14px;
+        position: absolute;
+        left: 55%;
+        top: 7px;
+    }
+    .numbers-container .telNumberBtn.tel-btn-empty:hover {
+        color: #F44336;
+        text-shadow: 0 0 15px #FF5722, 0 0 15px #F44336;
+    }
+    .numbers-container .telNumberBtn.tel-btn-star:hover, .numbers-container .telNumberBtn.tel-btn-well:hover {
+        color: #31bfff;
+        text-shadow: 0 0 15px #03A9F4, 0 0 15px #03A9F4;
+    }
+</style>
+
+<#if (ctiType!"")=="sz">
+<#elseif (ctiType!'')=='jtsoft'>
+<div class='col-sm-2'>
+    <div type="text" id='mobileNumber'>未登录分机</div>
+</div>
+    
+    <div class="col-sm-5">
+    <#if ONLINE_ENTITY.datas.user.dids?exists>
+        <!--坐席可以使用的外线号码-->
+        <div style="float:left;width:20%;max-width:150px;">
+            <select class='form-control' id='anoContainer' style="margin-top: 5px;">
+                <option value="" isp="">默认</option>
+                <#list ONLINE_ENTITY.datas.user.dids as did> 
+                    <option value="${did.number}" isp="${did.isp}">
+                        ${did.number}  
+                    </option>
+                </#list>
+            </select>
+        </div>    
+    </#if>
+    <div style='width:40%;max-width:180px;float:left;position:relative;margin-left:5px;'> 
+        <div class="input-group">
+            <input id='speedDialNumber' type="text" class="form-control jt-phone-input" placeholder="请输入电话号码" style="">
+            <div class="input-group-btn" style="float:left;display:none;">
+                <button class="btn btn-sm btn-white openPhoneBtn" type="button" style='padding: 0px 6px 8px 3px;margin-top: 5px;'>
+                    <span class="caret" style="margin-top: 10px;"></span>
+                </button>
+            </div>
+        </div>
+        <div id='telContainer' class="numbers-container">
+            <span class="numbers-device" style="color:#fff;z-index:-1;border:1.5px solid #ddd;border-bottom:transparent;width:100.5%;max-width:185px;height:39px;">
+                <span class="speedDialNumber-span">
+                    <input id="speedDialNumber-temp" placeholder="软键盘或手动输入" />
+                </span>
+            </span>
+            <span class="telNumberBtn" numberVal='1'>1</span>
+            <span class="telNumberBtn" numberVal='2'>2</span>
+            <span class="telNumberBtn" numberVal='3'>3</span>
+            <span class="telNumberBtn" numberVal='4'>4</span>
+            <span class="telNumberBtn" numberVal='5'>5</span>
+            <span class="telNumberBtn" numberVal='6'>6</span>
+            <span class="telNumberBtn" numberVal='7'>7</span>
+            <span class="telNumberBtn" numberVal='8'>8</span>
+            <span class="telNumberBtn" numberVal='9'>9</span>
+            <span class="telNumberBtn tel-btn-star tel-btn-fn" numberVal='*'>*</span>
+            <span class="telNumberBtn" numberVal='0'>0</span>
+            <span class="telNumberBtn tel-btn-well tel-btn-fn" numberVal='#'>#</span>
+            <span class="telNumberBtn tel-btn-up tel-btn-fn" id='hideTelConatinerBtn' title="收起">
+                <i class='fa fa-angle-up'></i>
+                <i class='fa fa-caret-up' style="font-size:22px;"></i>
+            </span>
+            <span class="telNumberBtn  telNumberDialoutBtn tel-btn-call tel-btn-fn">
+                <i class='fa fa-rss'></i>
+                <i class="fa fa-phone" style="font-size:22px;"></i>
+            </span>
+            <span class="telNumberBtn tel-btn-empty tel-btn-fn" id='clearNumberBtn'  title="清空"><i class='fa fa-trash-o' style="font-size:20px;"></i></span>
+        </div>
+    </div>
+
+    <div style='width:auto;float:left;padding-left:2%;'>
+        <div class="col-sm-12 btn-group" style="margin-top: 5px;">
+            <button style='margin-top: 3px;' class='btn btn-xs btn-outline  btn-info dialoutBtn1' type='button' title='呼叫'><i class='glyphicon glyphicon-earphone'></i></button>
+            <button style='margin-top: 3px;' class='btn btn-xs btn-outline  btn-info' type='button' id='setBusyBtn'  title='设为忙碌'><i class='glyphicon glyphicon-off'></i></button>
+            <button style='margin-top: 3px;' class='btn btn-xs btn-outline  btn-info' type='button' id='setHoldBtn' title='静音' ><i class='glyphicon glyphicon-volume-off'></i></button>
+            <button style='margin-top: 3px;' class='btn btn-xs  btn-outline btn-info' type='button' id='setRetrieveBtn' title='恢复' ><i class='glyphicon glyphicon-volume-up'></i></button>
+            <button style='margin-top: 3px;display: none;' class='btn btn-xs btn-outline  btn-danger' title='强制挂断' id='setLineDisconnect'><i class='glyphicon glyphicon-off'></i></button>
+<!--            转接暂时还不支持，先注释 -->
+<!--            <button style='margin-top: 3px;' class='btn btn-xs btn-outline  btn-info' title='转接' id='transBtn'><i class='glyphicon glyphicon-log-out'></i></button>-->
+        </div>
+       <!--  <div class="col-sm-4" id="line_warning_div">
+
+        </div> -->
+    </div>
+    </div>
+<!-- =================================================================================== -->
+<#elseif (ctiType!"")=="ykt">  
+     <#include "/common/ykt-cti-page.html" />
+<!-- =================================================================================== -->
+<#else>
+<div class='col-sm-2'>
+    <div type="text" id='mobileNumber' style='' >${ONLINE_ENTITY.datas.user.aid}:${ONLINE_ENTITY.datas.user.name}(未登录)</div>
+</div>
+    
+	<div class="col-sm-5">
+    <#if ONLINE_ENTITY.datas.user.dids?exists>
+        <!--坐席可以使用的外线号码-->
+        <div style="float:left;width:20%;max-width:150px;">
+            <select class='form-control' id='anoContainer' style="margin-top: 5px;">
+                <option value="" isp="">默认</option>
+                <#list ONLINE_ENTITY.datas.user.dids as did> 
+                    <option value="${did.number}" isp="${did.isp}">
+                        ${did.number}  
+                    </option>
+                </#list>
+            </select>
+        </div>    
+    </#if>
+    <div style='width:40%;max-width:180px;float:left;position:relative;margin-left:5px;'> 
+        <div class="input-group">
+            <input id='speedDialNumber' type="text" class="form-control jt-phone-input" placeholder="请输入电话号码" style="margin-top:5px;padding:0 9px;font-size:1em;color:#273a4a;width:100%;max-width:185px;">
+            <div class="input-group-btn" style="float:left;display:none;">
+                <button class="btn btn-sm btn-white openPhoneBtn" type="button" style='padding: 0px 6px 8px 3px;margin-top: 5px;'>
+                	<span class="caret" style="margin-top: 10px;"></span>
+                </button>
+            </div>
+        </div>
+        <div id='telContainer' class="numbers-container">
+            <span class="numbers-device" style="color:#fff;z-index:-1;border:1.5px solid #ddd;border-bottom:transparent;width:100.5%;max-width:185px;height:39px;">
+            	<span class="speedDialNumber-span">
+            		<input id="speedDialNumber-temp" placeholder="软键盘或手动输入" />
+            	</span>
+            </span>
+            <span class="telNumberBtn" numberVal='1'>1</span>
+            <span class="telNumberBtn" numberVal='2'>2</span>
+            <span class="telNumberBtn" numberVal='3'>3</span>
+            <span class="telNumberBtn" numberVal='4'>4</span>
+            <span class="telNumberBtn" numberVal='5'>5</span>
+            <span class="telNumberBtn" numberVal='6'>6</span>
+            <span class="telNumberBtn" numberVal='7'>7</span>
+            <span class="telNumberBtn" numberVal='8'>8</span>
+            <span class="telNumberBtn" numberVal='9'>9</span>
+            <span class="telNumberBtn  tel-btn-star tel-btn-fn" numberVal='*'>*</span>
+            <span class="telNumberBtn" numberVal='0'>0</span>
+            <span class="telNumberBtn  tel-btn-well tel-btn-fn" numberVal='#'>#</span>
+            <span class="telNumberBtn tel-btn-up tel-btn-fn" id='hideTelConatinerBtn' title="收起">
+                <i class='fa fa-angle-up'></i>
+                <i class='fa fa-caret-up' style="font-size:22px;"></i>
+            </span>
+            <span class="telNumberBtn  telNumberDialoutBtn tel-btn-call tel-btn-fn">
+                <i class='fa fa-rss'></i>
+                <i class="fa fa-phone" style="font-size:22px;"></i>
+            </span>
+            <span class="telNumberBtn tel-btn-empty tel-btn-fn" id='clearNumberBtn'  title="清空"><i class='fa fa-trash-o' style="font-size:20px;"></i></span>
+        </div>
+    </div>
+
+    <div style='width:auto;float:left;padding-left:2%;'>
+        <div class="col-sm-12 btn-group" style="margin-top: 5px;">
+            <button style='margin-top: 3px;' class='btn btn-xs btn-outline  btn-info dialoutBtn1' type='button' title='呼叫'><i class='glyphicon glyphicon-earphone'></i></button>
+            <button style='margin-top: 3px;' class='btn btn-xs btn-outline  btn-info' type='button' id='setBusyBtn' disabled='disabled' title='忙碌'><i class='glyphicon glyphicon-off'></i></button>
+            <button style='margin-top: 3px;' class='btn btn-xs btn-outline  btn-info' type='button' id='setHoldBtn' title='静音' disabled='disabled'><i class='glyphicon glyphicon-volume-off'></i></button>
+            <button style='margin-top: 3px;' class='btn btn-xs  btn-outline btn-info' type='button' id='setRetrieveBtn' title='恢复' disabled='disabled'><i class='glyphicon glyphicon-volume-up'></i></button>
+            <button style='margin-top: 3px;display: none;' class='btn btn-xs btn-outline  btn-danger' title='强制挂断' id='setLineDisconnect'><i class='glyphicon glyphicon-off'></i></button>
+            <button style='margin-top: 3px;' class='btn btn-xs btn-outline  btn-info' title='转接' id='transBtn'><i class='glyphicon glyphicon-log-out'></i></button>
+        </div>
+       <!--  <div class="col-sm-4" id="line_warning_div">
+
+        </div> -->
+    </div>
+    </div>
+</#if>   

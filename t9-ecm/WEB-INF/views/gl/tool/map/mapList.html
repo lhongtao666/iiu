@@ -1,0 +1,60 @@
+<!DOCTYPE html >
+<html>
+<head>
+	<title>	地图工具</title>	
+	<#include "/common/common.html">
+	<style type="text/css">
+	#l-map{height:420px;width:100%;}
+	#r-result{width:100%;}
+	</style>
+	<!-- 百度js引入 -->
+	<script type="text/javascript" src="http://api.map.baidu.com/api?v=15&ak=40GWXiduhOft266lK4N1dopL"></script>
+
+	<script src="${ctx}/js/jt/gl/tool/map${deploy_min!""}.js?v=${jsVersion}" ></script>
+</head>
+<body class='white-bg'>
+	<div class="page-content">
+		<div class="row">
+			<div class='col-sm-12'>
+				<form class='form-horizontal'>
+					<div class="form-group">
+						<label class='col-sm-2 control-label'>当前位置：<span id="cityName" style="color: #2679b5;" >北京(默认)</span>
+						</label>
+						<div class='col-sm-2'>
+							<select id="selectFun" class="form-control">
+								<option value="1" selected="selected">本地搜索</option>
+								<option value="2">公交检索</option>
+								<option value="3">驾车线路</option>
+								<option value="4">步行规划</option>
+								<option value="5">显示九天</option>
+							</select>	
+						</div>	
+						<div class='col-sm-2' id="keyWordSpan">	
+							<input type="text"  id="keyWord" placeholder="这里输入关键词" class="form-control">
+						</div>
+						<div class='hide' id="roadSpan">
+							<div class='col-sm-2'>	
+								<input type="text"  id="beginWord" placeholder="这里输入起点" class="form-control">
+							</div>
+							<div class='col-sm-2'>	
+								<input type="text"  id="endWord" placeholder="这里输入终点" class="form-control">
+							</div>
+						</div>
+						<div class='col-sm-1'>	
+							<button class="btn btn-warning btn-xs searchMap" title="搜索" type="button"><i class="fa fa-search"></i></button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+		<div class='col-sm-12'>
+			<div class="col-sm-3">
+				<div id="r-result"></div>	
+			</div>
+			<div class="col-sm-9">
+				<div id="l-map"></div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

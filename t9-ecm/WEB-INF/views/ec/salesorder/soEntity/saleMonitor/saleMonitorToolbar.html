@@ -1,0 +1,89 @@
+
+<form role="form" class="form-horizontal saleMonitoringForm">
+	<div class="sale-first-label">
+		<label class="col-sm-first control-label">时间</label><br>
+		<label class="col-sm-first control-label">排序</label><br>
+		<label  class="col-sm-first control-label">部门/员工</label>
+	</div>
+	<div class="sale-other-layer">
+		<div class='form-group'>
+			<div class="col-sm-1">
+				<select class="form-control" name='timeSearch' style='width: 100%;'>
+					<option value='today'>当天</option>
+					<option value='yesterday'>昨天</option>
+					<option value='thisWeek'>本周</option>
+					<option value='lastWeek'>上周</option>
+					<option value='thisMonth'>本月</option>
+					<option value='lastMoneth'>上月</option>
+				</select>
+			</div>
+			<div class="col-sm-11" style="font-size:10px;float:left;">
+				<div style="padding-top: 4px;">注：销售人员右上角销售状态只针对当天销售情况</div>
+			</div>
+		</div>
+		<div class='form-group'>
+			<!-- <label class="col-sm-first control-label">排序</label> -->
+			<div class="col-sm-6">
+				<div class="radio radio-success radio-inline" style="padding-top: 4px;">
+					<input type="radio" checked="checked" name="order" id="r3" value="bySaleMoney">
+					<label for="r3">按业绩（按颜色:绿>黄>红>灰）</label>
+				</div>
+				<div class="radio radio-success radio-inline" style="padding-top: 4px;">
+					<input type="radio" name="order" id="r1" value="byAid">
+					<label for="r1">按工号</label>
+				</div>
+				<div class="radio radio-success radio-inline" style="padding-top: 4px;">
+					<input type="radio" name="order" id="r2" value="bySaleCount">
+					<label for="r2">按成单数</label>
+				</div>
+			</div>
+			<label  class="col-sm-1 control-label" style="padding-right: 15px !important;">销售状态</label>
+			<div class="col-sm-5">
+				<div class="checkbox checkbox-success checkbox-inline" style="padding-top: 4px;">
+					<input type="checkbox" checked="checked" name="saleStatusColor" id="c1" value="green">
+					<label for="c1">绿色</label>
+				</div>
+
+				<div class="checkbox checkbox-success checkbox-inline" style="padding-top: 4px;">
+					<input type="checkbox" checked="checked" name="saleStatusColor" id="c2" value="yellow">
+					<label for="c2">黄色</label>
+				</div>
+
+				<div class="checkbox checkbox-success checkbox-inline" style="padding-top: 4px;">
+					<input type="checkbox" checked="checked" name="saleStatusColor" id="c3" value="red">
+					<label for="c3">红色</label>
+				</div>
+
+				<div class="checkbox checkbox-success checkbox-inline"style="padding-top: 4px;">
+					<input type="checkbox" checked="checked" name="saleStatusColor" id="c4" value="gray">
+					<label for="c4">灰色</label>
+				</div>
+			</div>
+		</div>
+
+		<div class='form-group'>
+			<!-- <label  class="col-sm-first control-label">部门/员工</label> -->
+			<div class="col-sm-2" style="margin-bottom: 2.5px;">
+				<input id='groupName' class='form-control' readonly placeholder="请选择部门">
+				<input type="hidden" name="belongOgn">
+			</div>
+			<div class="col-sm-2" style="margin-bottom: 2.5px;">
+				<select id="belongEmployeeSearch" class="form-control" name="belongEmployee" style='width: 100%;'>
+				</select>
+			</div>
+			<div class="col-sm-1"></div>
+			<div style="float:left;margin-left: 2.5px;">
+				<button class="jt-btn-search"  id="searchBtn" type="button" ><i class="fa fa-search"></i>&nbsp;搜索</button>
+				 <!-- 帮助中心 -->
+	            <label id="glHelpContainer">	
+	            </label>
+				<div class="btns-refresh">
+					<#include "/ec/salesorder/soEntity/soEntityRefreshTool.html">
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class='form-group' style="color:#ccc;font-size:10px;float:left;">
+		<div style="padding-top: 4px;"><i class="fa fa-exclamation-circle" aria-hidden="true" style="color: red;"></i>&nbsp;<font color="#2f4050">备注：</font><font color="#1caf9a">绿色</font>(达标)&emsp;-&emsp;<font color="gold">黄色</font>(暂时达标)&emsp;-&emsp;<font color="#ed5565">红色</font>(暂未达标)&emsp;-&emsp;灰色(未登录)</div>
+	</div>
+</form>

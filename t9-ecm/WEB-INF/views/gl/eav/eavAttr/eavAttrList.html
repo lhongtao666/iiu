@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>属性管理</title>
+	<#include "/common/common.html">
+	
+	<script type="text/javascript">
+		var entityType = "${entityType}";
+		var bizType = "${bizType}";
+	</script>
+	<script src="${ctx}/js/jt/gl/eav/eavAttr${deploy_min!""}.js?v=${jsVersion}"></script>
+
+	<script type="text/javascript">
+		$(function(){
+			var eavAttr = new EavAttr();
+			eavAttr.init();
+		});
+	</script>
+	<script src="${ctx}/js/jt/gl/km/glHelpUtil${deploy_min!""}.js?v=${jsVersion}" ></script>
+</head>
+
+<body class='white-bg'>
+	<div class="wrapper animated ">
+		<!-- list界面 -->
+		<div class="row list_wrapper">
+			<#include "/gl/eav/eavAttr/eavAttrToolbar.html">
+			<div class='col-sm-12 jqGrid_wrapper'>
+			    <table id="eavAttrGrid"></table>
+				<div id="eavAttrPager"></div>
+			</div>
+		</div>
+		<!-- 编辑界面 -->
+	    <#include "/gl/eav/eavAttr/eavAttrEdit.html">
+	</div>
+</body>
+</html>

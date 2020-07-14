@@ -1,0 +1,46 @@
+<div style="display: none;" class="row form_wrapper">
+    <div class='col-sm-12'>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <button type='button' class="jt-btn saveBtn"><i class="fa fa-floppy-o"></i>&nbsp;保存</button>
+				<button type='button' class="jt-btn jt-btn-red prevBtn"><i class="fa fa-reply">&nbsp;</i>取消</button>
+            	<button type='button' class="jt-btn genSql">生成sql</button>
+		</div>
+
+		<div class="panel-body">
+			<div class='row' style='border: 1px solid #ddd; margin-left: 15px; margin-right: 15px;padding:10px;'>
+			<div class='col-sm-12'>
+			<form id='versionItemSearchForm' role="form" class="form-horizontal" style="margin-bottom: 30px;">
+				<!--默认生成一个搜索条件，需要的，用户自己添加-->
+				<div class="form-group">
+					<div class="col-sm-4">
+						<label class='col-sm-4 control-label'>企业编码</label> 
+						<div class='col-sm-8'>
+							<select   name = "belongs" data-placeholder="请选择" class="form-control" >
+
+							</select>
+						</div>
+					</div>
+					<div class="col-sm-4">
+						<label class='col-sm-4 control-label'>归属版本</label> 
+						<div class='col-sm-8'>
+							<select name = "level" data-placeholder='请选择' class="chosen-select form-control" >
+								<option value="">请选择</option>
+								<option value="1">标准版</option>
+								<option value="2">专业版</option>
+								<option value="3">旗舰版</option>
+							</select>
+						</div>
+					</div>
+					<div class='col-sm-1'>
+						<button type='button' class="btn btn-sm jt-btn-normal btn-primary versionItemSearch">搜索</button>
+					</div>
+				</div>
+			</form>
+			</div>
+		</div>
+			<#include "/gl/version/version/versionForm.html">	
+		</div>
+		</div>
+	</div>
+</div>				

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>邮件队列管理</title>
+	<#include "/common/common.html">
+	<link href="${ctx}/css/plugins/summernote/summernote.css?v=${jsVersion}" rel="stylesheet">
+    <link href="${ctx}/css/plugins/summernote/summernote-bs3.css?v=${jsVersion}" rel="stylesheet">
+	<script src="${ctx}/js/plugins/summernote/summernote.js?v=${jsVersion}"></script>
+    <script src="${ctx}/js/plugins/summernote/summernote-zh-CN.js?v=${jsVersion}"></script>
+    <link href="${ctx}/css/plugins/chosen/chosen.css?v=${jsVersion}" rel="stylesheet">
+    <script src="${ctx}/js/plugins/chosen/chosen.jquery.js?v=${jsVersion}"></script>
+    <script src="${ctx}/js/jt/common/utils/summernoteUtils${deploy_min!""}.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/jt/gl/mail/sendMail${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/plugins/suggest/bootstrap-suggest.js?v=${jsVersion}"></script>
+
+</head>
+<script type="text/javascript">
+	var trueEmail ="${trueEmail}"; 
+	var email ="${email}"; 
+	var name ="${name}"; 
+	var customerId="${customerId}"; 
+</script>
+<body class='white-bg'>
+	<div class="wrapper animated ">
+		<!-- 编辑界面 -->
+		<#include "/gl/mail/mailQueue/sendMailEdit.html">	    
+	</div>
+</body>
+</html>

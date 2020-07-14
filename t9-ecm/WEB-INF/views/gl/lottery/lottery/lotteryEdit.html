@@ -1,0 +1,102 @@
+<div style="display: none;" class="row form_wrapper">
+    <div class='col-sm-12'>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+            	<button type='button' class="btn btn-sm btn-primary saveDraft">保存草稿</button>
+            	<button type='button' class="btn btn-sm btn-primary savePublish">发布项目</button>
+				<button type='button' class="btn btn-sm btn-default prevBtn">取消</button>
+			</div>
+
+			<div class="panel-body">
+				<#include "/gl/lottery/lottery/lotteryForm.html">	
+			</div>
+		</div>
+	</div>
+</div>		
+
+
+<div style="display: none;" class="row lottery_wrapper">
+<input type='hidden' name='lotteryId'>
+    <div class='col-sm-12'>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+				<button type='button' class="btn btn-sm btn-default prevBtn">取消</button>
+			</div>
+
+			<div class="panel-body">
+				<div class='col-sm-12'>
+			        <div class='col-sm-6'>
+			        	<form method="get" class="form-horizontal">
+						<div class="form-group">
+							<div class="col-sm-12">
+								<label class="col-sm-2 control-label">是否试抽</label>
+								<div class="col-sm-9 isTryDiv">
+								</div>
+							</div>	
+							<div class='col-sm-12'>
+								<label class="col-sm-2 control-label">抽奖人</label>
+								<div class="col-sm-6">
+									<input type="text" name="person" placeholder="" class="form-control" validateType="default" > 
+									<input type="hidden" name="employeeId">
+								</div>
+								<div class="col-sm-3">
+									<button class="btn btn-sm  btn-primary" id="selectEmployeeBtn" type="button">选择员工</button>
+								</div>
+							</div>		
+			        	</div>
+			        </div>
+			        <div class='col-sm-6'>
+			        	<table id='lotteryResultTable' style="width:100%;color:white">
+			        		<tr>
+			        			<td style='background-color:#273a4a;height:40px;' class='col-sm-2'>1</td>
+			        			<td style='background-color:#273a4a;height:40px;' class='col-sm-2'>2</td>
+			        			<td style='background-color:#273a4a;height:40px;' class='col-sm-2'>3</td>
+			        			<td style='background-color:#273a4a;height:40px;' class='col-sm-2'>4</td>			        			
+			        			<td style='background-color:#273a4a;height:40px;' class='col-sm-2'>5</td>
+			        			<td style='background-color:#273a4a;height:40px;' class='col-sm-2'>6</td>
+			        		</tr>
+			        		<tr>
+			        			<td style='background-color:#273a4a;height:40px;' class='col-sm-2'>7</td>
+			        			<td style='background-color:#273a4a;height:40px;' class='col-sm-2'>8</td>
+			        			<td style='background-color:#273a4a;height:40px;' class='col-sm-2'>9</td>
+			        			<td style='background-color:#273a4a;height:40px;' class='col-sm-2'>10</td>			        			
+			        			<td style='background-color:#273a4a;height:40px;' class='col-sm-2'>11</td>
+			        			<td style='background-color:#273a4a;height:40px;' class='col-sm-2'>12</td>
+			        		</tr>
+		        			<tr>
+			        			<td style='background-color:#273a4a;height:40px;' class='col-sm-2'>13</td>
+			        			<td style='background-color:#273a4a;height:40px;' class='col-sm-2'>14</td>
+			        			<td style='background-color:#273a4a;height:40px;' class='col-sm-2'>15</td>
+			        			<td style='background-color:#273a4a;height:40px;' class='col-sm-2'>16</td>			        			
+			        			<td style='background-color:#273a4a;height:40px;' class='col-sm-2'>17</td>
+			        			<td style='background-color:#273a4a;height:40px;' class='col-sm-2'>18</td>
+			        		</tr>
+			        	</table>
+			        	<button type="button" class="btn btn-sm  btn-primary lottery">抽奖</button>
+			        </div>
+				</div>
+				
+				<div class='col-sm-12'>
+					<div class="tabs-container">
+						<ul class="nav nav-tabs">
+							<li class="active tabLi">
+								<a href="#lotteryResultTab" data-toggle="tab" aria-expanded="true">抽奖记录</a>
+							</li>
+						</ul>
+						<div class="tab-content">
+							<div id="lotteryResultTab" class="tab-pane fade active in">
+								<div class='row'>
+									<div class='col-sm-12 jqGrid_wrapper'>
+									    <table id="lotteryResultGrid"></table>
+										<div id="lotteryResultPager"></div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+    
+</div>			

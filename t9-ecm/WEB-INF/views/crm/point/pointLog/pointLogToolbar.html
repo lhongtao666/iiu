@@ -1,0 +1,21 @@
+<div class="col-sm-12">
+	<div class="panel panel-default">
+	    <div class="panel-heading">
+	   		<button type='button' class='btn btn-sm  btn-primary pointLogAdd'><i class='fa fa-plus'>添加</i></button>
+			<button type='button' class='btn btn-sm  btn-primary pointLogEdit'><i class='fa fa-edit'>编辑</i></button>
+			<button type='button' class='btn btn-sm  btn-danger pointLogDel'><i class='fa fa-remove'>删除</i></button>
+			<button type='button' class='btn btn-sm  btn-primary pointLogDetail'><i class='fa fa-list'>明细</i></button>
+	    </div>
+	    <div class="panel-body">
+	        <form role="form" class="form-inline">
+				<!--默认生成一个搜索条件，需要的，用户自己添加-->
+				<div class="form-group">
+					<label for="nameSearch" class="sr-only">名字</label> 
+					<input type="text" id='nameSearch' placeholder="请输入资源名字" name="Q__S__LK__name_" class="form-control">
+				</div>
+				<button type='button' class="btn btn-sm   btn-primary pointLogSearch">搜索</button>
+				<#include "/common/advanceSearch.html">
+			</form>
+	    </div>
+	</div>
+</div>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>查看优惠券</title>
+	<#include "/common/common.html">
+	<script type="text/javascript">
+		var couponDefId = "${couponDefId}";
+	</script>
+
+	<script src="${ctx}/js/jt/ec/rule/couponEntity${deploy_min!""}.js?v=${jsVersion}" ></script>
+</head>
+
+<body class='white-bg'>
+	<div class="wrapper animated ">
+		<div class="row list_wrapper">
+			<div class='col-sm-12 jqGrid_wrapper'>
+			    <table id="couponEntityGrid"></table>
+				<div id="couponEntityPager"></div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>属性集管理</title>
+	<#include "/common/common.html">
+
+<!--添加，编辑使用的是同一个界面-->
+<#if attrId?exists>
+	<script type="text/javascript">
+		var attrId = "${attrId}";
+		var bizType = "${bizType}";
+		var entityType = "${entityType}";
+	</script>	
+<#else>
+	<script type="text/javascript">
+		var bizType = "common";
+		var entityType = "prod";
+		var attrId = "";
+	</script>
+</#if>
+	<script src="${ctx}/js/jt/gl/eav/eavAttr${deploy_min!""}.js?v=${jsVersion}"></script>
+	<script>
+		var eavAttr = new EavAttr();
+		function saveEav(fn){
+			eavAttr._save(fn);
+		}
+
+		$(function(){
+			eavAttr._bindEventHanlder();
+			eavAttr._bindFormValidation();
+			
+			if(attrId){
+				eavAttr._edit(attrId);	
+			}else{
+				eavAttr._add();	
+				$("select[name='status']").val("actived");
+			}
+		});
+	</script>
+</head>
+
+<body>
+<div class="wrapper">
+	<div class="row" style='margin-top: 20px;'>
+		<div class='col-sm-12'>
+			<#include "/gl/eav/eavAttr/eavAttrForm.html">
+	    </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!-- 该文件为系统首页tab的div内容 -->
+<div class="row content-tabs">
+	<button class="roll-nav roll-left J_tabLeft">
+		<i class="fa fa-backward"></i>
+	</button>
+	
+	<nav class="page-tabs J_menuTabs">
+		<div class="page-tabs-content">
+			<a href="javascript:;"  class="active J_menuTab" data-id="${ctx}/main.htm">首页</a>
+		</div>
+	</nav>
+	
+	<button class="roll-nav roll-right J_tabRight" style="right: 100px;">
+		<i class="fa fa-forward"></i>
+	</button>
+	
+	<button class="roll-nav roll-right dropdown J_tabClose" style="right: 0;">
+		<span class="dropdown-toggle" data-toggle="dropdown">关闭操作<span
+			class="caret"></span></span>
+		<ul role="menu" id="menuOperate"
+			class="dropdown-menu dropdown-menu-right">
+			<li class="J_tabShowActive"><a>定位当前选项卡</a></li>
+			<li class="divider"></li>
+			<li class="J_tabCloseAll"><a>关闭全部选项卡</a></li>
+			<li class="J_tabCloseOther"><a>关闭其他选项卡</a></li>
+		</ul>
+	</button>
+
+	<!-- 右键后显示的菜单 -->
+	<div style="display: none; z-index: 999; position: absolute;"
+		id="context-menu">
+		<ul role="menu" style="display: block;" class="dropdown-menu">
+			<li data-action='tab-refresh'><a><i class="fa fa-refresh"></i>  刷新</a></li>
+			<li class="divider"></li>
+			<li data-action="tab-close-right"><a><i class="fa fa-close"></i>关闭右侧</a></li>
+			<li data-action="tab-close-left"><a><i class="fa fa-close"></i>关闭左侧</a></li>
+			<li class="divider"></li>
+			<li data-action="tab-close-other"><a><i
+					class="fa fa-times-circle-o"></i>关闭其他</a></li>
+			<li data-action="tab-close-all"><a><i
+					class="fa fa-times-circle-o"></i>关闭全部</a></li>
+			<li data-action="tab-close"><a><i class="fa fa-close"></i>关闭</a></li>
+		</ul>
+	</div>
+</div>
+
+<#include "/crm/ou/employee/changePassword.html">
+<#include "/index/loginCTI.html">

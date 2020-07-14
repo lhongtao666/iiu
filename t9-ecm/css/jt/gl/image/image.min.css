@@ -1,0 +1,4 @@
+body,div,img,a,ul,li,p,h1,h2,h3,h4{padding:0;margin:0}.item-ft{position:relative;margin-top:0;z-index:1}.photo-item{float:left;margin-left:30px;display:block;padding:0;width:102px;margin-bottom:50px}
+.photo-item-edit{padding:5px;width:112px;border:1px solid black;cursor:pointer}.photo-item-shadow-red{-webkit-box-shadow:5px 5px 5px 5px red;-moz-box-shadow:5px 5px 5px 5px red;box-shadow:5px 5px 5px 5px red}
+.photo-item-edit-default{-webkit-box-shadow:5px 5px 5px 5px;-moz-box-shadow:5px 5px 5px 5px;box-shadow:5px 5px 5px 5px}.album-item{float:left;margin-left:30px;display:inline-block;border:1px solid black;padding:5px;width:227px;height:190px;margin-bottom:50px;cursor:pointer}
+.album-item:hover{-webkit-box-shadow:5px 5px 5px 5px;-moz-box-shadow:5px 5px 5px 5px;box-shadow:5px 5px 5px 5px}

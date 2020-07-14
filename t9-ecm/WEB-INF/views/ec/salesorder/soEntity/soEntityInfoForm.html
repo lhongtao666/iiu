@@ -1,0 +1,602 @@
+<form id="soEntityForm" method="get" class="form-horizontal">
+	<div class="col-sm-12" style="padding-left: 4px !important; padding-right: 4px !important;">
+		<div class="panel panel-default operComment" style="display: none;">
+			<div class="panel-heading">
+				<h3 class="panel-title operCommentTitle">审核备注</h3>
+			</div>
+			<div class="panel-body">
+				<div class="form-group">
+					<div class='col-sm-12'>
+						<label class="col-sm-1 control-label operCommentLabel">审核备注<span
+							style="color: red;">*</span></label>
+						<div class="col-sm-11">
+							<input name="operComment" id="operComment" class="form-control"
+								validateType="default" placeholder="请输入备注">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="col-sm-12"
+		style="padding-left: 4px !important; padding-right: 4px !important;">
+		<div class="panel panel-default cpAccount" style="display: none;">
+			<div class="panel-heading">
+				<h3 class="panel-title">收款账户信息</h3>
+			</div>
+			<div class="panel-body">
+				<div class="form-group">
+					<div class='col-sm-6'>
+						<label class="col-sm-4 control-label">公司账户<span
+							style="color: red;">*</span></label>
+						<div class="col-sm-8">
+							<select name="cpAccount" id="cpAccount" class="form-control"
+								validateType="default"></select>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-sm-12"
+		style="padding-left: 4px !important; padding-right: 4px !important;">
+		<div class="panel panel-default csAccount" style="display: none;">
+			<div class="panel-heading">
+				<h3 class="panel-title">付款账户信息</h3>
+			</div>
+			<div class="panel-body">
+				<div class="form-group">
+					<div class='col-sm-4'>
+						<label class="col-sm-4 control-label">客户账号<span
+							style="color: red;">*</span></label>
+						<div class="col-sm-8">
+							<div class="input-group">
+								<input type="text" class="form-control" name="csAccount"
+									id="csAccount" validateType="default">
+								<div class="input-group-btn">
+									<button type="button" class="btn btn-white dropdown-toggle"
+										data-toggle="dropdown">
+										<span class="caret"></span>
+									</button>
+									<ul class="dropdown-menu dropdown-menu-right" role="menu">
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-sm-12">
+		<div class="col-sm-3" style="padding: 5px 2px 5px 2px !important;">
+			<#include "/crm/cs/csEntity/csPhonePanel.html" >
+			
+
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title">送货地址</h3>
+				</div>
+				<div class="panel-body">
+					<!-- 送货地址 -->
+					<input type="hidden" name="soShipPos[0].addrId">
+					<ul class='col-sm-12 addrDiv'>
+					</ul>
+				</div>
+			</div>
+
+			<div class="panel panel-default pointTypeHide">
+				<div class="panel-heading">
+					<h3 class="panel-title">发票信息</h3>
+				</div>
+				<div class="panel-body">
+					<div class=" form-group">
+						<label class="col-sm-4 control-label">发票类型</label>
+						<div class="col-sm-8">
+							<select name="billType" class="form-control"
+								validateType="default" disabled="disabled">
+								<option value="none">无发票</option>
+								<option value="receipt">收据</option>
+								<option value="common">普通发票</option>
+								<option value="added">增值发票</option>
+							</select>
+						</div>
+					</div>
+					<div class='form-group billAmountDiv'>
+						<label class="col-sm-4 control-label">费用(元)</label>
+						<div class="col-sm-8">
+							<input type="text" name="billAmount" placeholder=""
+								class="form-control" validateType="default" value="0"
+								readonly="readonly">
+						</div>
+					</div>
+					<div class='form-group billTitleDiv'>
+						<label class="col-sm-4 control-label">发票抬头</label>
+						<div class="col-sm-8">
+							<textarea rows="2" name="billTitle" placeholder=""
+								class="form-control" validateType="default"
+								style="resize: none;" readonly="readonly"></textarea>
+						</div>
+					</div>
+					<div class='form-group billContentDiv'>
+						<label class="col-sm-4 control-label">发票内容</label>
+						<div class="col-sm-8">
+							<textarea rows="3" name="billContent" placeholder=""
+								class="form-control" validateType="default"
+								style="resize: none;" readonly="readonly"></textarea>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title">订单意向</h3>
+				</div>
+				<div class="panel-body soProfitWidth">
+					<div class=" form-group">
+						<label class="col-sm-4 control-label">意向</label>
+						<div class="col-sm-8">
+							<select id="interests"  data-placeholder="请选择"
+								class="form-control" name="interests"></select>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- 订单业绩 -->
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title" id='profitTitleDiv'  >订单业绩</h3>
+				</div>
+				<div class="panel-body soProfitWidth">
+					<div class=" col-sm-12  soProfitButtons">
+						<button type='button' class='btn btn-sm   btn-primary soProfitEdit' style="display: none;">
+							<i class='fa fa-edit'>修改业绩</i>
+						</button>
+						<button type="button" class="btn btn-sm   btn-primary  selectEmpBtnDetail"
+							id='selectEmpBtnDetail' style="display: none;">
+							选择员工
+						</button>
+						<button type='button' class='btn btn-sm   btn-primary soProfitSave'
+							style="display: none;">
+							保存
+						</button>
+						<button type='button' class='btn btn-sm   btn-primary soProfitCanel'
+							style="display: none;">
+							取消
+						</button>
+					</div>
+					<div class='col-sm-12 soProfitDiv'>
+						<table id="soProfitGrid"></table>
+						<div id="soProfitPager"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-sm-9" style="padding: 5px 2px 5px 2px !important;">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title">订单基本信息</h3>
+				</div>
+				<div class="panel-body ">
+					<div class="baseInfo">
+						<div class='form-group'>
+							<div class='col-sm-4'>
+								<label class="col-sm-4 control-label">订单编号</label>
+								<div class="col-sm-8">
+									<input type="text" name="soNo" readonly="readonly"
+										class="form-control" validateType="default">
+								</div>
+							</div>
+							<div class='col-sm-4'>
+								<label class="col-sm-4 control-label">订单状态</label>
+								<div class="col-sm-8">
+									<select name="status" class="form-control" disabled="disabled" validateType="default">
+										<option value="awaiting_pay">等待支付</option>
+										<option value="awaiting_post">待提交</option>
+										<option value="paid_up">已支付</option>
+										<option value="awaiting_comfirm">待审核</option>
+										<option value="lock">锁定</option>
+										<option value="comfirm">待发货</option>
+										<option value="packiing">已备货</option>
+										<option value="deliver">待发货</option>
+										<option value="shipping">已发货</option>
+										<option value="shipped">已签收</option>
+										<option value="complete">已签收</option>
+										<option value="close">订单作废</option>
+										<option value="back">待退回</option>
+										<option value="awaiting_refund">申请退款</option>
+										<option value="refund">已退款</option>
+										<option value="close_reject">拒收</option>
+										<option value="close_repeat">需重发</option>
+										<option value="close_has_repeat">已重发</option>
+										<option value="close_lost">包裹丢失</option>
+									</select>
+								</div>
+							</div>
+							<div class='col-sm-4 scTrackingNoShow' style="display:none;">
+								<label class='col-sm-4 control-label'>快递单号</label>
+								<div class='col-sm-8'>
+									<input class='form-control'  id="scTrackingNoShow" validateType="default"  disabled="disabled">
+								</div>
+							</div>
+							<!-- <div class='col-sm-4 breakAmt' style="display:none;">
+								<label class='col-sm-4 control-label'>物流赔偿金额(元)</label>
+								<div class='col-sm-8'>
+									<input class='form-control'  id="backBreakAmount" validateType="default"  disabled="disabled"></div>
+							</div> -->
+						</div>
+						<div class='form-group afterDealStatusDiv' style="display:none;">
+							<div class='col-sm-4'>
+								<label class="col-sm-4 control-label">退回状态</label>
+								<div class="col-sm-8">
+									<select name="backStatus" class="form-control" disabled="disabled" validateType="default">
+										<option value="none">无需退回</option>
+										<option value="awaiting">待退回</option>
+										<option value="back">已退回</option>
+									</select>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class='form-group relAndGreenDiv '>
+						<div class='col-sm-4 greenNoDiv'>
+							<label class="col-sm-4 control-label">绿色订单</label>
+							<div class="col-sm-8">
+								<a href='#' class='soTab form-control' name="greenNo"></a>
+							</div>
+						</div>
+						<div class='col-sm-4 relNoDiv'>
+							<label class="col-sm-4 control-label">关联订单</label>
+							<div class="col-sm-8">
+								<a href='#' class='soTab form-control' name="relNo"></a>
+								<#-- <input type="text" name="relNo" placeholder=""
+									readonly="readonly" class="form-control"
+									validateType="default"> -->
+							</div>
+						</div>
+					</div>
+					<div class='form-group rejectDiv'>
+					    <div class='col-sm-4'>
+							<label class="col-sm-4 control-label">拒收原因</label>
+							<div class="col-sm-8">
+								<select name="rejectType" class="form-control" id='rejectTypes'
+									disabled="disabled" validateType="default">
+								</select>
+							</div>
+						</div>
+						<div class='col-sm-4'>
+							<label class="col-sm-4 control-label">拒收描述</label>
+							<div class='col-sm-8'>
+								<textarea class='form-control' name="rejectReason"
+									validateType="default" col='4' disabled="disabled"></textarea>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title">商品订购信息</h3>
+				</div>
+				<div class="panel-body itemDiv">
+					<div class="form-group">
+						<div class='col-sm-4'>
+							<label class="col-sm-4 control-label">仓库</label>
+							<div class="col-sm-8">
+								<select class='form-control' name='storeId'
+									id='storeIdContainer' validateType="default"
+									disabled="disabled"></select> <input type="hidden"
+									name="realStoreId">
+							</div>
+						</div>
+					</div>
+
+					<!-- 订购列表 -->
+					<div class="col-sm-12 soItemDiv">
+						<table id="soItemGrid"></table>
+						<div id="soItemPager"></div>
+						<input type="hidden" name="soItemJSON" id="soItemJSON">
+					</div>
+					<div class='form-group'></div>
+				</div>
+			</div>
+			<div class='col-sm-12'>
+				<div class='col-sm-4' style="padding: 5px 2px 5px 2px !important;">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h3 class="panel-title">订单备注</h3>
+						</div>
+						<div class="panel-body ">
+							<div class='form-group'>
+								<div class="col-sm-12">
+									<label class="col-sm-3 control-label" style="color: red;">是否加急</label>
+									<div class="col-sm-7">
+										<select name="isFast" class="form-control"
+											validateType="default">
+											<option value="n">否</option>
+											<option value="y">是</option>
+										</select>
+									</div>
+								</div>
+							</div>
+							<div class='form-group'>
+								<div class="col-sm-12">
+									<label class="col-sm-3 control-label">顾客留言</label>
+									<div class='col-sm-9'>
+										<textarea rows="4" name="csComment" placeholder=""
+											class="form-control" validateType="default"
+											style="resize: none;"></textarea>	
+									</div>
+								</div>
+							</div>
+							<div class='form-group'>
+								<div class="col-sm-12">
+									<label class="col-sm-3 control-label">客服留言</label>
+									<div class="col-sm-9">
+										<textarea rows="5" name="comment" placeholder=""
+											class="form-control" validateType="default"
+											style=""></textarea>
+									</div>
+								</div>
+							</div>
+							<div class='form-group'></div>
+							<div class='form-group'></div>
+						</div>
+					</div>
+				</div>
+				<div class='col-sm-8' style="padding: 5px 2px 5px 2px !important;">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h3 class="panel-title">订单费用</h3>
+						</div>
+						<div class="panel-body " style="height:201px;">
+							<div class='form-group'>
+								<div class='col-sm-6'>
+									<label class="col-sm-4 control-label">快递方式</label>
+									<div class="col-sm-7">
+										<select name="soShipPos[0].scCode" id="scCodeInfo"
+											class="form-control" validateType="default"
+											disabled="disabled">
+										</select> <input type="hidden" name="soShipPos[0].scName">
+									</div>
+								</div>
+								<div class='col-sm-6'>
+									<label class="col-sm-4 control-label">订单类型</label>
+									<div class="col-sm-7">
+										<select name="soType" class="form-control" validateType="default" disabled="disabled">
+											<option value="common">普通订单</option>
+											<option value="change">换货单</option>
+											<option value="repeat">重发单</option>
+											<option value="abnormal">异常单</option>
+										</select>
+									</div>
+								</div>
+							</div>
+
+							<div class='form-group pointTypeHide'>
+								<div class='col-sm-6'>
+									<label class="col-sm-4 control-label">货款方式</label>
+									<div class="col-sm-7">
+										<select name="cashType" class="form-control"
+											validateType="default" disabled="disabled">
+											<option value="pay">款到发货</option>
+											<option value="pay_sub">支付订金</option>
+											<option value="green">绿色通道</option>
+											<option value="green_by">由绿色通道支付订金</option>
+											<option value="cod">货到付款</option>
+											<option value="free">免费已付</option>
+										</select>
+									</div>
+								</div>
+								<div class='col-sm-6 pointTypeHide'>
+									<label class="col-sm-4 control-label">运费(元)</label>
+									<div class="col-sm-7">
+										<input type="number" name="shippingAmount" placeholder=""
+											class="form-control" validateType="default" value="0"
+											readonly="readonly">
+									</div>
+								</div>
+								
+							</div>
+
+							<div class='form-group pointTypeHide'>
+								<div class='col-sm-6'>
+									<label class="col-sm-4 control-label">支付方式</label>
+									<div class="col-sm-7">
+										<select name="payType" class="form-control"
+											validateType="default" disabled="disabled"
+											readonly="readonly">
+											<option value="alipay">支付宝</option>
+											<option value="weixin">微信支付</option>
+											<option value="bank">银行转账</option>
+											<option value="cash">现金支付</option>
+										</select>
+									</div>
+								</div>
+								<div class='col-sm-6'>
+									<label class="col-sm-4 control-label">订金(元)</label>
+									<div class="col-sm-7">
+										<input type="number" name="subAmount" placeholder=""
+											class="form-control" validateType="default" value="0"
+											readonly="readonly">
+									</div>
+								</div>
+								<div class='col-sm-6' style="display:none;">
+									<label class="col-sm-4 control-label">总折扣(元)</label>
+									<div class="col-sm-7">
+										<input type="number" name="discountAmount" placeholder=""
+											class="form-control" readonly="readonly" validateType="default" value="0">
+									</div>
+								</div>
+							</div>
+							<div
+								style="height: 1px; width: 100%; background: #00CCFF; overflow: hidden;"></div>
+							<div class='form-group'></div>
+							<div class='form-group'>
+								<div class='col-sm-6'>
+									<label class="col-sm-4 control-label" style="color: red;">总金额(元)</label>
+									<div class="col-sm-7">
+										<input type="text" name="totalAmount" placeholder=""
+											readonly="readonly" class="form-control"
+											validateType="default">
+									</div>
+								</div>
+								<div class='col-sm-6'>
+									<label class="col-sm-4 control-label" style="color:red;">待付(元)</label>
+									<div class="col-sm-7">
+										<input type="text" name="waitPayAmount" placeholder=""
+											readonly="readonly" class="form-control"
+											validateType="default">
+									</div>
+								</div>
+							</div>
+							<div class='form-group' style="display:none;">
+								<div class='col-sm-6'>
+									<label class="col-sm-4 control-label">应付金额(元)
+									</label>
+									<div class="col-sm-7">
+										<input type="text" name="payableAmount" placeholder=""
+											readonly="readonly" class="form-control"
+											validateType="default">
+									</div>
+								</div>
+								<div class='col-sm-6'>
+									<label class="col-sm-4 control-label">已付金额(元)</label>
+									<div class="col-sm-7">
+										<input type="text" name="payedAmount" placeholder=""
+											readonly="readonly" class="form-control"
+											validateType="default">
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-sm-12" style="height: 20px;"></div>
+			<div class="col-sm-12">
+				<div class="tabs-container" style="padding-top: 5px;">
+					<ul class="nav nav-tabs">
+						<li id="soLogTabLi" class="tabli active"><a
+							href="#tabSoLog" data-toggle="tab">日志</a></li>
+						<li id="soShipTabLi" class="tabli  shipScInfo"><a
+							href="#tabSoShip" data-toggle="tab">物流信息</a></li>
+					</ul>
+					<div class="tab-content">
+						<!-- 日志列表 -->
+						<div id="tabSoLog" class="tab-pane active">
+							<div class="panel-body">
+								<div class="form-group">
+									<div class='col-sm-3'>
+										<button type='button'
+											class='btn btn-sm btn-outline btn-info addFollow' id='addFollowBtn' >添加跟进记录</button>
+									</div>
+									<div class='col-sm-1'></div>
+									<div class='col-sm-8 shipFollowDiv'>
+										<label class="col-sm-3 control-label" >订单跟进状态</label>
+										<div class='col-sm-3'>
+											<select name="shipFollow" class="form-control"
+												validateType="default"></select>
+										</div>
+										<button type='button'
+											class='btn btn-sm  btn-primary updateSoFollow'>保存跟进状态</button>
+									</div>
+								</div>
+								<div class="form-group">
+									<div class='col-sm-12 soLogDiv'>
+										<table id="soLogGrid"></table>
+										<div id="soLogPager"></div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div id="tabSoShip" class="tab-pane shipScInfo"  >
+							<div class="panel-body">
+								<div class="form-group">
+									<div class='col-sm-12'>
+										<button type='button' class="btn btn-sm btn-primary jt-form-select shipQryBtn"  style="display:none;">获取最新物流信息</button>
+									</div>
+								</div>
+								<div class="form-group">
+									<div class='col-sm-6'>
+										<label class="col-sm-4 control-label">快递公司</label>
+										<div class="col-sm-8">
+											<input type="text" name="scNameShow" placeholder=""
+												readonly="readonly" class="form-control"
+												validateType="default">
+										</div>
+									</div>
+									<div class='col-sm-6'>
+										<label class="col-sm-4 control-label">快递单号</label>
+										<div class="col-sm-8">
+											<input type="text" name="scTrackingNoShow" placeholder=""
+												readonly="readonly" class="form-control"
+												validateType="default">
+										</div>
+									</div>
+								</div>
+								<#-- <div class="form-group">
+									<div class='col-sm-6'>
+										<label class="col-sm-4 control-label">物流状态</label>
+										<div class="col-sm-8">
+											<input type="text" name="apiStatusName" placeholder=""
+												readonly="readonly" class="form-control"
+												validateType="default">
+										</div>
+									</div>
+									<div class='col-sm-6'>
+										<label class="col-sm-4 control-label">上次查询时间</label>
+										<div class="col-sm-8">
+											<input type="text" name="apiRevokeTime" placeholder=""
+												readonly="readonly" class="form-control"
+												validateType="default">
+										</div>
+									</div>
+								</div> -->
+								<div class="form-group">
+									<div class='col-sm-12'>
+										<label class="col-sm-2 control-label">物流信息</label>
+										<div class="col-sm-10">
+											<table class="table table-bordered table-stripped">
+												<tbody id="shippingData"></tbody>
+											</table>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		
+		</div>
+	</div>
+
+	<div class="form-group">
+		<!--将隐藏域放在这里，不显示出来-->
+		<div style="display: none'">
+			<input type="hidden" id="id" name="id"> <input type="hidden"
+				name="soNo">  <input type="hidden" name="isMain" value="y">
+			<input type="hidden" name="pid"> <input type="hidden"
+				name="relId"> <input type="hidden" name="greenId"> <input
+				type="hidden" name="fromType" value="admin"> <input
+				type="hidden" name="prodQty"> <input type="hidden"
+				name="prodAmount"> <input type="hidden" name="serviceQty"
+				value="0"> <input type="hidden" name="giftQty" value="0">
+			<input type="hidden" name="isLock" value="n"> <input
+				type="hidden" name="lockId"> <input type="hidden"
+				name="isForce" value="n"> <input type="hidden"
+				name="payStatus" value="unpaid"> <input type="hidden"
+				name="isSettle" value="n"> <input type="hidden"
+				name="payTime"> <input type="hidden" name="closeTime">
+			<input type="hidden" name="belongId"> <input type="hidden" name="createBy"> <input
+				type="hidden" name="createTime"> <input type="hidden"
+				name="updateBy"> <input type="hidden" name="updatTime">
+		</div>
+</form>

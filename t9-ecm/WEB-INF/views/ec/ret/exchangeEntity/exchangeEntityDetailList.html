@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>换货单明细</title>
+	<#include "/common/common.html">
+	<style type="text/css">
+		.dragsort {list-style-type:none; margin:0px; }
+		.dragsort li {float:left; padding:5px;}
+	</style>
+	<link href="${ctx}/css/jt/ec/salesorder/orderaddr${deploy_min!""}.css?v=${jsVersion}" rel="stylesheet">
+	<script src="${ctx}/js/plugins/suggest/bootstrap-suggest.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/plugins/dragsort/jquery.dragsort-0.5.2.min.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/jt/ec/ret/exchangeDetail${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/ec/ret/exchangeLog${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/ec/ret/exchangeImg${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/ec/ret/exchangeEntityExchangeing${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/ec/ret/exchangeEntityBase${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/ec/ret/soItemList${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/common/service/addressService${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/common/service/shopAddrOptLayer${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/common/utils/shipCompanyUtils${deploy_min!""}.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/jt/common/utils/maskPhoneNum${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/ec/ret/shipInfoUtil${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/common/service/financeAccountSelect${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script>
+		var exchangeId = "";
+		var eno = "";
+		var isIframe = false;
+		<#if exchangeId??>exchangeId = "${exchangeId}";</#if>
+		<#if eno??>eno = "${eno}";</#if>
+		<#if isIframe??>isIframe = "${isIframe}";</#if>
+	</script>
+</head>
+
+<body class='white-bg'>
+	<div class="wrapper animated ">
+		<div class="row form_wrapper">
+			<div class='col-sm-12'>
+				<div class='panel-heading'>
+					<button type='button' id="closeBtn" class="btn btn-sm btn-danger">关闭</button>
+				</div>
+				<div class="panel-body">
+					<div class="tabs-container">
+						<ul class="nav nav-tabs">
+							<li  id="detailTabLi" class="tabli active">
+								<a href="#detailTab" data-toggle="tab">换货详情</a>
+							</li>
+							<li  id="exchangeBillTabLi" class="tabli" style="display : none" >
+								<a href="#exchangeBillTab" data-toggle="tab">换货单据</a>
+							</li>
+							<li  id="logTabLi" class="tabli">
+								<a href="#logTab" data-toggle="tab">备注历史</a>
+							</li>
+							<li id="shipTabLi" class="tabli  shipScInfo" style="display:none;">
+								<a href="#shipInfoTab" data-toggle="tab">物流信息</a>
+							</li>
+						</ul>
+						<div class="tab-content">
+							<div id="detailTab" class="tab-pane active">
+								<div class="panel-body">
+									<#include "/ec/ret/exchangeEntity/exchangeEntityForm.html"></div>
+							</div>
+							<div id="exchangeBillTab" class="tab-pane">
+								<div class="panel-body">
+									<#include "/ec/ret/exchangeEntity/exchangeBill.html"></div>
+							</div>
+							<div id="logTab" class="tab-pane">
+								<div class="panel-body">
+									<#include "/ec/ret/exchangeEntity/exchangeLogList.html"></div>
+							</div>
+							<div id="shipInfoTab" class="tab-pane">
+								<div class="panel-body">
+									<#include "/ec/ret/returnEntity/shipInfoTab.html"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+	<div id="exchangeLogPage" style="display : none">
+		<#include "/ec/ret/exchangeEntity/exchangeLogEdit.html">
+	</div>
+	<div style="display : none">
+		<#include "/ec/ret/exchangeEntity/exchangeAdd.html">
+	</div>
+</body>
+</html>

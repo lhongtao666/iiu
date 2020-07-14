@@ -1,0 +1,67 @@
+<div class="panel-body">
+	<form method="get" class="form-horizontal" id="csComplainAddForm">
+		<div class='form-group'>
+			<label class="col-sm-2 control-label">客户问题 <span style="color: red;">*</span></label>
+			<div class="col-sm-5">
+				<select class='form-control' name="type" id='csComplainType'  validateType="default">
+					<option value="">请选择</option>
+				</select>
+			</div>
+		</div>
+		<div class='form-group'>
+			<label class="col-sm-2 control-label">投诉工号</label>
+			<div class="col-sm-5">
+				<select class='form-control' name='complainId'>
+					<option value="">请选择</option>
+				</select>
+			</div>
+		</div>
+		<div class='form-group'>
+			<label class="col-sm-2 control-label">跟进工号</label>
+			<div class="col-sm-5">
+				<select class='form-control' name='followId'>
+					<option value="">请选择</option>
+				</select>
+			</div>
+		</div>
+		<div class='form-group'>
+			<label class="col-sm-2 control-label">订单号 <span style="color: red;">*</span></label>
+			<div class="col-sm-5">
+				<select class='form-control' name='soId'  validateType="default">
+					<option value="">请选择</option>
+				</select>
+			</div>
+		</div>
+		<div class='form-group'>
+			<label class="col-sm-2 control-label">投诉产品</label>
+			<div class="col-sm-5" id="skuIdsDiv">
+				<select multiple data-placeholder="请选择" class="chosen-select form-control" name="skuIds" >
+                </select>
+			</div>
+		</div>
+		<div class='form-group'>
+			<label class="col-sm-2 control-label">备 注</label>
+			<div class="col-sm-6">
+				<textarea rows="3" name="desc" placeholder="" class="form-control" style="resize: none;"></textarea>
+			</div>
+		</div>
+		<div class='form-group editInfoDiv'>
+			<label class="col-sm-2 control-label">状态</label>
+			<div class="col-sm-5">
+				<select class='form-control' name='status'>
+					<option value="new">新增</option>
+					<option value="follow">跟进中</option>
+					<option value="complete">完成</option>
+				</select>
+			</div>
+		</div>
+		<div class='form-group editInfoDiv'>
+			<label class="col-sm-2 control-label">处理结果</label>
+			<div class="col-sm-5">
+				<select class='form-control' id='dealResult' name='dealResult'>
+					<option value="">请选择</option>
+				</select>
+			</div>
+		</div>
+	</form>
+</div>

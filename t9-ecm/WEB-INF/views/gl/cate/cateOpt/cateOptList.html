@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>字典选项管理</title>
+	<#include "/common/common.html">
+	<script type="text/javascript" src="${ctx}/js/plugins/dragsort/jquery.dragsort-0.5.2.min.js?v=${jsVersion}"></script>
+	
+	<style>
+		li.active a{
+			color: #FFFFFF !important;	
+		}
+
+		.list-group-item{
+			border: 1px solid #337AB7 !important;
+			padding: 3px 15px;
+		}
+		#cateOptContainer .col-sm-6{
+			padding-left: 5px;	
+			padding-right: 5px;
+		}
+		#myModalLabel {
+	        color: #fff;
+	        font-weight: 500;
+	    }
+	    #myModalLabel > span {
+	        color: #f5f5f5;
+	        font-size: 12px;
+	    }
+	    #myModalLabel > span > font {
+	        color: gold;
+	    }
+			
+	</style>
+	<script src="${ctx}/js/jt/gl/cate/cateOpt${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/gl/km/glHelpUtil${deploy_min!""}.js?v=${jsVersion}" ></script>
+</head>
+
+<body class='white-bg'>
+	<div class="wrapper animated">
+		<!-- list界面 -->
+		<div class="row list_wrapper">
+
+			<div class='col-sm-2' style='margin-top: 5px;'>
+				<ul class="folder-list" id="optCateContainer" style='padding-left: 0px;'>
+				</ul>	
+			</div>	
+
+			<div class='col-sm-10'>
+				<div class='row' style='margin-bottom: 5px;'>
+					<div class='col-sm-12'>
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<button id='addOptCateBtn' class='jt-btn'><i class='fa fa-plus'></i>添加选项分类</button>
+								<label id="glHelpContainer"></label><!-- 帮助中心 -->
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class='row' id='cateOptContainer' style='overflow-y: scroll'>
+					<div id='optContainer' class='col-sm-12'>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<div class="modal fade" id="addCateModalContainer" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header" style="background-color: #1caf9a;padding: 10px;">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+					<h3 class="modal-title" id="myModalLabel">添加选项</h3>
+				</div>
+
+				<div class="modal-body">
+					<form id="cateForm" method="get" class="form-horizontal">
+						<div class="form-group">
+							<label class="col-sm-2 control-label">选项名字<span style='color: red;'>*</span></label>
+							<div class="col-sm-10">
+								<input type="text" name="cateName" placeholder="" class="form-control" validateType='default'>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="col-sm-2 control-label">选项业务健<span style='color: red;'>*</span></label>
+							<div class="col-sm-10">
+								<input type="text" name="cateKey" placeholder="" class="form-control" validateType='default'>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">支持颜色<span style='color: red;'>*</span></label>
+							<div class="col-sm-10 supportColorDiv">
+								<input type="checkbox" name="supportColor" placeholder="" class="form-control supportColorCheckbox" validateType='default'>
+							</div>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-sm btn-default" data-dismiss="modal">关闭</button>
+					<button type="button" class="btn btn-sm btn-primary" id='saveOptCateBtn'>保存</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+
+
+	<div class="modal fade" id="chooseColor" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+					<h4 class="modal-title">选择颜色</h4>
+				</div>
+
+				<div class="modal-body">
+					<form method="get" id="chooseColorForm" class="form-horizontal">
+						<div class="form-group">
+							<!-- <label class="col-sm-2 control-label">选择颜色<span style='color: red;'>*</span></label> -->
+							<div class="col-sm-12">
+								<div id="colorOptDiv"></div>
+								<input type="hidden"  name="operateType" >
+								<input type="hidden" name="optColorIdVal" >
+								<input type="hidden" name="colorVal" placeholder="" class="form-control colorChooseOpt" validateType='default'>
+
+							</div>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+					<button type="button" class="btn btn-sm   btn-primary" id='chooseColorValBtn'>确定</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

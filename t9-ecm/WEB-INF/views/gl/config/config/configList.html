@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>资源管理</title>
+    <#include "/common/common.html" />
+    <#include "/common/ztree.html" />
+     <link rel="stylesheet" href="${ctx}/css/plugins/colorpicker/css/colpick.css" type="text/css" />
+    <script src="${ctx}/js/jt/gl/config/config${deploy_min!""}.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/plugins/colorpicker/colpick.js"></script>
+    <script type="text/javascript">
+        var configType ="common";
+        <#if type??>
+            configType = "${type}";
+        </#if>
+    </script>
+    <style type="text/css">
+    /*check box 的样式*/
+    
+    input[disabled] {
+        cursor: default;
+    }
+    
+    input[type="checkbox"] {
+        font-family: sans-serif;
+        font-size: 100%;
+        margin: 0;
+        vertical-align: baseline;
+        *vertical-align: middle;
+        line-height: normal;
+        box-sizing: border-box;
+        padding: 0;
+        *height: 13px;
+        *width: 13px;
+    }
+    
+    input::-moz-focus-inner {
+        border: 0;
+        padding: 0;
+    }
+    
+    *,
+    *:after,
+    *:before {
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        padding: 0;
+        margin: 0;
+    }
+    
+    .switch {
+        /*margin: auto;*/
+        position: relative;
+        
+    }
+    
+    .switch label {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        display: block;
+    }
+    
+    .switch input {
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        opacity: 0;
+        z-index: 100;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        cursor: pointer;
+    }
+    
+    .switch.switch-3 {
+        width:50px;
+        height:20px;
+    }
+    
+    .switch.switch-3 label {
+        display: block;
+        width: 100%;
+        height: 100%;
+        background: #a5a39d;
+        border-radius: 40px;
+        box-shadow: inset 0 3px 8px 1px rgba(0, 0, 0, 0.2), 0 1px 0 rgba(255, 255, 255, 0.5);
+    }
+    
+    .switch.switch-3 label:after {
+        content: "";
+        position: absolute;
+        z-index: -1;
+        top: -8px;
+        right: -8px;
+        bottom: -8px;
+        left: -8px;
+        border-radius: inherit;
+        background: #ababab;
+        background: -moz-linear-gradient(#f2f2f2, #ababab);
+        background: -ms-linear-gradient(#f2f2f2, #ababab);
+        background: -o-linear-gradient(#f2f2f2, #ababab);
+        background: -webkit-gradient(linear, 0 0, 0 100%, from(#f2f2f2), to(#ababab));
+        background: -webkit-linear-gradient(#f2f2f2, #ababab);
+        background: linear-gradient(#f2f2f2, #ababab);
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3), 0 1px 1px rgba(0, 0, 0, 0.25);
+    }
+    
+    .switch.switch-3 label:before {
+        content: "";
+        position: absolute;
+        z-index: -1;
+        top: -18px;
+        right: -18px;
+        bottom: -18px;
+        left: -18px;
+        border-radius: inherit;
+        background: #eee;
+        background: -moz-linear-gradient(#e5e7e6, #eee);
+        background: -ms-linear-gradient(#e5e7e6, #eee);
+        background: -o-linear-gradient(#e5e7e6, #eee);
+        background: -webkit-gradient(linear, 0 0, 0 100%, from(#e5e7e6), to(#eee));
+        background: -webkit-linear-gradient(#e5e7e6, #eee);
+        background: linear-gradient(#e5e7e6, #eee);
+        box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+        -webkit-filter: blur(1px);
+        -moz-filter: blur(1px);
+        -ms-filter: blur(1px);
+        -o-filter: blur(1px);
+        filter: blur(1px);
+    }
+    
+    .switch.switch-3 label i {
+        display: block;
+        height: 100%;
+        width: 60%;
+        border-radius: inherit;
+        background: silver;
+        position: absolute;
+        z-index: 2;
+        right: 40%;
+        top: 0;
+        background: #b2ac9e;
+        background: -moz-linear-gradient(#f7f2f6, #b2ac9e);
+        background: -ms-linear-gradient(#f7f2f6, #b2ac9e);
+        background: -o-linear-gradient(#f7f2f6, #b2ac9e);
+        background: -webkit-gradient(linear, 0 0, 0 100%, from(#f7f2f6), to(#b2ac9e));
+        background: -webkit-linear-gradient(#f7f2f6, #b2ac9e);
+        background: linear-gradient(#f7f2f6, #b2ac9e);
+        box-shadow: inset 0 1px 0 white, 0 0 8px rgba(0, 0, 0, 0.3), 0 5px 5px rgba(0, 0, 0, 0.2);
+    }
+    
+    .switch.switch-3 label i:after {
+        content: "";
+        position: absolute;
+        left: 15%;
+        top: 25%;
+        width: 70%;
+        height: 50%;
+        background: #d2cbc3;
+        background: -moz-linear-gradient(#cbc7bc, #d2cbc3);
+        background: -ms-linear-gradient(#cbc7bc, #d2cbc3);
+        background: -o-linear-gradient(#cbc7bc, #d2cbc3);
+        background: -webkit-gradient(linear, 0 0, 0 100%, from(#cbc7bc), to(#d2cbc3));
+        background: -webkit-linear-gradient(#cbc7bc, #d2cbc3);
+        background: linear-gradient(#cbc7bc, #d2cbc3);
+        border-radius: inherit;
+    }
+    
+    .switch.switch-3 label i:before {
+        content: "";
+        text-transform: uppercase;
+        font-style: normal;
+        font-weight: bold;
+        color: rgba(0, 0, 0, 0.4);
+        text-shadow: 0 1px 0 #bcb8ae, 0 -1px 0 #97958e;
+        font-family: Helvetica, Arial, sans-serif;
+        font-size: 24px;
+        position: absolute;
+        top: 50%;
+        margin-top: -12px;
+        right: -50%;
+    }
+    
+    .switch.switch-3 input:checked ~ label {
+        background: #9abb82;
+    }
+    
+    .switch.switch-3 input:checked ~ label i {
+        right: -1%;
+    }
+    
+    .switch.switch-3 input:checked ~ label i:before {
+        content: "";
+        right: 115%;
+        color: #82a06a;
+        text-shadow: 0 1px 0 #afcb9b, 0 -1px 0 #6b8659;
+    }
+    .config-name,.config-value,.config-type{float: left;border: 1px solid #ddd;}
+    .config-name{width:300px;padding: 7px;text-align: center;}
+    .config-type{border-left: none;width: 100px;padding: 7px;text-align: center;}
+    .config-value{width:calc(100% - 400px);padding: 5px;border-left: none;padding-left: 20px;}
+    .config-tr input[type=radio]{margin: 6px 6px 0 6px;}
+    .config-input{border: 0px;line-height: 24px;width: 100%;}
+    .config-tr{margin-bottom: 5px;}
+    .config-padding{padding-bottom:10px;clear: both; }
+    .add-config{margin: 0;}
+    .config-date{border: none;}
+    .panel-body{margin-top: 25px;padding: 0 25px !important;}
+    </style>
+</head>
+
+<body class='white-bg'>
+    <div class="wrapper animated ">
+        <div class='row'>
+            <div class="col-sm-2" style="padding-left:0px;padding-right:0px !important;">
+                <ul id="configTree" class="ztree" style="overflow: auto;"></ul>
+            </div>
+            <#include "configEdit.html" />
+        </div>
+    </div>
+    <#include "/common/cateForm.html" />
+</body>
+
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>抽奖项目管理</title>
+	<#include "/common/common.html">
+	<script src="${ctx}/js/jt/gl/lottery/lottery${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/gl/lottery/lotteryResult${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<link href="${ctx}/css/plugins/switchery/switchery.css?v=${jsVersion}" rel="stylesheet">
+	<script src="${ctx}/js/plugins/switchery/switchery.js?v=${jsVersion}" ></script>
+	<style>
+		.playnormal{   
+	        background-color:#273a4a !important; 
+	    }  
+		.playcurr{  
+		    background-color:#1caf9a !important;  
+		}  
+	</style>
+</head>
+
+<body>
+	<div class="wrapper animated fadeInRight">
+		<!-- list界面 -->
+		<div class="row list_wrapper">
+			<#include "/gl/lottery/lottery/lotteryToolbar.html">	  			
+			<div class='col-sm-12 jqGrid_wrapper'>
+			    <table id="lotteryGrid"></table>
+				<div id="lotteryPager"></div>
+			</div>
+		</div>
+		<!-- 编辑界面 -->
+		<#include "/gl/lottery/lottery/lotteryEdit.html">	    
+	</div>
+</body>
+</html>

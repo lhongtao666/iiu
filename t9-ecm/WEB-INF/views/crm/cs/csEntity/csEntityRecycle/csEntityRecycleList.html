@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>客户管理</title>
+	<#include "/common/common.html">
+	<#include "/common/ztree.html">
+	<#include "/common/datatable.html">
+	<#include "/common/eav.html">
+	<!--客户模块的公共引用的css，js等头部文件123-->
+	<link href="${ctx}/css/plugins/chosen/chosen.css?v=${jsVersion}" rel="stylesheet">
+	<link href="${ctx}/css/plugins/switchery/switchery.css?v=${jsVersion}" rel="stylesheet">
+	<link href="${ctx}/css/jt/ec/salesorder/orderaddr${deploy_min!""}.css?v=${jsVersion}" rel="stylesheet"> 
+	<link href="${ctx}/css/plugins/select2/select2.min.css?v=${jsVersion}" rel="stylesheet">
+	<script src="${ctx}/js/plugins/select2/select2.min.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/plugins/chosen/chosen.jquery.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/plugins/hz2py/jQuery.Hz2Py-min.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/plugins/switchery/switchery.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/plugins/suggest/bootstrap-suggest.js?v=${jsVersion}"></script>
+	<script src='${ctx}/js/jt/common/service/employeesSelectLayer${deploy_min!""}.js?v=${jsVersion}'></script>
+	<script src="${ctx}/js/jt/crm/cs/csEav${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/common/utils/groupUtils${deploy_min!""}.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/jt/common/service/addressService${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/crm/cs/csEmployee${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/common/utils/groupUtils${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/crm/cs/csEntityUtils${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/common/utils/channelUtils${deploy_min!""}.js?v=${jsVersion}"></script>
+	<script src='${ctx}/js/jt/gl/cate/cateOptService${deploy_min!""}.js?v=${jsVersion}'></script>
+	<script src="${ctx}/js/jt/common/utils/listUtil${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/crm/rfmt/rfmtSearch${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/common/plugins/jtGridTip${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script>
+		var RScore = "${r_score}";
+		var FScore = "${f_score}";
+		var isUseRfmt = "${isUseRfmt}";
+		var recycleCs = "${recycleCs}";	 //sub下属客户,search客户查询,self我的客户
+		var isWineIndustyPage = false;
+		<#if isWineIndustyPage??>
+			isWineIndustyPage = "${isWineIndustyPage}";
+		</#if>
+	</script>
+	<script src="${ctx}/js/jt/crm/cs/recycle/csEntityRecycle${deploy_min!""}.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/jt/gl/km/glHelpUtil${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<#include "/gl/tag/tag/tagTmpl.html" >
+	<style type="text/css">
+		/* 编号和名称的样式 */
+		.nameClass{
+            overflow:hidden;
+            text-overflow:ellipsis;
+            display:-webkit-box;
+            -webkit-box-orient:vertical;
+            -webkit-line-clamp:2;
+			word-break: keep-all !important;
+			color: #1b2c56;
+    		font-size: 13px;
+		}
+		.nameClass > span {
+			-webkit-user-select: none;
+		    -moz-user-select: none;
+		    -ms-user-select: none;
+		    user-select: none;
+		}
+		a.csEntityEditTmp {
+		    font-size: 14px;
+		    color: #045cad;
+		}
+		a.csEntityEditTmp:hover {
+			text-decoration: underline;
+		}
+	</style>
+</head>
+<body class='white-bg'>
+	<div class="wrapper animated ">
+		<div class="row list_wrapper">
+			<#include "/crm/cs/csEntity/csEntityRecycle/csEntityRecycleToolbar.html">
+			<div class='col-sm-12 jqGrid_wrapper'>
+				<table id="csEntityGrid"></table>
+				<div id="csEntityPager"></div>
+			</div>
+		</div>
+	</div>
+	
+	<!--通话记录的相关操作html代码-->
+	<#include "/gl/cti/tRKSheetRecord/record_operate.html">
+	<#include "/common/listTitleEdit.html">
+	<!--客户RFMT检索-->
+	<#include "/crm/rfmt/rfmtModel/rfmtSearchForm.html">
+</body>
+</html>

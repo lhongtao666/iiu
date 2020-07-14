@@ -1,0 +1,47 @@
+<form id="phoneForm" method="get" class="form-horizontal">
+	<div class="form-group">
+		<div class='col-sm-4'>
+			<label class="col-sm-3 control-label">号码<span style='color: red;'>*</span></label>
+			<div class="col-sm-9">
+				<input type="text" name="phone" placeholder="" class="form-control" validateType="default" > 
+			</div>
+		</div>		
+
+		<div class='col-sm-4'>
+			<label class="col-sm-3 control-label">400号码</label>
+			<div class="col-sm-9">
+				<input type="text" name="adNum" placeholder="" class="form-control" validateType="default" > 
+			</div>
+		</div>	
+
+		<div class='col-sm-4'>
+			<label class="col-sm-3 control-label">运营商</label>
+			<div class="col-sm-9">
+				<select name='type' class='form-control' validateType='default'>
+			   		<option value='1'>电信</option>
+			   		<option value='2'>联通</option>
+			   		<option value='3'>移动</option>
+			   </select>
+			</div>
+		</div>		
+	</div>
+
+	<div class="form-group">
+		<div class='col-sm-12'>
+			<label class="col-sm-1 control-label">备注</label>
+			<div class="col-sm-11">
+				<input name="comment" placeholder="" class="form-control" validateType="default" >
+			</div>
+		</div>
+	</div>
+	
+	<div class='form-group'>
+		<!--将隐藏域放在这里，不显示出来-->
+		<div style="display:none'">
+			<input type="hidden" id="id" name="id">
+			<input type="hidden" name="createBy">
+			<input type="hidden" name="createTime">
+			<input type="hidden" name="status" value="actived">
+		</div>
+	</div>
+</form>

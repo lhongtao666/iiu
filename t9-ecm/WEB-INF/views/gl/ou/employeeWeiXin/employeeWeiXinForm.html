@@ -1,0 +1,119 @@
+<div class='row' style='border: 1px solid #ddd; margin-left: 15px; margin-right: 15px;padding:10px;'>
+	<div class='col-sm-12'>
+		<form id="employeeWeiXinForm" method="get" class="form-horizontal">
+
+
+			<div class="form-group">
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">员工</label>
+					<div class="col-sm-8 force-align-input-2">
+						<input type="text" name="employeeName" placeholder="" class="form-control" validateType="default" readonly> 
+						<input type="hidden" name="employeeId" placeholder="" class="form-control" validateType="default" >
+					</div>
+					<div class="col-sm-1 force-align-btn2">
+						 <button type='button'style="width: 100%;padding: 0px" class='btn btn-sm btn-primary jt-form-select selectEmployee'>选择</button>
+					</div>
+				</div>		
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">微信号</label>
+					<div class="col-sm-9">
+						<input type="text" name="alias" placeholder="" class="form-control" validateType="default"> 
+					</div>
+				</div>
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">微信分组</label>
+					<div class="col-sm-9">
+						<select id='selectGroup' data-placeholder='请选择分组' name="group" class="chosen-select  form-control" validateType="default"></select>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">微信昵称</label>
+					<div class="col-sm-9">
+						<input type="text" name="nickName" placeholder="" class="form-control" validateType="default"> 
+					</div>
+				</div>
+				
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">微信昵称备注</label>
+					<div class="col-sm-9">
+						<input type="text" name="nickNameRemark" placeholder="" class="form-control" validateType="default"> 
+					</div>
+				</div>
+				
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">微信关联手机号</label>
+					<div class="col-sm-9">
+						<input type="text" name="weixinMobile" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>
+			</div>
+			<div class='form-group'>
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">微信号状态</label>
+					<div class="col-sm-9">
+						<select type="text" id="weixinStatus" name="weixinStatus" placeholder="请选择" class="chosen-select  form-control" validateType="default"> 
+						</select> 
+					</div>
+				</div>
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">本次登录时间</label>
+					<div class="col-sm-9">
+						<input type="text" name="loginTime" placeholder="" class="form-control" validateType="default" readonly> 
+					</div>
+				</div>
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">上次退出时间</label>
+					<div class="col-sm-9">
+						<input type="text" name="lastLogoutTime" placeholder="" class="form-control" validateType="default" readonly> 
+					</div>
+				</div>
+			</div>
+			<div class='form-group'>
+				<!-- <div class='col-sm-4'>
+					<label class="col-sm-3 control-label">来源</label>
+					<div class="col-sm-9">
+						<input type="text" id="fromTypeName" placeholder="" class="form-control" validateType="default" readonly> 
+					</div>
+				</div> -->
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">推广渠道</label>
+					<div class="col-sm-9">
+						<select type="text" id="mediaChannel" name="mediaChannel" placeholder="请选择" class="chosen-select  form-control" validateType="default"> 
+						</select> 
+					</div>
+				</div>
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">推广员</label>
+					<div class="col-sm-8 force-align-input-2">
+						<input type="text" name="mgrName" placeholder="" class="form-control" validateType="default" readonly> 
+						<input type="hidden" name="mgrId" placeholder="" class="form-control" validateType="default" >
+					</div>
+					<div class="col-sm-1 force-align-btn2">
+						 <button type='button'style="width: 100%;padding: 0px" class='btn btn-sm btn-primary jt-form-select selectMgr'>选择</button>
+					</div>
+				</div>
+			</div>
+			<div class='form-group'>
+				<!--将隐藏域放在这里，不显示出来-->
+				<div style="display:none'">
+					<input type="hidden" id="id" name="id">
+					<input type="hidden" name="fromType">
+					<input type="hidden" name="createBy">
+					<input type="hidden" name="createTime">
+					<input type="hidden" name="headImg">
+					<input type="hidden" name="status">
+					<input type="hidden" name="userName">
+				</div>
+			</div>
+
+		</form>
+	</div>
+	
+</div>
+<div class='col-sm-12' id="weixinOperLogContainer">
+	<span style=" font-size:18px;font-weight:600;display: block;padding:5px;">操作日志</span>
+	<table id="weixinOperLogGrid"></table>
+	<div id="weixinOperLogPager"></div>
+</div>

@@ -1,0 +1,278 @@
+
+<form id="contractEntityForm" method="get" class="form-horizontal">
+    <div class="form-group">
+        <div class='col-sm-4'>
+            <label class="col-sm-3 control-label">主题<span style='color: red;'>*</span></label>
+            <div class="col-sm-9">
+                <input type="text" name="subject" placeholder="" class="form-control" validateType="default">
+            </div>
+        </div>
+        <div class='col-sm-4'>
+            <label class="col-sm-3 control-label">编号</label>
+            <div class="col-sm-9">
+                <input type="text" name="cno" readonly value='由系统生成' class="form-control" validateType="default">
+            </div>
+        </div>
+        <div class='col-sm-4'>
+            <label class="col-sm-3 control-label">负责人<span style='color: red;'>*</span></label>
+            <div class="col-sm-5">
+                <input type="text" name="employeeName" readonly class="form-control" validateType="default">
+                <input type="hidden" name="employeeId">
+            </div>
+            <div class='col-sm-4'>
+                <button class='btn btn-sm   btn-primary selectMgrBtn'  type='button'>选择负责人</button>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class='col-sm-4'>
+            <label class="col-sm-3 control-label">总金额(元)<span style='color: red;'>*</span></label>
+            <div class="col-sm-9">
+                <input type="text" name="total" placeholder="" class="form-control" validateType="default">
+            </div>
+        </div>
+        <div class='col-sm-4'>
+            <label class="col-sm-3 control-label">开始日期<span style='color: red;'>*</span></label>
+            <div class="col-sm-9">
+                <input class='laydate-icon form-control layer-date' name="startDate" validateType="default" placeholder="YYYY-MM-DD" onclick="laydate({
+                        istime: true, 
+                        format: 'YYYY-MM-DD', 
+                        choose: function(datas){$('input[name=startDate]').trigger('keyup');
+                    }})">
+            </div>
+        </div>
+        <div class='col-sm-4'>
+            <label class="col-sm-3 control-label">结束日期<span style='color: red;'>*</span></label>
+            <div class="col-sm-9">
+                <input class='laydate-icon form-control layer-date' name="endDate" validateType="default" placeholder="YYYY-MM-DD" onclick="laydate({
+                        istime: true, 
+                        format: 'YYYY-MM-DD', 
+                        choose: function(datas){$('input[name=endDate]').trigger('keyup');
+                    }})">
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class='col-sm-4'>
+            <label class="col-sm-3 control-label">所属部门</label>
+            <div class="col-sm-5">
+                <input type="text" name="orgName" readonly="readonly" class='form-control' validateType='default'>
+                <input type="hidden" name="orgId">
+            </div>
+            <div class='col-sm-4'>
+                <button type='button' class='btn btn-sm   btn-primary' id='selectOrgBtn'><i class='fa fa-edit'></i>选择部门</button>
+            </div>
+        </div>
+        <div class='col-sm-4'>
+            <label class="col-sm-3 control-label">客户<span style='color: red;'>*</span></label>
+            <div class="col-sm-5">
+                <input type="text" name="csName" readonly class="form-control" validateType="default">
+                <input type="hidden" name="csId">
+            </div>
+            <div class='col-sm-4'>
+                <button class='btn btn-sm   btn-primary' type='button' id='selectCustomerBtn'><i class='fa fa-edit'></i>选择客户</button>
+            </div>
+        </div>
+        <div class='col-sm-4'>
+            <label class="col-sm-3 control-label">关联销售商机</label>
+            <div class="col-sm-9">
+                <select name='oppoId' class='form-control' validateType='default'>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class='col-sm-4'>
+            <label class="col-sm-3 control-label">类型</label>
+            <div class="col-sm-9">
+                <select class="form-control" name="type" id='typeContainer' validateType="default"></select>
+            </div>
+        </div>
+        <div class='col-sm-4'>
+            <label class="col-sm-3 control-label">状态</label>
+            <div class="col-sm-9">
+                <select class="form-control" name="status" id='statusContainer' validateType="default"></select>
+            </div>
+        </div>
+        <div class='col-sm-4'>
+            <label class="col-sm-3 control-label">付款方式</label>
+            <div class="col-sm-9">
+                <select class='form-control' name='payType' id='payTypeContainer' validateType='default'></select>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class='col-sm-4'>
+            <label class="col-sm-3 control-label">客户方签约人</label>
+            <div class="col-sm-9">
+                <input type="text" name="csSigner" placeholder="" class="form-control" validateType="default">
+            </div>
+        </div>
+        <div class='col-sm-4'>
+            <label class="col-sm-3 control-label">我方签约人</label>
+            <div class="col-sm-5">
+                <input type="text" name="mySignerName" readonly='readonly' placeholder="" class="form-control" validateType="default">
+                <input type="hidden" name="mySigner">
+            </div>
+            <div class='col-sm-4'>
+                <button class='btn btn-sm   btn-primary' type='button' id='selectMySignerBtn'><i class='fa fa-edit'></i>选择签约人</button>
+            </div>
+        </div>
+        <div class='col-sm-4'>
+            <label class="col-sm-3 control-label">签约日期</label>
+            <div class="col-sm-9">
+                <input class='laydate-icon form-control layer-date' name="signTime" validateType="default" placeholder="YYYY-MM-DD"  onclick="laydate({istime: true, format: 'YYYY-MM-DD', choose: function(datas){$('input[name=signTime]').trigger('keyup');}})">
+            </div>
+        </div>
+    </div>
+    <div class='form-group'>
+        <div class='col-sm-4'>
+            <label class="col-sm-3 control-label">存储方式</label>
+            <div class="col-sm-9">
+                <select name='saveType' validateType='default' class='form-control'>
+                    <option value=''>请选择</option>
+                    <option value='content'>文本</option>
+                    <option value='file'>附件</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class='form-group' style='display: none;' id='contentSaveTypeContainer'>
+        <div class='col-sm-12'>
+            <label class="col-sm-1 control-label">正文</label>
+            <div class="col-sm-11">
+                <div id='summernote'></div>
+            </div>
+        </div>
+    </div>
+    <div class="form-group" style='display: none;' id='fileSaveTypeContainer'>
+        <div class='col-sm-12'>
+            <label class="col-sm-1 control-label">文件</label>
+            <div class="col-sm-11">
+                <div id='contentFileContainer'></div>
+                <button type='button' class='btn btn-sm   btn-primary' id='selectContentFileBtn'><i class='fa fa-edit'></i>选择文件</button>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class='col-sm-12'>
+            <label class="col-sm-1 control-label">备注</label>
+            <div class="col-sm-11">
+                <textarea name='comment' class='form-control' rows='3'></textarea>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div style="display:none'">
+            <input type="hidden" id="id" name="id">
+            <input type="hidden" name="createBy">
+            <input type="hidden" name="createTime">
+        </div>
+    </div>
+</form>
+<div class="tabs-container">
+    <ul class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab" href="#tab-0" aria-expanded="true">扩展属性</a></li>
+        <li><a data-toggle="tab" href="#tab-1" aria-expanded="true">关联商品</a>
+        </li>
+        <li class=""><a data-toggle="tab" href="#tab-2" aria-expanded="false">关联附件</a>
+        </li>
+        <li class=""><a data-toggle="tab" href="#tab-3" aria-expanded="false">关联员工</a>
+        </li>
+        <li class="relate-task" ><a data-toggle="tab" href="#tab-4" aria-expanded="false">关联任务</a>
+        </li>
+    </ul>
+    <div class="tab-content">
+        <div id='tab-0' class='tab-pane active'>
+            <div class='panel-body'>
+                <div class='row'>
+                    <div class='col-sm-12' id='eavCommonContainer'>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="tab-1" class="tab-pane">
+            <div class="panel-body">
+                <div class='row'>
+                    <div class='col-sm-12'>
+                        <div class='row'>
+                            <div class='col-sm-12'>
+                                <button class='btn btn-sm   btn-primary' type='button' id='selectSkuBtn'><i class='fa fa-plus'></i>添加商品</button>
+                            </div>
+                        </div>
+                        <div class='row' style='margin-top: 5px;'>
+                            <div class='col-sm-12'>
+                                <table class='table table-stripped table-bordered'>
+                                    <thead>
+                                        <tr>
+                                            <th>图片</th>
+                                            <th>名字</th>
+                                            <th>sku</th>
+                                            <th>数量</th>
+                                            <th>单位</th>
+                                            <th>操作</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id='skuContainer'>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="tab-2" class="tab-pane">
+            <div class="panel-body">
+                <div class='row'>
+                    <div class='col-sm-12'>
+                        <div class='row'>
+                            <div class='col-sm-12'>
+                                <button class='btn btn-sm   btn-primary' type='button' id='selectFileBtn'><i class='fa fa-plus'></i>添加附件</button>
+                            </div>
+                        </div>
+                        <div class='row' style='margin-top: 5px;'>
+                            <div class='col-sm-12' id='fileContainer'>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="tab-3" class="tab-pane">
+            <div class="panel-body">
+                <div class='row'>
+                    <div class='col-sm-12'>
+                        <div class='row'>
+                            <div class='col-sm-12'>
+                                <button class='btn btn-sm   btn-primary' type='button' id='selectEmployeeBtn'><i class='fa fa-plus'></i>选择员工</button>
+                            </div>
+                        </div>
+                        <div class='row' style='margin-top: 5px;'>
+                            <div class='col-sm-12'>
+                                <table class='table table-stripped table-bordered'>
+                                    <thead>
+                                        <tr>
+                                            <th>员工工号</th>
+                                            <th>员工名字</th>
+                                            <th>业绩份额</th>
+                                            <th>备注</th>
+                                            <th>操作</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id='employeeContainer'>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="tab-4" class="tab-pane">
+            <div class="panel-body">
+                <#include "/gl/task/taskEntity/taskTableList.html" /> 
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>生成优惠券</title>
+	<#include "/common/common.html">
+	<script type="text/javascript">
+		var couponDefId = "${couponDefId}";
+		$(function(){
+			var options = {
+				rules: {
+					couponCount: {
+						required: true,
+						digits: true
+					}
+				},
+				messages: {}
+			};
+			FormUtils.bindFormValidation("couponForm", options);
+		});
+	</script>
+</head>
+
+<body class='white-bg'>
+	<div class="wrapper wrapper-content">
+		<div class='row'>
+			<div class='col-sm-12'>
+				<form id='couponForm' class="form-horizontal">
+					<div class='form-group'>
+						<label class="col-sm-2 control-label">生成数量</label>
+						<div class="col-sm-10">
+							<input type="text" name='couponCount' class="form-control" validateType="default" > 
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

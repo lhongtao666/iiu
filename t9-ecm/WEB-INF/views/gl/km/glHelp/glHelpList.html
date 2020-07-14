@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>帮助中心管理</title>
+	<#include "/common/common.html">
+	<#include "/common/ztree.html">
+	<script src="${ctx}/js/jt/gl/km/glHelp${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/common/service/seniorSearch${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script type="text/javascript">
+		$(function(){
+			var glHelp = new GlHelp();
+			glHelp.init();
+		});
+	</script>
+</head>
+<body class='white-bg'>
+	<div class="wrapper animated">
+		<div class='row'>
+			<div class="col-sm-2" style='padding-left: 0px;padding-right: 0px;'>
+				<ul id="glHelpCateTree" class="ztree" style='width: 100%; overflow: auto;'></ul>
+			</div>
+
+			<div class="col-sm-10">
+				<div class="row list_wrapper">
+					<#include "/gl/km/glHelp/glHelpToolbar.html">	 			
+				</div>
+				<div class="panel panel-default" >
+					<div id="glHelpIframeDiv">
+						<iframe class="J_iframe" align=left name="glHelpIframe" width="800px;" frameborder="0" seamless>
+						</iframe>		
+					</div>
+				</div>
+
+				<#include "/gl/km/glHelp/glHelpEdit.html">	    
+			</div>
+
+			<div id='noDataDiv' class='norecords' style='display: block;'><img src='/t9-ecm/img/jt/coffee3.png' style='width:100px;height:100px;'>
+				<br>当前没有数据
+			</div>
+		</div>
+	</div>
+	<#include "/common/cateForm.html">
+</body>
+</html>

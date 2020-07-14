@@ -1,0 +1,130 @@
+<div class="panel panel-default" style='margin-top:-4px;border: 1px solid #ddd;'>
+     <div class="panel-heading">
+        	<button type='button' class="jt-btn saveEditBtn"><i class="fa fa-floppy-o"></i>&nbsp;保存</button>
+     </div>
+</div>
+<div class='col-sm-12'  style='border: 1px solid #ddd;margin-top:-5px;padding:10px;background-color: #fff;'>
+	<form id="agentEntityEditForm" method="get" class="form-horizontal">
+		<div class="form-group">
+			<div class='col-sm-4'>
+				<label class="col-sm-3 control-label">名称<span style="color: red">*</span></label>
+				<div class="col-sm-9">
+					<input type="text" name="name" placeholder="" class="form-control" validateType="default" > 
+				</div>
+			</div>		
+               <div class='col-sm-4'>
+				<label class="col-sm-3 control-label">级别<span style="color: red">*</span></label>
+				<div class="col-sm-4">
+			        <select name="levelId"  class="form-control levelId" id="levelId" validateType="default"
+			        >
+			        </select>
+				</div>
+				<label class="col-sm-2 control-label">账期</label>
+				<div class="col-sm-3">
+					<input type='text' readonly='readonly' name='completeDays' placeholder="" class="form-control" validateType="default">
+	            </div>
+	        </div>
+	        <div class="col-sm-4">
+	             <label class='col-sm-3 control-label'>创建时间</label>
+	             <div class="col-sm-9">
+	                 <input type='text' readonly='readonly' name='createTime' placeholder="" class="form-control" validateType="default">
+	             </div>
+	        </div>
+		</div>
+		<div class="form-group">
+			<div class='col-sm-4'>
+				<label class="col-sm-3 control-label">业务联系人<span style="color: red">*</span></label>
+				<div class="col-sm-8">
+					<input type="text" name="employeeShow" class="form-control" readonly validateType="default" >
+					<input type="hidden" name="contactName" >
+				</div>
+				<div class='col-sm-1'>
+					<button style='float:right;' class='btn btn-sm btn-primary jt-form-select changRelEmployee' type='button'>选</button>
+				</div>
+			</div>		
+			<div class='col-sm-4'>
+				<label class="col-sm-3 control-label">联系人手机</label>
+				<div class="col-sm-9">
+					<input type="text" name="contactMobile" placeholder="" class="form-control" validateType="default" > 
+				</div>
+			</div>		
+			<div class='col-sm-4'>
+				<label class="col-sm-3 control-label">办公地址</label>
+				<div class="col-sm-9">
+					<input type="text" name="contactAddr" placeholder="" class="form-control" validateType="default" > 
+				</div>
+			</div>		
+		</div>
+		<div class="form-group">
+			<div class='col-sm-4'>
+				<label class="col-sm-3 control-label">结算开户行<span
+										style="color: red">*</span></label>
+				<div class="col-sm-9">
+					<input type="text" name="bank" placeholder="" class="form-control" validateType="default" > 
+				</div>
+			</div>		
+			<div class='col-sm-4'>
+				<label class="col-sm-3 control-label">结算开户人<span
+										style="color: red">*</span></label>
+				<div class="col-sm-9">
+					<input type="text" name="bankPerson" placeholder="" class="form-control" validateType="default" > 
+				</div>
+			</div>		
+			<div class='col-sm-4'>
+				<label class="col-sm-3 control-label">结算银行账号<span
+										style="color: red">*</span></label>
+				<div class="col-sm-9">
+					<input type="text" name="bankAccount" placeholder="" class="form-control" validateType="default" > 
+				</div>
+			</div>		
+		</div>
+		<div class="form-group">
+			<div class='col-sm-4'>
+				<label class="col-sm-3 control-label">已开通工号数量</label>
+				<div class="col-sm-9">
+					<input type="text" readonly='readonly' name="empCount" placeholder=""  validateType="default"  class="form-control"> 
+				</div>
+			</div>
+			<div class='col-sm-4'>
+				<label class="col-sm-3 control-label">状态</label>
+				<div class="col-sm-9">
+					<select class="form-control" disabled='disabled' name="status" id="agentStatus" validateType="default">
+						<option value="actived">激活</option>
+						<option value="inactive">禁用</option>
+					</select>
+				</div>
+			</div>
+			<div class='col-sm-4'>
+				<label class="col-sm-3 control-label">首页欢迎语</label>
+				<div class="col-sm-9">
+					<input type="text" name="welcome" placeholder="" class="form-control" validateType="default" > 
+				</div>
+			</div>		
+		</div>
+		<div class="form-group">
+			<div class='col-sm-4'>
+				<label class="col-sm-3 control-label">所属区域<span style="color: red">*</span></label>
+				<div class="col-sm-9">
+					 <select name='areaId'  class='form-control areaId' id='areaId' validateType="default">
+					 </select>
+				</div>
+			</div>
+		</div>
+		<div class='form-group'>
+			<!--将隐藏域放在这里，不显示出来-->
+			<div style="display:none'">
+				<input type="hidden" id="id" name="id">
+				<input type="hidden" name="createBy">
+				<input type="hidden" name="code">
+				<input type="hidden" name="rootGroupId">
+			</div>
+		</div>
+	</form>
+</div>
+   <div class='logDiv col-sm-12'  style='border: 1px solid #ddd;padding:10px;background-color: #fff;'>
+   <div class='col-sm-12'><span style='font-weight:bold'>操作日志</span></div>
+   <div class='col-sm-12 jqGrid_wrapper'>
+	    <table id="agentEntityLogGrid"></table>
+		<div id="agentEntityLogPager"></div>
+	</div>
+</div>

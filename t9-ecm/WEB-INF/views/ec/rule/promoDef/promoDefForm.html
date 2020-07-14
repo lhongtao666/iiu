@@ -1,0 +1,109 @@
+<div class="tabs-container">
+	<ul id="tabHeaderUl" class="nav nav-tabs">
+		<li id="promoDef" class="active"><a data-toggle="tab"
+			href="#promoDefContainer" aria-expanded="true">促销活动</a></li>
+		<li id="ruleDef" class=""><a data-toggle="tab"
+			href="#ruleDefContainer" aria-expanded="false">促销规则</a></li>
+	</ul>
+
+	<div id="tabContentDiv" class="tab-content">
+		<div id="promoDefContainer" class="tab-pane active">
+			<div class='panel-body'>
+				<div class='col-sm-12'>
+					<form id="promoDefForm" method="get" class="form-horizontal">
+						<div class="form-group">
+							<div class='col-sm-4'>
+								<label class="col-sm-3 control-label">活动名称</label>
+								<div class="col-sm-9">
+									<input type="text" name="name" placeholder="" class="form-control" validateType="default" > 
+								</div>
+							</div>
+							<div class='col-sm-4'>
+								<label class="col-sm-3 control-label">业务键</label>
+								<div class="col-sm-9">
+									<input type="text" name="key" placeholder="" class="form-control" validateType="default" > 
+								</div>
+							</div>
+							<div class='col-sm-4'>
+								<label class="col-sm-3 control-label">活动图片</label>
+								<div class="col-sm-9">
+									<input type="text" name="actImg" placeholder="" class="form-control" validateType="default" > 
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<div class='col-sm-4'>
+								<label class="col-sm-3 control-label">起始时间</label>
+								<div class="col-sm-9">
+									<input class='laydate-icon form-control layer-date' name="startDate" validateType="default"  placeholder="YYYY-MM-DD hh:mm:ss" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">
+								</div>
+							</div>
+							
+							<div class='col-sm-4'>
+								<label class="col-sm-3 control-label">结束时间</label>
+								<div class="col-sm-9">
+									<input class='laydate-icon form-control layer-date' name="endDate" validateType="default"  placeholder="YYYY-MM-DD hh:mm:ss" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">
+								</div>
+							</div>
+
+							<div class='col-sm-4'>
+								<label class="col-sm-3 control-label">分组组值<@JTtip msg="分组组值。整型。0 是特殊组，表示必然会和其它组进行叠加。其它组之间是互斥的，即只要有一个组的促销活动生效了，就忽略其它组的促销活动。组的组值和执行先后顺序无关，促销活动执行先后顺序只根据优先级判断。" /></label>
+								<div class="col-sm-9">
+									<input type="text" name="group" placeholder=""  validateType="default"  class="digits form-control"> 
+								</div>
+							</div>
+						</div>
+						<div class='form-group'>
+							<div class='col-sm-4'>
+								<label class="col-sm-3 control-label">排斥优惠券</label>
+								<div class="col-sm-9">
+									<select id="noCouponSelect" class="form-control" name="noCoupon" validateType="default" >
+										<option value="">请选择</option>
+										<option value="n">否</option>
+										<option value="y">是</option>
+									</select>
+								</div>
+							</div>
+							<div class='col-sm-4'>
+								<label class="col-sm-3 control-label">优先级<@JTtip msg="优先级，数值越高，优先级越高" /></label>
+								<div class="col-sm-9">
+									<input type="text" name="priority" placeholder=""  validateType="default"  class="digits form-control"> 
+								</div>
+							</div>
+
+							<div class='col-sm-4'>
+								<label class="col-sm-3 control-label">状态</label>
+								<div class="col-sm-9">
+									<select class="form-control" name="status" validateType="default" >
+					               		<option value=''>请选择</option>
+					               		<option value="inactive">未激活</option>
+					               	    <option value="actived">激活</option>
+					               		<option value="invalid">无效</option>
+					              	</select>
+					            </div>
+					        </div>
+						</div>
+
+					    <div class='form-group'>
+					    	<div class='col-sm-12'>
+								<label class="col-sm-1 control-label">描述</label>
+								<div class="col-sm-11">
+									<textarea class='form-control' rows='3' name='desc' validateType='default'></textarea>
+								</div>
+							</div>
+					    </div> 
+						
+						<!--将隐藏域放在这里，不显示出来-->
+						<div class='form-group' style="display:none'">
+							<input type="hidden" id="id" name="id">
+							<input type="hidden" name="createBy">
+							<input type="hidden" name="createTime">
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		<#include "/ec/rule/ruleDef/ruleDefForm.html">
+	</div>
+</div>

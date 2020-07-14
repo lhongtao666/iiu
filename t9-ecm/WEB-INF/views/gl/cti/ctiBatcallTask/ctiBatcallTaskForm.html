@@ -1,0 +1,197 @@
+	<style>
+		.ctiCsEntityContent{
+			height:calc(100% - 32px);
+			overflow-y: auto;
+			overflow-x: hidden;
+		}
+		.ace-file-multiple {
+		    width: 30%;
+		    padding-top: 10px;
+		}
+		.ace-file-multiple .remove {
+		    right: -98%;
+		    top: -63px;
+		}
+		.ace-file-input .remove {
+    			position: relative;
+		}
+		.my-skin .layui-layer-btn .layui-layer-btn1{
+		    border-color: #1E9FFF;
+		    background-color: #1E9FFF;
+		    color: #fff;
+		}
+		.csTotalSpan{
+		    background-color: #1caf9a;
+		    border: 1px solid #1caf9a;
+		    color: white;
+		    font-size: 15px;
+		    font-weight: bold;
+		}
+	</style>
+<div class='row' style='border: 1px solid #ddd; margin-left: 15px; margin-right: 15px;padding:10px;'>
+	<div class='col-sm-12'>
+		<form id="ctiBatcallTaskForm"  class="form-horizontal" method="post" enctype="multipart/form-data">
+			<input type="hidden" name="selfCsIds">
+			<input type="hidden" name="subCsIds">
+			<div class="panel panel-default panel-bb">
+				<div class="panel-heading jt-panel-heading">
+					<h3 class="panel-title">基本信息</h3>
+				</div>
+				<div class="panel-body">
+					<div class='form-group addInfo'>
+						<div class="col-sm-4">
+							<label class="col-sm-3 control-label">呼通之后操作：</label>
+						      <div class='col-sm-5'>
+							     	<select  class="form-control"  name="subaction" >
+							          	<option value="1" selected>放音</option>
+							          	<option value="2">转队列</option>
+							          	<option value="3">转分机号</option>
+							      </select>
+						      </div>
+						</div>
+						<div class="col-sm-4">
+							<label class="col-sm-3 control-label">操作数据：</label>
+						      <div class='col-sm-5'>
+						        	<input type="text" placeholder=""  name="subdata" id="subdata" class="form-control">
+						      </div>
+						</div>
+					</div>
+					<div class="form-group editInfo"> 
+						<div class="col-sm-4">
+							<label class="col-sm-4 control-label">创建人：</label>
+						      <div class='col-sm-8' style="padding-top:4px;">
+						      	<div id="createName"></div>
+						      </div>
+						</div>
+						<div class="col-sm-4">
+							<label class="col-sm-4 control-label">创建时间：</label>
+						      <div class='col-sm-8' style="padding-top:4px;">
+						      	<div id="createTime"></div>
+						      </div>
+						</div>
+					</div>
+					<div class="form-group editInfo"> 
+						<div class="col-sm-4">
+							<label class="col-sm-4 control-label">任务状态：</label>
+						      <div class='col-sm-8' style="padding-top:4px;">
+						      	<div id="taskStatus"></div>
+						      </div>
+						</div>
+						<div class="col-sm-4">
+							<label class="col-sm-4 control-label">已拨/总条数：</label>
+						      <div class='col-sm-8' style="padding-top:4px;">
+						      	<div id="callTotal"></div>
+						      </div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="panel panel-default panel-bb addInfo">
+				<div class="panel-heading jt-panel-heading">
+					<h3 class="panel-title">外呼客户</h3>
+				</div>
+				<div class="panel-body" style="height:auto;">
+					<div class="col-sm-12" style="height:100%;">
+				            <div class="tabs-container" style="height:auto;">
+				                <ul class="nav nav-tabs" style="height:32px;">
+				                	<li class="active">
+				                        <a data-toggle="tab" href="#tab-1" aria-expanded="false">导入客户编码</a>
+				                    </li>
+				                    <li class="">
+				                        <a data-toggle="tab" href="#tab-2" aria-expanded="true"> 我的客户</a>
+				                    </li>
+				                    <li class="">
+				                        <a data-toggle="tab" href="#tab-3" aria-expanded="true">下属客户</a>
+				                    </li>
+				                </ul>
+				                <div class="tab-content ctiCsEntityContent" >
+				                    <div id="tab-1" class="tab-pane active">
+				                        <div class="panel-body">
+				                        	<div style="margin-top:10px;font-size:20px;"><a href="${ctx}/gl/cti/ctiBatcallTask/exportCtiBatcallTemplate.htm" >下载批量外呼模板</a></div>
+									<input  type="file" id="ctiBatcallFile" class="col-sm-3" name="ctiBatcallFile">
+									<div><span style="color:red;">(没有电话的客户会被过滤)</span></div>
+								</div>
+				                    </div>
+				                    <div id="tab-2" class="tab-pane ">
+				                        <div class="panel-body">
+				                            <div class='form-group'>
+										<div class="col-sm-12">
+										      <div class='col-sm-4'>
+											     	<button type="button" class="btn jt-form-select selectSelfCsEntity" style="margin-right: 5px;">
+													<i class='fa fa-edit'></i>&nbsp;选择我的客户
+												</button><span style="color:red;">(没有电话的客户会被过滤)</span>
+										      </div>
+										      <div class='col-sm-8'>
+										      	<span class="csTotalSpan">已选统计：<span class="myCsTotal">0</span></span>
+										      </div>
+										</div>
+									</div>
+									<div class='form-group' id="myCsEntityDiv" style="max-height: 600px;">
+									</div>
+				                        </div>
+				                    </div>
+				                    <div id="tab-3" class="tab-pane ">
+				                        <div class="panel-body">
+				                            <div class='form-group'>
+										<div class="col-sm-12">
+										      <div class='col-sm-4'>
+											     	<button type="button" class="btn jt-form-select selectMySubCsEntity" style="margin-right: 5px;">
+													<i class='fa fa-edit'></i>&nbsp;选择下属客户
+												</button><span style="color:red;">(没有电话的客户会被过滤)</span>
+										      </div>
+										      <div class='col-sm-8'>
+										      	<span class="csTotalSpan">已选统计：<span class="mySubCsTotal">0</span></span>
+										      </div>
+										</div>
+									</div>
+									<div class="form-group" id="mySubCsEntityDiv" style="max-height: 600px;">			      
+									</div>
+				                        </div>
+				                    </div>
+				                </div>
+				            </div>
+				        </div>
+				</div>
+			</div>
+
+			<div class="panel panel-default panel-bb editInfo">
+				<div class="panel-heading jt-panel-heading">
+					<h3 class="panel-title">条目数据</h3>
+				</div>
+				<div class="panel-body">
+					<iframe id="itemIframe" style="width: 100%;height:600px; border-width: 0px;"></iframe>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+
+<script type="text/javascript">
+$('#ctiBatcallFile').ace_file_input({
+		style:'well',
+		btn_choose:'请选择文件',
+		btn_change:null,
+		no_icon:'icon-cloud-upload',
+		droppable:true,
+		onchange:true,
+		thumbnail:'false',
+		before_change:function(files, dropped) {
+			var fileDir = $("#ctiBatcallFile").val();
+			var suffix = fileDir.substr(fileDir.lastIndexOf("."));
+			if("" == fileDir){
+				DialogUtils.error(msgCode.FAIL_MSG, "请选择需要导入的Excel文件！");
+				return false;
+			}
+			if(".xls" !=suffix && ".xlsx" != suffix){
+				DialogUtils.error(msgCode.FAIL_MSG, "请选择Excel格式的文件导入！");
+				return false;
+			}
+			return true;
+		}
+	}).on('change', function(){
+		return true;
+	}).on('file.error.ace', function(event, info) {
+         DialogUtils.error(msgCode.FAIL_MSG, "请选择Excel格式的文件导入！");
+      });
+</script>			

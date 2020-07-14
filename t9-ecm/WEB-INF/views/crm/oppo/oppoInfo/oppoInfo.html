@@ -1,0 +1,115 @@
+<head>
+    <title>商机查看管理</title>
+    <#include "/common/common.html" />
+    <#include "/common/fullcalendar.html">
+        <script src="${ctx}/js/jt/gl/task/taskTableList${deploy_min!""}.js?v=${jsVersion}"></script>
+        <script src="${ctx}/js/jt/common/service/operateTask${deploy_min!""}.js?v=${jsVersion}"></script>
+        <script src="${ctx}/js/jt/common/service/selectProdService${deploy_min!""}.js?v=${jsVersion}"></script>
+        <script src="${ctx}/js/jt/common/service/employeesSelectLayer${deploy_min!""}.js?v=${jsVersion}"></script>
+        <script src='${ctx}/js/jt/common/service/customerSelectLayer${deploy_min!""}.js?v=${jsVersion}'></script>
+        <script src="${ctx}/js/jt/crm/oppo/oppoInfo${deploy_min!""}.js?v=${jsVersion}"></script>
+        <script type="text/javascript">
+        var oppoId = '${id}';
+        var isDetailBtn = "${isDetailBtn}";
+        console.log(isDetailBtn+"==================");
+        $(document).ready(function() {
+            var oppoDetail = new OppoInfo();
+            var options = {};
+            options.isDetailBtn = isDetailBtn;
+            oppoDetail.initDetailAndEditOppo(oppoId,options);
+        });
+        </script>
+</head>
+
+<body class='white-bg'>
+    <div id="oppoContainer">
+        <ul class="nav nav-tabs">
+            <li class="active"><a data-toggle="tab" href="#tab-data" aria-expanded="false">资料</a>
+            </li>
+            <li ><a data-toggle="tab" href="#tab-records" aria-expanded="true">动态</a></li>
+            <li><a data-toggle="tab" href="#tab-files" aria-expanded="false">附件</a>
+            </li>
+            <li><a data-toggle="tab" href="#tab-prod" aria-expanded="false">产品</a>
+            </li>
+            <li><a data-toggle="tab" href="#tab-task" aria-expanded="false">任务</a>
+            </li>
+        </ul>
+        <div class="tab-content">
+            <div id="tab-data" class="tab-pane active">
+                <div class="panel-body">
+                    <#include "/crm/oppo/oppoEntity/oppoEntityForm.html" />
+                </div>
+            </div>
+            <div id="tab-records" class="tab-pane ">
+                <div class="panel-body">
+                    <div id="record-edit-save" class='row col-sm-12' style="margin-bottom: 20px; margin-top: 20px;">
+                        <div class="col-sm-12">
+                            <textarea cols="1" name="content" rows="1" placeholder="添加动态记录" class="ui-autocomplete-input col-sm-12" autocomplete="off" style="height: 100px; margin: 0px; padding: 3px;"></textarea>
+                        </div>
+                        <div class="col-sm-12">
+                            <button type="button" class="btn btn-sm   btn-primary col-sm-1 col-sm-offset-11 add-oppo-record" style="margin-top: 10px;">保存</button>
+                        </div>
+                    </div>
+                    <div class='col-sm-12' id="recordsContainer"></div>
+                </div>
+            </div>
+            
+            <div id="tab-files" class="tab-pane">
+                <div class="panel-body">
+                    <div class='row'>
+                        <div class="row toolbar-panel fileBtns" style="display:none;">
+                            <div class="col-sm-12" style="padding-top: 15px; padding-bottom: 15px;">
+                                <div class='col-sm-12'>
+                                    <button class='btn btn-sm   btn-primary' type='button' id='selectFileBtn'>
+                                        <i class='fa fa-plus'></i>添加附件
+                                    </button>
+                                    <button class='btn btn-sm   btn-primary' disabled="disabled" type='button' id='saveFileBtn'>保存</button>
+                                    </div>
+                            </div>
+                        </div>
+                        <div class='col-sm-12'>
+                            <div class='col-sm-12' id='fileContainer'></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="tab-prod" class="tab-pane">
+                <div class="panel-body">
+                    <div class='row'>
+                        <div class="toolbar-panel prodBtns" style="display:none;">
+                            <div class="col-sm-12" style="padding-top: 15px; padding-bottom: 15px;">
+                                <div class='col-sm-12'> <!-- 让内容再向右靠 -->
+                                    <button class='btn btn-sm   btn-primary' type='button' id='selectSkuBtn'>
+                                        <i class='fa fa-plus'></i>添加商品
+                                    </button>
+                                    <button class='btn btn-sm   btn-primary' disabled="disabled" type='button' id='saveSkuBtn'>保存</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class='col-sm-12'>
+                            <table class='table table-stripped table-bordered'>
+                                <thead>
+                                    <tr>
+                                        <th>图片</th>
+                                        <th>名字</th>
+                                        <th>sku</th>
+                                        <th>数量</th>
+                                        <th>单位</th>
+                                        <th>操作</th>
+                                    </tr>
+                                </thead>
+                                <tbody id='skuContainer'>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="tab-task" class="tab-pane">
+                <div class="panel-body">
+                    <#include "/gl/task/taskEntity/taskTableList.html" />
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

@@ -1,0 +1,58 @@
+<script src="${ctx}/js/jt/gl/ou/salePerforamceForMe${deploy_min!""}.js?v=${jsVersion}" ></script>
+
+<div class="panel panel-default" style="margin-bottom:0px;height:100%;">
+    <div class="panel-heading">
+	    	<div class="panel-title">
+	    		<h4>我的销售业绩</h4>
+			    	<select class="form-control" name="timeRange"  id="timeRange"  validateType="default" 
+			    	style="width:200px;margin-top:-20px;margin-left:200px;">
+					     <option value='thisMonth'>本月</option>
+					     <option value='lastMonth'>上月</option>
+				    </select>
+	    	</div>
+    </div>
+    <div class="panel-body">
+      	<table class="table">      	     
+		    <tr>
+		      	<td class='col-sm-6' style='padding:1px;'>
+		      		<label class='col-sm-4 control-label' style='padding:0px;'>下单/金额：</label>
+		      		<span id="placeCount"></span><span id="placeAmount"></span>		      
+		      	</td>
+		      	<td class='col-sm-6' style='padding:1px;'>
+		      		<label class='col-sm-4 control-label' style='padding:0px;'>成单率：</label>
+		      		<span id="done"></span>
+		      	</td>
+		    </tr>
+		    <tr>
+		      	<td class="col-sm-6" style='padding:1px;'>
+		      		<label class='col-sm-4 control-label' style='padding:0px;'>审单/金额：</label>
+		      		<span id="auditCount"></span><span id="auditAmount"></span>
+		      	</td>
+		      	<td class="col-sm-6" style='padding:1px;'>
+		      		<label class='col-sm-4 control-label' style='padding:0px;'>核单率：</label>
+		      		<span id="check"></span>
+		      	</td>
+		    </tr>
+		     <tr>
+		      	<td class="col-sm-6" style='padding:1px;'>
+		      		<label class='col-sm-4 control-label' style='padding:0px;'>签收/金额：</label>
+		      		<span id="signCount"></span><span id="signAmount"></span>
+		      	</td>
+		      	<td class="col-sm-6" style='padding:1px;'>
+		      		<label class='col-sm-4 control-label' style='padding:0px;'>签收率：</label>
+		      		<span id="sign"></span>
+		      	</td>
+		    </tr>
+		    <tr>
+		      	<td class="col-sm-6" style='padding:1px;'>
+		      		<label class='col-sm-4 control-label' style='padding:0px;'>发货/金额：</label>
+		      		<span id="shipCount"></span><span id="shipAmount"></span>
+		      	</td>
+		      	<td class="col-sm-6" style='padding:1px;'>
+		      		<label class='col-sm-4 control-label' style='padding:0px;'>拒丢/金额：</label>
+		      		<span id="rejectCount"></span><span id="rejectAmount"></span>
+		      	</td>
+		    </tr>
+	   </table>
+    </div>
+</div>

@@ -1,0 +1,29 @@
+<div class="col-sm-12">
+	<div class="panel panel-default">
+	    <div class="panel-heading">
+	    	<button type='button' class='jt-btn questionnaireAdd'><i class='fa fa-plus'>&nbsp;添加</i></button>
+	    </div>
+	    <div class="panel-body">
+	        <form id='questionnaireSearchForm' role="form" class="form-horizontal">
+				<!--默认生成一个搜索条件，需要的，用户自己添加-->
+				<div class="form-group">
+					<label class='col-sm-1 control-label'>名称</label> 
+					<div class='col-sm-2'>
+						<input type="text" id='nameSearch' placeholder="请输入名称" name="Q__S__LK__q.name_" class="form-control">
+					</div>
+					<label class='col-sm-1 control-label'>状态</label>
+					<div class='col-sm-1'>
+						<select id="status" name="Q__S__EQ__q.status_" class="form-control">
+						     <option value=''>请选择</option>
+						     <option value='actived'>激活</option>
+						     <option value='inactive'>禁用</option>
+						</select>
+					</div>
+					<div class='col-sm-2'>
+						<button type='button' class="jt-btn-search  questionnaireSearch"><i class="fa fa-search"></i>&nbsp;搜索</button>
+					</div>
+				</div>
+			</form>
+	    </div>
+	</div>
+</div>

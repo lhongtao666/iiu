@@ -1,0 +1,38 @@
+<div class="col-sm-12">
+	<div class="panel panel-default">
+	    <div class="panel-heading">
+	    	<button type='button' class='jt-btn levelChangeDetail'><i class='fa fa-list'></i>&nbsp;明细</button>
+	    	<label id="glHelpContainer"></label><!-- 帮助中心 -->
+	    </div>
+	    <div class="panel-body">
+	        <form role="form" class="form-horizontal">
+				<!--默认生成一个搜索条件，需要的，用户自己添加-->
+				<div class='form-group'>
+	                 <label class="col-sm-1 control-label">客户编号</label>
+	                 <div class="col-sm-2">
+						  <input type="text" placeholder="请输入客户编号" name="Q__S__LK__entity.code_" class="form-control" />
+				     </div>
+	                 <label class="col-sm-1 control-label">升/降</label>
+	                 <div class="col-sm-2"> 
+	                  	  <select class="form-control" name="Q__S__EQ__dir_type_">
+		                   	   <option value="">请选择</option>
+		                   	   <option value="upgrade">升级</option>
+		                   	   <option value="degrade">降级</option>
+	                   </select>
+	                 </div>
+	                 <label class="col-sm-1 control-label">变更时间</label>
+	                 <div class="col-sm-4"> 
+		                 <div class="input-daterange input-group" id="datepicker">
+                            <input id='startTimeSearch' class='laydate-icon form-control layer-date' placeholder='起始时间' name="Q__D__BW__create_time_" validateType="default" onclick="laydate({istime: true, format: 'YYYY-MM-DD'})" style="cursor:pointer;">
+                            <span class="input-group-addon">到</span>
+							<input id='endTimeSearch' class='laydate-icon form-control layer-date' placeholder='结束时间' name="Q__D__BW__create_time_" validateType="default" onclick="laydate({istime: true, format: 'YYYY-MM-DD'})" style="cursor:pointer;">
+                        </div>
+		             </div>
+	                 <div class="col-sm-1"> 
+	                    <button type='button' class="jt-btn jt-btn-search levelChangeSearch"><i class="fa fa-search"></i>&nbsp;搜索</button>
+	                 </div>
+	             </div> 
+			</form>
+	    </div>
+	</div>
+</div>

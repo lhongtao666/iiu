@@ -1,0 +1,72 @@
+<div class='row' style='border: 1px solid #ddd; margin-left: 15px; margin-right: 15px;padding:10px;'>
+	<div class='col-sm-12'>
+		<form id="rfmtRflevelForm" method="get" class="form-horizontal">
+
+
+			<div class="form-group">
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">R分档<@JTtip msg="R分档" /></label>
+					<div class="col-sm-9">
+						<select name="RScore" placeholder="" class="form-control">
+							<option value="0">0</option>
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+							<option value="5">5</option>
+						</select>
+					</div>
+				</div>
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">F分档<@JTtip msg="F分档" /></label>
+					<div class="col-sm-9">
+						<select name="FScore" placeholder="" class="form-control">
+							<option value="0">0</option>
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+							<option value="5">5</option>
+						</select>
+					</div>
+				</div>
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">RF分类命名<@JTtip msg="RF分类命名" /></label>
+					<div class="col-sm-9">
+						<input type="text" name="rf" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+			</div>
+			<div class="form-group">
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">价值类型<@JTtip msg="价值类型" /></label>
+					<div class="col-sm-9">
+		               <select name="type" placeholder="" class="form-control">
+							<option value="未成交">未成交</option>
+							<option value="激活">激活</option>
+							<option value="挽留">挽留</option>
+							<option value="发展">发展</option>
+							<option value="保持">保持</option>
+						</select>
+		            </div>
+		        </div>
+
+            </div>    
+
+
+
+			<div class='form-group'>
+				<!--将隐藏域放在这里，不显示出来-->
+				<div style="display:none'">
+					<input type="hidden" id="id" name="id">
+					<input type="hidden" name="createBy">
+					<input type="hidden" name="createTime">
+				</div>
+			</div>
+
+		</form>
+	</div>
+</div>

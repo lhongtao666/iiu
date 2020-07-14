@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>代理商编辑</title>
+	<#include "/common/common.html">
+    <#include "/common/ztree.html">
+    <#include "/common/eav.html" />
+	<script src="${ctx}/js/jt/crm/agent/agentEntityEdit${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/crm/agent/agentSku${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/crm/agent/agentEmp${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/common/service/seniorSearch${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/common/service/selectProdService${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/plugins/suggest/bootstrap-suggest.js?v=${jsVersion}"></script>
+	<link href="${ctx}/css/plugins/chosen/chosen.css?v=${jsVersion}" rel="stylesheet" />
+	<script src="${ctx}/js/plugins/chosen/chosen.jquery.js?v=${jsVersion}"></script>
+	<script src='${ctx}/js/jt/common/service/addressService${deploy_min!""}.js?v=${jsVersion}'></script>
+	<script src="${ctx}/js/jt/common/utils/groupUtils${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/common/service/employeesSelectLayer${deploy_min!""}.js?v=${jsVersion}"></script>
+	<link rel="stylesheet" rev="stylesheet" type="text/css" media="all" href="${ctx}/css/bootstrap-select.css?v=${jsVersion}">
+	<script src="${ctx}/js/bootstrap-select.min.js?v=${jsVersion}" ></script>
+	<link href="${ctx}/css/plugins/select2/select2.min.css?v=${jsVersion}" rel="stylesheet">
+    <script src="${ctx}/js/plugins/select2/select2.min.js?v=${jsVersion}"></script>
+	<script type="text/javascript">
+	  var agentId = "${agentId}";
+	  var agentName = "${agentName}";
+	  var agentWeihu = "${agentWeihu}";
+	</script>
+	<style>
+	.table-bordered > thead > tr > th, .table-bordered > thead > tr > td, .table-bordered > thead > .ui-jqgrid-labels > th.ui-th-column:first-child {
+			font-weight: 500;text-align: center;}
+	#agentEntityLogGrid> tbody > tr > td{
+		 	vertical-align:middle;
+	}
+	#agentEntityLogGrid tr.jqgrow td {border: 1px solid #ccc;}
+	#agentSkuGrid> tbody > tr > td{
+		 	vertical-align:middle;
+	}
+    #agentSkuGrid tr.jqgrow td {border: 1px solid #ccc;}
+    #gview_agentSkuGrid .ui-jqgrid-bdiv{height:670px !important}
+    #agentEmpGrid> tbody > tr > td{
+		 	vertical-align:middle;
+	}
+    #agentEmpGrid tr.jqgrow td {border: 1px solid #ccc;}
+     #gview_agentEmpGrid .ui-jqgrid-bdiv{height:660px !important}
+    .storeIds-chosen-div .bootstrap-select {
+		width:100% !important;
+	}
+	#storeIds + div button {
+	    background-color: #fff !important;
+	    color: #333;
+	    border-radius: 2.5px;
+	    height: 28px;
+	    line-height: 15px;
+	}
+	</style>
+</head>
+
+<body class='white-bg' style='background-color:#fff'>
+		<div class="col-sm-12 wrapper" style='background-color:#fff'>
+			<div class="tabs-container">
+				<ul class="nav nav-tabs" style='background-color: #fff;'>
+				   <li  id="agentInfoTabLi" class="tabli active">
+						<a href="#tabAgentInfo" data-toggle="tab">
+							基本信息
+						</a>
+					</li>
+					<li  id="skuManagerTabLi" class="tabli">
+						<a href="#tabSkuManager" data-toggle="tab">
+							SKU管理
+						</a>
+					</li>
+					<li  id="groupEmpTabLi" class="tabli">
+						<a href="#tabGroupEmp" data-toggle="tab">
+							部门员工
+						</a>
+					</li>
+					<li style='padding-top:5px;margin-left:20px;' id='infoPrevBtn'>
+					  <span class="jt-span"></span>
+					  <button type="button" class="btn btn-sm  btn-danger jt-btn-normal jt-bn-red infoPrevBtn" style="font-weight:bold">关闭</button>
+					</li>
+				</ul>
+				<div class="tab-content">
+				       <div id="tabAgentInfo" class="tab-pane active">
+							<div class="panel-body" style='background-color:#fff'>
+								<#include "/crm/agent/agentEntity/agentEntityInfo.html">
+							</div>
+						</div>
+						<div id="tabSkuManager" class="tab-pane ">
+							<div class="panel-body" style='background-color:#fff'>
+								<#include "/crm/agent/agentEntity/agentEntitySku.html">
+							</div>
+						</div>
+						<div id="tabGroupEmp" class="tab-pane" > 
+							<div class="panel-body" style='background-color:#fff'>
+								<#include "/crm/agent/agentEntity/agentEntityGroupEmp.html">
+							</div>
+						</div>
+				</div>
+			</div>
+		</div>
+</body>
+</html>

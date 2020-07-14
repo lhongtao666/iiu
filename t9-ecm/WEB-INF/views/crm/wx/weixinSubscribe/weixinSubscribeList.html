@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>jt_weixin_subscribe管理</title>
+	<#include "/common/common.html">
+	<script src="${ctx}/js/jt/crm/wx/weixinSubscribe${deploy_min!""}.js?v=${jsVersion}" ></script>
+</head>
+
+<body>
+	<div class="wrapper animated fadeInRight">
+		<!-- list界面 -->
+		<div class="row list_wrapper">
+			<#include "/crm/wx/weixinSubscribe/weixinSubscribeToolbar.html">	  			
+			<div class='col-sm-12 jqGrid_wrapper'>
+			    <table id="weixinSubscribeGrid"></table>
+				<div id="weixinSubscribePager"></div>
+			</div>
+		</div>
+		<!-- 编辑界面 -->
+		<#include "/crm/wx/weixinSubscribe/weixinSubscribeEdit.html">	    
+	</div>
+</body>
+</html>

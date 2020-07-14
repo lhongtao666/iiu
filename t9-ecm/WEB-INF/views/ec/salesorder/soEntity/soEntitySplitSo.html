@@ -1,0 +1,56 @@
+<div class="modal fade" id="splitSoModalContainer" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document" style="width:900px">
+    	<div class="modal-content">
+      		<div class="modal-header">
+        		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        		<h4 class="modal-title" id="splitSoModal"></h4>
+      		</div>
+	
+	        <div class="modal-body">
+				<form id="splitSoForm" method="get" class="form-horizontal">
+					<input type='hidden' name='soNo'>
+					<input type='hidden' name='soId'>
+					<div class="col-sm-12">
+						<div class="tabs-container">
+							<ul class="nav nav-tabs">
+								<li class="active tabLi"><a href="#splitProdTab" data-toggle="tab" aria-expanded="true">商品拆分</a>
+								</li>
+							</ul>
+							<div class="tab-content">
+								<div id="splitProdTab" class="tab-pane fade active in">
+									<div class="row">
+										<div class="col-sm-12 splitPordDiv">
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					<div class="col-sm-12 splitSoListContent" style='display:none;' >
+						<div class="tabs-container">
+							<ul class="nav nav-tabs">
+								<li class="active tabLi"><a href="#splitSoTab" data-toggle="tab" aria-expanded="true">拆分订单列表</a>
+								</li>
+							</ul>
+							<div class="tab-content">
+								<div id="splitSoTab" class="tab-pane fade active in">
+									<div class="row">
+										<div class="col-sm-12 splitSoListDiv">
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<div class='splitSoBtnContent'>
+					<button type="button" class="btn btn-sm  btn-primary splitSoBtn">拆单保存</button>	
+					<span style='color:red;'>拆分不可逆，请谨慎操作</span>	
+				</div>
+	        </div>
+        </div>
+	</div>
+</div>

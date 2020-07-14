@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>业绩报表明细</title>
+	<#include "/common/common.html">
+	<script src="${ctx}/js/jt/crm/report/generalize/adverPutAnalyzeDetailList${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script> 
+	    var paramsDetail=${paramsDetail};
+	   
+	</script>
+</head>
+<body class="white-bg">
+	<div class='wrapper'>
+		<div class='row list_wrapper'>
+		    <div class='col-sm-12'>
+		   	    <div class="panel panel-default">
+		   	   		<div class="panel-heading">	
+			        	<button type='button' class='btn btn-sm   btn-primary exportExcelDetail' >导出明细</button>
+		            </div>
+		        </div>
+		    </div>
+			<div class="jqGrid_wrapper col-sm-12">
+				<table id='adverputDetailGrid'></table>
+				<div id="adverputDetailPager"></div>
+			</div>
+		</div>
+	</div>	
+</body>
+</html>

@@ -1,0 +1,21 @@
+<div class="col-sm-12">
+	<div class="panel panel-default">
+	    <div class="panel-heading">
+			<button type='button' class='btn btn-sm  btn-primary csAccountAdd'><i class='fa fa-add'>添加</i></button>
+			<button type='button' class='btn btn-sm  btn-primary csAccountEdit'><i class='fa fa-edit'>编辑</i></button>
+			<button type='button' class='btn btn-sm  btn-danger csAccountDel'><i class='fa fa-remove'>删除</i></button>
+			<button type='button' class='btn btn-sm  btn-primary csAccountDetail'><i class='fa fa-detail'>明细</i></button>
+	    </div>
+	    <div class="panel-body">
+	        <form role="form" class="form-inline">
+				<!--默认生成一个搜索条件，需要的，用户自己添加-->
+				<div class="form-group">
+					<label for="nameSearch" class="sr-only">名字</label> 
+					<input type="text" id='nameSearch' placeholder="请输入资源名字" name="Q__S__LK__name_" class="form-control">
+				</div>
+				<button type='button' class="btn btn-sm btn-primary jt-btn-normal csAccountSearch">搜索</button>
+				<#include "/common/advanceSearch.html">
+			</form>
+	    </div>
+	</div>
+</div>

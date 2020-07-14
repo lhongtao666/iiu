@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>销售订单发货</title>
+	<#include "/common/common.html">
+	<#include "/common/ztree.html">
+	<#include "/ec/salesorder/soEntity/soEntityCommJs.html">
+	<link href="${ctx}/css/plugins/chosen/chosen.css?v=${jsVersion}" rel="stylesheet">
+	<link href="${ctx}/css/plugins/select2/select2.min.css?v=${jsVersion}" rel="stylesheet">
+	<script src="${ctx}/js/plugins/select2/select2.min.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/plugins/chosen/chosen.jquery.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/plugins/suggest/bootstrap-suggest.js?v=${jsVersion}"></script>
+	<#include "/ec/salesorder/soEntity/soEntityToolbar.html">
+	<script src="${ctx}/js/plugins/gridReport/CreateControl.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/plugins/gridReport/GRInstall.js?v=${jsVersion}"></script>
+	<link rel="stylesheet" rev="stylesheet" type="text/css" media="all" href="${ctx}/css/bootstrap-select.css?v=${jsVersion}">
+	<script src="${ctx}/js/bootstrap-select.min.js?v=${jsVersion}" ></script>
+	<script type="text/javascript">
+	   var ctx="${ctx}";
+       var curUserId = "${ONLINE_ENTITY.userId}";
+       Install_InsertReport();
+	</script>
+	<style>
+		.layui-layer-content{
+		    overflow: auto !important
+		}
+		.ui-jqgrid  {width:100% !important;}
+		.titleDiv{
+			    float: left;
+			    width: calc(100% - 29rem);
+			    text-overflow: ellipsis;
+			    overflow: hidden;
+			    white-space: nowrap;
+			    height: 28px;
+		}
+		.popover{
+			z-index:2051;
+		}
+		.soType-chosen-div .bootstrap-select {
+			width:100% !important;
+		}
+		#soTypeDelayShipQry + div button {
+		    background-color: #fff !important;
+		    color: #333;
+		    border-radius: 2.5px;
+		    height: 28px;
+		    line-height: 15px;
+		}
+		#soTypeDeliveredQry + div button {
+		    background-color: #fff !important;
+		    color: #333;
+		    border-radius: 2.5px;
+		    height: 28px;
+		    line-height: 15px;
+		}
+		#soTypeWaitQry + div button {
+		    background-color: #fff !important;
+		    color: #333;
+		    border-radius: 2.5px;
+		    height: 28px;
+		    line-height: 15px;
+		}
+	</style>
+<script src='${ctx}/js/jt/ec/salesorder/stock/soEntityStockList-site${deploy_min!""}.js?v=${jsVersion}' ></script>
+</head>
+<body class='white-bg'>
+	<script type="text/javascript">
+        var installed = Install_Detect();
+        if(installed==true){
+    	   var testObj = document.getElementById("_ReportOK");
+    	   testObj.style.display="none";
+	    }
+		var simpleShowComment = "n";
+	   	var simpleShowLastFollow = "n";
+	 	var simpleShowProdName = "n";
+	   	var soEntityShipModel = "${soEntityShipModel}";
+	   	<#if simpleShowComment??>
+           simpleShowComment = "${simpleShowComment}";
+       	</#if>
+       	<#if simpleShowLastFollow??>
+           simpleShowLastFollow = "${simpleShowLastFollow}";
+       	</#if>
+       	<#if simpleShowProdName??>
+           simpleShowProdName = "${simpleShowProdName}";
+       	</#if>
+
+       	if(window.localStorage.getItem("simpleShowProdName")) simpleShowProdName = "n";
+
+       	var isSelectStoreInShip = "n";
+	    <#if isSelectStoreInShip??>
+	        isSelectStoreInShip = "${isSelectStoreInShip}";
+        </#if>
+        var currentIsSendSmsStr ="n"
+        <#if currentIsSendSmsStr??>
+	        currentIsSendSmsStr = "${currentIsSendSmsStr}";
+        </#if>
+	</script>
+	<div class="wrapper animated ">
+		<button type="button" class="soEntityTabSpanSearch" style="display:none;"></button>
+		<!-- list界面 -->
+		<div class="row list_wrapper">
+			<div class="col-sm-12">
+				<div class="tabs-container">
+					<ul class="nav nav-tabs">
+						<#if soEntityShipModel == 'ec'>
+						<li  id="soWaitPackTabLi" class="tabli <#if select??><#if select !=3>active</#if></#if>">
+							<a href="#tabSoWaitPack" data-toggle="tab">
+								待打包订单
+							</a>
+						</li>
+						<li  id="soWaitAllocateTabLi" class="tabli">
+							<a href="#tabSoAllocate" data-toggle="tab">
+								待配货订单
+							</a>
+						</li>
+						<li  id="soWaitDeliverTabLi" class="tabli">					
+							<a href="#tabSoWaitDeliver" data-toggle="tab">
+								待发订单
+							</a>
+						</li>
+						<#else>
+						<li  id="soWaitDeliverTabLi" class="tabli <#if select??><#if select !=3>active</#if></#if>">					
+							<a href="#tabSoWaitDeliver" data-toggle="tab">
+								待发订单
+							</a>
+						</li>
+						</#if>
+						<li  id="soDelayShipTabLi" class="tabli">
+							<a href="#tabSoDelayShip" data-toggle="tab">
+								延期发货订单
+							</a>
+						</li>
+						<li  id="soSweepDeliverTabLi" class="tabli"  >
+							<a href="#tabSoSweepDeliver" data-toggle="tab">
+								扫码发货
+							</a>
+						</li>
+						<li  id="soDeliveredTabLi" class="tabli">
+	           				<a href="#tabSoDelivered" data-toggle="tab">
+       							已发货
+	           				</a>
+	        			</li>
+	        			<li>
+	        				<!-- 帮助中心 -->
+	        				<label id="glHelpContainer"></label>
+	        			</li>
+						<!-- <li style="float:right;">
+							<#include "/ec/salesorder/soEntity/soEntityRefreshTool.html">
+						</li> -->
+					</ul>
+
+					<div class="tab-content">
+						<#if soEntityShipModel == 'ec'>
+							<div id="tabSoWaitPack" class="tab-pane <#if select??><#if select !=3>active</#if></#if>">
+								<div class="panel-body">
+									<div class='row'>
+										<#include "/ec/salesorder/soEntity/stock/soWaitPackSim.html"></div>
+								</div>
+							</div>
+							<div id="tabSoAllocate" class="tab-pane">
+								<div class="panel-body">
+									<div class='row'>
+										<#include "/ec/salesorder/soEntity/stock/soWaitAllocateSim.html"></div>
+								</div>
+							</div>
+							<div id="tabSoWaitDeliver" class="tab-pane">
+								<div class="panel-body">
+									<div class='row'>
+										<#include "/ec/salesorder/soEntity/stock/soEntityWaitPackSim.html"></div>
+								</div>
+							</div>
+						<#else>
+							<div id="tabSoWaitDeliver" class="tab-pane <#if select??><#if select !=3>active</#if></#if>">
+								<div class="panel-body">
+									<div class='row'>
+										<#include "/ec/salesorder/soEntity/stock/soEntityWaitPackSim.html"></div>
+								</div>
+							</div>
+						</#if>
+						<div id="tabSoDelayShip" class="tab-pane">
+							<div class="panel-body">
+								<div class='row'>
+									<#include "/ec/salesorder/soEntity/stock/soEntityDelayShipSim.html"></div>
+							</div>
+						</div>
+						<div id="tabSoSweepDeliver" class="tab-pane">
+							<div class="panel-body">
+								<div class='row'>
+									<#include "/ec/salesorder/soEntity/stock/sweepDeliverList.html"></div>
+							</div>
+						</div>
+						 
+						<div id="tabSoDelivered" class="tab-pane">
+							<div class="panel-body">
+								<div class='row'>
+									<#include "/ec/salesorder/soEntity/stock/soEntityDeliveredList.html"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		</div>
+	</div>
+	<div style="display:none"  class="soEntityExportPane" >
+		 <#include "/ec/salesorder/soEntity/export/soEntityExport.html" >
+	</div>
+	<div style="display:none"  class="soEntityTurnDownPane" >
+	   	<#include "/ec/salesorder/soEntity/soEntityTurnDown.html" >
+	</div>	
+	<!-- 订单拆分 -->
+   	<#include "/ec/salesorder/soEntity/soEntitySplitSo.html" >
+   	<!-- 订单配货 -->
+ 	<#include "/ec/salesorder/soEntity/soEntityAllocateSo.html" >
+	<!-- 订单包装 -->
+   	<#include "/ec/salesorder/soEntity/soEntityWrapSo.html" >
+   	<!-- 获取快递单号 -->
+   	<#include "/ec/salesorder/soEntity/stock/soEntityPrinthot.html" >
+	<div style="display:none"  class="mergeSoPanel" >
+		<div class="panel-body">
+			<form method="get" class="form-horizontal" id="mergeSoForm">
+				<div class='form-group'>
+					<label class="col-sm-2 control-label">合并到</label>
+					<div class="col-sm-5">
+						<select disabled="disabled" class='form-control' name="type" id='mergeToSo'  validateType="default">
+						</select>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+	
+	<div class="modal fade" id="selectStoreModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	    <div class="modal-dialog" role="document">
+	    	<div class="modal-content">
+	      		<div class="modal-header">
+	        		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+	        		<h4 class="modal-title" id="myModalLabel">选择仓库</h4>
+	      		</div>
+		
+		        <div class="modal-body">
+			        <form id="selectStoreForm" method="get" class="form-horizontal">
+			        	<div class='form-group'>
+							<label class="col-sm-1 control-label">仓库</label>
+							<div class="col-sm-4">
+								<select class="form-control" name="storeId" id="storeId" validatetype="default">
+								</select>
+							</div>
+						</div>
+			        </form>
+		        </div>
+		        <div class="modal-footer">
+		        	<button type="button" class="btn btn-sm   btn-default" data-dismiss="modal">关闭</button>
+		        	<button type="button" class="btn btn-sm   btn-primary" id='selectStoreBtn'>保存</button>
+		        </div>
+	        </div>
+        </div>
+    </div>
+
+    <!-- 批量修改仓库 -->
+	<div class="modal fade" id="storeBatchUpdateModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	    <div class="modal-dialog" role="document">
+	    	<div class="modal-content">
+	      		<div class="modal-header">
+	        		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+	        		<h4 class="modal-title" id="myModalLabel">批量修改仓库(暂时只支持未选定仓库的订单的批量修改)</h4>
+	      		</div>
+		
+		        <div class="modal-body">
+			        <form id="storeBatchUpdateForm1" method="get" class="form-horizontal">
+			        	<div class='form-group'>
+							<label class="col-sm-2 control-label">仓库</label>
+							<div class="col-sm-4">
+								<select class="form-control" name="store-id1" id="store-id1" validatetype="default">
+								</select>
+							</div>
+						</div>
+			        </form>
+		        </div>
+		        <div class="modal-footer">
+		        	<button type="button" class="btn btn-sm   btn-default" data-dismiss="modal">关闭</button>
+		        	<button type="button" class="btn btn-sm   btn-primary storeBatchUpdateBtn1" id='storeBatchUpdateBtn1'>保存</button>
+		        </div>
+	        </div>
+        </div>
+    </div>
+
+    <!-- 批量修改快递公司 -->
+	<div class="modal fade" id="shipCompanyBatchUpdateModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	    <div class="modal-dialog" role="document">
+	    	<div class="modal-content">
+	      		<div class="modal-header">
+	        		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+	        		<h4 class="modal-title" id="myModalLabel">批量修改快递公司</h4>
+	      		</div>
+		
+		        <div class="modal-body">
+			        <form id="shipCompanyBatchUpdateForm1" method="get" class="form-horizontal">
+			        	<div class='form-group'>
+							<label class="col-sm-2 control-label">快递公司</label>
+							<div class="col-sm-4">
+								<select class="form-control" name="scCodeQry1" id="scCodeQry1" validatetype="default">
+								</select>
+							</div>
+						</div>
+			        </form>
+		        </div>
+		        <div class="modal-footer">
+		        	<button type="button" class="btn btn-sm   btn-default" data-dismiss="modal">关闭</button>
+		        	<button type="button" class="btn btn-sm   btn-primary shipCompanyBatchUpdateBtn1" id='shipCompanyBatchUpdateBtn1'>保存</button>
+		        </div>
+	        </div>
+        </div>
+    </div>
+
+    <!-- 批量修改仓库 -->
+	<div class="modal fade" id="storeBatchUpdateModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	    <div class="modal-dialog" role="document">
+	    	<div class="modal-content">
+	      		<div class="modal-header">
+	        		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+	        		<h4 class="modal-title" id="myModalLabel">批量修改仓库(暂时只支持未选定仓库的订单的批量修改)</h4>
+	      		</div>
+		
+		        <div class="modal-body">
+			        <form id="storeBatchUpdateForm2" method="get" class="form-horizontal">
+			        	<div class='form-group'>
+							<label class="col-sm-2 control-label">仓库</label>
+							<div class="col-sm-4">
+								<select class="form-control" name="store-id2" id="store-id2" validatetype="default">
+								</select>
+							</div>
+						</div>
+			        </form>
+		        </div>
+		        <div class="modal-footer">
+		        	<button type="button" class="btn btn-sm   btn-default" data-dismiss="modal">关闭</button>
+		        	<button type="button" class="btn btn-sm   btn-primary storeBatchUpdateBtn2" id='storeBatchUpdateBtn2'>保存</button>
+		        </div>
+	        </div>
+        </div>
+    </div>
+
+    <!-- 批量修改快递公司 -->
+	<div class="modal fade" id="shipCompanyBatchUpdateModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	    <div class="modal-dialog" role="document">
+	    	<div class="modal-content">
+	      		<div class="modal-header">
+	        		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+	        		<h4 class="modal-title" id="myModalLabel">批量修改快递公司</h4>
+	      		</div>
+		
+		        <div class="modal-body">
+			        <form id="shipCompanyBatchUpdateForm2" method="get" class="form-horizontal">
+			        	<div class='form-group'>
+							<label class="col-sm-2 control-label">快递公司</label>
+							<div class="col-sm-4">
+								<select class="form-control" name="scCodeQry2" id="scCodeQry2" validatetype="default">
+								</select>
+							</div>
+						</div>
+			        </form>
+		        </div>
+		        <div class="modal-footer">
+		        	<button type="button" class="btn btn-sm   btn-default" data-dismiss="modal">关闭</button>
+		        	<button type="button" class="btn btn-sm   btn-primary shipCompanyBatchUpdateBtn2" id='shipCompanyBatchUpdateBtn2'>保存</button>
+		        </div>
+	        </div>
+        </div>
+    </div>
+
+<!-- 打包弹出框输入员工信息 -->
+   <div id='assignContainer' style="display: none; overflow-x: none;">
+	    <div class="col-sm-12">
+	        <div class="panel panel-default">
+	            <div class="panel-body">
+	                <table class='table table-bordered'>
+	                    <tr>
+	                        <td width='7%'>
+	                            <b>员工</b>
+	                        </td>
+	                        <td width='40%'>
+	                            <div class="col-sm-8">
+	                                <div class="input-group">
+	                                    <input name='employeeSearch' id="employeeInput" type='text' class='form-control' placeholder="请输入工号或者姓名">
+	                                    <div class="input-group-btn">
+	                                        <button type="button" class="btn  btn-white dropdown-toggle" data-toggle="dropdown">
+	                                            <span class="caret"></span>
+	                                        </button>
+	                                        <ul class="dropdown-menu dropdown-menu-right" role="menu">
+	                                        </ul>
+	                                    </div>
+	                                </div>
+	                            </div>
+	                            <div class='col-sm-4'>
+	                                <button class='btn btn-sm btn-primary' id='selectEmployeeBtn' type='button'>选择员工</button>
+	                            </div>
+	                        </td>
+	                    </tr>
+	                </table>
+	            </div>
+	        </div>
+    	</div>
+    	 <div class="col-sm-12">
+	        <h4 style="color: red">PS:不选择，默认为当前登录员工为打包人</h4>
+	    </div>
+	</div>
+
+
+	<!-- 订单打包   批量修改仓库 -->
+	<div class="modal fade" id="storeBatchUpdateModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	    <div class="modal-dialog" role="document">
+	    	<div class="modal-content">
+	      		<div class="modal-header">
+	        		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+	        		<h4 class="modal-title" id="myModalLabel">批量修改仓库(暂时只支持未选定仓库的订单的批量修改)</h4>
+	      		</div>
+		
+		        <div class="modal-body">
+			        <form id="storeBatchUpdateForm1" method="get" class="form-horizontal">
+			        	<div class='form-group'>
+							<label class="col-sm-2 control-label">仓库</label>
+							<div class="col-sm-4">
+								<select class="form-control" name="store-id" id="store-id" validatetype="default">
+								</select>
+							</div>
+						</div>
+			        </form>
+		        </div>
+		        <div class="modal-footer">
+		        	<button type="button" class="btn btn-sm   btn-default" data-dismiss="modal">关闭</button>
+		        	<button type="button" class="btn btn-sm   btn-primary storeBatchUpdateBtn" id='storeBatchUpdateBtn'>保存</button>
+		        </div>
+	        </div>
+        </div>
+    </div>
+    <div class="jt-send-massage" id="jt-send-massage" style=' overflow: hidden;display: none;'>
+    	 <form>
+    	 	<div class='form-group'>
+    	 		 <div class='rows'>
+    	 		 	<div class='sendSmsWhenDeliver' style='padding-left:20px;padding-top:30px;font-size:20px;'>
+	                  <input type='checkbox' value='y' name='sendSms' class='sendSms'>
+	                   发货时发短信
+	                </div>
+    	 		 </div>
+    	 	</div>
+
+    	 </form>
+    </div>
+</body>
+  
+</html>

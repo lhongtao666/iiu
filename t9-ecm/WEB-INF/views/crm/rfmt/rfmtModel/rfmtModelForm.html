@@ -1,0 +1,162 @@
+<div class='row' style='border: 1px solid #ddd; margin-left: 15px; margin-right: 15px;padding:10px;'>
+	<div class='col-sm-12'>
+		<form id="rfmtModelForm" method="get" class="form-horizontal">
+
+
+			<div class="form-group">
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">客户ID<@JTtip msg="客户ID" /></label>
+					<div class="col-sm-9">
+						<input type="text" name="csId" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">最近那天购买<@JTtip msg="最近那天购买" /></label>
+					<div class="col-sm-9">
+						<input type="text" name="recency" placeholder=""  validateType="default"  class="digits form-control"> 
+					</div>
+				</div>
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">购买次数<@JTtip msg="购买次数" /></label>
+					<div class="col-sm-9">
+						<input type="text" name="frequency" placeholder=""  validateType="default"  class="digits form-control"> 
+					</div>
+				</div>
+
+			</div>
+			<div class="form-group">
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">最近一段时间平均单价<@JTtip msg="最近一段时间平均单价" /></label>
+					<div class="col-sm-9">
+						<input type="text" name="monetary" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">最近一段时间最高单价<@JTtip msg="最近一段时间最高单价" /></label>
+					<div class="col-sm-9">
+						<input type="text" name="top" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">R分档。0~5<@JTtip msg="R分档。0~5" /></label>
+					<div class="col-sm-9">
+						<input type="text" name="RScore" placeholder=""  validateType="default"  class="digits form-control"> 
+					</div>
+				</div>
+
+			</div>
+			<div class="form-group">
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">F分档。0~5<@JTtip msg="F分档。0~5" /></label>
+					<div class="col-sm-9">
+						<input type="text" name="FScore" placeholder=""  validateType="default"  class="digits form-control"> 
+					</div>
+				</div>
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">M分档。0~5<@JTtip msg="M分档。0~5" /></label>
+					<div class="col-sm-9">
+						<input type="text" name="MScore" placeholder=""  validateType="default"  class="digits form-control"> 
+					</div>
+				</div>
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">T分档。0~5<@JTtip msg="T分档。0~5" /></label>
+					<div class="col-sm-9">
+						<input type="text" name="TScore" placeholder=""  validateType="default"  class="digits form-control"> 
+					</div>
+				</div>
+
+			</div>
+			<div class="form-group">
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">R实际得分<@JTtip msg="R实际得分" /></label>
+					<div class="col-sm-9">
+						<input type="text" name="RRealScore" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">F实际得分<@JTtip msg="F实际得分" /></label>
+					<div class="col-sm-9">
+						<input type="text" name="FRealScore" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">M实际得分<@JTtip msg="M实际得分" /></label>
+					<div class="col-sm-9">
+						<input type="text" name="MRealScore" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+			</div>
+			<div class="form-group">
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">T实际得分<@JTtip msg="T实际得分" /></label>
+					<div class="col-sm-9">
+						<input type="text" name="TRealScore" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">RFMT总分<@JTtip msg="RFMT总分" /></label>
+					<div class="col-sm-9">
+						<input type="text" name="rate" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">RFMT分类<@JTtip msg="RFMT分类" /></label>
+					<div class="col-sm-9">
+						<input type="text" name="rfmt" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+			</div>
+			<div class="form-group">
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">是否全时间段统计<@JTtip msg="是否全时间段统计" /></label>
+					<div class="col-sm-9">
+						<select id="isAllSelect" class="form-control" name="isAll" validateType="default" >
+							<option value=''>请选择</option>
+							<option value="n">否</option>
+							<option value="y">是</option>
+						</select>
+					</div>
+				</div>
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">统计开始时间<@JTtip msg="统计开始时间" /></label>
+					<div class="col-sm-9">
+						<input class='laydate-icon form-control layer-date' name="startTime" validateType="default"  placeholder="YYYY-MM-DD hh:mm:ss" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">
+					</div>
+				</div>
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">统计结束时间<@JTtip msg="统计结束时间" /></label>
+					<div class="col-sm-9">
+						<input class='laydate-icon form-control layer-date' name="endTime" validateType="default"  placeholder="YYYY-MM-DD hh:mm:ss" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">
+					</div>
+				</div>
+
+			</div>
+
+
+
+			<div class='form-group'>
+				<!--将隐藏域放在这里，不显示出来-->
+				<div style="display:none'">
+					<input type="hidden" id="id" name="id">
+					<input type="hidden" name="createBy">
+					<input type="hidden" name="createTime">
+				</div>
+			</div>
+
+		</form>
+	</div>
+</div>

@@ -1,0 +1,44 @@
+<div class="col-sm-12">
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<button type='button' class='jt-btn moduleColumnAdd'><i class='fa fa-plus'>&nbsp;添加</i>
+			</button>
+			<button type='button' class='jt-btn moduleColumnEdit'><i class='fa fa-edit'>&nbsp;编辑</i>
+			</button>
+			<button type='button' class='jt-btn jt-btn-red moduleColumnDel'>
+				<i class='fa fa-remove'>&nbsp;删除</i>
+			</button>
+		</div>
+
+		<div class="panel-body">
+			<form id='moduleColumnSearchForm' role="form" class="form-horizontal">
+				<div class="form-group">
+					<label class='col-sm-1 control-label'>模块</label>
+					<div class='col-sm-2'>
+						<select id="moduleSearch" class="form-control" name="Q__S__EQ__module_">
+							<option value="">请选择</option>
+			                        <option value="csEntity">客户模块</option>
+			                        <option value="soEntity">订单模块</option>
+			                        <option value="soShip">出货订单模块</option>
+			                        <option value="soStockIn">入仓订单模块</option>
+			                        <option value="ctiBatcall">批量外呼模块</option>
+			                        <option value="csFollow">客户跟进导入模块</option>
+			                        <option value="emp">员工导入模块</option>
+			                        <option value="media">渠道导入模块</option>
+			                        <option value="employeeWeixin">员工微信模块</option>
+			                        <option value="prod">商品模块</option>
+			                        <option value="qa">问答知识模块</option>
+						</select>
+					</div>
+					<label class='col-sm-1 control-label'>字段名称</label>
+					<div class='col-sm-2'>
+						<input type="text" id='nameSearch' placeholder="请输入名称" name="Q__S__LK__name_" class="form-control">
+					</div>
+					<div class='col-sm-1'>
+						<button type='button' class="jt-btn moduleColumnSearch"><i class='fa fa-search'></i>&nbsp;搜索</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>

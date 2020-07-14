@@ -1,0 +1,60 @@
+<script src="${ctx}/js/jt/ec/product/prodEntitySub/prodEntitySeries${deploy_min!""}.js?v=${jsVersion}" ></script>
+<script id="prodEntitySeriesContainer" type='text/x-jsrender'>
+    <form id='normalProdEntitySeriesForm' class='form-horizontal'>
+        <div  style="margin-top: 50px;">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div><strong>套装管理</strong>
+                        <button title="添加" class="btn   btn-primary btn-sm addSeriesRow pull-right"><i class="fa fa-plus">添加</i></button>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <table class="table table-stripped table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th>款号</th>
+                                <th>名称</th>
+                                <th>数量</th>
+                                <th class="thOprateBtn">操作</th>
+                            </tr>
+                        </thead>
+                        <tbody ></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </form>
+</script>
+<script id='prodEntitySeriesTpl' type='text/x-jsrender'>
+    {{for }}
+    <tr idVal="{{:id}}" prodId="{{:prodId}}" skuId="{{:skuId}}" itemId="{{:itemId}}" itemSku="{{:itemSku}}">
+        <td>{{:itemSkuCode}}</td>
+        <td>{{:itemName}}</td>
+            {{if itemCount}}  
+        <td>
+
+              <input required="true" min="1" digits="true" type="text" value="{{:itemCount}}" class="form-control itemCount inputItemCount" validatetype="default" aria-required="true" name="{{:id}}-itemCount" readonly="true" aria-describedby="" aria-invalid="false"> 
+        </td>
+            {{else}}
+        <td>  
+            <input required="true" min="1" digits="true" type="text" value="1" class="form-control itemCount  inputItemCount"  validatetype="default" aria-required="true" name="{{:id}}-itemCount" aria-describedby="" aria-invalid="false"> 
+        </td>
+            {{/if}}  
+
+             {{if itemCount}} 
+
+        <td class="thOprateBtn" style="display: none;">
+            <button class="btn btn-sm   btn-primary plusBtn" type="button"><i class="fa fa-plus"></i></button>&nbsp;&nbsp;
+            <button class="btn btn-sm   btn-danger minusBtn" type="button"><i class="fa fa-minus"></i></button>&nbsp;&nbsp;
+            <button class="btn btn-sm   btn-danger removeItemTr" type="button"><i class="fa fa-remove"></i></button>
+        </td>
+        {{else}}
+        <td class="thOprateBtn">
+            <button class="btn btn-sm   btn-primary plusBtn" type="button"><i class="fa fa-plus"></i></button>&nbsp;&nbsp;
+            <button class="btn btn-sm   btn-danger minusBtn" type="button"><i class="fa fa-minus"></i></button>&nbsp;&nbsp;
+            <button class="btn btn-sm   btn-danger removeItemTr" type="button"><i class="fa fa-remove"></i></button>
+        </td>
+             {{/if}} 
+    </tr>
+    {{/for}}
+</script>

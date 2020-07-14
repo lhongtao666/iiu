@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<style>
+ body{
+      background-color:rgb(162, 164, 166) ! important;
+ }
+img{
+  height:30px ! important;
+}
+</style>
+<head>
+	<title>选择图标</title> 
+	<#include "/common/common.html">
+	<script type="text/javascript">
+	    $(function(){
+	        $("#iconContainer").on("click", "td", function(){
+	            $("#iconContainer").find("td").removeClass("activeIcon");
+	            $(this).addClass("activeIcon");
+	        });
+	    });
+	</script>
+
+	<style>
+		.activeIcon{
+			background: red;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class='row'>
+		    <div class="col-sm-12">
+               <table id='iconContainer' class='table table-bordered'>
+                    ${tableContent}
+                </table>
+            </div>
+		</div>
+	</div>
+</body>
+</html>

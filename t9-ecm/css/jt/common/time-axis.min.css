@@ -1,0 +1,5 @@
+#queryContext{z-index:3}.query-box{float:left;margin-bottom:10px}.result-info{width:600px;float:left}table{border-collapse:collapse;border-spacing:0}.result-info td{padding:7px;color:#828282}
+.day{display:block;color:#ccc}.time{font-size:14px}.context{font-size:14px;padding-left:0!important}.result-info .last td,.result-info .last td a{color:#ff7800;border-bottom:0}
+.result-info .row1{width:105px;text-align:center;padding-left:14px;padding-right:0}.result-info .status{width:40px;background:url(${ctx}/img/jt/spider_search_v4.png) 13px -764px no-repeat}
+.result-info .status-check{background:url(${ctx}/img/jt/spider_search_v4.png) 10px -717px no-repeat}.result-info .status-wait{background:url(${ctx}/img/jt/spider_search_v4.png) -30px -802px no-repeat}
+.result-info .status-first{background:url(${ctx}/img/jt/spider_search_v4.png) 13px -804px no-repeat}.status .col2{position:relative;z-index:-1}.status .line1{position:absolute;left:6.4px;width:.57em;height:4em;border-right:.08em solid #d2d2d2;top:-5px;z-index:-1}

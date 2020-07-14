@@ -1,0 +1,148 @@
+<div class="panel-heading">
+    <button type='button' class='jt-btn employeeAdd'><i class='fa fa-plus'></i>&nbsp;添加</button>
+    <button type='button' class='jt-btn employeeAddScm' addType='scm'><i class='fa fa-plus'>&nbsp;添加门店员工</i></button>
+
+     <button class='jt-btn employeeEditBtch'><i class='fa fa-pencil'>&nbsp;</i>批量修改</button>       
+     <button class='subEmp jt-btn resetPass'><i class='fa fa-repeat'>&nbsp;</i>重置密码</button>
+     <button class='subEmp jt-btn profitPK'><i class='fa fa-hand-peace-o'>&nbsp;</i>业绩PK</button>
+     <button type='button' style="display: none;" class='myGroup jt-btn resetPass'><i class='fa fa-repeat'>&nbsp;</i>重置密码</button>
+     <button type='button' style="display: none;" class='myGroup jt-btn profitPK'><i class='fa fa-hand-peace-o'>&nbsp;</i>业绩PK</button>             
+     <button type='button' style="display: none;" class='myGroup jt-btn moveGroupBatch'><i class='fa fa-hand-lizard-o'>&nbsp;</i>移动部门</button>
+     <button type='button' style="display: none;" class='jt-btn myGroup' id="addEmp"><i class='fa fa-plus'>&nbsp;新增员工</i></button>
+     <button type='button' style="display: none;" class='jt-btn myGroup' id="editEmp"><i class='fa fa-edit'>&nbsp;编辑员工</i></button>
+     <button class='jt-btn jt-btn-red myGroup' id="cancelEmp" style="display: none;"><i class='fa fa-times-circle-o'>&nbsp;</i>注销员工</button>
+     <button type='button' class="jt-btn exportEmployee" ><i class="fa fa-reply-all"></i>&nbsp;导出</button>
+    <div class="btn-group employeeBtnGroup" >
+    <button data-toggle="dropdown" class="jt-btn dropdown-toggle">更多操作 <span class="caret"></span></button>
+        <ul class="dropdown-menu">
+            <li>
+                <button class='jt-btn resTreeDetail'>
+                   <i class="fa fa-eye"></i>&nbsp; 查看权限
+                </button>
+            </li>
+            <li>
+                <button class='jt-btn addEmployeeRateBtn'>
+                    <i class="fa fa-reply-percent"></i>&nbsp;提成比率
+                </button>
+            </li>
+            <li>
+                <button class='jt-btn addEmployeeRateMoneyBtn'>
+                    <i class="fa fa-reply-all"></i>&nbsp;录入提成
+                </button>
+            </li>
+            <li>
+                <button class='jt-btn employeeActive'>
+                    <i class="fa fa-smile-o"></i>&nbsp;激活
+                </button>
+            </li>
+            <li>
+                <button class='jt-btn employeeModuleExport'>
+                    <i class="fa fa-reply-all"></i>&nbsp;模板导出
+                </button>
+            </li>
+            <li>
+                <button class='jt-btn employeeImport'>
+                    <i class='fa fa-reply-all fa-rotate-270'></i>&nbsp;员工导入
+                </button>
+            </li>
+            <li>
+                <button class='jt-btn jt-btn-red employeeForceLogout'>
+                    <i class="fa fa-power-off"></i>&nbsp;强制下线
+                </button>
+            </li>
+            <li>
+                <button class='jt-btn jt-btn-red employeeCancel'>
+                    <i class="fa fa-frown-o"></i>&nbsp;注销
+                </button>
+            </li>
+            <li>
+                <button class='jt-btn jt-btn-red employeeDel'>
+                    <i class="fa fa-remove"></i>&nbsp;删除
+                </button>
+            </li>
+            <li>
+                <button class='jt-btn followCsCount'>
+                    <i class="fa fa-user-circle-o"></i>&nbsp;跟进客户数
+                </button>
+            </li>
+         
+        </ul>
+    </div>
+    <!-- 帮助中心 -->
+    <label id="glHelpContainer"></label>
+    <div  id="userState" style="display: none;float:right;">
+	</div>
+</div>
+<div class="panel-body jt-gs-marker">
+    <form id='employeeSearchForm' role="form" class="form-horizontal">
+        <div class="form-group">
+            <div class="col-sm-3">
+                <label class='control-label col-sm-4'>名称</label>
+                <div class='col-sm-8'>
+                    <input type="text" placeholder="请输入姓名" id="nameSearch" name="Q__S__LK__employee.name_" class="form-control">
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <label class='control-label col-sm-4'>工号</label>
+                <div class='col-sm-8'>
+                    <input type="text" placeholder="请输入工号" id="aIdSearch" class="form-control" name="Q__S__LK__employee.aid_">
+                </div>
+            </div>
+            
+            <div class="col-sm-3">
+                <label class="control-label col-sm-4">在线</label>
+                <div class="col-sm-8">
+                    <select name="Q__S__EQ__user.is_online_" placeholder="状态" class="form-control">
+                        <option value="">请选择</option>
+                        <option value="y">在线</option>
+                        <option value="n">离线</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class='col-sm-3'>
+                <button type='button' class="jt-btn-search employeeSearch " ><i class="fa fa-search"></i>&nbsp;搜索</button>
+                <button type="button" id="seniorSearch" class="jt-btn-drop dropdown-toggle" data-toggle="dropdown" tabindex="-1">展开<span class="fa fa-sort-down"></span>
+				</button>
+                
+            </div>
+        </div>
+        <div id="seniorSearchDiv">
+        <div class="form-group">
+          <div class="col-sm-3" id="positionDiv">
+                <label id="positionSelectLabel" class="control-label col-sm-4">岗位</label>
+                <div class="col-sm-8" id="positionSelectDiv">
+                    <input type="hidden" name="Q__S__LK__employee.position_"></input>
+                    <input id="positionSearchSelect"  placeholder="岗位" class="form-control" style="width:100%;">
+                    </input>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <label class="control-label col-sm-4">状态</label>
+                <div class="col-sm-8">
+                    <select name="Q__S__EQ__employee.status_" placeholder="状态" class="form-control">
+                        <option value="">请选择</option>
+                        <option value="actived">已激活</option>
+                        <option value="inactive">已注销</option>
+                        <option value="deleted">已删除</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="col-sm-3" id="roleDiv">
+                <label id="roleSelectLabel" class='control-label col-sm-4'>角色</label>
+                 <div class="col-sm-8" id="roleSelectDiv">
+                    <select id="roleSearchSelect" name="roleSearch" placeholder="请选择角色" class="form-control" style="width:100%;"></select>
+                </div>
+            </div> 
+
+            <div class="col-sm-3">
+                <label class="control-label col-sm-4">分机</label>
+                <div class="col-sm-8">
+                    <input class='form-control' name="Q__S__LK__employee.adn_" placeholder="输入分机">
+                </div>
+            </div>
+        </div>
+        </div>
+    </form>
+</div>

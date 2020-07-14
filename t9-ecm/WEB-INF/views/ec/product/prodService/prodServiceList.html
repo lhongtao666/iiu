@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>产品服务管理管理</title>
+	<#include "/common/common.html">
+	<#include "/common/eav.html">
+	<#include "/common/ztree.html">
+	<link href="${ctx}/css/plugins/summernote/summernote.css?v=${jsVersion}" rel="stylesheet">
+    <link href="${ctx}/css/plugins/summernote/summernote-bs3.css?v=${jsVersion}" rel="stylesheet">
+    <link href="${ctx}/css/plugins/blueimp/css/blueimp-gallery.min.css?v=${jsVersion}" rel="stylesheet">
+	<script src="${ctx}/js/plugins/blueimp/jquery.blueimp-gallery.min.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/plugins/summernote/summernote.min.js?v=${jsVersion}"></script>
+    <script src="${ctx}/js/plugins/summernote/summernote-zh-CN.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/jt/common/utils/summernoteUtils${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script type="text/javascript" src="${ctx}/js/plugins/dragsort/jquery.dragsort-0.5.2.min.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/jt/ec/product/skuUtils${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/ec/product/prod-image${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/ec/product/prod-file${deploy_min!""}.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/jt/ec/product/prodService${deploy_min!""}.js?v=${jsVersion}" ></script>
+	
+	<script>
+	    var type   =   "service";
+	    var status =   "${status}";
+	</script>
+	
+	<style type="text/css">
+		.dragsort {list-style-type:none; margin:0px; }
+		.dragsort li {float:left; padding:5px;}
+	</style>
+</head>
+
+<body class='white-bg'>
+    <div class="wrapper animated ">
+		<div class='row'>
+		    <div class="col-sm-2" style='padding-right: 0px;'>
+                <ul id="prodEntityCateTree" class="ztree" style="overflow: auto;"></ul>
+            </div>
+		    
+		    <div class="col-sm-10" style='padding-left: 0px; padding-right: 0px;'>
+                <!-- list界面 -->
+                <div class="row list_wrapper">
+                    <#include "/ec/product/prodService/prodServiceToolbar.html">      
+                    <div class='col-sm-12 jqGrid_wrapper'>
+                        <table id="prodServiceGrid"></table>
+                        <div id="prodServicePager"></div>
+                    </div>
+                </div>
+                <!-- 编辑界面 -->
+                <#include "/ec/product/prodService/prodServiceEdit.html">
+            </div>
+            <#include "/common/cateForm.html">
+        </div>	    
+	</div>
+</body>
+</html>

@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>jt_wechat_record管理</title>
+	<#include "/common/common.html">
+	<#include "/common/ztree.html">
+	 <link rel="stylesheet" rev="stylesheet" type="text/css" media="all" href="${ctx}/css/jt/crm/cs/wx/weiXinChatNew.css?v=${jsVersion}">
+	 <link href="${ctx}/css/plugins/select2/select2.min.css?v=${jsVersion}" rel="stylesheet">
+	<script src="${ctx}/js/plugins/select2/select2.min.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/jt/common/utils/groupUtils${deploy_min!""}.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/jt/crm/wx/wechatRecord${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/crm/cs/weiXin/weiXinUtil${deploy_min!""}.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/jt/crm/wx/wechatUtil${deploy_min!""}.js?v=${jsVersion}"></script>
+	<style type="text/css">
+		.qqface {
+		    width: 28px;
+		    height: 28px;
+		    font-size: 0;
+		    text-indent: -999em;
+		    border-bottom: 1px solid #f0f0f0;
+		    border-right: 1px solid #f0f0f0;
+		    cursor: pointer;
+		    background: url(${ctx}/img/jt/wx/images/qqface.png) no-repeat;
+		    display: inline-block;
+	    	vertical-align: middle;
+		}
+		.wechat-alias-li,.user-alias-li{
+			height: 60px;
+		    padding: 5px 10px;
+		    cursor: pointer;
+		    list-style: none;
+		    color:#000;
+		    overflow:hidden;
+		}
+		.wechat-alias-li.on{
+			background-color: #1caf9a1c; 
+			color: #1ab394;
+			font-weight: 600;
+		}
+		.wechat-alias-li:hover{
+		    background-color: #1caf9a0d; 
+		    color: #1ab394;
+		}
+		.wechat-alias-li>img,.user-alias-li>img{width:50px;float:left;height: auto;margin-right:10px;}
+		.rows-title,.rows-search,.rows-content {width:100%;padding:0;margin:0;color:#1caf9a;}
+		.rows-title {font-weight:bold;padding-left:2.5%;height:35px;} 
+		.rows-title>font {display:block;border-bottom:3px solid #1caf9a;height:31px;word-wrap:break-word;font-size:1.3em;}
+		.rows-title>span,.r-f-h-right>span,.r-c-h-right>span {font-size: 0.5em;background:#1caf9a;display:block;height: 17px;line-height:16px;color:#fff;border-radius:4px;}
+		#wechat-alias-list {background-color:#fff;width:95%;border-radius:7px;border:1px solid #cecaca;margin:0 auto;overflow:auto;}
+		#wechat-alias-list::-webkit-scrollbar {width:6px;}
+		#wechat-alias-list::-webkit-scrollbar-thumb {background-color:rgba(39, 58, 74,0.5);}
+		.r-f-h-left,.r-c-h-left {font-size:1.2em;color:#1caf9a;height:100%;line-height:25px;}
+		.r-f-h-left > font,.r-c-h-left > font {width:4.2em;display:block;font-weight:bold;border-bottom:2px solid #1caf9a;margin-left:10px;}
+		.r-f-h-left > font {display:block;margin-top:-2px;}
+		.rows-friends-list {width:100%;height:100%;overflow:hidden;}
+		.r-f-h-right {margin-top:3px;}
+		.r-f-h-right>span {margin-right:5px;text-align:center;float:right;padding:0 1px;}
+		.rows-friends-list {width:100%;height:100%;overflow:hidden;}
+		.rows-chat-head {}
+		.r-c-h-left {float:left;margin-top:5px;}
+		.r-c-h-right {float:right;margin-right:1%;margin-top:12px;}
+		.rows-chat-form {border-radius:4px;border:1px solid #1caf9a;margin-left:1%;margin-top:10px;width:98%;height:90px;}
+		.nickName,.lastChat {
+		    text-overflow: ellipsis;
+		    white-space: nowrap;
+		    display: block;
+		    overflow: hidden;
+		    float: left; 
+		    width: calc(80% - 40px);
+		}
+		.lastChat {float:left;color:#b3b3b3;}
+		#employee-alias-list,#user-alias-list,#chat-list{overflow: auto;width:100%;
+		}
+		.main {background:transparent !important;}
+		.main > .text {float:left;}
+		.chat-sign {color:#20524bb3;font-size:12px;margin-top:5px;height:20px;line-height:20px;}
+		.chat-sign>i {font-size:15px;color:#1caf9ab3;}
+		.chat-signing {padding:0 5px;border-radius:10px;background:#1caf9a3b;}
+		.main > .chat-sign {float:left;margin-left:10px;}
+		.self > .text,.self > .chat-sign {float:right !important;}
+		.self > .chat-sign {margin-right:10px;}
+		.chat-sign:hover {cursor:pointer;color:#1caf9a;}
+		.reset-sign {border-bottom:1px solid #e4de09;} 
+		.msg-target-box {width:110px;max-height:240px;overflow-y:scroll;overflow-x:hidden;height:100%;}
+		.msg-target-box>li {width:100px;height:25px;line-height:25px;}
+		.msg-target-box>li:hover {cursor:pointer;background:#f1f1f129;}
+		.msg-employee-info{color: #999;margin-right: 40px;}
+	</style>
+</head>
+
+<body>
+	<div class="wrapper animated ">
+	<div class="row list_wrapper">
+			<div class="col-sm-12">
+				<div class="tabs-container">
+					<ul class="nav nav-tabs">
+						<li  id="lastRecordTabLi" class="tabli active">
+							<a href="#lastRecord" data-toggle="tab">
+								
+								按粉丝监控
+							</a>
+						</li>
+						<li  id="oldRecordTabLi" class="tabli">
+							<a href="#oldRecord" data-toggle="tab">
+								按消息监控
+							</a>
+						</li>
+						
+					</ul>
+					<div class="tab-content">
+						<div id="oldRecord" class="tab-pane">
+							<div class="panel-body">
+								<div class='row'>
+									<#include "/crm/wx/wechatRecord/wechatRecordToolbar.html">	
+									<div class='col-sm-12 jqGrid_wrapper'>
+									    <table id="wechatRecordGrid"></table>
+										<div id="wechatRecordPager"></div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div id="lastRecord" class="tab-pane active">
+							<div class="panel-body" style='background-color:#fff;'>
+								<div class="col-sm-2 col-sm-jt" style="border-left:1px solid transparent;padding-left:0">
+									<div class="col-sm-12 rows-title">
+										<font style="width:5.2em;float:left;">公众号</font>
+									</div>
+									<div class="col-sm-12 rows-content">
+										<div class='rows-wechat-list'>
+											<div id="wechat-alias-list"></div>
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-10 cl-sm-jt">
+									<div class="row">
+										<div class="rows-title" style="padding-left:1%;"><font style="width:4.2em;float:left;">粉丝查询</font></div>
+										<div class="rows-content" style="height:110px;border:1px solid #cecaca;border-radius:7px;">
+											<#include "/crm/wx/wechatRecord/lastRecordToolbar.html">	
+										</div>		
+									</div>
+									<div class="row" style="border:1px solid #cecaca;border-radius:7px;margin-top:7px;">
+										<div class="col-sm-3 col-sm-jt"  style="border-right:1px solid #cecaca;">
+											<div class="rows-friends-head"  style="height:30px;">
+												<div class="col-sm-4 r-f-h-left"><font>粉丝昵称</font></div>
+												<div class="col-sm-4 r-f-h-right" style="float: right;"><span><font>&nbsp;共&nbsp;</font><font color="yellow">0</font><font>&nbsp;条&nbsp;</font></span></div>
+											</div>
+											<div class="rows-friends-list">
+												<div id="user-alias-list"></div>
+											</div>
+										</div>
+										<div class="col-sm-9 col-sm-jt" style="">
+											<div class="rows-chat-head"  style="height:135px;">
+												<div class="rows"  style="height:30px;">
+													<span class="r-c-h-left"><font>聊天记录</font></span>
+													<span class="r-c-h-right"><span><font>&nbsp;共&nbsp;</font><font color="yellow">0</font><font>&nbsp;条&nbsp;</font></span></span>
+												</div>
+												<div class="rows-chat-form">
+													<form id="chat-content-search" role="form" class="form-horizontal" style="margin-top:10px;">
+														<div class='form-group'>
+	
+															<div class="col-sm-3">
+																<label class="col-sm-6 control-label left-label">消息类型</label>
+																<div class="col-sm-6">
+																	<select class="form-control" data-placeholder="请选择" name="Q__S__EQ__content_type_">
+	                   													<option value="">请选择</option>
+																		<option value="text">文本</option>
+																		<option value="image">图片</option>
+																		<option value="voice">语音</option>
+																		<option value="video">视频</option>
+
+	                   												</select>
+																</div>
+															</div>
+															<div class="col-sm-3">
+																<label class="col-sm-6 control-label left-label">消息标签</label>
+																<div class="col-sm-6">
+																	<select id='wx-msg-target_' name="Q__S__EQ__msg_target_" class='form-control'></select>
+																</div>
+															</div>
+														</div>
+														<div class='form-group' style="text-align:center;margin-top:15px;">
+															<button type='button' class="btn jt-btn-search chat-search-btn" style="margin-right:20px;"><i class='fa fa-search'></i>&nbsp;查询</button>
+														</div>
+													</form>
+												</div>
+											</div>
+											<div class="rows-chat-list ">
+												<div class="m-message" id="chat-list"><ul></ul></div>
+											</div>
+										</div>
+									</div>
+									
+								</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div><!-- list界面 -->   
+	</div>
+     <!-- 播放视频 -->
+	<div style="display:none"  class="jt-wx-play-video" >
+	   	<video id="jt-wx-video" style="height: 400px !important;" src ="" controls="controls" autoplay="autoplay"></video>
+		<div style="text-align: center;">
+	   		若无法播放，请下载再播放<a href="#" id="download-mp4" class="download-file" name-value="视频.mp4" url-value="">下载</a>
+	   	</div>
+	</div> 
+	<!-- 标签 -->
+	<div class="jt-select-tag" style="display: none;">
+		<div class='form-group'>
+			<label class='col-sm-2 control-label'>标签<span style='color: red;'>*</span></label>
+			<div class='col-sm-10 '>
+				<select class="form-control" id="jt-select-tag">
+			</select>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

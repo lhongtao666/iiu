@@ -1,0 +1,32 @@
+<form role="form" class="form-inline">
+    <div class="form-group">
+		<label for="tblSearch" class="sr-only">表名</label> 
+		<input type="text" placeholder="请输入表名" id="tblSearch" class="form-control">
+	</div>
+    <div class="form-group">
+		<label for="colSearch" class="sr-only">列名</label> 
+		<input type="text" placeholder="请输入列名" id="colSearch" class="form-control">
+	</div>
+    <div class="form-group">
+		<label for="keysSearch" class="sr-only">验证业务键</label> 
+		<input type="text" placeholder="请输入验证业务键" id="keysSearch" class="form-control">
+	</div>
+	<div class="form-group">
+        <label class="font-noraml">创建时间</label>
+        <div class="input-daterange input-group date" id="datepicker">
+            <input type="text" class="input-sm form-control" id="createStartTime" name="createStartTime" onclick="laydate({istime: false, format: 'YYYY-MM-DD'})"/>
+            <span class="input-group-addon">到</span>
+            <input type="text" class="input-sm form-control" id="createEndTime" name="createEndTime" onclick="laydate({istime: false, format: 'YYYY-MM-DD'})"/>
+        </div>
+    </div>
+    
+    <div class="form-group">
+        <label class="font-noraml">更新时间</label>
+        <div class="input-daterange input-group date" id="datepicker">
+            <input type="text" class="input-sm form-control" id="updateStartTime" name="updateStartTime" onclick="laydate({istime: false, format: 'YYYY-MM-DD'})"/>
+            <span class="input-group-addon">到</span>
+            <input type="text" class="input-sm form-control" id="updateEndTime" name="updateEndTime" onclick="laydate({istime: false, format: 'YYYY-MM-DD'})"/>
+        </div>
+    </div>
+<button class="btn btn-default" id="searchBtn">搜索</button>
+</form>

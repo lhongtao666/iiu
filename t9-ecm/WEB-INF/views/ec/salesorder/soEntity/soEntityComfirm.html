@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>销售订单审单</title>
+	<#include "/common/common.html">
+	<#include "/ec/salesorder/soEntity/soEntityCommJs.html">
+	<script type="text/javascript">
+		var csId = "";
+		<#if csId??>
+			csId = "${csId}";
+		</#if>
+		var isPoint = false;
+		<#if isPoint??>
+			isPoint = "${isPoint}";
+		</#if>
+		var isSelectStoreInShip = "n";
+	    <#if isSelectStoreInShip??>
+	       isSelectStoreInShip = "${isSelectStoreInShip}";
+       </#if>
+		var isConfirmPage = "";
+		<#if isConfirmPage??>
+			isConfirmPage = "${isConfirmPage}";
+		</#if>
+		var isOpendPlatformSelect = "";
+		<#if isOpendPlatformSelect??>
+			isOpendPlatformSelect = "${isOpendPlatformSelect}";
+		</#if>
+		var cloudShipCompany="";
+		<#if noCloudShipCompany??>
+			noCloudShipCompany = "${noCloudShipCompany}";
+		</#if>
+	</script>
+	<#include "/ec/salesorder/soEntity/soEntityRenderTmpl.html">
+	<style type="text/css">
+		/*.playHistoryOn{
+			background-color: rgb(28, 175, 154);
+			color: #ffffff;
+		}*/
+		/*.playHistory{
+			    margin-left: 10px;
+			    border: 1px solid #1caf9a;
+			    padding: 4px 6px;
+			    cursor: pointer;
+			    color: #1caf9a;
+			    background-color: transparent;
+		}
+		.playHistory:hover{
+			    background-color: #23c6c8;
+                color: #fff;
+		}
+		.playHistory.playHistoryOn{
+			    background-color: #1caf9a;
+                color: #fff;
+		}*/
+		.popover{
+			z-index:2051;
+		}
+	</style>
+<script src='${ctx}/js/jt/ec/salesorder/soEntityComfirm-site${deploy_min!""}.js?v=${jsVersion}' ></script>
+</head>
+<body>
+	<div class="wrapper animated ">
+		<div  class="row form_wrapper">
+			<div class='col-sm-12'>
+				<div class="panel panel-default">
+					<div class="panel-heading" style="position: fixed;z-index: 99999;width: 100%;top: 0px;">
+						<button type='button' class="jt-btn jt-dd-normal comfirmSoBtn"><i class='fa fa-check'></i>&nbsp;审核通过</button>
+						<button type='button' class="jt-btn jt-dd-normal repeatAuditSoBtn"><i class='fa fa-check'></i>&nbsp;复审通过</button>
+						<button type='button' class="jt-btn jt-dd-normal saveSoBtn"><i class='fa fa-floppy-o'></i>&nbsp;保存</button>
+						<button type="button" class="jt-btn jt-dd-normal soAddLock"><i class='fa fa-newspaper-o'></i>&nbsp;订单冻结</button>
+						<button type="button" class="jt-btn jt-dd-normal soUnLock"><i class='fa fa-newspaper-o'></i>&nbsp;订单解冻</button>
+						<button type='button' class='jt-btn jt-btn-red trunDSoBtn'><i class='fa fa-times'></i>&nbsp;驳回</button>
+						<button type='button' class="jt-btn jt-btn-red closeSoBtn"><i class='fa fa-times'></i>&nbsp;作废</button>
+			            <!-- <button type='button' class='btn btn-sm  btn-primary jt-btn-normal splitOrderBtn'>拆分</button>	 -->					
+						<button type='button' class="jt-btn jt-dd-normal preSoBtn" style="display:none;"><i class='fa fa-hand-o-left'></i>&nbsp;上一张</button>
+						<button type='button' class="jt-btn jt-dd-normal nextSoBtn" style="display:none;"><i class='fa fa-hand-o-right'></i>&nbsp;下一张</button>
+						<span class="jt-span"></span>
+						<button type='button' class="jt-btn jt-btn-red prevBtn"><i class='fa fa-reply'></i>&nbsp;返回列表</button>
+						<button type='button' class='jt-btn jt-dd-normal playHistory'>订单历史</button>
+						<#include "/ec/salesorder/common/soEntityBaseTypeFlag.html" />
+					</div>
+				    <div id="orderHistoryContent" class="col-sm-12" style="display:none;border-bottom:1px solid #1caf9a;margin-bottom: 3px;">
+                        <table class="table table-striped table-bordered">
+                        	<thead >
+                        		<tr>
+                        			<th style="width: 5%">序号</th>
+                        			<th style="width: 15%">订单编号</th>
+                        			<th style="width: 20%">产品名称</th>
+                        			<th style="width: 10%">货款方式</th>
+                        			<th style="width: 10%">订单金额</th>
+                        			<th style="width: 15%">状态</th>
+                        			<th style="width: 10%">下单人</th>
+                        			<th style="width: 15%">下单时间</th>
+                        		</tr>
+                        	</thead>
+                            <tbody id="orderHistory">
+                            	
+
+                            </tbody>
+                        </table>
+				    </div>
+				   
+					<div class="panel-body" style="margin-top: 44px;">
+						<div class='row' style="margin-left:0px;padding-bottom:10px;">
+							<div class='col-sm-10'>
+								<div class='input-group'>
+									<input type='text' class='form-control' name='operComment' id='operComment' placeholder='请输入审核备注' validateType='default'>
+									<div class='input-group-btn'><ul class='dropdown-menu dropdown-menu-right' role='menu'></ul></div>
+								</div>
+							</div>
+						</div>
+						<#include "/ec/salesorder/soEntity/soEntityForm.html">
+					</div>
+				</div>
+			</div> 
+		</div>
+	</div>
+	<#include "/ec/salesorder/soEntity/soEntitySplitSo.html" >
+	<#include "/ec/salesorder/soEntity/soEntityIncludePane.html">
+</body>
+</html>

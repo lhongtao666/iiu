@@ -1,0 +1,100 @@
+<style type="text/css">
+td {
+    border: 0px;
+}
+</style>
+<script type="text/javascript">
+$(function() {
+    function EmployeePercentageIndex() {
+        this.hadInit = false;
+    };
+    EmployeePercentageIndex._CONS_ = {
+        GET_EMPLOYEE_PERCENTAGE_URL: ctx + "/gl/ou/employeePercentage/getEmployeePercentage.htm", //获取提成数据
+    };
+    EmployeePercentageIndex.prototype = {
+        init: function() {
+            this._loadData();
+        },
+        _loadData: function() {
+            FormUtils.loadData(EmployeePercentageIndex._CONS_.GET_EMPLOYEE_PERCENTAGE_URL, function(result) {
+                console.log(result);
+
+                //当月预测一般都会有(可能为0)
+                if (result.currentMonthPredit == null || result.currentMonthPredit == undefined) {
+                    $(".current-month").empty().append("无");
+                } else {
+                    $(".current-month").empty().append(result.currentMonthPredit);
+                    if(!isNaN(result.currentMonthPredit)){
+                            $(".current-month").append("元");
+                    }
+                }
+                // 上月数据可能会为空
+                if (result.lastPeriodEmployeePercentage) {
+                    $(".last-month").empty().append(result.lastPeriodEmployeePercentage.percentage + "元");
+
+                    if (result.lastPeriodEmployeePercentage.percentage > result.currentMonthPredit) {
+                        $(".current-month-row").append('<i class="fa fa-caret-down fa-lg text-danger"></i>');
+                    } else {
+                        $(".current-month-row").append('<i class="fa fa-caret-up fa-lg text-navy"></i>');
+                    }
+                } else {
+                    //上月提成预测
+                    if(result.lastMonthPredit){
+                        $(".last-month").empty().append(result.lastMonthPredit + "元");
+                        if (result.lastMonthPredit > result.currentMonthPredit) {
+                            $(".current-month-row").append('<i class="fa fa-caret-down fa-lg text-danger"></i>');
+                        } else {
+                            $(".current-month-row").append('<i class="fa fa-caret-up fa-lg text-navy"></i>');
+                        }
+                    }else{
+                        $(".last-month").empty().append("无");
+                    }
+                }
+                //当月业绩
+                if (result.currentMonthProfit) {
+                    $(".current-month-percentage").empty().append(result.currentMonthProfit + "元");
+                } else {
+                    $(".current-month-percentage").empty().append("无");
+                }
+            });
+        }
+    };
+
+    var employeePercentageIndex = new EmployeePercentageIndex();
+    employeePercentageIndex.init();
+});
+
+
+</script>
+
+<div class="panel panel-default " style="margin-bottom:0px;height:100%;">
+    <div class="panel-heading">
+        <span class="panel-title">
+            <h4>我的提成(估算)</h4>
+        </span>
+    </div>
+    <div class="panel-body" style="">
+        <table class="table">
+            <tbody>
+            <tr>
+                <td class="col-sm-6">
+                    <label class="col-sm-3 control-label" style="padding:0px;">本月业绩：</label>
+                    <span class="current-month-percentage">无</span>              
+                </td>
+            </tr>
+            <tr>
+                <td class="col-sm-6">
+                    <label class="col-sm-3 control-label" style="padding:0px;">本月提成：</label>
+                    <span class="current-month-row"><span class="current-month">无</span>              
+                </td>
+            </tr>
+            <tr>
+                <td class="col-sm-6">
+                    <label class="col-sm-3 control-label" style="padding:0px;">上月提成：</label>
+                    <span class="last-month">无</span>              
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

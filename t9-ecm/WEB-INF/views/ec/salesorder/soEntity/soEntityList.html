@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>销售订单管理</title>
+	<#include "/common/common.html">
+	<#include "/common/ztree.html">
+	<link href="${ctx}/css/plugins/chosen/chosen.css?v=${jsVersion}" rel="stylesheet">
+	<link href="${ctx}/css/plugins/select2/select2.min.css?v=${jsVersion}" rel="stylesheet">
+	<script src="${ctx}/js/plugins/select2/select2.min.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/plugins/chosen/chosen.jquery.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/plugins/suggest/bootstrap-suggest.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/plugins/zclip/jquery.zclip.js?v=${jsVersion}"></script>
+	<#include "/ec/salesorder/soEntity/soEntityToolbar.html">
+
+	<script type="text/javascript">
+	       var curUserId = "${ONLINE_ENTITY.userId}";
+	       var csId="";
+	       var bizType = "belong";
+	       var isFollowHide = "n";
+	       <#if csId??>
+	           csId = "${csId}";
+	       </#if>
+	       <#if bizType??>
+	       	   bizType = "${bizType}";
+	       </#if>
+	       var simpleShowComment = "n";
+		   var simpleShowLastFollow = "n";
+		   var simpleShowProduct = "n";	
+		   var simpleShowProductSum = "n";	
+		   var isUseReturnBack = "n";	   
+		   <#if simpleShowComment??>
+	           simpleShowComment = "${simpleShowComment}";
+	       </#if>
+	       <#if simpleShowLastFollow??>
+	           simpleShowLastFollow = "${simpleShowLastFollow}";
+	       </#if>
+	       <#if simpleShowProduct??>
+	           simpleShowProduct = "${simpleShowProduct}";
+	       </#if>
+	       <#if simpleShowProductSum??>
+	           simpleShowProductSum = "${simpleShowProductSum}";
+	       </#if>
+	       <#if isUseReturnBack??>
+	           isUseReturnBack = "${isUseReturnBack}";
+	       </#if>
+	       <#if isFollowHide??>
+	          isFollowHide  = "${isFollowHide}";
+	       </#if>
+	    
+	</script>
+	<style>
+		.test{
+			padding-right:8px !important;
+		}
+		.searchImg{
+		    width:24px;
+		    height:24px;
+		    margin:0 auto;
+		}
+		.skuSearchImg{
+		    border: 1px solid #e7eaec;
+		}
+
+		.skuSearchImg:hover{
+		    border: 1px solid #d2d2d2
+		}
+
+		.hideSearchParam{
+			display: none;
+		}
+	</style>
+<script src='${ctx}/js/jt/ec/salesorder/soEntityManager-site${deploy_min!""}.js?v=${jsVersion}' ></script>
+</head>
+
+<body class='white-bg'>
+	<div class="wrapper animated ">
+		<button type="button"  class="soEntityTabSpanSearch" style="display:none;"></button>
+		<!-- list界面 -->
+		<div class="row list_wrapper">
+			<div class="col-sm-12">
+				<div class="tabs-container">
+					<ul class="nav nav-tabs">
+						<li  id="soAllTabLi" class="tabli active so-my " style="display:none;">
+							<a href="#tabSoAll" data-toggle="tab">
+								订单查询
+							</a>
+						</li>
+						<li  id="soWaitSubmitTabLi" class="tabli so-my" style="display:none;">
+							<a href="#tabSoWaitSubmit" data-toggle="tab">
+								待提交
+							</a>
+						</li>
+						<li  id="soWaitComfirmTabLi" class="tabli so-my" style="display:none;">
+							<a href="#tabSoWaitComfirm" data-toggle="tab">
+								待审核
+							</a>
+						</li>
+						<li  id="soWaitPayTabLi" class="tabli so-my"  liValue="tabSoWaitPay" style="display:none;">
+							<a href="#tabSoWaitPay" data-toggle="tab">
+								待收款
+							</a>
+						</li>
+						<li  id="soWaitPackTabLi" class="tabli so-my" style="display:none;">
+							<a href="#tabSoWaitPack" data-toggle="tab">
+								待发货
+							</a>
+						</li>
+						<li  id="soShippedTabLi" class="tabli so-my so-follow" style="display:none;">
+							<a href="#tabSoShipped" data-toggle="tab">
+								已发货
+							</a>
+						</li>
+						
+						<li  id="soCompleteTabLi" class="tabli so-my so-follow" style="display:none;">
+							<a href="#tabSoComplete" data-toggle="tab">
+								已签收
+							</a>
+						</li>
+						<li  id="soReceivedTabLi" class="tabli so-follow" style="display:none;">
+							<a href="#tabSoReceived" data-toggle="tab">
+								已回款
+							</a>
+						</li>
+						<li  id="soRejectTabLi" class="tabli so-my so-follow so-reject" style="display:none;">
+							<a href="#tabSoReject" data-toggle="tab">
+								拒收
+							</a>
+						</li>
+						<li  id="backOrExchangeTabLi" class="tabli so-my so-follow so-back-or-exchange">
+							<a href="#tabSoBackOrExchange" data-toggle="tab">
+								退换货
+							</a>
+						</li>
+						<li  id="soInboundTabLi" class="tabli so-follow" style="display:none;">
+							<a href="#tabSoInbound" data-toggle="tab">
+								已退库
+							</a>
+						</li>
+						<li  id="soLostTabLi" class="tabli so-my so-follow so-reject" style="display:none;">
+							<a href="#tabSoLost" data-toggle="tab">
+								丢失
+							</a>
+						</li>
+						<li  id="soEndTabLi" class="tabli so-my" style="display:none;">
+							<a href="#tabSoEnd" data-toggle="tab">
+								关闭
+							</a>
+						</li>
+						<li  id="soWaitRevisitTabLi" class="tabli so-revisit" style="display:none;" >
+							<a href="#tabSoWaitRevisit" data-toggle="tab">
+								待回访
+							</a>
+						</li>
+						<li  id="soRevisitedTabLi" class="tabli so-revisit" style="display:none;">
+							<a href="#tabSoRevisited" data-toggle="tab">
+								已回访
+							</a>
+						</li>
+					<!-- 	<li style="float:right;">
+							<#include "/ec/salesorder/soEntity/soEntityRefreshTool.html">
+						</li> -->
+						<li>
+							<!-- 帮助中心 -->
+							<label id="glHelpContainer"></label>
+						</li>
+					</ul>
+					<div class="tab-content">
+						<div id="tabSoAll" class="tab-pane active">
+							<div class="panel-body">
+								<div class='row'>
+									<#include "/ec/salesorder/soEntity/mySo/soEntityMyAll.html">
+								</div>
+							</div>
+						</div>
+						<div id="tabSoWaitSubmit" class="tab-pane">
+							<div class="panel-body">
+								<div class='row'>
+									<#include "/ec/salesorder/soEntity/submit/soEntityWaitSubmitSim.html">
+								</div>
+							</div>
+						</div>
+						<div id="tabSoWaitComfirm" class="tab-pane">
+							<div class="panel-body">
+								<div class='row'>
+									<#include "/ec/salesorder/soEntity/comfirm/soEntityWaitComfirmSim.html"></div>
+								</div>
+						</div>
+						<div id="tabSoWaitPay" class="tab-pane ">
+							<div class="panel-body">
+								<div class='row'>
+									<#include "/ec/salesorder/soEntity/pay/soEntityWaitPaySim.html"></div>
+								</div>
+						</div>
+						<div id="tabSoWaitPack" class="tab-pane">
+							<div class="panel-body">
+								<div class='row'>
+									<#include "/ec/salesorder/soEntity/stock/soEntityWaitStockSim.html"></div>
+								</div>
+						</div>
+						<div id="tabSoShipped" class="tab-pane">
+							<div class="panel-body">
+								<div class='row'>
+									<#include "/ec/salesorder/soEntity/shipped/soEntityWaitEndSim.html"></div>
+								</div>
+						</div>
+						<div id="tabSoComplete" class="tab-pane">
+							<div class="panel-body">
+								<div class='row'>
+									<#include "/ec/salesorder/soEntity/soEntityCompleteSim.html"></div>
+								</div>
+						</div>
+						<div id="tabSoReceived" class="tab-pane">
+							<div class="panel-body">
+								<div class='row'>
+									<#include "/ec/salesorder/soEntity/soEntityReceivedSim.html"></div>
+								</div>
+						</div>
+						<div id="tabSoReject" class="tab-pane">
+							<div class="panel-body">
+								<div class='row'>
+									<#include "/ec/salesorder/soEntity/soEntityRejectSim.html"></div>
+								</div>
+						</div>
+						<div id="tabSoBackOrExchange" class="tab-pane">
+							<div class="panel-body">
+								<div class='row'>
+									<#include "/ec/salesorder/soEntity/soEntitySoBackOrExchangeSim.html"></div>
+								</div>
+						</div>
+						<div id="tabSoInbound" class="tab-pane">
+							<div class="panel-body">
+								<div class='row'>
+									<#include "/ec/salesorder/soEntity/soEntityInboundSim.html"></div>
+								</div>
+						</div>
+						<div id="tabSoLost" class="tab-pane">
+							<div class="panel-body">
+								<div class='row'>
+									<#include "/ec/salesorder/soEntity/soEntityLostSim.html"></div>
+								</div>
+						</div>
+						<div id="tabSoEnd" class="tab-pane">
+							<div class="panel-body">
+								<div class='row'>
+									<#include "/ec/salesorder/soEntity/end/soEntityEndSim.html">
+								</div>
+							</div>
+						</div>
+						<div id="tabSoWaitRevisit" class="tab-pane">
+							<div class="panel-body">
+								<div class='row'>
+									<#include "/ec/salesorder/soEntity/revisit/soEntityWaitRevisitSim.html"></div>
+								</div>
+						</div>
+						<div id="tabSoRevisited" class="tab-pane">
+							<div class="panel-body">
+								<div class='row'>
+									<#include "/ec/salesorder/soEntity/revisit/soEntityRevisitedSim.html">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div style="display:none"  class="soEntityClosePane" >
+	   	<#include "/ec/salesorder/soEntity/soEntityClose.html" >
+	</div>
+	<div style="display:none"  class="soEntityTurnDownPane" >
+	   	<#include "/ec/salesorder/soEntity/soEntityTurnDown.html" >
+	</div>
+	<div style="height:100%;display:none"  class="soEntityExportPane">
+		 <#include "/ec/salesorder/soEntity/export/soEntityExport.html" >
+	</div>
+	<#include "/crm/cs/csEntity/sendMessagePane.html" >
+	<#include "/common/listTitleEdit.html">
+	<div class="soEntityListShipInfo" style="display: none;height:100%;">
+	<#include "/ec/salesorder/soEntity/soEntityShipInfo.html">
+	</div>
+</body>
+</html>

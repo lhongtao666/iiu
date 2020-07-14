@@ -1,0 +1,54 @@
+<div class="col-sm-12">
+	<div class="panel panel-default">
+	    <div class="panel-heading">
+	    		<button type="button" class="jt-btn ctiBatcallTaskAdd"><i class="fa fa-plus"></i>&nbsp;添加</button>
+			<!-- <button type='button' class='btn btn-sm  btn-primary ctiBatcallTaskEdit'><i class='fa fa-edit'>编辑</i></button>
+			<button type='button' class='btn btn-sm  btn-danger ctiBatcallTaskDel'><i class='fa fa-remove'>删除</i></button>
+			<button type='button' class='btn btn-sm  btn-primary ctiBatcallTaskDetail'><i class='fa fa-list'>明细</i></button>
+			<button type='button' class='btn btn-sm  btn-primary ctiBatcallTaskRun'><i class='fa fa-list'>执行</i></button>
+			<button type='button' class='btn btn-sm  btn-primary ctiBatcallTaskStop'><i class='fa fa-list'>停止</i></button>
+			<button type='button' class='btn btn-sm  btn-primary ctiBatcallItemList'><i class='fa fa-list'>外呼条目列表</i></button>
+			<button type='button' class='btn btn-sm  btn-primary ctiBatcallItemExport'>导入外呼条目</button> 
+			<button type='button' class='btn btn-sm  btn-primary jt-btn-normal ctiBatcallDispnumList'><i class='fa fa-list'>外呼管理列表</i></button>-->
+    		 <!-- 帮助中心 -->
+            <label id="glHelpContainer">	
+            </label>
+	    </div>
+	    
+	    <div class="panel-body">
+	        <form id='ctiBatcallTaskSearchForm' role="form" class="form-horizontal">
+				<!--默认生成一个搜索条件，需要的，用户自己添加-->
+				<div class="form-group">
+					<div class="col-sm-4">
+						<label class='col-sm-3 control-label'>创建时间</label> 
+						<div class='col-sm-9'>
+							<div class="input-daterange input-group">
+								<input class="laydate-icon form-control layer-date" name="Q__D__BW__create_time_" placeholder="起始时间" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">
+								<span class="input-group-addon">到</span>
+								<input class="laydate-icon form-control layer-date" name="Q__D__BW__create_time_" placeholder="结束时间" onclick="laydate({istime: true, start: laydate.now(0, 'YYYY/MM/DD 23:59:59'), format: 'YYYY-MM-DD hh:mm:ss'})">
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="col-sm-3"></div>
+						<div class="radio radio-info radio-inline">
+							<input type="radio" name="Q__S__EQ__status_" value="" checked>
+							<label for="">全部</label>
+						</div>
+						<div class="radio radio-info radio-inline">
+							<input type="radio" name="Q__S__EQ__status_" value="0">
+							<label for="0">已停止</label>
+						</div>
+						<div class="radio radio-info radio-inline">
+							<input type="radio" name="Q__S__EQ__status_" value="1" >
+							<label for="1">正在执行</label>
+						</div>
+					</div>
+					<div class='col-sm-1'>
+						<button type='button' class="jt-btn jt-btn-search ctiBatcallTaskSearch"><i class="fa fa-search"></i>&nbsp;搜索</button>
+					</div>
+				</div>
+			</form>
+	    </div>
+	</div>
+</div>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>客户查询</title>
+	<#include "/common/common.html">
+	<#include "/common/ztree.html">
+	<#include "/common/datatable.html">
+	<#include "/common/eav.html">
+
+	<!--客户模块的公共引用的css，js等头部文件-->
+	<script src="${ctx}/js/plugins/hz2py/jQuery.Hz2Py-min.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/jt/crm/cs/csEntityUtils${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/crm/cs/csEntitySearch${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/gl/km/glHelpUtil${deploy_min!""}.js?v=${jsVersion}" ></script>
+
+</head>
+<body class='white-bg'>
+	<div class="wrapper animated ">
+		<div class="row list_wrapper">
+			<#include "/crm/cs/csEntity/csEntitySearchToolbar.html">
+			<div class='col-sm-12 jqGrid_wrapper'>
+				<table id="csEntitySearchGrid"></table>
+				<div id="csEntitySearchPager"></div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

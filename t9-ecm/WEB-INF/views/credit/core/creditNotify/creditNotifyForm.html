@@ -1,0 +1,88 @@
+<div class='row' style='border: 1px solid #ddd; margin-left: 15px; margin-right: 15px;padding:10px;'>
+	<div class='col-sm-12'>
+		<form id="creditNotifyForm" method="get" class="form-horizontal">
+
+
+			<div class="form-group">
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">授权类型</label>
+					<div class="col-sm-9">
+						<select class="form-control" name="type" validateType="default" >
+		               		<option value="">请选择</option>
+		               		<option value="dev">开发授权</option>
+		               	    <option value="run">部署授权</option>
+		              	</select>
+		            </div>
+		        </div>
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">预警方式</label>
+
+					<div class="col-sm-9">
+						<label class="checkbox-inline">
+                       	 	<input type="checkbox" value="inner" name="types" id="inlineCheckbox1">站内消息
+                   	 	</label>
+                    	<label class="checkbox-inline">
+                        	<input type="checkbox" value="sms" name="types" id="inlineCheckbox2">短信
+                    	</label>
+		            </div>
+		        </div>
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">开始预警时间</label>
+					<div class="col-sm-9">
+						<input class='laydate-icon form-control layer-date' name="beginTime" validateType="default"  placeholder="YYYY-MM-DD hh:mm:ss" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">
+					</div>
+				</div>
+
+			</div>
+			<div class="form-group">
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">预警次数</label>
+					<div class="col-sm-9">
+						<input type="text" name="count" placeholder=""  validateType="default"  class="digits form-control"> 
+					</div>
+				</div>
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">通知员工</label>
+					<div class="col-sm-9">
+	
+                        <input type="text" name="employeeName"  id="employeeName"   readonly="true"  class="form-control" 
+                         validateType="default" >
+                        <input type="hidden" name="employeeId"   id="employeeId">
+  
+					</div>
+				</div>			
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">手机号码</label>
+					<div class="col-sm-9">
+						<input type="text" name="mobile" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+			</div>
+			<div class="form-group">
+				<div class='col-sm-12'>
+					<label class="col-sm-1 control-label">预警内容</label>
+					<div class="col-sm-11">
+						<textarea type="text"  name="content" class="form-control" rows='2' validateType="default"></textarea>	
+					</div>
+				</div>		
+
+            </div>    
+
+			<div class='form-group'>
+				<!--将隐藏域放在这里，不显示出来-->
+				<div style="display:none'">
+					<input type="hidden" id="id" name="id">
+					<input type="hidden" name="entityId">
+					<input type="hidden" name="createBy">
+					<input type="hidden" name="createTime">
+				</div>
+			</div>
+
+		</form>
+	</div>
+</div>

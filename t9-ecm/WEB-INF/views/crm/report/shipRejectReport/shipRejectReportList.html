@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>快递拒收报表</title>
+	<#include "/common/common.html">
+	<#include "/common/ztree.html">
+	<script src="${ctx}/js/plugins/echarts/3.1.7/theme/macarons.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/jt/common/utils/groupUtils${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/plugins/echarts/3.1.7/echarts.min.js?v=${jsVersion}"></script>
+	<script src="${ctx}/js/jt/common/plugins/report${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/crm/report/reportDateUtil${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src="${ctx}/js/jt/crm/report/ship/shipRejectReport${deploy_min!""}.js?v=${jsVersion}" ></script>
+	<script src='${ctx}/js/jt/common/service/saleGroupSelect${deploy_min!""}.js?v=${jsVersion}'></script>
+
+	<style> 
+		.searchImg{
+		    width:24px;
+		    height:24px;
+		    margin:0 auto;
+		}
+		.partySearchImg{
+		    border: 1px solid #e7eaec;
+		}
+
+		.partySearchImg:hover{
+		    border: 1px solid #d2d2d2
+		}
+	</style>
+</head>
+<body class="white-bg">
+	<div class='wrapper'>
+		<div class='row list_wrapper'>
+			<div class='col-sm-12'>
+				<div class="panel panel-default">
+					<div class="panel-heading report-content">	
+						<form role="form" id='infoSearchFrom' class="form-horizontal">
+							<div class='form-group'>
+								<label class="control-label col-sm-1">周期</label>	
+								<div class="col-sm-2">
+									<select name="timeTypeSearch" id="timeTypeSearch" placeholder=""
+										class="form-control" validateType="default">
+										<option value="day">按天</option>
+										<option value="month">按月</option>
+										<option value="quarter">按季度</option>
+										<option value="year">按年</option>
+									</select>
+								</div>
+
+								<div class="col-sm-2 yearElement">
+									<select name="yearSearch" id="yearSearch" placeholder=""
+										class="form-control" validateType="default">
+									</select>
+								</div>
+
+								<div class="col-sm-1 quarterElement">
+									<select name="quarterSearch" id="quarterSearch" placeholder=""
+										class="form-control" validateType="default">
+										<option value="1">1季度</option>
+										<option value="2">2季度</option>
+										<option value="3">3季度</option>
+										<option value="4">4季度</option>
+									</select>
+								</div>	
+
+								<div class="col-sm-1 monthElement">
+									<select name="monthSearch" id="monthSearch" placeholder=""
+										class="form-control" validateType="default">
+										<option value="1">1月</option>
+										<option value="2">2月</option>
+										<option value="3">3月</option>
+										<option value="4">4月</option>
+										<option value="5">5月</option>
+										<option value="6">6月</option>
+										<option value="7">7月</option>
+										<option value="8">8月</option>
+										<option value="9">9月</option>
+										<option value="10">10月</option>
+										<option value="11">11月</option>
+										<option value="12">12月</option>
+									</select>
+								</div>
+								
+								<div class='col-sm-2'>
+									<button class="jt-form-select dayElement" id="prevBtn" type="button">前一天</button>
+									<button class="jt-form-select dayElement" id="nextBtn" type="button">后一天</button>	
+								</div>
+								
+								<div class="col-sm-4 dayElement"> 
+					                <div class="input-daterange input-group" id="datepicker">
+			                        	<input class='laydate-icon form-control layer-date' id="beginDate" name="beginDate" validateType="default" placeholder="开始时间" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">
+			                            <span class="input-group-addon">到</span>
+			                            <input class='laydate-icon form-control layer-date' id="endDate" name="endDate" validateType="default" placeholder="结束时间" onclick="laydate({istime: true, start: laydate.now(0, 'YYYY/MM/DD 23:59:59'), format: 'YYYY-MM-DD hh:mm:ss'})">
+			                        </div>
+					            </div>
+							</div>
+							
+							<div class='form-group'>
+								<label class="control-label col-sm-1">销售部门</label>
+								<div class='col-sm-2'>
+									<input id='groupName' class='form-control' readonly>
+									<input name='belongOgn' type='hidden'>
+								</div>
+								 <div class='col-sm-4'>
+							    	<button class="jt-quick-search ship" type="button"  value="1">以发货时间统计</button>
+							    	<button type='button' class='jt-quick-search place'>以下单时间统计</button>
+							    </div>
+							    <div class='col-sm-3'>
+							    	<button class="jt-btn-search" id="searchBtn" type="button"><i class="fa fa-search"></i>&nbsp;搜索</button>
+									<button type='button' class='jt-btn-search exportExcel'><i class="fa fa-reply"></i>&nbsp;导出</button>
+							    	<input type="hidden"  name="reportKey"  value="${reportKey}">
+							    </div>
+						    </div>
+						</form>
+					</div>
+				</div>
+			</div>
+			
+			<div class="jqGrid_wrapper col-sm-12">
+				<table id='shipRejectReportGrid'></table>
+				<div id="shipRejectReportPager"></div>
+			</div>
+			<div class="panel-body pieDataDiv">
+				<div  style="border: 1px solid #CACCC1;margin-bottom:5px;" class="col-sm-12">
+					<div id="shipRejectReportChart" style="height:350px;"></div>
+				</div>
+				<div  style="border: 1px solid #CACCC1;" class="col-sm-12">
+					<div id="shipRejectReportBarChart" style="height:350px;"></div>
+			    </div>
+			</div>
+		</div>
+	</div>	
+</body>
+</html>

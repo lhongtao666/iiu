@@ -1,0 +1,98 @@
+<div class='row' style='border: 1px solid #ddd; margin-left: 15px; margin-right: 15px;padding:10px;'>
+	<div class='col-sm-12'>
+		<form id="financeMeetingForm" method="get" class="form-horizontal">
+
+
+			<div class="form-group">
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">客户ID<@JTtip msg="客户ID" /></label>
+					<div class="col-sm-9">
+						<input type="text" name="csId" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">客户姓名<@JTtip msg="客户姓名" /></label>
+					<div class="col-sm-9">
+						<input type="text" name="csName" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">面谈人ID<@JTtip msg="面谈人ID" /></label>
+					<div class="col-sm-9">
+						<input type="text" name="employeeId" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+			</div>
+			<div class="form-group">
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">面谈人工号<@JTtip msg="面谈人工号" /></label>
+					<div class="col-sm-9">
+						<input type="text" name="employeeAid" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">面谈人姓名<@JTtip msg="面谈人姓名" /></label>
+					<div class="col-sm-9">
+						<input type="text" name="employeeName" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">面谈人部门key<@JTtip msg="面谈人部门key" /></label>
+					<div class="col-sm-9">
+						<input type="text" name="groupKey" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+			</div>
+			<div class="form-group">
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">面谈人部门ID<@JTtip msg="面谈人部门ID" /></label>
+					<div class="col-sm-9">
+						<input type="text" name="groupId" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">面谈时间<@JTtip msg="面谈时间" /></label>
+					<div class="col-sm-9">
+						<input class='laydate-icon form-control layer-date' name="meetingTime" validateType="default"  placeholder="YYYY-MM-DD hh:mm:ss" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">
+					</div>
+				</div>
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">面谈地点<@JTtip msg="面谈地点" /></label>
+					<div class="col-sm-9">
+						<input type="text" name="meetingArea" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+			</div>
+			<div class="form-group">
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">面谈内容<@JTtip msg="面谈内容" /></label>
+					<div class="col-sm-9">
+						<input type="text" name="meetingContent" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+            </div>    
+
+
+
+			<div class='form-group'>
+				<!--将隐藏域放在这里，不显示出来-->
+				<div style="display:none'">
+					<input type="hidden" id="id" name="id">
+					<input type="hidden" name="createBy">
+					<input type="hidden" name="createTime">
+				</div>
+			</div>
+
+		</form>
+	</div>
+</div>

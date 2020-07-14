@@ -1,0 +1,121 @@
+<div class='row' style='border: 1px solid #ddd; margin-left: 15px; margin-right: 15px;padding:10px;'>
+	<div class='col-sm-12'>
+		<form id="rpCtiForm" method="get" class="form-horizontal">
+
+
+			<div class="form-group">
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">员工 ID<@JTtip msg="员工 ID" /></label>
+					<div class="col-sm-9">
+						<input type="text" name="employeeId" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">员工工号<@JTtip msg="员工工号" /></label>
+					<div class="col-sm-9">
+						<input type="text" name="aid" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">员工姓名<@JTtip msg="员工姓名" /></label>
+					<div class="col-sm-9">
+						<input type="text" name="name" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+			</div>
+			<div class="form-group">
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">部门 ID<@JTtip msg="部门 ID" /></label>
+					<div class="col-sm-9">
+						<input type="text" name="groupId" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">部门名称<@JTtip msg="部门名称" /></label>
+					<div class="col-sm-9">
+						<input type="text" name="groupName" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">部门路径<@JTtip msg="部门路径" /></label>
+					<div class="col-sm-9">
+						<input type="text" name="groupPath" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+			</div>
+			<div class="form-group">
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">统计天，yyyyMMdd，如20170808<@JTtip msg="统计天，yyyyMMdd，如20170808" /></label>
+					<div class="col-sm-9">
+						<input type="text" name="statDay" placeholder=""  validateType="default"  class="digits form-control"> 
+					</div>
+				</div>
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">对应客户 ID<@JTtip msg="对应客户 ID" /></label>
+					<div class="col-sm-9">
+						<input type="text" name="csId" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">客户编码<@JTtip msg="客户编码" /></label>
+					<div class="col-sm-9">
+						<input type="text" name="csCode" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+			</div>
+			<div class="form-group">
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">客户名称<@JTtip msg="客户名称" /></label>
+					<div class="col-sm-9">
+						<input type="text" name="csName" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">通话时长<@JTtip msg="通话时长" /></label>
+					<div class="col-sm-9">
+						<input type="text" name="callTime" placeholder="" class="form-control" validateType="default" > 
+					</div>
+				</div>		
+
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">呼出总数<@JTtip msg="呼出总数" /></label>
+					<div class="col-sm-9">
+						<input type="text" name="callCount" placeholder=""  validateType="default"  class="digits form-control"> 
+					</div>
+				</div>
+
+			</div>
+			<div class="form-group">
+				<div class='col-sm-4'>
+					<label class="col-sm-3 control-label">有效通话总数<@JTtip msg="有效通话总数" /></label>
+					<div class="col-sm-9">
+						<input type="text" name="validCount" placeholder=""  validateType="default"  class="digits form-control"> 
+					</div>
+				</div>
+
+            </div>    
+
+
+
+			<div class='form-group'>
+				<!--将隐藏域放在这里，不显示出来-->
+				<div style="display:none'">
+					<input type="hidden" id="id" name="id">
+					<input type="hidden" name="createBy">
+					<input type="hidden" name="createTime">
+				</div>
+			</div>
+
+		</form>
+	</div>
+</div>

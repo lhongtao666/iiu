@@ -1,0 +1,269 @@
+<div class="wrapper" style="overflow-x: hidden">
+	<div class="row form_wrapper" style='background-color: #ffffff'>
+		<div class='col-sm-12'>
+			<form id="sfHotConfigForm" method="get" class="form-horizontal">
+				<div class="isNotJdConfigInfo">
+					<div class="form-group">
+						<label class="col-sm-2 control-label">服务地址</label>
+						<div class="col-sm-10">
+							<input type="text" name="url" placeholder="" class="form-control" validateType="default">
+						</div>
+					</div>
+					<div class="form-group sfConfigInfo">
+						<label class="col-sm-2 control-label">端口</label>
+						<div class="col-sm-4">
+							<input type="text" name="port" placeholder="" class="form-control" validateType="default">
+						</div>
+						<label class="col-sm-2 control-label">接入编码</label>
+						<div class="col-sm-4">
+							<input type="text" name="oper" placeholder="" class="form-control" validateType="default">
+						</div>
+					</div>
+					<div class='form-group custIdInfo'>
+						<label class="col-sm-2 control-label">接入密钥</label>
+						<div class="col-sm-4">
+							<input type="text" name="checkword" placeholder="" class="form-control" validateType="default">
+						</div>
+						<label class="col-sm-2 control-label">月结卡号</label>
+						<div class="col-sm-4">
+							<input type="text" name="custId" placeholder="" class="form-control" validateType="default">
+						</div>
+					</div>
+					<div class='form-group sfConfigInfo emsConfigInfo ytConfigInfo dbConfigInfo'>
+						<label class="col-sm-2 control-label">业务类型</label>
+						<div class="col-sm-9">
+							<select class="form-control expressType" name="expressType" validateType="default">
+							</select>
+						</div>
+					</div>
+					<div class='form-group'>
+						<label class="col-sm-2 control-label">寄件人姓名</label>
+						<div class="col-sm-3">
+							<input type="text" name="userName" placeholder="" class="form-control" validateType="default">
+						</div>
+						<label class="col-sm-3 control-label">寄件人手机号码</label>
+						<div class="col-sm-4">
+							<input type="text" name="mobile" placeholder="" class="form-control" validateType="default">
+						</div>
+					</div>
+					<div class='form-group'>
+						<div class='col-sm-12' id="addrContainer"></div>
+					</div>
+					<div class='form-group'>
+						<label class="col-sm-2 control-label">寄件人地址</label>
+						<div class="col-sm-9">
+							<input type="text" name="address" placeholder="" class="form-control" validateType="default">
+						</div>
+					</div>
+				</div>
+				<div class='ytConfigInfo'>
+					<div class='form-group'>
+						<label class="col-sm-3 control-label">圆通服务URL</label>
+						<div class="col-sm-9">
+							<input type="text" name="ytServiceUrl" placeholder="" class="form-control" validateType="default">
+						</div>
+					</div>
+					<div class='form-group'>
+						<label class="col-sm-3 control-label">圆通服务方法名</label>
+						<div class="col-sm-9">
+							<input type="text" name="medthod" placeholder="" class="form-control" validateType="default">
+						</div>
+					</div>
+					<div class='form-group'>
+						<label class="col-sm-3 control-label">圆通服务用户id</label>
+						<div class="col-sm-9">
+							<input type="text" name="useId" placeholder="" class="form-control" validateType="default">
+						</div>
+					</div>
+					<div class='form-group'>
+						<label class="col-sm-3 control-label">圆通服务App_key</label>
+						<div class="col-sm-9">
+							<input type="text" name="appKey" placeholder="" class="form-control" validateType="default">
+						</div>
+					</div>
+					<div class='form-group'>
+						<label class="col-sm-3 control-label">圆通服务Secret_Key</label>
+						<div class="col-sm-9">
+							<input type="text" name="secretKey" placeholder="" class="form-control" validateType="default">
+						</div>
+					</div>
+				</div>
+
+
+				<div class='jdConfigInfo'>
+					<div class='form-group'>
+						<label class="col-sm-3 control-label">京东服务URL</label>
+						<div class="col-sm-9">
+							<input type="text" name="jdServiceUrl" placeholder="" class="form-control" validateType="default">
+						</div>
+					</div>
+					<div class='form-group'>
+						<label class="col-sm-3 control-label">京东服务方法名</label>
+						<div class="col-sm-9">
+							<input type="text" name="jdMedthod" placeholder="" class="form-control" validateType="default">
+						</div>
+					</div>
+					<div class='form-group'>
+						<label class="col-sm-3 control-label">京东服务Access_Token</label>
+						<div class="col-sm-9">
+							<input type="text" name="jdAccessToken" placeholder="" class="form-control" validateType="default">
+						</div>
+					</div>
+					<div class='form-group'>
+						<label class="col-sm-3 control-label">京东服务App_key</label>
+						<div class="col-sm-9">
+							<input type="text" name="jdAppKey" placeholder="" class="form-control" validateType="default">
+						</div>
+					</div>
+					<div class='form-group'>
+						<label class="col-sm-3 control-label">京东服务Secret_Key</label>
+						<div class="col-sm-9">
+							<input type="text" name="jdSecretKey" placeholder="" class="form-control" validateType="default">
+						</div>
+					</div>
+					<div class='form-group'>
+						<label class="col-sm-3 control-label">ISV来源编号</label>
+						<div class="col-sm-9">
+							<input type="text" name="isvSource" placeholder="" class="form-control" validateType="default">
+						</div>
+					</div>
+					<div class='form-group'>
+						<label class="col-sm-3 control-label">	店铺编号 </label>
+						<div class="col-sm-9">
+							<input type="text" name="shopNo" placeholder="" class="form-control" validateType="default">
+						</div>
+					</div>
+					<div class='form-group'>
+						<label class="col-sm-3 control-label">	事业部编号</label>
+						<div class="col-sm-9">
+							<input type="text" name="departmentNo" placeholder="" class="form-control" validateType="default">
+						</div>
+					</div>
+					<div class='form-group'>
+						<label class="col-sm-3 control-label">	商家编码</label>
+						<div class="col-sm-9">
+							<input type="text" name="customerCode" placeholder="" class="form-control" validateType="default">
+						</div>
+					</div>
+				</div>
+				
+
+				<div class='bsConfigInfo'>
+					<div class='form-group'>
+						<label class="col-sm-3 control-label">业务接口类型</label>
+						<div class="col-sm-9">
+							<input type="text" name="serviceType" placeholder="" class="form-control" validateType="default">
+						</div>
+					</div>
+					<div class='form-group'>
+						<label class="col-sm-3 control-label">商家ID</label>
+						<div class="col-sm-9">
+							<input type="text" name="partnerId" placeholder="" class="form-control" validateType="default">
+						</div>
+					</div>
+					<div class='form-group'>
+						<label class="col-sm-3 control-label">商家KEY</label>
+						<div class="col-sm-9">
+							<input type="text" name="partnerKey" placeholder="" class="form-control" validateType="default">
+						</div>
+					</div>
+					<div class='form-group'>
+						<label class="col-sm-3 control-label">站点账号</label>
+						<div class="col-sm-9">
+							<input type="text" name="siteUserName" placeholder="" class="form-control" validateType="default">
+						</div>
+					</div>
+					<div class='form-group'>
+						<label class="col-sm-3 control-label">站点密码</label>
+						<div class="col-sm-9">
+							<input type="text" name="pass" placeholder="" class="form-control" validateType="default">
+						</div>
+					</div>
+				</div>
+
+				<div class='ztConfigInfo'>
+					<div class='form-group'>
+						<label class="col-sm-3 control-label">商家ID</label>
+						<div class="col-sm-9">
+							<input type="text" name="ztPartnerId" placeholder="" class="form-control" validateType="default">
+						</div>
+					</div>
+					<div class='form-group'>
+						<label class="col-sm-3 control-label">账号验证码</label>
+						<div class="col-sm-9">
+							<input type="text" name="verify" placeholder="" class="form-control" validateType="default">
+						</div>
+					</div>
+				</div>
+				<div class='zt_kdgj_ConfigInfo'>
+					<div class='form-group'>
+						<label class="col-sm-3 control-label">shopKey</label>
+						<div class="col-sm-9">
+							<input type="text" name="shopKey" placeholder="" class="form-control" validateType="default">
+						</div>
+					</div>
+				</div>
+				<div class='dbConfigInfo'>
+					<div class='form-group'>
+						<label class="col-sm-3 control-label">德邦服务开户名</label>
+						<div class="col-sm-9">
+							<input type="text" name="accountName" placeholder="" class="form-control" validateType="default">
+						</div>
+					</div>
+					<div class='form-group'>
+						<label class="col-sm-3 control-label">德邦服务银行卡号</label>
+						<div class="col-sm-9">
+							<input type="text" name="reciveLoanAccount" placeholder="" class="form-control" validateType="default">
+						</div>
+					</div>
+				</div>
+				
+				<!-- 德邦仓储快递 -->
+				<div class='dbWareHouseConfigInfo'>
+					<div class='form-group'>
+						<label class="col-sm-3 control-label">接入商的公司编码</label>
+						<div class="col-sm-9">
+							<input type="text" name="dbwarehouse_companyCode" placeholder="" class="form-control" validateType="default">
+						</div>
+					</div>
+					<div class='form-group'>
+						<label class="col-sm-3 control-label">接入商的公司名称</label>
+						<div class="col-sm-9">
+							<input type="text" name="dbwarehouse_companyName" placeholder="" class="form-control" validateType="default">
+						</div>
+					</div>
+					<div class='form-group'>
+						<label class="col-sm-3 control-label">接入appkey</label>
+						<div class="col-sm-9">
+							<input type="text" name="dbwarehouse_appkey" placeholder="" class="form-control" validateType="default">
+						</div>
+					</div>
+					<div class='form-group'>
+						<label class="col-sm-3 control-label">货主编码</label>
+						<div class="col-sm-9">
+							<input type="text" name="dbwarehouse_ownerCode" placeholder="" class="form-control" validateType="default">
+						</div>
+					</div>
+					<div class='form-group'>
+						<label class="col-sm-3 control-label">货主名称</label>
+						<div class="col-sm-9">
+							<input type="text" name="dbwarehouse_ownerName" placeholder="" class="form-control" validateType="default">
+						</div>
+					</div>
+					<div class='form-group'>
+						<label class="col-sm-3 control-label">仓库名称</label>
+						<div class="col-sm-9">
+							<input type="text" name="dbwarehouse_name" placeholder="" class="form-control" validateType="default">
+						</div>
+					</div>
+					<div class='form-group'>
+						<label class="col-sm-3 control-label">仓库编码</label>
+						<div class="col-sm-9">
+							<input type="text" name="dbwarehouse_code" placeholder="" class="form-control" validateType="default">
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,24 @@
+<div class='row tab-pane' style='border: 1px solid #ddd; margin-left: 15px; margin-right: 15px; padding: 10px;' id="tab-taskReviews">
+    <div class='col-sm-12' id='reviewContainer'>
+        <div class='row toolbar-panel'>
+            <div class='col-sm-12' style='padding-top: 15px; padding-bottom: 15px;'>
+                <button type='button' class="jt-btn saveRelOrgBtn"><i class='fa fa-floppy-o'></i>&nbsp;保存</button>
+                <button type='button' class="jt-btn jt-btn-red prevBtn closeDialog col-sm-offset-1"><i class="fa fa-remove"></i>&nbsp;关闭</button>
+            </div>
+        </div>
+        <div class='col-sm-12' id='prodEntityFormDiv' style='margin-right: 15px; margin-bottom:30px;padding: 10px;'>
+            <form id="prodEntityForm" method="get" class="form-horizontal">
+                <div class='form-group'>
+                    <div class='col-sm-12'>
+                        <textarea cols="1" id="descContainer" rows="1" placeholder="快速评论" class="ui-autocomplete-input col-sm-12" autocomplete="off" style="height: 100px; margin: 0px; "></textarea>
+                    </div>
+                </div>
+                <div class='form-group'>
+                    <div>
+                        <input type="hidden" id="taskId" name="taskId">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

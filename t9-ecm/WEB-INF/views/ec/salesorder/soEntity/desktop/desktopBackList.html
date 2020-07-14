@@ -1,0 +1,32 @@
+<script src="${ctx}/js/jt/ec/salesorder/desktop/stockBack${deploy_min!""}.js?v=${jsVersion}" ></script>
+<script type="text/javascript">
+   var curUserId = "${ONLINE_ENTITY.userId}";
+</script>
+<div class="panel panel-default">
+    <div class="panel-heading">
+       <h4>待退回订单</h4>
+    </div>
+    
+     <div class="panel-body">
+	    <table class='table table-bordered table-stripped'>
+	    	<thead>
+	    		<tr>
+	    			<td>订单编号</td>
+	    			<td>订单类型</td>
+	    			<td>订单状态</td>
+	    			<td>货款方式</td>
+	    			<td>待收金额</td>
+	    			<td>下单时间</td>
+	    		</tr>
+	    	</thead>
+	    	<tbody id='returnContainer'>
+	    		
+	    	</tbody>
+	    </table>
+	     <div style="text-align: right;padding-right: 15px;">
+	        <span nameVal='订单发货' urlVal='/ec/salesorder/soEntity/stock/list.htm?select=3' style="text-decoration: underline;color: blue;cursor: pointer;" class="showMore">查看更多</span>
+	    </div>
+    </div>
+</div>
+
+
